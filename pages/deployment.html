@@ -1,0 +1,563 @@
+<title>Deployment Runbook | Handbook</title>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏦</div>
+      <div>
+        <div class="bank-title">Handbook<br>Deployment Runbook</div>
+        <div class="bank-sub">v2.4 · 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Navigation</div>
+  <nav id="sidebar-nav">
+    <a href="#section-governance" id="nav-governance" class="active" onclick="setActive(this)">
+      <span class="nav-icon">📋</span> Governance &amp; SDLC
+    </a>
+    <a href="#section-phase1" id="nav-phase1" onclick="setActive(this)">
+      <span class="nav-icon">🔭</span> Phase 1 · Discovery
+    </a>
+    <a href="#section-phase2" id="nav-phase2" onclick="setActive(this)">
+      <span class="nav-icon">⚡</span> Phase 2 · Agile Build
+    </a>
+    <a href="#section-phase3" id="nav-phase3" onclick="setActive(this)">
+      <span class="nav-icon">🔐</span> Phase 3 · Pre-Deploy
+    </a>
+    <a href="#section-phase4" id="nav-phase4" onclick="setActive(this)">
+      <span class="nav-icon">🚀</span> Phase 4 · Deployment
+    </a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section-label">Handbooks</div>
+  <nav id="sidebar-nav-docs">
+    <a href="#handbook" style="display:flex;align-items:center;gap:9px;padding:8px 20px;font-size:12.5px;font-weight:500;color:var(--text-secondary);text-decoration:none;border-left:2px solid transparent;transition:all 0.15s ease;">
+      <span class="nav-icon">📘</span> Implementation Handbook
+    </a>
+    <a href="#ba" style="display:flex;align-items:center;gap:9px;padding:8px 20px;font-size:12.5px;font-weight:500;color:var(--text-secondary);text-decoration:none;border-left:2px solid transparent;transition:all 0.15s ease;">
+      <span class="nav-icon">📖</span> BA Project Handbook
+    </a>
+    <a href="#pm" style="display:flex;align-items:center;gap:9px;padding:8px 20px;font-size:12.5px;font-weight:500;color:var(--text-secondary);text-decoration:none;border-left:2px solid transparent;transition:all 0.15s ease;">
+      <span class="nav-icon">👔</span> PM Project Handbook
+    </a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section-label">Compliance</div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">⚖️ Circular 09/2020/TT-NHNN</span>
+    <span class="comp-pill">🛡️ SBV IT Safety Regs</span>
+    <span class="comp-pill">🔒 ISO 27001 Aligned</span>
+  </div>
+
+  <div class="sidebar-meta">
+    <strong>Release</strong>
+    2025 Q2 · Sprint 14
+    <strong>Environment</strong>
+    SIT → UAT → PROD
+    <strong>CAB Schedule</strong>
+    Every Tue 14:00 ICT
+    <strong>Status</strong>
+    <span style="color:var(--status-yellow)">● In Security Testing</span>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<main id="main-content">
+
+  <!-- HERO -->
+  <header class="top-header">
+    <div class="header-eyebrow">🏦 Commercial Bank · Vietnam · Production Runbook</div>
+    <h1>Interactive<br><span>Deployment Runbook</span></h1>
+    <p>Governed, step-by-step operational guide for software releases under the <strong>Hybrid Water-Scrum-Fall</strong> model — compliant with <strong>SBV Circular 09/2020/TT-NHNN</strong> and internal risk management policies.</p>
+    <div class="header-pills">
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-green)"></span> Agile/Scrum · Development</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--accent)"></span> Waterfall · Governance</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-yellow)"></span> CAB · Change Advisory</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-purple)"></span> SBV · Regulatory</div>
+    </div>
+  </header>
+
+  <div class="content-sections">
+
+    <!-- SECTION 1: GOVERNANCE -->
+    <section id="section-governance" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div>
+          <div class="section-number">Section 1</div>
+          <h2>Governance &amp; Hybrid SDLC Overview</h2>
+          <div class="sec-sub">Water-Scrum-Fall model · SBV Compliance Pillars</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <p style="margin-bottom:16px;font-size:13px;">This bank operates a <strong>Hybrid SDLC model</strong> — colloquially referred to as <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent-bright);border:1px solid rgba(124,92,252,0.3);">Water-Scrum-Fall</span> — which strategically combines the iterative velocity of Agile/Scrum for software <em>execution</em> with the structured oversight of Waterfall for <em>governance</em> and <em>production releases</em>.</p>
+          <div class="phase-callout">
+            <div class="callout-box" style="background:var(--status-blue-bg);border-color:rgba(96,165,250,0.25);">
+              <div class="callout-title" style="color:var(--status-blue);">🔭 Waterfall — Initiation</div>
+              <div class="callout-body" style="color:#93c5fd;">Formal business case, governance approval gates, budget allocation (Tờ trình), and regulatory sign-off before any development begins.</div>
+            </div>
+            <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.25);">
+              <div class="callout-title" style="color:var(--status-green);">⚡ Agile — Execution</div>
+              <div class="callout-body" style="color:#6ee7b7;">Iterative Sprints, continuous integration, feature team backlogs, and Scrum ceremonies to deliver working software incrementally.</div>
+            </div>
+            <div class="callout-box" style="background:var(--status-yellow-bg);border-color:rgba(251,191,36,0.25);">
+              <div class="callout-title" style="color:var(--status-yellow);">🔐 Waterfall — Release</div>
+              <div class="callout-body" style="color:#fde68a;">Sequential Security &amp; Performance testing gates, CAB review, mandatory SBV audit checkpoints, and controlled production deployment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:16px 22px 12px;border-bottom:1px solid var(--border-subtle);">
+          <div class="card-title" style="margin-bottom:3px;">🛡️ Vietnamese Banking Compliance Pillars</div>
+          <p style="font-size:11.5px;">As mandated by SBV Circular 09/2020/TT-NHNN &amp; internal policy</p>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>⚔️</span><h3>Strict Segregation of Duties (SoD)</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Mandatory</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body open">
+            <div class="accordion-content">
+              <p>No single individual may hold conflicting roles across development, testing, and production deployment. Enforced via RBAC in GitLab, JIRA, and the production pipeline.</p>
+              <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div>Developers <strong>cannot</strong> merge their own code to main. Testers must be independent. Release Managers hold sole authority to initiate production deployments.</div></div>
+              <table class="comp-table" style="margin-top:12px;">
+                <thead><tr><th>Role</th><th>Dev</th><th>Test</th><th>Release</th><th>PROD Access</th></tr></thead>
+                <tbody>
+                  <tr><td>Developer</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                  <tr><td>QA / Tester</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+                  <tr><td>Release Manager</td><td>❌</td><td>❌</td><td>✅</td><td>Read-only</td></tr>
+                  <tr><td>DevOps Engineer</td><td>❌</td><td>❌</td><td>Support</td><td>✅</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>🔍</span><h3>Mandatory Security Audits</h3><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Pre-Release Gate</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>All systems handling financial transactions or customer PII must pass a full security assessment cycle before every production release:</p>
+              <ul class="step-cl" style="margin-top:10px;">
+                <li><span class="step-num">1</span> SAST — automated scan on every commit via SonarQube + GitLab SAST.</li>
+                <li><span class="step-num">2</span> DAST — executed in SIT/UAT environment via OWASP ZAP.</li>
+                <li><span class="step-num">3</span> Penetration Testing — performed by the independent Internal Security team.</li>
+                <li><span class="step-num">4</span> Vulnerability Assessment Report — signed off before CAB submission.</li>
+              </ul>
+              <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>Any CVSS score ≥ 7.0 (High) is a <strong>hard blocker</strong>. The release cannot proceed until remediated and re-tested.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>🗳️</span><h3>Formal Change Advisory Board (CAB) Approvals</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Governance Gate</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>The CAB is the final governance authority before any change reaches production. Membership includes Technology Leadership, Risk Management, Compliance, and Business Owners.</p>
+              <div class="info-tiles">
+                <div class="info-tile"><div class="info-tile-icon">📅</div><div class="info-tile-title">CAB Frequency</div><div class="info-tile-desc">Weekly, every Tuesday at 14:00 ICT. Emergency CABs within 4 hours for P1.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">📄</div><div class="info-tile-title">Change Request (CR)</div><div class="info-tile-desc">Must include PT Report, Security Report, UAT sign-off, rollback plan, deployment timeline.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">🗳️</div><div class="info-tile-title">Voting Quorum</div><div class="info-tile-desc">Minimum 5 of 7 CAB members present. Unanimous approval required for Tier 1 systems.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">⏳</div><div class="info-tile-title">Freeze Windows</div><div class="info-tile-desc">No releases during year-end freeze (Dec 20–Jan 5) or SBV reporting periods.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 2: PHASE 1 -->
+    <section id="section-phase1" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🔭</div>
+        <div>
+          <div class="section-number">Section 2</div>
+          <h2>Phase 1 — Discovery &amp; Project Initiation</h2>
+          <div class="sec-sub">Waterfall governance · Planning &amp; approval gates</div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-bottom:16px;">
+        <span class="alert-icon">📌</span>
+        <div>This phase follows strict <strong>Waterfall sequencing</strong>. No development begins until all governance artifacts are produced, reviewed, and formally approved by the Project Sponsor and Initiative Director.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="grid-2col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">📦 Key Governance Outputs</div>
+            <ul class="output-list">
+              <li><div class="output-icon">📊</div><div><div style="font-weight:600;font-size:13px;">Business Case</div><div style="font-size:11px;color:var(--text-muted);">ROI analysis, strategic alignment, risk &amp; benefit assessment</div></div></li>
+              <li><div class="output-icon">📃</div><div><div style="font-weight:600;font-size:13px;">Project Charter</div><div style="font-size:11px;color:var(--text-muted);">Scope, objectives, timelines, and authority to proceed</div></div></li>
+              <li><div class="output-icon">🗓️</div><div><div style="font-weight:600;font-size:13px;">Project Plan</div><div style="font-size:11px;color:var(--text-muted);">WBS, milestones, dependencies, resource allocation</div></div></li>
+              <li><div class="output-icon">💰</div><div><div style="font-weight:600;font-size:13px;">Budget Proposal — Tờ trình</div><div style="font-size:11px;color:var(--text-muted);">Formal budget submission with capex/opex breakdown for BOD approval</div></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">👥 Key Roles &amp; Responsibilities</div>
+            <div class="role-card"><div class="role-avatar">🎯</div><div><div class="role-name">Project Sponsor</div><div class="role-desc">Executive authority; secures funding; escalation point; BOD liaison.</div></div></div>
+            <div class="role-card"><div class="role-avatar">💼</div><div><div class="role-name">Business Owner</div><div class="role-desc">Defines business requirements; owns benefits realization; UAT sign-off.</div></div></div>
+            <div class="role-card"><div class="role-avatar">🏛️</div><div><div class="role-name">Initiative Director</div><div class="role-desc">Oversees program portfolio; strategic alignment; Phase Gate approvals.</div></div></div>
+            <div class="role-card"><div class="role-avatar">📋</div><div><div class="role-name">Project Manager</div><div class="role-desc">Day-to-day delivery; RAID log; stakeholder comms; status reporting.</div></div></div>
+            <div class="role-card"><div class="role-avatar">🏗️</div><div><div class="role-name">Enterprise Architect</div><div class="role-desc">Solution design; technology standards compliance; ARB review.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🔄 Initiation Phase Gate Sequence</div>
+          <ul class="wf-steps">
+            <li class="wf-step"><div><div class="wf-step-title">Gate 0 · Concept &amp; Ideation</div><div class="wf-step-desc">Business pain point identified; initial scope defined; Executive Sponsor nominates Initiative Director.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 1 · Business Case Approved</div><div class="wf-step-desc">BOD or Delegated Authority reviews and approves the Business Case and Tờ trình. Budget is formally allocated.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 2 · Project Charter Signed</div><div class="wf-step-desc">PM appointed; Team assembled; Project Charter countersigned by Sponsor, Initiative Director, and Business Owner.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 3 · Architecture Review Board (ARB)</div><div class="wf-step-desc">Enterprise Architect presents solution design. ARB validates compliance with bank technology standards and SBV IT regulations.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 4 · Development Kick-off</div><div class="wf-step-desc">Project Plan approved. Scrum teams onboarded. JIRA Epic structure created. Sprint 0 begins.</div></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 3: PHASE 2 -->
+    <section id="section-phase2" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div>
+          <div class="section-number">Section 3</div>
+          <h2>Phase 2 — Implementation (Agile/Scrum)</h2>
+          <div class="sec-sub">Iterative sprints · Continuous integration · Living backlog</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">📅 Scrum Ceremonies</div>
+          <div class="ceremony-grid">
+            <div class="ceremony-card" style="border-top-color:var(--status-blue)"><div class="ceremony-emoji">🗓️</div><div class="ceremony-name">Sprint Planning</div><div class="ceremony-freq">Every 2 weeks · 4h max</div><div class="ceremony-desc">Team selects backlog items and commits to a Sprint Goal based on capacity and velocity.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-green)"><div class="ceremony-emoji">☀️</div><div class="ceremony-name">Daily Scrum</div><div class="ceremony-freq">Daily · 15 min</div><div class="ceremony-desc">What did I do? What will I do? Any blockers? SM owns impediment removal.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-yellow)"><div class="ceremony-emoji">🔄</div><div class="ceremony-name">Backlog Refinement</div><div class="ceremony-freq">Weekly · 2h</div><div class="ceremony-desc">PO grooms stories; team estimates effort via Story Points; acceptance criteria clarified.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--accent)"><div class="ceremony-emoji">🎬</div><div class="ceremony-name">Sprint Review</div><div class="ceremony-freq">End of Sprint · 2h</div><div class="ceremony-desc">Working software demo to stakeholders. Business Owner accepts or returns the increment.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-red)"><div class="ceremony-emoji">🔍</div><div class="ceremony-name">Retrospective</div><div class="ceremony-freq">End of Sprint · 1.5h</div><div class="ceremony-desc">Team identifies top 3 improvements. Action items tracked into next Sprint.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">✅ Definition of Done (DoD) — Sprint Level</div>
+          <p style="font-size:12px;margin-bottom:12px;">All criteria must be satisfied before a Story or Epic is considered complete.</p>
+          <div class="highlight-strip">
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span>Code peer-reviewed and approved by minimum <strong>2 reviewers</strong> via GitLab MR (no self-merge).</span></li>
+              <li><span class="step-num">2</span><span>Unit test coverage ≥ <strong>85%</strong> validated by SonarQube gate. No critical or blocking code smells.</span></li>
+              <li><span class="step-num">3</span><span>SAST scan passed — zero <strong>High / Critical</strong> severity findings in the feature branch.</span></li>
+              <li><span class="step-num">4</span><span>Functional tests passing in <strong>SIT environment</strong>; smoke tests passing in UAT environment.</span></li>
+              <li><span class="step-num">5</span><span>API contract tests passing (if applicable). No regression in existing test suites.</span></li>
+              <li><span class="step-num">6</span><span>Acceptance criteria validated and sign-off obtained from <strong>Product Owner</strong>.</span></li>
+              <li><span class="step-num">7</span><span>JIRA story updated to "Done", linked to the relevant commit SHA and test results artifact.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🌐 Environment Promotion Strategy</div>
+          <div class="env-track">
+            <div class="env-step done"><div class="env-dot">💻</div><div class="env-label">DEV</div></div>
+            <div class="env-step done"><div class="env-dot">🔬</div><div class="env-label">SIT</div></div>
+            <div class="env-step done"><div class="env-dot">👥</div><div class="env-label">UAT</div></div>
+            <div class="env-step active"><div class="env-dot">⚡</div><div class="env-label">PERF</div></div>
+            <div class="env-step"><div class="env-dot">🔒</div><div class="env-label">SEC</div></div>
+            <div class="env-step"><div class="env-dot">🚀</div><div class="env-label">PROD</div></div>
+          </div>
+          <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>DEV → SIT → UAT promotions handled by <strong>CI/CD pipeline</strong> (GitLab CI). PERF and SEC require <strong>Release Manager</strong> authorization. PROD requires <strong>CAB approval</strong>.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 4: PHASE 3 -->
+    <section id="section-phase3" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🔐</div>
+        <div>
+          <div class="section-number">Section 4</div>
+          <h2>Phase 3 — "Last Mile" Pre-Deployment</h2>
+          <div class="sec-sub">Strict Waterfall · Sequential gate-passing · CAB governance</div>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" style="margin-bottom:20px;">
+        <span class="alert-icon">🔴</span>
+        <div><strong>CRITICAL PATH:</strong> Each step must complete sequentially. No step can be skipped or parallelized. Any blocker at any gate returns the release to backlog for remediation.</div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">🔄 Release Pipeline — Status Tracker</div>
+          <p style="font-size:11.5px;margin-bottom:14px;">Hover over each stage for details.</p>
+          <div class="pipeline-wrap">
+            <div class="pipeline-grid">
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Step 1</div><div class="pipe-icon">📝</div><div class="pipe-title">Backlog</div><span class="pipe-badge pb-done">Done</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Release Request created in JIRA. Scope locked. Branching strategy confirmed. Changelog drafted.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Step 2</div><div class="pipe-icon">⚡</div><div class="pipe-title">Ready for PT</div><span class="pipe-badge pb-done">Done</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">PERF environment provisioned. Test data loaded. Release artifact deployed and verified.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Step 3</div><div class="pipe-icon">📊</div><div class="pipe-title">In Perf Testing</div><span class="pipe-badge pb-done">Done</span><div class="pipe-role">Perf Tester</div></div><div class="pipe-tooltip">Load, stress &amp; soak tests executed via Apache JMeter. TPS &amp; P95 latency benchmarked.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Step 4</div><div class="pipe-icon">📋</div><div class="pipe-title">PT Done</div><span class="pipe-badge pb-done">Done</span><div class="pipe-role">Perf Tester</div></div><div class="pipe-tooltip">Performance Report signed. All KPIs met. Report attached to Change Request.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Step 5</div><div class="pipe-icon">🛡️</div><div class="pipe-title">Ready for ST</div><span class="pipe-badge pb-done">Done</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">SEC environment (isolated network) provisioned. Pentest scope confirmed with Security team.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-active"><div class="pipe-num">Step 6</div><div class="pipe-icon">🔐</div><div class="pipe-title">In Sec Testing</div><span class="pipe-badge pb-active">Active</span><div class="pipe-role">Sec Tester</div></div><div class="pipe-tooltip">DAST + manual pentest in progress. OWASP Top 10 being executed. ETA: 3 days.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 7</div><div class="pipe-icon">📄</div><div class="pipe-title">ST Done</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">Sec Tester</div></div><div class="pipe-tooltip">Security Report with CVSS scores generated. Any High/Critical blocks release. CISO sign-off required.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 8</div><div class="pipe-icon">📨</div><div class="pipe-title">Ready for CAB</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Change Request submitted to CAB with all attachments: PT, ST Reports, UAT sign-off, rollback plan.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 9</div><div class="pipe-icon">🏛️</div><div class="pipe-title">In CAB</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">CAB Members</div></div><div class="pipe-tooltip">CR presented to CAB. Risk score assessed. Business Impact Analysis reviewed. Approval vote taken.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 10</div><div class="pipe-icon">✅</div><div class="pipe-title">CAB Done</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">CAB Chair</div></div><div class="pipe-tooltip">CAB approval recorded in GRC system. Deployment window confirmed. Stakeholders notified.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 11</div><div class="pipe-icon">🖥️</div><div class="pipe-title">Ready for PROD</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">DevOps + Rel Mgr</div></div><div class="pipe-tooltip">Production deployed during approved maintenance window. Go/No-Go call before execution.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Step 12</div><div class="pipe-icon">🎉</div><div class="pipe-title">Released</div><span class="pipe-badge pb-pending">Pending</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Smoke test in PROD passed. Release note published. CS briefed. 72h post-release watch active.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROLE TABS -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">👤 View by Role — Duties &amp; Responsibilities</div>
+          <div class="role-tabs" role="tablist">
+            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" onclick="switchRole('rm')">📋 Release Manager</button>
+            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" onclick="switchRole('pt')">📊 Performance Tester</button>
+            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" onclick="switchRole('st')">🔐 Security Tester</button>
+          </div>
+
+          <div id="panel-rm" class="role-panel active">
+            <div class="role-card"><div class="role-avatar">📋</div><div><div class="role-name" style="font-size:14px;">Release Manager</div><div class="role-desc">Owns the end-to-end release lifecycle. Single point of accountability for production deployment.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Pre-Deployment Duties</p>
+            <ul class="duty-list">
+              <li>Create and manage the Release Request in JIRA with full scope definition and changelog.</li>
+              <li>Coordinate environment provisioning with DevOps for PERF and SEC environments.</li>
+              <li>Confirm artifact build integrity (SHA checksum) and deployment package completeness.</li>
+              <li>Track gate-passing across all 12 pipeline steps; escalate blockers immediately.</li>
+              <li>Compile the Change Request package: PT Report, Security Report, UAT sign-off, Impact Analysis, Rollback Plan.</li>
+              <li>Present the Change Request at the CAB meeting; answer all board queries.</li>
+              <li>Conduct the Go/No-Go call with DevOps, Business Owner, and on-call support before PROD.</li>
+              <li>Publish release notes and notify all stakeholders upon successful deployment.</li>
+              <li>Manage the 72-hour post-release watch period and coordinate the Lessons Learned session.</li>
+            </ul>
+            <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">📌</span><div>The Release Manager is the <strong>only role</strong> authorized to transition the pipeline at Steps 1→2, 5→6, and 10→11. These require explicit sign-off entries in the GRC system.</div></div>
+          </div>
+
+          <div id="panel-pt" class="role-panel">
+            <div class="role-card"><div class="role-avatar">📊</div><div><div class="role-name" style="font-size:14px;">Performance Tester</div><div class="role-desc">Responsible for validating system throughput, latency, and stability under peak banking load.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Performance Testing Duties</p>
+            <ul class="duty-list">
+              <li>Confirm PERF environment topology matches PROD specifications (CPU, RAM, DB replication).</li>
+              <li>Design and execute <strong>Load Test</strong>: simulate peak concurrent users from production metrics.</li>
+              <li>Execute <strong>Stress Test</strong>: push system to 150% of expected peak load to identify breaking point.</li>
+              <li>Execute <strong>Soak Test</strong>: sustain load for minimum 4 hours to detect memory leaks or connection pool exhaustion.</li>
+              <li>Capture KPIs: TPS, P95/P99 latency, error rate, CPU/memory utilization.</li>
+              <li>Validate all KPIs against SLA thresholds defined in the Performance Test Plan.</li>
+              <li>Generate the <strong>Performance Test Report</strong> using the approved bank template, including Grafana/JMeter screenshots.</li>
+              <li>Obtain sign-off from Performance Test Lead and submit report to Release Manager.</li>
+            </ul>
+            <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>If any KPI fails SLA thresholds (e.g., P95 latency &gt; 2000ms for core banking APIs), the release is immediately blocked. Dev team notified for remediation before re-testing.</div></div>
+          </div>
+
+          <div id="panel-st" class="role-panel">
+            <div class="role-card"><div class="role-avatar">🔐</div><div><div class="role-name" style="font-size:14px;">Security Tester</div><div class="role-desc">Independent security team responsible for identifying vulnerabilities before production exposure.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Security Testing Duties</p>
+            <ul class="duty-list">
+              <li>Review SAST findings from CI pipeline; confirm all High/Critical are remediated by Dev.</li>
+              <li>Execute <strong>DAST scan</strong> using OWASP ZAP against the SEC environment.</li>
+              <li>Conduct <strong>manual penetration testing</strong> covering OWASP Top 10 and banking-specific vectors.</li>
+              <li>Assess <strong>authentication &amp; authorization</strong> controls: MFA, RBAC enforcement, token expiry.</li>
+              <li>Review <strong>data encryption</strong> at rest and in transit (TLS 1.2+, AES-256 for PII fields).</li>
+              <li>Validate <strong>API security</strong>: rate limiting, input validation, SQL injection, XSS prevention.</li>
+              <li>Score all findings using <strong>CVSS v3.1</strong>; classify by Severity and Business Impact.</li>
+              <li>Generate the <strong>Security Assessment Report</strong>; obtain CISO sign-off before releasing to RM.</li>
+            </ul>
+            <div class="alert alert-danger" style="margin-top:12px;"><span class="alert-icon">🚨</span><div><strong>Hard Blocker:</strong> Any finding with CVSS ≥ 7.0 (High) or OWASP Top 10 Category A01–A05 is an automatic deploy blocker. The CISO has veto power over the CAB regarding security findings.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELEASE DOD CHECKLIST -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">☑️ Release Definition of Done — Interactive Checklist</div>
+          <p style="font-size:12px;margin-bottom:14px;">Click each item to check off. All 8 must be ✅ before requesting CAB approval.</p>
+
+          <div class="dod-grid" id="dod-checklist">
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Performance Tested</div><div class="dod-sub">All SLA thresholds met. PT Report signed.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Security Tested</div><div class="dod-sub">No High/Critical findings. CISO signed off.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT Accepted</div><div class="dod-sub">Business Owner sign-off obtained.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB Approved</div><div class="dod-sub">Change Request approved. Deployment window set.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Rollback Plan Ready</div><div class="dod-sub">Rollback procedure documented and tested.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact Verified</div><div class="dod-sub">Build SHA verified. Deployment package validated.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Ops Team Notified</div><div class="dod-sub">Ops Handover Document issued. L1 Support briefed.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Monitoring Configured</div><div class="dod-sub">Dashboards live. Alerts tuned. On-call rotation set.</div></div></div>
+          </div>
+
+          <div class="dod-progress">
+            <div class="dod-progress-label"><span>Release Readiness</span><span id="dod-count">0 / 8 complete</span></div>
+            <div class="dod-bar-track"><div class="dod-bar-fill" id="dod-bar" style="width:0%"></div></div>
+          </div>
+
+          <div id="dod-complete-banner">🎉 All Release DoD criteria met — cleared for production deployment.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 5: PHASE 4 -->
+    <section id="section-phase4" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <div>
+          <div class="section-number">Section 5</div>
+          <h2>Phase 4 — Deployment &amp; Commercialization</h2>
+          <div class="sec-sub">Production handover · Ops transition · Monitoring &amp; support</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-bottom:16px;">
+        <span class="alert-icon">🚀</span>
+        <div><strong>Milestone:</strong> CAB has approved the Change Request. Deployment window confirmed. This phase covers the controlled production release and formal handover from Project Team to Operations &amp; Customer Support.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="grid-2col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">📦 Key Deployment Outputs</div>
+            <ul class="output-list">
+              <li><div class="output-icon">📘</div><div><div style="font-weight:600;font-size:13px;">Operations Handover Document</div><div style="font-size:11px;color:var(--text-muted);">System architecture, runbook, escalation matrix, and SLA definitions</div></div></li>
+              <li><div class="output-icon">📗</div><div><div style="font-weight:600;font-size:13px;">User &amp; Admin Guides</div><div style="font-size:11px;color:var(--text-muted);">End-user training materials, admin console guide, onboarding flow</div></div></li>
+              <li><div class="output-icon">📊</div><div><div style="font-weight:600;font-size:13px;">Monitoring Dashboard</div><div style="font-size:11px;color:var(--text-muted);">Grafana/Datadog real-time metrics, alerting rules, SLO tracking</div></div></li>
+              <li><div class="output-icon">🚨</div><div><div style="font-weight:600;font-size:13px;">Incident Management Process</div><div style="font-size:11px;color:var(--text-muted);">Severity classification, on-call rotation, escalation path, war-room protocol</div></div></li>
+              <li><div class="output-icon">📋</div><div><div style="font-weight:600;font-size:13px;">Technical &amp; End-User FAQs</div><div style="font-size:11px;color:var(--text-muted);">Known issues, workarounds, L1/L2/L3 triage guide</div></div></li>
+              <li><div class="output-icon">📈</div><div><div style="font-weight:600;font-size:13px;">Deployment Execution Tracker</div><div style="font-size:11px;color:var(--text-muted);">Step-by-step deployment log, timestamps, post-release verification results</div></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">🤝 Project → Operations Handover</div>
+            <ul class="wf-steps">
+              <li class="wf-step"><div><div class="wf-step-title">Go/No-Go Call (T-2h)</div><div class="wf-step-desc">All parties (RM, DevOps, Business Owner, L1 Support Lead) confirm readiness on a bridge call.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">PROD Deployment Executed</div><div class="wf-step-desc">DevOps runs deployment pipeline in the approved maintenance window (typically 22:00–02:00 ICT).</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Smoke Test &amp; Verification</div><div class="wf-step-desc">Release Manager executes smoke test checklist. Business Owner validates core transaction flows in PROD.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Handover Meeting</div><div class="wf-step-desc">Formal handover with Ops Lead. All artifacts transferred. On-call duties activated.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">72-Hour Watch Period</div><div class="wf-step-desc">Dev team on standby. Monitoring reviewed every 4 hours. P1/P2 triggers immediate war-room.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Project Closure</div><div class="wf-step-desc">Lessons Learned session. PIR report published. Project formally closed in PPM tool.</div></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">📊 Monitoring &amp; Incident Response Framework</div>
+          <div class="info-tiles">
+            <div class="info-tile" style="border-top:2px solid var(--status-green);"><div class="info-tile-icon">🟢</div><div class="info-tile-title">P4 — Low</div><div class="info-tile-desc">Cosmetic issue. No business impact. Response: Next business day.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-blue);"><div class="info-tile-icon">🔵</div><div class="info-tile-title">P3 — Medium</div><div class="info-tile-desc">Minor disruption. Workaround available. Response: 4 hours. L2 assigned.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-yellow);"><div class="info-tile-icon">🟡</div><div class="info-tile-title">P2 — High</div><div class="info-tile-desc">Significant impact. No workaround. Response: 1 hour. L3 + Dev engaged.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-red);"><div class="info-tile-icon">🔴</div><div class="info-tile-title">P1 — Critical</div><div class="info-tile-desc">Core banking down. Response: 15 min. War-room. CPTO &amp; CRO notified. Rollback considered.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:16px 22px 12px;border-bottom:1px solid var(--border-subtle);">
+          <div class="card-title" style="margin-bottom:0;">📁 Commercialization Artifacts Reference</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📘</span><h3>Operations Handover Document</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Required</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>The OHD is the primary artifact enabling the Ops team to independently manage the system post-deployment.</p>
+              <ul class="step-cl" style="margin-top:10px;">
+                <li><span class="step-num">A</span> System architecture diagram and component inventory.</li>
+                <li><span class="step-num">B</span> Infrastructure and deployment configuration (Kubernetes, Terraform manifests).</li>
+                <li><span class="step-num">C</span> Database connection strings, secrets management (Vault paths — no plaintext credentials).</li>
+                <li><span class="step-num">D</span> Monitoring thresholds and alert runbook.</li>
+                <li><span class="step-num">E</span> Escalation matrix: L1 → L2 → L3 → Vendor support contacts.</li>
+                <li><span class="step-num">F</span> Backup and recovery procedures with tested RTO/RPO targets.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📊</span><h3>Monitoring Dashboard &amp; Alerting</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Live</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>Observability stack: <strong>Grafana</strong> for metrics, <strong>Loki</strong> for log aggregation, <strong>Jaeger</strong> for distributed tracing, and <strong>PagerDuty</strong> for on-call alerting.</p>
+              <div class="info-tiles">
+                <div class="info-tile"><div class="info-tile-icon">📈</div><div class="info-tile-title">Business KPIs</div><div class="info-tile-desc">Transaction success rate, daily active users, revenue impact metrics.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">System Health</div><div class="info-tile-desc">CPU/memory/disk, pod restart count, DB connection pool utilization.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">🌐</div><div class="info-tile-title">API Metrics</div><div class="info-tile-desc">P95/P99 latency, error rate, throughput, API gateway quotas.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📋</span><h3>Deployment Execution Tracker</h3><span class="acc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">Audit Trail</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>Time-stamped, immutable log of every action during deployment. Retained in GRC system for minimum 5 years per SBV compliance.</p>
+              <table class="comp-table" style="margin-top:12px;">
+                <thead><tr><th>Timestamp (ICT)</th><th>Action</th><th>Executed By</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="mono">22:05</span></td><td>Pre-deployment backup verified</td><td>DevOps L2</td><td><span class="pipe-badge pb-done">Done</span></td></tr>
+                  <tr><td><span class="mono">22:10</span></td><td>DB schema migration executed</td><td>DevOps L2</td><td><span class="pipe-badge pb-done">Done</span></td></tr>
+                  <tr><td><span class="mono">22:22</span></td><td>Application containers deployed</td><td>CI/CD Pipeline</td><td><span class="pipe-badge pb-done">Done</span></td></tr>
+                  <tr><td><span class="mono">22:35</span></td><td>Smoke test executed</td><td>Release Manager</td><td><span class="pipe-badge pb-done">Done</span></td></tr>
+                  <tr><td><span class="mono">22:40</span></td><td>Business Owner PROD verification</td><td>Business Owner</td><td><span class="pipe-badge pb-active">Pending</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.content-sections -->
+</main>
+
+<footer class="site-footer">
+  🏦 Handbook · Deployment Runbook v2.4 · Internal Use Only · Classification: CONFIDENTIAL<br>
+  Compliant with SBV Circular 09/2020/TT-NHNN &amp; ISO 27001 · Approved by Technology Risk Committee · © 2025
+</footer>
+</div><!-- /#page-content -->
