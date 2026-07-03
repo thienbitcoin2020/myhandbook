@@ -8,6 +8,7 @@ const ROUTES = {
   'handbook':   'pages/handbook.html',
   'ba':         'pages/ba.html',
   'pm':         'pages/pm.html',
+  'qc':         'pages/qc.html',
 };
 
 let _pageStyle  = null;
@@ -79,6 +80,9 @@ async function navigate(hash) {
       });
     });
 
+    // ── Initialise DoD progress bar (deployment page) ─────────
+    if (typeof updateDod === 'function') updateDod();
+
     // ── Scroll-spy for deployment page ────────────────────────
     if (page === 'deployment') _setupScrollSpy();
 
@@ -86,7 +90,24 @@ async function navigate(hash) {
 
   } catch (err) {
     console.error('[Router] Failed to load', url, err);
+    _renderError(page, url, err);
   }
+}
+
+/** Render a user-facing error state when a page fragment fails to load */
+function _renderError(page, url, err) {
+  const app = document.getElementById('app');
+  if (!app) return;
+  app.innerHTML = `
+    <div class="router-error" role="alert">
+      <div class="router-error-icon">⚠️</div>
+      <h1>Couldn't load this page</h1>
+      <p>The section <code>#${page}</code> failed to load
+         (<code>${url}</code> — ${err && err.message ? err.message : 'unknown error'}).</p>
+      <p>Check your connection and try again.</p>
+      <button type="button" class="router-error-btn"
+              onclick="_currentPage=null; navigate(location.hash)">Retry</button>
+    </div>`;
 }
 
 function _setupScrollSpy() {

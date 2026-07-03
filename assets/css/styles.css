@@ -601,6 +601,13 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
   margin-top: 10px; font-weight: 700;
 }
 .sidebar-meta strong:first-child { margin-top: 0; }
+/* Quick-link entries inside sidebar meta (replaces repeated inline styles) */
+.sidebar-meta a {
+  color: var(--accent-bright);
+  font-size: 11px;
+  text-decoration: none;
+}
+.sidebar-meta a:hover { text-decoration: underline; }
 
 /* ── External badge ── */
 .ext-badge {
@@ -1511,4 +1518,39 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ── Router error state ── */
+.router-error {
+  max-width: 520px;
+  margin: 15vh auto;
+  padding: 40px 32px;
+  text-align: center;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+}
+.router-error-icon { font-size: 44px; margin-bottom: 12px; }
+.router-error h1 {
+  font-size: 22px; color: var(--text-display);
+  margin: 0 0 12px;
+}
+.router-error p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+.router-error code {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--accent-bright);
+}
+.router-error-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-display);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-visible);
+  border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.router-error-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
 }

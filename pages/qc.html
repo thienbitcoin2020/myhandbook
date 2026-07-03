@@ -1,0 +1,502 @@
+<title>QC Testing Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-qc{width:100%;border-collapse:collapse;font-size:12px}
+.table-qc th,.table-qc td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-qc th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-qc tr:hover td{background:var(--bg-hover)}
+.table-qc code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 8px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary)}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🧪</div>
+      <div>
+        <div class="bank-title">QC Testing Handbook</div>
+        <div class="bank-sub">ISTQB CTFL v4.0 · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Fundamentals</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-process" onclick="setActive(this)"><span class="nav-icon">🔁</span> 02 · Test Process (7)</a>
+  </nav>
+
+  <div class="sidebar-section-label">Levels &amp; Techniques</div>
+  <nav id="sidebar-nav">
+    <a href="#section-static" onclick="setActive(this)"><span class="nav-icon">🔍</span> 03 · Static Testing</a>
+    <a href="#section-levels" onclick="setActive(this)"><span class="nav-icon">🪜</span> 04 · Test Levels (V-Model)</a>
+    <a href="#section-types" onclick="setActive(this)"><span class="nav-icon">🧬</span> 05 · Test Types</a>
+    <a href="#section-techniques" onclick="setActive(this)"><span class="nav-icon">🎯</span> 06 · Design Techniques</a>
+  </nav>
+
+  <div class="sidebar-section-label">Strategy</div>
+  <nav id="sidebar-nav">
+    <a href="#section-sdlc" onclick="setActive(this)"><span class="nav-icon">⚙️</span> 07 · SDLC Integration</a>
+    <a href="#section-risk" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 08 · Risk-Based Testing</a>
+  </nav>
+
+  <div class="sidebar-section-label">Governance</div>
+  <nav id="sidebar-nav">
+    <a href="#section-deliverables" onclick="setActive(this)"><span class="nav-icon">📑</span> 09 · QC Deliverables</a>
+    <a href="#section-criteria" onclick="setActive(this)"><span class="nav-icon">🚦</span> 10 · Entry/Exit · DoR/DoD</a>
+    <a href="#section-defect" onclick="setActive(this)"><span class="nav-icon">🐞</span> 11 · Defect Lifecycle</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 12 · Roles &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 13 · Metrics &amp; KPIs</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🧪 ISTQB CTFL v4.0</span>
+    <span class="comp-pill">🔀 Hybrid SDLC</span>
+    <span class="comp-pill">🏦 SBV 09/2020</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Info</strong>
+    Version: v1.0 · 2025 Q2<br/>
+    Standard: ISTQB CTFL 4.0 (2023)<br/>
+    Owner: QA / Test Manager<br/>
+    <strong>Quick Links</strong>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#ba">← BA Working Flow</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🧪 Internal Handbook · ISTQB CTFL v4.0 Aligned</div>
+    <h1>Quality Control (QC)<br/><span>Testing Process &amp; Governance</span></h1>
+    <p>Reference for the end-to-end QC / testing process following SDLC best practice and the ISTQB Certified Tester Foundation Level (CTFL) v4.0 (2023) syllabus. Terminology is kept strictly to v4.0 — legacy v3.1 terms are flagged where relevant.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> ISTQB CTFL 4.0</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> 7-Activity Test Process</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Risk-Based</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">QA vs QC vs Testing</div>
+        <table class="table-qc">
+          <tr><th style="width:120px">Term</th><th>Focus</th><th>Nature</th><th>Scope</th></tr>
+          <tr><td><strong>Quality Assurance (QA)</strong></td><td>Adherence to proper <strong>processes</strong> — build quality in</td><td>Preventive · process-oriented</td><td>Provides confidence that quality requirements will be fulfilled</td></tr>
+          <tr><td><strong>Quality Control (QC)</strong></td><td>The <strong>product</strong> / work products — detect defects</td><td>Detective · product-oriented</td><td>Includes test activities that support achieving appropriate quality</td></tr>
+          <tr><td><strong>Testing</strong></td><td>Evaluate quality &amp; find defects in a test object</td><td>Static + Dynamic</td><td>A major, but not the only, part of QC</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">ℹ️</span><div>Per ISTQB CTFL v4.0: QA is process-oriented and preventive; QC (which testing supports) is product-oriented. Testing is not equal to QA — testing is one of the quality control activities.</div></div>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Test Objectives (v4.0 §1.1)</div>
+        <ul class="step-cl" style="margin-top:8px;">
+          <li>Evaluate work products (requirements, user stories, designs, code).</li>
+          <li>Trigger failures and find defects.</li>
+          <li>Ensure required coverage of a test object.</li>
+          <li>Reduce the level of risk of inadequate software quality.</li>
+          <li>Verify whether specified requirements have been fulfilled (verification).</li>
+          <li>Verify compliance with contractual, legal &amp; regulatory requirements.</li>
+          <li>Provide information to stakeholders for informed decisions.</li>
+          <li>Build confidence in the quality of the test object.</li>
+          <li>Validate the test object works as users &amp; stakeholders expect (validation).</li>
+        </ul>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">The 7 Testing Principles (v4.0 §1.3)</div>
+        <ol class="step-cl" style="margin-top:8px;">
+          <li><span class="step-num">1</span><strong>Testing shows the presence, not the absence, of defects.</strong></li>
+          <li><span class="step-num">2</span><strong>Exhaustive testing is impossible</strong> — use risk &amp; priorities instead.</li>
+          <li><span class="step-num">3</span><strong>Early testing saves time and money</strong> (shift-left).</li>
+          <li><span class="step-num">4</span><strong>Defects cluster together</strong> — a small number of modules hold most defects.</li>
+          <li><span class="step-num">5</span><strong>Tests wear out</strong> <span class="pill-tag">v4.0 term</span> — repeating the same tests stops finding new defects (was "pesticide paradox" in v3.1).</li>
+          <li><span class="step-num">6</span><strong>Testing is context dependent.</strong></li>
+          <li><span class="step-num">7</span><strong>Absence-of-errors is a fallacy</strong> — a defect-free system can still be unusable / fail to meet needs.</li>
+        </ol>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · TEST PROCESS -->
+    <section class="section-block" id="section-process">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Section 02</div><h2>ISTQB Test Process — 7 Activities</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>The test process is contextual, but v4.0 defines seven main activities. They are largely sequential but may overlap or iterate.</p>
+        <pre class="art-block">1. TEST PLANNING
+   ↓
+2. TEST MONITORING &amp; CONTROL  &lt;── runs continuously across all activities
+   ↓
+3. TEST ANALYSIS   (what to test)
+   ↓
+4. TEST DESIGN     (how to test)
+   ↓
+5. TEST IMPLEMENTATION
+   ↓
+6. TEST EXECUTION
+   ↓
+7. TEST COMPLETION</pre>
+        <table class="table-qc" style="margin-top:12px;">
+          <tr><th style="width:150px">Activity</th><th>Input</th><th>Main tasks</th><th>Output / work products</th></tr>
+          <tr><td><strong>1. Test Planning</strong></td><td>Test policy &amp; strategy, project context, product/project risks</td><td>Define objectives, scope, approach, estimates, schedule &amp; criteria</td><td>Test plan, entry &amp; exit criteria</td></tr>
+          <tr><td><strong>2. Monitoring &amp; Control</strong></td><td>Test plan, actual progress &amp; results</td><td>Compare progress vs plan, check exit criteria, take control actions</td><td>Test progress reports, control directives</td></tr>
+          <tr><td><strong>3. Test Analysis</strong></td><td>Test basis (requirements, user stories, design, risk analysis)</td><td>Analyse basis, evaluate testability, identify &amp; prioritise test conditions</td><td>(Prioritised) test conditions, defects found in the test basis</td></tr>
+          <tr><td><strong>4. Test Design</strong></td><td>Test conditions, test basis</td><td>Design test cases &amp; sets, identify coverage items &amp; test data needs, design environment</td><td>(Prioritised) test cases, coverage items, test data &amp; environment requirements</td></tr>
+          <tr><td><strong>5. Test Implementation</strong></td><td>Test cases, environment design</td><td>Create/order test procedures &amp; suites, build test data, set up environment, create automated tests</td><td>Test procedures, suites, test data, ready environment, execution schedule</td></tr>
+          <tr><td><strong>6. Test Execution</strong></td><td>Test suites, ready environment</td><td>Run tests, compare actual vs expected, log outcomes, report defects, re-test</td><td>Test logs, defect reports, documented results</td></tr>
+          <tr><td><strong>7. Test Completion</strong></td><td>Test results &amp; logs</td><td>Confirm defects closed, finalise &amp; archive testware, hand over, capture lessons learned</td><td>Test summary report, action items, finalised testware, lessons learned</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · STATIC TESTING -->
+    <section class="section-block" id="section-static">
+      <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Section 03</div><h2>Static Testing</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Static vs Dynamic Testing</div>
+        <table class="table-qc">
+          <tr><th style="width:140px">Aspect</th><th>Static Testing</th><th>Dynamic Testing</th></tr>
+          <tr><td>Code executed?</td><td>No — examine the work product</td><td>Yes — run the software</td></tr>
+          <tr><td>Techniques</td><td>Reviews (manual) &amp; static analysis (tools)</td><td>Black-box, white-box, experience-based</td></tr>
+          <tr><td>Finds</td><td>Defects directly (e.g. in requirements)</td><td>Failures caused by defects</td></tr>
+          <tr><td>Value</td><td>Cheapest early defect detection (shift-left)</td><td>Validates actual runtime behaviour</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Review Types — increasing formality</div>
+        <table class="table-qc">
+          <tr><th style="width:150px">Type</th><th>Formality</th><th>Key characteristics</th></tr>
+          <tr><td><strong>Informal review</strong></td><td>None</td><td>No defined process, no documentation; main purpose = detect defects cheaply.</td></tr>
+          <tr><td><strong>Walkthrough</strong></td><td>Low</td><td>Led by the <strong>author</strong>; knowledge sharing, gaining consensus, finding defects.</td></tr>
+          <tr><td><strong>Technical review</strong></td><td>Medium</td><td>Performed by technically qualified peers; reach consensus &amp; make decisions on a technical problem.</td></tr>
+          <tr><td><strong>Inspection</strong></td><td>High</td><td>Most formal; follows a defined process with metrics, rules &amp; checklists; led by a moderator (not the author).</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Review Process (v4.0 §3.2.1) &amp; Roles</div>
+        <pre class="art-block">1. PLANNING              → define scope, effort, criteria
+2. REVIEW INITIATION     → distribute work product &amp; materials
+3. INDIVIDUAL REVIEW     → each reviewer analyses, logs anomalies
+4. COMMUNICATION &amp; ANALYSIS → discuss anomalies, decide status/actions
+5. FIXING &amp; REPORTING   → author fixes; results &amp; metrics reported</pre>
+        <table class="table-qc" style="margin-top:12px;">
+          <tr><th style="width:150px">Role</th><th>Responsibility</th></tr>
+          <tr><td><strong>Manager</strong></td><td>Decides what is reviewed, allocates time/budget/resources.</td></tr>
+          <tr><td><strong>Author</strong></td><td>Creates &amp; fixes the work product under review.</td></tr>
+          <tr><td><strong>Moderator</strong> (facilitator)</td><td>Ensures effective meetings, mediates, keeps the review objective.</td></tr>
+          <tr><td><strong>Scribe</strong> (recorder)</td><td>Collates &amp; records anomalies and decisions.</td></tr>
+          <tr><td><strong>Reviewer</strong></td><td>Performs reviews; may be domain experts, peers, or stakeholders.</td></tr>
+          <tr><td><strong>Review leader</strong></td><td>Takes overall responsibility for the review; decides who is involved &amp; when.</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">Static Analysis &amp; Shift-Left</div>
+        <p>Static analysis uses <strong>tools</strong> to examine code or models without executing them — enforcing coding standards (<strong>linting</strong>), detecting security weaknesses (<strong>SAST</strong>), and analysing complexity, data flow &amp; control flow.</p>
+        <div class="alert alert-success" style="margin-top:10px;"><span class="alert-icon">⬅️</span><div><strong>Shift-left:</strong> reviews + static analysis run as early as possible (often automated in the CI pipeline), so defects are caught in requirements/design/code before dynamic testing — the cheapest place to fix them.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · TEST LEVELS -->
+    <section class="section-block" id="section-levels">
+      <div class="section-header"><div class="section-icon">🪜</div><div><div class="section-number">Section 04</div><h2>Test Levels &amp; the V-Model</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>In a sequential SDLC the <strong>V-Model</strong> pairs each development phase with a corresponding test level; test design begins in parallel with each development phase (verification &amp; validation).</p>
+        <pre class="art-block">Requirements  ─────────────────────────────►  Acceptance Testing (UAT)
+   System Spec  ───────────────────────►  System Testing
+      Architecture  ─────────────►  Integration Testing
+         Detailed Design  ──►  Component (Unit) Testing
+                       Coding
+   (left = build / verify basis)      (right = test level)</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Test Levels (v4.0 §2.2) — objective &amp; owner</div>
+        <table class="table-qc">
+          <tr><th style="width:190px">Level</th><th>Objective</th><th>Typical owner</th></tr>
+          <tr><td><strong>Component / Unit</strong></td><td>Test individual components in isolation against detailed design/code.</td><td>Developers</td></tr>
+          <tr><td><strong>Component Integration</strong></td><td>Test interfaces &amp; interactions between integrated components.</td><td>Developers</td></tr>
+          <tr><td><strong>System</strong></td><td>Test the behaviour &amp; capabilities of the whole system/product (functional &amp; non-functional).</td><td>Independent testers / QC</td></tr>
+          <tr><td><strong>System Integration</strong></td><td>Test interfaces between the system and other systems / external services.</td><td>QC / integration testers</td></tr>
+          <tr><td><strong>Acceptance (UAT)</strong></td><td>Establish confidence &amp; validate fitness for use / readiness for deployment.</td><td>Business users / customer</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>v4.0 splits integration into <strong>component integration</strong> and <strong>system integration</strong>. Acceptance forms include <strong>User Acceptance (UAT)</strong>, <strong>Operational Acceptance (OAT)</strong>, <strong>Contractual &amp; Regulatory Acceptance</strong>, and <strong>Alpha &amp; Beta</strong> testing.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · TEST TYPES -->
+    <section class="section-block" id="section-types">
+      <div class="section-header"><div class="section-icon">🧬</div><div><div class="section-number">Section 05</div><h2>Test Types</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>A <strong>test type</strong> groups test activities against specific quality characteristics. Test types can be performed at any test level. (Distinct from <em>test design techniques</em> in Section 06.)</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:180px">Type</th><th>What it checks</th><th>Examples</th></tr>
+          <tr><td><strong>Functional</strong></td><td><em>What</em> the system does — behaviour vs functional requirements.</td><td>Business rules, transactions, calculations</td></tr>
+          <tr><td><strong>Non-functional</strong></td><td><em>How well</em> the system behaves — quality characteristics (ISO/IEC 25010).</td><td>Performance efficiency, Security, Usability (interaction capability), Compatibility, Reliability</td></tr>
+          <tr><td><strong>White-box (structural)</strong></td><td>Coverage based on the internal structure / code.</td><td>Statement / branch coverage of a module</td></tr>
+          <tr><td><strong>Change-related</strong></td><td>Verify the effect of changes.</td><td><strong>Confirmation (re-test):</strong> confirm a fixed defect is resolved. <strong>Regression:</strong> confirm changes caused no unintended side-effects.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · TEST DESIGN TECHNIQUES -->
+    <section class="section-block" id="section-techniques">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Section 06</div><h2>Test Design Techniques (v4.0)</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Black-box Techniques (v4.0 §4.2)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Technique</th><th>Idea &amp; short example</th></tr>
+          <tr><td><strong>Equivalence Partitioning (EP)</strong></td><td>Divide input into partitions treated the same; one value per partition. <em>Age: 0–17 invalid, 18–65 valid, 66+ senior → test one value from each.</em></td></tr>
+          <tr><td><strong>Boundary Value Analysis (BVA)</strong></td><td>Test at partition boundaries (2-value or 3-value BVA). <em>Amount range 1–100 → test 0, 1, 100, 101.</em></td></tr>
+          <tr><td><strong>Decision Table Testing</strong></td><td>Model combinations of conditions → actions. <em>Loan: credit score × income → approve / refer / reject.</em></td></tr>
+          <tr><td><strong>State Transition Testing</strong></td><td>Model states &amp; valid/invalid transitions/events. <em>ATM card: Idle → Card Inserted → PIN OK → Menu; wrong PIN ×3 → Blocked.</em></td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">White-box Techniques (v4.0 §4.3)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Technique</th><th>Idea &amp; short example</th></tr>
+          <tr><td><strong>Statement testing &amp; coverage</strong></td><td>Exercise executable statements. <em>Coverage = statements executed ÷ total statements × 100%.</em></td></tr>
+          <tr><td><strong>Branch testing &amp; coverage</strong></td><td>Exercise every branch (each outcome of a decision). <em>Coverage = branches executed ÷ total branches × 100%.</em> <span class="pill-tag">v4.0 uses branch coverage — v3.1 used "decision coverage"</span></td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Experience-based Techniques (v4.0 §4.4)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Technique</th><th>Idea &amp; short example</th></tr>
+          <tr><td><strong>Error Guessing</strong></td><td>Anticipate likely mistakes/defects. <em>Empty input, division by zero, negative amount, duplicate submit.</em></td></tr>
+          <tr><td><strong>Exploratory Testing</strong></td><td>Simultaneous learning, test design &amp; execution — often session-based (time-boxed charter).</td></tr>
+          <tr><td><strong>Checklist-based Testing</strong></td><td>Test against a checklist of conditions. <em>Security checklist, accessibility checklist, UI checklist.</em></td></tr>
+        </table>
+      </div></div>
+
+      <div class="alert alert-warning"><span class="alert-icon">⚠️</span><div><strong>v4.0 note:</strong> <strong>Use Case Testing</strong> is a legacy v3.1 technique and is <strong>not</strong> classified under black-box techniques in v4.0 — do not list it there.</div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · SDLC INTEGRATION -->
+    <section class="section-block" id="section-sdlc">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Section 07</div><h2>SDLC Integration &amp; Test Approach</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <table class="table-qc">
+          <tr><th style="width:200px">SDLC model</th><th>Test approach</th></tr>
+          <tr><td><strong>Waterfall (sequential)</strong></td><td><strong>V-Model:</strong> each dev phase paired with a test level; formal gates &amp; documented test basis; test design starts early against each phase.</td></tr>
+          <tr><td><strong>Agile (iterative)</strong></td><td>Continuous testing each iteration; whole-team quality ownership; automation-heavy; guided by the <strong>Testing Quadrants</strong> (below).</td></tr>
+          <tr><td><strong>Hybrid / Water-Scrum-Fall</strong></td><td>Waterfall governance &amp; phase gates (planning, UAT, release/CAB) wrapped around Agile sprint delivery — the model used in this handbook.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Testing Quadrants (Marick; popularised by Crispin &amp; Gregory)</div>
+        <pre class="art-block">                 SUPPORT THE TEAM        │        CRITIQUE THE PRODUCT
+   BUSINESS   Q2  Functional tests,      │  Q3  Exploratory, Usability,
+   FACING         Story tests, Examples, │      UAT
+                  Prototypes  (auto+man) │      (manual)
+   ─────────────────────────────────────┼──────────────────────────────
+   TECHNOLOGY Q1  Unit / Component tests │  Q4  Performance, Load,
+   FACING         (automated)           │      Security, Reliability (tools)</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Shift-Left Testing</div>
+        <p>Move test activities <strong>earlier</strong> in the lifecycle: review requirements &amp; designs, run static analysis in CI, write tests before/with code (TDD/BDD), and design tests during analysis. Directly supports Principle 3 — <em>early testing saves time and money</em>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · RISK-BASED TESTING -->
+    <section class="section-block" id="section-risk">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Section 08</div><h2>Risk-Based Testing</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Risk vs Project Risk (v4.0 §5.2)</div>
+        <table class="table-qc">
+          <tr><th style="width:160px">Risk category</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td><strong>Product risk (quality risk)</strong></td><td>Risk that the product may fail to satisfy legitimate needs — related to the test object.</td><td>Functional defects, security holes, poor performance, data corruption</td></tr>
+          <tr><td><strong>Project risk</strong></td><td>Risk around management &amp; control of the project.</td><td>Schedule slip, resource/skill gaps, unstable environment, supplier delays</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Risk Analysis &amp; Prioritisation</div>
+        <p><strong>Risk level = Likelihood × Impact.</strong> Flow: identify risks → assess (likelihood × impact) → assign risk level → prioritise test effort → mitigate via testing → monitor.</p>
+        <pre class="art-block">              IMPACT →
+  L        Low        Medium      High
+  I  High  Medium     High        Very High  → test first, deep coverage
+  K  Med   Low        Medium      High
+  E  Low   Low        Low         Medium     → test later / lighter</pre>
+        <p>Higher-risk areas get <strong>earlier, deeper and more frequent</strong> testing; lower-risk areas get lighter coverage. Risk also drives regression scope.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Banking / Financial Context</div>
+        <div class="alert alert-warning"><span class="alert-icon">🏦</span><div>In a regulated bank, product risk is dominated by <strong>security</strong>, <strong>transaction &amp; data integrity</strong>, and <strong>regulatory compliance</strong> (SBV Circular 09/2020/TT-NHNN, ISO 27001, PCI-DSS). These areas are <strong>security-critical &amp; high-impact</strong> → prioritised for the deepest test coverage, mandatory security testing, and performance testing under peak load.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · QC DELIVERABLES -->
+    <section class="section-block" id="section-deliverables">
+      <div class="section-header"><div class="section-icon">📑</div><div><div class="section-number">Section 09</div><h2>QC Deliverables by Phase</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-qc">
+          <tr><th style="width:220px">Deliverable</th><th>Produced in</th><th>Purpose</th></tr>
+          <tr><td><strong>Test Strategy</strong></td><td>Planning (org-level)</td><td>Long-term, organisation-wide testing approach &amp; standards.</td></tr>
+          <tr><td><strong>Test Plan</strong></td><td>Planning (project/level)</td><td>Scope, objectives, approach, schedule, entry/exit criteria for a project or level.</td></tr>
+          <tr><td><strong>Test Cases / Scripts</strong></td><td>Analysis &amp; Design</td><td>Conditions, inputs, expected results (+ automated scripts &amp; test procedures).</td></tr>
+          <tr><td><strong>RTM — Requirement Traceability Matrix</strong></td><td>Analysis &amp; Design</td><td>Bi-directional traceability: requirement ↔ test case ↔ defect; proves coverage.</td></tr>
+          <tr><td><strong>Test Data</strong></td><td>Implementation</td><td>Prepared &amp; masked data enabling execution (positive/negative/boundary).</td></tr>
+          <tr><td><strong>Defect Report</strong></td><td>Execution</td><td>Documented anomaly: steps, severity, priority, status.</td></tr>
+          <tr><td><strong>Test Summary Report</strong></td><td>Completion</td><td>Results vs plan, coverage, residual risks, quality assessment for release decision.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · ENTRY / EXIT + DoR / DoD -->
+    <section class="section-block" id="section-criteria">
+      <div class="section-header"><div class="section-icon">🚦</div><div><div class="section-number">Section 10</div><h2>Entry / Exit Criteria + DoR / DoD</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p><strong>Entry criteria</strong> = preconditions to <em>start</em> a test activity/level. <strong>Exit criteria</strong> (the <strong>Definition of Done</strong> for testing in v4.0) = conditions to <em>declare it complete</em>. In Agile, <strong>DoR</strong> gates a story into a sprint and <strong>DoD</strong> gates it out.</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:170px">Test level</th><th>Entry criteria (sample)</th><th>Exit criteria (sample)</th></tr>
+          <tr><td><strong>Component / Unit</strong></td><td>Code compiles; unit test env ready</td><td>Target statement/branch coverage met; unit tests pass; no open blocker</td></tr>
+          <tr><td><strong>Integration</strong></td><td>Components unit-tested; interfaces available</td><td>Interface cases pass; no open critical integration defect</td></tr>
+          <tr><td><strong>System</strong></td><td>Build deployed to SIT; test data &amp; cases ready</td><td>Planned cases executed; coverage met; no open Critical/Major defect</td></tr>
+          <tr><td><strong>Acceptance (UAT)</strong></td><td>System testing exit met; UAT env &amp; business users ready</td><td>Acceptance cases pass; business sign-off; residual risk accepted</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DoR vs DoD (Agile)</div>
+        <table class="table-qc">
+          <tr><th style="width:220px">Definition of Ready (DoR)</th><th>Definition of Done (DoD)</th></tr>
+          <tr><td>Story is clear, estimated &amp; INVEST-compliant; acceptance criteria defined; testable; dependencies known.</td><td>Code reviewed &amp; merged; unit + functional tests pass; acceptance criteria met; no open critical defect; docs updated.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · DEFECT LIFECYCLE -->
+    <section class="section-block" id="section-defect">
+      <div class="section-header"><div class="section-icon">🐞</div><div><div class="section-number">Section 11</div><h2>Defect Lifecycle</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <pre class="art-block">NEW ─► ASSIGNED ─► OPEN / IN-PROGRESS ─► FIXED ─► READY-FOR-RETEST ─► RETEST ─┬─► CLOSED
+                                                                              └─► REOPENED ─► (back to Assigned)
+
+  Alternate outcomes from triage / retest:
+     REJECTED   (not a valid defect / not reproducible / works as designed)
+     DEFERRED   (valid but postponed to a later release)</pre>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:170px">State</th><th>Meaning</th></tr>
+          <tr><td><strong>New</strong></td><td>Defect logged, awaiting triage.</td></tr>
+          <tr><td><strong>Assigned</strong></td><td>Triaged &amp; assigned to a developer.</td></tr>
+          <tr><td><strong>Open / In-Progress</strong></td><td>Developer is analysing / fixing.</td></tr>
+          <tr><td><strong>Fixed</strong></td><td>Fix implemented, awaiting verification.</td></tr>
+          <tr><td><strong>Ready-for-Retest</strong></td><td>Fix delivered to the test build; queued for confirmation testing.</td></tr>
+          <tr><td><strong>Retest</strong></td><td>Tester runs confirmation (re-test) + relevant regression.</td></tr>
+          <tr><td><strong>Closed</strong></td><td>Retest passed — defect resolved.</td></tr>
+          <tr><td><strong>Reopened</strong></td><td>Retest failed — returned to development.</td></tr>
+          <tr><td><strong>Rejected</strong></td><td>Not a valid defect (duplicate, not reproducible, works as designed).</td></tr>
+          <tr><td><strong>Deferred</strong></td><td>Valid but postponed to a future release.</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Severity vs Priority Matrix</div>
+        <p><strong>Severity</strong> = technical impact on the system. <strong>Priority</strong> = business urgency to fix. They are independent.</p>
+        <table class="table-qc">
+          <tr><th>Severity ↓ / Priority →</th><th>High priority</th><th>Low priority</th></tr>
+          <tr><td><strong>High severity</strong></td><td><span style="color:var(--status-red)">Fix immediately</span> — core payment flow crashes.</td><td>Crash only on a rare legacy config — fix, but scheduled.</td></tr>
+          <tr><td><strong>Low severity</strong></td><td><span style="color:var(--status-yellow)">Fix soon</span> — wrong bank name / legal text on landing page.</td><td><span style="color:var(--status-green)">Backlog</span> — minor cosmetic misalignment on an internal screen.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>Typical severity scale: <strong>Critical → Major → Moderate → Minor</strong>. Typical priority scale: <strong>High → Medium → Low</strong>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · ROLES & RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Section 12</div><h2>Roles &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>R</strong> = Responsible · <strong>A</strong> = Accountable · <strong>C</strong> = Consulted · <strong>I</strong> = Informed. (Exactly one <strong>A</strong> per activity.)</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th>Activity</th><th>PO</th><th>BA</th><th>Dev</th><th>QC / Tester</th><th>Test Lead</th><th>Scrum Master</th></tr>
+          <tr><td>Test strategy &amp; planning</td><td>C</td><td>C</td><td>C</td><td>R</td><td><strong>A</strong></td><td>I</td></tr>
+          <tr><td>Requirements / story review</td><td>C</td><td><strong>A</strong></td><td>C</td><td>R</td><td>C</td><td>I</td></tr>
+          <tr><td>Test case / script design</td><td>I</td><td>C</td><td>C</td><td><strong>R/A</strong></td><td>C</td><td>I</td></tr>
+          <tr><td>Test execution</td><td>I</td><td>I</td><td>C</td><td><strong>R</strong></td><td><strong>A</strong></td><td>I</td></tr>
+          <tr><td>Defect triage &amp; fixing</td><td>C</td><td>C</td><td><strong>R</strong></td><td>R</td><td><strong>A</strong></td><td>C</td></tr>
+          <tr><td>UAT sign-off</td><td><strong>A</strong></td><td>R</td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Release / quality gate decision</td><td><strong>A</strong></td><td>C</td><td>C</td><td>C</td><td>R</td><td>C</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>RACI is a tailoring aid, not an ISTQB artefact — adapt ownership to your org. In some teams the <strong>Test Lead</strong> is accountable for the quality-gate recommendation while the <strong>PO</strong> owns the final go/no-go.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · METRICS & KPIs -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Section 13</div><h2>QC Metrics / KPIs</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Test Coverage</div><div class="metric-value">covered items ÷ total items × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Density</div><div class="metric-value">defects ÷ size (KLOC / module)</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Leakage / Escape Rate</div><div class="metric-value">defects in production ÷ total defects × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Pass Rate</div><div class="metric-value">test cases passed ÷ executed × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Test Execution Progress</div><div class="metric-value">executed ÷ planned × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Removal Efficiency (DRE)</div><div class="metric-value">found before release ÷ (before + after release) × 100%</div></div>
+        </div>
+        <table class="table-qc" style="margin-top:14px;">
+          <tr><th style="width:230px">Metric</th><th>Formula</th><th>Reads as</th></tr>
+          <tr><td><strong>Test Coverage</strong></td><td><code>covered ÷ total × 100</code></td><td>How much of the basis is exercised (higher = better).</td></tr>
+          <tr><td><strong>Defect Density</strong></td><td><code>defects ÷ size</code></td><td>Defects per unit of size; spot fragile modules.</td></tr>
+          <tr><td><strong>Defect Leakage / Escape Rate</strong></td><td><code>prod defects ÷ total × 100</code></td><td>QC effectiveness (lower = better).</td></tr>
+          <tr><td><strong>Pass Rate</strong></td><td><code>passed ÷ executed × 100</code></td><td>Build stability.</td></tr>
+          <tr><td><strong>Test Execution Progress</strong></td><td><code>executed ÷ planned × 100</code></td><td>Where we are vs the plan.</td></tr>
+          <tr><td><strong>Defect Removal Efficiency (DRE)</strong></td><td><code>before ÷ (before + after) × 100</code></td><td>% of defects caught before release (higher = better).</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Source:</strong> Aligned with the <strong>ISTQB® Certified Tester Foundation Level (CTFL) Syllabus v4.0 (2023)</strong>. Terminology intentionally excludes superseded v3.1 terms (e.g. "pesticide paradox", "decision coverage", Use Case Testing as a black-box technique). Testing Quadrants credited to Brian Marick, popularised by Lisa Crispin &amp; Janet Gregory.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · QC Testing Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->

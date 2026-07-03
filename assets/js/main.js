@@ -172,9 +172,11 @@ function handleLogout() {
 function togglePw() {
   const input = document.getElementById('login-password');
   const toggle = document.querySelector('.pw-toggle');
-  const isHidden = input.type === 'password';
-  input.type = isHidden ? 'text' : 'password';
-  toggle.textContent = isHidden ? 'Hide' : 'Show';
+  const nowVisible = input.type === 'password';
+  input.type = nowVisible ? 'text' : 'password';
+  // Keep the icon consistent with the initial 👁 glyph in index.html
+  toggle.textContent = nowVisible ? '🙈' : '👁';
+  toggle.setAttribute('aria-label', nowVisible ? 'Hide password' : 'Show password');
 }
 
 // ============================================================
@@ -209,37 +211,10 @@ function setActive(el) {
   }
 }
 
-// ============================================================
-// SIDEBAR NAV - Auto-highlight on scroll
-// ============================================================
-const navMap = {
-  'section-governance': 'nav-governance',
-  'section-phase1': 'nav-phase1',
-  'section-phase2': 'nav-phase2',
-  'section-phase3': 'nav-phase3',
-  'section-phase4': 'nav-phase4',
-};
-
-const sectionObserver = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const navId = navMap[entry.target.id];
-        if (navId) {
-          document.querySelectorAll('#sidebar-nav a').forEach(a => a.classList.remove('active'));
-          const el = document.getElementById(navId);
-          if (el) el.classList.add('active');
-        }
-      }
-    });
-  },
-  { rootMargin: '-30% 0px -60% 0px' }
-);
-
-Object.keys(navMap).forEach(id => {
-  const el = document.getElementById(id);
-  if (el) sectionObserver.observe(el);
-});
+// NOTE: Scroll-spy is owned by router.js (_setupScrollSpy), which re-binds
+// the IntersectionObserver every time it injects new page content. Binding it
+// here at load time would attach to elements that don't exist yet, so it lives
+// in the router instead.
 
 // ============================================================
 // ACCORDION - Expand / collapse
@@ -279,26 +254,24 @@ function toggleDod(item) {
   updateDod();
 }
 
-document.querySelectorAll('.dod-item').forEach(item => {
-  item.addEventListener('keydown', e => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      toggleDod(item);
-    }
-  });
-});
+// NOTE: DoD keyboard listeners are (re)bound by router.js after content is
+// injected — see the .dod-item loop there. Binding here at load time is a
+// no-op because the items don't exist until a page fragment is fetched.
 
 function updateDod() {
-  const items = document.querySelectorAll('.dod-item');
+  const total = document.querySelectorAll('.dod-item').length;
+  if (!total) return; // page has no DoD checklist (e.g. non-deployment routes)
+
   const checked = document.querySelectorAll('.dod-item.checked').length;
-  const total = items.length;
   const pct = Math.round((checked / total) * 100);
 
-  document.getElementById('dod-count').textContent = `${checked} / ${total} complete`;
-  document.getElementById('dod-bar').style.width = `${pct}%`;
-
+  const countEl = document.getElementById('dod-count');
+  const barEl = document.getElementById('dod-bar');
   const banner = document.getElementById('dod-complete-banner');
-  banner.classList.toggle('show', checked === total);
+
+  if (countEl) countEl.textContent = `${checked} / ${total} complete`;
+  if (barEl) barEl.style.width = `${pct}%`;
+  if (banner) banner.classList.toggle('show', checked === total);
 }
 
 // ============================================================

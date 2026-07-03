@@ -1,116 +1,120 @@
-# 🏦 Handbook — Interactive Deployment Runbook
+# 🏦 Project Handbook — Interactive Governance Runbook
 
-> **Version:** v2.4 · 2025 Q2  
-> **Classification:** INTERNAL USE ONLY — CONFIDENTIAL  
+> **Classification:** INTERNAL USE ONLY — CONFIDENTIAL
 > **Compliance:** SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned
 
-A governed, interactive single-page runbook for software releases under the **Hybrid Water-Scrum-Fall** model at a Vietnamese commercial bank.
+A governed, interactive **single-page application (SPA)** that bundles four internal
+handbooks for software delivery under the **Hybrid Water-Scrum-Fall** model at a
+Vietnamese commercial bank:
+
+| Route | Page | Focus |
+|-------|------|-------|
+| `#deployment` | Deployment Runbook | Release pipeline, CAB, rollback, DoD checklist |
+| `#handbook` | Implementation Handbook | Parent umbrella linking the other pages |
+| `#ba` | BA Project Handbook | BA process, BRD/FRD, ceremonies |
+| `#pm` | PM Project Handbook | PMBOK-aligned PM role & workflow |
+| `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-bank-runbook/
-├── index.html            # Main entry point — full page markup
-├── README.md             # This file
-├── .gitignore
+project-handbook/
+├── index.html              # SPA shell: login overlay + empty #sidebar / #app
+├── handbook.html           # Legacy redirect stubs → index.html#<route>
+├── ba-handbook.html        # (kept for old deep links)
+├── pm-handbook.html
 ├── assets/
 │   ├── css/
-│   │   └── styles.css    # Superhuman-inspired design system (dark mode, purple glow)
+│   │   └── styles.css      # "Nothing" design system (dark/light theme)
 │   └── js/
-│       └── main.js       # Sidebar, accordion, role tabs, DoD checklist logic
-└── docs/
-    └── (supplementary documentation)
+│       ├── main.js         # Auth, theme, sidebar, accordion, role tabs, DoD checklist
+│       └── router.js       # Hash-based router — fetches page fragments into the shell
+├── pages/                  # Page fragments fetched at runtime by the router
+│   ├── deployment.html     #   each contains #sidebar-inner + #page-content
+│   ├── handbook.html       #   (+ optional #page-style / #page-script)
+│   ├── ba.html
+│   ├── pm.html
+│   └── qc.html
+├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
+├── .gitlab-ci.yml          # GitLab Pages auto-deploy
+└── README.md
 ```
+
+### How it works
+`index.html` is a thin shell. `router.js` listens on `hashchange`, `fetch()`es the
+matching fragment from `pages/*.html`, and injects its `#sidebar-inner` and
+`#page-content` into the shell — plus any per-page `#page-style` / `#page-script`.
+Shared behaviour (theme toggle, auth gate, scroll-spy, DoD checklist) is re-bound
+after each navigation.
+
+> ⚠️ Because the router uses `fetch()`, the site **must be served over HTTP** —
+> opening `index.html` via `file://` will fail to load the page fragments.
 
 ---
 
 ## 🚀 Running Locally
 
-Since this is a **pure static site** (no build step), you can open it directly or serve it:
+### Option 1 — `start_server.bat` (Windows)
+Double-click `start_server.bat`. It tries `python -m http.server 8080`, then falls
+back to `npx http-server -p 8080`. Open <http://localhost:8080>.
 
-### Option 1 — Open directly
-Double-click `index.html` in File Explorer to open in your browser.
-
-> ⚠️ Google Fonts requires an internet connection. The page will still function offline with fallback system fonts.
-
-### Option 2 — Local HTTP server (PowerShell, no install needed)
-```powershell
-$port = 5500
-$listener = [System.Net.HttpListener]::new()
-$listener.Prefixes.Add("http://localhost:$port/")
-$listener.Start()
-Write-Host "Serving at http://localhost:$port"
-while ($listener.IsListening) {
-    $ctx = $listener.GetContext()
-    $filePath = Join-Path (Get-Location) $ctx.Request.Url.LocalPath.TrimStart('/')
-    if ($ctx.Request.Url.LocalPath -eq '/') { $filePath = Join-Path (Get-Location) 'index.html' }
-    if (Test-Path $filePath -PathType Leaf) {
-        $bytes = [System.IO.File]::ReadAllBytes($filePath)
-        $ctx.Response.ContentType = 'text/html; charset=utf-8'
-        $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
-    }
-    $ctx.Response.OutputStream.Close()
-}
+### Option 2 — Any static server
+```bash
+python -m http.server 8080        # or:  npx http-server -p 8080
 ```
+
+> Google Fonts (Space Grotesk / Space Mono) require an internet connection; the
+> page falls back to system fonts offline.
+
+---
+
+## 🔐 Authentication
+
+The login gate (`main.js`) is **client-side only** — credentials live in the JS
+and the page fragments are publicly fetchable. It deters casual access but is **not**
+real security. For genuinely confidential content, place the site behind
+server-side auth (reverse-proxy Basic Auth / SSO) or a private Pages deployment.
+See the note at the top of `main.js`.
 
 ---
 
 ## 🎨 Design System
 
-Inspired by **Superhuman's "Carbon"** dark UI:
+Uses the **"Nothing"** design system (see `Sample design/nothing-design-skill-main/`)
+with a dark/light theme toggle. The selected theme is persisted in `localStorage`
+(`nt_theme`) and applied before first paint to avoid a flash of unstyled content.
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg-base` | `#0d0d0f` | Page background |
-| `--bg-elevated` | `#1c1c1f` | Cards |
-| `--accent` | `#7c5cfc` | Sidebar active, highlights |
-| `--accent-bright` | `#9b7dff` | Text accents, glow |
-| `--status-green` | `#34d399` | Done / approved |
-| `--status-yellow` | `#fbbf24` | In progress / active |
-| `--status-red` | `#f87171` | Blocked / critical |
-
-Typography: **Inter** (sans) + **JetBrains Mono** (code) via Google Fonts.
-
----
-
-## 📋 Sections
-
-| # | Section | SDLC Model |
-|---|---------|------------|
-| 1 | Governance & Hybrid SDLC Overview | — |
-| 2 | Phase 1 — Discovery & Project Initiation | Waterfall |
-| 3 | Phase 2 — Implementation | Agile/Scrum |
-| 4 | Phase 3 — "Last Mile" Pre-Deployment | Waterfall |
-| 5 | Phase 4 — Deployment & Commercialization | Waterfall |
+Typography: **Space Grotesk** (sans) + **Space Mono** (mono) via Google Fonts.
 
 ---
 
 ## ⚡ Interactive Features
 
-- **Sticky sidebar** with scroll-aware active link highlighting (Intersection Observer)
-- **Collapsible accordions** for compliance pillars and deployment artifacts
-- **12-step release pipeline** with hover tooltips and animated active state
-- **Role perspective tabs** — switch between Release Manager, Performance Tester, Security Tester
+- **Hash-based SPA routing** across the four handbooks (no full page reloads)
+- **Client-side login gate** with 24h persisted session
+- **Dark / light theme toggle** injected into every page's sidebar
+- **Sticky sidebar** with scroll-aware active-link highlighting (Intersection Observer)
+- **Collapsible accordions** for compliance pillars and artifacts
+- **Role perspective tabs** — Release Manager / Performance Tester / Security Tester
 - **Release DoD checklist** — clickable items with live progress bar and completion banner
-- **Responsive layout** — collapses to mobile with hamburger sidebar toggle
+- **Responsive layout** — collapses to a hamburger sidebar on mobile
+- **Graceful error state** when a page fragment fails to load, with a Retry action
+
+---
+
+## 🚢 Deployment
+
+`.gitlab-ci.yml` publishes to **GitLab Pages** on push to `main`. The job copies
+`index.html`, the redirect stubs, `assets/`, **and `pages/`** into `public/` — the
+`pages/` directory is required because the router fetches those fragments at runtime.
 
 ---
 
 ## ⚖️ Compliance
 
-This runbook documents processes compliant with:
+Documents processes aligned with:
 - **SBV Circular 09/2020/TT-NHNN** — IT Safety Regulations for credit institutions
 - **Internal Change Advisory Board (CAB)** governance policy
 - **ISO 27001** information security management alignment
-
----
-
-## 📝 Changelog
-
-| Version | Date | Changes |
-|---------|------|---------|
-| v2.4 | 2025-Q2 | Redesigned UI (Superhuman dark theme), refactored into separate CSS/JS files |
-| v2.3 | 2025-Q1 | Added 12-step pipeline tracker, role tabs |
-| v2.0 | 2024-Q4 | Initial interactive runbook |
