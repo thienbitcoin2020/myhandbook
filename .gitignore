@@ -3,9 +3,10 @@
 Thumbs.db
 desktop.ini
 
-# Editor configs
+# Editor / tooling configs
 .vscode/
 .idea/
+.claude/
 *.suo
 *.user
 
