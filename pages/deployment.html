@@ -132,7 +132,7 @@
           </button>
           <div class="accordion-body open">
             <div class="accordion-content">
-              <p>No single individual may hold conflicting roles across development, testing, and production deployment. Enforced via RBAC in GitLab, JIRA, and the production pipeline.</p>
+              <p>No single individual may hold conflicting roles across development, testing, and production deployment. Enforced via RBAC in GitHub, JIRA, and the production pipeline.</p>
               <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div>Developers <strong>cannot</strong> merge their own code to main. Testers must be independent. Release Managers hold sole authority to initiate production deployments.</div></div>
               <table class="comp-table" style="margin-top:12px;">
                 <thead><tr><th>Role</th><th>Dev</th><th>Test</th><th>Release</th><th>PROD Access</th></tr></thead>
@@ -156,7 +156,7 @@
             <div class="accordion-content">
               <p>All systems handling financial transactions or customer PII must pass a full security assessment cycle before every production release:</p>
               <ul class="step-cl" style="margin-top:10px;">
-                <li><span class="step-num">1</span> SAST — automated scan on every commit via SonarQube + GitLab SAST.</li>
+                <li><span class="step-num">1</span> SAST — automated scan on every commit via SonarQube + GitHub Advanced Security (CodeQL).</li>
                 <li><span class="step-num">2</span> DAST — executed in SIT/UAT environment via OWASP ZAP.</li>
                 <li><span class="step-num">3</span> Penetration Testing — performed by the independent Internal Security team.</li>
                 <li><span class="step-num">4</span> Vulnerability Assessment Report — signed off before CAB submission.</li>
@@ -275,7 +275,7 @@
           <p style="font-size:12px;margin-bottom:12px;">All criteria must be satisfied before a Story or Epic is considered complete.</p>
           <div class="highlight-strip">
             <ul class="step-cl">
-              <li><span class="step-num">1</span><span>Code peer-reviewed and approved by minimum <strong>2 reviewers</strong> via GitLab MR (no self-merge).</span></li>
+              <li><span class="step-num">1</span><span>Code peer-reviewed and approved by minimum <strong>2 reviewers</strong> via GitHub Pull Request (no self-merge).</span></li>
               <li><span class="step-num">2</span><span>Unit test coverage ≥ <strong>85%</strong> validated by SonarQube gate. No critical or blocking code smells.</span></li>
               <li><span class="step-num">3</span><span>SAST scan passed — zero <strong>High / Critical</strong> severity findings in the feature branch.</span></li>
               <li><span class="step-num">4</span><span>Functional tests passing in <strong>SIT environment</strong>; smoke tests passing in UAT environment.</span></li>
@@ -298,7 +298,7 @@
             <div class="env-step"><div class="env-dot">🔒</div><div class="env-label">SEC</div></div>
             <div class="env-step"><div class="env-dot">🚀</div><div class="env-label">PROD</div></div>
           </div>
-          <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>DEV → SIT → UAT promotions handled by <strong>CI/CD pipeline</strong> (GitLab CI). PERF and SEC require <strong>Release Manager</strong> authorization. PROD requires <strong>CAB approval</strong>.</div></div>
+          <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>DEV → SIT → UAT promotions handled by <strong>CI/CD pipeline</strong> (GitHub Actions). PERF and SEC require <strong>Release Manager</strong> authorization. PROD requires <strong>CAB approval</strong>.</div></div>
         </div>
       </div>
     </section>

@@ -40,7 +40,8 @@ project-handbook/
 │   ├── pm.html
 │   └── qc.html
 ├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
-├── .gitlab-ci.yml          # GitLab Pages auto-deploy
+├── .github/workflows/
+│   └── deploy-pages.yml    # GitHub Pages auto-deploy on push to main
 └── README.md
 ```
 
@@ -108,9 +109,14 @@ Typography: **Space Grotesk** (sans) + **Space Mono** (mono) via Google Fonts.
 
 ## 🚢 Deployment
 
-`.gitlab-ci.yml` publishes to **GitLab Pages** on push to `main`. The job copies
-`index.html`, the redirect stubs, `assets/`, **and `pages/`** into `public/` — the
-`pages/` directory is required because the router fetches those fragments at runtime.
+`.github/workflows/deploy-pages.yml` publishes to **GitHub Pages** on push to
+`main`. The job copies `index.html`, the redirect stubs, `assets/`, **and
+`pages/`** into `public/` — the `pages/` directory is required because the router
+fetches those fragments at runtime — then deploys via `actions/deploy-pages`.
+
+> One-time setup: **Settings → Pages → Source: GitHub Actions**.
+
+Live URL: <https://thienpv99.github.io/project-handbook/>
 
 ---
 
