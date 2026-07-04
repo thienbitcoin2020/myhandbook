@@ -1,0 +1,315 @@
+<title>Operations &amp; SRE Runbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-ops{width:100%;border-collapse:collapse;font-size:12px}
+.table-ops th,.table-ops td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-ops th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-ops tr:hover td{background:var(--bg-hover)}
+.table-ops code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🛰️</div>
+      <div>
+        <div class="bank-title">Operations &amp; SRE</div>
+        <div class="bank-sub">Google SRE · ITIL 4 · DORA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-slo" onclick="setActive(this)"><span class="nav-icon">🎯</span> 02 · SLI / SLO / Error Budget</a>
+    <a href="#section-observability" onclick="setActive(this)"><span class="nav-icon">🔭</span> 03 · Observability</a>
+  </nav>
+
+  <div class="sidebar-section-label">Run</div>
+  <nav id="sidebar-nav">
+    <a href="#section-incident" onclick="setActive(this)"><span class="nav-icon">🚨</span> 04 · Incident Management</a>
+    <a href="#section-problem" onclick="setActive(this)"><span class="nav-icon">🔬</span> 05 · Problem Mgmt &amp; RCA</a>
+    <a href="#section-change" onclick="setActive(this)"><span class="nav-icon">🔄</span> 06 · Change &amp; Release Ops</a>
+    <a href="#section-capacity" onclick="setActive(this)"><span class="nav-icon">📈</span> 07 · Capacity &amp; Toil</a>
+  </nav>
+
+  <div class="sidebar-section-label">Resilience</div>
+  <nav id="sidebar-nav">
+    <a href="#section-dr" onclick="setActive(this)"><span class="nav-icon">♻️</span> 08 · Disaster Recovery</a>
+    <a href="#section-bcp" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 09 · Business Continuity</a>
+    <a href="#section-runbooks" onclick="setActive(this)"><span class="nav-icon">📓</span> 10 · Runbooks &amp; Automation</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 11 · DORA &amp; Ops Metrics</a>
+    <a href="#section-oncall" onclick="setActive(this)"><span class="nav-icon">📟</span> 12 · On-call &amp; Escalation</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Roles &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🛰️ Google SRE</span>
+    <span class="comp-pill">🔧 ITIL 4</span>
+    <span class="comp-pill">📊 DORA</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: DevOps / SRE / Operations<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standards: Google SRE · ITIL 4 · DORA<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#deployment">← Deployment Runbook</a><br/>
+    <a href="#sec">← Security &amp; Compliance</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🛰️ Internal Runbook · Google SRE · ITIL 4 · DORA</div>
+    <h1>Operations &amp; SRE<br/><span>Run, Reliability &amp; Continuity</span></h1>
+    <p>Reference for running the product in production — service reliability (SRE), observability, incident &amp; problem management, disaster recovery and business continuity. Grounded in Google SRE, ITIL 4, and the DORA metrics, for a regulated banking environment.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> SLO-driven</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Observability</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Blameless</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> DR / BCP</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DevOps vs SRE vs Ops (ITIL)</div>
+        <table class="table-ops">
+          <tr><th>Discipline</th><th>Focus</th><th>Signature</th></tr>
+          <tr><td><strong>DevOps</strong></td><td>Culture &amp; flow — dev + ops collaboration, automation</td><td>CI/CD, "you build it, you run it"</td></tr>
+          <tr><td><strong>SRE</strong></td><td>Reliability as engineering — SLOs, error budgets, reduce toil</td><td>SLI/SLO, error budget, automation</td></tr>
+          <tr><td><strong>Ops (ITIL 4)</strong></td><td>Service management — incident/problem/change, service value</td><td>Runbooks, CMDB, service desk</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>This runbook blends all three: SRE reliability engineering + ITIL service management discipline needed for banking governance/audit.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 SLO -->
+    <section class="section-block" id="section-slo">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Section 02</div><h2>SLI / SLO / SLA &amp; Error Budget <span class="pill-tag">Google SRE</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+          <tr><td><strong>SLI</strong></td><td>A measured indicator of service health</td><td>% requests &lt; 300ms &amp; 2xx/3xx</td></tr>
+          <tr><td><strong>SLO</strong></td><td>Target for an SLI (internal goal)</td><td>99.9% over 28 days</td></tr>
+          <tr><td><strong>SLA</strong></td><td>Contractual commitment (+ penalty)</td><td>99.5% or credits owed</td></tr>
+          <tr><td><strong>Error budget</strong></td><td><code>100% − SLO</code> = allowed unreliability</td><td>0.1% = ~43 min/month</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚖️</span><div><strong>Error budget policy:</strong> budget remaining → ship features; budget exhausted → freeze risky releases and focus on reliability. Balances velocity vs stability objectively.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 OBSERVABILITY -->
+    <section class="section-block" id="section-observability">
+      <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Section 03</div><h2>Observability — 3 Pillars</h2></div></div>
+      <div class="card"><div class="card-body">
+        <pre class="art-block">LOGS            METRICS              TRACES
+(what happened) (how much / trend)   (where time went, cross-service)
+ Loki/ELK        Prometheus/Grafana   Jaeger/OTel</pre>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Golden Signals</strong> (SRE): Latency, Traffic, Errors, Saturation.</li>
+          <li>Alert on <strong>symptoms &amp; SLO burn rate</strong>, not every cause — reduce alert fatigue.</li>
+          <li>Dashboards per service; correlation via OpenTelemetry; PagerDuty/OpsGenie for routing.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 INCIDENT -->
+    <section class="section-block" id="section-incident">
+      <div class="section-header"><div class="section-icon">🚨</div><div><div class="section-number">Section 04</div><h2>Incident Management</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Severity matrix</div>
+        <table class="table-ops">
+          <tr><th>Sev</th><th>Impact</th><th>Response</th><th>Target</th></tr>
+          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Critical outage / data loss / payments down</td><td>All-hands, war room, exec comms</td><td>ack &lt; 15 min</td></tr>
+          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Major degradation, partial outage</td><td>On-call + SME, incident channel</td><td>ack &lt; 30 min</td></tr>
+          <tr><td><strong>SEV3</strong></td><td>Minor / workaround exists</td><td>Normal on-call</td><td>next business day</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Incident lifecycle &amp; roles</div>
+        <pre class="art-block">DETECT ─▶ TRIAGE/DECLARE ─▶ MITIGATE ─▶ RESOLVE ─▶ POSTMORTEM
+   │            │              │           │           │
+ alert     assign IC       restore     confirm     blameless
+           + comms lead    service     SLO met      RCA</pre>
+        <p style="margin-top:6px;">Key roles: <strong>Incident Commander (IC)</strong> (coordinates, decides), <strong>Comms Lead</strong> (stakeholder updates), <strong>Ops/SME</strong> (fix). Security incidents → coordinate with <a href="#sec">Security &amp; Compliance</a> (SBV breach notification).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 PROBLEM / RCA -->
+    <section class="section-block" id="section-problem">
+      <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Section 05</div><h2>Problem Management &amp; RCA</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Incident</strong> = restore service now. <strong>Problem</strong> = eliminate the root cause so it can't recur (ITIL).</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Blameless postmortem</strong> for every SEV1/SEV2 — focus on systems &amp; process, not people.</li>
+          <li>Techniques: <strong>5 Whys</strong>, Fishbone (Ishikawa), timeline reconstruction.</li>
+          <li>Output: contributing factors + <strong>action items</strong> (owner, deadline) tracked to closure; feed the risk register.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📄</span><div>Postmortem template: summary · impact (users, $, SLO) · timeline · root cause · what went well/badly · action items. Share widely — learning &gt; blame.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 CHANGE -->
+    <section class="section-block" id="section-change">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Section 06</div><h2>Change &amp; Release Operations</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Change type (ITIL)</th><th>Path</th></tr>
+          <tr><td><strong>Standard</strong></td><td>Pre-approved, low-risk, automated.</td></tr>
+          <tr><td><strong>Normal</strong></td><td>CAB assessed &amp; scheduled (see <a href="#deployment">Deployment Runbook</a>).</td></tr>
+          <tr><td><strong>Emergency</strong></td><td>ECAB fast-track for incident fixes; retro-approved.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Deployment strategies to limit blast radius: <strong>blue-green</strong>, <strong>canary</strong>, <strong>rolling</strong>, <strong>feature flags</strong>; automated rollback on SLO breach.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 CAPACITY & TOIL -->
+    <section class="section-block" id="section-capacity">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Section 07</div><h2>Capacity, Performance &amp; Toil</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Capacity planning:</strong> forecast growth &amp; peak; autoscaling policies; load/soak testing before peak events.</li>
+          <li><strong>Toil reduction:</strong> automate repetitive manual ops (SRE caps toil at ~50%); invest saved time in engineering reliability.</li>
+          <li><strong>Performance:</strong> track saturation &amp; latency vs SLO; right-size resources for cost.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 DR -->
+    <section class="section-block" id="section-dr">
+      <div class="section-header"><div class="section-icon">♻️</div><div><div class="section-number">Section 08</div><h2>Disaster Recovery (DR)</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>RTO</strong> (Recovery Time Objective) = how fast to restore. <strong>RPO</strong> (Recovery Point Objective) = max acceptable data loss. Design DR strategy to meet the availability NFR (see <a href="#sa">SA Handbook</a>).</p>
+        <table class="table-ops" style="margin-top:8px;">
+          <tr><th>DR strategy</th><th>RTO / RPO</th><th>Cost</th></tr>
+          <tr><td>Backup &amp; restore</td><td>hours–days / hours</td><td>$</td></tr>
+          <tr><td>Pilot light</td><td>~1h / minutes</td><td>$$</td></tr>
+          <tr><td>Warm standby</td><td>minutes / seconds</td><td>$$$</td></tr>
+          <tr><td>Multi-site active-active</td><td>~0 / ~0</td><td>$$$$</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Banking-critical systems need tested failover with defined RTO/RPO. <strong>Test DR regularly</strong> (SBV expects evidence) — an untested DR plan is a liability, not an asset.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 BCP -->
+    <section class="section-block" id="section-bcp">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Section 09</div><h2>Business Continuity (BCP)</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>DR restores <em>IT systems</em>; <strong>BCP</strong> keeps the <em>business</em> running (people, process, facilities). <span class="pill-tag">ISO 22301</span></p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>BIA</strong> (Business Impact Analysis): rank processes by criticality → set recovery priorities &amp; RTO/RPO.</li>
+          <li>Continuity strategies: alternate sites, manual workarounds, comms tree, crisis management team.</li>
+          <li>Regular BCP exercises &amp; tabletop drills; keep plans current with owners.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 RUNBOOKS -->
+    <section class="section-block" id="section-runbooks">
+      <div class="section-header"><div class="section-icon">📓</div><div><div class="section-number">Section 10</div><h2>Runbooks &amp; Automation</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Every recurring operational task &amp; failure mode has a <strong>runbook</strong>: symptom → diagnosis steps → remediation → escalation. Prefer <strong>automation</strong> (self-healing, auto-remediation) over manual steps.</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Runbook catalog kept next to code / in the ops wiki; linked from alerts.</li>
+          <li>IaC for reproducible environments; GitOps for change traceability.</li>
+          <li>Chaos engineering (game-days) to validate resilience assumptions.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Section 11</div><h2>DORA &amp; Ops Metrics</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DORA Four Keys <span class="pill-tag">DORA / Accelerate</span></div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Deployment Frequency</div><div class="metric-value">how often you deploy to prod</div></div>
+          <div class="metric-card"><div class="metric-title">Lead Time for Changes</div><div class="metric-value">commit → running in prod</div></div>
+          <div class="metric-card"><div class="metric-title">Change Failure Rate</div><div class="metric-value">failed changes ÷ total × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">MTTR</div><div class="metric-value">mean time to restore service</div></div>
+          <div class="metric-card"><div class="metric-title">Availability</div><div class="metric-value">uptime ÷ total × 100% (vs SLO)</div></div>
+          <div class="metric-card"><div class="metric-title">Error budget burn</div><div class="metric-value">consumed ÷ total budget × 100%</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 ON-CALL -->
+    <section class="section-block" id="section-oncall">
+      <div class="section-header"><div class="section-icon">📟</div><div><div class="section-number">Section 12</div><h2>On-call &amp; Escalation</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Sustainable rotation (follow-the-sun or weekly); sane paging limits to avoid burnout.</li>
+          <li>Clear <strong>escalation matrix</strong>: L1 on-call → L2 SME → L3 vendor/architect → management.</li>
+          <li>Every page is <strong>actionable</strong> &amp; linked to a runbook; non-actionable alerts get tuned out.</li>
+          <li>Handover notes each shift; incident review weekly.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Section 13</div><h2>Roles &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Activity</th><th>SRE/Ops</th><th>Dev</th><th>Release Mgr</th><th>SA</th><th>Security</th></tr>
+          <tr><td>Define SLO / error budget</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+          <tr><td>Incident response (SEV1)</td><td><strong>R</strong> (IC)</td><td>R</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Postmortem &amp; RCA</td><td><strong>A</strong></td><td>R</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>DR test &amp; BCP</td><td><strong>R</strong></td><td>C</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Production change approval</td><td>R</td><td>C</td><td><strong>A</strong></td><td>C</td><td>C</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to SBV Circular 09/2020/TT-NHNN.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Operations &amp; SRE Runbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>

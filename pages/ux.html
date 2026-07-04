@@ -1,0 +1,324 @@
+<title>UX/UI Designer Handbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-ux{width:100%;border-collapse:collapse;font-size:12px}
+.table-ux th,.table-ux td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-ux th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-ux tr:hover td{background:var(--bg-hover)}
+.table-ux code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🎨</div>
+      <div>
+        <div class="bank-title">UX/UI Designer Handbook</div>
+        <div class="bank-sub">Double Diamond · NN/g · WCAG 2.2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-discover" onclick="setActive(this)"><span class="nav-icon">🔎</span> 02 · Discover / Research</a>
+    <a href="#section-define" onclick="setActive(this)"><span class="nav-icon">🎯</span> 03 · Define / Synthesis</a>
+  </nav>
+
+  <div class="sidebar-section-label">Design</div>
+  <nav id="sidebar-nav">
+    <a href="#section-ia" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 04 · IA &amp; User Flows</a>
+    <a href="#section-wireframe" onclick="setActive(this)"><span class="nav-icon">📐</span> 05 · Wireframing</a>
+    <a href="#section-ui" onclick="setActive(this)"><span class="nav-icon">🖌️</span> 06 · UI Design Principles</a>
+    <a href="#section-designsystem" onclick="setActive(this)"><span class="nav-icon">🧩</span> 07 · Design System</a>
+    <a href="#section-interaction" onclick="setActive(this)"><span class="nav-icon">✨</span> 08 · Interaction &amp; States</a>
+  </nav>
+
+  <div class="sidebar-section-label">Validate</div>
+  <nav id="sidebar-nav">
+    <a href="#section-usability" onclick="setActive(this)"><span class="nav-icon">🧪</span> 09 · Usability Testing</a>
+    <a href="#section-heuristics" onclick="setActive(this)"><span class="nav-icon">🔟</span> 10 · Heuristic Evaluation</a>
+    <a href="#section-a11y" onclick="setActive(this)"><span class="nav-icon">♿</span> 11 · Accessibility (WCAG)</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-handoff" onclick="setActive(this)"><span class="nav-icon">🤝</span> 12 · Handoff</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Roles &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">💠 Double Diamond</span>
+    <span class="comp-pill">♿ WCAG 2.2 AA</span>
+    <span class="comp-pill">🧩 Atomic Design</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: UX/UI Designer / Design<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standards: NN/g · WCAG 2.2 · Material/HIG<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🎨 Internal Handbook · Double Diamond · NN/g · WCAG 2.2</div>
+    <h1>UX/UI Designer<br/><span>Research to Pixel-Perfect Handoff</span></h1>
+    <p>Reference for the end-to-end product design role — from user research to accessible, buildable UI. Grounded in the Double Diamond, Nielsen Norman heuristics, WCAG 2.2, Atomic Design, and platform guidelines (Material Design / Apple HIG). For internal banking tools, efficiency &amp; accessibility come first.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Double Diamond</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Design System</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Usability-tested</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> WCAG 2.2 AA</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">UX vs UI</div>
+        <table class="table-ux">
+          <tr><th></th><th>UX (Experience)</th><th>UI (Interface)</th></tr>
+          <tr><td>Answers</td><td>Is it usable &amp; useful?</td><td>How does it look &amp; feel?</td></tr>
+          <tr><td>Output</td><td>Research, personas, journeys, flows, wireframes</td><td>Visual design, components, design system</td></tr>
+          <tr><td>Measured by</td><td>Task success, error rate, SUS</td><td>Brand adherence, accessibility score</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Double Diamond — the process spine <span class="pill-tag">Design Council</span></div>
+        <pre class="art-block">DISCOVER ─▶ DEFINE ─▶ DEVELOP ─▶ DELIVER
+(diverge)   (converge) (diverge)   (converge)
+research     problem     ideate &amp;    prototype,
+&amp; empathy    statement   wireframe   test &amp; handoff</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Internal bank tools: optimize for <strong>efficiency</strong> (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 DISCOVER -->
+    <section class="section-block" id="section-discover">
+      <div class="section-header"><div class="section-icon">🔎</div><div><div class="section-number">Section 02</div><h2>Discover / Research</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Type</th><th>Method</th></tr>
+          <tr><td><strong>Generative</strong> (explore)</td><td>User interviews, contextual inquiry, diary study.</td></tr>
+          <tr><td><strong>Evaluative</strong> (assess)</td><td>Usability test, A/B test, heuristic evaluation.</td></tr>
+          <tr><td><strong>Quantitative</strong></td><td>Surveys, analytics (GA4/Clarity/Hotjar), funnels.</td></tr>
+          <tr><td><strong>Competitive</strong></td><td>Feature matrix, UX teardown of analogues.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">👥</span><div><strong>~5 users</strong> uncover ~85% of usability issues (Nielsen). Research is done <em>with</em> the <a href="#ba">BA</a> &amp; <a href="#po">PO</a> — align on the problem, not just the UI.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 DEFINE -->
+    <section class="section-block" id="section-define">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Section 03</div><h2>Define / Synthesis</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Affinity mapping</strong> — cluster raw research into themes.</li>
+          <li><strong>Personas</strong> — data-driven archetypes (goals, frustrations, behaviours) — not assumptions.</li>
+          <li><strong>Journey map</strong> — stages · actions · thoughts · emotions · pain points · opportunities.</li>
+          <li><strong>Problem statement:</strong> <code>[Persona] needs [goal] because [insight]</code>; reframe as <strong>How Might We…</strong></li>
+          <li><strong>JTBD:</strong> <code>When [situation], I want [motivation], so I can [outcome]</code>.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 IA -->
+    <section class="section-block" id="section-ia">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Section 04</div><h2>Information Architecture &amp; User Flows</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>IA:</strong> organise &amp; label content so users find it — validate with <strong>card sorting</strong> &amp; <strong>tree testing</strong>; output a sitemap.</li>
+          <li><strong>User flows:</strong> step-by-step path to complete a task — rectangles (screens), diamonds (decisions), arrows.</li>
+          <li>Always design <strong>happy path + error paths + edge cases</strong>.</li>
+        </ul>
+        <pre class="art-block">[Login] ─▶ &lt;Auth ok?&gt; ──no──▶ [Error + retry]
+              │yes
+              ▼
+         [Dashboard] ─▶ [Transfer] ─▶ &lt;Valid?&gt; ──no──▶ [Inline error]
+                                          │yes
+                                          ▼
+                                     [Confirm] ─▶ [Success]</pre>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 WIREFRAME -->
+    <section class="section-block" id="section-wireframe">
+      <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Section 05</div><h2>Wireframing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Fidelity</th><th>Use for</th></tr>
+          <tr><td><strong>Lo-fi</strong> (sketch/grayscale blocks)</td><td>Validate layout &amp; flow fast — don't polish.</td></tr>
+          <tr><td><strong>Mid-fi</strong> (grayscale, real content)</td><td>Test navigation &amp; IA.</td></tr>
+          <tr><td><strong>Hi-fi</strong> (color, real components)</td><td>Visual review &amp; handoff.</td></tr>
+        </table>
+        <p style="margin-top:6px;"><strong>Start lo-fi</strong>; raise fidelity only as much as the validation needs. Cheap to change early.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 UI -->
+    <section class="section-block" id="section-ui">
+      <div class="section-header"><div class="section-icon">🖌️</div><div><div class="section-number">Section 06</div><h2>UI Design Principles</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Principle</th><th>Apply</th></tr>
+          <tr><td><strong>Hierarchy</strong></td><td>Size/weight/color guide the eye to what matters first.</td></tr>
+          <tr><td><strong>Proximity &amp; consistency</strong></td><td>Group related items; same component = same behaviour everywhere.</td></tr>
+          <tr><td><strong>Feedback &amp; affordance</strong></td><td>Every action has a visible response; controls look interactive.</td></tr>
+          <tr><td><strong>Typography</strong></td><td>2–3 typefaces; type scale; body line-height ~1.5; contrast ≥ 4.5:1.</td></tr>
+          <tr><td><strong>Spacing</strong></td><td>4/8px grid — 4,8,12,16,24,32,48… consistently.</td></tr>
+          <tr><td><strong>Touch targets</strong></td><td>≥ 44×44px (HIG) / 48dp (Material); ≥ 8px gap.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 DESIGN SYSTEM -->
+    <section class="section-block" id="section-designsystem">
+      <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Section 07</div><h2>Design System <span class="pill-tag">Atomic Design · Brad Frost</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <pre class="art-block">ATOMS ─▶ MOLECULES ─▶ ORGANISMS ─▶ TEMPLATES ─▶ PAGES
+(Button)  (Form field)  (Header)     (Layout)     (Full screen)</pre>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Foundations:</strong> color tokens, typography, spacing, icons, grid, motion.</li>
+          <li><strong>Design tokens:</strong> <code>color.primary.500</code>, <code>spacing.md=16px</code>, <code>radius.card=8px</code> — single source of truth shared with dev.</li>
+          <li><strong>Components + patterns + guidelines:</strong> usage dos/don'ts, accessibility notes per component.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🧠</span><div>A design system reduces cognitive load &amp; rework — reuse before inventing. Keep it versioned &amp; governed.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 INTERACTION -->
+    <section class="section-block" id="section-interaction">
+      <div class="section-header"><div class="section-icon">✨</div><div><div class="section-number">Section 08</div><h2>Interaction &amp; States</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Design every state</strong>, not just the happy default:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <span class="pill-tag">Default</span><span class="pill-tag">Hover</span><span class="pill-tag">Active/Pressed</span><span class="pill-tag">Focused</span><span class="pill-tag">Disabled</span><span class="pill-tag">Loading</span><span class="pill-tag">Empty</span><span class="pill-tag">Error</span>
+        </div>
+        <ul class="step-cl" style="margin-top:8px;">
+          <li><strong>Motion:</strong> purposeful, natural easing (ease-out enter, ease-in exit), 100–300ms; respects reduced-motion.</li>
+          <li><strong>Empty states</strong> = illustration + explanation + CTA. <strong>Loading</strong> = skeleton for content, spinner for short waits.</li>
+          <li><strong>Forms:</strong> labels above inputs, inline validation on blur, errors say the fix, one clear primary CTA.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 USABILITY -->
+    <section class="section-block" id="section-usability">
+      <div class="section-header"><div class="section-icon">🧪</div><div><div class="section-number">Section 09</div><h2>Usability Testing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Test a prototype with <strong>5–8 participants</strong> matching the persona; give tasks (non-leading); observe, don't rescue.</p>
+        <table class="table-ux" style="margin-top:8px;">
+          <tr><th>Metric</th><th>Definition</th></tr>
+          <tr><td><strong>Task completion rate</strong></td><td>% who finish the task successfully.</td></tr>
+          <tr><td><strong>Error rate</strong></td><td>Errors per task.</td></tr>
+          <tr><td><strong>Time on task</strong></td><td>How long to complete.</td></tr>
+          <tr><td><strong>SUS</strong></td><td>10-item usability score 0–100 (≥68 above average).</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 HEURISTICS -->
+    <section class="section-block" id="section-heuristics">
+      <div class="section-header"><div class="section-icon">🔟</div><div><div class="section-number">Section 10</div><h2>Heuristic Evaluation <span class="pill-tag">Nielsen 10</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill-tag">1 Visibility of system status</span><span class="pill-tag">2 Match real world</span><span class="pill-tag">3 User control &amp; freedom</span><span class="pill-tag">4 Consistency &amp; standards</span><span class="pill-tag">5 Error prevention</span><span class="pill-tag">6 Recognition not recall</span><span class="pill-tag">7 Flexibility &amp; efficiency</span><span class="pill-tag">8 Aesthetic &amp; minimalist</span><span class="pill-tag">9 Recover from errors</span><span class="pill-tag">10 Help &amp; documentation</span>
+        </div>
+        <p style="margin-top:8px;">Rate each finding's severity 0 (none) → 4 (catastrophe). A fast, cheap expert review to catch issues before user testing.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 ACCESSIBILITY -->
+    <section class="section-block" id="section-a11y">
+      <div class="section-header"><div class="section-icon">♿</div><div><div class="section-number">Section 11</div><h2>Accessibility (WCAG 2.2) <span class="pill-tag">W3C</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>POUR</strong> principles — target <strong>Level AA</strong>:</p>
+        <table class="table-ux">
+          <tr><th>Principle</th><th>Means</th></tr>
+          <tr><td><strong>Perceivable</strong></td><td>Alt text, captions; colour not the only cue; contrast ≥ 4.5:1 (normal) / 3:1 (large).</td></tr>
+          <tr><td><strong>Operable</strong></td><td>Full keyboard access, no keyboard trap, visible focus, skip links, adequate targets.</td></tr>
+          <tr><td><strong>Understandable</strong></td><td>Clear language, predictable behaviour, error identification + suggestion.</td></tr>
+          <tr><td><strong>Robust</strong></td><td>Works with assistive tech (screen readers, semantic HTML/ARIA).</td></tr>
+        </table>
+        <p style="margin-top:6px;">Tools: axe DevTools, Lighthouse, WAVE, VoiceOver/NVDA. Accessibility is verified by <a href="#qc">QC</a> too.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 HANDOFF -->
+    <section class="section-block" id="section-handoff">
+      <div class="section-header"><div class="section-icon">🤝</div><div><div class="section-number">Section 12</div><h2>Design-to-Dev Handoff</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>All screens + <strong>all states</strong> designed; responsive breakpoints specified (mobile/tablet/desktop).</li>
+          <li>Spacing/sizing annotated; color tokens (hex + token name); type specs; icons as SVG.</li>
+          <li>Animation specs (duration, easing, trigger); component behaviour &amp; edge cases documented.</li>
+          <li>Handoff via Figma Dev Mode / Storybook; walk the team through it — the file is <strong>communication with dev</strong>, not artwork.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Design tokens map to the front-end system; align with the <a href="#sa">SA</a> on component architecture &amp; the <a href="#qc">QC</a> team on visual/interaction acceptance.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Section 13</div><h2>Roles &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Activity</th><th>UX/UI</th><th>PO</th><th>BA</th><th>Dev</th><th>QC</th></tr>
+          <tr><td>User research</td><td><strong>R</strong></td><td>A</td><td>C</td><td>I</td><td>I</td></tr>
+          <tr><td>IA / flows / wireframes</td><td><strong>A/R</strong></td><td>C</td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>UI design &amp; design system</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+          <tr><td>Usability &amp; a11y testing</td><td><strong>R</strong></td><td>C</td><td>I</td><td>C</td><td>C</td></tr>
+          <tr><td>Design acceptance at build</td><td><strong>A</strong></td><td>C</td><td>I</td><td>R</td><td>R</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> Design Council (Double Diamond); Nielsen Norman Group (10 usability heuristics, ~5-user testing); WCAG 2.2 / W3C (POUR, AA); Brad Frost (Atomic Design); Google Material Design 3 &amp; Apple HIG (platform guidelines); SUS (John Brooke); JTBD (Clayton Christensen / Tony Ulwick).</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · UX/UI Designer Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025
+  </footer>
+</div>
+</div>

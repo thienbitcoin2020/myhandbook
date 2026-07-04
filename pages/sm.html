@@ -1,0 +1,322 @@
+<title>Scrum Master Handbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-sm{width:100%;border-collapse:collapse;font-size:12px}
+.table-sm th,.table-sm td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-sm th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-sm tr:hover td{background:var(--bg-hover)}
+.table-sm code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.src{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.src-scrum{color:var(--status-green);border-color:var(--status-green)}
+.src-ext{color:var(--status-blue);border-color:var(--status-blue)}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🌀</div>
+      <div>
+        <div class="bank-title">Scrum Master Handbook</div>
+        <div class="bank-sub">Scrum Guide 2020 · Servant Leadership</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-framework" onclick="setActive(this)"><span class="nav-icon">📐</span> 02 · Scrum Framework</a>
+    <a href="#section-leadership" onclick="setActive(this)"><span class="nav-icon">🤲</span> 03 · Servant Leadership</a>
+  </nav>
+
+  <div class="sidebar-section-label">Facilitation</div>
+  <nav id="sidebar-nav">
+    <a href="#section-events" onclick="setActive(this)"><span class="nav-icon">🔁</span> 04 · Facilitating Events</a>
+    <a href="#section-impediments" onclick="setActive(this)"><span class="nav-icon">🚧</span> 05 · Impediment Mgmt</a>
+    <a href="#section-coaching" onclick="setActive(this)"><span class="nav-icon">🎓</span> 06 · Coaching Stances</a>
+    <a href="#section-facilitation" onclick="setActive(this)"><span class="nav-icon">🗣️</span> 07 · Facilitation Toolkit</a>
+  </nav>
+
+  <div class="sidebar-section-label">Team &amp; Flow</div>
+  <nav id="sidebar-nav">
+    <a href="#section-team" onclick="setActive(this)"><span class="nav-icon">👥</span> 08 · Team Health</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 09 · Agile Metrics</a>
+    <a href="#section-scaling" onclick="setActive(this)"><span class="nav-icon">🔀</span> 10 · Scaling</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-retro" onclick="setActive(this)"><span class="nav-icon">🔄</span> 11 · Retrospective Techniques</a>
+    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> 12 · Anti-Patterns</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">🧩</span> 13 · Boundaries &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🌀 Scrum Guide 2020</span>
+    <span class="comp-pill">🤲 Servant Leader</span>
+    <span class="comp-pill">🔀 Hybrid SDLC</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: Scrum Master / Agile<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standard: Scrum Guide 2020<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🌀 Internal Handbook · Scrum Guide 2020 Aligned</div>
+    <h1>Scrum Master (SM)<br/><span>Servant Leadership &amp; Team Effectiveness</span></h1>
+    <p>Reference for the Scrum Master role — grounded in the Scrum Guide 2020, with facilitation, coaching, and team-health practice. Scrum-standard terms are tagged <span class="src src-scrum">Scrum 2020</span>; extended practices carry their source <span class="src src-ext">Extended</span>.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Scrum Guide 2020</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Servant Leader</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Facilitation &amp; Coaching</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Accountability <span class="src src-scrum">Scrum 2020</span></div>
+        <p>The Scrum Master is <strong>accountable for establishing Scrum</strong> as defined in the Scrum Guide, and for the <strong>Scrum Team's effectiveness</strong>. The SM is a <strong>true leader who serves</strong> the Scrum Team and the wider organization — one of the three accountabilities (SM, PO, Developers).</p>
+        <p style="margin-top:6px;">The SM serves three ways: the <strong>Scrum Team</strong> (coaching, facilitating, removing impediments), the <strong>Product Owner</strong> (backlog &amp; goal techniques), and the <strong>Organization</strong> (adoption, removing barriers between stakeholders &amp; teams).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">SM vs PM vs Agile Coach vs Team Lead</div>
+        <table class="table-sm">
+          <tr><th>Aspect</th><th>Scrum Master</th><th>Project Manager</th><th>Agile Coach</th><th>Team Lead</th></tr>
+          <tr><td>Focus</td><td>Team effectiveness &amp; Scrum</td><td>Scope/time/cost of a project</td><td>Org-wide agility</td><td>Technical delivery of a team</td></tr>
+          <tr><td>Authority</td><td>No command authority — influence</td><td>Formal project authority</td><td>Advisory across teams</td><td>Line/technical authority</td></tr>
+          <tr><td>Horizon</td><td>The team, continuous</td><td>The project, temporary</td><td>Multiple teams</td><td>The team's codebase</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>SM is <strong>not</strong> a mini-PM. See the <a href="#pm">PM Handbook</a> for project governance and the <a href="#po">PO Handbook</a> for product decisions.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 FRAMEWORK -->
+    <section class="section-block" id="section-framework">
+      <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Section 02</div><h2>Scrum Framework <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Element</th><th>Items</th></tr>
+          <tr><td><strong>Accountabilities</strong></td><td>Product Owner · Scrum Master · Developers <span class="src src-scrum">not "roles"</span></td></tr>
+          <tr><td><strong>Events</strong></td><td>The Sprint (container) · Sprint Planning · Daily Scrum · Sprint Review · Sprint Retrospective</td></tr>
+          <tr><td><strong>Artifacts + commitment</strong></td><td>Product Backlog → <strong>Product Goal</strong> · Sprint Backlog → <strong>Sprint Goal</strong> · Increment → <strong>Definition of Done</strong></td></tr>
+          <tr><td><strong>Pillars</strong></td><td>Transparency · Inspection · Adaptation (empiricism)</td></tr>
+          <tr><td><strong>Values</strong></td><td>Commitment · Focus · Openness · Respect · Courage</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>Use current terms: <strong>accountabilities</strong> (not "3 roles"), <strong>Developers</strong> (not "Development Team"). Refinement is an <strong>ongoing activity</strong>, not an event.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 LEADERSHIP -->
+    <section class="section-block" id="section-leadership">
+      <div class="section-header"><div class="section-icon">🤲</div><div><div class="section-number">Section 03</div><h2>Servant Leadership</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>The SM leads by <strong>serving</strong> — creating the conditions for the team to succeed, not commanding it. <span class="src src-ext">Robert Greenleaf</span></p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Grow people &amp; the team's self-management; make yourself progressively less needed.</li>
+          <li>Protect focus (shield from interruptions), foster <strong>psychological safety</strong>.</li>
+          <li>Lead change by influence &amp; example, not authority.</li>
+          <li>Hold the team to Scrum values &amp; agreements without dictating <em>how</em> they work.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 EVENTS -->
+    <section class="section-block" id="section-events">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Section 04</div><h2>Facilitating the Events <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Event</th><th style="color:var(--status-green)">SM ensures / does</th><th style="color:var(--status-red)">SM does NOT</th></tr>
+          <tr><td><strong>Sprint Planning</strong></td><td>Event happens &amp; is productive; time-box respected; Sprint Goal is clear.</td><td>Decide scope or assign tasks.</td></tr>
+          <tr><td><strong>Daily Scrum</strong></td><td>Coach Developers to run it themselves in 15 min.</td><td>Run it or take status.</td></tr>
+          <tr><td><strong>Sprint Review</strong></td><td>Facilitate collaboration with stakeholders; keep it a working session.</td><td>Present the product (that's the team).</td></tr>
+          <tr><td><strong>Retrospective</strong></td><td>Facilitate honest inspection &amp; concrete improvements.</td><td>Impose actions or skip it.</td></tr>
+          <tr><td><strong>Refinement</strong> <span class="src src-ext">ongoing</span></td><td>Help the team make it effective &amp; right-sized.</td><td>Own the backlog (PO does).</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>SM facilitation is a <strong>service</strong>, not a requirement — a mature team may need less. The goal is a self-managing team.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 IMPEDIMENTS -->
+    <section class="section-block" id="section-impediments">
+      <div class="section-header"><div class="section-icon">🚧</div><div><div class="section-number">Section 05</div><h2>Impediment Management</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>An <strong>impediment</strong> is anything slowing the team that they can't remove themselves. The SM causes their removal.</p>
+        <pre class="art-block">SURFACE ─▶ LOG ─▶ CLASSIFY ─▶ ACT/ESCALATE ─▶ VERIFY REMOVED
+(daily,     (visible  (team-       (remove or    (with the
+ retro)      board)    solvable?    escalate to    team)
+                       org-level?)  mgmt/PM)</pre>
+        <p style="margin-top:6px;">Team-level → coach the team to solve. Organizational → escalate (to <a href="#pm">PM</a>/management) with impact framed clearly. Track impediments visibly to closure.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 COACHING -->
+    <section class="section-block" id="section-coaching">
+      <div class="section-header"><div class="section-icon">🎓</div><div><div class="section-number">Section 06</div><h2>Coaching Stances</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Choose the right stance for the situation <span class="src src-ext">Agile coaching</span>:</p>
+        <table class="table-sm">
+          <tr><th>Stance</th><th>When</th></tr>
+          <tr><td><strong>Teaching</strong></td><td>Team lacks knowledge of Scrum/practice.</td></tr>
+          <tr><td><strong>Mentoring</strong></td><td>Sharing experience on a specific challenge.</td></tr>
+          <tr><td><strong>Facilitating</strong></td><td>Team has the answers — guide the process, stay content-neutral.</td></tr>
+          <tr><td><strong>Coaching</strong></td><td>Unlock the team's own thinking via powerful questions.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">💬</span><div><strong>GROW model</strong> <span class="src src-ext">John Whitmore</span>: Goal → Reality → Options → Will. Ask, don't tell — build the team's capability.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 FACILITATION -->
+    <section class="section-block" id="section-facilitation">
+      <div class="section-header"><div class="section-icon">🗣️</div><div><div class="section-number">Section 07</div><h2>Facilitation Toolkit</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Working agreements</strong> &amp; a clear purpose for every session.</li>
+          <li>Divergent → convergent flow; timeboxing; parking lot for off-topic items.</li>
+          <li>Techniques: dot voting, fist-of-five, silent brainstorming, round-robin, Liberating Structures.</li>
+          <li>Draw out quiet voices; manage dominators; stay content-neutral as facilitator.</li>
+          <li>Decision methods: consent, consensus, or advice — chosen explicitly.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 TEAM HEALTH -->
+    <section class="section-block" id="section-team">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Section 08</div><h2>Team Formation &amp; Health</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Tuckman stages</strong> <span class="src src-ext">Bruce Tuckman</span>: Forming → Storming → Norming → Performing → (Adjourning). The SM adapts support to the stage — more structure early, more autonomy later.</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Psychological safety</strong> <span class="src src-ext">Amy Edmondson</span> is the #1 predictor of team performance (Google Project Aristotle).</li>
+          <li>Foster stable, cross-functional, right-sized teams (Scrum: typically ≤10 people).</li>
+          <li>Watch team-health signals (mood, conflict, dependency, churn); act early.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Section 09</div><h2>Agile Metrics — Use &amp; Abuse</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Metric</th><th>Good use</th><th>Abuse</th></tr>
+          <tr><td><strong>Velocity</strong></td><td>Team's own capacity forecast</td><td>Comparing teams / as a target</td></tr>
+          <tr><td><strong>Burndown / Burnup</strong></td><td>In-sprint transparency</td><td>Micromanagement stick</td></tr>
+          <tr><td><strong>Cumulative Flow (CFD)</strong></td><td>Spot bottlenecks &amp; WIP</td><td>—</td></tr>
+          <tr><td><strong>Cycle / Lead time</strong></td><td>Improve flow (see <a href="#po">PO</a>)</td><td>—</td></tr>
+          <tr><td><strong>Team happiness / safety</strong></td><td>Health trend over time</td><td>Individual scoring</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>Metrics are for the <strong>team to inspect &amp; adapt</strong>, never a management weapon (Goodhart's law). Outcomes &gt; output.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 SCALING -->
+    <section class="section-block" id="section-scaling">
+      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Section 10</div><h2>Scaling <span class="src src-ext">Extended</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Framework</th><th>Idea</th></tr>
+          <tr><td><strong>Nexus</strong> <span class="src src-ext">Scrum.org</span></td><td>3–9 Scrum Teams on one product; Nexus Integration Team manages cross-team dependencies.</td></tr>
+          <tr><td><strong>LeSS</strong></td><td>Scale Scrum with minimal added process; one PO, one backlog.</td></tr>
+          <tr><td><strong>SAFe</strong></td><td>Enterprise ART/PI planning; SM often "Scrum Master / Team Coach".</td></tr>
+        </table>
+        <p style="margin-top:6px;">At scale, SMs also facilitate <strong>Scrum of Scrums</strong> / cross-team sync — coordinate with the <a href="#pm">PM</a> on dependencies.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 RETRO -->
+    <section class="section-block" id="section-retro">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Section 11</div><h2>Retrospective Techniques</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Vary the format to keep retros fresh &amp; honest <span class="src src-ext">Derby &amp; Larsen</span>:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Start / Stop / Continue</strong> — simple, action-focused.</li>
+          <li><strong>4 Ls</strong> — Liked, Learned, Lacked, Longed for.</li>
+          <li><strong>Mad / Sad / Glad</strong> — surface emotion.</li>
+          <li><strong>Sailboat</strong> — wind (helps) vs anchors (blockers).</li>
+          <li><strong>5-stage</strong>: Set the stage → Gather data → Generate insights → Decide actions → Close.</li>
+        </ul>
+        <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>Every retro ends with <strong>1–3 concrete, owned action items</strong> — and the next retro reviews them. No actions = theatre.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 ANTI-PATTERNS -->
+    <section class="section-block" id="section-antipatterns">
+      <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Section 12</div><h2>Anti-Patterns</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Anti-pattern</th><th>Do instead</th></tr>
+          <tr><td><strong>SM as secretary</strong> (just books rooms, takes notes)</td><td>Coach, facilitate, remove impediments.</td></tr>
+          <tr><td><strong>SM as PM</strong> (assigns tasks, tracks status)</td><td>Enable self-management; PM owns project governance.</td></tr>
+          <tr><td><strong>"Scrum police"</strong> (dogmatic rule enforcer)</td><td>Teach the <em>why</em>; adapt with the team.</td></tr>
+          <tr><td><strong>Absent / part-time token SM</strong></td><td>Actively serve the team &amp; org.</td></tr>
+          <tr><td><strong>Velocity as a KPI</strong></td><td>Focus on outcomes &amp; team health.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Section 13</div><h2>Boundaries &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Activity</th><th>SM</th><th>PO</th><th>Developers</th><th>PM</th></tr>
+          <tr><td>Establish &amp; coach Scrum</td><td><strong>A/R</strong></td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Facilitate events</td><td><strong>R</strong></td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Remove impediments</td><td><strong>A</strong></td><td>C</td><td>R</td><td>C</td></tr>
+          <tr><td>Backlog &amp; priorities</td><td>C</td><td><strong>A</strong></td><td>C</td><td>I</td></tr>
+          <tr><td>Project scope / schedule / budget</td><td>I</td><td>C</td><td>I</td><td><strong>A</strong></td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> Scrum Guide 2020 (Schwaber &amp; Sutherland). Extended: Robert Greenleaf (Servant Leadership); John Whitmore (GROW); Bruce Tuckman (team stages); Amy Edmondson &amp; Google Project Aristotle (psychological safety); Derby &amp; Larsen (<em>Agile Retrospectives</em>); Scrum.org (Nexus), LeSS, SAFe (scaling). PMBOK 7 for the PM boundary.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Scrum Master Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with Scrum Guide 2020 · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>

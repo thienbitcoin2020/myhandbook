@@ -1,0 +1,324 @@
+<title>PMO Governance &amp; Portfolio | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-pmo{width:100%;border-collapse:collapse;font-size:12px}
+.table-pmo th,.table-pmo td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-pmo th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-pmo tr:hover td{background:var(--bg-hover)}
+.table-pmo code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏢</div>
+      <div>
+        <div class="bank-title">PMO Governance &amp; Portfolio</div>
+        <div class="bank-sub">PMI · P3O · EVM · Benefits</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-portfolio" onclick="setActive(this)"><span class="nav-icon">🗃️</span> 02 · Portfolio &amp; Intake</a>
+    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 03 · Governance Structure</a>
+  </nav>
+
+  <div class="sidebar-section-label">Control</div>
+  <nav id="sidebar-nav">
+    <a href="#section-raid" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 04 · RAID Management</a>
+    <a href="#section-dependency" onclick="setActive(this)"><span class="nav-icon">🔗</span> 05 · Dependency Mgmt</a>
+    <a href="#section-financial" onclick="setActive(this)"><span class="nav-icon">💰</span> 06 · Financial Governance</a>
+    <a href="#section-benefits" onclick="setActive(this)"><span class="nav-icon">🎁</span> 07 · Benefits Realization</a>
+  </nav>
+
+  <div class="sidebar-section-label">Delivery Assurance</div>
+  <nav id="sidebar-nav">
+    <a href="#section-standards" onclick="setActive(this)"><span class="nav-icon">📚</span> 08 · Standards &amp; Methodology</a>
+    <a href="#section-resource" onclick="setActive(this)"><span class="nav-icon">🧑‍🤝‍🧑</span> 09 · Resource &amp; Capacity</a>
+    <a href="#section-assurance" onclick="setActive(this)"><span class="nav-icon">🔍</span> 10 · Assurance &amp; Audit</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-reporting" onclick="setActive(this)"><span class="nav-icon">📊</span> 11 · Reporting &amp; Dashboard</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · Portfolio KPIs</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Roles &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🏢 PMI PMO</span>
+    <span class="comp-pill">🧭 P3O</span>
+    <span class="comp-pill">🏦 SBV Governance</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: PMO Lead / Delivery Governance<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standards: PMI · P3O · EVM<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏢 Internal Handbook · PMI · P3O · Portfolio Governance</div>
+    <h1>PMO Governance<br/><span>Portfolio, Assurance &amp; Value</span></h1>
+    <p>Reference for the Project/Programme Management Office — the layer <em>above</em> a single project. Covers portfolio &amp; demand governance, RAID &amp; dependency management, financial governance &amp; benefits realization, delivery standards, assurance, and consolidated reporting. Grounded in PMI (PMBOK 7 / Standard for Portfolio Management) and P3O.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Portfolio Governance</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> RAID &amp; Assurance</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Benefits-driven</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> CONFIDENTIAL</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">PMO types <span class="pill-tag">PMI</span></div>
+        <table class="table-pmo">
+          <tr><th>Type</th><th>Mandate</th></tr>
+          <tr><td><strong>Supportive</strong></td><td>Provides templates, training, lessons — low control.</td></tr>
+          <tr><td><strong>Controlling</strong></td><td>Requires compliance with standards &amp; gates — medium control.</td></tr>
+          <tr><td><strong>Directive</strong></td><td>PMs report into the PMO; directly manages delivery — high control.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Portfolio / Programme / Project = P3. The PMO governs <em>across</em> projects; individual project execution lives in the <a href="#pm">PM Handbook</a>. This handbook is the governance spine's home.</div></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">PMO vs PM</div>
+        <table class="table-pmo">
+          <tr><th></th><th>PMO</th><th>Project Manager</th></tr>
+          <tr><td>Scope</td><td>Whole portfolio</td><td>One project</td></tr>
+          <tr><td>Owns</td><td>Standards, governance, reporting, assurance</td><td>Delivery of scope/time/cost</td></tr>
+          <tr><td>Horizon</td><td>Continuous / strategic</td><td>Temporary / tactical</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 PORTFOLIO & INTAKE -->
+    <section class="section-block" id="section-portfolio">
+      <div class="section-header"><div class="section-icon">🗃️</div><div><div class="section-number">Section 02</div><h2>Portfolio &amp; Demand / Intake</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Govern <em>which</em> initiatives get funded &amp; sequenced — doing the <strong>right</strong> projects, not just projects right.</p>
+        <pre class="art-block">DEMAND ─▶ INTAKE ─▶ SCORE/RANK ─▶ STAGE-GATE ─▶ FUND ─▶ EXECUTE ─▶ CLOSE/BENEFITS
+(ideas,    (business  (value vs     (Go/Kill/    (portfolio  (see PM)   (harvest
+ requests)  case)      capacity,     Hold/Recycle) balance)              value)
+                       strategic fit)</pre>
+        <table class="table-pmo" style="margin-top:8px;">
+          <tr><th>Intake criterion</th><th>Question</th></tr>
+          <tr><td>Strategic alignment</td><td>Does it advance an org objective?</td></tr>
+          <tr><td>Value / ROI</td><td>Expected benefit vs cost?</td></tr>
+          <tr><td>Risk &amp; compliance</td><td>Regulatory / risk exposure?</td></tr>
+          <tr><td>Capacity</td><td>Do we have people to deliver it?</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🚪</span><div><strong>Stage-gates</strong> (phase-gate): Go / Kill / Hold / Recycle decisions at each gate protect the portfolio from zombie projects.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 GOVERNANCE -->
+    <section class="section-block" id="section-governance">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Section 03</div><h2>Governance Structure</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-pmo">
+          <tr><th>Body</th><th>Decision rights</th><th>Cadence</th></tr>
+          <tr><td><strong>Investment / Portfolio Board</strong></td><td>Funding, prioritization, kill decisions</td><td>Quarterly / monthly</td></tr>
+          <tr><td><strong>Steering Committee</strong></td><td>Phase-gate approval, major change, escalation</td><td>Monthly</td></tr>
+          <tr><td><strong>CAB</strong></td><td>Change/release risk (see <a href="#deployment">Deployment</a>)</td><td>Weekly</td></tr>
+          <tr><td><strong>PMO Operations</strong></td><td>Standards, reporting, assurance</td><td>Continuous</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📏</span><div>Clear <strong>decision rights</strong> &amp; escalation thresholds prevent bottlenecks. Tailor governance weight to project size &amp; risk.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 RAID -->
+    <section class="section-block" id="section-raid">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Section 04</div><h2>RAID Management</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>The consolidated <strong>RAID log</strong> is the PMO's central control instrument across the portfolio.</p>
+        <table class="table-pmo">
+          <tr><th>Letter</th><th>Item</th><th>Tracks</th></tr>
+          <tr><td><strong>R</strong></td><td>Risks</td><td>Potential future problems — probability × impact, owner, response.</td></tr>
+          <tr><td><strong>A</strong></td><td>Assumptions</td><td>Things taken as true — validate; an invalid assumption becomes a risk/issue.</td></tr>
+          <tr><td><strong>I</strong></td><td>Issues</td><td>Problems happening now — owner, action, due date.</td></tr>
+          <tr><td><strong>D</strong></td><td>Dependencies</td><td>Cross-project / external reliances — see Section 05.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Project-level risk practice lives in the <a href="#pm">PM Handbook</a>; the PMO <strong>aggregates</strong> RAID to a portfolio view &amp; manages cross-cutting items.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 DEPENDENCY -->
+    <section class="section-block" id="section-dependency">
+      <div class="section-header"><div class="section-icon">🔗</div><div><div class="section-number">Section 05</div><h2>Dependency &amp; Cross-Project Management</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Maintain a <strong>dependency map</strong> across projects (who needs what, by when).</li>
+          <li>Classify: internal vs external, hard vs soft, inbound vs outbound.</li>
+          <li>Sequence &amp; align milestones; flag critical-path dependencies to the boards early.</li>
+          <li>Resolve conflicts on shared resources/systems at the portfolio level, not project vs project.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 FINANCIAL -->
+    <section class="section-block" id="section-financial">
+      <div class="section-header"><div class="section-icon">💰</div><div><div class="section-number">Section 06</div><h2>Financial Governance</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Govern the money: business case → cost baseline → tracking → forecast. <strong>Earned Value Management (EVM)</strong> for objective progress:</p>
+        <table class="table-pmo">
+          <tr><th>Metric</th><th>Formula</th><th>Reads as</th></tr>
+          <tr><td><strong>CPI</strong></td><td><code>EV ÷ AC</code></td><td>Cost efficiency (&gt;1 = under budget)</td></tr>
+          <tr><td><strong>SPI</strong></td><td><code>EV ÷ PV</code></td><td>Schedule efficiency (&gt;1 = ahead)</td></tr>
+          <tr><td><strong>CV</strong></td><td><code>EV − AC</code></td><td>Cost variance</td></tr>
+          <tr><td><strong>EAC</strong></td><td><code>BAC ÷ CPI</code></td><td>Forecast total cost at completion</td></tr>
+        </table>
+        <p style="margin-top:6px;"><span class="pill-tag">EV earned value · AC actual cost · PV planned value · BAC budget at completion</span></p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 BENEFITS -->
+    <section class="section-block" id="section-benefits">
+      <div class="section-header"><div class="section-icon">🎁</div><div><div class="section-number">Section 07</div><h2>Benefits Realization</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Projects deliver <em>outputs</em>; the organization needs <strong>outcomes &amp; benefits</strong>. The PMO ensures value is actually harvested — not assumed at go-live.</p>
+        <pre class="art-block">IDENTIFY ─▶ PLAN ─▶ (deliver) ─▶ REALIZE ─▶ REVIEW
+benefits    owner,               measure     benefits
+in the      baseline,            actual vs   review
+business    KPI                  target      (3–6 mo post go-live)
+case</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🔗</span><div>Each benefit has an <strong>owner, baseline, target KPI, and review date</strong>. Ties to the <a href="#po">PO</a> outcome metrics and the <a href="#handbook">Implementation Handbook</a> closure (PIR).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 STANDARDS -->
+    <section class="section-block" id="section-standards">
+      <div class="section-header"><div class="section-icon">📚</div><div><div class="section-number">Section 08</div><h2>Delivery Standards &amp; Methodology</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Own the delivery framework (this handbook set), templates, and quality gates (DoR/DoD, phase gates).</li>
+          <li><strong>Tailoring guidance:</strong> right-size Waterfall/Agile/Hybrid to project size, risk, and regulatory scope.</li>
+          <li>Curate the <strong>template library</strong> (charter, business case, status, RAID, closure) and lessons-learned repository.</li>
+          <li>Champion consistency across the <a href="#pm">PM</a>, <a href="#po">PO</a>, <a href="#ba">BA</a>, <a href="#sa">SA</a>, <a href="#qc">QC</a> handbooks.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 RESOURCE -->
+    <section class="section-block" id="section-resource">
+      <div class="section-header"><div class="section-icon">🧑‍🤝‍🧑</div><div><div class="section-number">Section 09</div><h2>Resource &amp; Capacity Management</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Portfolio-level view of demand vs capacity; prevent over-allocation across projects.</li>
+          <li>Skills matrix &amp; capacity heatmap; forecast hiring/vendor needs.</li>
+          <li>Resolve competing resource claims via portfolio priority, not first-come-first-served.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 ASSURANCE -->
+    <section class="section-block" id="section-assurance">
+      <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Section 10</div><h2>Assurance &amp; Audit</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Independent checks that delivery is on track &amp; controls are working <span class="pill-tag">P3O</span>:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Health checks / gate reviews</strong> at phase boundaries; RAG-rate delivery confidence.</li>
+          <li>Compliance with governance &amp; regulatory controls (with <a href="#sec">Security &amp; Compliance</a>).</li>
+          <li>Track audit findings &amp; actions to closure; feed lessons back into standards.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 REPORTING -->
+    <section class="section-block" id="section-reporting">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Section 11</div><h2>Reporting &amp; Portfolio Dashboard</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>A single, consistent view of portfolio health for executives — <strong>RAG</strong> status with drill-down.</p>
+        <table class="table-pmo">
+          <tr><th>Layer</th><th>Report</th></tr>
+          <tr><td>Executive</td><td>Portfolio scorecard: RAG, spend vs budget, benefits, top risks.</td></tr>
+          <tr><td>Programme</td><td>Milestones, cross-project dependencies, RAID summary.</td></tr>
+          <tr><td>Project</td><td>Status report (from <a href="#pm">PM</a>): scope/schedule/cost, EVM, issues.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🎨</span><div>RAG: 🟢 on track · 🟡 at risk (mitigation in progress) · 🔴 off track (escalation). Consistent definitions across all projects — no "watermelon" reporting (green outside, red inside).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Section 12</div><h2>Portfolio KPIs</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">On-time delivery</div><div class="metric-value">projects on schedule ÷ total × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">On-budget delivery</div><div class="metric-value">avg CPI ≥ 0.95 across portfolio</div></div>
+          <div class="metric-card"><div class="metric-title">Benefits realized</div><div class="metric-value">actual ÷ forecast benefit × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Portfolio ROI</div><div class="metric-value">net benefit ÷ investment × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Resource utilization</div><div class="metric-value">billable/allocated ÷ capacity × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Gate throughput</div><div class="metric-value">initiatives passing each gate</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Section 13</div><h2>Roles &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-pmo">
+          <tr><th>Activity</th><th>PMO</th><th>Sponsor/Board</th><th>PM</th><th>PO</th><th>Finance</th></tr>
+          <tr><td>Portfolio prioritization &amp; funding</td><td><strong>R</strong></td><td><strong>A</strong></td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Stage-gate governance</td><td><strong>A/R</strong></td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
+          <tr><td>Consolidated RAID &amp; reporting</td><td><strong>A/R</strong></td><td>I</td><td>R</td><td>C</td><td>I</td></tr>
+          <tr><td>Financial governance / EVM</td><td><strong>R</strong></td><td>A</td><td>R</td><td>I</td><td><strong>C</strong></td></tr>
+          <tr><td>Benefits realization</td><td><strong>A</strong></td><td>A</td><td>C</td><td><strong>R</strong></td><td>C</td></tr>
+          <tr><td>Standards &amp; assurance</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> PMI — PMBOK Guide 7th Ed., The Standard for Portfolio Management, Managing Change in Organizations; <strong>P3O</strong> (Portfolio, Programme &amp; Project Offices — Axelos); <strong>MSP</strong> / <strong>MoP</strong> (programme &amp; portfolio, Axelos); Earned Value Management (PMI/ANSI EIA-748); Cooper (Stage-Gate). Aligned to SBV governance expectations.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · PMO Governance &amp; Portfolio v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with PMI · P3O · EVM · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>

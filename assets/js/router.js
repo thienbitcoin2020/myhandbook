@@ -12,6 +12,11 @@ const ROUTES = {
   'qc':         'pages/qc.html',
   'po':         'pages/po.html',
   'sa':         'pages/sa.html',
+  'sec':        'pages/sec.html',
+  'ops':        'pages/ops.html',
+  'sm':         'pages/sm.html',
+  'ux':         'pages/ux.html',
+  'pmo':        'pages/pmo.html',
 };
 
 let _pageStyle  = null;

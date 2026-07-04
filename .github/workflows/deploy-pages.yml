@@ -32,6 +32,7 @@ jobs:
           cp index.html public/
           # Legacy redirect stubs (index.html#<page> deep links)
           cp handbook.html ba-handbook.html pm-handbook.html qc-handbook.html po-handbook.html sa-handbook.html public/
+          cp sec-handbook.html ops-handbook.html sm-handbook.html ux-handbook.html pmo-handbook.html public/
           # Shared assets AND the page fragments the SPA router fetches at runtime
           cp -r assets public/
           cp -r pages public/

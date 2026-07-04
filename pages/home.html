@@ -34,6 +34,11 @@
 .xw-dep{background:var(--status-red-bg);border-color:var(--status-red)!important;color:var(--status-red)!important}
 .xw-po{background:rgba(139,92,246,0.20);border-color:#8b5cf6!important;color:#8b5cf6!important}
 .xw-sa{background:rgba(20,184,166,0.20);border-color:#14b8a6!important;color:#14b8a6!important}
+.xw-sec{background:rgba(249,115,22,0.20);border-color:#f97316!important;color:#f97316!important}
+.xw-ops{background:rgba(6,182,212,0.20);border-color:#06b6d4!important;color:#06b6d4!important}
+.xw-sm{background:rgba(236,72,153,0.20);border-color:#ec4899!important;color:#ec4899!important}
+.xw-ux{background:rgba(168,85,247,0.20);border-color:#a855f7!important;color:#a855f7!important}
+.xw-pmo{background:rgba(100,116,139,0.24);border-color:#64748b!important;color:#94a3b8!important}
 .xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
 .xw-legend span{display:inline-flex;align-items:center;gap:6px}
 .xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -108,7 +113,7 @@
       <div class="section-header"><div class="section-icon">🗺️</div><div><div class="section-number">Overview</div><h2>Handbook Map</h2></div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">The five handbooks &amp; who owns them</div>
-        <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to six specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
+        <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to eleven specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
         <div class="hub-cards">
           <a class="hub-card" href="#handbook" style="--role-c:var(--accent-bright)">
             <div class="hc-icon">📘</div>
@@ -159,6 +164,41 @@
             <div class="hc-desc">Release pipeline, CAB procedure, pre-deploy gates, deployment steps, rollback, DoD checklist.</div>
             <span class="hc-open">Open →</span>
           </a>
+          <a class="hub-card" href="#sec" style="--role-c:#f97316">
+            <div class="hc-icon">🛡️</div>
+            <div class="hc-title">Security &amp; Compliance</div>
+            <div class="hc-owner">Owner · CISO / Security</div>
+            <div class="hc-desc">ISO 27001 · NIST CSF · OWASP · SBV 09/2020: risk, DevSecOps, IAM, data protection, audit.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#ops" style="--role-c:#06b6d4">
+            <div class="hc-icon">🛰️</div>
+            <div class="hc-title">Operations &amp; SRE</div>
+            <div class="hc-owner">Owner · DevOps / SRE</div>
+            <div class="hc-desc">Google SRE · ITIL 4 · DORA: SLO/error budget, observability, incident, DR/BCP.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#sm" style="--role-c:#ec4899">
+            <div class="hc-icon">🌀</div>
+            <div class="hc-title">Scrum Master Handbook</div>
+            <div class="hc-owner">Owner · Scrum Master</div>
+            <div class="hc-desc">Scrum Guide 2020: servant leadership, facilitation, impediments, coaching, team health.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#ux" style="--role-c:#a855f7">
+            <div class="hc-icon">🎨</div>
+            <div class="hc-title">UX/UI Designer Handbook</div>
+            <div class="hc-owner">Owner · UX/UI Designer</div>
+            <div class="hc-desc">Double Diamond · NN/g · WCAG 2.2: research, IA, wireframes, design system, usability.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#pmo" style="--role-c:#94a3b8">
+            <div class="hc-icon">🏢</div>
+            <div class="hc-title">PMO Governance &amp; Portfolio</div>
+            <div class="hc-owner">Owner · PMO Lead</div>
+            <div class="hc-desc">PMI · P3O: portfolio &amp; intake, RAID, EVM/benefits, assurance, portfolio reporting.</div>
+            <span class="hc-open">Open →</span>
+          </a>
         </div>
       </div></div>
     </section>
@@ -188,6 +228,14 @@
                 <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">Ph5 Close · Ph6 Operate</td>
               </tr>
               <tr>
+                <td class="xw-rolelabel">🏢 PMO (PMI/P3O)</td>
+                <td class="xw-seg xw-pmo" colspan="2" onclick="location.hash='#pmo'">Portfolio &amp; Intake</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Initiation gate</td>
+                <td class="xw-seg xw-pmo" colspan="5" onclick="location.hash='#pmo'">Assurance · RAID · Financial · Reporting</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Benefits gate</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Benefits &amp; Closure</td>
+              </tr>
+              <tr>
                 <td class="xw-rolelabel">🎯 PO (Scrum)</td>
                 <td class="xw-seg xw-po" colspan="2" onclick="location.hash='#po'">Vision &amp; Strategy</td>
                 <td class="xw-seg xw-po" colspan="2" onclick="location.hash='#po'">Discovery &amp; Backlog</td>
@@ -204,6 +252,14 @@
                 <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Closing</td>
               </tr>
               <tr>
+                <td class="xw-rolelabel">🌀 SM (Scrum)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Team setup</td>
+                <td class="xw-seg xw-sm" colspan="5" onclick="location.hash='#sm'">Facilitation · impediments · flow · coaching</td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Release retro</td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Continuous improvement</td>
+              </tr>
+              <tr>
                 <td class="xw-rolelabel">📖 BA (BABOK)</td>
                 <td class="xw-empty" colspan="2"></td>
                 <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P0 Initiation</td>
@@ -213,6 +269,16 @@
                 <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P6 UAT</td>
                 <td class="xw-seg xw-ba" colspan="2" onclick="location.hash='#ba'">P7 Release &amp; Transition</td>
                 <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P8 PIR</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🎨 UX/UI (NN/g)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Research</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">IA &amp; Flows</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Wireframe → UI</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Design system</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Usability testing</td>
+                <td class="xw-empty" colspan="3"></td>
               </tr>
               <tr>
                 <td class="xw-rolelabel">🏛️ SA (C4/arc42)</td>
@@ -225,6 +291,14 @@
                 <td class="xw-empty" colspan="2"></td>
               </tr>
               <tr>
+                <td class="xw-rolelabel">🛡️ Security (ISO)</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Policy &amp; Risk</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Compliance · Threat model</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Security design · DevSecOps</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Sec testing · Gate</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">SecOps · Audit</td>
+              </tr>
+              <tr>
                 <td class="xw-rolelabel">🧪 QC (ISTQB)</td>
                 <td class="xw-empty" colspan="3"></td>
                 <td class="xw-seg xw-qc" colspan="2" onclick="location.hash='#qc'">Test Planning + Static Reviews</td>
@@ -232,6 +306,14 @@
                 <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Test Execution</td>
                 <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Test Completion</td>
                 <td class="xw-empty" colspan="2"></td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🛰️ Ops / SRE</td>
+                <td class="xw-empty" colspan="4"></td>
+                <td class="xw-seg xw-ops" colspan="2" onclick="location.hash='#ops'">SLO &amp; Observability by design</td>
+                <td class="xw-seg xw-ops" colspan="2" onclick="location.hash='#ops'">Release readiness · DR prep</td>
+                <td class="xw-seg xw-ops" onclick="location.hash='#ops'">Deploy &amp; cutover</td>
+                <td class="xw-seg xw-ops" onclick="location.hash='#ops'">Operate · Incident · DR/BCP</td>
               </tr>
               <tr>
                 <td class="xw-rolelabel">🚢 Deployment</td>
@@ -255,6 +337,11 @@
           <span><span class="xw-dot" style="background:#14b8a6"></span> SA</span>
           <span><span class="xw-dot" style="background:var(--status-yellow)"></span> QC</span>
           <span><span class="xw-dot" style="background:var(--status-red)"></span> Deployment</span>
+          <span><span class="xw-dot" style="background:#94a3b8"></span> PMO</span>
+          <span><span class="xw-dot" style="background:#ec4899"></span> SM</span>
+          <span><span class="xw-dot" style="background:#a855f7"></span> UX/UI</span>
+          <span><span class="xw-dot" style="background:#f97316"></span> Security</span>
+          <span><span class="xw-dot" style="background:#06b6d4"></span> Ops/SRE</span>
         </div>
         <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">ℹ️</span><div>Columns are the canonical delivery lifecycle. Bars show where each role's own numbered phases sit — e.g. BA <strong>P6 UAT</strong>, QC <strong>Test Execution</strong>, and Deployment <strong>Pre-Deploy</strong> all cluster around the <strong>Test → Pre-Deploy</strong> window, which is where hand-offs need the tightest coordination.</div></div>
       </div></div>
@@ -275,6 +362,11 @@
           <a class="persona-chip" href="#deployment">🚢 Release Manager <span class="pc-arrow">→ Deployment Runbook</span></a>
           <a class="persona-chip" href="#handbook">👩‍💼 Executive / Sponsor <span class="pc-arrow">→ Implementation Handbook</span></a>
           <a class="persona-chip" href="#handbook">💻 Developer <span class="pc-arrow">→ Implementation · SDLC</span></a>
+          <a class="persona-chip" href="#sm">🌀 Scrum Master <span class="pc-arrow">→ SM Handbook</span></a>
+          <a class="persona-chip" href="#ux">🎨 UX/UI Designer <span class="pc-arrow">→ UX Handbook</span></a>
+          <a class="persona-chip" href="#sec">🛡️ Security / CISO <span class="pc-arrow">→ Security &amp; Compliance</span></a>
+          <a class="persona-chip" href="#ops">🛰️ DevOps / SRE <span class="pc-arrow">→ Operations &amp; SRE</span></a>
+          <a class="persona-chip" href="#pmo">🏢 PMO Lead <span class="pc-arrow">→ PMO Governance</span></a>
         </div>
         <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">💡</span><div>New to the team? Start with the <a href="#handbook" style="color:var(--accent-bright)">Implementation Handbook → Section 0 (How to Use)</a> for the full picture, then drill into your role handbook.</div></div>
       </div></div>

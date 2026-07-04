@@ -17,6 +17,11 @@ Vietnamese commercial bank:
 | `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
 | `#po` | Product Owner Handbook | Scrum Guide 2020 role, discovery, backlog, prioritization, product metrics |
 | `#sa` | Solution Architect Handbook | C4 · arc42 · Well-Architected — HLD/LLD, ADR, integration, NFR, security, sizing |
+| `#sec` | Security & Compliance | ISO 27001 · NIST CSF · OWASP · SBV 09/2020 — risk, DevSecOps, IAM, data, audit |
+| `#ops` | Operations & SRE | Google SRE · ITIL 4 · DORA — SLO/error budget, observability, incident, DR/BCP |
+| `#sm` | Scrum Master Handbook | Scrum Guide 2020 — servant leadership, facilitation, coaching, team health |
+| `#ux` | UX/UI Designer Handbook | Double Diamond · NN/g · WCAG 2.2 — research, IA, design system, usability |
+| `#pmo` | PMO Governance & Portfolio | PMI · P3O — portfolio & intake, RAID, EVM/benefits, assurance, reporting |
 
 ---
 
@@ -42,7 +47,12 @@ project-handbook/
 │   ├── pm.html
 │   ├── qc.html
 │   ├── po.html
-│   └── sa.html
+│   ├── sa.html
+│   ├── sec.html
+│   ├── ops.html
+│   ├── sm.html
+│   ├── ux.html
+│   └── pmo.html
 ├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
 ├── .github/workflows/
 │   └── deploy-pages.yml    # GitHub Pages auto-deploy on push to main
