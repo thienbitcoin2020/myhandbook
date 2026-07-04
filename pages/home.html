@@ -33,6 +33,7 @@
 .xw-qc{background:var(--status-yellow-bg);border-color:var(--status-yellow)!important;color:var(--status-yellow)!important}
 .xw-dep{background:var(--status-red-bg);border-color:var(--status-red)!important;color:var(--status-red)!important}
 .xw-po{background:rgba(139,92,246,0.20);border-color:#8b5cf6!important;color:#8b5cf6!important}
+.xw-sa{background:rgba(20,184,166,0.20);border-color:#14b8a6!important;color:#14b8a6!important}
 .xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
 .xw-legend span{display:inline-flex;align-items:center;gap:6px}
 .xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -107,7 +108,7 @@
       <div class="section-header"><div class="section-icon">🗺️</div><div><div class="section-number">Overview</div><h2>Handbook Map</h2></div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">The five handbooks &amp; who owns them</div>
-        <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to five specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
+        <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to six specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
         <div class="hub-cards">
           <a class="hub-card" href="#handbook" style="--role-c:var(--accent-bright)">
             <div class="hc-icon">📘</div>
@@ -135,6 +136,13 @@
             <div class="hc-title">BA Project Handbook</div>
             <div class="hc-owner">Owner · Business Analyst</div>
             <div class="hc-desc">BABOK® v3 across 9 BA phases: elicitation, BRD/SRS, RTM, NFR, quality gates, anti-patterns.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#sa" style="--role-c:#14b8a6">
+            <div class="hc-icon">🏛️</div>
+            <div class="hc-title">Solution Architect Handbook</div>
+            <div class="hc-owner">Owner · Solution Architect</div>
+            <div class="hc-desc">C4 · arc42 · Well-Architected: HLD/LLD, ADR, integration &amp; API, NFR, security, sizing &amp; resilience.</div>
             <span class="hc-open">Open →</span>
           </a>
           <a class="hub-card" href="#qc" style="--role-c:var(--status-yellow)">
@@ -207,6 +215,16 @@
                 <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P8 PIR</td>
               </tr>
               <tr>
+                <td class="xw-rolelabel">🏛️ SA (C4/arc42)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">Context &amp; Options</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">NFR &amp; Trade-offs</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">HLD / LLD · ADR</td>
+                <td class="xw-seg xw-sa" colspan="2" onclick="location.hash='#sa'">Build governance · NFR validation</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">Pre-deploy sign-off</td>
+                <td class="xw-empty" colspan="2"></td>
+              </tr>
+              <tr>
                 <td class="xw-rolelabel">🧪 QC (ISTQB)</td>
                 <td class="xw-empty" colspan="3"></td>
                 <td class="xw-seg xw-qc" colspan="2" onclick="location.hash='#qc'">Test Planning + Static Reviews</td>
@@ -234,6 +252,7 @@
           <span><span class="xw-dot" style="background:#8b5cf6"></span> PO</span>
           <span><span class="xw-dot" style="background:var(--status-blue)"></span> PM</span>
           <span><span class="xw-dot" style="background:var(--status-green)"></span> BA</span>
+          <span><span class="xw-dot" style="background:#14b8a6"></span> SA</span>
           <span><span class="xw-dot" style="background:var(--status-yellow)"></span> QC</span>
           <span><span class="xw-dot" style="background:var(--status-red)"></span> Deployment</span>
         </div>
@@ -251,6 +270,7 @@
           <a class="persona-chip" href="#pm">👔 Project Manager <span class="pc-arrow">→ PM Handbook</span></a>
           <a class="persona-chip" href="#po">🎯 Product Owner <span class="pc-arrow">→ PO Handbook</span></a>
           <a class="persona-chip" href="#ba">📖 Business Analyst <span class="pc-arrow">→ BA Handbook</span></a>
+          <a class="persona-chip" href="#sa">🏛️ Solution Architect <span class="pc-arrow">→ SA Handbook</span></a>
           <a class="persona-chip" href="#qc">🧪 QA / Tester <span class="pc-arrow">→ QC Handbook</span></a>
           <a class="persona-chip" href="#deployment">🚢 Release Manager <span class="pc-arrow">→ Deployment Runbook</span></a>
           <a class="persona-chip" href="#handbook">👩‍💼 Executive / Sponsor <span class="pc-arrow">→ Implementation Handbook</span></a>

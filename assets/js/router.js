@@ -11,6 +11,7 @@ const ROUTES = {
   'pm':         'pages/pm.html',
   'qc':         'pages/qc.html',
   'po':         'pages/po.html',
+  'sa':         'pages/sa.html',
 };
 
 let _pageStyle  = null;

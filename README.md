@@ -16,6 +16,7 @@ Vietnamese commercial bank:
 | `#pm` | PM Project Handbook | PMBOK-aligned PM role & workflow |
 | `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
 | `#po` | Product Owner Handbook | Scrum Guide 2020 role, discovery, backlog, prioritization, product metrics |
+| `#sa` | Solution Architect Handbook | C4 · arc42 · Well-Architected — HLD/LLD, ADR, integration, NFR, security, sizing |
 
 ---
 
@@ -40,7 +41,8 @@ project-handbook/
 │   ├── ba.html
 │   ├── pm.html
 │   ├── qc.html
-│   └── po.html
+│   ├── po.html
+│   └── sa.html
 ├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
 ├── .github/workflows/
 │   └── deploy-pages.yml    # GitHub Pages auto-deploy on push to main

@@ -1,0 +1,430 @@
+<title>Solution Architect Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-sa{width:100%;border-collapse:collapse;font-size:12px}
+.table-sa th,.table-sa td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-sa th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-sa tr:hover td{background:var(--bg-hover)}
+.table-sa code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏛️</div>
+      <div>
+        <div class="bank-title">Solution Architect Handbook</div>
+        <div class="bank-sub">TOGAF · C4 · arc42 · Well-Architected</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-intake" onclick="setActive(this)"><span class="nav-icon">📥</span> 02 · Requirements &amp; Scope</a>
+  </nav>
+
+  <div class="sidebar-section-label">Analysis</div>
+  <nav id="sidebar-nav">
+    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> 03 · NFR Analysis</a>
+    <a href="#section-constraints" onclick="setActive(this)"><span class="nav-icon">🧱</span> 04 · Constraints &amp; Assumptions</a>
+  </nav>
+
+  <div class="sidebar-section-label">Decisions</div>
+  <nav id="sidebar-nav">
+    <a href="#section-options" onclick="setActive(this)"><span class="nav-icon">⚖️</span> 05 · Solution Options</a>
+    <a href="#section-tech" onclick="setActive(this)"><span class="nav-icon">🧰</span> 06 · Technology Selection</a>
+    <a href="#section-adr" onclick="setActive(this)"><span class="nav-icon">📜</span> 07 · Architecture Decisions</a>
+  </nav>
+
+  <div class="sidebar-section-label">Design</div>
+  <nav id="sidebar-nav">
+    <a href="#section-hld" onclick="setActive(this)"><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
+    <a href="#section-integration" onclick="setActive(this)"><span class="nav-icon">🔌</span> 09 · Integration &amp; API</a>
+    <a href="#section-datasec" onclick="setActive(this)"><span class="nav-icon">🔐</span> 10 · Data &amp; Security</a>
+    <a href="#section-sizing" onclick="setActive(this)"><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
+  </nav>
+
+  <div class="sidebar-section-label">Governance</div>
+  <nav id="sidebar-nav">
+    <a href="#section-review" onclick="setActive(this)"><span class="nav-icon">✅</span> 12 · Validation &amp; Review</a>
+    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🛡️</span> 13 · Governance &amp; Handover</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🏛️ arc42 · C4</span>
+    <span class="comp-pill">☁️ Well-Architected</span>
+    <span class="comp-pill">🏦 SBV · ISO 27001</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: Solution Architect<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standards: TOGAF · C4 · arc42 · Well-Architected<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏛️ Internal Handbook · TOGAF · C4 · arc42 · Well-Architected</div>
+    <h1>Solution Architect (SA)<br/><span>Solution Design &amp; Governance</span></h1>
+    <p>Reference for the end-to-end Solution Architect role — translating business requirements and enterprise constraints into a buildable, operable technical solution. Grounded in the C4 model, arc42, ADRs, and the AWS/Azure Well-Architected Framework, interfacing with Enterprise Architecture (TOGAF Phase G).</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> C4 · arc42</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Well-Architected</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> NFR-driven</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Who the Solution Architect is</div>
+        <p>The SA <strong>translates business requirements &amp; enterprise constraints into a concrete, buildable, operable technical solution</strong> for one project/product. Accountable for: solution &amp; NFR analysis → design (HLD/LLD); technology selection &amp; trade-offs (ADR); integration, API, data &amp; security design; compliance with enterprise standards (interface with EA); supporting Dev through delivery; technical risk, PoC, sizing &amp; scalability.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">SA vs EA vs Tech Lead vs Developer</div>
+        <table class="table-sa">
+          <tr><th>Aspect</th><th>Solution Architect</th><th>Enterprise Architect</th><th>Tech Lead</th><th>Developer</th></tr>
+          <tr><td><strong>Scope</strong></td><td>One solution / project</td><td>Whole organization</td><td>One team's codebase</td><td>Assigned components</td></tr>
+          <tr><td><strong>Output</strong></td><td>HLD/LLD, ADR, integration design</td><td>Roadmap, principles, capability map</td><td>Coding standards, technical direction</td><td>Working software</td></tr>
+          <tr><td><strong>Cares about</strong></td><td>Feasibility, delivery, NFRs</td><td>Standardization, strategy, reuse</td><td>Code quality, team velocity</td><td>Correctness, tests</td></tr>
+          <tr><td><strong>Interacts with</strong></td><td>Dev, BA, PO, EA</td><td>C-level, ARB, business</td><td>SA, Developers</td><td>Tech Lead, SA</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">SA Working Principles</div>
+        <ul class="step-cl">
+          <li><strong>NFR drives design</strong> — non-functional requirements shape architecture more than features.</li>
+          <li><strong>Trade-offs, not perfection</strong> — always state what is being exchanged.</li>
+          <li><strong>Document the <em>why</em></strong> — ADRs capture rationale, not just the outcome.</li>
+          <li><strong>Align with EA</strong> — comply with enterprise principles &amp; standards (TOGAF Phase G interface).</li>
+          <li><strong>Simplest thing that works</strong> — complexity must be justified; avoid over-engineering.</li>
+          <li><strong>Design for failure</strong> — assume everything fails; build resilience.</li>
+          <li><strong>Buildable &amp; operable</strong> — Dev can build it, Ops can run it.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · REQUIREMENTS & SCOPE -->
+    <section class="section-block" id="section-intake">
+      <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Section 02</div><h2>Requirements Intake &amp; Scope</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Take the BRD/SRS &amp; user stories from the <a href="#ba">BA</a>/<a href="#po">PO</a>, clarify technical scope, and set explicit <strong>in/out of scope</strong>. Anchor with a <strong>System Context diagram (C4 Level 1)</strong>.</p>
+        <pre class="art-block">C4 L1 — SYSTEM CONTEXT
+   [Customer] ──▶ ( New Solution ) ──▶ [Core Banking]
+                       │  ▲
+                       ▼  │
+                 [Identity / SSO]   [Notification Svc]
+   (Who/what the system talks to — no internals yet)</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📄</span><div><strong>Output:</strong> Solution Scope Statement + Context diagram. Ambiguous scope is the #1 source of architecture rework.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · NFR ANALYSIS -->
+    <section class="section-block" id="section-nfr">
+      <div class="section-header"><div class="section-icon">⚡</div><div><div class="section-number">Section 03</div><h2>NFR Analysis <span class="pill-tag">core of SA</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Quantify the non-functional requirements — they decide architecture more than functional requirements. Every NFR must be <strong>measurable</strong>.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>NFR</th><th>Measured by</th><th>Example target</th></tr>
+          <tr><td><strong>Performance</strong></td><td>Latency (P95/P99), response time</td><td>P95 API &lt; 300 ms</td></tr>
+          <tr><td><strong>Scalability</strong></td><td>Throughput at peak; scaling model</td><td>5,000 TPS at peak, horizontal</td></tr>
+          <tr><td><strong>Availability</strong></td><td>SLA %, <code>RTO</code>, <code>RPO</code></td><td>99.95% · RTO 15 min · RPO 5 min</td></tr>
+          <tr><td><strong>Security</strong></td><td>AuthN/Z, encryption, compliance</td><td>OAuth2/OIDC · TLS1.2+ · AES-256</td></tr>
+          <tr><td><strong>Maintainability</strong></td><td>Modularity, coupling, test coverage</td><td>Clear module boundaries</td></tr>
+          <tr><td><strong>Observability</strong></td><td>Logs, metrics, traces</td><td>3 pillars wired from day one</td></tr>
+          <tr><td><strong>Compliance</strong></td><td>Regulatory controls</td><td>SBV 09/2020 · ISO 27001 · PCI-DSS</td></tr>
+          <tr><td><strong>Cost</strong></td><td>TCO, unit economics</td><td>Within cloud budget envelope</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Quality Attribute Scenario <span class="pill-tag">SEI</span></div>
+        <pre class="art-block">SOURCE   : 10,000 concurrent users
+STIMULUS : submit fund-transfer requests
+ARTIFACT : payment API
+ENVIRON. : normal peak-hour operation
+RESPONSE : requests processed &amp; confirmed
+MEASURE  : P95 latency &lt; 300 ms, 0 lost transactions</pre>
+        <p>A testable NFR statement the QC team can later verify — see the <a href="#qc">QC Testing Handbook</a> (non-functional testing).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · CONSTRAINTS & ASSUMPTIONS -->
+    <section class="section-block" id="section-constraints">
+      <div class="section-header"><div class="section-icon">🧱</div><div><div class="section-number">Section 04</div><h2>Constraints &amp; Assumptions</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sa">
+          <tr><th>Type</th><th>Examples</th></tr>
+          <tr><td><strong>Technical</strong></td><td>Must integrate with existing core banking; approved tech stack only; on-prem + cloud hybrid.</td></tr>
+          <tr><td><strong>Regulatory</strong></td><td>Data residency in-country (SBV); audit logging; segregation of duties.</td></tr>
+          <tr><td><strong>Budget / Time</strong></td><td>Cloud cost envelope; go-live deadline; team size.</td></tr>
+          <tr><td><strong>Organizational</strong></td><td>Enterprise standards, reuse mandates, vendor agreements.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📝</span><div>Maintain a <strong>Constraints &amp; Assumptions Register</strong> — every assumption is a risk until validated. Feed assumptions into the technical risk register (Section 12).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · SOLUTION OPTIONS -->
+    <section class="section-block" id="section-options">
+      <div class="section-header"><div class="section-icon">⚖️</div><div><div class="section-number">Section 05</div><h2>Solution Options &amp; Trade-off</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Present <strong>2–3 viable options</strong> (e.g. buy vs build, monolith vs microservices, on-prem vs cloud) and choose with an explicit <strong>Weighted Scoring Matrix</strong>. Never present a single option as a fait accompli.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>Criterion (weight)</th><th>Opt A · Buy SaaS</th><th>Opt B · Build microservices</th><th>Opt C · Extend monolith</th></tr>
+          <tr><td>Fit to NFR (30%)</td><td>3</td><td>5</td><td>3</td></tr>
+          <tr><td>Time-to-market (25%)</td><td>5</td><td>2</td><td>4</td></tr>
+          <tr><td>TCO (20%)</td><td>3</td><td>3</td><td>4</td></tr>
+          <tr><td>Compliance/control (15%)</td><td>2</td><td>5</td><td>4</td></tr>
+          <tr><td>Team skill fit (10%)</td><td>4</td><td>3</td><td>5</td></tr>
+          <tr><td><strong>Weighted score</strong></td><td><strong>3.40</strong></td><td><strong>3.75</strong></td><td><strong>3.75</strong></td></tr>
+        </table>
+        <p style="margin-top:6px;">Score = Σ(criterion score × weight) on a 1–5 scale. Use a <strong>PoC/spike</strong> to de-risk close calls (Section 12).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · TECHNOLOGY SELECTION -->
+    <section class="section-block" id="section-tech">
+      <div class="section-header"><div class="section-icon">🧰</div><div><div class="section-number">Section 06</div><h2>Technology Selection</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sa">
+          <tr><th>Evaluation lens</th><th>Questions</th></tr>
+          <tr><td><strong>Fit to requirement</strong></td><td>Does it meet the FR/NFR? Proven at our scale?</td></tr>
+          <tr><td><strong>TCO</strong></td><td>Licence + infra + ops + training over 3 years.</td></tr>
+          <tr><td><strong>Maturity / support</strong></td><td>Community, vendor SLA, security patch cadence, roadmap.</td></tr>
+          <tr><td><strong>Skills &amp; hiring</strong></td><td>Does the team know it? Can we hire for it?</td></tr>
+          <tr><td><strong>Enterprise fit</strong></td><td>On the approved stack / tech radar? EA-aligned?</td></tr>
+          <tr><td><strong>Exit / lock-in</strong></td><td>Migration path off; open standards?</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🧭</span><div>Record the outcome as <strong>Technology Selection Rationale</strong> and back each significant choice with an <strong>ADR</strong> (Section 07). Prefer the approved <em>tech radar</em>; deviations need justification &amp; EA sign-off.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · ADR -->
+    <section class="section-block" id="section-adr">
+      <div class="section-header"><div class="section-icon">📜</div><div><div class="section-number">Section 07</div><h2>Architecture Decision Records (ADR) <span class="pill-tag">Michael Nygard</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Capture each significant architecture decision as an immutable, contextual record — stored <strong>in the repo</strong> next to the code.</p>
+        <pre class="art-block"># ADR-012: Use event-driven integration for payment events
+
+Status:   Accepted            (Proposed | Accepted | Superseded by ADR-XXX | Deprecated)
+Context:  Payment events must reach 4 downstream systems; peak 5k TPS;
+          tight coupling with sync calls caused cascading failures.
+Decision: Publish payment events to Kafka; consumers subscribe independently.
+Consequences:
+  + Decoupling, independent scaling, replay capability
+  - Eventual consistency; requires idempotent consumers &amp; a DLQ
+Alternatives considered: synchronous REST fan-out (rejected: coupling),
+          shared database (rejected: violates service ownership)</pre>
+        <p style="margin-top:6px;">ADRs map to <strong>arc42 §9 (Architecture Decisions)</strong>. Never edit an accepted ADR — supersede it with a new one so the history of <em>why</em> is preserved.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · HLD & C4 -->
+    <section class="section-block" id="section-hld">
+      <div class="section-header"><div class="section-icon">🏗️</div><div><div class="section-number">Section 08</div><h2>High-Level Design &amp; the C4 Model <span class="pill-tag">Simon Brown</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">C4 Model — 4 levels</div>
+        <table class="table-sa">
+          <tr><th>Level</th><th>Name</th><th>Answers</th></tr>
+          <tr><td><strong>L1</strong></td><td>System Context</td><td>Who/what does the system interact with?</td></tr>
+          <tr><td><strong>L2</strong></td><td>Container</td><td>Which apps / data stores make it up?</td></tr>
+          <tr><td><strong>L3</strong></td><td>Component</td><td>What components sit inside each container?</td></tr>
+          <tr><td><strong>L4</strong></td><td>Code</td><td>Class/code detail (rarely drawn).</td></tr>
+        </table>
+        <pre class="art-block">C4 L2 — CONTAINERS
+   [Web App] ─▶ [API Gateway] ─▶ [Payment Service] ─▶ (Postgres)
+                     │                   │
+                     ▼                   ▼
+              [Auth Service]        (Kafka topic) ─▶ [Ledger Consumer]</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">arc42 — the 12-section solution architecture document</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <span class="pill-tag">1 Introduction &amp; Goals</span><span class="pill-tag">2 Constraints</span><span class="pill-tag">3 Context &amp; Scope</span><span class="pill-tag">4 Solution Strategy</span><span class="pill-tag">5 Building Block View</span><span class="pill-tag">6 Runtime View</span><span class="pill-tag">7 Deployment View</span><span class="pill-tag">8 Cross-cutting Concepts</span><span class="pill-tag">9 Architecture Decisions</span><span class="pill-tag">10 Quality Requirements</span><span class="pill-tag">11 Risks &amp; Tech Debt</span><span class="pill-tag">12 Glossary</span>
+        </div>
+        <p style="margin-top:8px;">Use arc42 as the HLD/LLD document skeleton; not every section needs equal depth — right-size to the solution.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · INTEGRATION & API -->
+    <section class="section-block" id="section-integration">
+      <div class="section-header"><div class="section-icon">🔌</div><div><div class="section-number">Section 09</div><h2>Integration &amp; API Design</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Pattern selection</div>
+        <table class="table-sa">
+          <tr><th>Situation</th><th>Pattern</th></tr>
+          <tr><td>Real-time request/response</td><td>REST / gRPC (synchronous)</td></tr>
+          <tr><td>Decoupling, async, independent scale</td><td>Event-driven (Kafka / queue)</td></tr>
+          <tr><td>Coordinate a transaction across services</td><td>Saga (choreography / orchestration)</td></tr>
+          <tr><td>Separate read &amp; write, scale reads</td><td>CQRS</td></tr>
+          <tr><td>Different clients (web/mobile) need different data</td><td>BFF (Backend-for-Frontend)</td></tr>
+          <tr><td>Aggregate / secure many backends</td><td>API Gateway</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">API &amp; contract discipline</div>
+        <ul class="step-cl">
+          <li><strong>Contract-first:</strong> define <code>OpenAPI</code> (REST) / <code>AsyncAPI</code> (events) before coding; version from day one (<code>/v1</code>).</li>
+          <li><strong>Idempotency</strong> for retriable operations (idempotency keys) — essential for payments &amp; at-least-once messaging.</li>
+          <li><strong>Backward compatibility:</strong> additive changes; deprecate, don't break; document interface in an <strong>Interface Catalog</strong>.</li>
+          <li>Model interactions with a <strong>sequence diagram</strong> for critical flows (C4 runtime / arc42 §6).</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Banking context: integration with <strong>core banking</strong> and <strong>identity/SSO</strong> needs an explicit interface contract, clear <strong>data ownership</strong>, and a defined <strong>authentication boundary</strong> between centralized SSO and module-level services.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · DATA & SECURITY -->
+    <section class="section-block" id="section-datasec">
+      <div class="section-header"><div class="section-icon">🔐</div><div><div class="section-number">Section 10</div><h2>Data &amp; Security Design</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Data Architecture (solution-level)</div>
+        <ul class="step-cl">
+          <li>Logical data model + data-flow diagram; classify data (public / internal / confidential / restricted).</li>
+          <li><strong>Polyglot persistence</strong> — pick the store per need (RDBMS for transactions, cache for reads, object store for blobs).</li>
+          <li><strong>Caching strategy</strong> (cache-aside / write-through) with explicit invalidation.</li>
+          <li>Service owns its data — no shared-database coupling across service boundaries.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Security Design <span class="pill-tag">STRIDE · Microsoft</span></div>
+        <table class="table-sa">
+          <tr><th>STRIDE threat</th><th>Mitigation</th></tr>
+          <tr><td><strong>S</strong>poofing</td><td>Strong AuthN — OAuth2 / OIDC / SSO, MFA.</td></tr>
+          <tr><td><strong>T</strong>ampering</td><td>Integrity checks, signed messages, TLS 1.2+.</td></tr>
+          <tr><td><strong>R</strong>epudiation</td><td>Audit logging, non-repudiable trails.</td></tr>
+          <tr><td><strong>I</strong>nformation disclosure</td><td>Encryption at-rest (AES-256) &amp; in-transit; least privilege.</td></tr>
+          <tr><td><strong>D</strong>enial of service</td><td>Rate limiting, autoscaling, WAF.</td></tr>
+          <tr><td><strong>E</strong>levation of privilege</td><td>AuthZ (RBAC/ABAC), secrets management, Zero-Trust.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; align controls to <strong>SBV Circular 09/2020, ISO 27001, PCI-DSS</strong>. Security testing evidence lives in the <a href="#qc">QC Testing Handbook</a>; deployment-time controls in the <a href="#deployment">Deployment Runbook</a>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · SIZING & RESILIENCE -->
+    <section class="section-block" id="section-sizing">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Section 11</div><h2>Sizing, Scalability &amp; Resilience <span class="pill-tag">LLD</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Sizing &amp; Scaling</div>
+        <ul class="step-cl">
+          <li><strong>Capacity planning</strong> from load estimates: peak TPS, data growth, concurrency — size to <em>peak</em>, not average.</li>
+          <li><strong>Horizontal</strong> (scale out, stateless) preferred over <strong>vertical</strong> (scale up) for elasticity; define autoscaling policy (target CPU / queue depth).</li>
+          <li>Physical data design: schema, indexing, partitioning/sharding, and a <strong>migration plan</strong>.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Resilience patterns — design for failure</div>
+        <table class="table-sa">
+          <tr><th>Pattern</th><th>Protects against</th></tr>
+          <tr><td><strong>Retry + backoff</strong></td><td>Transient failures (with jitter, capped).</td></tr>
+          <tr><td><strong>Circuit breaker</strong></td><td>Cascading failure from a failing dependency.</td></tr>
+          <tr><td><strong>Bulkhead</strong></td><td>Resource exhaustion isolating one consumer.</td></tr>
+          <tr><td><strong>Idempotency + DLQ</strong></td><td>Duplicate / poison messages in async flows.</td></tr>
+          <tr><td><strong>Graceful degradation</strong></td><td>Partial outage — serve reduced function, not total failure.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Ties directly to the <strong>Availability</strong> NFR (SLA/RTO/RPO) and the DR posture — coordinate with the <a href="#deployment">Deployment Runbook</a>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · VALIDATION & REVIEW -->
+    <section class="section-block" id="section-review">
+      <div class="section-header"><div class="section-icon">✅</div><div><div class="section-number">Section 12</div><h2>Validation, PoC &amp; Architecture Review</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Proof of Concept / Spike</div>
+        <p>Time-boxed experiment to validate the riskiest assumptions <em>before</em> committing to full build: is the integration feasible? does performance meet the NFR? is the new tech viable? Output = <strong>PoC Report + Go/No-Go</strong>.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Well-Architected Review — 6 pillars <span class="pill-tag">AWS / Azure</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill-tag">Operational Excellence</span><span class="pill-tag">Security</span><span class="pill-tag">Reliability</span><span class="pill-tag">Performance Efficiency</span><span class="pill-tag">Cost Optimization</span><span class="pill-tag">Sustainability</span>
+        </div>
+        <p style="margin-top:8px;">Run a Well-Architected Review + peer design review; large/critical systems warrant <strong>ATAM</strong> (Architecture Tradeoff Analysis Method <span class="pill-tag">SEI</span>). Secure <strong>ARB sign-off</strong> before build where governance requires it.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Technical Risk Register</div>
+        <table class="table-sa">
+          <tr><th>Risk</th><th>Likelihood × Impact</th><th>Mitigation</th></tr>
+          <tr><td>New event-broker unproven at 5k TPS</td><td>Med × High</td><td>PoC load test; fallback to managed service.</td></tr>
+          <tr><td>Core-banking API latency spikes</td><td>Med × High</td><td>Async buffer + circuit breaker + cache.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · GOVERNANCE & HANDOVER -->
+    <section class="section-block" id="section-governance">
+      <div class="section-header"><div class="section-icon">🛡️</div><div><div class="section-number">Section 13</div><h2>Governance, Build Support &amp; Handover</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Build support &amp; architecture governance</div>
+        <ul class="step-cl">
+          <li>Design clarifications during sprints; <strong>code review for architecture compliance</strong> (not style).</li>
+          <li>Track <strong>tech debt</strong> in the backlog; update ADRs when decisions change.</li>
+          <li>SA is the <strong>guardian of architectural integrity</strong> across delivery — see <a href="#handbook">Implementation Handbook §3</a> and the <a href="#pm">PM</a> governance spine.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Deployment &amp; Handover deliverables</div>
+        <table class="table-sa">
+          <tr><th>Deliverable</th><th>Contents</th></tr>
+          <tr><td><strong>Solution blueprint / HLD</strong></td><td>C4 L1–L3, arc42 doc, solution strategy.</td></tr>
+          <tr><td><strong>LLD + API specs</strong></td><td>Detailed component/data design, OpenAPI/AsyncAPI.</td></tr>
+          <tr><td><strong>ADR log</strong></td><td>Decision history (the <em>why</em>).</td></tr>
+          <tr><td><strong>NFR spec &amp; risk register</strong></td><td>Quality requirements + technical risks.</td></tr>
+          <tr><td><strong>Deployment &amp; observability design</strong></td><td>CI/CD, blue-green/canary, logging/metrics/tracing (3 pillars).</td></tr>
+          <tr><td><strong>Architecture Handover Document</strong></td><td>Operational runbook, DR plan, ownership.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 pillars); <strong>TOGAF 10</strong> (The Open Group — EA interface, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); integration patterns per Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Aligned to SBV Circular 09/2020/TT-NHNN &amp; ISO 27001.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Solution Architect Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
