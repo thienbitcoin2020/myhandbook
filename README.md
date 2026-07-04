@@ -9,6 +9,7 @@ Vietnamese commercial bank:
 
 | Route | Page | Focus |
 |-------|------|-------|
+| `#home` | Handbook Home (default) | Hub: handbook map, master lifecycle cross-walk, start-by-role |
 | `#deployment` | Deployment Runbook | Release pipeline, CAB, rollback, DoD checklist |
 | `#handbook` | Implementation Handbook | Parent umbrella linking the other pages |
 | `#ba` | BA Project Handbook | BA process, BRD/FRD, ceremonies |
@@ -32,6 +33,7 @@ project-handbook/
 │       ├── main.js         # Auth, theme, sidebar, accordion, role tabs, DoD checklist
 │       └── router.js       # Hash-based router — fetches page fragments into the shell
 ├── pages/                  # Page fragments fetched at runtime by the router
+│   ├── home.html           #   hub landing (default route): map + lifecycle cross-walk
 │   ├── deployment.html     #   each contains #sidebar-inner + #page-content
 │   ├── handbook.html       #   (+ optional #page-style / #page-script)
 │   ├── ba.html

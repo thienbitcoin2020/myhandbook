@@ -1,0 +1,268 @@
+<title>Handbook Home | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+/* Handbook map cards */
+.hub-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:12px}
+.hub-card{display:block;text-decoration:none;background:var(--surface-raised);border:1px solid var(--border);border-left:3px solid var(--role-c,var(--accent));border-radius:var(--radius-sm);padding:16px 16px 14px;transition:background .15s,border-color .15s,transform .1s}
+.hub-card:hover{background:var(--bg-hover);transform:translateY(-2px);text-decoration:none}
+.hub-card .hc-icon{font-size:22px;line-height:1}
+.hub-card .hc-title{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text-display);margin:8px 0 2px}
+.hub-card .hc-owner{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--role-c,var(--accent-bright))}
+.hub-card .hc-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;margin-top:8px}
+.hub-card .hc-open{font-family:var(--font-mono);font-size:11px;color:var(--role-c,var(--accent-bright));margin-top:10px;display:inline-block}
+
+/* Persona entry chips */
+.persona-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.persona-chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-secondary);background:var(--surface-raised);border:1px solid var(--border-visible);border-radius:999px;padding:6px 12px;transition:all .15s}
+.persona-chip:hover{color:var(--text-display);border-color:var(--accent);text-decoration:none}
+.persona-chip .pc-arrow{color:var(--text-disabled)}
+
+/* Master lifecycle cross-walk */
+.xwalk-scroll{overflow-x:auto;margin-top:12px;border:1px solid var(--border);border-radius:var(--radius-sm)}
+.xwalk{border-collapse:collapse;width:100%;min-width:920px;font-family:var(--font-mono)}
+.xwalk th,.xwalk td{border:1px solid var(--border);padding:7px 8px;text-align:center;font-size:10px;line-height:1.35;vertical-align:middle}
+.xwalk thead th{background:var(--black);color:var(--text-disabled);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:9px}
+.xwalk .xw-rolelabel{background:var(--black);color:var(--text-secondary);font-weight:700;text-align:left;white-space:nowrap;position:sticky;left:0;z-index:1}
+.xwalk td.xw-empty{background:transparent}
+.xwalk td.xw-seg{font-weight:700;color:var(--text-display);cursor:pointer;border-radius:2px}
+.xwalk td.xw-seg:hover{filter:brightness(1.15)}
+.xw-impl{background:color-mix(in srgb,var(--accent) 22%,transparent);border-color:var(--accent)!important}
+.xw-pm{background:var(--status-blue-bg);border-color:var(--status-blue)!important;color:var(--status-blue)!important}
+.xw-ba{background:var(--status-green-bg);border-color:var(--status-green)!important;color:var(--status-green)!important}
+.xw-qc{background:var(--status-yellow-bg);border-color:var(--status-yellow)!important;color:var(--status-yellow)!important}
+.xw-dep{background:var(--status-red-bg);border-color:var(--status-red)!important;color:var(--status-red)!important}
+.xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
+.xw-legend span{display:inline-flex;align-items:center;gap:6px}
+.xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏦</div>
+      <div>
+        <div class="bank-title">Handbook Home</div>
+        <div class="bank-sub">Project Delivery · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">On This Page</div>
+  <nav id="sidebar-nav">
+    <a href="#section-map" onclick="setActive(this)"><span class="nav-icon">🗺️</span> Handbook Map</a>
+    <a href="#section-xwalk" onclick="setActive(this)"><span class="nav-icon">🧭</span> Lifecycle Cross-Walk</a>
+    <a href="#section-persona" onclick="setActive(this)"><span class="nav-icon">🙋</span> Start by Role</a>
+    <a href="#section-model" onclick="setActive(this)"><span class="nav-icon">🔀</span> Delivery Model</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section-label">Handbooks</div>
+  <nav id="sidebar-nav">
+    <a href="#handbook" onclick="setActive(this)"><span class="nav-icon">📘</span> Implementation Handbook</a>
+    <a href="#pm" onclick="setActive(this)"><span class="nav-icon">👔</span> PM Project Handbook</a>
+    <a href="#ba" onclick="setActive(this)"><span class="nav-icon">📖</span> BA Project Handbook</a>
+    <a href="#qc" onclick="setActive(this)"><span class="nav-icon">🧪</span> QC Testing Handbook</a>
+    <a href="#deployment" onclick="setActive(this)"><span class="nav-icon">🚢</span> Deployment Runbook</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">⚖️ Circular 09/2020/TT-NHNN</span>
+    <span class="comp-pill">🔒 ISO 27001 Aligned</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: PMO &amp; Delivery Governance<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏦 Internal Handbook · Hybrid Water-Scrum-Fall</div>
+    <h1>Project Delivery<br/><span>Handbook Home</span></h1>
+    <p>One entry point for the bank's project delivery knowledge base. Pick a handbook, see how every role's phases line up on a single lifecycle, or jump straight in by your role.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> 5 Handbooks</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> One Lifecycle</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- HANDBOOK MAP -->
+    <section class="section-block" id="section-map">
+      <div class="section-header"><div class="section-icon">🗺️</div><div><div class="section-number">Overview</div><h2>Handbook Map</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">The five handbooks &amp; who owns them</div>
+        <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to four specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
+        <div class="hub-cards">
+          <a class="hub-card" href="#handbook" style="--role-c:var(--accent-bright)">
+            <div class="hc-icon">📘</div>
+            <div class="hc-title">Implementation Handbook</div>
+            <div class="hc-owner">Owner · PMO</div>
+            <div class="hc-desc">Parent umbrella: end-to-end lifecycle governance, PM core controls, quality gates, RACI, glossary, templates.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#pm" style="--role-c:var(--status-blue)">
+            <div class="hc-icon">👔</div>
+            <div class="hc-title">PM Project Handbook</div>
+            <div class="hc-owner">Owner · Project Manager</div>
+            <div class="hc-desc">PMBOK® v7 process groups, governance, risk, change control, communication, closure.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#ba" style="--role-c:var(--status-green)">
+            <div class="hc-icon">📖</div>
+            <div class="hc-title">BA Project Handbook</div>
+            <div class="hc-owner">Owner · Business Analyst</div>
+            <div class="hc-desc">BABOK® v3 across 9 BA phases: elicitation, BRD/SRS, RTM, NFR, quality gates, anti-patterns.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#qc" style="--role-c:var(--status-yellow)">
+            <div class="hc-icon">🧪</div>
+            <div class="hc-title">QC Testing Handbook</div>
+            <div class="hc-owner">Owner · QA / Test Manager</div>
+            <div class="hc-desc">ISTQB CTFL v4.0 test process, levels, techniques, risk-based testing, defect lifecycle, metrics.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+          <a class="hub-card" href="#deployment" style="--role-c:var(--status-red)">
+            <div class="hc-icon">🚢</div>
+            <div class="hc-title">Deployment Runbook</div>
+            <div class="hc-owner">Owner · Release Manager</div>
+            <div class="hc-desc">Release pipeline, CAB procedure, pre-deploy gates, deployment steps, rollback, DoD checklist.</div>
+            <span class="hc-open">Open →</span>
+          </a>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- MASTER LIFECYCLE CROSS-WALK -->
+    <section class="section-block" id="section-xwalk">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Alignment</div><h2>Master Lifecycle Cross-Walk</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">How each role's phases line up on one delivery lifecycle</div>
+        <p>Each handbook numbers its phases against its own standard (PMBOK, BABOK, ISTQB). This map aligns them all to a single project lifecycle so you can see, at a glance, who is doing what and when. Click any cell to open that handbook.</p>
+        <div class="xwalk-scroll">
+          <table class="xwalk">
+            <thead>
+              <tr>
+                <th class="xw-rolelabel">Role \ Phase</th>
+                <th>Idea</th><th>Plan</th><th>Discovery /<br/>Initiation</th><th>Require&shy;ments</th><th>Design</th><th>Build</th><th>Test</th><th>Pre-<br/>Deploy</th><th>Deploy /<br/>GTM</th><th>Operate /<br/>Close</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="xw-rolelabel">📘 Implementation</td>
+                <td class="xw-seg xw-impl" colspan="2" onclick="location.hash='#handbook'">Ph1 · Strategy &amp; Planning</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">Ph2 · Discovery &amp; Init</td>
+                <td class="xw-seg xw-impl" colspan="5" onclick="location.hash='#handbook'">Ph3 · SDLC Execution (Hybrid Water-Scrum-Fall)</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">Ph4 · GTM</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">Ph5 Close · Ph6 Operate</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">👔 PM (PMBOK)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Initiating</td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Planning</td>
+                <td class="xw-seg xw-pm" colspan="5" onclick="location.hash='#pm'">Executing · Monitoring &amp; Controlling</td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Closing</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">📖 BA (BABOK)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P0 Initiation</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P1–P3 Elicit → Analyse → Validate</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P4 Design Support</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P5 Impl Support</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P6 UAT</td>
+                <td class="xw-seg xw-ba" colspan="2" onclick="location.hash='#ba'">P7 Release &amp; Transition</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P8 PIR</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🧪 QC (ISTQB)</td>
+                <td class="xw-empty" colspan="3"></td>
+                <td class="xw-seg xw-qc" colspan="2" onclick="location.hash='#qc'">Test Planning + Static Reviews</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Test Design &amp; Impl</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Test Execution</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Test Completion</td>
+                <td class="xw-empty" colspan="2"></td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🚢 Deployment</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">Ph1 Discovery &amp; Init</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">Ph2 Implementation</td>
+                <td class="xw-empty"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">Ph3 Pre-Deploy</td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">Ph4 Deploy</td>
+                <td class="xw-empty"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="xw-legend">
+          <span><span class="xw-dot" style="background:var(--accent)"></span> Implementation (umbrella)</span>
+          <span><span class="xw-dot" style="background:var(--status-blue)"></span> PM</span>
+          <span><span class="xw-dot" style="background:var(--status-green)"></span> BA</span>
+          <span><span class="xw-dot" style="background:var(--status-yellow)"></span> QC</span>
+          <span><span class="xw-dot" style="background:var(--status-red)"></span> Deployment</span>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">ℹ️</span><div>Columns are the canonical delivery lifecycle. Bars show where each role's own numbered phases sit — e.g. BA <strong>P6 UAT</strong>, QC <strong>Test Execution</strong>, and Deployment <strong>Pre-Deploy</strong> all cluster around the <strong>Test → Pre-Deploy</strong> window, which is where hand-offs need the tightest coordination.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- START BY ROLE -->
+    <section class="section-block" id="section-persona">
+      <div class="section-header"><div class="section-icon">🙋</div><div><div class="section-number">Quick Start</div><h2>Start by Role</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">I am a…</div>
+        <div class="persona-row">
+          <a class="persona-chip" href="#pm">👔 Project Manager <span class="pc-arrow">→ PM Handbook</span></a>
+          <a class="persona-chip" href="#ba">📖 Business Analyst <span class="pc-arrow">→ BA Handbook</span></a>
+          <a class="persona-chip" href="#qc">🧪 QA / Tester <span class="pc-arrow">→ QC Handbook</span></a>
+          <a class="persona-chip" href="#deployment">🚢 Release Manager <span class="pc-arrow">→ Deployment Runbook</span></a>
+          <a class="persona-chip" href="#handbook">👩‍💼 Executive / Sponsor <span class="pc-arrow">→ Implementation Handbook</span></a>
+          <a class="persona-chip" href="#handbook">💻 Developer <span class="pc-arrow">→ Implementation · SDLC</span></a>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">💡</span><div>New to the team? Start with the <a href="#handbook" style="color:var(--accent-bright)">Implementation Handbook → Section 0 (How to Use)</a> for the full picture, then drill into your role handbook.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- DELIVERY MODEL -->
+    <section class="section-block" id="section-model">
+      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Context</div><h2>Delivery Model</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Hybrid Water-Scrum-Fall</div>
+        <p>The bank runs a <strong>hybrid model</strong>: structured Waterfall governance &amp; phase gates (planning, approvals, UAT, CAB, release) wrapped around Agile/Scrum sprint delivery. Governance discipline gives auditability for a regulated environment; Agile execution keeps delivery iterative.</p>
+        <ul class="step-cl" style="margin-top:10px;">
+          <li><strong>Waterfall gates:</strong> Strategy &amp; Planning, Requirements sign-off, UAT, CAB &amp; release approval.</li>
+          <li><strong>Agile execution:</strong> Sprint-based build &amp; test between the gates.</li>
+          <li><strong>PM as the spine:</strong> owns integration, baselines, risk, change, reporting, and closure across every phase.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Home v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Owner: PMO &amp; Delivery Governance · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->

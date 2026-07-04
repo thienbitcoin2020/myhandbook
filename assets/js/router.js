@@ -4,6 +4,7 @@
  */
 
 const ROUTES = {
+  'home':       'pages/home.html',
   'deployment': 'pages/deployment.html',
   'handbook':   'pages/handbook.html',
   'ba':         'pages/ba.html',
@@ -16,8 +17,8 @@ let _pageScript = null;
 let _currentPage = null;
 
 async function navigate(hash) {
-  const page = (hash || '').replace(/^#/, '') || 'deployment';
-  const url  = ROUTES[page] || ROUTES['deployment'];
+  const page = (hash || '').replace(/^#/, '') || 'home';
+  const url  = ROUTES[page] || ROUTES['home'];
 
   if (page === _currentPage) return;
   _currentPage = page;
