@@ -192,6 +192,13 @@
           <tr><td><strong>Emergency</strong></td><td>ECAB fast-track for incident fixes; retro-approved.</td></tr>
         </table>
         <p style="margin-top:6px;">Deployment strategies to limit blast radius: <strong>blue-green</strong>, <strong>canary</strong>, <strong>rolling</strong>, <strong>feature flags</strong>; automated rollback on SLO breach.</p>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">↩️</span><div><strong>Rollback ownership (boundary with Deployment):</strong> Ops/SRE owns <strong>runtime auto-rollback</strong> (triggered by SLO/error-budget breach); the <a href="#deployment">Release Manager</a> owns the <strong>planned</strong> rollback decision during a governed release window.</div></div>
+        <table class="table-ops" style="margin-top:10px;">
+          <tr><th>Enabling practice</th><th>Detail</th></tr>
+          <tr><td><strong>Configuration Mgmt / CMDB</strong></td><td>Authoritative record of services, assets &amp; dependencies (ITIL Service Configuration Mgmt) — drives impact analysis &amp; change.</td></tr>
+          <tr><td><strong>FinOps</strong></td><td>Cloud cost visibility, unit economics, right-sizing &amp; budget alerts alongside reliability.</td></tr>
+          <tr><td><strong>SLA reporting</strong></td><td>Periodic SLA/SLO attainment report to business &amp; audit.</td></tr>
+        </table>
       </div></div>
     </section>
     <div class="section-divider"></div>

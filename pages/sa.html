@@ -279,6 +279,11 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <span class="pill-tag">1 Introduction &amp; Goals</span><span class="pill-tag">2 Constraints</span><span class="pill-tag">3 Context &amp; Scope</span><span class="pill-tag">4 Solution Strategy</span><span class="pill-tag">5 Building Block View</span><span class="pill-tag">6 Runtime View</span><span class="pill-tag">7 Deployment View</span><span class="pill-tag">8 Cross-cutting Concepts</span><span class="pill-tag">9 Architecture Decisions</span><span class="pill-tag">10 Quality Requirements</span><span class="pill-tag">11 Risks &amp; Tech Debt</span><span class="pill-tag">12 Glossary</span>
         </div>
         <p style="margin-top:8px;">Use arc42 as the HLD/LLD document skeleton; not every section needs equal depth — right-size to the solution.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>Level</th><th>Contains</th><th>Audience</th></tr>
+          <tr><td><strong>HLD</strong> (High-Level Design)</td><td>C4 L1–L2, solution strategy, integration &amp; data flow, NFR approach, key ADRs</td><td>Stakeholders, PM, EA/ARB</td></tr>
+          <tr><td><strong>LLD</strong> (Low-Level Design)</td><td>C4 L3, class/sequence diagrams, full API spec (OpenAPI/AsyncAPI), physical DB schema, error handling</td><td>Developers (build-ready)</td></tr>
+        </table>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -412,6 +417,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <tr><td><strong>Deployment &amp; observability design</strong></td><td>CI/CD, blue-green/canary, logging/metrics/tracing (3 pillars).</td></tr>
           <tr><td><strong>Architecture Handover Document</strong></td><td>Operational runbook, DR plan, ownership.</td></tr>
         </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">📐</span><div><strong>Architecture metrics &amp; fitness functions</strong> <span class="pill-tag">Ford/Parsons</span>: make key NFRs continuously testable — e.g. automated checks on P95 latency, cyclomatic complexity, dependency/coupling rules, ADR coverage, and tech-debt ratio — so architecture doesn't erode over time.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>

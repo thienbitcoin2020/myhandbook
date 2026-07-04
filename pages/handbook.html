@@ -203,6 +203,22 @@
         </tbody>
       </table>
     </div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Artifact &amp; Activity Ownership — Cross-Role Boundaries</div>
+      <p style="margin-bottom:8px">Where two roles could both claim an artifact, this table is the single source of truth. It resolves the known overlaps so no artifact has two owners.</p>
+      <table class="hb-table">
+        <thead><tr><th>Artifact / Activity</th><th>Accountable (owns)</th><th>Responsible / contributes</th><th>Boundary rule</th></tr></thead>
+        <tbody>
+          <tr><td>User Stories &amp; Acceptance Criteria</td><td><a href="#po">Product Owner</a></td><td><a href="#ba">BA</a> authors/refines</td><td>PO owns &amp; orders the backlog; BA writes the detail.</td></tr>
+          <tr><td>Non-Functional Requirements (NFR)</td><td><a href="#sa">Solution Architect</a> (technical spec)</td><td><a href="#ba">BA</a> elicits business NFR</td><td>BA captures the need &amp; targets; SA owns the technical spec &amp; verification.</td></tr>
+          <tr><td>RAID · EVM · governance · reporting</td><td><a href="#pmo">PMO</a> at portfolio level</td><td><a href="#pm">PM</a> at project level</td><td>PM runs project RAID/EVM; PMO aggregates the portfolio view.</td></tr>
+          <tr><td>Threat modeling &amp; security design</td><td><a href="#sec">Security</a> owns policy &amp; assurance</td><td><a href="#sa">SA</a> models (STRIDE) in design</td><td>SA embeds controls in the design; Security sets policy &amp; verifies.</td></tr>
+          <tr><td>Deployment strategy · rollback · incident</td><td>Pre-prod &amp; CAB: <a href="#deployment">Release Mgr</a>; Runtime: <a href="#ops">Ops/SRE</a></td><td>DevOps executes</td><td>RM owns the <em>planned</em> release/rollback decision &amp; CAB; Ops owns <em>runtime</em> auto-rollback &amp; incident.</td></tr>
+          <tr><td>Scrum ceremonies (facilitation)</td><td><a href="#sm">Scrum Master</a></td><td>PO/Dev participate</td><td>SM is the source of truth for events; other handbooks link, not duplicate.</td></tr>
+          <tr><td>RTM · UAT scripts</td><td><a href="#ba">BA</a> authors</td><td><a href="#qc">QC</a> executes/verifies</td><td>BA owns traceability &amp; AC; QC runs &amp; evidences the tests.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
   </div>
 </div>
 

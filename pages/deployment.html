@@ -489,6 +489,35 @@
 
       <div class="card" style="margin-bottom:16px;">
         <div class="card-body">
+          <div class="card-title">🖥️ Executable Runbook — Production Deploy &amp; Rollback</div>
+          <p style="font-size:12px;margin-bottom:12px;">Step-by-step, reproducible procedure the on-call engineer follows during the maintenance window. Every step has an owner and a verification.</p>
+          <div class="highlight-strip" style="margin-bottom:12px;">
+            <div style="font-weight:700;font-size:12px;margin-bottom:6px;">▶ Deploy sequence</div>
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span><strong>Pre-flight (T-15m):</strong> confirm CAB approval ID &amp; window; freeze other changes; announce in #release channel. <em>Verify:</em> Go decision logged in GRC.</span></li>
+              <li><span class="step-num">2</span><span><strong>Backup:</strong> snapshot DB + capture current image tag/commit SHA as <code>ROLLBACK_REF</code>. <em>Verify:</em> backup restorable, SHA recorded.</span></li>
+              <li><span class="step-num">3</span><span><strong>Progressive deploy:</strong> deploy via <strong>canary</strong> (5% → 25% → 50% → 100%) or <strong>blue-green</strong> (deploy green, keep blue warm). <em>Verify:</em> health checks green at each step.</span></li>
+              <li><span class="step-num">4</span><span><strong>DB migration:</strong> run backward-compatible migration first (expand); defer destructive changes (contract) to a later release. <em>Verify:</em> migration exit code 0.</span></li>
+              <li><span class="step-num">5</span><span><strong>Smoke test:</strong> run the PROD smoke checklist (login, one core transaction, one integration). <em>Verify:</em> all pass; error rate &amp; P95 within SLO.</span></li>
+              <li><span class="step-num">6</span><span><strong>Cutover &amp; confirm:</strong> route 100% traffic; Business Owner validates core flow. <em>Verify:</em> Go/No-Go call → "released"; publish release note.</span></li>
+            </ul>
+          </div>
+          <div class="alert alert-danger"><span class="alert-icon">↩️</span><div><strong>Rollback triggers (any → roll back immediately):</strong> P1 incident; error rate &gt; 2× baseline for 5 min; P95 latency &gt; SLA on core APIs; failed smoke test; data-integrity anomaly. <strong>Rollback owner:</strong> Release Manager decides, DevOps executes.</div></div>
+          <div class="highlight-strip" style="margin-top:12px;">
+            <div style="font-weight:700;font-size:12px;margin-bottom:6px;">◀ Rollback sequence</div>
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span><strong>Declare:</strong> RM declares rollback; open incident; notify CAB chair (retro-approval).</span></li>
+              <li><span class="step-num">2</span><span><strong>Revert app:</strong> blue-green → switch traffic back to blue; canary → scale new version to 0, restore <code>ROLLBACK_REF</code>. <em>Verify:</em> old version serving.</span></li>
+              <li><span class="step-num">3</span><span><strong>Revert data (if needed):</strong> apply down-migration or restore snapshot. <em>Verify:</em> reconciliation check passes. (Expand/contract avoids this in most cases.)</span></li>
+              <li><span class="step-num">4</span><span><strong>Confirm &amp; postmortem:</strong> re-run smoke test on restored version; log timeline; schedule blameless postmortem with <a href="#ops">Ops/SRE</a>.</span></li>
+            </ul>
+          </div>
+          <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔗</span><div>Runtime auto-rollback on SLO breach &amp; incident lifecycle are owned by the <a href="#ops">Operations &amp; SRE Runbook</a>; this section covers the <strong>planned</strong> release/rollback decision.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
           <div class="card-title">📊 Monitoring &amp; Incident Response Framework</div>
           <div class="info-tiles">
             <div class="info-tile" style="border-top:2px solid var(--status-green);"><div class="info-tile-icon">🟢</div><div class="info-tile-title">P4 — Low</div><div class="info-tile-desc">Cosmetic issue. No business impact. Response: Next business day.</div></div>

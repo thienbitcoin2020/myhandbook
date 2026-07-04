@@ -184,6 +184,17 @@ our product [key differentiation].</pre>
           <tr><td><strong>North Star Metric</strong></td><td>Amplitude / Sean Ellis</td><td>The single metric that best captures the core value delivered to customers; aligns the team.</td></tr>
         </table>
       </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Product Roadmap <span class="src src-ext">Roman Pichler · Cagan</span></div>
+        <p>The roadmap is the bridge between the <strong>Product Goal</strong> and the <strong>Backlog</strong> — an <strong>outcome-based</strong>, not feature-committed, plan. Prefer a <strong>Now / Next / Later</strong> (or theme-based) view over date-locked Gantt roadmaps.</p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Horizon</th><th>Commitment</th><th>Content</th></tr>
+          <tr><td><strong>Now</strong></td><td>High confidence</td><td>In-progress outcomes tied to the current Product Goal &amp; sprints.</td></tr>
+          <tr><td><strong>Next</strong></td><td>Medium</td><td>Validated opportunities queued after Now.</td></tr>
+          <tr><td><strong>Later</strong></td><td>Low / directional</td><td>Themes &amp; bets still in discovery — no date promises.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🎯</span><div>Each roadmap item states a target <strong>outcome/metric</strong>, not a feature list. Communicate it as intent, not a contract — protects against the feature-factory anti-pattern (§13).</div></div>
+      </div></div>
     </section>
     <div class="section-divider"></div>
 
@@ -328,6 +339,19 @@ SKELETON      [should]    [should]                ── Release 2
         <div class="card-title">NFRs, Constraints &amp; PRD</div>
         <p><strong>Non-functional requirements &amp; constraints</strong> must be <strong>measurable</strong>: performance (P95 latency), security, availability (SLA%), usability, compliance (SBV / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.</p>
         <p style="margin-top:6px;"><strong>PRD / product spec <span class="src src-ext">hybrid / PMBOK 7</span>:</strong> for larger or regulated initiatives, a lightweight PRD (problem, goals, non-goals, success metrics, scope, risks) complements — but does not replace — an emergent backlog.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Story Splitting <span class="src src-ext">Lawrence · Wake</span></div>
+        <p>When a story is too big for one Sprint (fails INVEST "Small"), split it <strong>vertically</strong> (a thin end-to-end slice of value), never horizontally by layer (UI/DB).</p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Pattern</th><th>Split by…</th></tr>
+          <tr><td><strong>Workflow steps</strong></td><td>Each step of a process as its own story.</td></tr>
+          <tr><td><strong>Business rules</strong></td><td>Happy path first; edge-case rules later.</td></tr>
+          <tr><td><strong>Data variations</strong></td><td>One data type/channel first, add others.</td></tr>
+          <tr><td><strong>Operations (CRUD)</strong></td><td>Create first; read/update/delete separately.</td></tr>
+          <tr><td><strong>SPIDR</strong></td><td>Spikes · Paths · Interfaces · Data · Rules.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔪</span><div>Each split slice must still be independently <strong>valuable &amp; testable</strong> — a slice that only "does the backend" is not a valid story. The <a href="#sm">Scrum Master</a> facilitates splitting in refinement.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>

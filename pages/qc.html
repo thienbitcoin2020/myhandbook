@@ -385,6 +385,7 @@
           <tr><td><strong>Defect Report</strong></td><td>Execution</td><td>Documented anomaly: steps, severity, priority, status.</td></tr>
           <tr><td><strong>Test Summary Report</strong></td><td>Completion</td><td>Results vs plan, coverage, residual risks, quality assessment for release decision.</td></tr>
         </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🗄️</span><div><strong>Test data &amp; environment management:</strong> provision representative data with <strong>masking/anonymisation</strong> of production data (never real PII in non-prod — see <a href="#sec">Security</a> / PDPD); keep SIT/UAT config close to PROD. <strong>Automation:</strong> follow the test pyramid (many unit → fewer integration → few E2E) and run automated checks in CI (see <a href="#deployment">Deployment</a> gates).</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>

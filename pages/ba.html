@@ -69,6 +69,7 @@
     <a href="#section-intro" id="nav-intro" onclick="setActive(this)"><span class="nav-icon">🏠</span> Introduction</a>
     <a href="#section-workflow" id="nav-workflow" onclick="setActive(this)"><span class="nav-icon">🔄</span> BA Workflow</a>
     <a href="#section-roles" id="nav-roles" onclick="setActive(this)"><span class="nav-icon">👥</span> Role Interactions</a>
+    <a href="#section-strategy" onclick="setActive(this)"><span class="nav-icon">🎯</span> Strategy Analysis</a>
   </nav>
 
   <div class="sidebar-section-label">BA Phases</div>
@@ -91,6 +92,7 @@
     <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> NFR Framework</a>
     <a href="#section-quality" onclick="setActive(this)"><span class="nav-icon">🎯</span> Quality Gates</a>
     <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> Anti-Patterns</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> BA Metrics</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -124,7 +126,7 @@
 
   <header class="top-header">
     <div class="header-eyebrow">📋 Internal Handbook · BABOK® v3 Aligned</div>
-    <h1>Business Analyst<br/><span>Project Implement Handbook</span></h1>
+    <h1>Business Analyst<br/><span>Project Implementation Handbook</span></h1>
     <p>A comprehensive guide to the Business Analyst workflow within the bank's <strong>Hybrid Water-Scrum-Fall</strong> SDLC model.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> BABOK® Guide v3</div>
@@ -218,13 +220,33 @@
             <div class="role-node center-ba"><div class="role-node-icon">📋</div><div class="role-node-name">Business Analyst</div><div class="role-node-desc">Central coordination point. Translates business needs into structured requirements.</div></div>
             <div class="role-node"><div class="role-node-icon">📅</div><div class="role-node-name">Project Manager</div><div class="role-node-desc">→ BA: Priorities, timeline, constraints<br/>← BA: Scope, CR impact, Sign-offs</div></div>
             <div class="role-node"><div class="role-node-icon">🏗️</div><div class="role-node-name">Solution Architect</div><div class="role-node-desc">→ BA: Design feedback, feasibility<br/>← BA: BRD, Use Cases, Interface Spec</div></div>
-            <div class="role-node"><div class="role-node-icon">💻</div><div class="role-node-name">Development Team</div><div class="role-node-desc">→ BA: Questions, Change Requests<br/>← BA: User Stories, Acceptance Criteria</div></div>
+            <div class="role-node"><div class="role-node-icon">💻</div><div class="role-node-name">Developers</div><div class="role-node-desc">→ BA: Questions, Change Requests<br/>← BA: User Stories, Acceptance Criteria</div></div>
             <div class="role-node"><div class="role-node-icon">🧪</div><div class="role-node-name">QA Team</div><div class="role-node-desc">→ BA: Defects, requirement gaps<br/>← BA: RTM, AC, UAT Scripts</div></div>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
+    <!-- STRATEGY ANALYSIS (BABOK KA4) -->
+    <section class="section-block" id="section-strategy">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">BABOK KA4</div><h2>Strategy Analysis</h2><div class="sec-sub">Current state · Future state · Risk · Change strategy — before requirements</div></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Why this comes first</div>
+        <p>Before eliciting requirements, the BA (with sponsor &amp; PM) frames <strong>what change is worth making and why</strong>. BABOK v3 Strategy Analysis has four components:</p>
+        <table class="comp-table" style="margin-top:10px;">
+          <thead><tr><th>Component</th><th>What the BA produces</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Analyze Current State</strong></td><td>As-Is capabilities, pain points, KPIs, constraints — the baseline the change starts from.</td></tr>
+            <tr><td><strong>Define Future State</strong></td><td>To-Be desired outcomes, target KPIs/OKRs, scope of the solution space, success measures.</td></tr>
+            <tr><td><strong>Assess Risks</strong></td><td>Risks to reaching the future state (feasibility, adoption, regulatory) — feeds the Risk Register.</td></tr>
+            <tr><td><strong>Define Change Strategy</strong></td><td>Gap analysis (As-Is → To-Be), transition states, and the recommended approach — input to the Business Case.</td></tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">🔗</span><div>The BA <strong>contributes</strong> the current/future-state analysis into the <strong>Business Case</strong> (owned by PM/Sponsor — see <a href="#pm">PM Handbook</a>) and hands the value targets to the <a href="#po">Product Owner</a> for the roadmap.</div></div>
+      </div></div>
+    </section>
     <div class="section-divider"></div>
 
     <!-- PHASES 0-8 DETAILED -->
@@ -561,10 +583,32 @@
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
+    <!-- BA METRICS (BABOK KA1 monitoring) -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Reference · BABOK KA1</div><h2>BA Performance Metrics</h2><div class="sec-sub">How to measure BA effectiveness — Business Analysis Planning &amp; Monitoring</div></div></div>
+      <div class="card"><div class="card-body">
+        <p>BABOK v3 KA1 requires measuring BA performance. Track these to catch requirement problems early — the most expensive defects originate in requirements.</p>
+        <table class="comp-table" style="margin-top:10px;">
+          <thead><tr><th>Metric</th><th>Formula / definition</th><th>Signal</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Requirements Volatility</strong></td><td>changed reqs ÷ total baselined × 100%</td><td>High churn → weak elicitation / unclear scope</td></tr>
+            <tr><td><strong>Requirements Defect Leakage</strong></td><td>defects traced to requirements ÷ total defects × 100%</td><td>Quality of requirements (lower better)</td></tr>
+            <tr><td><strong>RTM Coverage</strong></td><td>requirements with test coverage ÷ total × 100%</td><td>Traceability completeness (target 100%)</td></tr>
+            <tr><td><strong>Rework Rate</strong></td><td>reqs reworked after sign-off ÷ total × 100%</td><td>Baseline stability</td></tr>
+            <tr><td><strong>UAT Pass Rate</strong></td><td>UAT cases passed ÷ executed × 100%</td><td>Requirements &amp; AC accuracy</td></tr>
+            <tr><td><strong>Elicitation Cycle Time</strong></td><td>time from kickoff → baselined requirements</td><td>BA throughput per phase</td></tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">🔗</span><div>Defect-leakage &amp; RTM coverage are shared with the <a href="#qc">QC Testing Handbook</a> (defect metrics) — BA owns the requirements-quality view.</div></div>
+      </div></div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · BA Project Implement Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    🏦 Handbook · BA Project Implementation Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
     Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
   </footer>
 </div><!-- /#main-content -->
