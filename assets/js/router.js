@@ -10,6 +10,7 @@ const ROUTES = {
   'ba':         'pages/ba.html',
   'pm':         'pages/pm.html',
   'qc':         'pages/qc.html',
+  'po':         'pages/po.html',
 };
 
 let _pageStyle  = null;

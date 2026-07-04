@@ -1,0 +1,541 @@
+<title>Product Owner Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-po{width:100%;border-collapse:collapse;font-size:12px}
+.table-po th,.table-po td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-po th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-po tr:hover td{background:var(--bg-hover)}
+.table-po code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.src{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.src-scrum{color:var(--status-green);border-color:var(--status-green)}
+.src-ext{color:var(--status-blue);border-color:var(--status-blue)}
+.do-dont{display:grid;grid-template-columns:1fr;gap:0}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🎯</div>
+      <div>
+        <div class="bank-title">Product Owner Handbook</div>
+        <div class="bank-sub">Scrum Guide 2020 · Outcome-driven</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Foundations</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-vision" onclick="setActive(this)"><span class="nav-icon">🔭</span> 02 · Vision &amp; Strategy</a>
+  </nav>
+
+  <div class="sidebar-section-label">Discovery</div>
+  <nav id="sidebar-nav">
+    <a href="#section-discovery" onclick="setActive(this)"><span class="nav-icon">🔬</span> 03 · Product Discovery</a>
+    <a href="#section-stakeholder" onclick="setActive(this)"><span class="nav-icon">🤝</span> 04 · Stakeholder &amp; Market</a>
+  </nav>
+
+  <div class="sidebar-section-label">Backlog</div>
+  <nav id="sidebar-nav">
+    <a href="#section-backlog" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 05 · Backlog Management</a>
+    <a href="#section-artifacts" onclick="setActive(this)"><span class="nav-icon">📝</span> 06 · Requirement Artifacts</a>
+    <a href="#section-prioritization" onclick="setActive(this)"><span class="nav-icon">📊</span> 07 · Prioritization</a>
+    <a href="#section-estimation" onclick="setActive(this)"><span class="nav-icon">🎲</span> 08 · Estimation &amp; Sizing</a>
+  </nav>
+
+  <div class="sidebar-section-label">Delivery</div>
+  <nav id="sidebar-nav">
+    <a href="#section-events" onclick="setActive(this)"><span class="nav-icon">🔁</span> 09 · Scrum Events</a>
+    <a href="#section-dor-dod" onclick="setActive(this)"><span class="nav-icon">🚦</span> 10 · DoR / DoD</a>
+    <a href="#section-release" onclick="setActive(this)"><span class="nav-icon">🚀</span> 11 · Release &amp; Value</a>
+  </nav>
+
+  <div class="sidebar-section-label">Reference</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · Metrics / KPIs</a>
+    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> 13 · Anti-Patterns</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🎯 Scrum Guide 2020</span>
+    <span class="comp-pill">🔀 Hybrid / PMBOK 7</span>
+    <span class="comp-pill">📈 Outcome-driven</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: Product Owner / Product<br/>
+    Version: v1.0 · Effective 2025-Q2<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Standard: Scrum Guide 2020<br/>
+    Next review: 2025-Q4<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Handbook Home</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🎯 Internal Handbook · Scrum Guide 2020 Aligned</div>
+    <h1>Product Owner (PO)<br/><span>Role, Discovery &amp; Value Delivery</span></h1>
+    <p>Reference for the end-to-end Product Owner role across the SDLC — grounded in the Scrum Guide 2020, extended with modern product management (discovery, outcome-driven) and hybrid PMBOK 7 practice. Scrum-standard terms are tagged <span class="src src-scrum">Scrum 2020</span>; everything else is flagged with its source <span class="src src-ext">Extended</span>.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Scrum Guide 2020</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Outcome-driven</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Dual-track Discovery</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Who the Product Owner is <span class="src src-scrum">Scrum 2020</span></div>
+        <p>Per the Scrum Guide 2020, the <strong>Product Owner is accountable for maximizing the value of the product</strong> resulting from the work of the Scrum Team. The PO is one of the Scrum Team's <strong>three accountabilities</strong> (Product Owner, Scrum Master, Developers) — the 2020 guide replaced the old "three roles" wording, and there are <strong>no sub-teams or hierarchies</strong>.</p>
+        <p style="margin-top:8px;">The PO is also accountable for effective <strong>Product Backlog management</strong>:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Developing and explicitly communicating the <strong>Product Goal</strong>.</li>
+          <li>Creating and clearly communicating Product Backlog items.</li>
+          <li>Ordering Product Backlog items.</li>
+          <li>Ensuring the Product Backlog is transparent, visible and understood.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>The Product Owner is <strong>one person, not a committee</strong>. They may delegate the work (e.g. to a BA) but remain accountable. For the PO to succeed, the whole organization must respect their decisions.</div></div>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">PO vs BA vs Product Manager vs Project Manager</div>
+        <table class="table-po">
+          <tr><th>Aspect</th><th>Product Owner</th><th>Business Analyst</th><th>Product Manager</th><th>Project Manager</th></tr>
+          <tr><td><strong>Primary focus</strong></td><td>Maximize product value; own the backlog</td><td>Elicit &amp; analyse requirements</td><td>Product strategy, market, business outcomes</td><td>Deliver a project: scope, time, cost, risk</td></tr>
+          <tr><td><strong>Horizon</strong></td><td>Product (continuous)</td><td>Requirements / change</td><td>Product lifecycle &amp; market</td><td>Project (temporary, time-boxed)</td></tr>
+          <tr><td><strong>Decides</strong></td><td><strong>What</strong> &amp; <strong>when</strong> (backlog order)</td><td>Recommends; does not own priority</td><td>Direction, roadmap, pricing, go/no-go</td><td>Schedule, resources, dependencies</td></tr>
+          <tr><td><strong>Standard</strong></td><td>Scrum Guide 2020</td><td>BABOK v3</td><td>Product management</td><td>PMBOK 7</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>In smaller orgs the <strong>Product Manager ≈ Product Owner</strong>. In Scrum, only the <strong>PO</strong> is defined — BA, Product Manager, and Project Manager are organizational roles, <em>not</em> Scrum accountabilities. See the <a href="#ba">BA</a> and <a href="#pm">PM</a> handbooks for their boundaries.</div></div>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">PO in Team Topology <span class="src src-scrum">Scrum 2020</span></div>
+        <p><strong>One Product Owner · one Product Backlog · one Product Goal.</strong> A single PO may serve multiple Developers or several teams working on the same product, but there remains exactly one ordered Product Backlog and one Product Goal at a time.</p>
+        <pre class="art-block">          ┌──────────── 1 Product Owner ────────────┐
+          │            1 Product Backlog              │
+          │             1 Product Goal                │
+          └───────┬───────────┬───────────┬──────────┘
+              Team A       Team B       Team C   (share one backlog)</pre>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Scaling note <span class="src src-ext">Extended · SAFe / Nexus</span>: multi-team scaling frameworks may add area/feature POs, but the single-accountable-PO principle per product still holds.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · VISION & STRATEGY -->
+    <section class="section-block" id="section-vision">
+      <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Section 02</div><h2>Product Vision &amp; Strategy</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Vision → Product Goal → Backlog</div>
+        <pre class="art-block">PRODUCT VISION  (aspirational — why the product exists)
+      ↓
+PRODUCT GOAL    (concrete future state — the long-term target)  [Scrum 2020]
+      ↓
+PRODUCT BACKLOG (the "what" that fulfils the Product Goal)      [Scrum 2020]
+      ↓
+SPRINT GOAL     (single objective for this Sprint)             [Scrum 2020]
+      ↓
+INCREMENT       (a valuable step toward the Product Goal)      [Scrum 2020]</pre>
+        <p><strong>Product Goal <span class="src src-scrum">Scrum 2020</span>:</strong> describes a future state of the product; lives <em>in</em> the Product Backlog; is the Scrum Team's long-term objective. The team focuses on <strong>one Product Goal at a time</strong> — fulfil (or abandon) it before taking the next. It is the <strong>commitment for the Product Backlog</strong>.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Vision tools <span class="src src-ext">Extended</span></div>
+        <p><strong>Elevator pitch <span class="src src-ext">Geoffrey Moore</span>:</strong></p>
+        <pre class="art-block">For [target customer] who [need/opportunity],
+the [product name] is a [product category]
+that [key benefit / reason to buy].
+Unlike [primary competitor/alternative],
+our product [key differentiation].</pre>
+        <p style="margin-top:6px;"><strong>Vision Board <span class="src src-ext">Roman Pichler</span>:</strong> Vision · Target Group · Needs · Product · Business Goals — a one-page canvas to align the team on the "why".</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Strategy tools <span class="src src-ext">Extended</span></div>
+        <table class="table-po">
+          <tr><th>Tool</th><th>Source</th><th>Use</th></tr>
+          <tr><td><strong>Business Model Canvas</strong></td><td>A. Osterwalder</td><td>9 blocks (value prop, segments, channels, revenue, cost…) — map how the product creates &amp; captures value.</td></tr>
+          <tr><td><strong>Value Proposition Canvas</strong></td><td>Strategyzer</td><td>Fit between customer jobs/pains/gains and product pain-relievers/gain-creators.</td></tr>
+          <tr><td><strong>North Star Metric</strong></td><td>Amplitude / Sean Ellis</td><td>The single metric that best captures the core value delivered to customers; aligns the team.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · PRODUCT DISCOVERY -->
+    <section class="section-block" id="section-discovery">
+      <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Section 03</div><h2>Product Discovery <span class="src src-ext">Extended</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
+        <p>Discovery and Delivery run <strong>continuously in parallel</strong>, not as sequential phases. Discovery decides <em>what is worth building</em> (valuable, usable, feasible, viable); Delivery <em>builds validated items</em> well.</p>
+        <pre class="art-block">DISCOVERY  ▸ interviews ▸ prototypes ▸ experiments ▸ validated ideas ─┐
+                                                                       ▼
+DELIVERY   ───────────────▸ build ▸ test ▸ ship validated backlog items</pre>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
+        <pre class="art-block">           DESIRED OUTCOME  (a measurable business/user outcome)
+                  │
+      ┌───────────┼───────────┐
+  Opportunity  Opportunity  Opportunity   (unmet needs / pains / desires)
+      │
+   ┌──┴──┐
+ Solution Solution                        (ideas that address the opportunity)
+      │
+  Experiment                              (test to validate the solution)</pre>
+        <p>Keeps every solution traceable to a desired <strong>outcome</strong> — prevents jumping to features without a problem.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Validate before building</div>
+        <p><strong>Assumption mapping:</strong> surface the riskiest assumptions across <em>desirability, viability, feasibility, usability</em>; test the riskiest first.</p>
+        <p style="margin-top:6px;"><strong>Hypothesis format:</strong> <code>We believe [capability] for [user] will achieve [outcome]. We'll know we're right when [measurable signal].</code></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Artifact</th><th>Purpose</th></tr>
+          <tr><td><strong>MVP</strong> (Minimum Viable Product)</td><td>Smallest thing that lets you <strong>learn</strong> validated info about customers with least effort.</td></tr>
+          <tr><td><strong>MMP</strong> (Minimum Marketable Product)</td><td>Smallest feature set worth <strong>releasing to market</strong> to deliver real value.</td></tr>
+          <tr><td><strong>Prototype</strong></td><td>Throwaway artifact (paper → clickable) to test a solution cheaply before build.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔍</span><div><strong>Continuous discovery <span class="src src-ext">Teresa Torres</span>:</strong> regular (ideally weekly) touchpoints with users. Stay in the <strong>problem space</strong> (understand the need) before rushing to the <strong>solution space</strong> (design the answer).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · STAKEHOLDER & MARKET -->
+    <section class="section-block" id="section-stakeholder">
+      <div class="section-header"><div class="section-icon">🤝</div><div><div class="section-number">Section 04</div><h2>Stakeholder &amp; Market</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Stakeholder Mapping — Power / Interest Grid <span class="src src-ext">Mendelow</span></div>
+        <table class="table-po">
+          <tr><th></th><th>Low interest</th><th>High interest</th></tr>
+          <tr><td><strong>High power</strong></td><td>Keep <strong>satisfied</strong></td><td><strong>Manage closely</strong> (key players)</td></tr>
+          <tr><td><strong>Low power</strong></td><td><strong>Monitor</strong> (minimal effort)</td><td>Keep <strong>informed</strong></td></tr>
+        </table>
+        <p style="margin-top:8px;">Map each stakeholder, then tailor engagement cadence &amp; message. The PO is the single point of accountability for backlog decisions but must actively manage stakeholder expectations.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Market &amp; Competitive Analysis</div>
+        <p><strong>SWOT:</strong> Strengths · Weaknesses (internal) × Opportunities · Threats (external). Feed competitive teardown, market signals (win/loss, churn reasons, support trends, analytics) into backlog and Product Goal.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Negotiating &amp; Aligning on Conflicting Priorities</div>
+        <ul class="step-cl">
+          <li>Make trade-offs <strong>explicit</strong>: "if we do X now, Y moves — which outcome matters more?"</li>
+          <li>Anchor on the <strong>Product Goal &amp; outcomes</strong>, not on who shouts loudest.</li>
+          <li>Use an <strong>objective prioritization framework</strong> (Section 07) so the decision is defensible, not political.</li>
+          <li>Make <strong>Cost of Delay</strong> visible to reframe "everything is urgent".</li>
+          <li>Say <strong>"not now"</strong>, not "no" — order the backlog rather than reject outright.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · BACKLOG MANAGEMENT -->
+    <section class="section-block" id="section-backlog">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Section 05</div><h2>Product Backlog Management</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">The Product Backlog <span class="src src-scrum">Scrum 2020</span></div>
+        <p>An <strong>emergent, ordered list</strong> of what is needed to improve the product — the <strong>single source of work</strong> for the Scrum Team. The PO orders it. Its commitment is the <strong>Product Goal</strong>.</p>
+        <p style="margin-top:8px;"><strong>DEEP <span class="src src-ext">Roman Pichler / Mike Cohn</span></strong> — a healthy backlog is:</p>
+        <table class="table-po" style="margin-top:6px;">
+          <tr><th>Letter</th><th>Property</th><th>Meaning</th></tr>
+          <tr><td><strong>D</strong></td><td>Detailed appropriately</td><td>Near-term items fine-grained; far-term items coarse.</td></tr>
+          <tr><td><strong>E</strong></td><td>Estimated</td><td>Items have a relative size to support ordering &amp; forecasting.</td></tr>
+          <tr><td><strong>E</strong></td><td>Emergent</td><td>Continuously evolves as learning happens.</td></tr>
+          <tr><td><strong>P</strong></td><td>Prioritized</td><td>Ordered by value/risk so the top is ready to pull.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Backlog Refinement <span class="src src-scrum">Scrum 2020</span></div>
+        <table class="table-po">
+          <tr><th>Aspect</th><th>Detail</th></tr>
+          <tr><td><strong>What</strong></td><td>The act of breaking down &amp; further defining backlog items into smaller, more precise items; adding detail (description, order, size).</td></tr>
+          <tr><td><strong>Goal</strong></td><td>Keep the top of the backlog "ready" so Sprint Planning is fast and low-risk.</td></tr>
+          <tr><td><strong>Cadence</strong></td><td><strong>Ongoing activity</strong> — <em>not</em> a formal Scrum event. Often time-boxed to ~10% of Developers' capacity <span class="src src-ext">common guideline</span>.</td></tr>
+          <tr><td><strong>Who</strong></td><td>PO + Developers collaborate; Developers who do the work do the sizing.</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
+        <pre class="art-block">BACKBONE  →  [User activity 1] [User activity 2] [User activity 3]   (left→right = journey)
+              │            │            │
+WALKING       [must]      [must]       [must]     ── Release 1 (walking skeleton: thin end-to-end)
+SKELETON      [should]    [should]                ── Release 2
+(slices)      [could]                             ── Later
+                                                   (top→bottom = priority)</pre>
+        <p><strong>Backbone</strong> = the sequence of user activities; <strong>walking skeleton</strong> = the thinnest slice that works end-to-end; <strong>slices</strong> = horizontal cuts that become releases. Great for visualising an MVP against the whole journey.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · REQUIREMENT ARTIFACTS -->
+    <section class="section-block" id="section-artifacts">
+      <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Section 06</div><h2>Requirement Artifacts</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Backlog Item Hierarchy</div>
+        <pre class="art-block">EPIC  ▸  FEATURE  ▸  USER STORY  ▸  TASK
+(large      (deliverable    (small,       (technical
+ body of     slice of        valuable      step to
+ work)       an epic)        increment)    build a story)</pre>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Only <strong>"Product Backlog item"</strong> is a Scrum Guide term. <strong>Epic / Feature / Story / Task</strong> are tooling &amp; scaling constructs <span class="src src-ext">Jira / SAFe</span> — useful, but not part of the Scrum Guide 2020.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">User Story + INVEST <span class="src src-ext">Bill Wake</span></div>
+        <p><strong>Format:</strong> <code>As a [role], I want [goal], so that [benefit].</code></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>INVEST</th><th>A good story is…</th></tr>
+          <tr><td><strong>I</strong>ndependent</td><td>Minimal overlap/dependency with other stories.</td></tr>
+          <tr><td><strong>N</strong>egotiable</td><td>A conversation starter, not a rigid contract.</td></tr>
+          <tr><td><strong>V</strong>aluable</td><td>Delivers value to a user or customer.</td></tr>
+          <tr><td><strong>E</strong>stimable</td><td>Clear enough for Developers to size.</td></tr>
+          <tr><td><strong>S</strong>mall</td><td>Fits comfortably within a Sprint.</td></tr>
+          <tr><td><strong>T</strong>estable</td><td>Has verifiable acceptance criteria.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Acceptance Criteria — two styles</div>
+        <table class="table-po">
+          <tr><th>Given-When-Then (Gherkin)</th><th>Rule-based (checklist)</th></tr>
+          <tr><td><code>Given</code> a logged-in customer with a verified account,<br/><code>When</code> they transfer ≤ their balance,<br/><code>Then</code> the transfer succeeds and both balances update.</td><td>• Transfer amount must be &gt; 0 and ≤ balance.<br/>• Blocked/frozen accounts cannot transfer.<br/>• Both balances update atomically.<br/>• Audit log entry is written.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Use <strong>Given-When-Then</strong> for behaviour/scenarios (pairs well with BDD); <strong>rule-based</strong> for lists of business rules/constraints.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">NFRs, Constraints &amp; PRD</div>
+        <p><strong>Non-functional requirements &amp; constraints</strong> must be <strong>measurable</strong>: performance (P95 latency), security, availability (SLA%), usability, compliance (SBV / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.</p>
+        <p style="margin-top:6px;"><strong>PRD / product spec <span class="src src-ext">hybrid / PMBOK 7</span>:</strong> for larger or regulated initiatives, a lightweight PRD (problem, goals, non-goals, success metrics, scope, risks) complements — but does not replace — an emergent backlog.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · PRIORITIZATION -->
+    <section class="section-block" id="section-prioritization">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Section 07</div><h2>Prioritization <span class="src src-ext">Extended</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <table class="table-po">
+          <tr><th>Framework</th><th>Formula / mechanism</th><th>Best when</th></tr>
+          <tr><td><strong>MoSCoW</strong> <span class="src src-ext">DSDM</span></td><td>Must · Should · Could · Won't (this time)</td><td>Scope negotiation for a time-boxed release.</td></tr>
+          <tr><td><strong>RICE</strong> <span class="src src-ext">Intercom</span></td><td><code>(Reach × Impact × Confidence) ÷ Effort</code></td><td>Comparing many features with rough data.</td></tr>
+          <tr><td><strong>WSJF</strong> <span class="src src-ext">SAFe</span></td><td><code>Cost of Delay ÷ Job Size</code><br/>CoD = User-Business Value + Time Criticality + Risk Reduction / Opportunity Enablement</td><td>Sequencing for maximum economic value.</td></tr>
+          <tr><td><strong>Kano</strong> <span class="src src-ext">Noriaki Kano</span></td><td>Basic (must-be) · Performance · Excitement (delighters)</td><td>Deciding satisfaction impact of features.</td></tr>
+          <tr><td><strong>Value vs Effort</strong></td><td>2×2: Quick wins · Big bets · Fill-ins · Time sinks</td><td>Fast visual triage of a small set.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Worked example — RICE</div>
+        <pre class="art-block">Feature: One-tap bill payment
+  Reach      = 8,000 users/quarter
+  Impact     = 2   (massive=3, high=2, medium=1, low=.5)
+  Confidence = 80% = 0.8
+  Effort     = 4 person-months
+  RICE = (8000 × 2 × 0.8) ÷ 4 = 3,200   → compare against other features</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Cost of Delay &amp; context</div>
+        <p><strong>Cost of Delay <span class="src src-ext">Don Reinertsen</span>:</strong> the economic loss per unit time an item is delayed — the core of WSJF. <strong>Opportunity cost:</strong> the value of the best alternative not chosen when you commit capacity.</p>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🎯</span><div><strong>Context-driven — no one-size-fits-all:</strong> MoSCoW for release scoping, RICE for data-rich comparison, WSJF for economic sequencing (SAFe), Kano for satisfaction analysis, Value/Effort for a quick triage. The framework informs the decision; the PO still owns the order.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · ESTIMATION & SIZING -->
+    <section class="section-block" id="section-estimation">
+      <div class="section-header"><div class="section-icon">🎲</div><div><div class="section-number">Section 08</div><h2>Estimation &amp; Sizing <span class="src src-ext">Extended</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="alert alert-info" style="margin-bottom:10px;"><span class="alert-icon">ℹ️</span><div>The Scrum Guide 2020 does <strong>not</strong> prescribe story points or any sizing method. It states the <strong>Developers who will do the work</strong> are responsible for sizing. Everything below is common practice, not Scrum canon.</div></div>
+        <table class="table-po">
+          <tr><th>Approach</th><th>What it is</th><th>Trade-off</th></tr>
+          <tr><td><strong>Story points</strong></td><td>Relative size (complexity + effort + uncertainty), often Fibonacci.</td><td>Fast, team-relative; meaningless across teams.</td></tr>
+          <tr><td><strong>Ideal days</strong></td><td>Absolute effort in uninterrupted days.</td><td>Intuitive; falsely precise, invites over-commitment.</td></tr>
+          <tr><td><strong>#NoEstimates</strong> <span class="src src-ext">Zuill / Duarte</span></td><td>Slice to similar-small items; forecast by <strong>count &amp; throughput</strong> instead of points.</td><td>Less estimation waste; needs disciplined slicing.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Techniques</div>
+        <ul class="step-cl">
+          <li><strong>Planning Poker</strong> <span class="src src-ext">Grenning / Cohn</span> — simultaneous reveal of card estimates; discuss outliers, re-vote.</li>
+          <li><strong>T-shirt sizing</strong> — XS/S/M/L/XL for coarse, early, or epic-level sizing.</li>
+          <li><strong>Affinity estimation</strong> — silently group many items by relative size on a wall; fast for large batches.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Velocity — use &amp; abuse <span class="src src-ext">not in Scrum Guide</span></div>
+        <table class="table-po">
+          <tr><th style="color:var(--status-green)">✔ Use it for</th><th style="color:var(--status-red)">✘ Do NOT use it for</th></tr>
+          <tr><td>Forecasting <em>one</em> team's likely capacity next Sprint / release.</td><td>Comparing or ranking different teams.</td></tr>
+          <tr><td>Spotting the team's own trend over time.</td><td>A target or performance KPI (Goodhart's law → gaming).</td></tr>
+          <tr><td>Sizing a release forecast with a range.</td><td>Individual performance measurement.</td></tr>
+        </table>
+        <p style="margin-top:6px;"><code>Velocity = avg. story points completed (meeting DoD) per Sprint</code> — a planning aid, never a goal.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · SCRUM EVENTS -->
+    <section class="section-block" id="section-events">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Section 09</div><h2>Scrum Events — PO's Part <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>The <strong>Sprint</strong> is the container for all events. The four formal events are Sprint Planning, Daily Scrum, Sprint Review, and Sprint Retrospective. <strong>Refinement is an ongoing activity, not an event.</strong></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Event</th><th style="color:var(--status-green)">PO does</th><th style="color:var(--status-red)">PO does NOT</th></tr>
+          <tr><td><strong>Sprint Planning</strong></td><td>Propose how the product could increase value; ensure top items are understood; help craft the <strong>Sprint Goal</strong>; answer scope questions.</td><td>Assign tasks, dictate "how", or decide how much the Developers take — <strong>Developers</strong> select the work.</td></tr>
+          <tr><td><strong>Daily Scrum</strong></td><td>Be reachable for questions; may attend only if working on the Sprint Backlog.</td><td>Run it, take status, or turn it into a report-to-PO meeting — it's <strong>for the Developers</strong>.</td></tr>
+          <tr><td><strong>Sprint Review</strong></td><td>Invite stakeholders; discuss progress toward the <strong>Product Goal</strong>; gather feedback; adapt the backlog together.</td><td>Treat it as a one-way demo or a formal sign-off gate — 2020 makes it a <strong>working session</strong>, not an approval stage.</td></tr>
+          <tr><td><strong>Sprint Retrospective</strong></td><td>Participate as a team member to improve how the team works.</td><td>Skip it, or use it to assign blame.</td></tr>
+          <tr><td><strong>Backlog Refinement</strong><br/><span class="src src-ext">ongoing, not an event</span></td><td>Bring &amp; order items, clarify intent, split with the team.</td><td>Write every story alone or push estimates onto Developers.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · DoR / DoD -->
+    <section class="section-block" id="section-dor-dod">
+      <div class="section-header"><div class="section-icon">🚦</div><div><div class="section-number">Section 10</div><h2>Definition of Ready / Definition of Done</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Definition of Ready (DoR) <span class="src src-ext">practice, NOT in Scrum Guide</span></div>
+        <p>A shared checklist that a backlog item should meet <strong>before</strong> it is pulled into a Sprint. Typical criteria:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Clear, INVEST-compliant, small enough for one Sprint.</li>
+          <li>Acceptance criteria defined &amp; testable.</li>
+          <li>Dependencies known; sized by Developers; no open blocking question.</li>
+        </ul>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>DoR is a <strong>helpful practice, not Scrum</strong>. If enforced rigidly it becomes a mini-waterfall stage-gate — keep it lightweight.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Definition of Done (DoD) <span class="src src-scrum">Scrum 2020</span></div>
+        <p>A <strong>formal description of the state of the Increment</strong> when it meets the quality measures required for the product. It is the <strong>commitment for the Increment</strong>. If a backlog item does not meet the DoD, it <strong>cannot be released or presented</strong> at Sprint Review and returns to the backlog.</p>
+        <p style="margin-top:6px;"><strong>Owned by:</strong> the <strong>Scrum Team</strong> (if the organization has a standard, that is the minimum the team must follow).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DoD vs Acceptance Criteria</div>
+        <table class="table-po">
+          <tr><th></th><th>Acceptance Criteria</th><th>Definition of Done</th></tr>
+          <tr><td><strong>Scope</strong></td><td>Per <em>one</em> backlog item</td><td>Applies to <em>every</em> Increment / item</td></tr>
+          <tr><td><strong>Answers</strong></td><td>"Is <em>this</em> story functionally correct?"</td><td>"Is the increment <em>releasable quality</em>?"</td></tr>
+          <tr><td><strong>Examples</strong></td><td>Specific behaviours &amp; business rules</td><td>Code reviewed, tests pass, security scan clean, docs updated, no Critical defect</td></tr>
+          <tr><td><strong>Owner</strong></td><td>PO defines, team refines</td><td>Scrum Team (or org standard)</td></tr>
+        </table>
+        <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>An item is truly "done" only when it satisfies <strong>its Acceptance Criteria AND the Definition of Done</strong>. See the <a href="#qc">QC Testing Handbook</a> for how testing evidences DoD.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · RELEASE & VALUE DELIVERY -->
+    <section class="section-block" id="section-release">
+      <div class="section-header"><div class="section-icon">🚀</div><div><div class="section-number">Section 11</div><h2>Release &amp; Value Delivery</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Release Planning &amp; the Increment <span class="src src-scrum">Scrum 2020</span></div>
+        <p>An <strong>Increment</strong> is a concrete stepping stone toward the Product Goal; each Increment is additive and must meet the <strong>Definition of Done</strong> to be usable. Releasing is <strong>decoupled from the Sprint</strong>: an Increment may be delivered at any point — multiple Increments can be released within a single Sprint.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Release strategies <span class="src src-ext">Extended</span></div>
+        <table class="table-po">
+          <tr><th>Strategy</th><th>What / when</th></tr>
+          <tr><td><strong>MVP release</strong></td><td>Ship the smallest valuable slice to learn from real usage before scaling scope.</td></tr>
+          <tr><td><strong>Phased / staged rollout</strong></td><td>Release to a growing % of users (canary → ramp) to limit blast radius.</td></tr>
+          <tr><td><strong>Feature flags / toggles</strong></td><td>Deploy code dark; enable per cohort; decouple deploy from release; instant rollback.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Coordinate the mechanics with the <a href="#deployment">Deployment Runbook</a> (CAB, rollback) and quality gates with the <a href="#qc">QC Testing Handbook</a>.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Dependencies &amp; Risk — PO view</div>
+        <ul class="step-cl">
+          <li>Sequence high-risk / high-uncertainty items <strong>early</strong> to buy learning.</li>
+          <li>Make cross-team dependencies visible on the story map / roadmap; order to unblock.</li>
+          <li>Frame delivery risk in terms of <strong>Cost of Delay</strong> and value at risk, for governance decisions (with <a href="#pm">PM</a>).</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · METRICS / KPIs -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Section 12</div><h2>Product Metrics / KPIs</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="alert alert-info"><span class="alert-icon">🎯</span><div><strong>Outcome &gt; Output.</strong> <strong>Output</strong> = what we ship (features, story points). <strong>Outcome</strong> = the change in user/business behaviour that value creates. A PO optimizes for <strong>outcomes</strong>; shipping more is not the goal.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product frameworks <span class="src src-ext">Extended</span></div>
+        <table class="table-po">
+          <tr><th>Framework</th><th>Components</th></tr>
+          <tr><td><strong>AARRR</strong> — Pirate Metrics <span class="src src-ext">Dave McClure</span></td><td>Acquisition · Activation · Retention · Referral · Revenue (funnel).</td></tr>
+          <tr><td><strong>HEART</strong> <span class="src src-ext">Google / Kerry Rodden</span></td><td>Happiness · Engagement · Adoption · Retention · Task success — each with Goals-Signals-Metrics.</td></tr>
+          <tr><td><strong>North Star Metric</strong> <span class="src src-ext">Amplitude</span></td><td>The single metric capturing core delivered value (e.g. "weekly active payers").</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Value metrics — formulas</div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Adoption</div><div class="metric-value">users who used feature ÷ eligible users × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Retention rate</div><div class="metric-value">((users at end − new) ÷ users at start) × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">NPS</div><div class="metric-value">% promoters (9–10) − % detractors (0–6)</div></div>
+          <div class="metric-card"><div class="metric-title">CSAT</div><div class="metric-value">satisfied responses ÷ total responses × 100%</div></div>
+        </div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Flow / delivery metrics — formulas</div>
+        <table class="table-po">
+          <tr><th>Metric</th><th>Definition / formula</th></tr>
+          <tr><td><strong>Velocity</strong></td><td><code>avg story points done per Sprint</code> — forecasting aid (one team).</td></tr>
+          <tr><td><strong>Cycle time</strong></td><td>Time from <strong>work started</strong> → work finished.</td></tr>
+          <tr><td><strong>Lead time</strong></td><td>Time from <strong>request created</strong> → delivered (customer-perceived).</td></tr>
+          <tr><td><strong>Throughput</strong></td><td>Items completed per unit time (e.g. stories/week).</td></tr>
+          <tr><td><strong>Little's Law</strong></td><td><code>Avg Cycle Time = WIP ÷ Throughput</code> — lower WIP → faster flow.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · ANTI-PATTERNS -->
+    <section class="section-block" id="section-antipatterns">
+      <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Section 13</div><h2>Anti-Patterns &amp; Pitfalls</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-po">
+          <tr><th>Anti-pattern</th><th>Why it hurts</th><th>Do instead</th></tr>
+          <tr><td><strong>PO-proxy</strong></td><td>A "PO" without real authority relays decisions → slow, distorted.</td><td>Empower one accountable PO who can decide.</td></tr>
+          <tr><td><strong>Backlog = to-do list</strong></td><td>Unordered dumping ground; everything "high"; stale items.</td><td>Ordered by value/risk, emergent, tied to the Product Goal.</td></tr>
+          <tr><td><strong>PO as "scribe"</strong> (ghi chép viên)</td><td>Merely transcribes stakeholder requests; no judgement on value.</td><td>Own outcomes; say "not now"; validate with discovery.</td></tr>
+          <tr><td><strong>Output obsession</strong> (feature factory)</td><td>Success measured by #features / velocity, not impact.</td><td>Optimize for outcomes; measure value delivered.</td></tr>
+          <tr><td><strong>No empowerment</strong></td><td>PO must escalate every decision → bottleneck, no ownership.</td><td>Org respects PO decisions (Scrum Guide requirement).</td></tr>
+          <tr><td><strong>Absentee PO</strong></td><td>Unavailable → Developers guess, rework grows.</td><td>Be reachable; collaborate continuously.</td></tr>
+          <tr><td><strong>Backlog detailed too far ahead</strong></td><td>Big up-front spec = waterfall in disguise; waste on churn.</td><td>Detail near-term; keep far-term coarse &amp; emergent.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> <strong>Scrum Guide 2020</strong> (Schwaber &amp; Sutherland) — accountabilities, Product Goal, commitments, events, DoD. <strong>PMBOK Guide 7th Ed.</strong> (PMI) — hybrid/PRD context. Extended practices, cited in-line: Teresa Torres (Opportunity Solution Tree, continuous discovery), Jeff Patton (Story Mapping, dual-track), Marty Cagan (product discovery), Bill Wake (INVEST), Roman Pichler / Mike Cohn (DEEP, Vision Board), Geoffrey Moore (elevator pitch), A. Osterwalder / Strategyzer (Business Model &amp; Value Proposition Canvas), DSDM (MoSCoW), Intercom (RICE), SAFe (WSJF), Don Reinertsen (Cost of Delay), Noriaki Kano (Kano model), Woody Zuill / Vasco Duarte (#NoEstimates), James Grenning / Mike Cohn (Planning Poker), Dave McClure (AARRR), Google / Kerry Rodden (HEART), Amplitude / Sean Ellis (North Star Metric), Mendelow (Power/Interest grid).</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Product Owner Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · SBV Circular 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->

@@ -15,6 +15,7 @@ Vietnamese commercial bank:
 | `#ba` | BA Project Handbook | BA process, BRD/FRD, ceremonies |
 | `#pm` | PM Project Handbook | PMBOK-aligned PM role & workflow |
 | `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
+| `#po` | Product Owner Handbook | Scrum Guide 2020 role, discovery, backlog, prioritization, product metrics |
 
 ---
 
@@ -38,7 +39,8 @@ project-handbook/
 │   ├── handbook.html       #   (+ optional #page-style / #page-script)
 │   ├── ba.html
 │   ├── pm.html
-│   └── qc.html
+│   ├── qc.html
+│   └── po.html
 ├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
 ├── .github/workflows/
 │   └── deploy-pages.yml    # GitHub Pages auto-deploy on push to main
