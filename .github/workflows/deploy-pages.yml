@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+# Publishes the static handbook site to GitHub Pages on every push to main.
+# Live URL: https://thienpv99.github.io/project-handbook/
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions required by the Pages deploy actions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress publish
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble static site
+        run: |
+          mkdir -p public
+          cp index.html public/
+          # Legacy redirect stubs (index.html#<page> deep links)
+          cp handbook.html ba-handbook.html pm-handbook.html qc-handbook.html public/
+          # Shared assets AND the page fragments the SPA router fetches at runtime
+          cp -r assets public/
+          cp -r pages public/
+          echo "Published files:"
+          ls -R public
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Auto-enable Pages (source = GitHub Actions) on first run if not already enabled
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
