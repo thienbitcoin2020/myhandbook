@@ -681,6 +681,24 @@
   <div class="breadcrumb">Handbook <span>›</span> 6. Operate &amp; Maintain</div>
   <div class="hb-content">
     <div class="sec-head"><div class="sec-icon">🔧</div><div><div class="sec-num">Phase 6</div><h2>Operate &amp; Maintain</h2><div class="sec-sub">Post-launch BAU operations, monitoring, and continuous improvement</div></div></div>
+
+    <div class="card"><div class="card-body">
+      <div class="card-title">🩺 Hypercare / Warranty Period — the go-live → BAU bridge</div>
+      <p><strong>Hypercare</strong> is the heightened-support window immediately after go-live, before the product transitions to steady-state BAU. It is a single coordinated period even though several roles act in it — this is the consolidated view.</p>
+      <div class="callout c-info"><span class="callout-icon">i</span><div><strong>Typical timeline:</strong> intensive first <strong>72 hours</strong> (release watch) → elevated support for <strong>2–4 weeks</strong> (stabilization) → formal exit to BAU + PIR.</div></div>
+      <table class="hb-table" style="margin-top:12px;">
+        <thead><tr><th>Who</th><th>Does in hypercare</th><th>Source of truth</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Release Manager</strong></td><td>72-hour release watch; rollback decision; Go/No-Go to close watch</td><td><a href="#deployment">Deployment Runbook</a> (Phase 4)</td></tr>
+          <tr><td><strong>Ops / SRE</strong></td><td>On-call, monitoring, incident &amp; problem mgmt, SLO watch</td><td><a href="#ops">Operations &amp; SRE Runbook</a></td></tr>
+          <tr><td><strong>Business Analyst</strong></td><td>Business-user Q&amp;A, fast-path clarifications, defect triage (req vs impl)</td><td><a href="#ba">BA Handbook</a> (Phase 7)</td></tr>
+          <tr><td><strong>Dev team</strong></td><td>On standby for hotfixes; root-cause of escaped defects</td><td>Sprint / this handbook §3</td></tr>
+          <tr><td><strong>Product Owner</strong></td><td>Watch adoption/value metrics; prioritise hotfixes vs backlog</td><td><a href="#po">PO Handbook</a></td></tr>
+        </tbody>
+      </table>
+      <div class="callout c-gate" style="margin-top:12px"><span class="callout-icon">!</span><div><strong>Exit criteria (hypercare → BAU):</strong> no open P1/P2; incident rate back to baseline; SLOs met for a sustained window; support runbook &amp; on-call fully handed to BAU; PIR scheduled. Only then is the elevated support formally stood down.</div></div>
+    </div></div>
+
     <div class="card"><div class="card-body">
       <div class="card-title">Key Activities</div>
       <ol class="steps">
@@ -821,6 +839,7 @@
   <div class="breadcrumb">Handbook <span>›</span> 10. Tooling</div>
   <div class="hb-content">
     <div class="sec-head"><div class="sec-icon">🛠️</div><div><div class="sec-num">Section 10</div><h2>Tooling</h2><div class="sec-sub">Standard tool stack across the project lifecycle</div></div></div>
+    <div class="callout c-info"><span class="callout-icon">i</span><div><strong>Representative, not mandated.</strong> The tools named here and throughout the handbooks (e.g. Jira, GitHub, SonarQube, OWASP ZAP, JMeter, Grafana, and the ARB / CAB / GRC governance bodies) are <strong>illustrative examples</strong> of a typical stack. Substitute your organization's actual, approved tools &amp; governance forums — the <em>practice</em> is what matters, not the specific product.</div></div>
     <div class="card"><div class="card-body" style="padding:0">
       <table class="hb-table">
         <thead><tr><th>Category</th><th>Tool</th><th>Purpose</th><th>Owner</th></tr></thead>
