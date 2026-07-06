@@ -30,8 +30,19 @@ async function navigate(hash) {
   if (page === _currentPage) return;
   _currentPage = page;
 
+  // Self-hosted i18n: Vietnamese fragments live in pages/vi/<page>.html.
+  // If a page has no VI version yet, fall back to English with a notice.
+  const wantVi = (typeof _getLang === 'function' && _getLang() === 'vi');
+  let viFellBack = false;
+
   try {
-    const res = await fetch(url);
+    let res;
+    if (wantVi) {
+      res = await fetch(url.replace('pages/', 'pages/vi/'));
+      if (!res.ok) { viFellBack = true; res = await fetch(url); }
+    } else {
+      res = await fetch(url);
+    }
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const html = await res.text();
     const doc  = new DOMParser().parseFromString(html, 'text/html');
@@ -48,6 +59,12 @@ async function navigate(hash) {
     const contentSrc  = doc.getElementById('page-content');
     if (app && contentSrc) {
       app.innerHTML = contentSrc.innerHTML;
+      if (viFellBack) {
+        const note = document.createElement('div');
+        note.className = 'vi-fallback-note';
+        note.innerHTML = '🇻🇳 Bản dịch tiếng Việt cho trang này đang được biên soạn — nội dung tạm hiển thị bằng tiếng Anh.';
+        app.insertBefore(note, app.firstChild);
+      }
     }
 
     // ── Page title ───────────────────────────────────────────
@@ -160,10 +177,13 @@ window.addEventListener('hashchange', () => {
     return;
   }
 
-  // In Vietnamese mode, reload so the Google widget fully re-translates the
-  // freshly routed page (its MutationObserver misses wholesale innerHTML swaps).
-  if (typeof _getLang === 'function' && _getLang() === 'vi') { location.reload(); return; }
   _currentPage = null;
   navigate(location.hash);
 });
+
+/** Re-render the current route (used by the language toggle — no reload). */
+function _rerenderCurrentPage() {
+  _currentPage = null;
+  navigate(location.hash);
+}
 document.addEventListener('DOMContentLoaded', () => navigate(location.hash));

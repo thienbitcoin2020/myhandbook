@@ -1,0 +1,456 @@
+<title>Trang chủ Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+/* Handbook map cards */
+.hub-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:12px}
+.hub-card{display:block;text-decoration:none;background:var(--surface-raised);border:1px solid var(--border);border-left:3px solid var(--role-c,var(--accent));border-radius:var(--radius-sm);padding:16px 16px 14px;transition:background .15s,border-color .15s,transform .1s}
+.hub-card:hover{background:var(--bg-hover);transform:translateY(-2px);text-decoration:none}
+.hub-card .hc-icon{font-size:22px;line-height:1}
+.hub-card .hc-title{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text-display);margin:8px 0 2px}
+.hub-card .hc-owner{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--role-c,var(--accent-bright))}
+.hub-card .hc-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;margin-top:8px}
+.hub-card .hc-open{font-family:var(--font-mono);font-size:11px;color:var(--role-c,var(--accent-bright));margin-top:10px;display:inline-block}
+
+/* Persona entry chips */
+.persona-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.persona-chip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-secondary);background:var(--surface-raised);border:1px solid var(--border-visible);border-radius:999px;padding:6px 12px;transition:all .15s}
+.persona-chip:hover{color:var(--text-display);border-color:var(--accent);text-decoration:none}
+.persona-chip .pc-arrow{color:var(--text-disabled)}
+
+/* Master lifecycle cross-walk */
+.xwalk-scroll{overflow-x:auto;margin-top:12px;border:1px solid var(--border);border-radius:var(--radius-sm)}
+.xwalk{border-collapse:collapse;width:100%;min-width:920px;font-family:var(--font-mono)}
+.xwalk th,.xwalk td{border:1px solid var(--border);padding:7px 8px;text-align:center;font-size:10px;line-height:1.35;vertical-align:middle}
+.xwalk thead th{background:var(--black);color:var(--text-disabled);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:9px}
+.xwalk .xw-rolelabel{background:var(--black);color:var(--text-secondary);font-weight:700;text-align:left;white-space:nowrap;position:sticky;left:0;z-index:1}
+.xwalk td.xw-empty{background:transparent}
+.xwalk td.xw-seg{font-weight:700;color:var(--text-display);cursor:pointer;border-radius:2px}
+.xwalk td.xw-seg:hover{filter:brightness(1.15)}
+.xw-impl{background:color-mix(in srgb,var(--accent) 22%,transparent);border-color:var(--accent)!important}
+.xw-pm{background:var(--status-blue-bg);border-color:var(--status-blue)!important;color:var(--status-blue)!important}
+.xw-ba{background:var(--status-green-bg);border-color:var(--status-green)!important;color:var(--status-green)!important}
+.xw-qc{background:var(--status-yellow-bg);border-color:var(--status-yellow)!important;color:var(--status-yellow)!important}
+.xw-dep{background:var(--status-red-bg);border-color:var(--status-red)!important;color:var(--status-red)!important}
+.xw-po{background:rgba(139,92,246,0.20);border-color:#8b5cf6!important;color:#8b5cf6!important}
+.xw-sa{background:rgba(20,184,166,0.20);border-color:#14b8a6!important;color:#14b8a6!important}
+.xw-sec{background:rgba(249,115,22,0.20);border-color:#f97316!important;color:#f97316!important}
+.xw-ops{background:rgba(6,182,212,0.20);border-color:#06b6d4!important;color:#06b6d4!important}
+.xw-sm{background:rgba(236,72,153,0.20);border-color:#ec4899!important;color:#ec4899!important}
+.xw-ux{background:rgba(168,85,247,0.20);border-color:#a855f7!important;color:#a855f7!important}
+.xw-pmo{background:rgba(100,116,139,0.24);border-color:#64748b!important;color:#94a3b8!important}
+.xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
+.xw-legend span{display:inline-flex;align-items:center;gap:6px}
+.xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.gloss-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.gloss-table th,.gloss-table td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.gloss-table th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em}
+.gloss-table tr:hover td{background:var(--bg-hover)}
+.gloss-term{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-bright);white-space:nowrap}
+.gloss-role{font-family:var(--font-mono);font-size:9px;color:var(--text-disabled);text-transform:uppercase}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏦</div>
+      <div>
+        <div class="bank-title">Trang chủ Handbook</div>
+        <div class="bank-sub">Triển khai dự án · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Trong trang này</div>
+  <nav id="sidebar-nav">
+    <a href="#section-map" onclick="setActive(this)"><span class="nav-icon">🗺️</span> Bản đồ Handbook</a>
+    <a href="#section-xwalk" onclick="setActive(this)"><span class="nav-icon">🧭</span> Cross-Walk vòng đời</a>
+    <a href="#section-persona" onclick="setActive(this)"><span class="nav-icon">🙋</span> Bắt đầu theo vai trò</a>
+    <a href="#section-model" onclick="setActive(this)"><span class="nav-icon">🔀</span> Mô hình triển khai</a>
+    <a href="#section-glossary" onclick="setActive(this)"><span class="nav-icon">🔤</span> Bảng thuật ngữ</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section-label">Handbooks</div>
+  <nav id="sidebar-nav">
+    <a href="#handbook" onclick="setActive(this)"><span class="nav-icon">📘</span> Implementation Handbook</a>
+    <a href="#pm" onclick="setActive(this)"><span class="nav-icon">👔</span> PM Project Handbook</a>
+    <a href="#ba" onclick="setActive(this)"><span class="nav-icon">📖</span> BA Project Handbook</a>
+    <a href="#qc" onclick="setActive(this)"><span class="nav-icon">🧪</span> QC Testing Handbook</a>
+    <a href="#deployment" onclick="setActive(this)"><span class="nav-icon">🚢</span> Deployment Runbook</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">⚖️ Thông tư 09/2020/TT-NHNN</span>
+    <span class="comp-pill">🔒 Tuân thủ ISO 27001</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: PMO &amp; Delivery Governance<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏦 Handbook nội bộ · Hybrid Water-Scrum-Fall</div>
+    <h1>Triển khai dự án<br/><span>Trang chủ Handbook</span></h1>
+    <p>Một điểm truy cập duy nhất cho kho tri thức triển khai dự án của ngân hàng. Chọn một handbook, xem các giai đoạn của từng vai trò khớp với nhau trên một vòng đời chung, hoặc vào thẳng theo vai trò của bạn.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Bộ Handbook</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Một vòng đời</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- HANDBOOK MAP -->
+    <section class="section-block" id="section-map">
+      <div class="section-header"><div class="section-icon">🗺️</div><div><div class="section-number">Tổng quan</div><h2>Bản đồ Handbook</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Các handbook &amp; vai trò chủ quản</div>
+        <p><strong>Implementation Handbook</strong> là "chiếc ô" cha quản trị toàn bộ vòng đời và liên kết tới mười một handbook chuyên môn theo vai trò. Mỗi handbook chuyên môn là nguồn thông tin chuẩn (source of truth) duy nhất cho lĩnh vực của nó.</p>
+        <div class="hub-cards">
+          <a class="hub-card" href="#handbook" style="--role-c:var(--accent-bright)">
+            <div class="hc-icon">📘</div>
+            <div class="hc-title">Implementation Handbook</div>
+            <div class="hc-owner">Chủ quản · PMO</div>
+            <div class="hc-desc">Ô cha: quản trị vòng đời đầu-cuối, các kiểm soát cốt lõi của PM, quality gates, RACI, thuật ngữ, biểu mẫu.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#pm" style="--role-c:var(--status-blue)">
+            <div class="hc-icon">👔</div>
+            <div class="hc-title">PM Project Handbook</div>
+            <div class="hc-owner">Chủ quản · Project Manager</div>
+            <div class="hc-desc">PMBOK® v7: các nhóm quy trình, quản trị, rủi ro, kiểm soát thay đổi, truyền thông, kết thúc dự án.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#po" style="--role-c:#8b5cf6">
+            <div class="hc-icon">🎯</div>
+            <div class="hc-title">Product Owner Handbook</div>
+            <div class="hc-owner">Chủ quản · Product Owner</div>
+            <div class="hc-desc">Scrum Guide 2020: tầm nhìn &amp; Product Goal, discovery, backlog, ưu tiên hoá, đo lường theo outcome.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#ba" style="--role-c:var(--status-green)">
+            <div class="hc-icon">📖</div>
+            <div class="hc-title">BA Project Handbook</div>
+            <div class="hc-owner">Chủ quản · Business Analyst</div>
+            <div class="hc-desc">BABOK® v3 trải 9 giai đoạn BA: khảo sát yêu cầu, BRD/SRS, RTM, NFR, quality gates, anti-patterns.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#sa" style="--role-c:#14b8a6">
+            <div class="hc-icon">🏛️</div>
+            <div class="hc-title">Solution Architect Handbook</div>
+            <div class="hc-owner">Chủ quản · Solution Architect</div>
+            <div class="hc-desc">C4 · arc42 · Well-Architected: HLD/LLD, ADR, tích hợp &amp; API, NFR, bảo mật, định cỡ &amp; khả năng phục hồi.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#qc" style="--role-c:var(--status-yellow)">
+            <div class="hc-icon">🧪</div>
+            <div class="hc-title">QC Testing Handbook</div>
+            <div class="hc-owner">Chủ quản · QA / Test Manager</div>
+            <div class="hc-desc">Quy trình kiểm thử ISTQB CTFL v4.0: các cấp độ, kỹ thuật, kiểm thử theo rủi ro, vòng đời defect, chỉ số.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#deployment" style="--role-c:var(--status-red)">
+            <div class="hc-icon">🚢</div>
+            <div class="hc-title">Deployment Runbook</div>
+            <div class="hc-owner">Chủ quản · Release Manager</div>
+            <div class="hc-desc">Pipeline phát hành, thủ tục CAB, các cổng trước triển khai, bước triển khai, rollback, checklist DoD.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#sec" style="--role-c:#f97316">
+            <div class="hc-icon">🛡️</div>
+            <div class="hc-title">Security &amp; Compliance</div>
+            <div class="hc-owner">Chủ quản · CISO / An ninh thông tin</div>
+            <div class="hc-desc">ISO 27001 · NIST CSF · OWASP · SBV 09/2020: rủi ro, DevSecOps, IAM, bảo vệ dữ liệu, kiểm toán.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#ops" style="--role-c:#06b6d4">
+            <div class="hc-icon">🛰️</div>
+            <div class="hc-title">Operations &amp; SRE</div>
+            <div class="hc-owner">Chủ quản · DevOps / SRE</div>
+            <div class="hc-desc">Google SRE · ITIL 4 · DORA: SLO/error budget, observability, sự cố, DR/BCP.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#sm" style="--role-c:#ec4899">
+            <div class="hc-icon">🌀</div>
+            <div class="hc-title">Scrum Master Handbook</div>
+            <div class="hc-owner">Chủ quản · Scrum Master</div>
+            <div class="hc-desc">Scrum Guide 2020: servant leadership, điều phối sự kiện, xử lý impediment, coaching, sức khoẻ đội nhóm.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#ux" style="--role-c:#a855f7">
+            <div class="hc-icon">🎨</div>
+            <div class="hc-title">UX/UI Designer Handbook</div>
+            <div class="hc-owner">Chủ quản · UX/UI Designer</div>
+            <div class="hc-desc">Double Diamond · NN/g · WCAG 2.2: nghiên cứu người dùng, IA, wireframe, design system, usability.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+          <a class="hub-card" href="#pmo" style="--role-c:#94a3b8">
+            <div class="hc-icon">🏢</div>
+            <div class="hc-title">PMO Governance &amp; Portfolio</div>
+            <div class="hc-owner">Chủ quản · PMO Lead</div>
+            <div class="hc-desc">PMI · P3O: danh mục &amp; tiếp nhận dự án, RAID, EVM/lợi ích, đảm bảo chất lượng, báo cáo danh mục.</div>
+            <span class="hc-open">Mở →</span>
+          </a>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- MASTER LIFECYCLE CROSS-WALK -->
+    <section class="section-block" id="section-xwalk">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Đối chiếu</div><h2>Cross-Walk vòng đời tổng thể</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Giai đoạn của từng vai trò khớp thế nào trên một vòng đời chung</div>
+        <p>Mỗi handbook đánh số giai đoạn theo chuẩn riêng của nó (PMBOK, BABOK, ISTQB). Bản đồ này quy tất cả về một vòng đời dự án duy nhất — nhìn một lần là thấy ai đang làm gì và vào lúc nào. Bấm vào ô bất kỳ để mở handbook tương ứng.</p>
+        <div class="xwalk-scroll">
+          <table class="xwalk">
+            <thead>
+              <tr>
+                <th class="xw-rolelabel">Vai trò \ Giai đoạn</th>
+                <th>Ý tưởng</th><th>Kế hoạch</th><th>Khám phá /<br/>Khởi tạo</th><th>Yêu cầu</th><th>Thiết kế</th><th>Xây dựng</th><th>Kiểm thử</th><th>Pre-<br/>Deploy</th><th>Triển khai /<br/>GTM</th><th>Vận hành /<br/>Đóng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="xw-rolelabel">📘 Implementation</td>
+                <td class="xw-seg xw-impl" colspan="2" onclick="location.hash='#handbook'">GĐ1 · Chiến lược &amp; Kế hoạch</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">GĐ2 · Khám phá &amp; Khởi tạo</td>
+                <td class="xw-seg xw-impl" colspan="5" onclick="location.hash='#handbook'">GĐ3 · Thực thi SDLC (Hybrid Water-Scrum-Fall)</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">GĐ4 · GTM</td>
+                <td class="xw-seg xw-impl" onclick="location.hash='#handbook'">GĐ5 Đóng · GĐ6 Vận hành</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🏢 PMO (PMI/P3O)</td>
+                <td class="xw-seg xw-pmo" colspan="2" onclick="location.hash='#pmo'">Danh mục &amp; Tiếp nhận</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Cổng khởi tạo</td>
+                <td class="xw-seg xw-pmo" colspan="5" onclick="location.hash='#pmo'">Đảm bảo · RAID · Tài chính · Báo cáo</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Cổng lợi ích</td>
+                <td class="xw-seg xw-pmo" onclick="location.hash='#pmo'">Lợi ích &amp; Đóng dự án</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🎯 PO (Scrum)</td>
+                <td class="xw-seg xw-po" colspan="2" onclick="location.hash='#po'">Tầm nhìn &amp; Chiến lược</td>
+                <td class="xw-seg xw-po" colspan="2" onclick="location.hash='#po'">Discovery &amp; Backlog</td>
+                <td class="xw-seg xw-po" colspan="3" onclick="location.hash='#po'">Refinement · Sprint Review · Giá trị</td>
+                <td class="xw-seg xw-po" colspan="2" onclick="location.hash='#po'">Phát hành &amp; Giá trị</td>
+                <td class="xw-seg xw-po" onclick="location.hash='#po'">Outcome &amp; Chỉ số</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">👔 PM (PMBOK)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Khởi tạo</td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Lập kế hoạch</td>
+                <td class="xw-seg xw-pm" colspan="5" onclick="location.hash='#pm'">Thực thi · Giám sát &amp; Kiểm soát</td>
+                <td class="xw-seg xw-pm" onclick="location.hash='#pm'">Kết thúc</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🌀 SM (Scrum)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Thiết lập đội</td>
+                <td class="xw-seg xw-sm" colspan="5" onclick="location.hash='#sm'">Điều phối · impediment · dòng chảy · coaching</td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Retro phát hành</td>
+                <td class="xw-seg xw-sm" onclick="location.hash='#sm'">Cải tiến liên tục</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">📖 BA (BABOK)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P0 Khởi tạo</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P1–P3 Khảo sát → Phân tích → Phê duyệt</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P4 Hỗ trợ thiết kế</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P5 Hỗ trợ phát triển</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P6 UAT</td>
+                <td class="xw-seg xw-ba" colspan="2" onclick="location.hash='#ba'">P7 Phát hành &amp; Chuyển giao</td>
+                <td class="xw-seg xw-ba" onclick="location.hash='#ba'">P8 PIR</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🎨 UX/UI (NN/g)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Nghiên cứu</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">IA &amp; Luồng</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Wireframe → UI</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Design system</td>
+                <td class="xw-seg xw-ux" onclick="location.hash='#ux'">Kiểm thử usability</td>
+                <td class="xw-empty" colspan="3"></td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🏛️ SA (C4/arc42)</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">Bối cảnh &amp; Phương án</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">NFR &amp; Đánh đổi</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">HLD / LLD · ADR</td>
+                <td class="xw-seg xw-sa" colspan="2" onclick="location.hash='#sa'">Giám sát xây dựng · Kiểm chứng NFR</td>
+                <td class="xw-seg xw-sa" onclick="location.hash='#sa'">Ký duyệt pre-deploy</td>
+                <td class="xw-empty" colspan="2"></td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🛡️ Security (ISO)</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Chính sách &amp; Rủi ro</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Tuân thủ · Threat model</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Thiết kế bảo mật · DevSecOps</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">Kiểm thử bảo mật · Cổng</td>
+                <td class="xw-seg xw-sec" colspan="2" onclick="location.hash='#sec'">SecOps · Kiểm toán</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🧪 QC (ISTQB)</td>
+                <td class="xw-empty" colspan="3"></td>
+                <td class="xw-seg xw-qc" colspan="2" onclick="location.hash='#qc'">Lập kế hoạch test + Review tĩnh</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Thiết kế &amp; Chuẩn bị test</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Thực thi test</td>
+                <td class="xw-seg xw-qc" onclick="location.hash='#qc'">Hoàn tất test</td>
+                <td class="xw-empty" colspan="2"></td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🛰️ Ops / SRE</td>
+                <td class="xw-empty" colspan="4"></td>
+                <td class="xw-seg xw-ops" colspan="2" onclick="location.hash='#ops'">SLO &amp; Observability từ thiết kế</td>
+                <td class="xw-seg xw-ops" colspan="2" onclick="location.hash='#ops'">Sẵn sàng phát hành · Chuẩn bị DR</td>
+                <td class="xw-seg xw-ops" onclick="location.hash='#ops'">Triển khai &amp; chuyển đổi</td>
+                <td class="xw-seg xw-ops" onclick="location.hash='#ops'">Vận hành · Sự cố · DR/BCP</td>
+              </tr>
+              <tr>
+                <td class="xw-rolelabel">🚢 Deployment</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">GĐ1 Khám phá &amp; Khởi tạo</td>
+                <td class="xw-empty" colspan="2"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">GĐ2 Phát triển</td>
+                <td class="xw-empty"></td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">GĐ3 Pre-Deploy</td>
+                <td class="xw-seg xw-dep" onclick="location.hash='#deployment'">GĐ4 Triển khai</td>
+                <td class="xw-empty"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="xw-legend">
+          <span><span class="xw-dot" style="background:var(--accent)"></span> Implementation (ô cha)</span>
+          <span><span class="xw-dot" style="background:#8b5cf6"></span> PO</span>
+          <span><span class="xw-dot" style="background:var(--status-blue)"></span> PM</span>
+          <span><span class="xw-dot" style="background:var(--status-green)"></span> BA</span>
+          <span><span class="xw-dot" style="background:#14b8a6"></span> SA</span>
+          <span><span class="xw-dot" style="background:var(--status-yellow)"></span> QC</span>
+          <span><span class="xw-dot" style="background:var(--status-red)"></span> Deployment</span>
+          <span><span class="xw-dot" style="background:#94a3b8"></span> PMO</span>
+          <span><span class="xw-dot" style="background:#ec4899"></span> SM</span>
+          <span><span class="xw-dot" style="background:#a855f7"></span> UX/UI</span>
+          <span><span class="xw-dot" style="background:#f97316"></span> Security</span>
+          <span><span class="xw-dot" style="background:#06b6d4"></span> Ops/SRE</span>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">ℹ️</span><div>Các cột là vòng đời triển khai chuẩn. Các thanh cho thấy giai đoạn (đánh số riêng) của từng vai trò nằm ở đâu — ví dụ BA <strong>P6 UAT</strong>, QC <strong>Thực thi test</strong> và Deployment <strong>Pre-Deploy</strong> đều dồn quanh cửa sổ <strong>Kiểm thử → Pre-Deploy</strong>: đây chính là nơi các điểm bàn giao cần phối hợp chặt nhất.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- START BY ROLE -->
+    <section class="section-block" id="section-persona">
+      <div class="section-header"><div class="section-icon">🙋</div><div><div class="section-number">Bắt đầu nhanh</div><h2>Bắt đầu theo vai trò</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Tôi là…</div>
+        <div class="persona-row">
+          <a class="persona-chip" href="#pm">👔 Project Manager <span class="pc-arrow">→ PM Handbook</span></a>
+          <a class="persona-chip" href="#po">🎯 Product Owner <span class="pc-arrow">→ PO Handbook</span></a>
+          <a class="persona-chip" href="#ba">📖 Business Analyst <span class="pc-arrow">→ BA Handbook</span></a>
+          <a class="persona-chip" href="#sa">🏛️ Solution Architect <span class="pc-arrow">→ SA Handbook</span></a>
+          <a class="persona-chip" href="#qc">🧪 QA / Tester <span class="pc-arrow">→ QC Handbook</span></a>
+          <a class="persona-chip" href="#deployment">🚢 Release Manager <span class="pc-arrow">→ Deployment Runbook</span></a>
+          <a class="persona-chip" href="#handbook">👩‍💼 Lãnh đạo / Sponsor <span class="pc-arrow">→ Implementation Handbook</span></a>
+          <a class="persona-chip" href="#handbook">💻 Developer <span class="pc-arrow">→ Implementation · SDLC</span></a>
+          <a class="persona-chip" href="#sm">🌀 Scrum Master <span class="pc-arrow">→ SM Handbook</span></a>
+          <a class="persona-chip" href="#ux">🎨 UX/UI Designer <span class="pc-arrow">→ UX Handbook</span></a>
+          <a class="persona-chip" href="#sec">🛡️ Security / CISO <span class="pc-arrow">→ Security &amp; Compliance</span></a>
+          <a class="persona-chip" href="#ops">🛰️ DevOps / SRE <span class="pc-arrow">→ Operations &amp; SRE</span></a>
+          <a class="persona-chip" href="#pmo">🏢 PMO Lead <span class="pc-arrow">→ PMO Governance</span></a>
+        </div>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">💡</span><div>Mới vào đội? Hãy bắt đầu với <a href="#handbook" style="color:var(--accent-bright)">Implementation Handbook → Mục 0 (Hướng dẫn sử dụng)</a> để nắm bức tranh tổng thể, rồi đi sâu vào handbook của vai trò mình.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- GLOSSARY -->
+    <section class="section-block" id="section-glossary">
+      <div class="section-header"><div class="section-icon">🔤</div><div><div class="section-number">Tra cứu</div><h2>Bảng thuật ngữ chuẩn</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Thuật ngữ then chốt mọi vai trò cần thống nhất</div>
+        <p>Trong bản tiếng Việt, các <strong>thuật ngữ chuẩn được giữ nguyên tiếng Anh</strong> (đúng cách người trong nghề sử dụng). Dùng bảng này để tra nghĩa từng thuật ngữ — nó giữ cho các handbook nhất quán giữa các vai trò.</p>
+        <table class="gloss-table">
+          <thead><tr><th style="width:180px">Thuật ngữ</th><th>Ý nghĩa</th><th style="width:90px">Vai trò</th></tr></thead>
+          <tbody>
+            <tr><td class="gloss-term">Product Goal</td><td>Mục tiêu dài hạn của sản phẩm, được lưu trong backlog.</td><td class="gloss-role">PO · SM</td></tr>
+            <tr><td class="gloss-term">Sprint</td><td>Chu kỳ giao hàng cố định 1–4 tuần.</td><td class="gloss-role">SM</td></tr>
+            <tr><td class="gloss-term">Backlog</td><td>Danh sách công việc được sắp theo thứ tự ưu tiên.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term">Definition of Done (DoD)</td><td>Chuẩn chất lượng mà một Increment phải đạt để đủ điều kiện phát hành.</td><td class="gloss-role">Đội</td></tr>
+            <tr><td class="gloss-term">Definition of Ready (DoR)</td><td>Checklist để một story đủ điều kiện vào Sprint.</td><td class="gloss-role">PO · BA</td></tr>
+            <tr><td class="gloss-term">User Story</td><td>Một nhu cầu được mô tả từ góc nhìn người dùng.</td><td class="gloss-role">PO · BA</td></tr>
+            <tr><td class="gloss-term">Acceptance Criteria</td><td>Các điều kiện xác định một story được coi là đúng.</td><td class="gloss-role">BA · QC</td></tr>
+            <tr><td class="gloss-term">Increment</td><td>Bước tiến cộng dồn, dùng được, của sản phẩm.</td><td class="gloss-role">Đội</td></tr>
+            <tr><td class="gloss-term">Product Roadmap</td><td>Kế hoạch theo outcome dạng Now / Next / Later.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term">Outcome vs Output</td><td>Thay đổi hành vi/giá trị tạo ra so với số tính năng đã bàn giao.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term">RTM</td><td>Ma trận truy vết yêu cầu (yêu cầu ↔ test case).</td><td class="gloss-role">BA</td></tr>
+            <tr><td class="gloss-term">NFR</td><td>Yêu cầu phi chức năng, phải đo lường được.</td><td class="gloss-role">BA · SA</td></tr>
+            <tr><td class="gloss-term">Strategy Analysis</td><td>Phân tích hiện trạng → trạng thái tương lai.</td><td class="gloss-role">BA</td></tr>
+            <tr><td class="gloss-term">HLD / LLD</td><td>Thiết kế mức tổng thể / mức chi tiết.</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term">ADR</td><td>Bản ghi quyết định kiến trúc (ghi lại "vì sao").</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term">Well-Architected</td><td>Đánh giá chất lượng kiến trúc theo 6 trụ cột.</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term">STRIDE</td><td>Khung phân loại mối đe doạ khi threat modeling.</td><td class="gloss-role">SA · Sec</td></tr>
+            <tr><td class="gloss-term">Severity vs Priority</td><td>Mức ảnh hưởng kỹ thuật so với mức khẩn cấp nghiệp vụ của một defect.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term">Regression</td><td>Kiểm thử lại để bảo đảm thay đổi không phá vỡ chức năng sẵn có.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term">Coverage</td><td>Tỷ lệ phần trăm hạng mục đã được kiểm thử phủ tới.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term">SAST / DAST</td><td>Quét bảo mật tĩnh / động.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term">IAM</td><td>Quản lý danh tính và quyền truy cập.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term">Least Privilege</td><td>Chỉ cấp đúng mức quyền tối thiểu cần thiết.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term">CVSS</td><td>Thang điểm mức độ nghiêm trọng của lỗ hổng (0–10).</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term">SLO / SLI / SLA</td><td>Mục tiêu / chỉ số đo / cam kết mức dịch vụ.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term">Error Budget</td><td>Mức "được phép lỗi" (100% − SLO).</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term">RTO / RPO</td><td>Thời gian khôi phục tối đa / lượng dữ liệu mất tối đa chấp nhận được.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term">Blameless Postmortem</td><td>Phân tích sự cố tập trung vào hệ thống, không đổ lỗi cá nhân.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term">DORA</td><td>4 chỉ số giao hàng: tần suất deploy, lead time, tỷ lệ thay đổi lỗi (CFR), MTTR.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term">EVM (CPI / SPI)</td><td>Quản lý giá trị thu được — hiệu suất chi phí / tiến độ.</td><td class="gloss-role">PM · PMO</td></tr>
+            <tr><td class="gloss-term">RAID</td><td>Sổ theo dõi Rủi ro, Giả định, Vấn đề, Phụ thuộc.</td><td class="gloss-role">PM · PMO</td></tr>
+            <tr><td class="gloss-term">Stage-Gate</td><td>Cổng phê duyệt Go / Kill / Hold / Recycle.</td><td class="gloss-role">PMO</td></tr>
+            <tr><td class="gloss-term">Benefits Realization</td><td>Thu hoạch giá trị/lợi ích sau khi bàn giao.</td><td class="gloss-role">PMO</td></tr>
+            <tr><td class="gloss-term">CAB</td><td>Hội đồng tư vấn thay đổi (quản trị phát hành).</td><td class="gloss-role">Deploy</td></tr>
+            <tr><td class="gloss-term">Hypercare</td><td>Giai đoạn hỗ trợ tăng cường ngay sau go-live.</td><td class="gloss-role">Tất cả</td></tr>
+            <tr><td class="gloss-term">Rollback</td><td>Quay về phiên bản hoạt động ổn định trước đó.</td><td class="gloss-role">Deploy</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- DELIVERY MODEL -->
+    <section class="section-block" id="section-model">
+      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Bối cảnh</div><h2>Mô hình triển khai</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Hybrid Water-Scrum-Fall</div>
+        <p>Ngân hàng vận hành theo <strong>mô hình lai (hybrid)</strong>: quản trị Waterfall có cấu trúc với các phase gate (lập kế hoạch, phê duyệt, UAT, CAB, phát hành) bao quanh việc giao hàng theo Sprint của Agile/Scrum. Kỷ luật quản trị bảo đảm khả năng kiểm toán trong môi trường chịu quản lý; thực thi Agile giữ nhịp giao hàng lặp.</p>
+        <ul class="step-cl" style="margin-top:10px;">
+          <li><strong>Cổng Waterfall:</strong> Chiến lược &amp; Kế hoạch, ký duyệt Yêu cầu, UAT, phê duyệt CAB &amp; phát hành.</li>
+          <li><strong>Thực thi Agile:</strong> xây dựng &amp; kiểm thử theo Sprint giữa các cổng.</li>
+          <li><strong>PM là xương sống:</strong> sở hữu tích hợp, baseline, rủi ro, thay đổi, báo cáo và kết thúc dự án xuyên suốt mọi giai đoạn.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Trang chủ v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Chủ quản: PMO &amp; Delivery Governance · Hybrid SDLC · Thông tư 09/2020/TT-NHNN (NHNN) · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->

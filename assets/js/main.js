@@ -65,21 +65,22 @@ function _injectThemeToggle() {
 document.addEventListener('DOMContentLoaded', _injectThemeToggle);
 
 // ============================================================
-// LANGUAGE — English / Vietnamese via Google Website Translate
-// State lives in the `googtrans` cookie read by the Google widget.
+// LANGUAGE — English / Vietnamese (self-hosted translations)
+// VI pages live in pages/vi/*.html (human-reviewed; standard
+// domain terms intentionally stay in English). No Google widget,
+// no reload — the router just fetches the matching fragment.
 // ============================================================
 function _getLang() {
-  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/(en|vi)/);
-  if (m) return m[1];
-  return localStorage.getItem('nt_lang') || 'en';
+  return localStorage.getItem('nt_lang') === 'vi' ? 'vi' : 'en';
 }
 
 function setLang(lang) {
   lang = (lang === 'vi') ? 'vi' : 'en';
-  // Cookie the Google widget reads on load; reload applies it site-wide.
-  document.cookie = 'googtrans=/en/' + lang + ';path=/';
+  if (lang === _getLang()) { _updateLangBtns(lang); return; }
   localStorage.setItem('nt_lang', lang);
-  location.reload();
+  _updateLangBtns(lang);
+  // Instant re-render of the current route in the new language
+  if (typeof _rerenderCurrentPage === 'function') _rerenderCurrentPage();
 }
 
 function _updateLangBtns(lang) {
