@@ -65,6 +65,60 @@ function _injectThemeToggle() {
 document.addEventListener('DOMContentLoaded', _injectThemeToggle);
 
 // ============================================================
+// LANGUAGE — English / Vietnamese via Google Website Translate
+// State lives in the `googtrans` cookie read by the Google widget.
+// ============================================================
+function _getLang() {
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/(en|vi)/);
+  if (m) return m[1];
+  return localStorage.getItem('nt_lang') || 'en';
+}
+
+function setLang(lang) {
+  lang = (lang === 'vi') ? 'vi' : 'en';
+  // Cookie the Google widget reads on load; reload applies it site-wide.
+  document.cookie = 'googtrans=/en/' + lang + ';path=/';
+  localStorage.setItem('nt_lang', lang);
+  location.reload();
+}
+
+function _updateLangBtns(lang) {
+  const en = document.getElementById('lng-en');
+  const vi = document.getElementById('lng-vi');
+  if (!en || !vi) return;
+  en.classList.toggle('active', lang !== 'vi');
+  vi.classList.toggle('active', lang === 'vi');
+}
+
+function _injectLangToggle() {
+  if (document.getElementById('lang-toggle-wrap')) return;
+  const sidebar = document.getElementById('sidebar') || document.getElementById('hb-sidebar');
+  if (!sidebar) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'lang-toggle-wrap notranslate';
+  wrap.id = 'lang-toggle-wrap';
+  wrap.setAttribute('translate', 'no');
+  wrap.innerHTML = `
+    <div class="lang-seg">
+      <button class="lang-btn" id="lng-en" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn" id="lng-vi" onclick="setLang('vi')">🇻🇳 VI</button>
+    </div>`;
+
+  const themeWrap = document.getElementById('theme-toggle-wrap');
+  if (themeWrap) {
+    themeWrap.insertAdjacentElement('afterend', wrap);
+  } else {
+    const header = sidebar.querySelector('.sidebar-top, .sb-top');
+    if (header) header.insertAdjacentElement('afterend', wrap);
+    else sidebar.insertBefore(wrap, sidebar.firstChild);
+  }
+  _updateLangBtns(_getLang());
+}
+
+document.addEventListener('DOMContentLoaded', _injectLangToggle);
+
+// ============================================================
 // AUTHENTICATION
 // Credentials are intentionally client-side for this static
 // internal tool. Not suitable for high-security prod systems.

@@ -310,6 +310,56 @@ html[data-theme="light"] .ts-btn.active {
   color: var(--surface);
 }
 
+/* ── Language toggle (EN / VI) ── */
+.lang-toggle-wrap {
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.lang-seg {
+  display: flex;
+  background: var(--black);
+  border: 1px solid var(--border-visible);
+  border-radius: 999px;
+  padding: 2px;
+  gap: 2px;
+}
+.lang-btn {
+  flex: 1;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-disabled);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.lang-btn:hover { color: var(--text-secondary); }
+.lang-btn.active { background: var(--accent); color: #fff; }
+html[data-theme="light"] .lang-seg { background: var(--surface-raised); }
+
+/* ── Hide Google Translate injected chrome ──
+   Google uses obfuscated class names for the top banner (e.g. VIpgJd-*),
+   but every Google frame carries .skiptranslate — so hide those iframes. */
+iframe.skiptranslate,
+.goog-te-banner-frame,
+.goog-te-gadget-icon,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+#google_translate_element { display: none !important; }
+body { top: 0 !important; position: static !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+.goog-tooltip, .goog-tooltip:hover { display: none !important; }
+
 /* ========================================================
    LOGIN OVERLAY
 ======================================================== */

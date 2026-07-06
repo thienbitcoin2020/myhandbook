@@ -75,6 +75,7 @@ async function navigate(hash) {
 
     // ── Re-run shared initialisations ─────────────────────────
     if (typeof _injectThemeToggle === 'function') _injectThemeToggle();
+    if (typeof _injectLangToggle  === 'function') _injectLangToggle();
     if (typeof syncAuthState      === 'function') syncAuthState();
     if (typeof applyGrids         === 'function') applyGrids();
 
@@ -148,6 +149,9 @@ function _setupScrollSpy() {
 }
 
 window.addEventListener('hashchange', () => {
+  // In Vietnamese mode, reload so the Google widget fully re-translates the
+  // freshly routed page (its MutationObserver misses wholesale innerHTML swaps).
+  if (typeof _getLang === 'function' && _getLang() === 'vi') { location.reload(); return; }
   _currentPage = null;
   navigate(location.hash);
 });
