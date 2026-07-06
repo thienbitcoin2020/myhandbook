@@ -1,48 +1,51 @@
 /* ========================================================
-   NOTHING DESIGN SYSTEM v4.0
-   OLED Dark + Light Mode · Space Grotesk + Space Mono
-   Monochrome · Mechanical · Instrument-grade precision
+   FERRARI DESIGN SYSTEM (per DESIGN-ferrari.md)
+   Cinematic editorial · Near-black canvas #181818 · Rosso Corsa #da291c
+   Single sans (Inter as FerrariSans substitute) · Display 500, never bold
+   Sharp 0px corners · Hairlines + brightness-step elevation
    Bank Handbook
 ======================================================== */
 
-/* ── GOOGLE FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+/* ── GOOGLE FONTS ──
+   FerrariSans is licensed; documented substitute is Inter (display 500).
+   JetBrains Mono retained ONLY for ASCII diagrams/code (alignment). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  /* ── Surface layers (OLED dark) ── */
-  --black:           #000000;
-  --surface:         #111111;
-  --surface-raised:  #1A1A1A;
-  --surface-overlay: #222222;
+  /* ── Surface layers (Ferrari cinema dark — canvas never pure black) ── */
+  --black:           #181818;   /* {colors.canvas} */
+  --surface:         #181818;   /* canvas floor */
+  --surface-raised:  #303030;   /* {colors.canvas-elevated} — cards/plates */
+  --surface-overlay: #303030;   /* single brightness step */
 
-  /* ── Borders ── */
-  --border:          #222222;
-  --border-visible:  #333333;
-  --border-strong:   #444444;
+  /* ── Borders (hairlines) ── */
+  --border:          #303030;   /* {colors.hairline} */
+  --border-visible:  #3c3c3c;   /* from brand grey gradient */
+  --border-strong:   #4a4a4a;
 
-  /* ── Typography hierarchy ── */
-  --text-display:    #FFFFFF;
-  --text-primary:    #E8E8E8;
-  --text-secondary:  #999999;
-  --text-disabled:   #666666;
-  --text-muted:      #555555;
+  /* ── Typography hierarchy (ink / body / muted) ── */
+  --text-display:    #ffffff;   /* {colors.ink} */
+  --text-primary:    #969696;   /* {colors.body} — editorial running text */
+  --text-secondary:  #8f8f8f;   /* {colors.muted-soft} */
+  --text-disabled:   #666666;   /* {colors.muted} */
+  --text-muted:      #666666;
 
-  /* ── Accent (red = interrupt signal) ── */
-  --accent:          #D71921;
-  --accent-bright:   #E83B43;
-  --accent-dim:      rgba(215, 25, 33, 0.12);
-  --accent-glow:     rgba(215, 25, 33, 0.25);
-  --accent-subtle:   rgba(215, 25, 33, 0.15);
+  /* ── Accent (Rosso Corsa — used scarcely) ── */
+  --accent:          #da291c;   /* {colors.primary} */
+  --accent-bright:   #da291c;   /* single brand red — no lighter variant */
+  --accent-dim:      rgba(218, 41, 28, 0.12);
+  --accent-glow:     rgba(218, 41, 28, 0.25);
+  --accent-subtle:   rgba(218, 41, 28, 0.15);
 
-  /* ── Status ── */
-  --success:         #4A9E5C;
-  --success-bg:      rgba(74, 158, 92, 0.12);
-  --warning:         #D4A843;
-  --warning-bg:      rgba(212, 168, 67, 0.12);
-  --error:           #D71921;
-  --error-bg:        rgba(215, 25, 33, 0.12);
-  --info:            #5B9BF6;
-  --info-bg:         rgba(91, 155, 246, 0.12);
+  /* ── Status (Ferrari semantic; yellow kept for functional RAG) ── */
+  --success:         #03904a;   /* {colors.semantic-success} */
+  --success-bg:      rgba(3, 144, 74, 0.12);
+  --warning:         #f6e500;   /* {colors.accent-yellow} — RAG amber need */
+  --warning-bg:      rgba(246, 229, 0, 0.10);
+  --error:           #f13a2c;   /* {colors.semantic-warning} */
+  --error-bg:        rgba(241, 58, 44, 0.12);
+  --info:            #4c98b9;   /* {colors.semantic-info} */
+  --info-bg:         rgba(76, 152, 185, 0.12);
 
   /* ── Legacy bridge tokens (full HTML compatibility) ── */
   --bg-base:          var(--black);
@@ -66,23 +69,24 @@
   --status-red-bg:    var(--error-bg);
   --status-blue:      var(--info);
   --status-blue-bg:   var(--info-bg);
-  --status-purple:    #A78BFA;
-  --status-purple-bg: rgba(167, 139, 250, 0.12);
+  /* Purple is outside the Ferrari palette (single-red rule) → neutral grey */
+  --status-purple:    #8f8f8f;
+  --status-purple-bg: rgba(143, 143, 143, 0.12);
   --status-gray:      var(--text-secondary);
   --status-gray-bg:   rgba(255,255,255,0.06);
 
-  /* ── Typography ── */
-  --font-sans:  'Space Grotesk', 'DM Sans', system-ui, sans-serif;
-  --font-mono:  'Space Mono', 'JetBrains Mono', 'SF Mono', monospace;
+  /* ── Typography (single sans; mono only for diagrams/code) ── */
+  --font-sans:  'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
   /* ── Layout ── */
   --sidebar-w: 256px;
 
-  /* ── Border radius ── */
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
+  /* ── Border radius (sharp 0px — Ferrari precision) ── */
+  --radius-sm:  0px;
+  --radius-md:  0px;
+  --radius-lg:  0px;
+  --radius-xl:  0px;
 
   /* ── Spacing ── */
   --space-xs:  4px;
@@ -102,71 +106,64 @@
    Applied when <html data-theme="light">
 ======================================================== */
 html[data-theme="light"] {
-  /* Surfaces */
-  --black:           #F0F0F0;
-  --surface:         #FFFFFF;
-  --surface-raised:  #F5F5F5;
-  --surface-overlay: #EBEBEB;
+  /* Surfaces — Ferrari white editorial bands */
+  --black:           #ebebeb;   /* {colors.surface-strong-light} */
+  --surface:         #ffffff;   /* {colors.canvas-light} */
+  --surface-raised:  #f7f7f7;   /* {colors.surface-soft-light} */
+  --surface-overlay: #ebebeb;
 
-  /* Borders */
-  --border:          #E2E2E2;
-  --border-visible:  #CFCFCF;
-  --border-strong:   #BBBBBB;
-  --border-subtle:   #E2E2E2;
-  --border-default:  #CFCFCF;
+  /* Borders — light hairlines */
+  --border:          #ebebeb;   /* {colors.hairline-soft} */
+  --border-visible:  #d2d2d2;   /* {colors.hairline-on-light} */
+  --border-strong:   #b8b8b8;
+  --border-subtle:   #ebebeb;
+  --border-default:  #d2d2d2;
 
-  /* Text */
-  --text-display:    #000000;
-  --text-primary:    #1A1A1A;
-  --text-secondary:  #555555;
-  --text-disabled:   #AAAAAA;
-  --text-muted:      #AAAAAA;
+  /* Text on light */
+  --text-display:    #181818;   /* {colors.on-light} */
+  --text-primary:    #181818;   /* {colors.body-on-light} */
+  --text-secondary:  #666666;   /* {colors.muted} */
+  --text-disabled:   #8f8f8f;   /* {colors.muted-soft} */
+  --text-muted:      #8f8f8f;
 
   /* Surfaces bridge */
-  --bg-base:         #F0F0F0;
-  --bg-surface:      #FFFFFF;
-  --bg-elevated:     #F5F5F5;
-  --bg-overlay:      #EBEBEB;
+  --bg-base:         #ebebeb;
+  --bg-surface:      #ffffff;
+  --bg-elevated:     #f7f7f7;
+  --bg-overlay:      #ebebeb;
   --bg-hover:        rgba(0,0,0,0.04);
   --bg-active:       rgba(0,0,0,0.08);
 
-  /* Accent stays red — brand identity */
-  --accent:          #D71921;
-  --accent-bright:   #B91219;
-  --accent-dim:      rgba(215, 25, 33, 0.08);
-  --accent-glow:     rgba(215, 25, 33, 0.15);
-  --accent-subtle:   rgba(215, 25, 33, 0.07);
+  /* Accent — Rosso Corsa unchanged; darker press state for contrast */
+  --accent:          #da291c;
+  --accent-bright:   #b01e0a;   /* {colors.primary-active} */
+  --accent-dim:      rgba(218, 41, 28, 0.08);
+  --accent-glow:     rgba(218, 41, 28, 0.15);
+  --accent-subtle:   rgba(218, 41, 28, 0.07);
 
-  /* Status — adjusted for light bg legibility */
-  --success:         #257A35;
-  --success-bg:      rgba(37, 122, 53, 0.1);
-  --warning:         #8A5E0D;
+  /* Status — Ferrari hues, darkened where needed for light-bg legibility */
+  --success:         #03904a;
+  --success-bg:      rgba(3, 144, 74, 0.1);
+  --warning:         #8A5E0D;   /* functional amber (Ferrari yellow unreadable on white) */
   --warning-bg:      rgba(138, 94, 13, 0.1);
-  --error:           #C0151C;
-  --error-bg:        rgba(192, 21, 28, 0.1);
-  --info:            #1A56CC;
-  --info-bg:         rgba(26, 86, 204, 0.1);
+  --error:           #b01e0a;   /* rosso active — distinct & legible */
+  --error-bg:        rgba(176, 30, 10, 0.1);
+  --info:            #35708c;   /* darkened semantic-info */
+  --info-bg:         rgba(53, 112, 140, 0.1);
 
   /* Status legacy */
-  --status-green:     #257A35;
-  --status-green-bg:  rgba(37, 122, 53, 0.1);
+  --status-green:     #03904a;
+  --status-green-bg:  rgba(3, 144, 74, 0.1);
   --status-yellow:    #8A5E0D;
   --status-yellow-bg: rgba(138, 94, 13, 0.1);
-  --status-red:       #C0151C;
-  --status-red-bg:    rgba(192, 21, 28, 0.1);
-  --status-blue:      #1A56CC;
-  --status-blue-bg:   rgba(26, 86, 204, 0.1);
-  --status-purple:    #6D28D9;
-  --status-purple-bg: rgba(109, 40, 217, 0.1);
-  --status-gray:      #888888;
+  --status-red:       #b01e0a;
+  --status-red-bg:    rgba(176, 30, 10, 0.1);
+  --status-blue:      #35708c;
+  --status-blue-bg:   rgba(53, 112, 140, 0.1);
+  --status-purple:    #666666;  /* no purple in Ferrari palette */
+  --status-purple-bg: rgba(102, 102, 102, 0.1);
+  --status-gray:      #8f8f8f;
   --status-gray-bg:   rgba(0, 0, 0, 0.06);
-
-  /* Light mode: stronger text contrast */
-  --text-display:    #000000;
-  --text-primary:    #0D0D0D;
-  --text-secondary:  #3A3A3A;  /* was #555 — darkened for readability */
-  --text-disabled:   #888888;  /* was #AAA — more readable on light bg */
-  --text-muted:      #888888;
 }
 
 /* ========================================================
@@ -269,7 +266,7 @@ a:hover { text-decoration: underline; }
   display: flex;
   background: var(--black);
   border: 1px solid var(--border-visible);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 2px;
   gap: 2px;
 }
@@ -278,7 +275,7 @@ a:hover { text-decoration: underline; }
   flex: 1;
   padding: 5px 8px;
   border: none;
-  border-radius: 999px;
+  border-radius: 0;
   background: none;
   cursor: pointer;
   font-family: var(--font-mono);
@@ -320,7 +317,7 @@ html[data-theme="light"] .ts-btn.active {
   display: flex;
   background: var(--black);
   border: 1px solid var(--border-visible);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 2px;
   gap: 2px;
 }
@@ -328,7 +325,7 @@ html[data-theme="light"] .ts-btn.active {
   flex: 1;
   padding: 5px 8px;
   border: none;
-  border-radius: 999px;
+  border-radius: 0;
   background: none;
   cursor: pointer;
   font-family: var(--font-mono);
@@ -474,7 +471,7 @@ body.locked #logout-btn { display: none !important; }
 .login-btn {
   width: 100%; padding: 12px 24px;
   background: var(--text-display); color: var(--black);
-  border: none; border-radius: 999px;
+  border: none; border-radius: 0;
   font-family: var(--font-mono); font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   cursor: pointer; margin-top: 8px;
@@ -718,9 +715,10 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
 
 .top-header h1, .hb-hero h1 {
   font-family: var(--font-sans);
-  font-size: 42px; font-weight: 700;
+  /* Ferrari display: weight 500 (never bold), negative tracking */
+  font-size: 42px; font-weight: 500;
   color: var(--text-display);
-  line-height: 1.05; letter-spacing: -0.03em;
+  line-height: 1.1; letter-spacing: -0.84px; /* display-xl ratio (-0.02em) */
   margin-bottom: 20px; max-width: 600px;
   position: relative;
 }
@@ -1494,7 +1492,7 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 20px;
   background: var(--text-display); color: var(--black);
-  border-radius: 999px;
+  border-radius: 0;
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   margin: 14px 0; text-decoration: none;
@@ -1536,7 +1534,7 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
   position: fixed; bottom: 20px; right: 20px;
   background: var(--surface-raised);
   border: 1px solid var(--border-visible);
-  border-radius: 999px; color: var(--text-secondary);
+  border-radius: 0; color: var(--text-secondary);
   font-family: var(--font-mono); font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   padding: 8px 16px; cursor: pointer; z-index: 1000;

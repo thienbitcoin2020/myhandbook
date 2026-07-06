@@ -35,7 +35,7 @@ project-handbook/
 ├── pm-handbook.html
 ├── assets/
 │   ├── css/
-│   │   └── styles.css      # "Nothing" design system (dark/light theme)
+│   │   └── styles.css      # Ferrari design system (dark/light theme)
 │   └── js/
 │       ├── main.js         # Auth, theme, sidebar, accordion, role tabs, DoD checklist
 │       └── router.js       # Hash-based router — fetches page fragments into the shell
@@ -82,7 +82,7 @@ back to `npx http-server -p 8080`. Open <http://localhost:8080>.
 python -m http.server 8080        # or:  npx http-server -p 8080
 ```
 
-> Google Fonts (Space Grotesk / Space Mono) require an internet connection; the
+> Google Fonts (Inter / JetBrains Mono) require an internet connection; the
 > page falls back to system fonts offline.
 
 ---
@@ -99,11 +99,11 @@ See the note at the top of `main.js`.
 
 ## 🎨 Design System
 
-Uses the **"Nothing"** design system (see `Sample design/nothing-design-skill-main/`)
+Uses the **Ferrari** design system (see `DESIGN-ferrari.md` in Downloads) —
 with a dark/light theme toggle. The selected theme is persisted in `localStorage`
 (`nt_theme`) and applied before first paint to avoid a flash of unstyled content.
 
-Typography: **Space Grotesk** (sans) + **Space Mono** (mono) via Google Fonts.
+Typography: **Inter** (FerrariSans substitute) + **JetBrains Mono** (diagrams/code) via Google Fonts.
 
 ---
 
