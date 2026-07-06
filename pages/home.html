@@ -42,6 +42,12 @@
 .xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
 .xw-legend span{display:inline-flex;align-items:center;gap:6px}
 .xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.gloss-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.gloss-table th,.gloss-table td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.gloss-table th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em}
+.gloss-table tr:hover td{background:var(--bg-hover)}
+.gloss-term{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-bright);white-space:nowrap}
+.gloss-role{font-family:var(--font-mono);font-size:9px;color:var(--text-disabled);text-transform:uppercase}
 </style>
 
 <!-- ===== SIDEBAR CONTENT ===== -->
@@ -62,6 +68,7 @@
     <a href="#section-xwalk" onclick="setActive(this)"><span class="nav-icon">🧭</span> Lifecycle Cross-Walk</a>
     <a href="#section-persona" onclick="setActive(this)"><span class="nav-icon">🙋</span> Start by Role</a>
     <a href="#section-model" onclick="setActive(this)"><span class="nav-icon">🔀</span> Delivery Model</a>
+    <a href="#section-glossary" onclick="setActive(this)"><span class="nav-icon">🔤</span> Glossary</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -369,6 +376,57 @@
           <a class="persona-chip" href="#pmo">🏢 PMO Lead <span class="pc-arrow">→ PMO Governance</span></a>
         </div>
         <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">💡</span><div>New to the team? Start with the <a href="#handbook" style="color:var(--accent-bright)">Implementation Handbook → Section 0 (How to Use)</a> for the full picture, then drill into your role handbook.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- GLOSSARY -->
+    <section class="section-block" id="section-glossary">
+      <div class="section-header"><div class="section-icon">🔤</div><div><div class="section-number">Reference</div><h2>Glossary — Standard Terms</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Key terminology every role should share</div>
+        <p>When reading the Vietnamese translation, these <strong>standard terms stay in English</strong> (that is how practitioners use them). Use this table to map each term to its meaning — it keeps the handbooks consistent across roles.</p>
+        <table class="gloss-table">
+          <thead><tr><th style="width:180px">Term</th><th>Meaning</th><th style="width:90px">Role</th></tr></thead>
+          <tbody>
+            <tr><td class="gloss-term notranslate" translate="no">Product Goal</td><td>Long-term product objective, held in the backlog.</td><td class="gloss-role">PO · SM</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Sprint</td><td>Fixed 1–4 week delivery iteration.</td><td class="gloss-role">SM</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Backlog</td><td>Ordered list of work to do.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Definition of Done (DoD)</td><td>Quality bar an Increment must meet to be releasable.</td><td class="gloss-role">Team</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Definition of Ready (DoR)</td><td>Checklist for a story to enter a Sprint.</td><td class="gloss-role">PO · BA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">User Story</td><td>A need from the user's perspective.</td><td class="gloss-role">PO · BA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Acceptance Criteria</td><td>Conditions that make a story correct.</td><td class="gloss-role">BA · QC</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Increment</td><td>Cumulative, usable step of the product.</td><td class="gloss-role">Team</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Product Roadmap</td><td>Outcome-based Now / Next / Later plan.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Outcome vs Output</td><td>Behaviour/value change vs features shipped.</td><td class="gloss-role">PO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">RTM</td><td>Requirements Traceability Matrix (req ↔ test).</td><td class="gloss-role">BA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">NFR</td><td>Measurable non-functional requirement.</td><td class="gloss-role">BA · SA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Strategy Analysis</td><td>Current-state → future-state analysis.</td><td class="gloss-role">BA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">HLD / LLD</td><td>High-Level / Low-Level Design.</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">ADR</td><td>Architecture Decision Record (the "why").</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Well-Architected</td><td>6-pillar architecture quality review.</td><td class="gloss-role">SA</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">STRIDE</td><td>Threat-modeling classification.</td><td class="gloss-role">SA · Sec</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Severity vs Priority</td><td>Technical impact vs business urgency of a defect.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Regression</td><td>Re-testing that changes broke nothing.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Coverage</td><td>% of items exercised by tests.</td><td class="gloss-role">QC</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">SAST / DAST</td><td>Static / dynamic security scanning.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">IAM</td><td>Identity &amp; Access Management.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Least Privilege</td><td>Grant the minimum access needed.</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">CVSS</td><td>Vulnerability severity score (0–10).</td><td class="gloss-role">Sec</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">SLO / SLI / SLA</td><td>Service objective / indicator / agreement.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Error Budget</td><td>Allowed unreliability (100% − SLO).</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">RTO / RPO</td><td>Max recovery time / max data loss.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Blameless Postmortem</td><td>Incident review focused on systems, not people.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">DORA</td><td>4 delivery metrics: deploy freq, lead time, CFR, MTTR.</td><td class="gloss-role">Ops</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">EVM (CPI / SPI)</td><td>Earned Value Management — cost/schedule efficiency.</td><td class="gloss-role">PM · PMO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">RAID</td><td>Risks, Assumptions, Issues, Dependencies log.</td><td class="gloss-role">PM · PMO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Stage-Gate</td><td>Go / Kill / Hold / Recycle approval gate.</td><td class="gloss-role">PMO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Benefits Realization</td><td>Harvesting outcomes after delivery.</td><td class="gloss-role">PMO</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">CAB</td><td>Change Advisory Board (release governance).</td><td class="gloss-role">Deploy</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Hypercare</td><td>Heightened support right after go-live.</td><td class="gloss-role">All</td></tr>
+            <tr><td class="gloss-term notranslate" translate="no">Rollback</td><td>Revert to the previous working version.</td><td class="gloss-role">Deploy</td></tr>
+          </tbody>
+        </table>
       </div></div>
     </section>
     <div class="section-divider"></div>
