@@ -6,10 +6,31 @@
    Bank Handbook
 ======================================================== */
 
-/* ── GOOGLE FONTS ──
-   FerrariSans is licensed; documented substitute is Inter (display 500).
-   JetBrains Mono retained ONLY for ASCII diagrams/code (alignment). */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+/* ── FONTS ──
+   Myriad Pro self-hosted (assets/fonts) as the single sans family.
+   JetBrains Mono (Google) retained ONLY for ASCII diagrams/code alignment. */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../fonts/MyriadPro-Light.otf') format('opentype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../fonts/MyriadPro-Regular.otf') format('opentype');
+  font-weight: 400 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../fonts/MyriadPro-Semibold.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../fonts/MyriadPro-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 
 :root {
   /* ── Surface layers (Ferrari cinema dark — canvas never pure black) ── */
@@ -76,7 +97,7 @@
   --status-gray-bg:   rgba(255,255,255,0.06);
 
   /* ── Typography (single sans; mono only for diagrams/code) ── */
-  --font-sans:  'Inter', -apple-system, system-ui, sans-serif;
+  --font-sans:  'Myriad Pro', -apple-system, 'Segoe UI', system-ui, sans-serif;
   --font-mono:  'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
   /* ── Layout ── */
@@ -344,18 +365,16 @@ html[data-theme="light"] .ts-btn.active {
 .lang-btn.active { background: var(--accent); color: #fff; }
 html[data-theme="light"] .lang-seg { background: var(--surface-raised); }
 
-/* ── Hide Google Translate injected chrome ──
-   Google uses obfuscated class names for the top banner (e.g. VIpgJd-*),
-   but every Google frame carries .skiptranslate — so hide those iframes. */
-iframe.skiptranslate,
-.goog-te-banner-frame,
-.goog-te-gadget-icon,
-#goog-gt-tt,
-.goog-te-balloon-frame,
-#google_translate_element { display: none !important; }
-body { top: 0 !important; position: static !important; }
-.goog-text-highlight { background: none !important; box-shadow: none !important; }
-.goog-tooltip, .goog-tooltip:hover { display: none !important; }
+/* ── VI translation fallback notice (page not yet translated) ── */
+.vi-fallback-note {
+  margin: 16px 32px 0;
+  padding: 10px 16px;
+  background: var(--accent-dim);
+  border-left: 2px solid var(--accent);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
 
 /* ========================================================
    LOGIN OVERLAY
