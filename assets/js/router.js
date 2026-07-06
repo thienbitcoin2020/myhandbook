@@ -149,6 +149,17 @@ function _setupScrollSpy() {
 }
 
 window.addEventListener('hashchange', () => {
+  const page = location.hash.replace(/^#/, '');
+
+  // In-page anchor (e.g. #section-p2 inside a role page): NOT a route.
+  // Just scroll to it — do NOT re-route (previously this fell back to the
+  // default route and wiped the current page) and do NOT reload in VI mode.
+  if (page && !ROUTES[page]) {
+    const el = document.getElementById(page);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
   // In Vietnamese mode, reload so the Google widget fully re-translates the
   // freshly routed page (its MutationObserver misses wholesale innerHTML swaps).
   if (typeof _getLang === 'function' && _getLang() === 'vi') { location.reload(); return; }
