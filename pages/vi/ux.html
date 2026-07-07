@@ -1,0 +1,348 @@
+<title>UX/UI Designer Handbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-ux{width:100%;border-collapse:collapse;font-size:12px}
+.table-ux th,.table-ux td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-ux th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-ux tr:hover td{background:var(--bg-hover)}
+.table-ux code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🎨</div>
+      <div>
+        <div class="bank-title">UX/UI Designer Handbook</div>
+        <div class="bank-sub">Double Diamond · NN/g · WCAG 2.2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-discover" onclick="setActive(this)"><span class="nav-icon">🔎</span> 02 · Discover / Nghiên cứu</a>
+    <a href="#section-define" onclick="setActive(this)"><span class="nav-icon">🎯</span> 03 · Define / Tổng hợp</a>
+  </nav>
+
+  <div class="sidebar-section-label">Thiết kế</div>
+  <nav id="sidebar-nav">
+    <a href="#section-ia" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 04 · IA &amp; User Flow</a>
+    <a href="#section-wireframe" onclick="setActive(this)"><span class="nav-icon">📐</span> 05 · Wireframing</a>
+    <a href="#section-ui" onclick="setActive(this)"><span class="nav-icon">🖌️</span> 06 · Nguyên tắc UI</a>
+    <a href="#section-designsystem" onclick="setActive(this)"><span class="nav-icon">🧩</span> 07 · Design System</a>
+    <a href="#section-interaction" onclick="setActive(this)"><span class="nav-icon">✨</span> 08 · Tương tác &amp; Trạng thái</a>
+  </nav>
+
+  <div class="sidebar-section-label">Kiểm chứng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-usability" onclick="setActive(this)"><span class="nav-icon">🧪</span> 09 · Usability Testing</a>
+    <a href="#section-heuristics" onclick="setActive(this)"><span class="nav-icon">🔟</span> 10 · Heuristic Evaluation</a>
+    <a href="#section-a11y" onclick="setActive(this)"><span class="nav-icon">♿</span> 11 · Accessibility (WCAG)</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-handoff" onclick="setActive(this)"><span class="nav-icon">🤝</span> 12 · Bàn giao cho Dev</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">💠 Double Diamond</span>
+    <span class="comp-pill">♿ WCAG 2.2 AA</span>
+    <span class="comp-pill">🧩 Atomic Design</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: UX/UI Designer / Design<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: NN/g · WCAG 2.2 · Material/HIG<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🎨 Handbook nội bộ · Double Diamond · NN/g · WCAG 2.2</div>
+    <h1>UX/UI Designer<br/><span>Từ nghiên cứu đến bàn giao pixel-perfect</span></h1>
+    <p>Tài liệu tham chiếu cho vai trò thiết kế sản phẩm đầu-cuối — từ nghiên cứu người dùng đến UI dựng được và accessible. Bám nền Double Diamond, heuristic Nielsen Norman, WCAG 2.2, Atomic Design, và guideline nền tảng (Material Design / Apple HIG). Với công cụ nội bộ ngân hàng, hiệu quả &amp; accessibility đặt lên hàng đầu.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Double Diamond</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Design System</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Đã usability-test</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> WCAG 2.2 AA</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Thuật ngữ &amp; viết tắt trên trang này</div>
+      <p style="font-size:12px;">Mới làm quen thiết kế sản phẩm? Lướt qua bảng này trước — các thuật ngữ xuất hiện xuyên suốt handbook.</p>
+      <table class="table-ux" style="margin-top:8px;">
+        <tr><th style="width:160px">Thuật ngữ</th><th>Ý nghĩa</th></tr>
+        <tr><td><strong>UX / UI</strong></td><td>User Experience (có dùng được &amp; hữu ích không?) / User Interface (trông và hành xử ra sao).</td></tr>
+        <tr><td><strong>IA</strong></td><td>Information Architecture — tổ chức &amp; đặt nhãn nội dung để người dùng tìm được.</td></tr>
+        <tr><td><strong>Persona · Journey map</strong></td><td>Nguyên mẫu người dùng dựa trên dữ liệu; bản đồ trải nghiệm đầu-cuối &amp; điểm đau của họ.</td></tr>
+        <tr><td><strong>JTBD · HMW</strong></td><td>Jobs-To-Be-Done ("khi…, tôi muốn…, để…") / How-Might-We — câu hỏi tái định khung vấn đề.</td></tr>
+        <tr><td><strong>Lo-fi / Hi-fi</strong></td><td>Low/high fidelity — wireframe phác thảo vs mockup chính xác từng pixel.</td></tr>
+        <tr><td><strong>Design tokens</strong></td><td>Giá trị thiết kế có tên (color.primary, spacing.md) dùng chung giữa design &amp; code.</td></tr>
+        <tr><td><strong>NN/g</strong></td><td>Nielsen Norman Group — nguồn của 10 usability heuristic.</td></tr>
+        <tr><td><strong>SUS</strong></td><td>System Usability Scale — điểm 10 câu hỏi 0–100 (≥68 là trên trung bình).</td></tr>
+        <tr><td><strong>WCAG · POUR · a11y</strong></td><td>Web Content Accessibility Guidelines; 4 nguyên tắc (Perceivable, Operable, Understandable, Robust); "accessibility".</td></tr>
+        <tr><td><strong>Contrast ratio</strong></td><td>Thước đo độ dễ đọc chữ-vs-nền — ≥ 4,5:1 cho chữ thường (AA).</td></tr>
+        <tr><td><strong>CTA</strong></td><td>Call To Action — nút/liên kết chính bạn muốn người dùng bấm.</td></tr>
+        <tr><td><strong>DesignOps</strong></td><td>Vận hành thiết kế ở quy mô — versioning, quản trị, pipeline token.</td></tr>
+      </table>
+    </div></div>
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">UX vs UI</div>
+        <table class="table-ux">
+          <tr><th></th><th>UX (Trải nghiệm)</th><th>UI (Giao diện)</th></tr>
+          <tr><td>Trả lời</td><td>Có dùng được &amp; hữu ích không?</td><td>Trông và cảm nhận thế nào?</td></tr>
+          <tr><td>Đầu ra</td><td>Nghiên cứu, persona, journey, flow, wireframe</td><td>Thiết kế trực quan, component, design system</td></tr>
+          <tr><td>Đo bằng</td><td>Tỷ lệ hoàn thành tác vụ, tỷ lệ lỗi, SUS</td><td>Độ bám thương hiệu, điểm accessibility</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Double Diamond — trục quy trình <span class="pill-tag">Design Council</span></div>
+        <pre class="art-block">DISCOVER ─▶ DEFINE ─▶ DEVELOP ─▶ DELIVER
+(phân kỳ)   (hội tụ)   (phân kỳ)   (hội tụ)
+nghiên cứu   phát biểu   ý tưởng &amp;    prototype,
+&amp; thấu cảm   vấn đề      wireframe    test &amp; bàn giao</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Công cụ nội bộ ngân hàng: tối ưu cho <strong>hiệu quả</strong> (tốc độ tác vụ, ít cú bấm, tải nhận thức thấp) hơn là sự "thích thú". Accessibility (WCAG AA) không phải tuỳ chọn.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 DISCOVER -->
+    <section class="section-block" id="section-discover">
+      <div class="section-header"><div class="section-icon">🔎</div><div><div class="section-number">Mục 02</div><h2>Discover / Nghiên cứu</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Loại</th><th>Phương pháp</th></tr>
+          <tr><td><strong>Generative</strong> (khám phá)</td><td>Phỏng vấn người dùng, contextual inquiry, diary study.</td></tr>
+          <tr><td><strong>Evaluative</strong> (đánh giá)</td><td>Usability test, A/B test, heuristic evaluation.</td></tr>
+          <tr><td><strong>Định lượng</strong></td><td>Khảo sát, analytics (GA4/Clarity/Hotjar), funnel.</td></tr>
+          <tr><td><strong>Cạnh tranh</strong></td><td>Ma trận tính năng, UX teardown các sản phẩm tương tự.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">👥</span><div><strong>~5 người dùng</strong> phát hiện ~85% vấn đề usability (Nielsen). Nghiên cứu làm <em>cùng</em> <a href="#ba">BA</a> &amp; <a href="#po">PO</a> — thống nhất về vấn đề, không chỉ về UI.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 DEFINE -->
+    <section class="section-block" id="section-define">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Mục 03</div><h2>Define / Tổng hợp</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Affinity mapping</strong> — gom dữ liệu nghiên cứu thô thành các chủ đề.</li>
+          <li><strong>Persona</strong> — nguyên mẫu dựa trên dữ liệu (mục tiêu, bức xúc, hành vi) — không phải phỏng đoán.</li>
+          <li><strong>Journey map</strong> — giai đoạn · hành động · suy nghĩ · cảm xúc · điểm đau · cơ hội.</li>
+          <li><strong>Phát biểu vấn đề:</strong> <code>[Persona] cần [mục tiêu] vì [insight]</code>; tái định khung thành <strong>How Might We…</strong></li>
+          <li><strong>JTBD:</strong> <code>Khi [tình huống], tôi muốn [động lực], để [outcome]</code>.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 IA -->
+    <section class="section-block" id="section-ia">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Mục 04</div><h2>Information Architecture &amp; User Flow</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>IA:</strong> tổ chức &amp; đặt nhãn nội dung để người dùng tìm được — kiểm chứng bằng <strong>card sorting</strong> &amp; <strong>tree testing</strong>; đầu ra là sitemap.</li>
+          <li><strong>User flow:</strong> lộ trình từng bước để hoàn thành tác vụ — hình chữ nhật (màn hình), hình thoi (quyết định), mũi tên.</li>
+          <li>Luôn thiết kế cả <strong>happy path + đường lỗi + edge case</strong>.</li>
+        </ul>
+        <pre class="art-block">[Login] ─▶ &lt;Auth ok?&gt; ──không──▶ [Lỗi + thử lại]
+              │có
+              ▼
+         [Dashboard] ─▶ [Chuyển tiền] ─▶ &lt;Hợp lệ?&gt; ──không──▶ [Lỗi inline]
+                                            │có
+                                            ▼
+                                       [Xác nhận] ─▶ [Thành công]</pre>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 WIREFRAME -->
+    <section class="section-block" id="section-wireframe">
+      <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Mục 05</div><h2>Wireframing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Độ chi tiết</th><th>Dùng cho</th></tr>
+          <tr><td><strong>Lo-fi</strong> (khối phác thảo/xám)</td><td>Kiểm chứng layout &amp; flow nhanh — đừng chăm chút.</td></tr>
+          <tr><td><strong>Mid-fi</strong> (xám, nội dung thật)</td><td>Test điều hướng &amp; IA.</td></tr>
+          <tr><td><strong>Hi-fi</strong> (màu, component thật)</td><td>Review trực quan &amp; bàn giao.</td></tr>
+        </table>
+        <p style="margin-top:6px;"><strong>Bắt đầu lo-fi</strong>; chỉ nâng độ chi tiết đúng mức việc kiểm chứng cần. Sửa sớm thì rẻ.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 UI -->
+    <section class="section-block" id="section-ui">
+      <div class="section-header"><div class="section-icon">🖌️</div><div><div class="section-number">Mục 06</div><h2>Nguyên tắc thiết kế UI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Nguyên tắc</th><th>Áp dụng</th></tr>
+          <tr><td><strong>Phân cấp thị giác</strong></td><td>Kích thước/độ đậm/màu dẫn mắt tới thứ quan trọng trước.</td></tr>
+          <tr><td><strong>Gần nhau &amp; nhất quán</strong></td><td>Gom mục liên quan; cùng component = cùng hành vi ở mọi nơi.</td></tr>
+          <tr><td><strong>Feedback &amp; affordance</strong></td><td>Mọi hành động có phản hồi thấy được; control trông tương tác được.</td></tr>
+          <tr><td><strong>Typography</strong></td><td>2–3 typeface; type scale; line-height body ~1,5; contrast ≥ 4,5:1.</td></tr>
+          <tr><td><strong>Khoảng cách</strong></td><td>Lưới 4/8px — 4,8,12,16,24,32,48… một cách nhất quán.</td></tr>
+          <tr><td><strong>Vùng chạm</strong></td><td>≥ 44×44px (HIG) / 48dp (Material); khoảng cách ≥ 8px.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 DESIGN SYSTEM -->
+    <section class="section-block" id="section-designsystem">
+      <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Mục 07</div><h2>Design System <span class="pill-tag">Atomic Design · Brad Frost</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <pre class="art-block">ATOMS ─▶ MOLECULES ─▶ ORGANISMS ─▶ TEMPLATES ─▶ PAGES
+(Button)  (Form field)  (Header)     (Layout)     (Màn hình đầy đủ)</pre>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Nền tảng:</strong> token màu, typography, spacing, icon, lưới, motion.</li>
+          <li><strong>Design token:</strong> <code>color.primary.500</code>, <code>spacing.md=16px</code>, <code>radius.card=8px</code> — một nguồn sự thật dùng chung với dev.</li>
+          <li><strong>Component + pattern + guideline:</strong> nên/không nên khi dùng, ghi chú accessibility cho từng component.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🧠</span><div>Design system giảm tải nhận thức &amp; công làm lại — tái sử dụng trước khi phát minh. Giữ nó có version &amp; được quản trị.</div></div>
+        <p style="margin-top:8px;"><strong>DesignOps:</strong> đánh version cho hệ thống (semver), mô hình đóng góp/quản trị, và một pipeline token nguồn-đơn đồng bộ với code. <strong>Content design / UX writing:</strong> guide giọng-&amp;-tông + pattern microcopy (nhãn, lỗi, empty state) là một phần của hệ thống — chữ nghĩa cũng là UI.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 INTERACTION -->
+    <section class="section-block" id="section-interaction">
+      <div class="section-header"><div class="section-icon">✨</div><div><div class="section-number">Mục 08</div><h2>Tương tác &amp; Trạng thái</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Thiết kế mọi trạng thái</strong>, không chỉ mặc định happy:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <span class="pill-tag">Default</span><span class="pill-tag">Hover</span><span class="pill-tag">Active/Pressed</span><span class="pill-tag">Focused</span><span class="pill-tag">Disabled</span><span class="pill-tag">Loading</span><span class="pill-tag">Empty</span><span class="pill-tag">Error</span>
+        </div>
+        <ul class="step-cl" style="margin-top:8px;">
+          <li><strong>Motion:</strong> có chủ đích, easing tự nhiên (ease-out khi vào, ease-in khi ra), 100–300ms; tôn trọng reduced-motion.</li>
+          <li><strong>Empty state</strong> = minh hoạ + giải thích + CTA. <strong>Loading</strong> = skeleton cho nội dung, spinner cho chờ ngắn.</li>
+          <li><strong>Form:</strong> nhãn nằm trên input, validate inline khi rời ô, lỗi nói rõ cách sửa, một CTA chính rõ ràng.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 USABILITY -->
+    <section class="section-block" id="section-usability">
+      <div class="section-header"><div class="section-icon">🧪</div><div><div class="section-number">Mục 09</div><h2>Usability Testing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Test prototype với <strong>5–8 người tham gia</strong> khớp persona; giao tác vụ (không dẫn dắt); quan sát, đừng "giải cứu".</p>
+        <p style="margin-top:6px;"><strong>Nhịp độ:</strong> continuous discovery — test nhỏ <strong>mỗi sprint/2 tuần</strong> trên luồng rủi ro nhất, cộng một vòng benchmark trước các bản phát hành lớn. Đừng dồn hết test về cuối.</p>
+        <table class="table-ux" style="margin-top:8px;">
+          <tr><th>Chỉ số</th><th>Định nghĩa</th></tr>
+          <tr><td><strong>Tỷ lệ hoàn thành tác vụ</strong></td><td>% người hoàn thành tác vụ thành công.</td></tr>
+          <tr><td><strong>Tỷ lệ lỗi</strong></td><td>Số lỗi trên mỗi tác vụ.</td></tr>
+          <tr><td><strong>Thời gian trên tác vụ</strong></td><td>Mất bao lâu để hoàn thành.</td></tr>
+          <tr><td><strong>SUS</strong></td><td>Điểm usability 10 mục 0–100 (≥68 trên trung bình).</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 HEURISTICS -->
+    <section class="section-block" id="section-heuristics">
+      <div class="section-header"><div class="section-icon">🔟</div><div><div class="section-number">Mục 10</div><h2>Heuristic Evaluation <span class="pill-tag">Nielsen 10</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill-tag">1 Hiển thị trạng thái hệ thống</span><span class="pill-tag">2 Khớp thế giới thực</span><span class="pill-tag">3 Người dùng kiểm soát &amp; tự do</span><span class="pill-tag">4 Nhất quán &amp; theo chuẩn</span><span class="pill-tag">5 Phòng ngừa lỗi</span><span class="pill-tag">6 Nhận ra thay vì nhớ lại</span><span class="pill-tag">7 Linh hoạt &amp; hiệu quả</span><span class="pill-tag">8 Thẩm mỹ &amp; tối giản</span><span class="pill-tag">9 Phục hồi khỏi lỗi</span><span class="pill-tag">10 Trợ giúp &amp; tài liệu</span>
+        </div>
+        <p style="margin-top:8px;">Chấm mức nghiêm trọng mỗi phát hiện từ 0 (không) → 4 (thảm hoạ). Một vòng review chuyên gia nhanh, rẻ để bắt lỗi trước khi test người dùng.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 ACCESSIBILITY -->
+    <section class="section-block" id="section-a11y">
+      <div class="section-header"><div class="section-icon">♿</div><div><div class="section-number">Mục 11</div><h2>Accessibility (WCAG 2.2) <span class="pill-tag">W3C</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Nguyên tắc <strong>POUR</strong> — nhắm <strong>Level AA</strong>:</p>
+        <table class="table-ux">
+          <tr><th>Nguyên tắc</th><th>Nghĩa là</th></tr>
+          <tr><td><strong>Perceivable (cảm nhận được)</strong></td><td>Alt text, phụ đề; màu không phải chỉ báo duy nhất; contrast ≥ 4,5:1 (thường) / 3:1 (lớn).</td></tr>
+          <tr><td><strong>Operable (thao tác được)</strong></td><td>Truy cập đầy đủ bằng bàn phím, không bẫy bàn phím, focus thấy được, skip link, vùng chạm đủ lớn.</td></tr>
+          <tr><td><strong>Understandable (hiểu được)</strong></td><td>Ngôn ngữ rõ, hành vi dự đoán được, nhận diện lỗi + gợi ý sửa.</td></tr>
+          <tr><td><strong>Robust (bền vững)</strong></td><td>Chạy được với công nghệ hỗ trợ (screen reader, HTML/ARIA ngữ nghĩa).</td></tr>
+        </table>
+        <p style="margin-top:6px;"><strong>Mới trong WCAG 2.2 (2023)</strong> — kiểm tra rõ các mục này: <span class="pill-tag">2.4.11 Focus Not Obscured</span> <span class="pill-tag">2.5.8 Target Size ≥ 24×24px</span> <span class="pill-tag">3.3.7 Redundant Entry</span> <span class="pill-tag">3.3.8 Accessible Authentication</span>.</p>
+        <p style="margin-top:6px;">Công cụ: axe DevTools, Lighthouse, WAVE, VoiceOver/NVDA. Accessibility cũng được <a href="#qc">QC</a> kiểm chứng.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 HANDOFF -->
+    <section class="section-block" id="section-handoff">
+      <div class="section-header"><div class="section-icon">🤝</div><div><div class="section-number">Mục 12</div><h2>Bàn giao Design → Dev</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Mọi màn hình + <strong>mọi trạng thái</strong> được thiết kế; nêu rõ breakpoint responsive (mobile/tablet/desktop).</li>
+          <li>Chú thích spacing/sizing; token màu (hex + tên token); type spec; icon dạng SVG.</li>
+          <li>Spec animation (thời lượng, easing, trigger); ghi rõ hành vi component &amp; edge case.</li>
+          <li>Bàn giao qua Figma Dev Mode / Storybook; dắt đội đi qua nó — file là <strong>công cụ giao tiếp với dev</strong>, không phải tác phẩm nghệ thuật.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Design token ánh xạ vào hệ thống front-end; thống nhất với <a href="#sa">SA</a> về kiến trúc component &amp; đội <a href="#qc">QC</a> về nghiệm thu trực quan/tương tác.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 13</div><h2>Vai trò &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ux">
+          <tr><th>Hoạt động</th><th>UX/UI</th><th>PO</th><th>BA</th><th>Dev</th><th>QC</th></tr>
+          <tr><td>Nghiên cứu người dùng</td><td><strong>R</strong></td><td>A</td><td>C</td><td>I</td><td>I</td></tr>
+          <tr><td>IA / flow / wireframe</td><td><strong>A/R</strong></td><td>C</td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Thiết kế UI &amp; design system</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+          <tr><td>Test usability &amp; a11y</td><td><strong>R</strong></td><td>C</td><td>I</td><td>C</td><td>C</td></tr>
+          <tr><td>Nghiệm thu thiết kế lúc build</td><td><strong>A</strong></td><td>C</td><td>I</td><td>R</td><td>R</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> Design Council (Double Diamond); Nielsen Norman Group (10 usability heuristic, test ~5 người); WCAG 2.2 / W3C (POUR, AA); Brad Frost (Atomic Design); Google Material Design 3 &amp; Apple HIG (guideline nền tảng); SUS (John Brooke); JTBD (Clayton Christensen / Tony Ulwick).</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · UX/UI Designer Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025
+  </footer>
+</div>
+</div>
