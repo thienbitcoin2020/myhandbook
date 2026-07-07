@@ -1,0 +1,349 @@
+<title>PMO Governance &amp; Portfolio | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-pmo{width:100%;border-collapse:collapse;font-size:12px}
+.table-pmo th,.table-pmo td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-pmo th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-pmo tr:hover td{background:var(--bg-hover)}
+.table-pmo code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏢</div>
+      <div>
+        <div class="bank-title">PMO Governance &amp; Portfolio</div>
+        <div class="bank-sub">PMI · P3O · EVM · Benefits</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-portfolio" onclick="setActive(this)"><span class="nav-icon">🗃️</span> 02 · Portfolio &amp; Intake</a>
+    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 03 · Cơ cấu quản trị</a>
+  </nav>
+
+  <div class="sidebar-section-label">Kiểm soát</div>
+  <nav id="sidebar-nav">
+    <a href="#section-raid" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 04 · Quản lý RAID</a>
+    <a href="#section-dependency" onclick="setActive(this)"><span class="nav-icon">🔗</span> 05 · Quản lý phụ thuộc</a>
+    <a href="#section-financial" onclick="setActive(this)"><span class="nav-icon">💰</span> 06 · Quản trị tài chính</a>
+    <a href="#section-benefits" onclick="setActive(this)"><span class="nav-icon">🎁</span> 07 · Benefits Realization</a>
+  </nav>
+
+  <div class="sidebar-section-label">Bảo đảm giao hàng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-standards" onclick="setActive(this)"><span class="nav-icon">📚</span> 08 · Chuẩn &amp; Phương pháp</a>
+    <a href="#section-resource" onclick="setActive(this)"><span class="nav-icon">🧑‍🤝‍🧑</span> 09 · Nguồn lực &amp; Capacity</a>
+    <a href="#section-assurance" onclick="setActive(this)"><span class="nav-icon">🔍</span> 10 · Assurance &amp; Audit</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-reporting" onclick="setActive(this)"><span class="nav-icon">📊</span> 11 · Báo cáo &amp; Dashboard</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · KPI Portfolio</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🏢 PMI PMO</span>
+    <span class="comp-pill">🧭 P3O</span>
+    <span class="comp-pill">🏦 SBV Governance</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: PMO Lead / Delivery Governance<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: PMI · P3O · EVM<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏢 Handbook nội bộ · PMI · P3O · Quản trị Portfolio</div>
+    <h1>PMO Governance<br/><span>Portfolio, Bảo đảm &amp; Giá trị</span></h1>
+    <p>Tài liệu tham chiếu cho Project/Programme Management Office — tầng <em>bên trên</em> một dự án đơn lẻ. Bao quát quản trị portfolio &amp; nhu cầu, quản lý RAID &amp; phụ thuộc, quản trị tài chính &amp; benefits realization, chuẩn giao hàng, assurance, và báo cáo hợp nhất. Bám nền PMI (PMBOK 7 / Standard for Portfolio Management) và P3O.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Quản trị Portfolio</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> RAID &amp; Assurance</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Benefits dẫn dắt</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> MẬT</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Thuật ngữ &amp; viết tắt trên trang này</div>
+      <p style="font-size:12px;">Mới làm quen quản trị portfolio? Lướt qua bảng này trước — các thuật ngữ xuất hiện xuyên suốt handbook.</p>
+      <table class="table-pmo" style="margin-top:8px;">
+        <tr><th style="width:160px">Thuật ngữ</th><th>Ý nghĩa</th></tr>
+        <tr><td><strong>PMO · P3</strong></td><td>Project/Programme Management Office; P3 = Portfolio, Programme, Project.</td></tr>
+        <tr><td><strong>P3O · MoP</strong></td><td>Framework của Axelos: Portfolio/Programme/Project Offices; Management of Portfolios.</td></tr>
+        <tr><td><strong>Intake / Demand</strong></td><td>Cái phễu quyết định ý tưởng nào trở thành sáng kiến được cấp vốn.</td></tr>
+        <tr><td><strong>Stage-Gate</strong></td><td>Điểm phê duyệt với bốn kết cục: Go / Kill / Hold / Recycle.</td></tr>
+        <tr><td><strong>RAID</strong></td><td>Risks, Assumptions, Issues, Dependencies — được PMO hợp nhất trên toàn portfolio.</td></tr>
+        <tr><td><strong>EVM · EV/AC/PV</strong></td><td>Earned Value Management: Earned Value ÷ Actual Cost = CPI; EV ÷ Planned Value = SPI; BAC ÷ CPI = dự báo EAC.</td></tr>
+        <tr><td><strong>RAG</strong></td><td>Trạng thái Red / Amber / Green — cùng định nghĩa cho mọi dự án, không "dưa hấu" (ngoài xanh trong đỏ).</td></tr>
+        <tr><td><strong>Benefits realization</strong></td><td>Bảo đảm các output đã giao thực sự tạo ra giá trị kinh doanh đã hứa.</td></tr>
+        <tr><td><strong>OCM · ADKAR</strong></td><td>Organizational Change Management; mô hình tiếp nhận của Prosci (Awareness → Desire → Knowledge → Ability → Reinforcement).</td></tr>
+        <tr><td><strong>ROI</strong></td><td>Return On Investment — lợi ích ròng ÷ khoản đầu tư.</td></tr>
+        <tr><td><strong>Assurance</strong></td><td>Kiểm tra sức khoẻ độc lập xem giao hàng &amp; control có thực sự hoạt động.</td></tr>
+        <tr><td><strong>Lessons learned (LL)</strong></td><td>Ghi nhận lúc đóng dự án (PIR) và nạp ngược vào chuẩn &amp; tiêu chí intake.</td></tr>
+      </table>
+    </div></div>
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Các kiểu PMO <span class="pill-tag">PMI</span></div>
+        <table class="table-pmo">
+          <tr><th>Kiểu</th><th>Vai trò</th></tr>
+          <tr><td><strong>Supportive</strong></td><td>Cung cấp template, đào tạo, bài học — kiểm soát thấp.</td></tr>
+          <tr><td><strong>Controlling</strong></td><td>Yêu cầu tuân thủ chuẩn &amp; các gate — kiểm soát trung bình.</td></tr>
+          <tr><td><strong>Directive</strong></td><td>PM báo cáo vào PMO; trực tiếp quản lý giao hàng — kiểm soát cao.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Portfolio / Programme / Project = P3. PMO quản trị <em>xuyên</em> các dự án; việc thực thi từng dự án nằm ở <a href="#pm">PM Handbook</a>. Handbook này là nơi cư trú của trục quản trị.</div></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">PMO vs PM</div>
+        <table class="table-pmo">
+          <tr><th></th><th>PMO</th><th>Project Manager</th></tr>
+          <tr><td>Phạm vi</td><td>Toàn portfolio</td><td>Một dự án</td></tr>
+          <tr><td>Sở hữu</td><td>Chuẩn, quản trị, báo cáo, assurance</td><td>Giao hàng phạm vi/thời gian/chi phí</td></tr>
+          <tr><td>Tầm nhìn</td><td>Liên tục / chiến lược</td><td>Tạm thời / chiến thuật</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 PORTFOLIO & INTAKE -->
+    <section class="section-block" id="section-portfolio">
+      <div class="section-header"><div class="section-icon">🗃️</div><div><div class="section-number">Mục 02</div><h2>Portfolio &amp; Demand / Intake</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Quản trị sáng kiến <em>nào</em> được cấp vốn &amp; sắp thứ tự — làm <strong>đúng</strong> dự án, không chỉ làm dự án cho đúng.</p>
+        <pre class="art-block">DEMAND ─▶ INTAKE ─▶ SCORE/RANK ─▶ STAGE-GATE ─▶ FUND ─▶ EXECUTE ─▶ CLOSE/BENEFITS
+(ý tưởng,  (business  (giá trị vs   (Go/Kill/    (cân đối    (xem PM)  (thu hoạch
+ đề nghị)   case)      capacity,     Hold/Recycle) portfolio)            giá trị)
+                       phù hợp CL)</pre>
+        <table class="table-pmo" style="margin-top:8px;">
+          <tr><th>Tiêu chí intake</th><th>Câu hỏi</th></tr>
+          <tr><td>Đồng hướng chiến lược</td><td>Có thúc đẩy một mục tiêu của tổ chức không?</td></tr>
+          <tr><td>Giá trị / ROI</td><td>Lợi ích kỳ vọng so với chi phí?</td></tr>
+          <tr><td>Rủi ro &amp; tuân thủ</td><td>Mức phơi nhiễm pháp lý / rủi ro?</td></tr>
+          <tr><td>Capacity</td><td>Có đủ người để giao không?</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🚪</span><div><strong>Stage-gate</strong> (phase-gate): quyết định Go / Kill / Hold / Recycle tại mỗi gate bảo vệ portfolio khỏi các dự án "zombie".</div></div>
+        <div class="card-title" style="margin-top:14px;">Cân bằng &amp; Tối ưu Portfolio <span class="pill-tag">MoP</span></div>
+        <p>Lựa chọn không chỉ là xếp hạng — cân bằng portfolio theo <strong>nhóm</strong> (run/grow/transform), <strong>bắt buộc vs tuỳ chọn</strong> (pháp lý/bắt buộc trước), <strong>hồ sơ rủi ro</strong>, và <strong>capacity</strong>. Tìm "efficient frontier": giá trị chiến lược tối đa cho khoản đầu tư &amp; năng lực giao hàng sẵn có.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 GOVERNANCE -->
+    <section class="section-block" id="section-governance">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Mục 03</div><h2>Cơ cấu quản trị</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-pmo">
+          <tr><th>Cơ quan</th><th>Quyền quyết định</th><th>Nhịp</th></tr>
+          <tr><td><strong>Investment / Portfolio Board</strong></td><td>Cấp vốn, ưu tiên hoá, quyết định dừng dự án</td><td>Quý / tháng</td></tr>
+          <tr><td><strong>Steering Committee</strong></td><td>Phê duyệt phase-gate, thay đổi lớn, leo thang</td><td>Hằng tháng</td></tr>
+          <tr><td><strong>CAB</strong></td><td>Rủi ro change/release (xem <a href="#deployment">Deployment</a>)</td><td>Hằng tuần</td></tr>
+          <tr><td><strong>PMO Operations</strong></td><td>Chuẩn, báo cáo, assurance</td><td>Liên tục</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📏</span><div><strong>Quyền quyết định</strong> rõ ràng &amp; ngưỡng leo thang ngăn nghẽn cổ chai. Cân chỉnh trọng lượng quản trị theo quy mô &amp; rủi ro dự án.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 RAID -->
+    <section class="section-block" id="section-raid">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Mục 04</div><h2>Quản lý RAID</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Sổ RAID</strong> hợp nhất là công cụ kiểm soát trung tâm của PMO trên toàn portfolio.</p>
+        <table class="table-pmo">
+          <tr><th>Chữ</th><th>Mục</th><th>Theo dõi</th></tr>
+          <tr><td><strong>R</strong></td><td>Risks (Rủi ro)</td><td>Vấn đề tương lai tiềm tàng — xác suất × ảnh hưởng, chủ sở hữu, phương án ứng phó.</td></tr>
+          <tr><td><strong>A</strong></td><td>Assumptions (Giả định)</td><td>Điều được coi là đúng — cần kiểm chứng; giả định sai trở thành risk/issue.</td></tr>
+          <tr><td><strong>I</strong></td><td>Issues (Vấn đề)</td><td>Vấn đề đang xảy ra — chủ sở hữu, hành động, hạn chót.</td></tr>
+          <tr><td><strong>D</strong></td><td>Dependencies (Phụ thuộc)</td><td>Phụ thuộc liên dự án / bên ngoài — xem Mục 05.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Thực hành rủi ro cấp dự án nằm ở <a href="#pm">PM Handbook</a>; PMO <strong>tổng hợp</strong> RAID thành góc nhìn portfolio &amp; quản các mục xuyên suốt.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 DEPENDENCY -->
+    <section class="section-block" id="section-dependency">
+      <div class="section-header"><div class="section-icon">🔗</div><div><div class="section-number">Mục 05</div><h2>Quản lý phụ thuộc &amp; liên dự án</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Duy trì <strong>bản đồ phụ thuộc</strong> xuyên các dự án (ai cần gì, hạn nào).</li>
+          <li>Phân loại: nội bộ vs bên ngoài, cứng vs mềm, đầu vào vs đầu ra.</li>
+          <li>Sắp trình tự &amp; đồng bộ mốc; báo sớm các phụ thuộc trên đường găng (critical path) cho các board.</li>
+          <li>Giải quyết xung đột về tài nguyên/hệ thống dùng chung ở cấp portfolio, không phải dự án đấu dự án.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 FINANCIAL -->
+    <section class="section-block" id="section-financial">
+      <div class="section-header"><div class="section-icon">💰</div><div><div class="section-number">Mục 06</div><h2>Quản trị tài chính</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Quản trị dòng tiền: business case → cost baseline → theo dõi → dự báo. <strong>Earned Value Management (EVM)</strong> cho tiến độ khách quan:</p>
+        <table class="table-pmo">
+          <tr><th>Chỉ số</th><th>Công thức</th><th>Đọc là</th></tr>
+          <tr><td><strong>CPI</strong></td><td><code>EV ÷ AC</code></td><td>Hiệu quả chi phí (&gt;1 = dưới ngân sách)</td></tr>
+          <tr><td><strong>SPI</strong></td><td><code>EV ÷ PV</code></td><td>Hiệu quả tiến độ (&gt;1 = vượt kế hoạch)</td></tr>
+          <tr><td><strong>CV</strong></td><td><code>EV − AC</code></td><td>Chênh lệch chi phí</td></tr>
+          <tr><td><strong>EAC</strong></td><td><code>BAC ÷ CPI</code></td><td>Dự báo tổng chi phí khi hoàn thành</td></tr>
+        </table>
+        <p style="margin-top:6px;"><span class="pill-tag">EV earned value · AC actual cost · PV planned value · BAC budget at completion</span></p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 BENEFITS -->
+    <section class="section-block" id="section-benefits">
+      <div class="section-header"><div class="section-icon">🎁</div><div><div class="section-number">Mục 07</div><h2>Benefits Realization</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Dự án giao <em>output</em>; tổ chức cần <strong>outcome &amp; lợi ích</strong>. PMO bảo đảm giá trị thực sự được thu hoạch — không phải mặc định có lúc go-live.</p>
+        <pre class="art-block">IDENTIFY ─▶ PLAN ─▶ (giao hàng) ─▶ REALIZE ─▶ REVIEW
+lợi ích     chủ sở hữu,             đo thực     soát xét
+trong       baseline,              tế vs        lợi ích
+business    KPI                    mục tiêu     (3–6 tháng sau go-live)
+case</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🔗</span><div>Mỗi lợi ích có <strong>chủ sở hữu, baseline, KPI mục tiêu, và ngày soát xét</strong>. Gắn với chỉ số outcome của <a href="#po">PO</a> và khâu đóng dự án (PIR) trong <a href="#handbook">Implementation Handbook</a>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 STANDARDS -->
+    <section class="section-block" id="section-standards">
+      <div class="section-header"><div class="section-icon">📚</div><div><div class="section-number">Mục 08</div><h2>Chuẩn giao hàng &amp; Phương pháp</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Sở hữu khung giao hàng (bộ handbook này), template, và quality gate (DoR/DoD, phase gate).</li>
+          <li><strong>Hướng dẫn tailoring:</strong> cân chỉnh Waterfall/Agile/Hybrid theo quy mô, rủi ro, và phạm vi pháp lý của dự án.</li>
+          <li>Xây dựng <strong>thư viện template</strong> (charter, business case, status, RAID, closure) và kho lessons-learned.</li>
+          <li>Cổ vũ sự nhất quán xuyên các handbook <a href="#pm">PM</a>, <a href="#po">PO</a>, <a href="#ba">BA</a>, <a href="#sa">SA</a>, <a href="#qc">QC</a>.</li>
+          <li>Xây dựng <strong>kho lessons-learned</strong> — ghi nhận tại mỗi lần đóng dự án (PIR) và nạp ngược vào chuẩn &amp; tiêu chí intake.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔄</span><div><strong>Organizational Change Management (OCM):</strong> output giao hàng chỉ tạo giá trị nếu con người tiếp nhận. Lập kế hoạch cho <em>phần con người</em> bằng <strong>ADKAR</strong> (Awareness · Desire · Knowledge · Ability · Reinforcement) <span class="pill-tag">Prosci</span> — truyền thông stakeholder, đào tạo, và theo dõi mức tiếp nhận — song song với giao hàng kỹ thuật. <span class="pill-tag">PMI Managing Change</span></div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 RESOURCE -->
+    <section class="section-block" id="section-resource">
+      <div class="section-header"><div class="section-icon">🧑‍🤝‍🧑</div><div><div class="section-number">Mục 09</div><h2>Quản lý nguồn lực &amp; Capacity</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Góc nhìn cấp portfolio về nhu cầu vs capacity; ngăn phân bổ quá tải xuyên các dự án.</li>
+          <li>Ma trận kỹ năng &amp; heatmap capacity; dự báo nhu cầu tuyển dụng/vendor.</li>
+          <li>Giải quyết tranh chấp nguồn lực bằng ưu tiên portfolio, không phải ai đến trước được trước.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 ASSURANCE -->
+    <section class="section-block" id="section-assurance">
+      <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Mục 10</div><h2>Assurance &amp; Audit</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Kiểm tra độc lập rằng giao hàng đúng hướng &amp; control đang hoạt động <span class="pill-tag">P3O</span>:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Health check / gate review</strong> tại ranh giới giai đoạn; chấm RAG cho mức tin cậy giao hàng.</li>
+          <li>Tuân thủ control quản trị &amp; pháp lý (cùng <a href="#sec">Security &amp; Compliance</a>).</li>
+          <li>Theo dõi phát hiện audit &amp; hành động đến khi đóng; nạp bài học ngược vào chuẩn.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 REPORTING -->
+    <section class="section-block" id="section-reporting">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 11</div><h2>Báo cáo &amp; Portfolio Dashboard</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Một góc nhìn duy nhất, nhất quán về sức khoẻ portfolio cho lãnh đạo — trạng thái <strong>RAG</strong> có drill-down.</p>
+        <table class="table-pmo">
+          <tr><th>Tầng</th><th>Báo cáo</th></tr>
+          <tr><td>Executive</td><td>Portfolio scorecard: RAG, chi tiêu vs ngân sách, lợi ích, top rủi ro.</td></tr>
+          <tr><td>Programme</td><td>Mốc, phụ thuộc liên dự án, tóm tắt RAID.</td></tr>
+          <tr><td>Project</td><td>Báo cáo status (từ <a href="#pm">PM</a>): phạm vi/tiến độ/chi phí, EVM, vấn đề.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🎨</span><div>RAG: 🟢 đúng hướng · 🟡 có rủi ro (đang khắc phục) · 🔴 chệch hướng (leo thang). Định nghĩa nhất quán trên mọi dự án — không báo cáo kiểu "dưa hấu" (ngoài xanh trong đỏ).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Mục 12</div><h2>KPI Portfolio</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Giao đúng hạn</div><div class="metric-value">dự án đúng lịch ÷ tổng × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Giao trong ngân sách</div><div class="metric-value">CPI trung bình ≥ 0,95 toàn portfolio</div></div>
+          <div class="metric-card"><div class="metric-title">Lợi ích đạt được</div><div class="metric-value">thực tế ÷ dự báo lợi ích × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">ROI Portfolio</div><div class="metric-value">lợi ích ròng ÷ đầu tư × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Mức sử dụng nguồn lực</div><div class="metric-value">billable/phân bổ ÷ capacity × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Gate throughput</div><div class="metric-value">sáng kiến qua mỗi gate</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 13</div><h2>Vai trò &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-pmo">
+          <tr><th>Hoạt động</th><th>PMO</th><th>Sponsor/Board</th><th>PM</th><th>PO</th><th>Finance</th></tr>
+          <tr><td>Ưu tiên hoá &amp; cấp vốn portfolio</td><td><strong>R</strong></td><td><strong>A</strong></td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Quản trị stage-gate</td><td><strong>A/R</strong></td><td>A</td><td>R</td><td>C</td><td>C</td></tr>
+          <tr><td>RAID hợp nhất &amp; báo cáo</td><td><strong>A/R</strong></td><td>I</td><td>R</td><td>C</td><td>I</td></tr>
+          <tr><td>Quản trị tài chính / EVM</td><td><strong>R</strong></td><td>A</td><td>R</td><td>I</td><td><strong>C</strong></td></tr>
+          <tr><td>Benefits realization</td><td><strong>A</strong></td><td>A</td><td>C</td><td><strong>R</strong></td><td>C</td></tr>
+          <tr><td>Chuẩn &amp; assurance</td><td><strong>A/R</strong></td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> PMI — PMBOK Guide 7th Ed., The Standard for Portfolio Management, Managing Change in Organizations; <strong>P3O</strong> (Portfolio, Programme &amp; Project Offices — Axelos); <strong>MSP</strong> / <strong>MoP</strong> (programme &amp; portfolio, Axelos); Earned Value Management (PMI/ANSI EIA-748); Cooper (Stage-Gate). Bám kỳ vọng quản trị của SBV.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · PMO Governance &amp; Portfolio v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn PMI · P3O · EVM · Hybrid SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>
