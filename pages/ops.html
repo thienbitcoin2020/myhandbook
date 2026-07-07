@@ -95,6 +95,28 @@
 
   <main class="content-sections">
 
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Key terms &amp; abbreviations on this page</div>
+      <p style="font-size:12px;">New to operations &amp; SRE? Skim these first — they appear throughout this runbook.</p>
+      <table class="table-ops" style="margin-top:8px;">
+        <tr><th style="width:160px">Term</th><th>Meaning</th></tr>
+        <tr><td><strong>SRE</strong></td><td>Site Reliability Engineering — treating reliability as an engineering problem (Google).</td></tr>
+        <tr><td><strong>SLI / SLO / SLA</strong></td><td>Indicator (what we measure) / Objective (internal target) / Agreement (contractual promise).</td></tr>
+        <tr><td><strong>Error budget</strong></td><td>100% − SLO = the unreliability you're allowed to "spend" on releases &amp; change.</td></tr>
+        <tr><td><strong>MTTD / MTTR</strong></td><td>Mean Time To Detect / To Restore — how fast incidents are noticed and fixed.</td></tr>
+        <tr><td><strong>IC</strong></td><td>Incident Commander — single coordinator/decision-maker during an incident.</td></tr>
+        <tr><td><strong>RCA · Postmortem</strong></td><td>Root Cause Analysis; the blameless write-up after SEV1/SEV2 incidents.</td></tr>
+        <tr><td><strong>RTO / RPO</strong></td><td>Recovery Time Objective / Recovery Point Objective — restore speed &amp; max data loss for DR.</td></tr>
+        <tr><td><strong>DR · BCP · BIA</strong></td><td>Disaster Recovery (IT systems) / Business Continuity Plan (the whole business) / Business Impact Analysis.</td></tr>
+        <tr><td><strong>ITIL · ECAB</strong></td><td>The service-management framework; Emergency Change Advisory Board for fast-track fixes.</td></tr>
+        <tr><td><strong>CMDB</strong></td><td>Configuration Management Database — the authoritative inventory of services &amp; dependencies.</td></tr>
+        <tr><td><strong>DORA · CFR</strong></td><td>The four delivery metrics (deploy frequency, lead time, Change Failure Rate, MTTR).</td></tr>
+        <tr><td><strong>Toil</strong></td><td>Repetitive manual ops work that scales with the system — automate it away.</td></tr>
+        <tr><td><strong>IaC / GitOps</strong></td><td>Infrastructure as Code; managing infra changes through git for traceability.</td></tr>
+      </table>
+    </div></div>
+
     <!-- 01 OVERVIEW -->
     <section class="section-block" id="section-overview">
       <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>Overview</h2></div></div>

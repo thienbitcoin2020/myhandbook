@@ -95,6 +95,31 @@
 
   <div class="content-sections">
 
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Key terms &amp; abbreviations on this page</div>
+      <p style="font-size:12px;">New to release management? Skim these first — they appear throughout this runbook.</p>
+      <table class="comp-table" style="margin-top:8px;">
+        <thead><tr><th style="width:170px">Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CAB / ECAB</strong></td><td>Change Advisory Board — the governance body that approves production changes; Emergency CAB for urgent fixes.</td></tr>
+          <tr><td><strong>CR</strong></td><td>Change Request — the approval package (reports, sign-offs, rollback plan) submitted to CAB.</td></tr>
+          <tr><td><strong>RM</strong></td><td>Release Manager — single point of accountability for the release lifecycle.</td></tr>
+          <tr><td><strong>SoD</strong></td><td>Segregation of Duties — dev, test and production release must be different people (SBV mandate).</td></tr>
+          <tr><td><strong>DEV → SIT → UAT → PERF → SEC → PROD</strong></td><td>The environment ladder a release climbs: Development, System Integration Test, User Acceptance, Performance, Security, Production.</td></tr>
+          <tr><td><strong>PT / ST</strong></td><td>Performance Testing (load/stress/soak) / Security Testing (DAST + pentest) — the two pre-CAB gates.</td></tr>
+          <tr><td><strong>SAST / DAST</strong></td><td>Static (on code) / Dynamic (on the running app) security scanning.</td></tr>
+          <tr><td><strong>CVSS</strong></td><td>Vulnerability severity score 0–10 — ≥ 7.0 is a hard release blocker here.</td></tr>
+          <tr><td><strong>TPS · P95/P99</strong></td><td>Transactions Per Second; 95th/99th-percentile latency — performance KPIs.</td></tr>
+          <tr><td><strong>Blue-green / Canary</strong></td><td>Deploy strategies: switch between two identical environments / release to a small % first.</td></tr>
+          <tr><td><strong>Rollback</strong></td><td>Reverting to the previous working version when triggers fire (see the executable runbook below).</td></tr>
+          <tr><td><strong>DoD</strong></td><td>Definition of Done — the 8-item release checklist that must be complete before CAB.</td></tr>
+          <tr><td><strong>GRC</strong></td><td>Governance, Risk &amp; Compliance system — where approvals and the deployment audit trail live.</td></tr>
+          <tr><td><strong>Hypercare / 72h watch</strong></td><td>Heightened monitoring right after go-live; dev on standby, reviews every 4 hours.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
     <!-- SECTION 1: GOVERNANCE -->
     <section id="section-governance" class="section-block">
       <div class="section-header">
