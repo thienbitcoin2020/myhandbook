@@ -1,0 +1,431 @@
+<title>PM Project Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--text-display)}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-pm{width:100%;border-collapse:collapse;font-size:12px}
+.table-pm th,.table-pm td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.table-pm th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-pm tr:hover td{background:var(--bg-hover)}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">👔</div>
+      <div>
+        <div class="bank-title">PM Project Handbook</div>
+        <div class="bank-sub">PMBOK® v7 · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Tổng quan</div>
+  <nav id="sidebar-nav">
+    <a href="#section-identity" onclick="setActive(this)"><span class="nav-icon">🏠</span> Vai trò &amp; Nguyên tắc</a>
+    <a href="#section-visuals" onclick="setActive(this)"><span class="nav-icon">👁️</span> Nhìn nhanh bằng hình</a>
+  </nav>
+
+  <div class="sidebar-section-label">Luồng làm việc đầu-cuối</div>
+  <nav id="sidebar-nav">
+    <a href="#section-p1" onclick="setActive(this)"><span class="nav-icon">1️⃣</span> Giai đoạn 1 — Initiating</a>
+    <a href="#section-p2" onclick="setActive(this)"><span class="nav-icon">2️⃣</span> Giai đoạn 2 — Planning</a>
+    <a href="#section-p3" onclick="setActive(this)"><span class="nav-icon">3️⃣</span> Giai đoạn 3 — Executing</a>
+    <a href="#section-p4" onclick="setActive(this)"><span class="nav-icon">4️⃣</span> Giai đoạn 4 — Monitoring</a>
+    <a href="#section-p5" onclick="setActive(this)"><span class="nav-icon">5️⃣</span> Giai đoạn 5 — Closing</a>
+  </nav>
+
+  <div class="sidebar-section-label">Khung làm việc</div>
+  <nav id="sidebar-nav">
+    <a href="#section-risk" onclick="setActive(this)"><span class="nav-icon">⚠️</span> Rủi ro &amp; Stakeholder</a>
+    <a href="#section-comm" onclick="setActive(this)"><span class="nav-icon">📡</span> Nhịp truyền thông</a>
+    <a href="#section-change" onclick="setActive(this)"><span class="nav-icon">🔄</span> Thay đổi &amp; Chất lượng</a>
+  </nav>
+
+  <div class="sidebar-section-label">Quản trị</div>
+  <nav id="sidebar-nav">
+    <a href="#section-gov" onclick="setActive(this)"><span class="nav-icon">🏛️</span> Cơ cấu &amp; Tailoring</a>
+    <a href="#section-sdlc" onclick="setActive(this)"><span class="nav-icon">⚙️</span> Thích ứng SDLC</a>
+    <a href="#section-doc" onclick="setActive(this)"><span class="nav-icon">📄</span> Sở hữu tài liệu</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> Chỉ số &amp; Anti-Pattern</a>
+    <a href="#section-artifacts" onclick="setActive(this)"><span class="nav-icon">📑</span> Artifact mẫu</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Project Manager / PMO<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">👔 Handbook nội bộ · Bám chuẩn PMBOK® v7</div>
+    <h1>Project Manager (PM)<br/><span>Vai trò &amp; Luồng làm việc</span></h1>
+    <p>Cẩm nang toàn diện cho luồng làm việc của Senior Project Manager trong mô hình SDLC hybrid. Bạn chịu trách nhiệm về phạm vi, tiến độ, chi phí, chất lượng, nguồn lực, truyền thông, rủi ro, mua sắm, các bên liên quan, và tích hợp.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> PMBOK® 7th Ed.</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Hybrid SDLC</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 5 Process Group</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- IDENTITY & PRINCIPLES -->
+    <section class="section-block" id="section-identity">
+      <div class="section-header"><div class="section-icon">🏠</div><div><div class="section-number">Tổng quan</div><h2>Vai trò &amp; Nguyên tắc</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Vai trò &amp; bối cảnh</div>
+        <p>Bạn là Senior Project Manager quản lý các dự án triển khai phần mềm. Bạn vận dụng các nguyên tắc quản lý dự án của PMI, linh hoạt giữa Waterfall, Agile/Scrum, Kanban, SAFe hoặc Hybrid. Bạn cộng tác với: Project Sponsor, Steering Committee, BA, SA, DEV, QA, PO, UX/UI, DevOps/SRE, Security/Compliance, Tài chính/Mua sắm, Nhà cung cấp, và các Stakeholder nghiệp vụ.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Nguyên tắc dẫn đường (PMBOK phiên bản 7)</div>
+        <ul class="step-cl" style="margin-top:10px;">
+          <li><strong>Stewardship:</strong> hành xử đạo đức, trung thực, vì lợi ích tốt nhất của dự án</li>
+          <li><strong>Team:</strong> nuôi dưỡng môi trường đội cộng tác, có trách nhiệm</li>
+          <li><strong>Stakeholders:</strong> gắn kết các bên một cách thực chất trong suốt dự án</li>
+          <li><strong>Value:</strong> tập trung vào outcome và giá trị kinh doanh, không chỉ sản phẩm bàn giao</li>
+          <li><strong>Systems thinking:</strong> hiểu các phụ thuộc lẫn nhau và bối cảnh rộng hơn</li>
+          <li><strong>Leadership:</strong> thể hiện hành vi lãnh đạo ở mọi cấp</li>
+          <li><strong>Tailoring:</strong> điều chỉnh cách tiếp cận theo bối cảnh, không làm ngược lại</li>
+          <li><strong>Quality:</strong> xây chất lượng vào quy trình và sản phẩm bàn giao</li>
+          <li><strong>Complexity:</strong> điều hướng sự phức tạp bằng khả năng thích nghi</li>
+          <li><strong>Risk:</strong> chủ động nhận diện và ứng phó cả nguy cơ &amp; cơ hội</li>
+          <li><strong>Adaptability &amp; resilience:</strong> đón nhận thay đổi, học từ thất bại</li>
+          <li><strong>Change:</strong> tạo điều kiện cho thay đổi để đạt trạng thái tương lai mong muốn</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">8 Performance Domain (PMBOK 7)</div>
+        <p>PMBOK 7 <strong>dựa trên nguyên tắc và domain</strong>, không dựa trên quy trình. 8 Performance Domain là các vùng trọng tâm tương tác lẫn nhau, chạy xuyên suốt quá trình giao hàng. Các Giai đoạn 1–5 (process group) bên dưới là <em>lăng kính thực thi</em>; các domain là cách v7 định khung outcome.</p>
+        <table class="table-pm" style="margin-top:10px;">
+          <tr><th style="width:190px">Performance Domain</th><th>Trọng tâm / outcome</th></tr>
+          <tr><td><strong>Stakeholders</strong></td><td>Quan hệ làm việc hiệu quả &amp; sự gắn kết.</td></tr>
+          <tr><td><strong>Team</strong></td><td>Đội hiệu suất cao, lãnh đạo chia sẻ, văn hoá. <em>(Quy trình đội do <a href="#sm">Scrum Master</a> sở hữu, không phải PM.)</em></td></tr>
+          <tr><td><strong>Development Approach &amp; Life Cycle</strong></td><td>Chọn cách tiếp cận (dự đoán/agile/hybrid) phù hợp với công việc.</td></tr>
+          <tr><td><strong>Planning</strong></td><td>Lập kế hoạch luỹ tiến, phối hợp trên phạm vi/tiến độ/chi phí.</td></tr>
+          <tr><td><strong>Project Work</strong></td><td>Thực thi quy trình, quản lý nguồn lực, mua sắm &amp; nhà cung cấp, học hỏi.</td></tr>
+          <tr><td><strong>Delivery</strong></td><td>Giao đúng phạm vi &amp; chất lượng để hiện thực hoá giá trị dự kiến.</td></tr>
+          <tr><td><strong>Measurement</strong></td><td>Đánh giá hiệu quả bằng chỉ số dẫn dắt &amp; trễ; tránh bẫy đo lường.</td></tr>
+          <tr><td><strong>Uncertainty</strong></td><td>Điều hướng rủi ro, mơ hồ, phức tạp &amp; biến động.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🧵</span><div><strong>Tailoring</strong> là một kỷ luật hạng nhất trong v7: chủ đích điều chỉnh cách tiếp cận, quản trị và artifact theo bối cảnh (quy mô, rủi ro, phạm vi pháp lý) — ghi lại trong Tailoring Decision (Giai đoạn 1).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- VISUAL OVERVIEW -->
+    <section class="section-block" id="section-visuals">
+      <div class="section-header"><div class="section-icon">👁️</div><div><div class="section-number">Tổng quan</div><h2>Nhìn nhanh bằng hình</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Năm Process Group</div>
+        <pre class="art-block">INITIATING (Charter, nhận diện stakeholder)
+   ↓
+PLANNING (PM plan, toàn bộ baseline)
+   ↓
+EXECUTING (Thực hiện công việc) &lt;───&gt; MONITORING &amp; CONTROLLING (Theo dõi, hiệu chỉnh)
+   ↓                                       ┊
+CLOSING (Bàn giao, bài học) &lt;┈┈(Change request)┈┈ PLANNING</pre>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Mười Knowledge Area (PMBOK)</div>
+        <p><strong>Integration Management</strong> kết nối: Scope, Schedule, Cost, Quality, Resource, Communications, Risk, Procurement, và Stakeholder Management.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Bản đồ tương tác vai trò của PM</div>
+        <table class="table-pm">
+          <tr><th>Vai trò</th><th>Tương tác</th></tr>
+          <tr><td>Sponsor / Steering</td><td>Cung cấp tầm nhìn, ngân sách, quyết định. PM cung cấp status, rủi ro, leo thang.</td></tr>
+          <tr><td>Business Analyst</td><td>BA cung cấp yêu cầu, tác động CR. PM cung cấp phạm vi, lịch, độ ưu tiên.</td></tr>
+          <tr><td>Solution Architect</td><td>SA cung cấp kiến trúc, ước lượng. PM cung cấp mốc thời gian, ràng buộc.</td></tr>
+          <tr><td>Đội Dev</td><td>DEV báo cáo tiến độ, blocker. PM phân bổ độ ưu tiên công việc.</td></tr>
+          <tr><td>Đội QA</td><td>QA báo cáo xu hướng defect, bối cảnh chất lượng. PM đặt lịch, các gate.</td></tr>
+          <tr><td>Nhà cung cấp</td><td>Vendor giao các hạng mục SOW. PM xử lý hợp đồng, bàn giao, hoá đơn.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASE 1: INITIATING -->
+    <section class="section-block" id="section-p1">
+      <div class="section-header"><div class="section-icon">1️⃣</div><div><div class="section-number">Luồng làm việc đầu-cuối</div><h2>Giai đoạn 1 — Initiating</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Kích hoạt:</strong> Business case được duyệt; dự án được phép khởi động.</p>
+        <ol class="step-cl" style="margin-top:12px;">
+          <li><span class="step-num">1</span><strong>Xây dựng Project Charter</strong> ghi rõ mục đích, phạm vi, ngân sách, rủi ro, và thẩm quyền.</li>
+          <li><span class="step-num">2</span><strong>Nhận diện stakeholder</strong> — phối hợp với BA làm Stakeholder Register.</li>
+          <li><span class="step-num">3</span><strong>Tổ chức kickoff dự án</strong> với đội nòng cốt và các bên liên quan.</li>
+          <li><span class="step-num">4</span><strong>Đánh giá mức sẵn sàng của tổ chức</strong>: mô hình quản trị và các phụ thuộc.</li>
+          <li><span class="step-num">5</span><strong>Chốt hướng tailoring</strong> — chọn mô hình SDLC và khung PM.</li>
+        </ol>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">📄</span><div><strong>Đầu ra chính:</strong> Project Charter, Stakeholder Register, Biên bản Kickoff, Tailoring Decision, Assumption Log ban đầu.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASE 2: PLANNING -->
+    <section class="section-block" id="section-p2">
+      <div class="section-header"><div class="section-icon">2️⃣</div><div><div class="section-number">Luồng làm việc đầu-cuối</div><h2>Giai đoạn 2 — Planning</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Kích hoạt:</strong> Charter được duyệt; được phép lập kế hoạch.</p>
+        <table class="table-pm" style="margin-top:12px;">
+          <tr><th style="width:160px">Knowledge Area</th><th>Hoạt động</th></tr>
+          <tr><td><strong>Integration</strong></td><td>Xây Project Management Plan, thiết lập CCB / quy trình thay đổi.</td></tr>
+          <tr><td><strong>Scope</strong></td><td>Scope Statement, WBS, WBS Dictionary, Scope Baseline.</td></tr>
+          <tr><td><strong>Schedule</strong></td><td>Network Diagram, ước lượng thời lượng, Schedule Baseline, Release Plan, nhịp Sprint.</td></tr>
+          <tr><td><strong>Cost</strong></td><td>Ước lượng Bottom-Up, Cost Baseline, Management Reserve, chỉ số EVM.</td></tr>
+          <tr><td><strong>Quality</strong></td><td>Quality Mgmt Plan, Definition of Done, các checkpoint, audit.</td></tr>
+          <tr><td><strong>Resource</strong></td><td>Ma trận RACI, Resource Calendar, Team Development Plan.</td></tr>
+          <tr><td><strong>Communications</strong></td><td>Comms Mgmt Plan, nhịp báo cáo, Ma trận leo thang.</td></tr>
+          <tr><td><strong>Risk</strong></td><td>Workshop nhận diện rủi ro, phân tích định tính/định lượng, Response Plan, Risk Register.</td></tr>
+          <tr><td><strong>Procurement</strong></td><td>Procurement Mgmt Plan, mẫu SOW, tiêu chí chọn vendor.</td></tr>
+          <tr><td><strong>Stakeholder</strong></td><td>Chiến lược trong Stakeholder Engagement Plan.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">📄</span><div><strong>Đầu ra chính:</strong> PM Plan, các Baseline (Phạm vi/Tiến độ/Chi phí), 6 kế hoạch con, RACI, Risk Register.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASE 3: EXECUTING -->
+    <section class="section-block" id="section-p3">
+      <div class="section-header"><div class="section-icon">3️⃣</div><div><div class="section-number">Luồng làm việc đầu-cuối</div><h2>Giai đoạn 3 — Executing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Kích hoạt:</strong> Kế hoạch được duyệt; được phép thực thi.</p>
+        <ol class="step-cl" style="margin-top:12px;">
+          <li><span class="step-num">1</span>Chỉ đạo &amp; quản lý công việc dự án (gỡ blocker).</li>
+          <li><span class="step-num">2</span>Quản lý tri thức dự án (Lessons Learned Register).</li>
+          <li><span class="step-num">3</span>Quản lý chất lượng (audit, kiểm tra tuân thủ chuẩn).</li>
+          <li><span class="step-num">4</span>Tuyển, phát triển và quản lý đội (1:1, hiệu suất, onboarding).</li>
+          <li><span class="step-num">5</span>Quản lý truyền thông (phân phối báo cáo, họp).</li>
+          <li><span class="step-num">6</span>Thực thi các phương án ứng phó rủi ro.</li>
+          <li><span class="step-num">7</span>Thực hiện mua sắm (quản lý vendor).</li>
+          <li><span class="step-num">8</span>Quản lý sự gắn kết của stakeholder.</li>
+          <li><span class="step-num">9</span>Điều phối ceremony (Agile) hoặc phase gate (Waterfall).</li>
+          <li><span class="step-num">10</span>Quản lý phụ thuộc liên đội.</li>
+        </ol>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASE 4: MONITORING -->
+    <section class="section-block" id="section-p4">
+      <div class="section-header"><div class="section-icon">4️⃣</div><div><div class="section-number">Luồng làm việc đầu-cuối</div><h2>Giai đoạn 4 — Monitoring &amp; Controlling</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Kích hoạt:</strong> Bắt đầu thực thi; chạy song song đến khi đóng dự án.</p>
+        <ul class="step-cl" style="margin-top:12px;">
+          <li><strong>Integrated Change Control:</strong> Thẩm định CR, phê duyệt qua CCB, cập nhật baseline.</li>
+          <li><strong>Kiểm soát phạm vi:</strong> Nghiệm thu sản phẩm bàn giao, chặn scope creep.</li>
+          <li><strong>Kiểm soát tiến độ:</strong> Phân tích xu hướng, biểu đồ Burn-down, Critical Path, fast-tracking.</li>
+          <li><strong>Kiểm soát chi phí:</strong> Chỉ số EVM (CPI, SPI, EAC), theo dõi ngân sách.</li>
+          <li><strong>Kiểm soát chất lượng:</strong> Soát chỉ số defect, phân tích nguyên nhân gốc.</li>
+          <li><strong>Kiểm soát rủi ro &amp; vấn đề:</strong> Theo dõi trigger, kích hoạt phương án dự phòng, Risk Review định kỳ.</li>
+          <li><strong>Mua sắm &amp; Stakeholder:</strong> SLA vendor, hiệu chỉnh mức gắn kết.</li>
+        </ul>
+        <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">📄</span><div><strong>Đầu ra chính:</strong> Báo cáo status hàng tuần, Change Log, Risk/Issue Log cập nhật, Báo cáo chênh lệch &amp; EVM.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASE 5: CLOSING -->
+    <section class="section-block" id="section-p5">
+      <div class="section-header"><div class="section-icon">5️⃣</div><div><div class="section-number">Luồng làm việc đầu-cuối</div><h2>Giai đoạn 5 — Closing</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Kích hoạt:</strong> Sản phẩm bàn giao được chấp nhận; sẵn sàng đóng dự án.</p>
+        <ol class="step-cl" style="margin-top:12px;">
+          <li><span class="step-num">1</span>Nghiệm thu cuối cùng sản phẩm/dịch vụ (ký duyệt).</li>
+          <li><span class="step-num">2</span>Đóng hành chính: lưu trữ tài liệu, đóng hợp đồng, giải phóng nguồn lực.</li>
+          <li><span class="step-num">3</span>Đóng tài chính: đối soát cuối, đóng mã ngân sách.</li>
+          <li><span class="step-num">4</span>Họp đóng dự án / Retrospective.</li>
+          <li><span class="step-num">5</span>Ghi lại và lan toả Lessons Learned một cách dứt điểm.</li>
+          <li><span class="step-num">6</span>Đặt lịch Benefits Realization Review (3–6 tháng sau go-live).</li>
+        </ol>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- RISK & STAKEHOLDERS -->
+    <section class="section-block" id="section-risk">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Khung làm việc</div><h2>Quản lý Rủi ro &amp; Stakeholder</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Khung quản lý rủi ro</div>
+        <p><strong>Phân nhóm:</strong> Kỹ thuật, Tiến độ, Chi phí, Nguồn lực, Phạm vi, Chất lượng, Vendor, Tổ chức, Bên ngoài, Bảo mật.</p>
+        <p><strong>Chấm điểm rủi ro (ma trận 5×5):</strong> Xác suất × Ảnh hưởng = Mức phơi nhiễm. 1–4 (Thấp), 5–9 (Trung bình), 10–16 (Cao — ứng phó chủ động), 17–25 (Rất cao — leo thang lãnh đạo).</p>
+        <p><strong>Chiến lược ứng phó:</strong> Nguy cơ (Tránh/Chuyển/Giảm/Chấp nhận/Leo thang). Cơ hội (Khai thác/Chia sẻ/Tăng cường/Chấp nhận/Leo thang).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Quản lý Stakeholder</div>
+        <p><strong>Lưới Power/Interest:</strong> Quyền cao/Quan tâm cao = Quản lý sát. Quyền cao/Quan tâm thấp = Giữ hài lòng. Thấp/Cao = Giữ được thông tin. Thấp/Thấp = Theo dõi.</p>
+        <p><strong>Mức gắn kết:</strong> Chưa biết → Kháng cự → Trung lập → Ủng hộ → Dẫn dắt.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- COMMUNICATION CADENCE -->
+    <section class="section-block" id="section-comm">
+      <div class="section-header"><div class="section-icon">📡</div><div><div class="section-number">Khung làm việc</div><h2>Nhịp truyền thông</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-pm">
+          <tr><th>Đối tượng</th><th>Tần suất</th><th>Hình thức</th></tr>
+          <tr><td>Đội Dev</td><td>Hằng ngày</td><td>Standup (15 phút)</td></tr>
+          <tr><td>Đội nòng cốt dự án</td><td>Hằng tuần</td><td>Phiên làm việc (60 phút)</td></tr>
+          <tr><td>Đội + BA/QA</td><td>Tuần / 2 tuần</td><td>Họp status (45 phút)</td></tr>
+          <tr><td>Stakeholder</td><td>2 tuần/lần</td><td>Báo cáo status (email)</td></tr>
+          <tr><td>Steering Committee</td><td>Hằng tháng</td><td>Steering Pack + họp (60 phút)</td></tr>
+          <tr><td>Sponsor</td><td>2 tuần/lần</td><td>1:1 Sync (30 phút)</td></tr>
+          <tr><td>Lãnh đạo điều hành</td><td>Tháng/Quý</td><td>Executive Dashboard</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><strong>Định nghĩa RAG:</strong> 🟢 Xanh (Đúng hướng), 🟡 Vàng (Đang khắc phục), 🔴 Đỏ (Cần leo thang, chệch hướng).</div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- CHANGE & QUALITY -->
+    <section class="section-block" id="section-change">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Khung làm việc</div><h2>Kiểm soát thay đổi &amp; Quality Gate</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Quy trình kiểm soát thay đổi</div>
+        <p>CR được nêu → Ghi nhận → Đánh giá tác động (Phạm vi/Tiến độ/Chi phí/Chất lượng/Rủi ro) → Phân cấp xử lý.</p>
+        <p><strong>Cấp thẩm quyền:</strong><br/>PM (&lt;5% chi phí/tiến độ, không đổi phạm vi).<br/>CCB (tác động 5–15% hoặc phạm vi nhỏ).<br/>Steering Committee (&gt;15% tác động, thay đổi chiến lược).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Health Check hằng tháng</div>
+        <ul class="step-cl">
+          <li>Phạm vi: bám WBS. Tiến độ: SPI &gt; 0.9. Chi phí: CPI &gt; 0.9.</li>
+          <li>Chất lượng: không còn defect Critical/Major. Nguồn lực: không phụ thuộc một cá nhân then chốt.</li>
+          <li>Rủi ro: Top 5 được quản lý, không có mục Đỏ bị bỏ ngỏ. Stakeholder: mức gắn kết lành mạnh.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- GOVERNANCE & TAILORING -->
+    <section class="section-block" id="section-gov">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Quản trị</div><h2>Cơ cấu &amp; Tailoring</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Quản trị 3 tầng</div>
+        <ul class="step-cl">
+          <li><strong>Tầng Executive/Sponsor:</strong> Quyết định chiến lược, ngân sách.</li>
+          <li><strong>Steering Committee:</strong> Quyết định chiến thuật, thay đổi lớn. Nhịp hằng tháng.</li>
+          <li><strong>Vận hành dự án:</strong> Giao hàng hằng ngày, quyết định nhỏ, do PM điều phối.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Ma trận leo thang (thời gian phản hồi tối đa)</div>
+        <table class="table-pm">
+          <tr><th>Loại vấn đề</th><th>Cấp 1</th><th>Cấp 2</th><th>Cấp 3</th><th>Tối đa</th></tr>
+          <tr><td>Blocker kỹ thuật</td><td>SA / Tech Lead</td><td>PM</td><td>Steering</td><td>24h</td></tr>
+          <tr><td>Vượt ngân sách</td><td>PM</td><td>Tài chính → Sponsor</td><td>Executive</td><td>48h</td></tr>
+          <tr><td>Trễ tiến độ &gt;10%</td><td>PM</td><td>Steering</td><td>Executive</td><td>1 tuần</td></tr>
+          <tr><td>Sự cố bảo mật</td><td>Security → PM</td><td>Sponsor</td><td>Exec + CISO</td><td>4h</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Các chiều tailoring</div>
+        <p>Điều chỉnh theo Quy mô đội, Thời lượng, Độ mới công nghệ, Phạm vi pháp lý, Ngân sách, và Tầm quan trọng chiến lược. Các quyết định BẮT BUỘC ghi vào <strong>Tailoring Decision Document</strong> trong giai đoạn Initiating.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- SDLC ADAPTATION -->
+    <section class="section-block" id="section-sdlc">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Quản trị</div><h2>Thích ứng SDLC</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Waterfall:</strong> Gate chính thức, baseline khoá chặt, EVM chi tiết, tài liệu nặng.</p>
+        <p><strong>Agile (Scrum):</strong> Kế hoạch cấp Sprint, chỉ số velocity, tài liệu gọn, tái ưu tiên backlog.</p>
+        <p><strong>Hybrid:</strong> Kế hoạch &amp; quản trị Waterfall ở tầng chiến lược + thực thi Sprint kiểu Agile. Thay đổi xuyên giai đoạn đi qua CCB; thay đổi trong sprint đi qua backlog.</p>
+      </div></div>
+    </section>
+
+    <!-- DOC OWNERSHIP -->
+    <section class="section-block" id="section-doc">
+      <div class="card"><div class="card-body">
+        <div class="card-title">Ma trận sở hữu tài liệu</div>
+        <table class="table-pm">
+          <tr><th>Tài liệu</th><th>Vai trò của PM</th><th>Cộng tác</th></tr>
+          <tr><td>Project Charter, PM Plan, các Baseline</td><td><strong>Tác giả</strong></td><td>Sponsor, các Lead</td></tr>
+          <tr><td>Kế hoạch Truyền thông, Rủi ro, Mua sắm</td><td><strong>Tác giả</strong></td><td>Stakeholder, Risk, Pháp chế</td></tr>
+          <tr><td>Issue, Risk, Change, Decision Log</td><td><strong>Tác giả</strong></td><td>Đội, CCB, Sponsor</td></tr>
+          <tr><td>Stakeholder Register</td><td><strong>Đồng tác giả</strong></td><td>BA</td></tr>
+          <tr><td>BRD / SRS / Tài liệu kiến trúc</td><td><strong>Người review</strong></td><td>BA / SA</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- METRICS & ANTI-PATTERNS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Tra cứu</div><h2>Chỉ số &amp; Anti-Pattern</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Anti-Pattern (những điều KHÔNG làm)</div>
+        <ul class="step-cl">
+          <li>❌ Thực thi khi Charter chưa ký hoặc baseline chưa được stakeholder duyệt.</li>
+          <li>❌ Quản lý vi mô đội (thay vào đó, gỡ blocker). Giấu vấn đề với sponsor.</li>
+          <li>❌ Báo xanh khi thực tế vàng/đỏ. Biến EVM thành diễn kịch.</li>
+          <li>❌ Bỏ qua lessons learned. Đóng dự án mà không nghiệm thu chính thức.</li>
+          <li>❌ Làm trạm chuyển tin; ôm vấn đề đáng lẽ phải leo thang &amp; ngược lại.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">KPI</div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Tiến độ</div><div class="metric-value">SPI ≥ 0.95</div></div>
+          <div class="metric-card"><div class="metric-title">Chi phí</div><div class="metric-value">CPI ≥ 0.95</div></div>
+          <div class="metric-card"><div class="metric-title">Chất lượng</div><div class="metric-value">Defect Leakage &lt; 5%</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- ARTIFACTS -->
+    <section class="section-block" id="section-artifacts">
+      <div class="section-header"><div class="section-icon">📑</div><div><div class="section-number">Tra cứu</div><h2>Artifact &amp; Template mẫu</h2></div></div>
+      <div class="card" style="padding:10px 20px;">
+        <p>PM phải bảo đảm các artifact này đầy đủ, đã baseline, và được phân phối đúng nơi.</p>
+        <ul class="step-cl" style="margin-top:12px;">
+          <li><strong>Project Charter:</strong> Mục đích, mục tiêu, ràng buộc, mốc, thẩm quyền của PM.</li>
+          <li><strong>Stakeholder Register:</strong> Ảnh hưởng/Quan tâm, chiến lược gắn kết hiện tại/mong muốn.</li>
+          <li><strong>Ma trận RACI:</strong> Quy tắc sống còn — mỗi dòng chỉ MỘT chữ "A" (Accountable).</li>
+          <li><strong>Báo cáo status hằng tuần:</strong> RAG, KPI, kết quả nổi bật, top 5 rủi ro/vấn đề, quyết định cần chốt.</li>
+          <li><strong>Steering Committee Pack:</strong> Bản tổng hợp dành cho lãnh đạo (trình bày 60 phút).</li>
+          <li><strong>Risk Register / Issue Log / Decision Log / Change Request:</strong> Các mục theo dõi trọn vòng đời.</li>
+          <li><strong>Hồ sơ đóng dự án:</strong> Chỉ số thực hiện so với baseline, chữ ký nghiệm thu, benefits realization.</li>
+        </ul>
+        <div class="alert alert-success" style="margin-top:14px;"><span class="alert-icon">✅</span><div><strong>Checklist artifact:</strong> Mọi tài liệu phải có Chủ quản, Phiên bản, Trạng thái, Ngày. Con số phải có đơn vị. Quyết định phải có người phê duyệt. Action item phải có hạn chót.</div></div>
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · PM Project Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn PMBOK® 7th Ed. · Hybrid SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
