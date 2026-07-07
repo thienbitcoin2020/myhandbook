@@ -1,0 +1,370 @@
+<title>Security &amp; Compliance Runbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-sec{width:100%;border-collapse:collapse;font-size:12px}
+.table-sec th,.table-sec td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-sec th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-sec tr:hover td{background:var(--bg-hover)}
+.table-sec code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🛡️</div>
+      <div>
+        <div class="bank-title">Security &amp; Compliance</div>
+        <div class="bank-sub">ISO 27001 · NIST CSF · SBV 09/2020</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 02 · Khung quản trị</a>
+    <a href="#section-risk" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 03 · Quản lý rủi ro</a>
+  </nav>
+
+  <div class="sidebar-section-label">Xây dựng an toàn</div>
+  <nav id="sidebar-nav">
+    <a href="#section-devsecops" onclick="setActive(this)"><span class="nav-icon">🔄</span> 04 · Secure SDLC / DevSecOps</a>
+    <a href="#section-threat" onclick="setActive(this)"><span class="nav-icon">🎯</span> 05 · Threat Modeling</a>
+    <a href="#section-iam" onclick="setActive(this)"><span class="nav-icon">🔑</span> 06 · Định danh &amp; Truy cập</a>
+    <a href="#section-data" onclick="setActive(this)"><span class="nav-icon">🔐</span> 07 · Bảo vệ dữ liệu</a>
+    <a href="#section-appinfra" onclick="setActive(this)"><span class="nav-icon">🧱</span> 08 · Bảo mật App &amp; Hạ tầng</a>
+  </nav>
+
+  <div class="sidebar-section-label">Vận hành &amp; Bảo đảm</div>
+  <nav id="sidebar-nav">
+    <a href="#section-vuln" onclick="setActive(this)"><span class="nav-icon">🔍</span> 09 · Quản lý lỗ hổng</a>
+    <a href="#section-ir" onclick="setActive(this)"><span class="nav-icon">🚨</span> 10 · SecOps &amp; Sự cố</a>
+    <a href="#section-audit" onclick="setActive(this)"><span class="nav-icon">📋</span> 11 · Tuân thủ &amp; Audit</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 12 · Chỉ số / KPI</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🛡️ ISO 27001</span>
+    <span class="comp-pill">🏦 SBV 09/2020</span>
+    <span class="comp-pill">💳 PCI-DSS</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: CISO / Security &amp; Compliance<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: ISO 27001 · NIST CSF · SBV 09/2020<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🛡️ Runbook nội bộ · ISO 27001 · NIST CSF · SBV 09/2020</div>
+    <h1>Security &amp; Compliance<br/><span>Runbook Quản trị &amp; Kiểm soát</span></h1>
+    <p>Tài liệu tham chiếu cho an toàn thông tin &amp; tuân thủ pháp lý xuyên suốt SDLC — bám nền ISO/IEC 27001, NIST Cybersecurity Framework, OWASP, và ánh xạ tới Thông tư 09/2020/TT-NHNN cùng PCI-DSS cho ngân hàng thương mại Việt Nam. Bảo mật được xây từ gốc, không vá về sau.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> ISO 27001 ISMS</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> NIST CSF</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> DevSecOps</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> MẬT</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Thuật ngữ &amp; viết tắt trên trang này</div>
+      <p style="font-size:12px;">Mới làm quen bảo mật &amp; tuân thủ? Lướt qua bảng này trước — các thuật ngữ xuất hiện xuyên suốt runbook.</p>
+      <table class="table-sec" style="margin-top:8px;">
+        <tr><th style="width:160px">Thuật ngữ</th><th>Ý nghĩa</th></tr>
+        <tr><td><strong>CISO</strong></td><td>Chief Information Security Officer — người sở hữu chính sách bảo mật &amp; ISMS.</td></tr>
+        <tr><td><strong>ISMS / SoA</strong></td><td>Hệ thống quản lý an toàn thông tin (ISO 27001) / Statement of Applicability — control Annex A nào áp dụng và vì sao.</td></tr>
+        <tr><td><strong>IAM · RBAC · PAM · JML</strong></td><td>Quản lý định danh &amp; truy cập; phân quyền theo vai trò; quản lý truy cập đặc quyền; quy trình cấp/thu hồi Joiner-Mover-Leaver.</td></tr>
+        <tr><td><strong>MFA · SSO · OIDC</strong></td><td>Xác thực đa yếu tố; đăng nhập một lần; OpenID Connect — các khối xây dựng xác thực.</td></tr>
+        <tr><td><strong>SoD</strong></td><td>Segregation of Duties — không ai vừa dev vừa test vừa phát hành production (yêu cầu SBV).</td></tr>
+        <tr><td><strong>SAST / DAST / SCA</strong></td><td>Quét bảo mật tĩnh / động; Software Composition Analysis (CVE của thư viện phụ thuộc).</td></tr>
+        <tr><td><strong>SBOM</strong></td><td>Software Bill of Materials — danh mục mọi thành phần trong một bản build.</td></tr>
+        <tr><td><strong>CVSS</strong></td><td>Thang điểm mức nghiêm trọng lỗ hổng (0–10) — quyết định SLA vá.</td></tr>
+        <tr><td><strong>SIEM / SOC · EDR</strong></td><td>Nền tảng tương quan sự kiện bảo mật / Trung tâm vận hành bảo mật; phát hiện &amp; phản ứng trên endpoint.</td></tr>
+        <tr><td><strong>DLP · HSM/KMS</strong></td><td>Chống thất thoát dữ liệu; module/dịch vụ quản lý khoá mã hoá.</td></tr>
+        <tr><td><strong>PII</strong></td><td>Thông tin định danh cá nhân — dữ liệu cá nhân được PDPD (Nghị định 13/2023) bảo vệ.</td></tr>
+        <tr><td><strong>TPRM</strong></td><td>Third-Party Risk Management — thẩm định bảo mật với vendor &amp; thuê ngoài.</td></tr>
+        <tr><td><strong>IR</strong></td><td>Incident Response — chu trình chuẩn bị→phát hiện→khoanh vùng→loại bỏ→khôi phục→rút kinh nghiệm (NIST 800-61).</td></tr>
+      </table>
+    </div></div>
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Security vs Compliance</div>
+        <table class="table-sec">
+          <tr><th>Khía cạnh</th><th>Security</th><th>Compliance</th></tr>
+          <tr><td>Câu hỏi</td><td>Ta có thực sự được bảo vệ không?</td><td>Ta có chứng minh được mình đạt luật không?</td></tr>
+          <tr><td>Động lực</td><td>Mối đe doạ &amp; rủi ro</td><td>Quy định &amp; chuẩn (SBV, ISO, PCI)</td></tr>
+          <tr><td>Đầu ra</td><td>Các control giảm rủi ro</td><td>Bằng chứng, audit trail, chứng thực</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Tuân thủ ≠ an toàn. Hãy nhắm tới an toàn trước; làm đúng thì tuân thủ là hệ quả. Ngân hàng chịu quản lý cần cả hai.</div></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Tam giác CIA &amp; Phòng thủ nhiều lớp</div>
+        <p><strong>CIA:</strong> <strong>Confidentiality</strong> (chỉ người được phép truy cập), <strong>Integrity</strong> (dữ liệu nguyên vẹn &amp; đáng tin), <strong>Availability</strong> (truy cập được khi cần). Mở rộng: Authenticity, Non-repudiation.</p>
+        <p style="margin-top:6px;"><strong>Defense in depth</strong> — control xếp lớp (vành đai → mạng → máy chủ → ứng dụng → dữ liệu → định danh) để không một điểm hỏng nào là thảm hoạ. Giả định đã bị xâm nhập; áp <strong>least privilege</strong> và <strong>Zero-Trust</strong>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 GOVERNANCE -->
+    <section class="section-block" id="section-governance">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Mục 02</div><h2>Khung quản trị</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">NIST CSF — 5 chức năng lõi <span class="pill-tag">NIST</span></div>
+        <pre class="art-block">IDENTIFY ─▶ PROTECT ─▶ DETECT ─▶ RESPOND ─▶ RECOVER
+(tài sản,   (control,   (giám sát, (phản ứng   (khôi phục,
+ rủi ro)     IAM,        SIEM)      sự cố)      bài học)
+             mã hoá)</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Ánh xạ các chuẩn</div>
+        <table class="table-sec">
+          <tr><th>Framework</th><th>Vai trò tại ngân hàng này</th></tr>
+          <tr><td><strong>ISO/IEC 27001</strong> (ISMS)</td><td>Hệ thống quản lý: dựa trên rủi ro, Statement of Applicability (control Annex A), cải tiến liên tục (PDCA).</td></tr>
+          <tr><td><strong>NIST CSF</strong></td><td>Framework vận hành cho các chức năng an ninh mạng &amp; mức trưởng thành.</td></tr>
+          <tr><td><strong>Thông tư 09/2020/TT-NHNN</strong></td><td>Quy định bắt buộc về an toàn CNTT cho tổ chức tín dụng — SoD, kiểm soát truy cập, log, BCP.</td></tr>
+          <tr><td><strong>PCI-DSS</strong></td><td>Bảo vệ dữ liệu chủ thẻ (nếu trong phạm vi).</td></tr>
+          <tr><td><strong>OWASP</strong> (Top 10, ASVS, SAMM)</td><td>Kiểm chứng &amp; mức trưởng thành bảo mật ứng dụng.</td></tr>
+          <tr><td><strong>Third-Party Risk (TPRM)</strong></td><td>Thẩm định bảo mật vendor/thuê ngoài, control trong hợp đồng &amp; giám sát liên tục — <strong>ISO 27001 A.15</strong> (quy định thuê ngoài của SBV).</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">⬅️</span><div><strong>Shift-left:</strong> yêu cầu bảo mật &amp; abuse case được ghi nhận ngay từ <strong>Discovery</strong> (cùng <a href="#ba">BA</a>), trước cả threat modeling ở khâu thiết kế — theo OWASP SAMM / NIST SSDF.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 RISK -->
+    <section class="section-block" id="section-risk">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Mục 03</div><h2>Quản lý rủi ro</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Quy trình rủi ro ISO 27001:</strong> kiểm kê &amp; phân loại tài sản → nhận diện mối đe doạ/lỗ hổng → đánh giá <code>rủi ro = khả năng × ảnh hưởng</code> → xử lý (giảm / chuyển / tránh / chấp nhận) → ghi vào <strong>Statement of Applicability</strong> &amp; sổ rủi ro → theo dõi.</p>
+        <table class="table-sec" style="margin-top:8px;">
+          <tr><th>Cách xử lý</th><th>Khi nào</th></tr>
+          <tr><td><strong>Giảm thiểu</strong></td><td>Áp control để hạ khả năng/ảnh hưởng (mặc định).</td></tr>
+          <tr><td><strong>Chuyển giao</strong></td><td>Bảo hiểm, thuê ngoài kèm SLA.</td></tr>
+          <tr><td><strong>Tránh</strong></td><td>Dừng hoạt động gây rủi ro.</td></tr>
+          <tr><td><strong>Chấp nhận</strong></td><td>Rủi ro tồn dư trong khẩu vị — ký duyệt chính thức.</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Ngân hàng = ảnh hưởng cao: ưu tiên gian lận, toàn vẹn giao dịch, dữ liệu khách hàng, và tính khả dụng. Chấp nhận rủi ro ở các vùng này cần CISO + chủ sở hữu nghiệp vụ cùng ký.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 DEVSECOPS -->
+    <section class="section-block" id="section-devsecops">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Mục 04</div><h2>Secure SDLC / DevSecOps</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Shift-left:</strong> control bảo mật nhúng thẳng vào pipeline, fail build khi có phát hiện Critical/High.</p>
+        <pre class="art-block">CODE ─▶ COMMIT ─▶ BUILD ─▶ TEST ─▶ DEPLOY ─▶ OPERATE
+  │        │        │       │         │          │
+ IDE     secrets   SAST    DAST     IaC scan   runtime
+ lint    scan      SCA     pen      signing    SIEM/EDR
+                  (deps)   test     policy     giám sát</pre>
+        <table class="table-sec" style="margin-top:8px;">
+          <tr><th>Cổng</th><th>Công cụ / control</th></tr>
+          <tr><td><strong>SAST</strong></td><td>Phân tích code tĩnh (SonarQube, GitHub Advanced Security/CodeQL).</td></tr>
+          <tr><td><strong>SCA</strong></td><td>Quét phụ thuộc / chuỗi cung ứng (Snyk); sinh SBOM.</td></tr>
+          <tr><td><strong>Quét secrets</strong></td><td>Chặn credential/key bị commit.</td></tr>
+          <tr><td><strong>DAST</strong></td><td>Quét động ứng dụng đang chạy (OWASP ZAP).</td></tr>
+          <tr><td><strong>Quét IaC / container</strong></td><td>Quét cấu hình sai &amp; CVE của image; image có ký.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Khớp với các cổng ở <a href="#deployment">Deployment Runbook</a> và kiểm thử bảo mật của <a href="#qc">QC</a>; control cấp kiến trúc ở <a href="#sa">SA Handbook</a> (STRIDE).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 THREAT MODELING -->
+    <section class="section-block" id="section-threat">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Mục 05</div><h2>Threat Modeling <span class="pill-tag">STRIDE</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Mô hình hoá mối đe doạ từ sớm (khâu thiết kế) bằng sơ đồ luồng dữ liệu &amp; ranh giới tin cậy. <strong>STRIDE</strong> phân loại mối đe doạ; mỗi loại ứng một control.</p>
+        <table class="table-sec">
+          <tr><th>Mối đe doạ</th><th>Vi phạm</th><th>Control</th></tr>
+          <tr><td><strong>S</strong>poofing (giả mạo)</td><td>Authenticity</td><td>AuthN mạnh, MFA, OIDC</td></tr>
+          <tr><td><strong>T</strong>ampering (can thiệp)</td><td>Integrity</td><td>Ký số, băm, TLS</td></tr>
+          <tr><td><strong>R</strong>epudiation (chối bỏ)</td><td>Non-repudiation</td><td>Audit log</td></tr>
+          <tr><td><strong>I</strong>nformation disclosure (lộ tin)</td><td>Confidentiality</td><td>Mã hoá, least privilege</td></tr>
+          <tr><td><strong>D</strong>enial of service</td><td>Availability</td><td>Rate limit, WAF, autoscale</td></tr>
+          <tr><td><strong>E</strong>levation of privilege (leo quyền)</td><td>Authorization</td><td>RBAC/ABAC, Zero-Trust</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 IAM -->
+    <section class="section-block" id="section-iam">
+      <div class="section-header"><div class="section-icon">🔑</div><div><div class="section-number">Mục 06</div><h2>Quản lý định danh &amp; truy cập (IAM)</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>AuthN:</strong> SSO tập trung (OAuth2/OIDC/SAML) + <strong>MFA</strong> cho mọi truy cập đặc quyền &amp; từ xa.</li>
+          <li><strong>AuthZ:</strong> <strong>RBAC</strong> / <strong>ABAC</strong>, thực thi <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</li>
+          <li><strong>Segregation of Duties (SoD):</strong> không ai một mình kiểm soát dev + release + prod (yêu cầu SBV) — xem <a href="#deployment">Deployment Runbook</a>.</li>
+          <li><strong>PAM:</strong> truy cập đặc quyền qua vault, cấp just-in-time, ghi hình phiên.</li>
+          <li><strong>Joiner-Mover-Leaver (JML):</strong> cấp &amp; thu hồi quyền kịp thời; tái xác nhận quyền định kỳ.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 DATA -->
+    <section class="section-block" id="section-data">
+      <div class="section-header"><div class="section-icon">🔐</div><div><div class="section-number">Mục 07</div><h2>Bảo vệ dữ liệu &amp; Quyền riêng tư</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sec">
+          <tr><th>Control</th><th>Chi tiết</th></tr>
+          <tr><td><strong>Phân loại</strong></td><td>Công khai · Nội bộ · Mật · Hạn chế — control tăng theo cấp.</td></tr>
+          <tr><td><strong>Mã hoá</strong></td><td>At-rest (AES-256), in-transit (TLS 1.2+); <strong>quản lý khoá</strong> tập trung &amp; xoay vòng (HSM/KMS).</td></tr>
+          <tr><td><strong>Masking / tokenization</strong></td><td>Dữ liệu non-prod phải mask; PAN tokenize (PCI).</td></tr>
+          <tr><td><strong>DLP</strong></td><td>Phát hiện/chặn rò rỉ dữ liệu nhạy cảm.</td></tr>
+          <tr><td><strong>Lưu giữ &amp; huỷ</strong></td><td>Lịch lưu giữ theo quy định; xoá an toàn.</td></tr>
+          <tr><td><strong>Data residency</strong></td><td>Lưu trữ trong nước theo SBV.</td></tr>
+          <tr><td><strong>Dữ liệu cá nhân (PDPD)</strong></td><td>Chấp thuận, quyền chủ thể dữ liệu, chuyển xuyên biên giới &amp; đánh giá tác động theo <strong>Nghị định 13/2023/NĐ-CP (PDPD)</strong>.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Nghĩa vụ phân loại dữ liệu &amp; quyền riêng tư do <a href="#ba">BA</a> thu thập (phạm vi pháp lý) và đội <a href="#qc">QC</a> kiểm chứng.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 APP & INFRA -->
+    <section class="section-block" id="section-appinfra">
+      <div class="section-header"><div class="section-icon">🧱</div><div><div class="section-number">Mục 08</div><h2>Bảo mật ứng dụng &amp; hạ tầng</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">OWASP Top 10 (2021) — vùng trọng tâm <span class="pill-tag">OWASP</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill-tag">A01 Broken Access Control</span><span class="pill-tag">A02 Cryptographic Failures</span><span class="pill-tag">A03 Injection</span><span class="pill-tag">A04 Insecure Design</span><span class="pill-tag">A05 Security Misconfig</span><span class="pill-tag">A06 Vulnerable Components</span><span class="pill-tag">A07 Auth Failures</span><span class="pill-tag">A08 Integrity Failures</span><span class="pill-tag">A09 Logging Failures</span><span class="pill-tag">A10 SSRF</span>
+        </div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Gia cố hạ tầng</div>
+        <ul class="step-cl">
+          <li>CIS Benchmarks làm baseline cho OS/DB/container/cloud.</li>
+          <li><strong>Phân đoạn mạng</strong> &amp; micro-segmentation; DMZ; firewall mặc-định-chặn.</li>
+          <li><strong>WAF</strong> + chống DDoS ở biên; policy trên API gateway.</li>
+          <li>Secrets trong vault (không bao giờ trong code/config); credential ngắn hạn.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 VULN -->
+    <section class="section-block" id="section-vuln">
+      <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Mục 09</div><h2>Quản lý lỗ hổng &amp; Vá</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Quét liên tục + SLA khắc phục theo rủi ro dựa trên mức nghiêm trọng <strong>CVSS</strong>.</p>
+        <table class="table-sec">
+          <tr><th>Mức (CVSS)</th><th>SLA khắc phục</th></tr>
+          <tr><td><span style="color:var(--status-red)">Critical (9.0–10)</span></td><td>≤ 24–48h (vá khẩn cấp)</td></tr>
+          <tr><td><span style="color:var(--status-yellow)">High (7.0–8.9)</span></td><td>≤ 7 ngày</td></tr>
+          <tr><td>Medium (4.0–6.9)</td><td>≤ 30 ngày</td></tr>
+          <tr><td>Low (0.1–3.9)</td><td>≤ 90 ngày / chu kỳ kế tiếp</td></tr>
+        </table>
+        <p style="margin-top:6px;"><strong>Penetration testing</strong> hằng năm (hoặc khi thay đổi lớn) + red-team cho hệ thống ngân hàng trọng yếu; theo dõi phát hiện đến khi đóng.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 SECOPS / IR -->
+    <section class="section-block" id="section-ir">
+      <div class="section-header"><div class="section-icon">🚨</div><div><div class="section-number">Mục 10</div><h2>SecOps &amp; Phản ứng sự cố</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>SOC</strong> với <strong>SIEM</strong> (tương quan, cảnh báo) + <strong>EDR/XDR</strong>. Vòng đời phản ứng sự cố <span class="pill-tag">NIST SP 800-61</span>:</p>
+        <pre class="art-block">CHUẨN BỊ ─▶ PHÁT HIỆN &amp; PHÂN TÍCH ─▶ KHOANH VÙNG ─▶ LOẠI BỎ ─▶ KHÔI PHỤC ─▶ RÚT KINH NGHIỆM
+(playbook)  (cảnh báo SIEM)          (cô lập)       (gỡ bỏ)    (phục hồi)   (hậu sự cố)</pre>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Áp dụng thời hạn báo cáo vi phạm theo quy định (SBV / bảo vệ dữ liệu). Phối hợp khôi phục vận hành với <a href="#ops">Operations &amp; SRE Runbook</a> (sự cố lớn &amp; DR).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 COMPLIANCE & AUDIT -->
+    <section class="section-block" id="section-audit">
+      <div class="section-header"><div class="section-icon">📋</div><div><div class="section-number">Mục 11</div><h2>Tuân thủ &amp; Audit</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Duy trì <strong>bảng ánh xạ control</strong>: điều khoản quy định → control → chủ sở hữu → bằng chứng. Luôn ở trạng thái sẵn sàng audit.</p>
+        <table class="table-sec">
+          <tr><th>Chủ đề SBV 09/2020</th><th>Control</th><th>Bằng chứng</th></tr>
+          <tr><td>Kiểm soát truy cập &amp; SoD</td><td>RBAC, PAM, JML, tái xác nhận</td><td>Biên bản soát quyền, log PAM</td></tr>
+          <tr><td>Log &amp; giám sát</td><td>SIEM, audit trail (bất biến)</td><td>Chính sách lưu log, báo cáo SOC</td></tr>
+          <tr><td>Quản lý thay đổi</td><td>Phê duyệt CAB, phân tách</td><td>Hồ sơ thay đổi (xem Deployment)</td></tr>
+          <tr><td>BCP / DR</td><td>Kế hoạch DR, failover có kiểm chứng</td><td>Báo cáo diễn tập DR (xem Ops)</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">✅</span><div>Bảo đảm = audit nội bộ + audit độc lập + giám sát control liên tục. Phát hiện được theo dõi tới khi khắc phục, có chủ sở hữu &amp; hạn chót.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 12</div><h2>Chỉ số bảo mật / KPI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">MTTD</div><div class="metric-value">thời gian trung bình phát hiện sự cố</div></div>
+          <div class="metric-card"><div class="metric-title">MTTR</div><div class="metric-value">thời gian trung bình phản ứng / khắc phục</div></div>
+          <div class="metric-card"><div class="metric-title">Tuân thủ vá</div><div class="metric-value">tài sản đã vá ÷ tổng × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">SLA khắc phục lỗ hổng</div><div class="metric-value">đóng trong SLA ÷ tổng × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Tỷ lệ dính phishing</div><div class="metric-value">bấm ÷ được test × 100% (thấp = tốt)</div></div>
+          <div class="metric-card"><div class="metric-title">Độ phủ control</div><div class="metric-value">đã triển khai ÷ Annex A áp dụng × 100%</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 13</div><h2>Vai trò &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>R</strong>esponsible (thực hiện) · <strong>A</strong>ccountable (trách nhiệm cuối) · <strong>C</strong>onsulted (tham vấn) · <strong>I</strong>nformed (được báo).</p>
+        <table class="table-sec" style="margin-top:8px;">
+          <tr><th>Hoạt động</th><th>CISO</th><th>SecEng</th><th>SA</th><th>Dev</th><th>Ops/SRE</th><th>Compliance</th></tr>
+          <tr><td>Chính sách bảo mật &amp; ISMS</td><td><strong>A</strong></td><td>R</td><td>C</td><td>I</td><td>C</td><td>C</td></tr>
+          <tr><td>Threat modeling</td><td>C</td><td><strong>R</strong></td><td><strong>A</strong></td><td>C</td><td>I</td><td>I</td></tr>
+          <tr><td>Cổng DevSecOps</td><td>A</td><td><strong>R</strong></td><td>C</td><td>R</td><td>C</td><td>I</td></tr>
+          <tr><td>Phản ứng sự cố</td><td><strong>A</strong></td><td>R</td><td>C</td><td>C</td><td>R</td><td>I</td></tr>
+          <tr><td>Bằng chứng tuân thủ &amp; audit</td><td>C</td><td>C</td><td>I</td><td>I</td><td>C</td><td><strong>A/R</strong></td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> ISO/IEC 27001 &amp; 27002 (ISMS, control Annex A); NIST Cybersecurity Framework &amp; SP 800-61 (Xử lý sự cố); OWASP Top 10 (2021), ASVS, SAMM; PCI-DSS; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Ánh xạ tới Thông tư 09/2020/TT-NHNN.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Security &amp; Compliance Runbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn ISO 27001 · NIST CSF · OWASP · PCI-DSS · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>
