@@ -1,0 +1,345 @@
+<title>Operations &amp; SRE Runbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-ops{width:100%;border-collapse:collapse;font-size:12px}
+.table-ops th,.table-ops td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-ops th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-ops tr:hover td{background:var(--bg-hover)}
+.table-ops code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🛰️</div>
+      <div>
+        <div class="bank-title">Operations &amp; SRE</div>
+        <div class="bank-sub">Google SRE · ITIL 4 · DORA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-slo" onclick="setActive(this)"><span class="nav-icon">🎯</span> 02 · SLI / SLO / Error Budget</a>
+    <a href="#section-observability" onclick="setActive(this)"><span class="nav-icon">🔭</span> 03 · Observability</a>
+  </nav>
+
+  <div class="sidebar-section-label">Vận hành</div>
+  <nav id="sidebar-nav">
+    <a href="#section-incident" onclick="setActive(this)"><span class="nav-icon">🚨</span> 04 · Quản lý sự cố</a>
+    <a href="#section-problem" onclick="setActive(this)"><span class="nav-icon">🔬</span> 05 · Problem Mgmt &amp; RCA</a>
+    <a href="#section-change" onclick="setActive(this)"><span class="nav-icon">🔄</span> 06 · Change &amp; Release Ops</a>
+    <a href="#section-capacity" onclick="setActive(this)"><span class="nav-icon">📈</span> 07 · Capacity &amp; Toil</a>
+  </nav>
+
+  <div class="sidebar-section-label">Khả năng phục hồi</div>
+  <nav id="sidebar-nav">
+    <a href="#section-dr" onclick="setActive(this)"><span class="nav-icon">♻️</span> 08 · Disaster Recovery</a>
+    <a href="#section-bcp" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 09 · Business Continuity</a>
+    <a href="#section-runbooks" onclick="setActive(this)"><span class="nav-icon">📓</span> 10 · Runbook &amp; Tự động hoá</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 11 · Chỉ số DORA &amp; Ops</a>
+    <a href="#section-oncall" onclick="setActive(this)"><span class="nav-icon">📟</span> 12 · On-call &amp; Leo thang</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🛰️ Google SRE</span>
+    <span class="comp-pill">🔧 ITIL 4</span>
+    <span class="comp-pill">📊 DORA</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: DevOps / SRE / Operations<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: Google SRE · ITIL 4 · DORA<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a><br/>
+    <a href="#sec">← Security &amp; Compliance</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🛰️ Runbook nội bộ · Google SRE · ITIL 4 · DORA</div>
+    <h1>Operations &amp; SRE<br/><span>Vận hành, Độ tin cậy &amp; Liên tục</span></h1>
+    <p>Tài liệu tham chiếu cho việc chạy sản phẩm trên production — độ tin cậy dịch vụ (SRE), observability, quản lý sự cố &amp; vấn đề, disaster recovery và business continuity. Bám nền Google SRE, ITIL 4, và bộ chỉ số DORA, cho môi trường ngân hàng chịu quản lý.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> SLO dẫn dắt</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Observability</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Blameless</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> DR / BCP</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Thuật ngữ &amp; viết tắt trên trang này</div>
+      <p style="font-size:12px;">Mới làm quen vận hành &amp; SRE? Lướt qua bảng này trước — các thuật ngữ xuất hiện xuyên suốt runbook.</p>
+      <table class="table-ops" style="margin-top:8px;">
+        <tr><th style="width:160px">Thuật ngữ</th><th>Ý nghĩa</th></tr>
+        <tr><td><strong>SRE</strong></td><td>Site Reliability Engineering — coi độ tin cậy như một bài toán kỹ thuật (Google).</td></tr>
+        <tr><td><strong>SLI / SLO / SLA</strong></td><td>Indicator (ta đo cái gì) / Objective (mục tiêu nội bộ) / Agreement (cam kết hợp đồng).</td></tr>
+        <tr><td><strong>Error budget</strong></td><td>100% − SLO = mức thiếu tin cậy được phép "tiêu" cho phát hành &amp; thay đổi.</td></tr>
+        <tr><td><strong>MTTD / MTTR</strong></td><td>Mean Time To Detect / To Restore — phát hiện &amp; khắc phục sự cố nhanh đến đâu.</td></tr>
+        <tr><td><strong>IC</strong></td><td>Incident Commander — người điều phối/ra quyết định duy nhất trong một sự cố.</td></tr>
+        <tr><td><strong>RCA · Postmortem</strong></td><td>Root Cause Analysis; bản mổ xẻ blameless sau sự cố SEV1/SEV2.</td></tr>
+        <tr><td><strong>RTO / RPO</strong></td><td>Recovery Time Objective / Recovery Point Objective — tốc độ khôi phục &amp; mất dữ liệu tối đa cho DR.</td></tr>
+        <tr><td><strong>DR · BCP · BIA</strong></td><td>Disaster Recovery (hệ thống IT) / Business Continuity Plan (cả doanh nghiệp) / Business Impact Analysis.</td></tr>
+        <tr><td><strong>ITIL · ECAB</strong></td><td>Framework quản lý dịch vụ; Emergency Change Advisory Board cho các fix khẩn.</td></tr>
+        <tr><td><strong>CMDB</strong></td><td>Configuration Management Database — kho kiểm kê chính thức về dịch vụ &amp; phụ thuộc.</td></tr>
+        <tr><td><strong>DORA · CFR</strong></td><td>Bốn chỉ số giao hàng (tần suất deploy, lead time, Change Failure Rate, MTTR).</td></tr>
+        <tr><td><strong>Toil</strong></td><td>Việc vận hành thủ công lặp đi lặp lại, tăng theo quy mô hệ thống — hãy tự động hoá đi.</td></tr>
+        <tr><td><strong>IaC / GitOps</strong></td><td>Infrastructure as Code; quản lý thay đổi hạ tầng qua git để truy vết.</td></tr>
+      </table>
+    </div></div>
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DevOps vs SRE vs Ops (ITIL)</div>
+        <table class="table-ops">
+          <tr><th>Bộ môn</th><th>Trọng tâm</th><th>Dấu ấn</th></tr>
+          <tr><td><strong>DevOps</strong></td><td>Văn hoá &amp; dòng chảy — dev + ops cộng tác, tự động hoá</td><td>CI/CD, "you build it, you run it"</td></tr>
+          <tr><td><strong>SRE</strong></td><td>Độ tin cậy như kỹ thuật — SLO, error budget, giảm toil</td><td>SLI/SLO, error budget, tự động hoá</td></tr>
+          <tr><td><strong>Ops (ITIL 4)</strong></td><td>Quản lý dịch vụ — sự cố/vấn đề/thay đổi, giá trị dịch vụ</td><td>Runbook, CMDB, service desk</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Runbook này pha trộn cả ba: kỹ thuật độ tin cậy của SRE + kỷ luật quản lý dịch vụ của ITIL, cần cho quản trị/audit ngân hàng.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 SLO -->
+    <section class="section-block" id="section-slo">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Mục 02</div><h2>SLI / SLO / SLA &amp; Error Budget <span class="pill-tag">Google SRE</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Thuật ngữ</th><th>Định nghĩa</th><th>Ví dụ</th></tr>
+          <tr><td><strong>SLI</strong></td><td>Chỉ báo đo được về sức khoẻ dịch vụ</td><td>% request &lt; 300ms &amp; 2xx/3xx</td></tr>
+          <tr><td><strong>SLO</strong></td><td>Mục tiêu cho một SLI (mục tiêu nội bộ)</td><td>99,9% trên 28 ngày</td></tr>
+          <tr><td><strong>SLA</strong></td><td>Cam kết hợp đồng (+ chế tài)</td><td>99,5% hoặc phải bồi hoàn</td></tr>
+          <tr><td><strong>Error budget</strong></td><td><code>100% − SLO</code> = mức thiếu tin cậy được phép</td><td>0,1% = ~43 phút/tháng</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚖️</span><div><strong>Chính sách error budget:</strong> còn ngân sách → phát hành tính năng; hết ngân sách → đóng băng phát hành rủi ro và tập trung độ tin cậy. Cân bằng tốc độ vs ổn định một cách khách quan.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 OBSERVABILITY -->
+    <section class="section-block" id="section-observability">
+      <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Mục 03</div><h2>Observability — 3 trụ cột</h2></div></div>
+      <div class="card"><div class="card-body">
+        <pre class="art-block">LOGS            METRICS              TRACES
+(chuyện gì       (bao nhiêu / xu      (thời gian trôi đâu,
+ đã xảy ra)       hướng)               xuyên service)
+ Loki/ELK        Prometheus/Grafana   Jaeger/OTel</pre>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Golden Signals</strong> (SRE): Latency, Traffic, Errors, Saturation.</li>
+          <li>Cảnh báo theo <strong>triệu chứng &amp; tốc độ đốt SLO</strong>, không theo từng nguyên nhân — giảm alert fatigue.</li>
+          <li>Dashboard theo từng service; tương quan qua OpenTelemetry; PagerDuty/OpsGenie để định tuyến.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 INCIDENT -->
+    <section class="section-block" id="section-incident">
+      <div class="section-header"><div class="section-icon">🚨</div><div><div class="section-number">Mục 04</div><h2>Quản lý sự cố</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Ma trận mức nghiêm trọng</div>
+        <table class="table-ops">
+          <tr><th>Sev</th><th>Ảnh hưởng</th><th>Phản ứng</th><th>Mục tiêu</th></tr>
+          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Sập trọng yếu / mất dữ liệu / thanh toán ngừng</td><td>Toàn đội, war room, báo lãnh đạo</td><td>ack &lt; 15 phút</td></tr>
+          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Suy giảm nặng, sập một phần</td><td>On-call + SME, kênh sự cố</td><td>ack &lt; 30 phút</td></tr>
+          <tr><td><strong>SEV3</strong></td><td>Nhẹ / có workaround</td><td>On-call thường</td><td>ngày làm việc kế tiếp</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Vòng đời &amp; vai trò trong sự cố</div>
+        <pre class="art-block">PHÁT HIỆN ─▶ TRIAGE/DECLARE ─▶ GIẢM THIỂU ─▶ GIẢI QUYẾT ─▶ POSTMORTEM
+   │             │                │             │             │
+ cảnh báo     chỉ định IC       khôi phục     xác nhận      RCA
+             + comms lead      dịch vụ       đạt SLO       blameless</pre>
+        <p style="margin-top:6px;">Vai trò chính: <strong>Incident Commander (IC)</strong> (điều phối, quyết định), <strong>Comms Lead</strong> (cập nhật stakeholder), <strong>Ops/SME</strong> (khắc phục). Sự cố bảo mật → phối hợp <a href="#sec">Security &amp; Compliance</a> (thời hạn báo cáo vi phạm của SBV).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 PROBLEM / RCA -->
+    <section class="section-block" id="section-problem">
+      <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Mục 05</div><h2>Problem Management &amp; RCA</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Incident</strong> = khôi phục dịch vụ ngay. <strong>Problem</strong> = loại bỏ nguyên nhân gốc để nó không tái diễn (ITIL).</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Postmortem blameless</strong> cho mọi SEV1/SEV2 — tập trung vào hệ thống &amp; quy trình, không phải con người.</li>
+          <li>Kỹ thuật: <strong>5 Whys</strong>, Fishbone (Ishikawa), dựng lại dòng thời gian.</li>
+          <li>Đầu ra: các yếu tố góp phần + <strong>action item</strong> (chủ sở hữu, hạn chót) theo dõi đến khi đóng; nạp vào sổ rủi ro.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📄</span><div>Template postmortem: tóm tắt · ảnh hưởng (người dùng, $, SLO) · dòng thời gian · nguyên nhân gốc · điều tốt/chưa tốt · action item. Chia sẻ rộng — học hỏi &gt; đổ lỗi.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 CHANGE -->
+    <section class="section-block" id="section-change">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Mục 06</div><h2>Vận hành Change &amp; Release</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Loại change (ITIL)</th><th>Đường đi</th></tr>
+          <tr><td><strong>Standard</strong></td><td>Duyệt trước, rủi ro thấp, tự động.</td></tr>
+          <tr><td><strong>Normal</strong></td><td>CAB thẩm định &amp; lên lịch (xem <a href="#deployment">Deployment Runbook</a>).</td></tr>
+          <tr><td><strong>Emergency</strong></td><td>ECAB fast-track cho fix sự cố; duyệt hồi tố.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Chiến lược deploy để hạn chế bán kính ảnh hưởng: <strong>blue-green</strong>, <strong>canary</strong>, <strong>rolling</strong>, <strong>feature flag</strong>; tự động rollback khi vi phạm SLO.</p>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">↩️</span><div><strong>Sở hữu rollback (ranh giới với Deployment):</strong> Ops/SRE sở hữu <strong>auto-rollback lúc runtime</strong> (kích hoạt khi vi phạm SLO/error-budget); <a href="#deployment">Release Manager</a> sở hữu quyết định rollback <strong>có kế hoạch</strong> trong cửa sổ phát hành được quản trị.</div></div>
+        <table class="table-ops" style="margin-top:10px;">
+          <tr><th>Thực hành hỗ trợ</th><th>Chi tiết</th></tr>
+          <tr><td><strong>Configuration Mgmt / CMDB</strong></td><td>Bản ghi chính thức về dịch vụ, tài sản &amp; phụ thuộc (ITIL Service Configuration Mgmt) — dẫn dắt phân tích tác động &amp; thay đổi.</td></tr>
+          <tr><td><strong>FinOps</strong></td><td>Minh bạch chi phí cloud, kinh tế đơn vị, right-sizing &amp; cảnh báo ngân sách song song với độ tin cậy.</td></tr>
+          <tr><td><strong>Báo cáo SLA</strong></td><td>Báo cáo định kỳ mức đạt SLA/SLO cho nghiệp vụ &amp; audit.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 CAPACITY & TOIL -->
+    <section class="section-block" id="section-capacity">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Mục 07</div><h2>Capacity, Hiệu năng &amp; Toil</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Capacity planning:</strong> dự báo tăng trưởng &amp; đỉnh; chính sách autoscaling; load/soak test trước sự kiện cao điểm.</li>
+          <li><strong>Giảm toil:</strong> tự động hoá việc vận hành thủ công lặp lại (SRE giới hạn toil ở ~50%); dồn thời gian tiết kiệm được vào kỹ thuật độ tin cậy.</li>
+          <li><strong>Hiệu năng:</strong> theo dõi saturation &amp; latency so với SLO; right-size tài nguyên để tối ưu chi phí.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 DR -->
+    <section class="section-block" id="section-dr">
+      <div class="section-header"><div class="section-icon">♻️</div><div><div class="section-number">Mục 08</div><h2>Disaster Recovery (DR)</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>RTO</strong> (Recovery Time Objective) = khôi phục nhanh đến đâu. <strong>RPO</strong> (Recovery Point Objective) = mức mất dữ liệu tối đa chấp nhận được. Thiết kế chiến lược DR để đạt NFR khả dụng (xem <a href="#sa">SA Handbook</a>).</p>
+        <table class="table-ops" style="margin-top:8px;">
+          <tr><th>Chiến lược DR</th><th>RTO / RPO</th><th>Chi phí</th></tr>
+          <tr><td>Backup &amp; restore</td><td>giờ–ngày / giờ</td><td>$</td></tr>
+          <tr><td>Pilot light</td><td>~1h / phút</td><td>$$</td></tr>
+          <tr><td>Warm standby</td><td>phút / giây</td><td>$$$</td></tr>
+          <tr><td>Multi-site active-active</td><td>~0 / ~0</td><td>$$$$</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Hệ thống ngân hàng trọng yếu cần failover có kiểm chứng với RTO/RPO xác định. <strong>Diễn tập DR định kỳ</strong> (SBV yêu cầu bằng chứng) — một kế hoạch DR chưa test là gánh nặng, không phải tài sản.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 BCP -->
+    <section class="section-block" id="section-bcp">
+      <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Mục 09</div><h2>Business Continuity (BCP)</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>DR khôi phục <em>hệ thống IT</em>; <strong>BCP</strong> giữ <em>doanh nghiệp</em> chạy (con người, quy trình, cơ sở vật chất). <span class="pill-tag">ISO 22301</span></p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>BIA</strong> (Business Impact Analysis): xếp hạng quy trình theo độ trọng yếu → đặt ưu tiên khôi phục &amp; RTO/RPO.</li>
+          <li>Chiến lược liên tục: site dự phòng, workaround thủ công, cây liên lạc, đội quản lý khủng hoảng.</li>
+          <li>Diễn tập BCP &amp; tabletop định kỳ; giữ kế hoạch luôn cập nhật kèm chủ sở hữu.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 RUNBOOKS -->
+    <section class="section-block" id="section-runbooks">
+      <div class="section-header"><div class="section-icon">📓</div><div><div class="section-number">Mục 10</div><h2>Runbook &amp; Tự động hoá</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Mọi tác vụ vận hành lặp lại &amp; kiểu lỗi đều có một <strong>runbook</strong>: triệu chứng → bước chẩn đoán → khắc phục → leo thang. Ưu tiên <strong>tự động hoá</strong> (self-healing, auto-remediation) hơn thao tác thủ công.</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Danh mục runbook đặt cạnh code / trong ops wiki; liên kết từ cảnh báo.</li>
+          <li>IaC cho môi trường tái lập được; GitOps để truy vết thay đổi.</li>
+          <li>Chaos engineering (game-day) để kiểm chứng các giả định về resilience.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 11</div><h2>Chỉ số DORA &amp; Ops</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DORA Four Keys <span class="pill-tag">DORA / Accelerate</span></div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Deployment Frequency</div><div class="metric-value">tần suất deploy lên prod</div></div>
+          <div class="metric-card"><div class="metric-title">Lead Time for Changes</div><div class="metric-value">commit → chạy trên prod</div></div>
+          <div class="metric-card"><div class="metric-title">Change Failure Rate</div><div class="metric-value">change lỗi ÷ tổng × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">MTTR</div><div class="metric-value">thời gian trung bình khôi phục dịch vụ</div></div>
+          <div class="metric-card"><div class="metric-title">Khả dụng</div><div class="metric-value">uptime ÷ tổng × 100% (so với SLO)</div></div>
+          <div class="metric-card"><div class="metric-title">Đốt error budget</div><div class="metric-value">đã tiêu ÷ tổng ngân sách × 100%</div></div>
+        </div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 ON-CALL -->
+    <section class="section-block" id="section-oncall">
+      <div class="section-header"><div class="section-icon">📟</div><div><div class="section-number">Mục 12</div><h2>On-call &amp; Leo thang</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li>Ca trực bền vững (follow-the-sun hoặc theo tuần); giới hạn paging hợp lý để tránh burnout.</li>
+          <li><strong>Ma trận leo thang</strong> rõ ràng: L1 on-call → L2 SME → L3 vendor/architect → quản lý.</li>
+          <li>Mỗi page phải <strong>hành động được</strong> &amp; liên kết tới runbook; cảnh báo không hành động được thì phải tinh chỉnh loại bỏ.</li>
+          <li>Ghi chú bàn giao mỗi ca; review sự cố hằng tuần.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 13</div><h2>Vai trò &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-ops">
+          <tr><th>Hoạt động</th><th>SRE/Ops</th><th>Dev</th><th>Release Mgr</th><th>SA</th><th>Security</th></tr>
+          <tr><td>Định nghĩa SLO / error budget</td><td><strong>A/R</strong></td><td>C</td><td>I</td><td>C</td><td>I</td></tr>
+          <tr><td>Phản ứng sự cố (SEV1)</td><td><strong>R</strong> (IC)</td><td>R</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Postmortem &amp; RCA</td><td><strong>A</strong></td><td>R</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Diễn tập DR &amp; BCP</td><td><strong>R</strong></td><td>C</td><td>C</td><td>C</td><td>C</td></tr>
+          <tr><td>Phê duyệt change production</td><td>R</td><td>C</td><td><strong>A</strong></td><td>C</td><td>C</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budget, toil, golden signals); ITIL 4 (quản lý sự cố/vấn đề/thay đổi/dịch vụ); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — bốn chỉ số chính); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Bám Thông tư 09/2020/TT-NHNN.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Operations &amp; SRE Runbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn Google SRE · ITIL 4 · DORA · ISO 22301 · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>
