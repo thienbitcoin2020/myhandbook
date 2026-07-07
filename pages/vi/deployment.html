@@ -1,0 +1,626 @@
+<title>Deployment Runbook | Handbook</title>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏦</div>
+      <div>
+        <div class="bank-title">Handbook<br>Deployment Runbook</div>
+        <div class="bank-sub">v2.4 · 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Điều hướng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-governance" id="nav-governance" class="active" onclick="setActive(this)">
+      <span class="nav-icon">📋</span> Quản trị &amp; SDLC
+    </a>
+    <a href="#section-phase1" id="nav-phase1" onclick="setActive(this)">
+      <span class="nav-icon">🔭</span> Giai đoạn 1 · Discovery
+    </a>
+    <a href="#section-phase2" id="nav-phase2" onclick="setActive(this)">
+      <span class="nav-icon">⚡</span> Giai đoạn 2 · Agile Build
+    </a>
+    <a href="#section-phase3" id="nav-phase3" onclick="setActive(this)">
+      <span class="nav-icon">🔐</span> Giai đoạn 3 · Pre-Deploy
+    </a>
+    <a href="#section-phase4" id="nav-phase4" onclick="setActive(this)">
+      <span class="nav-icon">🚀</span> Giai đoạn 4 · Deployment
+    </a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section-label">Handbooks</div>
+  <nav id="sidebar-nav-docs">
+    <a href="#home"><span class="nav-icon">🏦</span> Trang chủ Handbook</a>
+    <a href="#handbook"><span class="nav-icon">📘</span> Implementation Handbook</a>
+    <a href="#pm"><span class="nav-icon">👔</span> PM Project Handbook</a>
+    <a href="#po"><span class="nav-icon">🎯</span> Product Owner Handbook</a>
+    <a href="#ba"><span class="nav-icon">📖</span> BA Project Handbook</a>
+    <a href="#sa"><span class="nav-icon">🏛️</span> Solution Architect Handbook</a>
+    <a href="#ux"><span class="nav-icon">🎨</span> UX/UI Designer Handbook</a>
+    <a href="#qc"><span class="nav-icon">🧪</span> QC Testing Handbook</a>
+    <a href="#sec"><span class="nav-icon">🛡️</span> Security &amp; Compliance</a>
+    <a href="#ops"><span class="nav-icon">🛰️</span> Operations &amp; SRE</a>
+    <a href="#sm"><span class="nav-icon">🌀</span> Scrum Master Handbook</a>
+    <a href="#pmo"><span class="nav-icon">🏢</span> PMO Governance &amp; Portfolio</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section-label">Tuân thủ</div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">⚖️ Thông tư 09/2020/TT-NHNN</span>
+    <span class="comp-pill">🛡️ Quy định ATTT của SBV</span>
+    <span class="comp-pill">🔒 Bám ISO 27001</span>
+  </div>
+
+  <div class="sidebar-meta">
+    <strong>Release</strong>
+    2025 Q2 · Sprint 14
+    <strong>Môi trường</strong>
+    SIT → UAT → PROD
+    <strong>Lịch CAB</strong>
+    Thứ Ba hằng tuần 14:00 ICT
+    <strong>Trạng thái</strong>
+    <span style="color:var(--status-yellow)">● Đang Security Testing</span>
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Release Manager<br/>
+    Phiên bản: v2.4 · Hiệu lực 2025-Q2<br/>
+    Trạng thái tài liệu: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<main id="main-content">
+
+  <!-- HERO -->
+  <header class="top-header">
+    <div class="header-eyebrow">🏦 Ngân hàng thương mại · Việt Nam · Production Runbook</div>
+    <h1>Interactive<br><span>Deployment Runbook</span></h1>
+    <p>Hướng dẫn vận hành từng bước, được quản trị, cho việc phát hành phần mềm theo mô hình <strong>Hybrid Water-Scrum-Fall</strong> — tuân thủ <strong>Thông tư 09/2020/TT-NHNN</strong> và chính sách quản lý rủi ro nội bộ.</p>
+    <div class="header-pills">
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-green)"></span> Agile/Scrum · Phát triển</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--accent)"></span> Waterfall · Quản trị</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-yellow)"></span> CAB · Change Advisory</div>
+      <div class="header-pill"><span class="pill-dot" style="background:var(--status-purple)"></span> SBV · Pháp lý</div>
+    </div>
+  </header>
+
+  <div class="content-sections">
+
+    <!-- KEY TERMS -->
+    <div class="card" style="margin-bottom:20px;"><div class="card-body">
+      <div class="card-title">📖 Thuật ngữ &amp; viết tắt trên trang này</div>
+      <p style="font-size:12px;">Mới làm quen release management? Lướt qua bảng này trước — các thuật ngữ xuất hiện xuyên suốt runbook.</p>
+      <table class="comp-table" style="margin-top:8px;">
+        <thead><tr><th style="width:170px">Thuật ngữ</th><th>Ý nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CAB / ECAB</strong></td><td>Change Advisory Board — cơ quan quản trị phê duyệt thay đổi production; Emergency CAB cho fix khẩn.</td></tr>
+          <tr><td><strong>CR</strong></td><td>Change Request — gói phê duyệt (báo cáo, sign-off, kế hoạch rollback) trình lên CAB.</td></tr>
+          <tr><td><strong>RM</strong></td><td>Release Manager — đầu mối chịu trách nhiệm cuối cho vòng đời release.</td></tr>
+          <tr><td><strong>SoD</strong></td><td>Segregation of Duties — dev, test và phát hành production phải là những người khác nhau (bắt buộc theo SBV).</td></tr>
+          <tr><td><strong>DEV → SIT → UAT → PERF → SEC → PROD</strong></td><td>Thang môi trường mà một release leo qua: Development, System Integration Test, User Acceptance, Performance, Security, Production.</td></tr>
+          <tr><td><strong>PT / ST</strong></td><td>Performance Testing (load/stress/soak) / Security Testing (DAST + pentest) — hai cổng trước CAB.</td></tr>
+          <tr><td><strong>SAST / DAST</strong></td><td>Quét bảo mật tĩnh (trên code) / động (trên app đang chạy).</td></tr>
+          <tr><td><strong>CVSS</strong></td><td>Điểm mức nghiêm trọng lỗ hổng 0–10 — ≥ 7.0 là điểm chặn phát hành cứng ở đây.</td></tr>
+          <tr><td><strong>TPS · P95/P99</strong></td><td>Transactions Per Second; latency phân vị 95/99 — KPI hiệu năng.</td></tr>
+          <tr><td><strong>Blue-green / Canary</strong></td><td>Chiến lược deploy: chuyển giữa hai môi trường giống hệt / phát hành cho một % nhỏ trước.</td></tr>
+          <tr><td><strong>Rollback</strong></td><td>Quay về phiên bản chạy tốt trước đó khi trigger kích hoạt (xem runbook thực thi bên dưới).</td></tr>
+          <tr><td><strong>DoD</strong></td><td>Definition of Done — checklist phát hành 8 mục phải hoàn tất trước CAB.</td></tr>
+          <tr><td><strong>GRC</strong></td><td>Hệ thống Governance, Risk &amp; Compliance — nơi lưu phê duyệt và audit trail deployment.</td></tr>
+          <tr><td><strong>Hypercare / trực 72h</strong></td><td>Giám sát tăng cường ngay sau go-live; dev trực standby, review mỗi 4 giờ.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+
+    <!-- SECTION 1: GOVERNANCE -->
+    <section id="section-governance" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <div>
+          <div class="section-number">Mục 1</div>
+          <h2>Tổng quan Quản trị &amp; Hybrid SDLC</h2>
+          <div class="sec-sub">Mô hình Water-Scrum-Fall · Trụ cột tuân thủ SBV</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <p style="margin-bottom:16px;font-size:13px;">Ngân hàng vận hành theo <strong>mô hình Hybrid SDLC</strong> — quen gọi là <span class="tag-pill" style="background:var(--accent-dim);color:var(--accent-bright);border:1px solid rgba(124,92,252,0.3);">Water-Scrum-Fall</span> — kết hợp một cách chiến lược tốc độ lặp của Agile/Scrum cho <em>thực thi</em> phần mềm với sự giám sát có cấu trúc của Waterfall cho <em>quản trị</em> và <em>phát hành production</em>.</p>
+          <div class="phase-callout">
+            <div class="callout-box" style="background:var(--status-blue-bg);border-color:rgba(96,165,250,0.25);">
+              <div class="callout-title" style="color:var(--status-blue);">🔭 Waterfall — Khởi tạo</div>
+              <div class="callout-body" style="color:#93c5fd;">Business case chính thức, các gate phê duyệt quản trị, cấp ngân sách (Tờ trình), và ký duyệt pháp lý trước khi bắt đầu bất kỳ phát triển nào.</div>
+            </div>
+            <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.25);">
+              <div class="callout-title" style="color:var(--status-green);">⚡ Agile — Thực thi</div>
+              <div class="callout-body" style="color:#6ee7b7;">Sprint lặp, tích hợp liên tục, backlog của feature team, và các ceremony Scrum để giao phần mềm chạy được theo từng bước.</div>
+            </div>
+            <div class="callout-box" style="background:var(--status-yellow-bg);border-color:rgba(251,191,36,0.25);">
+              <div class="callout-title" style="color:var(--status-yellow);">🔐 Waterfall — Phát hành</div>
+              <div class="callout-body" style="color:#fde68a;">Các cổng kiểm thử Bảo mật &amp; Hiệu năng tuần tự, review CAB, checkpoint audit SBV bắt buộc, và triển khai production có kiểm soát.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:16px 22px 12px;border-bottom:1px solid var(--border-subtle);">
+          <div class="card-title" style="margin-bottom:3px;">🛡️ Trụ cột tuân thủ ngân hàng Việt Nam</div>
+          <p style="font-size:11.5px;">Theo yêu cầu của Thông tư 09/2020/TT-NHNN &amp; chính sách nội bộ</p>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>⚔️</span><h3>Phân tách nhiệm vụ nghiêm ngặt (SoD)</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Bắt buộc</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body open">
+            <div class="accordion-content">
+              <p>Không cá nhân nào được giữ các vai trò xung đột giữa phát triển, kiểm thử, và triển khai production. Được thực thi qua RBAC trong GitHub, JIRA, và pipeline production.</p>
+              <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div>Developer <strong>không thể</strong> merge code của chính mình vào main. Tester phải độc lập. Release Manager giữ thẩm quyền duy nhất để khởi động triển khai production.</div></div>
+              <table class="comp-table" style="margin-top:12px;">
+                <thead><tr><th>Vai trò</th><th>Dev</th><th>Test</th><th>Release</th><th>Truy cập PROD</th></tr></thead>
+                <tbody>
+                  <tr><td>Developer</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                  <tr><td>QA / Tester</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+                  <tr><td>Release Manager</td><td>❌</td><td>❌</td><td>✅</td><td>Chỉ đọc</td></tr>
+                  <tr><td>DevOps Engineer</td><td>❌</td><td>❌</td><td>Hỗ trợ</td><td>✅</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>🔍</span><h3>Audit bảo mật bắt buộc</h3><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Cổng tiền phát hành</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>Mọi hệ thống xử lý giao dịch tài chính hoặc PII khách hàng phải vượt qua trọn chu trình đánh giá bảo mật trước mỗi lần phát hành production:</p>
+              <ul class="step-cl" style="margin-top:10px;">
+                <li><span class="step-num">1</span> SAST — quét tự động mỗi commit qua SonarQube + GitHub Advanced Security (CodeQL).</li>
+                <li><span class="step-num">2</span> DAST — chạy trong môi trường SIT/UAT qua OWASP ZAP.</li>
+                <li><span class="step-num">3</span> Penetration Testing — thực hiện bởi đội Internal Security độc lập.</li>
+                <li><span class="step-num">4</span> Báo cáo đánh giá lỗ hổng — ký duyệt trước khi trình CAB.</li>
+              </ul>
+              <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>Mọi điểm CVSS ≥ 7.0 (High) là <strong>điểm chặn cứng</strong>. Release không thể tiếp tục cho tới khi được khắc phục và test lại.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>🗳️</span><h3>Phê duyệt Change Advisory Board (CAB) chính thức</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Cổng quản trị</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>CAB là thẩm quyền quản trị cuối cùng trước khi bất kỳ thay đổi nào tới production. Thành phần gồm Lãnh đạo Công nghệ, Quản lý Rủi ro, Tuân thủ, và Chủ sở hữu nghiệp vụ.</p>
+              <div class="info-tiles">
+                <div class="info-tile"><div class="info-tile-icon">📅</div><div class="info-tile-title">Tần suất CAB</div><div class="info-tile-desc">Hằng tuần, thứ Ba 14:00 ICT. CAB khẩn trong 4 giờ cho sự cố P1.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">📄</div><div class="info-tile-title">Change Request (CR)</div><div class="info-tile-desc">Phải kèm PT Report, Security Report, UAT sign-off, kế hoạch rollback, lịch trình deployment.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">🗳️</div><div class="info-tile-title">Túc số biểu quyết</div><div class="info-tile-desc">Tối thiểu 5/7 thành viên CAB có mặt. Yêu cầu nhất trí cho hệ thống Tier 1.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">⏳</div><div class="info-tile-title">Cửa sổ đóng băng</div><div class="info-tile-desc">Không phát hành trong đợt đóng băng cuối năm (20/12–5/1) hoặc kỳ báo cáo SBV.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 2: PHASE 1 -->
+    <section id="section-phase1" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🔭</div>
+        <div>
+          <div class="section-number">Mục 2</div>
+          <h2>Giai đoạn 1 — Discovery &amp; Khởi tạo dự án</h2>
+          <div class="sec-sub">Quản trị Waterfall · Lập kế hoạch &amp; các gate phê duyệt</div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-bottom:16px;">
+        <span class="alert-icon">📌</span>
+        <div>Giai đoạn này theo <strong>trình tự Waterfall</strong> nghiêm ngặt. Không bắt đầu phát triển cho tới khi mọi artifact quản trị được tạo, review, và phê duyệt chính thức bởi Project Sponsor và Initiative Director.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="grid-2col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">📦 Đầu ra quản trị chính</div>
+            <ul class="output-list">
+              <li><div class="output-icon">📊</div><div><div style="font-weight:600;font-size:13px;">Business Case</div><div style="font-size:11px;color:var(--text-muted);">Phân tích ROI, đồng hướng chiến lược, đánh giá rủi ro &amp; lợi ích</div></div></li>
+              <li><div class="output-icon">📃</div><div><div style="font-weight:600;font-size:13px;">Project Charter</div><div style="font-size:11px;color:var(--text-muted);">Phạm vi, mục tiêu, tiến độ, và thẩm quyền tiến hành</div></div></li>
+              <li><div class="output-icon">🗓️</div><div><div style="font-weight:600;font-size:13px;">Project Plan</div><div style="font-size:11px;color:var(--text-muted);">WBS, mốc, phụ thuộc, phân bổ nguồn lực</div></div></li>
+              <li><div class="output-icon">💰</div><div><div style="font-weight:600;font-size:13px;">Đề xuất ngân sách — Tờ trình</div><div style="font-size:11px;color:var(--text-muted);">Trình ngân sách chính thức với phân tách capex/opex để BOD duyệt</div></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">👥 Vai trò &amp; trách nhiệm chính</div>
+            <div class="role-card"><div class="role-avatar">🎯</div><div><div class="role-name">Project Sponsor</div><div class="role-desc">Thẩm quyền điều hành; đảm bảo cấp vốn; điểm leo thang; đầu mối với BOD.</div></div></div>
+            <div class="role-card"><div class="role-avatar">💼</div><div><div class="role-name">Business Owner</div><div class="role-desc">Định nghĩa yêu cầu nghiệp vụ; sở hữu benefits realization; UAT sign-off.</div></div></div>
+            <div class="role-card"><div class="role-avatar">🏛️</div><div><div class="role-name">Initiative Director</div><div class="role-desc">Giám sát portfolio chương trình; đồng hướng chiến lược; phê duyệt Phase Gate.</div></div></div>
+            <div class="role-card"><div class="role-avatar">📋</div><div><div class="role-name">Project Manager</div><div class="role-desc">Giao hàng hằng ngày; sổ RAID; truyền thông stakeholder; báo cáo status.</div></div></div>
+            <div class="role-card"><div class="role-avatar">🏗️</div><div><div class="role-name">Enterprise Architect</div><div class="role-desc">Thiết kế giải pháp; tuân thủ chuẩn công nghệ; review ARB.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🔄 Trình tự Phase Gate giai đoạn Khởi tạo</div>
+          <ul class="wf-steps">
+            <li class="wf-step"><div><div class="wf-step-title">Gate 0 · Ý tưởng &amp; Hình thành</div><div class="wf-step-desc">Xác định điểm đau nghiệp vụ; định nghĩa phạm vi ban đầu; Executive Sponsor đề cử Initiative Director.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 1 · Business Case được duyệt</div><div class="wf-step-desc">BOD hoặc thẩm quyền uỷ quyền review và duyệt Business Case và Tờ trình. Ngân sách được cấp chính thức.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 2 · Project Charter được ký</div><div class="wf-step-desc">Bổ nhiệm PM; lập đội; Project Charter được Sponsor, Initiative Director, và Business Owner đồng ký.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 3 · Architecture Review Board (ARB)</div><div class="wf-step-desc">Enterprise Architect trình thiết kế giải pháp. ARB kiểm chứng tuân thủ chuẩn công nghệ của ngân hàng và quy định ATTT của SBV.</div></div></li>
+            <li class="wf-step"><div><div class="wf-step-title">Gate 4 · Kick-off phát triển</div><div class="wf-step-desc">Project Plan được duyệt. Đội Scrum được onboard. Cấu trúc JIRA Epic được tạo. Sprint 0 bắt đầu.</div></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 3: PHASE 2 -->
+    <section id="section-phase2" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div>
+          <div class="section-number">Mục 3</div>
+          <h2>Giai đoạn 2 — Triển khai (Agile/Scrum)</h2>
+          <div class="sec-sub">Sprint lặp · Tích hợp liên tục · Backlog sống</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">📅 Các Scrum Ceremony</div>
+          <div class="ceremony-grid">
+            <div class="ceremony-card" style="border-top-color:var(--status-blue)"><div class="ceremony-emoji">🗓️</div><div class="ceremony-name">Sprint Planning</div><div class="ceremony-freq">Mỗi 2 tuần · tối đa 4h</div><div class="ceremony-desc">Đội chọn backlog item và cam kết một Sprint Goal dựa trên capacity và velocity.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-green)"><div class="ceremony-emoji">☀️</div><div class="ceremony-name">Daily Scrum</div><div class="ceremony-freq">Hằng ngày · 15 phút</div><div class="ceremony-desc">Tôi đã làm gì? Sẽ làm gì? Có blocker nào không? SM sở hữu việc gỡ impediment.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-yellow)"><div class="ceremony-emoji">🔄</div><div class="ceremony-name">Backlog Refinement</div><div class="ceremony-freq">Hằng tuần · 2h</div><div class="ceremony-desc">PO chuốt story; đội ước lượng công sức qua Story Point; làm rõ acceptance criteria.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--accent)"><div class="ceremony-emoji">🎬</div><div class="ceremony-name">Sprint Review</div><div class="ceremony-freq">Cuối Sprint · 2h</div><div class="ceremony-desc">Demo phần mềm chạy được cho stakeholder. Business Owner chấp nhận hoặc trả lại increment.</div></div>
+            <div class="ceremony-card" style="border-top-color:var(--status-red)"><div class="ceremony-emoji">🔍</div><div class="ceremony-name">Retrospective</div><div class="ceremony-freq">Cuối Sprint · 1,5h</div><div class="ceremony-desc">Đội xác định top 3 cải tiến. Action item được theo dõi vào Sprint kế tiếp.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">✅ Definition of Done (DoD) — Cấp Sprint</div>
+          <p style="font-size:12px;margin-bottom:12px;">Mọi tiêu chí phải đạt trước khi một Story hoặc Epic được coi là hoàn thành.</p>
+          <div class="highlight-strip">
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span>Code được peer-review và duyệt bởi tối thiểu <strong>2 reviewer</strong> qua GitHub Pull Request (không self-merge).</span></li>
+              <li><span class="step-num">2</span><span>Độ phủ unit test ≥ <strong>85%</strong> được cổng SonarQube kiểm chứng. Không có code smell critical hay blocking.</span></li>
+              <li><span class="step-num">3</span><span>SAST scan đạt — không phát hiện mức <strong>High / Critical</strong> nào ở feature branch.</span></li>
+              <li><span class="step-num">4</span><span>Test chức năng đạt trong <strong>môi trường SIT</strong>; smoke test đạt trong môi trường UAT.</span></li>
+              <li><span class="step-num">5</span><span>Test hợp đồng API đạt (nếu có). Không hồi quy ở các bộ test hiện có.</span></li>
+              <li><span class="step-num">6</span><span>Acceptance criteria được kiểm chứng và có sign-off từ <strong>Product Owner</strong>.</span></li>
+              <li><span class="step-num">7</span><span>JIRA story cập nhật "Done", liên kết tới commit SHA liên quan và artifact kết quả test.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🌐 Chiến lược thăng cấp môi trường</div>
+          <div class="env-track">
+            <div class="env-step done"><div class="env-dot">💻</div><div class="env-label">DEV</div></div>
+            <div class="env-step done"><div class="env-dot">🔬</div><div class="env-label">SIT</div></div>
+            <div class="env-step done"><div class="env-dot">👥</div><div class="env-label">UAT</div></div>
+            <div class="env-step active"><div class="env-dot">⚡</div><div class="env-label">PERF</div></div>
+            <div class="env-step"><div class="env-dot">🔒</div><div class="env-label">SEC</div></div>
+            <div class="env-step"><div class="env-dot">🚀</div><div class="env-label">PROD</div></div>
+          </div>
+          <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>Thăng cấp DEV → SIT → UAT do <strong>pipeline CI/CD</strong> xử lý (GitHub Actions). PERF và SEC cần <strong>Release Manager</strong> uỷ quyền. PROD cần <strong>CAB phê duyệt</strong>.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 4: PHASE 3 -->
+    <section id="section-phase3" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🔐</div>
+        <div>
+          <div class="section-number">Mục 4</div>
+          <h2>Giai đoạn 3 — "Last Mile" Tiền triển khai</h2>
+          <div class="sec-sub">Waterfall nghiêm ngặt · Qua cổng tuần tự · Quản trị CAB</div>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" style="margin-bottom:20px;">
+        <span class="alert-icon">🔴</span>
+        <div><strong>ĐƯỜNG GĂNG:</strong> Mỗi bước phải hoàn tất tuần tự. Không bước nào được bỏ qua hay chạy song song. Bất kỳ blocker nào tại bất kỳ cổng nào đều đẩy release về backlog để khắc phục.</div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">🔄 Release Pipeline — Bảng theo dõi trạng thái</div>
+          <p style="font-size:11.5px;margin-bottom:14px;">Rê chuột lên từng bước để xem chi tiết.</p>
+          <div class="pipeline-wrap">
+            <div class="pipeline-grid">
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Bước 1</div><div class="pipe-icon">📝</div><div class="pipe-title">Backlog</div><span class="pipe-badge pb-done">Xong</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Release Request được tạo trong JIRA. Khoá phạm vi. Xác nhận chiến lược branch. Soạn changelog.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Bước 2</div><div class="pipe-icon">⚡</div><div class="pipe-title">Sẵn sàng PT</div><span class="pipe-badge pb-done">Xong</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Cấp môi trường PERF. Nạp dữ liệu test. Deploy &amp; kiểm chứng artifact release.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Bước 3</div><div class="pipe-icon">📊</div><div class="pipe-title">Đang Perf Test</div><span class="pipe-badge pb-done">Xong</span><div class="pipe-role">Perf Tester</div></div><div class="pipe-tooltip">Chạy load, stress &amp; soak test qua Apache JMeter. Benchmark TPS &amp; P95 latency.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Bước 4</div><div class="pipe-icon">📋</div><div class="pipe-title">PT Xong</div><span class="pipe-badge pb-done">Xong</span><div class="pipe-role">Perf Tester</div></div><div class="pipe-tooltip">Ký Performance Report. Đạt mọi KPI. Đính báo cáo vào Change Request.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-done"><div class="pipe-num">Bước 5</div><div class="pipe-icon">🛡️</div><div class="pipe-title">Sẵn sàng ST</div><span class="pipe-badge pb-done">Xong</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Cấp môi trường SEC (mạng cô lập). Xác nhận phạm vi pentest với đội Security.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-active"><div class="pipe-num">Bước 6</div><div class="pipe-icon">🔐</div><div class="pipe-title">Đang Sec Test</div><span class="pipe-badge pb-active">Đang chạy</span><div class="pipe-role">Sec Tester</div></div><div class="pipe-tooltip">DAST + pentest thủ công đang chạy. Đang thực thi OWASP Top 10. ETA: 3 ngày.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 7</div><div class="pipe-icon">📄</div><div class="pipe-title">ST Xong</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">Sec Tester</div></div><div class="pipe-tooltip">Sinh Security Report kèm điểm CVSS. Mọi High/Critical chặn release. Cần CISO sign-off.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 8</div><div class="pipe-icon">📨</div><div class="pipe-title">Sẵn sàng CAB</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Trình Change Request lên CAB kèm mọi đính kèm: PT, ST Report, UAT sign-off, kế hoạch rollback.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 9</div><div class="pipe-icon">🏛️</div><div class="pipe-title">Trong CAB</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">Thành viên CAB</div></div><div class="pipe-tooltip">Trình CR cho CAB. Đánh giá điểm rủi ro. Review Business Impact Analysis. Bỏ phiếu phê duyệt.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 10</div><div class="pipe-icon">✅</div><div class="pipe-title">CAB Xong</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">CAB Chair</div></div><div class="pipe-tooltip">Ghi phê duyệt CAB vào hệ thống GRC. Xác nhận cửa sổ triển khai. Thông báo stakeholder.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 11</div><div class="pipe-icon">🖥️</div><div class="pipe-title">Sẵn sàng PROD</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">DevOps + Rel Mgr</div></div><div class="pipe-tooltip">Triển khai production trong cửa sổ bảo trì đã duyệt. Gọi Go/No-Go trước khi thực thi.</div></div>
+              <div class="pipeline-step"><div class="pipeline-card s-pending"><div class="pipe-num">Bước 12</div><div class="pipe-icon">🎉</div><div class="pipe-title">Đã phát hành</div><span class="pipe-badge pb-pending">Chờ</span><div class="pipe-role">Release Mgr</div></div><div class="pipe-tooltip">Smoke test PROD đạt. Công bố release note. Brief CS. Kích hoạt trực 72h hậu phát hành.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROLE TABS -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">👤 Xem theo vai trò — Nhiệm vụ &amp; Trách nhiệm</div>
+          <div class="role-tabs" role="tablist">
+            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" onclick="switchRole('rm')">📋 Release Manager</button>
+            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" onclick="switchRole('pt')">📊 Performance Tester</button>
+            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" onclick="switchRole('st')">🔐 Security Tester</button>
+          </div>
+
+          <div id="panel-rm" class="role-panel active">
+            <div class="role-card"><div class="role-avatar">📋</div><div><div class="role-name" style="font-size:14px;">Release Manager</div><div class="role-desc">Sở hữu vòng đời release đầu-cuối. Đầu mối chịu trách nhiệm cuối cho triển khai production.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Nhiệm vụ tiền triển khai</p>
+            <ul class="duty-list">
+              <li>Tạo và quản lý Release Request trong JIRA với định nghĩa phạm vi đầy đủ và changelog.</li>
+              <li>Phối hợp cấp môi trường với DevOps cho PERF và SEC.</li>
+              <li>Xác nhận tính toàn vẹn của build artifact (SHA checksum) và độ đầy đủ của gói triển khai.</li>
+              <li>Theo dõi việc qua cổng xuyên cả 12 bước pipeline; leo thang blocker ngay lập tức.</li>
+              <li>Tổng hợp gói Change Request: PT Report, Security Report, UAT sign-off, Impact Analysis, Rollback Plan.</li>
+              <li>Trình Change Request tại họp CAB; trả lời mọi câu hỏi của board.</li>
+              <li>Chủ trì cuộc gọi Go/No-Go với DevOps, Business Owner, và hỗ trợ on-call trước PROD.</li>
+              <li>Công bố release note và thông báo mọi stakeholder khi triển khai thành công.</li>
+              <li>Quản lý giai đoạn trực 72h hậu phát hành và điều phối phiên Lessons Learned.</li>
+            </ul>
+            <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">📌</span><div>Release Manager là <strong>vai trò duy nhất</strong> được phép chuyển pipeline tại Bước 1→2, 5→6, và 10→11. Các bước này cần mục sign-off tường minh trong hệ thống GRC.</div></div>
+          </div>
+
+          <div id="panel-pt" class="role-panel">
+            <div class="role-card"><div class="role-avatar">📊</div><div><div class="role-name" style="font-size:14px;">Performance Tester</div><div class="role-desc">Chịu trách nhiệm kiểm chứng throughput, latency, và độ ổn định của hệ thống dưới tải ngân hàng đỉnh.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Nhiệm vụ kiểm thử hiệu năng</p>
+            <ul class="duty-list">
+              <li>Xác nhận topology môi trường PERF khớp thông số PROD (CPU, RAM, DB replication).</li>
+              <li>Thiết kế và chạy <strong>Load Test</strong>: mô phỏng lượng người dùng đồng thời đỉnh từ chỉ số production.</li>
+              <li>Chạy <strong>Stress Test</strong>: đẩy hệ thống tới 150% tải đỉnh kỳ vọng để tìm điểm gãy.</li>
+              <li>Chạy <strong>Soak Test</strong>: duy trì tải tối thiểu 4 giờ để phát hiện memory leak hoặc cạn connection pool.</li>
+              <li>Ghi nhận KPI: TPS, P95/P99 latency, tỷ lệ lỗi, mức dùng CPU/memory.</li>
+              <li>Kiểm chứng mọi KPI so với ngưỡng SLA định nghĩa trong Performance Test Plan.</li>
+              <li>Sinh <strong>Performance Test Report</strong> theo template ngân hàng đã duyệt, kèm ảnh chụp Grafana/JMeter.</li>
+              <li>Lấy sign-off từ Performance Test Lead và trình báo cáo cho Release Manager.</li>
+            </ul>
+            <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>Nếu bất kỳ KPI nào không đạt ngưỡng SLA (vd P95 latency &gt; 2000ms cho API core banking), release bị chặn ngay. Báo đội Dev để khắc phục trước khi test lại.</div></div>
+          </div>
+
+          <div id="panel-st" class="role-panel">
+            <div class="role-card"><div class="role-avatar">🔐</div><div><div class="role-name" style="font-size:14px;">Security Tester</div><div class="role-desc">Đội bảo mật độc lập chịu trách nhiệm phát hiện lỗ hổng trước khi phơi ra production.</div></div></div>
+            <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Nhiệm vụ kiểm thử bảo mật</p>
+            <ul class="duty-list">
+              <li>Review phát hiện SAST từ CI pipeline; xác nhận mọi High/Critical đã được Dev khắc phục.</li>
+              <li>Chạy <strong>DAST scan</strong> bằng OWASP ZAP trên môi trường SEC.</li>
+              <li>Thực hiện <strong>pentest thủ công</strong> bao phủ OWASP Top 10 và các vector đặc thù ngân hàng.</li>
+              <li>Đánh giá control <strong>xác thực &amp; phân quyền</strong>: MFA, thực thi RBAC, hết hạn token.</li>
+              <li>Review <strong>mã hoá dữ liệu</strong> at-rest và in-transit (TLS 1.2+, AES-256 cho trường PII).</li>
+              <li>Kiểm chứng <strong>bảo mật API</strong>: rate limiting, kiểm tra input, chống SQL injection, XSS.</li>
+              <li>Chấm điểm mọi phát hiện bằng <strong>CVSS v3.1</strong>; phân loại theo mức nghiêm trọng và tác động nghiệp vụ.</li>
+              <li>Sinh <strong>Security Assessment Report</strong>; lấy CISO sign-off trước khi chuyển cho RM.</li>
+            </ul>
+            <div class="alert alert-danger" style="margin-top:12px;"><span class="alert-icon">🚨</span><div><strong>Điểm chặn cứng:</strong> Bất kỳ phát hiện nào có CVSS ≥ 7.0 (High) hoặc OWASP Top 10 nhóm A01–A05 là điểm chặn deploy tự động. CISO có quyền phủ quyết CAB về các phát hiện bảo mật.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELEASE DOD CHECKLIST -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">☑️ Release Definition of Done — Checklist tương tác</div>
+          <p style="font-size:12px;margin-bottom:14px;">Bấm từng mục để tích. Cả 8 phải ✅ trước khi xin CAB phê duyệt.</p>
+
+          <div class="dod-grid" id="dod-checklist">
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Đã test hiệu năng</div><div class="dod-sub">Đạt mọi ngưỡng SLA. Ký PT Report.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Đã test bảo mật</div><div class="dod-sub">Không phát hiện High/Critical. CISO đã ký.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT được chấp nhận</div><div class="dod-sub">Có sign-off của Business Owner.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB đã duyệt</div><div class="dod-sub">Change Request được duyệt. Đặt cửa sổ triển khai.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Kế hoạch rollback sẵn sàng</div><div class="dod-sub">Quy trình rollback được ghi lại và test.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact được kiểm chứng</div><div class="dod-sub">Xác minh build SHA. Gói triển khai được kiểm chứng.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Đội Ops được thông báo</div><div class="dod-sub">Phát Ops Handover Document. Brief hỗ trợ L1.</div></div></div>
+            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Giám sát được cấu hình</div><div class="dod-sub">Dashboard chạy. Tinh chỉnh alert. Đặt ca on-call.</div></div></div>
+          </div>
+
+          <div class="dod-progress">
+            <div class="dod-progress-label"><span>Mức sẵn sàng phát hành</span><span id="dod-count">0 / 8 hoàn tất</span></div>
+            <div class="dod-bar-track"><div class="dod-bar-fill" id="dod-bar" style="width:0%"></div></div>
+          </div>
+
+          <div id="dod-complete-banner">🎉 Đạt mọi tiêu chí Release DoD — được thông qua để triển khai production.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 5: PHASE 4 -->
+    <section id="section-phase4" class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <div>
+          <div class="section-number">Mục 5</div>
+          <h2>Giai đoạn 4 — Triển khai &amp; Thương mại hoá</h2>
+          <div class="sec-sub">Bàn giao production · Chuyển giao Ops · Giám sát &amp; hỗ trợ</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-bottom:16px;">
+        <span class="alert-icon">🚀</span>
+        <div><strong>Cột mốc:</strong> CAB đã duyệt Change Request. Xác nhận cửa sổ triển khai. Giai đoạn này bao quát việc phát hành production có kiểm soát và bàn giao chính thức từ Đội dự án sang Operations &amp; Customer Support.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" class="grid-2col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">📦 Đầu ra triển khai chính</div>
+            <ul class="output-list">
+              <li><div class="output-icon">📘</div><div><div style="font-weight:600;font-size:13px;">Operations Handover Document</div><div style="font-size:11px;color:var(--text-muted);">Kiến trúc hệ thống, runbook, ma trận leo thang, và định nghĩa SLA</div></div></li>
+              <li><div class="output-icon">📗</div><div><div style="font-weight:600;font-size:13px;">Hướng dẫn Người dùng &amp; Admin</div><div style="font-size:11px;color:var(--text-muted);">Tài liệu đào tạo người dùng cuối, hướng dẫn admin console, luồng onboarding</div></div></li>
+              <li><div class="output-icon">📊</div><div><div style="font-weight:600;font-size:13px;">Monitoring Dashboard</div><div style="font-size:11px;color:var(--text-muted);">Chỉ số thời gian thực Grafana/Datadog, quy tắc alert, theo dõi SLO</div></div></li>
+              <li><div class="output-icon">🚨</div><div><div style="font-weight:600;font-size:13px;">Quy trình quản lý sự cố</div><div style="font-size:11px;color:var(--text-muted);">Phân loại mức nghiêm trọng, ca on-call, đường leo thang, giao thức war-room</div></div></li>
+              <li><div class="output-icon">📋</div><div><div style="font-weight:600;font-size:13px;">FAQ kỹ thuật &amp; người dùng cuối</div><div style="font-size:11px;color:var(--text-muted);">Known issue, workaround, hướng dẫn triage L1/L2/L3</div></div></li>
+              <li><div class="output-icon">📈</div><div><div style="font-weight:600;font-size:13px;">Deployment Execution Tracker</div><div style="font-size:11px;color:var(--text-muted);">Log triển khai từng bước, dấu thời gian, kết quả kiểm chứng hậu phát hành</div></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">🤝 Bàn giao Dự án → Operations</div>
+            <ul class="wf-steps">
+              <li class="wf-step"><div><div class="wf-step-title">Gọi Go/No-Go (T-2h)</div><div class="wf-step-desc">Mọi bên (RM, DevOps, Business Owner, L1 Support Lead) xác nhận sẵn sàng qua cuộc gọi bridge.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Thực thi triển khai PROD</div><div class="wf-step-desc">DevOps chạy pipeline triển khai trong cửa sổ bảo trì đã duyệt (thường 22:00–02:00 ICT).</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Smoke Test &amp; Kiểm chứng</div><div class="wf-step-desc">Release Manager chạy checklist smoke test. Business Owner kiểm chứng các luồng giao dịch lõi trên PROD.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Họp bàn giao</div><div class="wf-step-desc">Bàn giao chính thức với Ops Lead. Chuyển giao mọi artifact. Kích hoạt nhiệm vụ on-call.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Giai đoạn trực 72 giờ</div><div class="wf-step-desc">Đội Dev trực standby. Review giám sát mỗi 4 giờ. Trigger P1/P2 mở war-room ngay.</div></div></li>
+              <li class="wf-step"><div><div class="wf-step-title">Đóng dự án</div><div class="wf-step-desc">Phiên Lessons Learned. Công bố báo cáo PIR. Đóng dự án chính thức trong công cụ PPM.</div></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">🖥️ Runbook thực thi — Deploy &amp; Rollback Production</div>
+          <p style="font-size:12px;margin-bottom:12px;">Quy trình từng bước, tái lập được, mà kỹ sư on-call tuân theo trong cửa sổ bảo trì. Mỗi bước có chủ sở hữu và một bước kiểm chứng.</p>
+          <div class="highlight-strip" style="margin-bottom:12px;">
+            <div style="font-weight:700;font-size:12px;margin-bottom:6px;">▶ Trình tự Deploy</div>
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span><strong>Pre-flight (T-15m):</strong> xác nhận CAB approval ID &amp; cửa sổ; đóng băng thay đổi khác; thông báo ở kênh #release. <em>Kiểm chứng:</em> quyết định Go được ghi trong GRC.</span></li>
+              <li><span class="step-num">2</span><span><strong>Backup:</strong> snapshot DB + ghi lại image tag/commit SHA hiện tại làm <code>ROLLBACK_REF</code>. <em>Kiểm chứng:</em> backup phục hồi được, SHA đã ghi.</span></li>
+              <li><span class="step-num">3</span><span><strong>Deploy luỹ tiến:</strong> deploy qua <strong>canary</strong> (5% → 25% → 50% → 100%) hoặc <strong>blue-green</strong> (deploy green, giữ blue warm). <em>Kiểm chứng:</em> health check xanh ở mỗi bước.</span></li>
+              <li><span class="step-num">4</span><span><strong>DB migration:</strong> chạy migration tương thích ngược trước (expand); hoãn thay đổi phá huỷ (contract) sang release sau. <em>Kiểm chứng:</em> migration exit code 0.</span></li>
+              <li><span class="step-num">5</span><span><strong>Smoke test:</strong> chạy checklist smoke PROD (login, một giao dịch lõi, một tích hợp). <em>Kiểm chứng:</em> tất cả đạt; tỷ lệ lỗi &amp; P95 trong SLO.</span></li>
+              <li><span class="step-num">6</span><span><strong>Cutover &amp; xác nhận:</strong> định tuyến 100% traffic; Business Owner kiểm chứng luồng lõi. <em>Kiểm chứng:</em> gọi Go/No-Go → "đã phát hành"; công bố release note.</span></li>
+            </ul>
+          </div>
+          <div class="alert alert-danger"><span class="alert-icon">↩️</span><div><strong>Trigger rollback (bất kỳ → rollback ngay):</strong> sự cố P1; tỷ lệ lỗi &gt; 2× baseline trong 5 phút; P95 latency &gt; SLA trên API lõi; smoke test thất bại; bất thường toàn vẹn dữ liệu. <strong>Chủ rollback:</strong> Release Manager quyết định, DevOps thực thi.</div></div>
+          <div class="highlight-strip" style="margin-top:12px;">
+            <div style="font-weight:700;font-size:12px;margin-bottom:6px;">◀ Trình tự Rollback</div>
+            <ul class="step-cl">
+              <li><span class="step-num">1</span><span><strong>Tuyên bố:</strong> RM tuyên bố rollback; mở sự cố; báo CAB chair (duyệt hồi tố).</span></li>
+              <li><span class="step-num">2</span><span><strong>Revert app:</strong> blue-green → chuyển traffic về blue; canary → scale phiên bản mới về 0, khôi phục <code>ROLLBACK_REF</code>. <em>Kiểm chứng:</em> phiên bản cũ đang phục vụ.</span></li>
+              <li><span class="step-num">3</span><span><strong>Revert dữ liệu (nếu cần):</strong> áp down-migration hoặc khôi phục snapshot. <em>Kiểm chứng:</em> kiểm tra đối soát đạt. (Expand/contract tránh được việc này trong hầu hết trường hợp.)</span></li>
+              <li><span class="step-num">4</span><span><strong>Xác nhận &amp; postmortem:</strong> chạy lại smoke test trên phiên bản đã khôi phục; ghi dòng thời gian; đặt lịch postmortem blameless với <a href="#ops">Ops/SRE</a>.</span></li>
+            </ul>
+          </div>
+          <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔗</span><div>Auto-rollback lúc runtime khi vi phạm SLO &amp; vòng đời sự cố do <a href="#ops">Operations &amp; SRE Runbook</a> sở hữu; mục này bao quát quyết định phát hành/rollback <strong>có kế hoạch</strong>.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">📊 Khung giám sát &amp; phản ứng sự cố</div>
+          <div class="info-tiles">
+            <div class="info-tile" style="border-top:2px solid var(--status-green);"><div class="info-tile-icon">🟢</div><div class="info-tile-title">P4 — Thấp</div><div class="info-tile-desc">Vấn đề thẩm mỹ. Không ảnh hưởng nghiệp vụ. Phản hồi: ngày làm việc kế tiếp.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-blue);"><div class="info-tile-icon">🔵</div><div class="info-tile-title">P3 — Trung bình</div><div class="info-tile-desc">Gián đoạn nhỏ. Có workaround. Phản hồi: 4 giờ. Giao L2.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-yellow);"><div class="info-tile-icon">🟡</div><div class="info-tile-title">P2 — Cao</div><div class="info-tile-desc">Ảnh hưởng đáng kể. Không có workaround. Phản hồi: 1 giờ. L3 + Dev vào cuộc.</div></div>
+            <div class="info-tile" style="border-top:2px solid var(--status-red);"><div class="info-tile-icon">🔴</div><div class="info-tile-title">P1 — Trọng yếu</div><div class="info-tile-desc">Core banking ngừng. Phản hồi: 15 phút. War-room. Báo CPTO &amp; CRO. Cân nhắc rollback.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:16px 22px 12px;border-bottom:1px solid var(--border-subtle);">
+          <div class="card-title" style="margin-bottom:0;">📁 Tham chiếu Artifact thương mại hoá</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📘</span><h3>Operations Handover Document</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Bắt buộc</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>OHD là artifact chính giúp đội Ops tự quản hệ thống độc lập sau triển khai.</p>
+              <ul class="step-cl" style="margin-top:10px;">
+                <li><span class="step-num">A</span> Sơ đồ kiến trúc hệ thống và kiểm kê component.</li>
+                <li><span class="step-num">B</span> Cấu hình hạ tầng và triển khai (Kubernetes, Terraform manifest).</li>
+                <li><span class="step-num">C</span> Chuỗi kết nối DB, quản lý secret (đường dẫn Vault — không credential dạng plaintext).</li>
+                <li><span class="step-num">D</span> Ngưỡng giám sát và runbook alert.</li>
+                <li><span class="step-num">E</span> Ma trận leo thang: L1 → L2 → L3 → liên hệ hỗ trợ vendor.</li>
+                <li><span class="step-num">F</span> Quy trình backup và khôi phục với mục tiêu RTO/RPO đã test.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📊</span><h3>Monitoring Dashboard &amp; Alerting</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Trực tiếp</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>Stack observability: <strong>Grafana</strong> cho metric, <strong>Loki</strong> cho gom log, <strong>Jaeger</strong> cho distributed tracing, và <strong>PagerDuty</strong> cho alert on-call.</p>
+              <div class="info-tiles">
+                <div class="info-tile"><div class="info-tile-icon">📈</div><div class="info-tile-title">KPI nghiệp vụ</div><div class="info-tile-desc">Tỷ lệ giao dịch thành công, người dùng hoạt động hằng ngày, chỉ số tác động doanh thu.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Sức khoẻ hệ thống</div><div class="info-tile-desc">CPU/memory/disk, số lần restart pod, mức dùng DB connection pool.</div></div>
+                <div class="info-tile"><div class="info-tile-icon">🌐</div><div class="info-tile-title">Chỉ số API</div><div class="info-tile-desc">P95/P99 latency, tỷ lệ lỗi, throughput, quota API gateway.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+            <div class="acc-left"><span>📋</span><h3>Deployment Execution Tracker</h3><span class="acc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">Audit Trail</span></div>
+            <div class="accordion-chevron">▾</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p>Log bất biến, có dấu thời gian, cho mọi hành động trong lúc triển khai. Lưu trong hệ thống GRC tối thiểu 5 năm theo tuân thủ SBV.</p>
+              <table class="comp-table" style="margin-top:12px;">
+                <thead><tr><th>Dấu thời gian (ICT)</th><th>Hành động</th><th>Người thực thi</th><th>Trạng thái</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="mono">22:05</span></td><td>Kiểm chứng backup tiền triển khai</td><td>DevOps L2</td><td><span class="pipe-badge pb-done">Xong</span></td></tr>
+                  <tr><td><span class="mono">22:10</span></td><td>Chạy migration schema DB</td><td>DevOps L2</td><td><span class="pipe-badge pb-done">Xong</span></td></tr>
+                  <tr><td><span class="mono">22:22</span></td><td>Triển khai container ứng dụng</td><td>CI/CD Pipeline</td><td><span class="pipe-badge pb-done">Xong</span></td></tr>
+                  <tr><td><span class="mono">22:35</span></td><td>Chạy smoke test</td><td>Release Manager</td><td><span class="pipe-badge pb-done">Xong</span></td></tr>
+                  <tr><td><span class="mono">22:40</span></td><td>Business Owner kiểm chứng PROD</td><td>Business Owner</td><td><span class="pipe-badge pb-active">Chờ</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.content-sections -->
+</main>
+
+<footer class="site-footer">
+  🏦 Handbook · Deployment Runbook v2.4 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br>
+  Tuân thủ Thông tư 09/2020/TT-NHNN &amp; ISO 27001 · Được Uỷ ban Rủi ro Công nghệ phê duyệt · © 2025
+</footer>
+</div><!-- /#page-content -->
