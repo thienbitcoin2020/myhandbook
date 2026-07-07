@@ -1,0 +1,949 @@
+<title>Project Implementation Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+:root {
+  --phase-idea:#A78BFA;--phase-plan:#5B9BF6;--phase-discover:#4A9E5C;
+  --phase-init:#D4A843;--phase-sdlc:#D71921;--phase-predeploy:#f87171;
+  --phase-deploy:#4A9E5C;--phase-gtm:#D4A843;--phase-operate:#5B9BF6;
+  --phase-close:#A78BFA;
+  --accent-bright: #ff4d4d;
+  --accent-dim: rgba(215,25,33,0.12);
+  --accent-glow: rgba(215,25,33,0.2);
+}
+.sb-icon { background: var(--surface-raised) !important; box-shadow: none !important; }
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sb-top">
+    <div class="sb-badge">
+      <div class="sb-icon">📘</div>
+      <div><div class="sb-title">Implementation<br>Handbook</div>
+      <div class="sb-sub">Handbook · v1.0</div></div>
+    </div>
+  </div>
+
+  <div class="sb-search">
+    <input type="text" id="hb-search" placeholder="Tìm trong handbook..." oninput="handleSearch(this.value)" aria-label="Tìm trong handbook"/>
+  </div>
+
+  <div class="sb-label">Tổng quan</div>
+  <nav class="sb-nav" id="main-nav">
+    <a href="#" data-sec="landing" onclick="showSec('landing',this);return false" class="active" aria-current="page">
+      <span class="sb-icon-sm">🏠</span> Trang chủ &amp; Pipeline</a>
+    <a href="#" data-sec="sec0" onclick="showSec('sec0',this);return false">
+      <span class="sb-icon-sm">📖</span> 0. Cách sử dụng</a>
+    <a href="#" data-sec="secpm" onclick="showSec('secpm',this);return false">
+      <span class="sb-icon-sm">PM</span> PM Core Governance</a>
+  </nav>
+
+  <div class="sb-label">Các giai đoạn</div>
+  <nav class="sb-nav">
+    <a href="#" data-sec="sec1" onclick="showSec('sec1',this);return false">
+      <span class="sb-icon-sm">🎯</span> 1. Chiến lược &amp; Kế hoạch</a>
+    <a href="#" data-sec="sec2" onclick="showSec('sec2',this);return false">
+      <span class="sb-icon-sm">🔭</span> 2. Discovery &amp; Khởi tạo</a>
+    <a href="#" data-sec="sec3" onclick="showSec('sec3',this);return false">
+      <span class="sb-icon-sm">⚙️</span> 3. Thực thi SDLC</a>
+    <a href="#" data-sec="sec3sub" onclick="showSec('sec3sub',this);return false" class="sub">
+      ├ 3.1–3.5 Giai đoạn Build</a>
+    <a href="#" data-sec="sec32" onclick="showSec('sec32',this);return false" class="sub">
+      ├ 3.2 Requirements <span class="ext-badge">↗</span></a>
+    <a href="#" data-sec="sec36" onclick="showSec('sec36',this);return false" class="sub">
+      ├ 3.6 Agile Ceremonies</a>
+    <a href="#" data-sec="sec37" onclick="showSec('sec37',this);return false" class="sub">
+      ├ 3.7 Backlog Hierarchy</a>
+    <a href="#" data-sec="sec38" onclick="showSec('sec38',this);return false" class="sub">
+      ├ 3.8 Quality Gates</a>
+    <a href="#" data-sec="sec39" onclick="showSec('sec39',this);return false" class="sub">
+      └ 3.9 Release Workflow <span class="ext-badge">↗</span></a>
+    <a href="#" data-sec="sec4" onclick="showSec('sec4',this);return false">
+      <span class="sb-icon-sm">🚀</span> 4. Thương mại hoá &amp; GTM</a>
+    <a href="#" data-sec="sec5" onclick="showSec('sec5',this);return false">
+      <span class="sb-icon-sm">📦</span> 5. Đóng dự án</a>
+    <a href="#" data-sec="sec6" onclick="showSec('sec6',this);return false">
+      <span class="sb-icon-sm">🔧</span> 6. Vận hành &amp; Bảo trì</a>
+  </nav>
+
+  <div class="sb-label">Tra cứu</div>
+  <nav class="sb-nav">
+    <a href="#" data-sec="sec7" onclick="showSec('sec7',this);return false">
+      <span class="sb-icon-sm">👥</span> 7. Stakeholder &amp; RACI</a>
+    <a href="#" data-sec="sec8" onclick="showSec('sec8',this);return false">
+      <span class="sb-icon-sm">📚</span> 8. Bảng thuật ngữ</a>
+    <a href="#" data-sec="sec9" onclick="showSec('sec9',this);return false">
+      <span class="sb-icon-sm">📋</span> 9. Thư viện Template</a>
+    <a href="#" data-sec="sec10" onclick="showSec('sec10',this);return false">
+      <span class="sb-icon-sm">🛠️</span> 10. Công cụ</a>
+    <a href="#" data-sec="changelog" onclick="showSec('changelog',this);return false">
+      <span class="sb-icon-sm">📝</span> Changelog</a>
+  </nav>
+
+  <div class="sb-divider"></div>
+  <div class="sb-label">Handbooks</div>
+  <nav class="sb-nav">
+    <a href="#home"><span class="sb-icon-sm">🏦</span> Trang chủ Handbook</a>
+    <a href="#pm"><span class="sb-icon-sm">👔</span> PM Project Handbook</a>
+    <a href="#po"><span class="sb-icon-sm">🎯</span> Product Owner Handbook</a>
+    <a href="#ba"><span class="sb-icon-sm">📋</span> BA Project Handbook</a>
+    <a href="#sa"><span class="sb-icon-sm">🏛️</span> Solution Architect Handbook</a>
+    <a href="#ux"><span class="sb-icon-sm">🎨</span> UX/UI Designer Handbook</a>
+    <a href="#qc"><span class="sb-icon-sm">🧪</span> QC Testing Handbook</a>
+    <a href="#sec"><span class="sb-icon-sm">🛡️</span> Security &amp; Compliance</a>
+    <a href="#ops"><span class="sb-icon-sm">🛰️</span> Operations &amp; SRE</a>
+    <a href="#sm"><span class="sb-icon-sm">🌀</span> Scrum Master Handbook</a>
+    <a href="#deployment"><span class="sb-icon-sm">🚢</span> Deployment Runbook</a>
+    <a href="#pmo"><span class="sb-icon-sm">🏢</span> PMO Governance &amp; Portfolio</a>
+  </nav>
+
+  <div class="sb-footer">
+    <strong>Kiểm soát tài liệu</strong><br/>
+    Chủ quản: PMO &amp; Delivery Governance<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: Đang hiệu lực · Kỳ soát xét 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="hb-main">
+
+<!-- LANDING PAGE -->
+<div class="section active" id="sec-landing" data-search="Home landing pipeline overview idea planning discovery initiation SDLC deploy GTM operate closure trang chu tong quan">
+  <header class="hb-hero">
+    <div class="hb-eyebrow">📘 Handbook nội bộ · Hybrid Water-Scrum-Fall</div>
+    <h1>Project Implementation<br/><span>Handbook</span></h1>
+    <p>Cẩm nang quản trị đầu-cuối từ <strong>ý tưởng đến đóng dự án</strong>. Bấm vào bất kỳ giai đoạn nào trong pipeline bên dưới để điều hướng.</p>
+  </header>
+  <div class="hb-content">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Implementation Pipeline — Bấm vào một giai đoạn</div>
+        <div class="pipeline-visual">
+          <div class="pipeline-row">
+            <div class="pipe-node" onclick="showSec('sec1')"><div class="pipe-circle" style="border-color:var(--phase-idea)">💡</div><div class="pipe-label">Ý tưởng</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec1')"><div class="pipe-circle" style="border-color:var(--phase-plan)">🎯</div><div class="pipe-label">Lập kế hoạch</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec2')"><div class="pipe-circle" style="border-color:var(--phase-discover)">🔭</div><div class="pipe-label">Discovery</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec2')"><div class="pipe-circle" style="border-color:var(--phase-init)">📋</div><div class="pipe-label">Khởi tạo</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec3')"><div class="pipe-circle" style="border-color:var(--phase-sdlc);box-shadow:0 0 12px var(--accent-glow)">⚙️</div><div class="pipe-label" style="color:var(--accent-bright)">SDLC</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec39')"><div class="pipe-circle" style="border-color:var(--phase-predeploy)">🔐</div><div class="pipe-label">Pre-Deploy</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec39')"><div class="pipe-circle" style="border-color:var(--phase-deploy)">🚀</div><div class="pipe-label">Deploy</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec4')"><div class="pipe-circle" style="border-color:var(--phase-gtm)">📢</div><div class="pipe-label">GTM</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec6')"><div class="pipe-circle" style="border-color:var(--phase-operate)">🔧</div><div class="pipe-label">Vận hành</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-node" onclick="showSec('sec5')"><div class="pipe-circle" style="border-color:var(--phase-close)">📦</div><div class="pipe-label">Đóng dự án</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tiles">
+      <div class="tile" onclick="showSec('sec32')" style="cursor:pointer"><div class="tile-icon">📋</div><div class="tile-title">BA Project Handbook ↗</div><div class="tile-desc">Phân tích yêu cầu, BRD/FRD, các ceremony BA — tài liệu quy trình đầy đủ.</div></div>
+      <div class="tile" onclick="showSec('sec39')" style="cursor:pointer"><div class="tile-icon">🚢</div><div class="tile-title">Deployment Runbook ↗</div><div class="tile-desc">Checklist phát hành, thủ tục CAB, rollback, các bước triển khai — hướng dẫn vận hành.</div></div>
+      <div class="tile" onclick="location.hash='#pm'" style="cursor:pointer"><div class="tile-icon">👔</div><div class="tile-title">PM Project Handbook ↗</div><div class="tile-desc">Process group PMBOK® v7, quản trị, rủi ro, thay đổi, và đóng dự án — thực hành PM đầy đủ.</div></div>
+      <div class="tile" onclick="location.hash='#qc'" style="cursor:pointer"><div class="tile-icon">🧪</div><div class="tile-title">QC Testing Handbook ↗</div><div class="tile-desc">Quy trình test ISTQB CTFL v4.0, cấp độ, kỹ thuật, vòng đời defect, và chỉ số.</div></div>
+      <div class="tile" onclick="showSec('sec7')" style="cursor:pointer"><div class="tile-icon">👥</div><div class="tile-title">Ma trận RACI</div><div class="tile-desc">Ma trận trách nhiệm lọc được, xuyên mọi giai đoạn và 30+ vai trò.</div></div>
+      <div class="tile" onclick="showSec('sec36')" style="cursor:pointer"><div class="tile-icon">🔄</div><div class="tile-title">Agile Ceremonies</div><div class="tile-desc">Sprint Planning, Daily Scrum, PBR, Review, Retro, SoS, BRP.</div></div>
+      <div class="tile" onclick="showSec('sec38')" style="cursor:pointer"><div class="tile-icon">🎯</div><div class="tile-title">Quality Gates</div><div class="tile-desc">DoR, Sprint DoD, Release DoD — checklist cho mọi cổng.</div></div>
+      <div class="tile" onclick="showSec('secpm')" style="cursor:pointer"><div class="tile-icon">PM</div><div class="tile-title">PM Core Governance</div><div class="tile-desc">Process group dựa trên PMBOK, quản trị, rủi ro, thay đổi, và kiểm soát dự án.</div></div>
+      <div class="tile" onclick="showSec('sec4')" style="cursor:pointer"><div class="tile-icon">🚀</div><div class="tile-title">Go-to-Market</div><div class="tile-desc">Roadmap ra mắt từ beta nội bộ đến GA, marketing, sales enablement.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 0: HOW TO USE -->
+<div class="section" id="sec-sec0" data-search="overview how to use handbook guide new joiner onboarding cach su dung tong quan">
+  <div class="breadcrumb">Handbook <span>›</span> Tổng quan</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📖</div><div><div class="sec-num">Mục 0</div><h2>Tổng quan &amp; Cách sử dụng Handbook này</h2><div class="sec-sub">Điểm khởi đầu để điều hướng vòng đời triển khai dự án</div></div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Phát biểu mục đích</div>
+      <p>Handbook này mô tả toàn bộ pipeline dự án của ngân hàng từ <strong>ý tưởng đến đóng dự án</strong>. Nó đóng vai trò <strong>ô dù mẹ</strong> bao trùm mười một handbook vai trò chuyên biệt — <a href="#pmo">PMO Governance &amp; Portfolio</a>, <a href="#pm">PM Project Handbook</a>, <a href="#po">Product Owner Handbook</a>, <a href="#sm">Scrum Master Handbook</a>, <a href="#ba">BA Project Handbook</a>, <a href="#ux">UX/UI Designer Handbook</a>, <a href="#sa">Solution Architect Handbook</a>, <a href="#sec">Security &amp; Compliance</a>, <a href="#qc">QC Testing Handbook</a>, <a href="#ops">Operations &amp; SRE</a>, và <a href="#deployment">Deployment Runbook</a> — tóm tắt và liên kết tới chúng mà không nhân bản nội dung. Xem <a href="#home">Trang chủ Handbook</a> để có bản đồ đầy đủ và cross-walk vòng đời.</p>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Ai nên đọc</div>
+      <div class="tiles" style="margin:0">
+        <div class="tile"><div class="tile-icon">PM</div><div class="tile-title">Project Manager</div><div class="tile-desc">PM Core Governance, Mục 1–6, 7, 9 — charter, baseline, rủi ro, status, đóng dự án</div></div>
+        <div class="tile"><div class="tile-icon">👩‍💼</div><div class="tile-title">Lãnh đạo &amp; Sponsor</div><div class="tile-desc">Mục 1, 4, 5, 7 — quản trị, GTM, đóng dự án, RACI</div></div>
+        <div class="tile"><div class="tile-icon">📋</div><div class="tile-title">BA &amp; PO</div><div class="tile-desc">Mục 2, 3.2 (→ BA Project Handbook), 3.6, 3.8, 7</div></div>
+        <div class="tile"><div class="tile-icon">💻</div><div class="tile-title">Developer</div><div class="tile-desc">Mục 3.4, 3.5, 3.6, 3.7, 3.8, 10</div></div>
+        <div class="tile"><div class="tile-icon">🧪</div><div class="tile-title">Tester &amp; QA</div><div class="tile-desc">Mục 3.5, 3.8 · quy trình test đầy đủ ở <a href="#qc">QC Testing Handbook ↗</a></div></div>
+        <div class="tile"><div class="tile-icon">🚀</div><div class="tile-title">Release Manager</div><div class="tile-desc">Mục 3.9 (→ Deployment Runbook), 6, 7</div></div>
+        <div class="tile"><div class="tile-icon">📢</div><div class="tile-title">Marketing &amp; Sales</div><div class="tile-desc">Mục 4 — cẩm nang Thương mại hoá &amp; GTM đầy đủ</div></div>
+      </div>
+    </div></div>
+    <div class="callout c-tip"><span class="callout-icon">💡</span><div><strong>Mẹo:</strong> Dùng ô tìm kiếm ở sidebar để tìm nhanh bất kỳ chủ đề nào. Liên kết đánh dấu <span class="ext-badge" style="display:inline">↗</span> điều hướng tới các trang liên quan trong handbook này.</div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Quy tắc sở hữu nội dung</div>
+      <table class="hb-table">
+        <thead><tr><th>Chủ đề</th><th>Nguồn sự thật</th><th>Vai trò của Handbook này</th></tr></thead>
+        <tbody>
+          <tr><td>Trục quản trị vòng đời — baseline, quality gate, RACI, luồng giai đoạn, kỷ luật đóng dự án</td><td><strong>Handbook này</strong></td><td>Tầng quản trị lõi xuyên mọi giai đoạn</td></tr>
+          <tr><td>Luồng vai trò PM chi tiết — process group PMBOK, rủi ro, thay đổi, truyền thông, báo cáo</td><td><a href="#pm">PM Project Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Product ownership — tầm nhìn, discovery, backlog, ưu tiên hoá, giá trị sản phẩm</td><td><a href="#po">Product Owner Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Quy trình BA, BRD/FRD/SRS, elicitation, RTM, ceremony BA</td><td><a href="#ba">BA Project Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Thiết kế giải pháp — HLD/LLD, ADR, tích hợp &amp; API, NFR, bảo mật, sizing</td><td><a href="#sa">Solution Architect Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Quản trị Portfolio &amp; PMO — intake, RAID, EVM/benefits, assurance, báo cáo</td><td><a href="#pmo">PMO Governance &amp; Portfolio</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Điều phối Scrum — servant leadership, event, impediment, sức khoẻ đội</td><td><a href="#sm">Scrum Master Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Thiết kế sản phẩm — nghiên cứu, IA, UI, design system, accessibility</td><td><a href="#ux">UX/UI Designer Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>An toàn thông tin &amp; tuân thủ — ISMS, DevSecOps, IAM, audit, SBV/ISO</td><td><a href="#sec">Security &amp; Compliance</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Vận hành &amp; độ tin cậy — SLO, observability, sự cố, DR/BCP</td><td><a href="#ops">Operations &amp; SRE</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Chiến lược &amp; quy trình test, cấp độ/loại test, vòng đời defect, chỉ số QC</td><td><a href="#qc">QC Testing Handbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Bước triển khai, checklist phát hành, CAB, rollback</td><td><a href="#deployment">Deployment Runbook</a></td><td>Tóm tắt + deep link (không nhân bản)</td></tr>
+          <tr><td>Mọi thứ khác</td><td><strong>Handbook này</strong></td><td>Nội dung đầy đủ</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Sở hữu Artifact &amp; Hoạt động — Ranh giới liên vai trò</div>
+      <p style="margin-bottom:8px">Khi hai vai trò cùng có thể nhận một artifact, bảng này là nguồn sự thật duy nhất. Nó giải quyết các chồng lấn đã biết để không artifact nào có hai chủ.</p>
+      <table class="hb-table">
+        <thead><tr><th>Artifact / Hoạt động</th><th>Accountable (sở hữu)</th><th>Responsible / đóng góp</th><th>Quy tắc ranh giới</th></tr></thead>
+        <tbody>
+          <tr><td>User Story &amp; Acceptance Criteria</td><td><a href="#po">Product Owner</a></td><td><a href="#ba">BA</a> soạn/tinh chỉnh</td><td>PO sở hữu &amp; sắp thứ tự backlog; BA viết chi tiết.</td></tr>
+          <tr><td>Non-Functional Requirements (NFR)</td><td><a href="#sa">Solution Architect</a> (spec kỹ thuật)</td><td><a href="#ba">BA</a> khai thác NFR nghiệp vụ</td><td>BA ghi nhận nhu cầu &amp; mục tiêu; SA sở hữu spec kỹ thuật &amp; kiểm chứng.</td></tr>
+          <tr><td>RAID · EVM · quản trị · báo cáo</td><td><a href="#pmo">PMO</a> ở cấp portfolio</td><td><a href="#pm">PM</a> ở cấp dự án</td><td>PM chạy RAID/EVM dự án; PMO tổng hợp góc nhìn portfolio.</td></tr>
+          <tr><td>Threat modeling &amp; thiết kế bảo mật</td><td><a href="#sec">Security</a> sở hữu chính sách &amp; assurance</td><td><a href="#sa">SA</a> mô hình hoá (STRIDE) trong thiết kế</td><td>SA nhúng control vào thiết kế; Security đặt chính sách &amp; kiểm chứng.</td></tr>
+          <tr><td>Chiến lược deploy · rollback · sự cố</td><td>Pre-prod &amp; CAB: <a href="#deployment">Release Mgr</a>; Runtime: <a href="#ops">Ops/SRE</a></td><td>DevOps thực thi</td><td>RM sở hữu quyết định phát hành/rollback <em>có kế hoạch</em> &amp; CAB; Ops sở hữu auto-rollback <em>lúc runtime</em> &amp; sự cố.</td></tr>
+          <tr><td>Scrum ceremony (điều phối)</td><td><a href="#sm">Scrum Master</a></td><td>PO/Dev tham gia</td><td>SM là nguồn sự thật cho các event; handbook khác liên kết, không nhân bản.</td></tr>
+          <tr><td>RTM · UAT script</td><td><a href="#ba">BA</a> soạn</td><td><a href="#qc">QC</a> chạy/kiểm chứng</td><td>BA sở hữu truy vết &amp; AC; QC chạy &amp; tạo bằng chứng test.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- PM CORE GOVERNANCE -->
+<div class="section" id="sec-secpm" data-search="PM core governance PMBOK process groups knowledge areas change control risk management status reporting steering committee tailoring quan tri">
+  <div class="breadcrumb">Handbook <span>&rsaquo;</span> PM Core Governance</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">PM</div><div><div class="sec-num">Tầng lõi</div><h2>PM Core Governance</h2><div class="sec-sub">Kiểm soát dự án và quản trị bao trọn cả vòng đời</div></div></div>
+    <p style="margin-bottom:20px"><strong>Mục đích:</strong> Đưa Quản lý dự án thành trục quản trị của handbook. PM sở hữu tích hợp, baseline, quản trị stakeholder, rủi ro, thay đổi, báo cáo, leo thang, và kỷ luật đóng dự án xuyên mọi giai đoạn.</p>
+    <div class="callout c-info"><span class="callout-icon">i</span><div><strong>Quy tắc không thay thế:</strong> <a href="#po">Product Owner Handbook</a> vẫn là nguồn sự thật cho product ownership &amp; backlog, <a href="#ba">BA Project Handbook</a> cho yêu cầu, <a href="#sa">Solution Architect Handbook</a> cho thiết kế giải pháp &amp; quyết định kiến trúc, <a href="#qc">QC Testing Handbook</a> cho quy trình test &amp; kiểm soát chất lượng, <a href="#pm">PM Project Handbook</a> cho thực hành PM chi tiết, <a href="#pmo">PMO Governance &amp; Portfolio</a> cho portfolio/intake &amp; assurance, <a href="#sm">Scrum Master Handbook</a> cho điều phối Scrum, <a href="#ux">UX/UI Designer Handbook</a> cho thiết kế sản phẩm, runbook <a href="#sec">Security &amp; Compliance</a> cho an toàn thông tin &amp; control pháp lý, runbook <a href="#ops">Operations &amp; SRE</a> cho vận hành/độ tin cậy &amp; DR-BCP, và <a href="#deployment">Deployment Runbook</a> cho vận hành CAB &amp; cơ chế triển khai production. Handbook này quản trị việc chúng khớp với nhau ra sao.</div></div>
+    <div class="tiles">
+      <div class="tile"><div class="tile-icon">1</div><div class="tile-title">Initiating</div><div class="tile-desc">Project Charter, Stakeholder Register, kickoff, tailoring decision, giả định, và rủi ro ban đầu.</div></div>
+      <div class="tile"><div class="tile-icon">2</div><div class="tile-title">Planning</div><div class="tile-desc">PM Plan, phạm vi, tiến độ, chi phí, chất lượng, nguồn lực, truyền thông, mua sắm, và kế hoạch stakeholder.</div></div>
+      <div class="tile"><div class="tile-icon">3</div><div class="tile-title">Executing</div><div class="tile-desc">Chỉ đạo công việc, đồng bộ các đội, quản lý vendor, chạy nhịp quản trị, và gỡ blocker.</div></div>
+      <div class="tile"><div class="tile-icon">4</div><div class="tile-title">Monitoring &amp; Control</div><div class="tile-desc">Status, chênh lệch, change log, issue log, review rủi ro, theo dõi quyết định, và leo thang.</div></div>
+      <div class="tile"><div class="tile-icon">5</div><div class="tile-title">Closing</div><div class="tile-desc">Nghiệm thu, báo cáo đóng dự án, lessons learned, review benefits, lưu trữ, và giải phóng nguồn lực.</div></div>
+    </div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Các Knowledge Area áp dụng trong Handbook này</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="chip">Integration</span><span class="chip">Scope</span><span class="chip">Schedule</span><span class="chip">Cost</span><span class="chip">Quality</span><span class="chip">Resources</span><span class="chip">Communications</span><span class="chip">Risk</span><span class="chip">Procurement</span><span class="chip">Stakeholders</span>
+      </div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="true" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue)">WORKFLOW</span><h3>Mô hình kiểm soát PM đầu-cuối</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body open"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Process Group</th><th>Đầu ra PM chính</th><th>Được tiêu thụ bởi</th><th>Quy tắc kiểm soát</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Initiating</strong></td><td>Project Charter, Stakeholder Register, Biên bản Kickoff, Tailoring Decision, Assumption Log</td><td>BA discovery, sponsor, đội sáng kiến</td><td>Không công việc nào bắt đầu khi chưa có Charter ký và thẩm quyền PM được chỉ định.</td></tr>
+            <tr><td><strong>Planning</strong></td><td>PM Plan, các baseline, risk register, RACI, kế hoạch truyền thông, ma trận leo thang</td><td>BA, SA, DEV, QA, Tài chính, sponsor</td><td>Baseline trở thành điểm tham chiếu cho mọi thay đổi.</td></tr>
+            <tr><td><strong>Executing</strong></td><td>Uỷ quyền công việc, issue log, cập nhật stakeholder, biên bản họp, phối hợp vendor</td><td>Đội giao hàng, vendor, steering</td><td>PM gỡ blocker và đồng bộ đội; PM không thay thế BA hay vai trò thực thi cấp đội.</td></tr>
+            <tr><td><strong>Monitoring &amp; Control</strong></td><td>Báo cáo status, executive dashboard, change log, gói chênh lệch, decision log</td><td>Sponsor, Steering, CCB, team lead</td><td>Tác động phạm vi, tiến độ, chi phí, chất lượng, rủi ro, và nguồn lực được đánh giá cùng nhau, không tách rời.</td></tr>
+            <tr><td><strong>Closing</strong></td><td>Hồ sơ đóng dự án, báo cáo cuối, lessons learned register, memo giải phóng nguồn lực</td><td>Sponsor, BA, PMO, chủ BAU</td><td>Dự án chưa xong cho tới khi nghiệm thu chính thức, lưu trữ, và chuyển giao tri thức hoàn tất.</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow)">GOVERNANCE</span><h3>Các tầng quản trị và thẩm quyền thay đổi</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Tầng</th><th>Thành viên điển hình</th><th>Phạm vi quyết định</th><th>Nhịp</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Executive / Sponsor</strong></td><td>Sponsor, stakeholder điều hành</td><td>Định hướng chiến lược, cấp vốn, thay đổi phạm vi lớn, leo thang điều hành</td><td>Hằng tháng hoặc theo mốc</td></tr>
+            <tr><td><strong>Steering Committee</strong></td><td>Sponsor, business owner, IT lead, tài chính, PM</td><td>Phê duyệt phase gate, thay đổi lớn, dùng dự phòng, giải quyết xung đột liên workstream</td><td>Hằng tháng; 2 tuần/lần trong giai đoạn trọng yếu</td></tr>
+            <tr><td><strong>CCB</strong></td><td>PM, BA, SA, QA, đại diện tài chính/nghiệp vụ khi cần</td><td>Quyết định dựa trên tác động cho change request và cập nhật baseline</td><td>Hằng tuần hoặc ad hoc</td></tr>
+            <tr><td><strong>Project Operations</strong></td><td>PM, BA, PO, SA, DEV, QA, DevOps, vendor</td><td>Điều phối giao hàng hằng ngày, giải quyết vấn đề, lập kế hoạch, và báo cáo</td><td>Hằng ngày đến hằng tuần</td></tr>
+          </tbody>
+        </table>
+        <div class="callout c-gate" style="margin-top:12px"><span class="callout-icon">!</span><div><strong>Ngưỡng thẩm quyền:</strong> Quyết định chỉ-PM nằm trong dung sai chênh lệch nhỏ. Mọi thay đổi phạm vi baseline, dịch chuyển tiến độ/chi phí đáng kể, hạng mục trạng thái Đỏ, hay rủi ro High / Very High đều đưa lên CCB hoặc Steering.</div></div>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red)">CONTROL</span><h3>Quy tắc Rủi ro, Status, và Leo thang</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <ul class="checklist">
+          <li>Mỗi cập nhật status gồm trạng thái RAG, kết quả đạt được, dự phóng tới, top rủi ro, top vấn đề, change request, và quyết định cần chốt.</li>
+          <li>Mỗi rủi ro gồm xác suất, ảnh hưởng, mức phơi nhiễm, chủ sở hữu, trigger, và chiến lược ứng phó.</li>
+          <li>Mỗi change request đánh giá tác động phạm vi, tiến độ, chi phí, chất lượng, rủi ro, và nguồn lực.</li>
+          <li>Mỗi quyết định có chủ sở hữu, hạn chót, lý do, và trạng thái trong decision log.</li>
+          <li>Mỗi leo thang nêu rõ đã thử gì, đang bị chặn gì, và cần quyết định gì từ tầng quản trị kế tiếp.</li>
+          <li>Tin xấu báo sớm: điều kiện Vàng và Đỏ được phơi bày ngay khi mức độ tin cậy về tác động là hợp lý.</li>
+        </ul>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green)">TAILORING</span><h3>Quy tắc thích ứng SDLC</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>SDLC</th><th>Nhấn mạnh của PM</th><th>Điều luôn đúng</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Waterfall</strong></td><td>Lập kế hoạch nặng từ đầu, phase gate chính thức, kiểm soát baseline chặt hơn</td><td>PM vẫn sở hữu rủi ro, status, thay đổi, đồng bộ stakeholder, và đóng dự án.</td></tr>
+            <tr><td><strong>Agile / Scrum</strong></td><td>Release planning, trao quyền cho đội, quản trị stakeholder, xử lý thay đổi nội bộ nhẹ hơn cho dịch chuyển backlog trong phạm vi</td><td>PM vẫn sở hữu tiến độ tổng thể, báo cáo steering, rủi ro, và phụ thuộc bên ngoài.</td></tr>
+            <tr><td><strong>Hybrid</strong></td><td>Các gate quản trị Waterfall bao quanh chu trình build và test kiểu Agile</td><td>Handbook này mặc định ở đây: PM quản trị lớp bao ngoài trong khi BA và các chuyên gia giao hàng sở hữu workstream của mình.</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Các điểm bắt tay lõi với những trang hiện có</div>
+      <table class="hb-table">
+        <thead><tr><th>Workstream</th><th>Sở hữu bởi</th><th>Bắt tay với PM Core</th></tr></thead>
+        <tbody>
+          <tr><td>Nội dung yêu cầu, BRD/SRS, business rule, acceptance criteria</td><td><a href="#ba">BA Project Handbook</a></td><td>PM tiêu thụ phạm vi, độ ưu tiên, giả định, và tác động thay đổi từ BA cho baseline, rủi ro, và quyết định quản trị.</td></tr>
+          <tr><td>Thực thi phát hành, thủ tục CAB, rollback, thăng cấp lên production</td><td><a href="#deployment">Deployment Runbook</a></td><td>PM tiêu thụ mức sẵn sàng phát hành, tác động tiến độ, phê duyệt, và rủi ro triển khai để quản trị quyết định go-live và báo cáo.</td></tr>
+          <tr><td>Quản trị dự án, báo cáo, baseline, leo thang, và đóng dự án</td><td><strong>Handbook này</strong></td><td>PM là chủ sở hữu mặc định trừ khi một luồng chuyên gia sở hữu nội dung một cách tường minh.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 1: STRATEGY & PLANNING -->
+<div class="section" id="sec-sec1" data-search="strategy planning long-term annual QBR quarterly business review OKR KPI roadmap budget initiative council chien luoc ke hoach">
+  <div class="breadcrumb">Handbook <span>›</span> 1. Chiến lược &amp; Kế hoạch</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🎯</div><div><div class="sec-num">Giai đoạn 1</div><h2>Chiến lược &amp; Lập kế hoạch</h2><div class="sec-sub">Kế hoạch dài hạn · Kế hoạch năm · QBR</div></div></div>
+    <p style="margin-bottom:20px"><strong>Mục đích:</strong> Chuyển hoá chiến lược kinh doanh thành một portfolio sáng kiến được ưu tiên trước khi bất kỳ dự án nào vào discovery.</p>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu vào</div>
+      <ul class="checklist"><li>Tài liệu chiến lược kinh doanh được HĐQT duyệt</li><li>Khung ngân sách được xác định cho năm tài chính</li><li>Initiative Council được lập (Head of BU, CTO, CFO, COO)</li></ul>
+    </div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="true" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue)">PROCESS</span><h3>Kế hoạch dài hạn (tầm 3–5 năm)</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body open"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>Workshop đồng hướng tầm nhìn</strong> — CxO và Head of BU định nghĩa chủ đề chiến lược và outcome mục tiêu cho tầm 3–5 năm.</li>
+          <li><strong>Đánh giá độ chín năng lực</strong> — đánh giá công nghệ, quy trình, và con người hiện tại so với mục tiêu chiến lược.</li>
+          <li><strong>Tạo roadmap</strong> — sắp trình tự các sáng kiến lớn theo phụ thuộc, rủi ro, và ROI kỳ vọng.</li>
+          <li><strong>Chuẩn bị investment case</strong> — với mỗi sáng kiến chiến lược, tạo Lean Business Case: vấn đề, giả thuyết, lợi ích kỳ vọng, khoảng chi phí ước lượng.</li>
+        </ol>
+        <div class="callout c-best"><span class="callout-icon">✅</span><div><strong>Best Practice:</strong> Gắn mỗi sáng kiến với một KPI/OKR đo được. Nếu không đo được thành công thì sáng kiến chưa sẵn sàng để lập kế hoạch.</div></div>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green)">PROCESS</span><h3>Kế hoạch năm &amp; Phân bổ ngân sách</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>Intake portfolio</strong> — thu thập đề xuất sáng kiến từ mọi đơn vị kinh doanh dùng Initiative Request Template.</li>
+          <li><strong>Ưu tiên hoá</strong> — Initiative Council chấm đề xuất bằng WSJF (Weighted Shortest Job First): Cost of Delay ÷ Job Size.</li>
+          <li><strong>Phân bổ ngân sách</strong> — sáng kiến được duyệt nhận phê duyệt ngân sách (Tờ trình) và được gán một Initiative Director.</li>
+          <li><strong>Capacity planning</strong> — ánh xạ sáng kiến được duyệt với capacity đội sẵn có. Nhận diện nhu cầu tuyển dụng hay vendor sớm.</li>
+          <li><strong>Công bố roadmap năm</strong> — chia sẻ với mọi stakeholder. Roadmap này là nguồn sự thật duy nhất cho những gì được xây năm nay.</li>
+        </ol>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow)">CADENCE</span><h3>Quarterly Business Review (QBR)</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>Kiểm tra sức khoẻ portfolio</strong> — review trạng thái RAG, mốc đạt/trượt, burn rate của mỗi sáng kiến.</li>
+          <li><strong>Tái ưu tiên</strong> — điều chỉnh thứ tự sáng kiến dựa trên dữ liệu thị trường mới, thay đổi pháp lý, hay dịch chuyển nguồn lực.</li>
+          <li><strong>Quyết định Kill / Pivot</strong> — dừng tường minh các sáng kiến kém hiệu quả. Tái phân bổ ngân sách.</li>
+          <li><strong>Cập nhật roadmap</strong> — công bố mốc thời gian sửa đổi và truyền thông thay đổi cho mọi đội.</li>
+        </ol>
+        <div class="callout c-gate"><span class="callout-icon">🚨</span><div><strong>Cổng trọng yếu:</strong> Không sáng kiến nào được tiếp tục qua QBR nếu chưa có trạng thái RAG được xác nhận và quyết định được ghi lại là tiếp tục, pivot, hay kill.</div></div>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="card-body"><div class="card-title">Đầu ra &amp; Artifact chính</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">📄 Lean Business Case</span><span class="chip">🗺️ Roadmap năm</span><span class="chip">💰 Phân bổ ngân sách</span><span class="chip">📊 Báo cáo QBR</span><span class="chip">📋 Initiative Request</span><span class="chip">PM Governance Decision Log</span></div>
+    </div></div>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu ra &amp; Bàn giao</div>
+      <ul class="checklist"><li>Roadmap năm được công bố và truyền thông</li><li>Mỗi sáng kiến được duyệt có một Initiative Director được chỉ định</li><li>Ngân sách được cấp và Tờ trình được ký</li><li>Bàn giao sang Giai đoạn 2 (Discovery &amp; Khởi tạo dự án) cho mỗi sáng kiến</li></ul>
+    </div>
+    <div class="callout c-pitfall"><span class="callout-icon">⚠️</span><div><strong>Bẫy thường gặp:</strong> Bắt đầu phát triển trước khi có phê duyệt ngân sách chính thức. Trong mô hình hybrid này, các gate quản trị Waterfall phải được vượt qua trước khi bắt đầu thực thi Agile.</div></div>
+  </div>
+</div>
+
+<!-- SECTION 2: DISCOVERY & INITIATION -->
+<div class="section" id="sec-sec2" data-search="discovery project initiation charter kickoff stakeholder register scope SOW business case khoi tao">
+  <div class="breadcrumb">Handbook <span>›</span> 2. Discovery &amp; Khởi tạo</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🔭</div><div><div class="sec-num">Giai đoạn 2</div><h2>Discovery &amp; Khởi tạo dự án</h2><div class="sec-sub">Từ sáng kiến được duyệt đến dự án đã có người &amp; phạm vi</div></div></div>
+    <p style="margin-bottom:20px"><strong>Mục đích:</strong> Chuyển một sáng kiến được duyệt thành một dự án được charter chính thức với phạm vi xác định, đội có người, và cơ cấu quản trị.</p>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu vào</div>
+      <ul class="checklist"><li>Sáng kiến được duyệt trong Kế hoạch năm / QBR</li><li>Ngân sách được cấp (Tờ trình đã ký)</li><li>Initiative Director đã được chỉ định</li></ul>
+    </div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Hoạt động chính</div>
+      <ol class="steps">
+        <li><strong>Nhận diện stakeholder</strong> — ánh xạ mọi bên chịu tác động. Xây Stakeholder Register với ma trận power/interest.</li>
+        <li><strong>Đóng khung vấn đề</strong> — tổ chức workshop discovery với SME nghiệp vụ. Ghi lại điểm đau hiện trạng và outcome mong muốn bằng 5 Whys và phân tích Fishbone.</li>
+        <li><strong>Định nghĩa phạm vi</strong> — tạo scope statement cấp cao. Định nghĩa tường minh cái gì TRONG và NGOÀI phạm vi.</li>
+        <li><strong>Project Charter</strong> — ghi lại mục tiêu, tiêu chí thành công, ràng buộc, giả định, mốc thời gian cấp cao, ngân sách, cơ cấu quản trị, và ngưỡng thẩm quyền PM.</li>
+        <li><strong>Lập đội</strong> — tập hợp Initiative Team: PO, BA(s), Tech Lead, đội Dev, QA Lead, Scrum Master.</li>
+        <li><strong>Kickoff</strong> — họp kickoff toàn đội. Trình Charter, giới thiệu đội, review mốc thời gian, đặt nhịp truyền thông.</li>
+        <li><strong>Sàng lọc pháp lý</strong> — nhận diện các quy định áp dụng (SBV, Nghị định 13/2023, PCI-DSS). Kéo Compliance và Op Risk vào sớm.</li>
+        <li><strong>Tailoring decision</strong> — xác nhận dự án chạy Waterfall, Agile, Kanban, SAFe, hay Hybrid, và ghi lại thực hành quản trị nào là bắt buộc.</li>
+      </ol>
+    </div></div>
+    <div class="card"><div class="card-body"><div class="card-title">Đầu ra &amp; Artifact chính</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">📄 Project Charter</span><span class="chip">👥 Stakeholder Register</span><span class="chip">📊 Scope Statement</span><span class="chip">🔍 Sàng lọc pháp lý</span><span class="chip">📅 Mốc thời gian cấp cao</span><span class="chip">Tailoring Decision</span><span class="chip">Assumption Log</span></div>
+    </div></div>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu ra &amp; Bàn giao</div>
+      <ul class="checklist"><li>Project Charter được Project Sponsor ký</li><li>Đội được lập và onboard</li><li>Sàng lọc pháp lý hoàn tất</li><li>Sẵn sàng vào Giai đoạn 3 (Thực thi SDLC)</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: SDLC EXECUTION -->
+<div class="section" id="sec-sec3" data-search="SDLC execution agile scrum waterfall hybrid sprint development build test design thuc thi">
+  <div class="breadcrumb">Handbook <span>›</span> 3. Thực thi SDLC</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">⚙️</div><div><div class="sec-num">Giai đoạn 3</div><h2>Thực thi SDLC</h2><div class="sec-sub">Hybrid Water-Scrum-Fall — từ yêu cầu đến sẵn sàng phát hành</div></div></div>
+    <p style="margin-bottom:20px"><strong>Mục đích:</strong> Thực thi dự án được duyệt bằng SDLC Hybrid của ngân hàng — các gate quản trị Waterfall bao quanh việc thực thi Sprint kiểu Agile.</p>
+    <div class="callout c-info"><span class="callout-icon">ℹ️</span><div>Mục này là <strong>mục mẹ</strong> cho 9 tiểu mục. Hai tiểu mục (3.2 Requirements và 3.9 Release Workflow) liên kết tới các trang handbook hiện có và <strong>không được nhân bản</strong> ở đây.</div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Lớp phủ Monitoring &amp; Control của PM</div>
+      <div class="tiles" style="margin:0">
+        <div class="tile"><div class="tile-icon">RAG</div><div class="tile-title">Status &amp; Chênh lệch</div><div class="tile-desc">Báo cáo RAG hằng tuần, theo dõi mốc, review burn-down hoặc critical-path, và tính minh bạch với lãnh đạo.</div></div>
+        <div class="tile"><div class="tile-icon">RISK</div><div class="tile-title">Kiểm soát Rủi ro &amp; Vấn đề</div><div class="tile-desc">Review rủi ro chủ động, sở hữu vấn đề, giám sát trigger, và leo thang nhanh cho phơi nhiễm High hoặc Very High.</div></div>
+        <div class="tile"><div class="tile-icon">CR</div><div class="tile-title">Kiểm soát thay đổi</div><div class="tile-desc">Làm rõ của BA, yêu cầu stakeholder, và tác động kỹ thuật được đánh giá cùng nhau trước khi đổi baseline.</div></div>
+        <div class="tile"><div class="tile-icon">SYNC</div><div class="tile-title">Điều phối liên đội</div><div class="tile-desc">PM đồng bộ BA, SA, DEV, QA, DevOps, vendor, và stakeholder phát hành trong khi giữ nguyên từng luồng chuyên gia.</div></div>
+      </div>
+    </div></div>
+    <div class="tiles">
+      <div class="tile" onclick="showSec('sec3sub')" style="cursor:pointer"><div class="tile-icon">🏗️</div><div class="tile-title">3.1–3.5 Giai đoạn Build</div><div class="tile-desc">Discovery, Requirements, Design, Build, Test</div></div>
+      <div class="tile" onclick="showSec('sec32')" style="cursor:pointer"><div class="tile-icon">📋</div><div class="tile-title">3.2 Phân tích yêu cầu</div><div class="tile-desc">→ BA Project Handbook ↗</div></div>
+      <div class="tile" onclick="showSec('sec36')" style="cursor:pointer"><div class="tile-icon">🔄</div><div class="tile-title">3.6 Agile Ceremonies</div><div class="tile-desc">Sprint Planning, Daily Scrum, PBR, Review, Retro</div></div>
+      <div class="tile" onclick="showSec('sec37')" style="cursor:pointer"><div class="tile-icon">📊</div><div class="tile-title">3.7 Backlog Hierarchy</div><div class="tile-desc">Capability → Epic → Story → Task → Defect</div></div>
+      <div class="tile" onclick="showSec('sec38')" style="cursor:pointer"><div class="tile-icon">🎯</div><div class="tile-title">3.8 Quality Gates</div><div class="tile-desc">Checklist DoR, Sprint DoD, Release DoD</div></div>
+      <div class="tile" onclick="showSec('sec39')" style="cursor:pointer"><div class="tile-icon">🚢</div><div class="tile-title">3.9 Release Workflow</div><div class="tile-desc">→ Deployment Runbook ↗</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3.1-3.5 BUILD PHASES -->
+<div class="section" id="sec-sec3sub" data-search="discovery solution design build test code review CI CD DevSecOps branching strategy test pyramid observability NFR">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> Giai đoạn Build</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🏗️</div><div><div class="sec-num">Mục 3.1–3.5</div><h2>Giai đoạn Build: Discovery → Solution → Design → Build → Test</h2><div class="sec-sub">Best practice SDLC cho đội phát triển</div></div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="true" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue)">3.1</span><h3>Discovery &amp; Thiết kế giải pháp</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body open"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>Discovery kỹ thuật</strong> — SA đánh giá kiến trúc hiện tại, nhận diện điểm tích hợp, phụ thuộc dữ liệu, và ràng buộc công nghệ.</li>
+          <li><strong>Phân tích phương án giải pháp</strong> — ghi lại ít nhất 2 hướng khả thi kèm đánh đổi (build vs buy, monolith vs microservice).</li>
+          <li><strong>Architecture decision records (ADR)</strong> — ghi lại mọi quyết định thiết kế quan trọng với bối cảnh, phương án, và lý do.</li>
+          <li><strong>Đặc tả NFR</strong> — định nghĩa yêu cầu phi chức năng đo được: hiệu năng (P95 latency), khả dụng (SLA%), bảo mật, accessibility (WCAG 2.1 AA).</li>
+          <li><strong>Prototype/PoC</strong> — với công nghệ rủi ro cao hoặc mới lạ, xây một proof-of-concept có time-box trước khi cam kết build đầy đủ.</li>
+        </ol>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green)">3.3</span><h3>Design</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>High-Level Design (HLD)</strong> — sơ đồ kiến trúc hệ thống, tương tác component, hợp đồng API, luồng dữ liệu.</li>
+          <li><strong>Low-Level Design (LLD)</strong> — class diagram, schema database, sequence diagram cho luồng trọng yếu.</li>
+          <li><strong>Thiết kế UX/UI</strong> — wireframe → mockup → prototype tương tác. Review với PO và người dùng nghiệp vụ.</li>
+          <li><strong>Đặc tả API</strong> — tài liệu OpenAPI/Swagger cho mọi interface dịch vụ. Đánh version từ ngày đầu.</li>
+          <li><strong>Design review</strong> — SA và đồng nghiệp review HLD/LLD trước khi phát triển. BA kiểm chứng đối chiếu yêu cầu.</li>
+        </ol>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--accent-dim);color:var(--accent-bright)">3.4</span><h3>Build — Best Practice phát triển</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Thực hành</th><th>Chuẩn</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Chiến lược branch</strong></td><td>GitFlow hoặc Trunk-Based Development. Feature branch → PR → Code Review → Merge vào develop → Release branch → Main.</td></tr>
+            <tr><td><strong>Code review</strong></td><td>Mọi thay đổi được ≥1 đồng nghiệp review trước khi merge. Checklist review: tính đúng đắn, bảo mật, test, tài liệu.</td></tr>
+            <tr><td><strong>CI/CD pipeline</strong></td><td>Mỗi PR: lint → unit test → build → SAST scan. Khi merge vào develop: integration test → deploy lên SIT.</td></tr>
+            <tr><td><strong>DevSecOps</strong></td><td>SAST (SonarQube), DAST (OWASP ZAP), quét phụ thuộc (Snyk), quét secret. Fail pipeline khi có phát hiện Critical/High.</td></tr>
+            <tr><td><strong>Quản lý tech debt</strong></td><td>Dành 15–20% capacity sprint cho tech debt. Theo dõi trong backlog với nhãn "Tech Debt".</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow)">3.5</span><h3>Test — Kim tự tháp chất lượng</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Cấp độ</th><th>Phạm vi</th><th>Sở hữu</th><th>Mục tiêu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Unit Test</strong></td><td>Hàm/method riêng lẻ</td><td>Developer</td><td>≥80% line coverage</td></tr>
+            <tr><td><strong>Integration Test</strong></td><td>Tương tác component, DB, API</td><td>Developer + QA</td><td>Mọi luồng trọng yếu</td></tr>
+            <tr><td><strong>E2E / System Test</strong></td><td>Hành trình người dùng đầy đủ</td><td>QA</td><td>Top 20 kịch bản người dùng</td></tr>
+            <tr><td><strong>Performance Test</strong></td><td>Load, stress, soak</td><td>Perf Tester</td><td>Đạt mục tiêu NFR</td></tr>
+            <tr><td><strong>Security Test</strong></td><td>Pen test, quét lỗ hổng</td><td>Sec Tester</td><td>Không còn Critical/High mở</td></tr>
+            <tr><td><strong>UAT</strong></td><td>Nghiệm thu nghiệp vụ</td><td>Người dùng nghiệp vụ + BA</td><td>Mọi AC được kiểm chứng</td></tr>
+          </tbody>
+        </table>
+        <div class="callout c-best"><span class="callout-icon">✅</span><div><strong>Best Practice:</strong> Shift left — viết test trước hoặc trong lúc phát triển, không phải sau. Tự động hoá mọi thứ dưới cấp E2E.</div></div>
+        <a href="#qc" class="ext-cta">🧪 Mở QC Testing Handbook <span class="arrow">→</span></a>
+        <div class="callout c-info"><span class="callout-icon">ℹ️</span><div><strong>↗ Bên ngoài:</strong> Quy trình test đầy đủ — cấp độ &amp; loại test ISTQB, kỹ thuật thiết kế, test theo rủi ro, entry/exit criteria, vòng đời defect, và chỉ số QC — được ghi trong QC Testing Handbook.</div></div>
+      </div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 3.2 REQUIREMENTS -->
+<div class="section" id="sec-sec32" data-search="requirements analysis BA business analyst BRD FRD elicitation BABOK yeu cau">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> 3.2 Phân tích yêu cầu</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📋</div><div><div class="sec-num">Mục 3.2 · ↗ Trang bên ngoài</div><h2>Phân tích yêu cầu</h2><div class="sec-sub">Quy trình đầy đủ được ghi trong trang BA Project Handbook</div></div></div>
+    <div class="card"><div class="card-body">
+      <p>Tại ngân hàng này, phân tích yêu cầu theo framework <strong>BABOK® v3</strong> qua 9 giai đoạn. Đội BA tham gia từ kickoff dự án và duy trì truy vết yêu cầu xuyên suốt SDLC.</p>
+      <p style="margin-top:10px"><strong>Artifact chính tạo ra:</strong></p>
+      <ul class="checklist">
+        <li>Business Requirements Document (BRD) / Software Requirements Specification (SRS)</li>
+        <li>User Story với Acceptance Criteria dạng Given-When-Then</li>
+        <li>Sơ đồ luồng quy trình (As-Is / To-Be, BPMN 2.0)</li>
+        <li>Requirements Traceability Matrix (RTM)</li>
+        <li>Business Rules Catalog &amp; Data Dictionary</li>
+      </ul>
+      <a href="#ba" class="ext-cta">📖 Mở BA Project Handbook <span class="arrow">→</span></a>
+      <div class="callout c-info"><span class="callout-icon">ℹ️</span><div><strong>↗ Bên ngoài:</strong> Toàn bộ quy trình phân tích yêu cầu, gồm cả 9 giai đoạn BA, quality gate, và anti-pattern, được ghi trong BA Project Handbook.</div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 3.6 AGILE CEREMONIES -->
+<div class="section" id="sec-sec36" data-search="agile ceremonies sprint planning daily scrum standup PBR backlog refinement review retrospective retro SoS scrum of scrums BRP">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> 3.6 Agile Ceremonies</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🔄</div><div><div class="sec-num">Mục 3.6</div><h2>Agile Ceremonies</h2><div class="sec-sub">Nhịp Sprint, người tham gia, time-box, và đầu ra</div></div></div>
+    <div class="card"><div class="card-body" style="padding:0">
+      <table class="hb-table">
+        <thead><tr><th>Ceremony</th><th>Nhịp</th><th>Time-box</th><th>Người tham gia</th><th>Đầu ra</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sprint Planning</strong></td><td>Đầu Sprint</td><td>2–4 giờ (sprint 2 tuần)</td><td>PO, SM, Dev Team, BA</td><td>Sprint Backlog, Sprint Goal</td></tr>
+          <tr><td><strong>Daily Scrum</strong></td><td>Hằng ngày</td><td>15 phút</td><td>Dev Team, SM</td><td>Impediment log, đồng bộ</td></tr>
+          <tr><td><strong>Product Backlog Refinement (PBR)</strong></td><td>Giữa sprint</td><td>1–2 giờ</td><td>PO, BA, Dev Team, QA</td><td>Story được tinh chỉnh (đạt DoR)</td></tr>
+          <tr><td><strong>Sprint Review / Demo</strong></td><td>Cuối Sprint</td><td>1–2 giờ</td><td>PO, Stakeholder, Đội</td><td>Increment được chấp nhận, phản hồi</td></tr>
+          <tr><td><strong>Sprint Retrospective</strong></td><td>Sau Review</td><td>1–1,5 giờ</td><td>SM, Dev Team</td><td>Action item cho sprint kế tiếp</td></tr>
+          <tr><td><strong>Scrum of Scrums (SoS)</strong></td><td>2–3 lần/tuần</td><td>30 phút</td><td>Đại diện SM</td><td>Giải quyết phụ thuộc liên đội</td></tr>
+          <tr><td><strong>Big Room Planning (BRP)</strong></td><td>Hằng quý / PI</td><td>1–2 ngày</td><td>Mọi đội, PO, SA, Quản lý</td><td>Mục tiêu PI, bảng phụ thuộc</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+    <div class="callout c-pitfall"><span class="callout-icon">⚠️</span><div><strong>Bẫy thường gặp:</strong> Bỏ PBR khiến story định nghĩa kém lọt vào sprint, gây churn giữa sprint. PBR không tuỳ chọn — nó là cơ chế chính bảo đảm story đạt Definition of Ready.</div></div>
+  </div>
+</div>
+
+<!-- 3.7 BACKLOG HIERARCHY -->
+<div class="section" id="sec-sec37" data-search="backlog hierarchy capability epic story task defect sub-task user story">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> 3.7 Backlog Hierarchy</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📊</div><div><div class="sec-num">Mục 3.7</div><h2>Backlog Hierarchy</h2><div class="sec-sub">Capability → Epic → Story → Task → Defect → Sub-task</div></div></div>
+    <div class="card"><div class="card-body" style="padding:0">
+      <table class="hb-table">
+        <thead><tr><th>Cấp độ</th><th>Định nghĩa</th><th>Chủ sở hữu</th><th>Ước lượng</th><th>Vòng đời</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Capability</strong></td><td>Outcome nghiệp vụ chiến lược (vd "Digital Onboarding")</td><td>Initiative Director</td><td>T-shirt (S/M/L/XL)</td><td>Nhiều quý</td></tr>
+          <tr><td><strong>Epic</strong></td><td>Sản phẩm bàn giao lớn cấu thành một phần của Capability</td><td>PO</td><td>Story Point (tổng hợp)</td><td>Tuần–tháng</td></tr>
+          <tr><td><strong>User Story</strong></td><td>"Là [vai trò] tôi muốn [mục tiêu] để [lợi ích]" — giao được trong một sprint</td><td>PO / BA</td><td>Story Point (1–13)</td><td>1 sprint</td></tr>
+          <tr><td><strong>Task</strong></td><td>Hạng mục kỹ thuật dưới một Story (dev, config, docs)</td><td>Developer</td><td>Giờ</td><td>Ngày</td></tr>
+          <tr><td><strong>Defect</strong></td><td>Sai lệch so với hành vi kỳ vọng — liên kết tới Story hoặc Epic</td><td>QA / Developer</td><td>Giờ</td><td>Theo độ ưu tiên</td></tr>
+          <tr><td><strong>Sub-task</strong></td><td>Chẻ nhỏ Task hoặc Defect để theo dõi</td><td>Người được giao</td><td>Giờ</td><td>Giờ–ngày</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+    <div class="callout c-best"><span class="callout-icon">✅</span><div><strong>Best Practice:</strong> Story &gt; 8 point nên được tách. Nếu một story không demo được cho stakeholder thì nó là task, không phải story.</div></div>
+  </div>
+</div>
+
+<!-- 3.8 QUALITY GATES -->
+<div class="section" id="sec-sec38" data-search="quality gates DoR definition of ready DoD definition of done sprint release checklist">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> 3.8 Quality Gates</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🎯</div><div><div class="sec-num">Mục 3.8</div><h2>Quality Gates: DoR · Sprint DoD · Release DoD</h2><div class="sec-sub">Checklist quản trị cái gì vào và ra khỏi một sprint và một release</div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <div class="card"><div class="card-body">
+        <div class="card-title" style="color:var(--status-green)">✅ Definition of Ready (DoR)</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Cổng trước khi story vào sprint</div>
+        <ul class="checklist"><li>User story dạng "Là… tôi muốn… để…"</li><li>Acceptance criteria dạng Given-When-Then</li><li>Phụ thuộc đã nhận diện và xử lý</li><li>Đính kèm mockup UX (nếu là story UI)</li><li>NFR đã nêu hoặc tham chiếu</li><li>Business rule được tham chiếu</li><li>Được đội DEV ước lượng (≤ 13 SP)</li><li>Đủ nhỏ để hoàn thành trong một sprint</li></ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title" style="color:var(--status-yellow)">🏁 Sprint DoD</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Cổng trước khi story được chấp nhận</div>
+        <ul class="checklist"><li>Mọi acceptance criteria đạt và được kiểm chứng</li><li>Code đã peer-review và merge</li><li>Unit + integration test pass</li><li>QA test xong — không còn Critical/Major mở</li><li>SAST scan đạt — không phát hiện Critical</li><li>Tài liệu đã cập nhật</li><li>Đã demo và được PO chấp nhận</li><li>Đã deploy lên môi trường SIT</li></ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title" style="color:var(--status-red)">🚀 Release DoD</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Cổng trước khi triển khai production</div>
+        <ul class="checklist"><li>Mọi mục Sprint DoD đạt cho mọi story trong release</li><li>UAT đạt — có sign-off</li><li>Performance testing đạt — đạt mục tiêu NFR</li><li>Security testing đạt — báo cáo pen test sạch</li><li>Review pháp lý hoàn tất (nếu có)</li><li>Release note đã viết</li><li>Kế hoạch rollback được ghi lại và test</li><li>Có CAB phê duyệt</li></ul>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3.9 RELEASE WORKFLOW -->
+<div class="section" id="sec-sec39" data-search="release workflow deployment runbook CAB change advisory board rollback production SIT UAT swimlane">
+  <div class="breadcrumb">Handbook <span>›</span> 3. SDLC <span>›</span> 3.9 Release Request Workflow</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🚢</div><div><div class="sec-num">Mục 3.9 · ↗ Trang bên ngoài</div><h2>Release Request Workflow</h2><div class="sec-sub">Hướng dẫn vận hành đầy đủ trong Deployment Runbook</div></div></div>
+    <div class="card"><div class="card-body">
+      <p>Quy trình phát hành theo một <strong>workflow swimlane 12 bước</strong> do Change Advisory Board (CAB) quản trị. Mọi release đi qua Security Testing, UAT, CAB phê duyệt, và thủ tục rollback được ghi lại trước khi tới production.</p>
+      <p style="margin-top:10px"><strong>Các stage swimlane phát hành:</strong></p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin:10px 0">
+        <span class="chip">Backlog</span><span class="chip">Ready for PT</span><span class="chip">In PT</span><span class="chip">PT Done</span><span class="chip">Ready for ST</span><span class="chip">In ST</span><span class="chip">ST Done</span><span class="chip">Ready for CAB</span><span class="chip">In CAB</span><span class="chip">CAB Done</span><span class="chip">Ready for Prod</span><span class="chip">Released ✓</span>
+      </div>
+      <a href="#deployment" class="ext-cta">🚢 Mở Deployment Runbook <span class="arrow">→</span></a>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 4: GTM -->
+<div class="section" id="sec-sec4" data-search="commercialization go-to-market GTM launch plan marketing sales enablement hypercare beta GA general availability KPI campaign thuong mai hoa">
+  <div class="breadcrumb">Handbook <span>›</span> 4. Thương mại hoá &amp; GTM</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🚀</div><div><div class="sec-num">Giai đoạn 4</div><h2>Thương mại hoá &amp; Go-to-Market</h2><div class="sec-sub">Từ sẵn sàng phát hành đến tác động thị trường</div></div></div>
+    <p style="margin-bottom:20px"><strong>Mục đích:</strong> Lập kế hoạch và thực thi ra mắt thương mại một sản phẩm/tính năng — bảo đảm sẵn sàng nội bộ, định vị thị trường, và outcome kinh doanh đo được.</p>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu vào (Cổng sẵn sàng GTM)</div>
+      <ul class="checklist"><li>Release DoD đạt — sản phẩm sẵn sàng về chức năng và kỹ thuật</li><li>UAT được stakeholder nghiệp vụ ký duyệt</li><li>Có phê duyệt Pháp lý / Tuân thủ</li><li>Không còn defect Critical hay Major mở</li><li>Brief product marketing được duyệt</li></ul>
+    </div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="true" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow)">PHASE</span><h3>Các pha ra mắt: Internal → Beta → Soft → GA</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body open"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Pha</th><th>Đối tượng</th><th>Thời lượng</th><th>Tiêu chí thành công</th><th>Tiêu chí Kill</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Internal Launch</strong></td><td>Chỉ nhân viên nội bộ</td><td>1–2 tuần</td><td>Thu phản hồi nhân viên, sửa vấn đề UX trọng yếu</td><td>Phát hiện defect P1, lỗ hổng bảo mật</td></tr>
+            <tr><td><strong>Beta (Closed)</strong></td><td>Khách hàng chọn lọc (opt-in, NDA)</td><td>2–4 tuần</td><td>NPS ≥ 30, retention ≥ 70%, không vấn đề P1</td><td>NPS &lt; 10, &gt; 3 defect P1</td></tr>
+            <tr><td><strong>Soft Launch</strong></td><td>Phân khúc thị trường giới hạn (geo/cohort)</td><td>2–4 tuần</td><td>Đạt mục tiêu conversion, khối lượng support kiểm soát được</td><td>Conversion &lt; 50% mục tiêu</td></tr>
+            <tr><td><strong>General Availability (GA)</strong></td><td>Mọi khách hàng mục tiêu</td><td>Liên tục</td><td>Mục tiêu doanh thu/tiếp nhận theo business case</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green)">MARKETING</span><h3>Product Marketing &amp; Chiến dịch</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <ol class="steps">
+          <li><strong>Định vị &amp; thông điệp</strong> — định nghĩa value proposition, persona mục tiêu, khác biệt cạnh tranh.</li>
+          <li><strong>Tạo nội dung</strong> — landing page, video sản phẩm, FAQ, blog, bộ social media, thông cáo báo chí.</li>
+          <li><strong>Chiến lược kênh</strong> — email, in-app, push notification, SMS, mạng chi nhánh, quảng cáo số.</li>
+          <li><strong>Lịch chiến dịch</strong> — teaser (2 tuần trước ra mắt) → ngày ra mắt → chuỗi nurture theo sau.</li>
+          <li><strong>Kế hoạch A/B test</strong> — test biến thể thông điệp, CTA, thiết kế landing page.</li>
+        </ol>
+      </div></div>
+    </div></div>
+    <div class="card"><div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-purple-bg);color:var(--status-purple)">KPIs</span><h3>KPI ra mắt &amp; Hypercare 30/60/90</h3></div><div class="acc-chevron">▾</div></button>
+      <div class="acc-body"><div class="acc-content">
+        <table class="hb-table">
+          <thead><tr><th>Nhóm chỉ số</th><th>KPI ví dụ</th><th>Cách đặt mục tiêu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Tiếp nhận</strong></td><td>DAU/MAU, tỷ lệ activation, % tiếp nhận tính năng</td><td>Định nghĩa trong business case</td></tr>
+            <tr><td><strong>Doanh thu</strong></td><td>Đóng góp ARR, ARPU, tỷ lệ conversion</td><td>Mô hình BP tài chính</td></tr>
+            <tr><td><strong>Hài lòng</strong></td><td>NPS, CSAT, rating app store</td><td>NPS ≥ 30, CSAT ≥ 4.0</td></tr>
+            <tr><td><strong>Vận hành</strong></td><td>Khối lượng ticket support, sự cố P1, uptime</td><td>Theo mục tiêu SLA</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div></div>
+    <div class="gate-box"><div class="gate-title">Tiêu chí đầu ra &amp; Bàn giao</div>
+      <ul class="checklist"><li>Ra mắt GA hoàn tất</li><li>KPI 30 ngày được review và ghi lại</li><li>Support runbook được bàn giao cho đội BAU</li><li>Bàn giao sang Giai đoạn 6 (Vận hành &amp; Bảo trì) để hỗ trợ liên tục</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: PROJECT CLOSURE -->
+<div class="section" id="sec-sec5" data-search="project closure PIR post-implementation review lessons learned benefits realization sign-off archive dong du an">
+  <div class="breadcrumb">Handbook <span>›</span> 5. Đóng dự án</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📦</div><div><div class="sec-num">Giai đoạn 5</div><h2>Đóng dự án</h2><div class="sec-sub">Khép lại chính thức, PIR, lessons learned, và bàn giao cho vận hành</div></div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">Hoạt động chính</div>
+      <ol class="steps">
+        <li><strong>Post-Implementation Review (PIR)</strong> — thực hiện 2–4 tuần sau GA. Đo KPI thực tế so với mục tiêu business case.</li>
+        <li><strong>Đánh giá benefits realization</strong> — so sánh ROI/lợi ích dự kiến với thực tế.</li>
+        <li><strong>Workshop lessons learned</strong> — phiên có cấu trúc với cả đội. Phân nhóm theo: Quy trình, Con người, Công nghệ, Truyền thông.</li>
+        <li><strong>Bàn giao backlog còn lại</strong> — chuyển các backlog item chưa giao sang backlog BAU của đội sản phẩm.</li>
+        <li><strong>Lưu trữ tài liệu</strong> — bảo đảm mọi artifact dự án được lưu trong hệ thống quản lý tài liệu.</li>
+        <li><strong>Đóng tài chính</strong> — đối soát ngân sách thực tế vs dự báo. Đóng cost center dự án.</li>
+        <li><strong>Giải phóng đội</strong> — chính thức giải phóng thành viên. Thực hiện phiên phản hồi 1:1.</li>
+        <li><strong>Ký duyệt chính thức</strong> — Project Sponsor ký hồ sơ đóng dự án xác nhận dự án hoàn thành.</li>
+        <li><strong>Đóng vendor và hợp đồng</strong> — xác nhận mọi nghĩa vụ hợp đồng đã đóng.</li>
+      </ol>
+    </div></div>
+    <div class="callout c-pitfall"><span class="callout-icon">⚠️</span><div><strong>Bẫy thường gặp:</strong> Dự án không bao giờ đóng chính thức. Không có cổng đóng, nguồn lực vẫn bị phân bổ, chi phí tích luỹ, và bài học không bao giờ được ghi nhận.</div></div>
+  </div>
+</div>
+
+<!-- SECTION 6: OPERATE & MAINTAIN -->
+<div class="section" id="sec-sec6" data-search="operate maintain BAU monitoring incident management SLA SLO change management patching van hanh bao tri">
+  <div class="breadcrumb">Handbook <span>›</span> 6. Vận hành &amp; Bảo trì</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🔧</div><div><div class="sec-num">Giai đoạn 6</div><h2>Vận hành &amp; Bảo trì</h2><div class="sec-sub">Vận hành BAU sau ra mắt, giám sát, và cải tiến liên tục</div></div></div>
+
+    <div class="card"><div class="card-body">
+      <div class="card-title">🩺 Giai đoạn Hypercare / Bảo hành — cầu nối go-live → BAU</div>
+      <p><strong>Hypercare</strong> là cửa sổ hỗ trợ tăng cường ngay sau go-live, trước khi sản phẩm chuyển sang trạng thái ổn định BAU. Đây là một giai đoạn phối hợp duy nhất dù nhiều vai trò cùng tham gia — đây là góc nhìn hợp nhất.</p>
+      <div class="callout c-info"><span class="callout-icon">i</span><div><strong>Mốc thời gian điển hình:</strong> <strong>72 giờ</strong> đầu tăng cường (release watch) → hỗ trợ cao trong <strong>2–4 tuần</strong> (ổn định) → thoát chính thức sang BAU + PIR.</div></div>
+      <table class="hb-table" style="margin-top:12px;">
+        <thead><tr><th>Ai</th><th>Làm gì trong hypercare</th><th>Nguồn sự thật</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Release Manager</strong></td><td>Release watch 72 giờ; quyết định rollback; Go/No-Go để đóng watch</td><td><a href="#deployment">Deployment Runbook</a> (Giai đoạn 4)</td></tr>
+          <tr><td><strong>Ops / SRE</strong></td><td>On-call, giám sát, quản lý sự cố &amp; vấn đề, canh SLO</td><td><a href="#ops">Operations &amp; SRE Runbook</a></td></tr>
+          <tr><td><strong>Business Analyst</strong></td><td>Giải đáp người dùng nghiệp vụ, làm rõ nhanh, triage defect (yêu cầu vs triển khai)</td><td><a href="#ba">BA Handbook</a> (Giai đoạn 7)</td></tr>
+          <tr><td><strong>Đội Dev</strong></td><td>Trực standby cho hotfix; tìm nguyên nhân gốc của defect lọt lưới</td><td>Sprint / handbook này §3</td></tr>
+          <tr><td><strong>Product Owner</strong></td><td>Canh chỉ số tiếp nhận/giá trị; ưu tiên hotfix vs backlog</td><td><a href="#po">PO Handbook</a></td></tr>
+        </tbody>
+      </table>
+      <div class="callout c-gate" style="margin-top:12px"><span class="callout-icon">!</span><div><strong>Tiêu chí thoát (hypercare → BAU):</strong> không còn P1/P2 mở; tỷ lệ sự cố về baseline; đạt SLO trong một cửa sổ bền vững; support runbook &amp; on-call được bàn giao đầy đủ cho BAU; PIR đã lên lịch. Chỉ khi đó mới chính thức hạ mức hỗ trợ tăng cường.</div></div>
+    </div></div>
+
+    <div class="card"><div class="card-body">
+      <div class="card-title">Hoạt động chính</div>
+      <ol class="steps">
+        <li><strong>Giám sát &amp; cảnh báo</strong> — giám sát 24/7 hệ thống production. Ngưỡng alert được cấu hình theo SLA.</li>
+        <li><strong>Quản lý sự cố</strong> — phản ứng P1 trong 15 phút. Post-incident review (PIR) trong 48 giờ.</li>
+        <li><strong>Quản lý vá</strong> — vá bảo mật trong SLA (Critical: 24h, High: 7 ngày, Medium: 30 ngày).</li>
+        <li><strong>Quản lý thay đổi</strong> — mọi thay đổi production đi qua CAB. Loại change Standard, Normal, Emergency theo ITIL.</li>
+        <li><strong>Cải tiến liên tục</strong> — review chỉ số sức khoẻ hệ thống hằng tháng. Capacity planning hằng quý.</li>
+        <li><strong>Duy trì tuân thủ</strong> — audit pháp lý định kỳ. Thu thập bằng chứng cho tái chứng nhận SBV, ISO 27001.</li>
+      </ol>
+    </div></div>
+    <div class="card"><div class="card-body"><div class="card-title">Mục tiêu SLA (Chuẩn)</div>
+      <table class="hb-table">
+        <thead><tr><th>Tier</th><th>Khả dụng</th><th>RTO</th><th>RPO</th><th>Giờ hỗ trợ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tier 1</strong> (Core Banking)</td><td>99,95%</td><td>1 giờ</td><td>15 phút</td><td>24/7</td></tr>
+          <tr><td><strong>Tier 2</strong> (Kênh số)</td><td>99,9%</td><td>4 giờ</td><td>1 giờ</td><td>24/7</td></tr>
+          <tr><td><strong>Tier 3</strong> (Công cụ nội bộ)</td><td>99,5%</td><td>8 giờ</td><td>4 giờ</td><td>Giờ hành chính</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 7: STAKEHOLDERS & RACI -->
+<div class="section" id="sec-sec7" data-search="stakeholders RACI matrix roles responsible accountable consulted informed PO BA PM SA developer tester">
+  <div class="breadcrumb">Handbook <span>›</span> 7. Stakeholder &amp; RACI</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">👥</div><div><div class="sec-num">Mục 7</div><h2>Stakeholder &amp; Ma trận RACI</h2><div class="sec-sub">Ma trận trách nhiệm lọc được xuyên mọi giai đoạn và vai trò</div></div></div>
+    <div class="raci-filters">
+      <select id="raci-phase" onchange="filterRaci()"><option value="">Mọi giai đoạn</option>
+        <option>1. Strategy &amp; Planning</option><option>2. Discovery &amp; Initiation</option>
+        <option>3. SDLC Execution</option><option>4. GTM</option><option>5. Closure</option><option>6. Operate</option></select>
+      <select id="raci-role" onchange="filterRaci()"><option value="">Mọi vai trò</option>
+        <option>Project Sponsor</option><option>PM</option><option>PO</option><option>BA</option>
+        <option>SA</option><option>Tech Lead</option><option>Developer</option><option>QA Lead</option>
+        <option>Scrum Master</option><option>Release Manager</option><option>Compliance</option><option>Marketing</option></select>
+    </div>
+    <div class="card"><div class="card-body" style="padding:0;overflow-x:auto">
+      <table class="hb-table" id="raci-table">
+        <thead><tr>
+          <th>Hoạt động</th><th data-phase>Giai đoạn</th>
+          <th data-role="Project Sponsor">Sponsor</th><th data-role="PM">PM</th>
+          <th data-role="PO">PO</th><th data-role="BA">BA</th>
+          <th data-role="SA">SA</th><th data-role="Tech Lead">Tech Lead</th>
+          <th data-role="Developer">Dev</th><th data-role="QA Lead">QA</th>
+          <th data-role="Scrum Master">SM</th><th data-role="Release Manager">RM</th>
+          <th data-role="Compliance">Compl.</th><th data-role="Marketing">Mktg</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Phê duyệt business case</td><td>1. Strategy &amp; Planning</td><td class="raci-a">A</td><td class="raci-c">C</td><td class="raci-i">I</td><td class="raci-c">C</td><td class="raci-i">I</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="raci-c">C</td><td class="raci-i">I</td></tr>
+          <tr><td>Tạo roadmap năm</td><td>1. Strategy &amp; Planning</td><td class="raci-a">A</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-c">C</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="raci-i">I</td><td class="raci-c">C</td></tr>
+          <tr><td>Project Charter</td><td>2. Discovery &amp; Initiation</td><td class="raci-a">A</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-i">I</td><td>-</td><td class="raci-c">C</td><td>-</td></tr>
+          <tr><td>Elicitation yêu cầu</td><td>3. SDLC Execution</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-a">A</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-i">I</td><td class="raci-c">C</td><td>-</td><td>-</td><td class="raci-c">C</td><td>-</td></tr>
+          <tr><td>Thực thi Sprint</td><td>3. SDLC Execution</td><td>-</td><td class="raci-i">I</td><td class="raci-a">A</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-r">R</td><td class="raci-r">R</td><td class="raci-r">R</td><td class="raci-r">R</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td>Trình CAB</td><td>3. SDLC Execution</td><td class="raci-i">I</td><td class="raci-a">A</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-c">C</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-c">C</td><td>-</td><td class="raci-r">R</td><td class="raci-a">A</td><td>-</td></tr>
+          <tr><td>Triển khai production</td><td>3. SDLC Execution</td><td class="raci-i">I</td><td class="raci-a">A</td><td class="raci-i">I</td><td>-</td><td class="raci-c">C</td><td class="raci-r">R</td><td class="raci-r">R</td><td class="raci-c">C</td><td>-</td><td class="raci-r">R</td><td class="raci-i">I</td><td>-</td></tr>
+          <tr><td>Kế hoạch ra mắt GTM</td><td>4. GTM</td><td class="raci-a">A</td><td class="raci-c">C</td><td class="raci-r">R</td><td class="raci-c">C</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="raci-c">C</td><td class="raci-r">R</td></tr>
+          <tr><td>PIR / Lessons learned</td><td>5. Closure</td><td class="raci-a">A</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-r">R</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-c">C</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-i">I</td></tr>
+          <tr><td>Phản ứng sự cố</td><td>6. Operate</td><td class="raci-i">I</td><td class="raci-i">I</td><td class="raci-i">I</td><td>-</td><td class="raci-c">C</td><td class="raci-a">A</td><td class="raci-r">R</td><td class="raci-c">C</td><td>-</td><td class="raci-r">R</td><td class="raci-i">I</td><td>-</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+    <div style="margin-top:12px;display:flex;gap:12px;font-size:11px;flex-wrap:wrap">
+      <span><span class="raci-r">R</span> = Responsible (thực hiện)</span>
+      <span><span class="raci-a">A</span> = Accountable (chịu trách nhiệm)</span>
+      <span><span class="raci-c">C</span> = Consulted (tham vấn)</span>
+      <span><span class="raci-i">I</span> = Informed (được báo)</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: GLOSSARY -->
+<div class="section" id="sec-sec8" data-search="glossary terms acronyms definitions SDLC BABOK CAB DoR DoD BRD SRS thuat ngu">
+  <div class="breadcrumb">Handbook <span>›</span> 8. Bảng thuật ngữ</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📚</div><div><div class="sec-num">Mục 8</div><h2>Bảng thuật ngữ</h2><div class="sec-sub">Thuật ngữ và từ viết tắt dùng xuyên suốt handbook này</div></div></div>
+    <div class="card"><div class="card-body" style="padding:0">
+      <table class="hb-table">
+        <thead><tr><th>Thuật ngữ</th><th>Định nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AC</strong></td><td>Acceptance Criteria — các điều kiện một story phải thoả để được chấp nhận.</td></tr>
+          <tr><td><strong>BABOK</strong></td><td>Business Analysis Body of Knowledge — cẩm nang thực hành BA của IIBA (v3).</td></tr>
+          <tr><td><strong>BRD</strong></td><td>Business Requirements Document — đặc tả yêu cầu chính thức.</td></tr>
+          <tr><td><strong>CAB</strong></td><td>Change Advisory Board — cơ quan quản trị phê duyệt thay đổi production.</td></tr>
+          <tr><td><strong>DoD</strong></td><td>Definition of Done — checklist tiêu chí để story/release được coi là hoàn thành.</td></tr>
+          <tr><td><strong>DoR</strong></td><td>Definition of Ready — checklist tiêu chí trước khi công việc vào một sprint.</td></tr>
+          <tr><td><strong>EVM</strong></td><td>Earned Value Management — phương pháp đo hiệu quả tiến độ và chi phí so với baseline.</td></tr>
+          <tr><td><strong>GTM</strong></td><td>Go-to-Market — chiến lược và kế hoạch thực thi ra mắt thương mại.</td></tr>
+          <tr><td><strong>GWT</strong></td><td>Given-When-Then — định dạng viết acceptance criteria.</td></tr>
+          <tr><td><strong>NFR</strong></td><td>Non-Functional Requirement — thuộc tính chất lượng (hiệu năng, bảo mật, v.v.).</td></tr>
+          <tr><td><strong>OKR</strong></td><td>Objectives and Key Results — framework đặt mục tiêu.</td></tr>
+          <tr><td><strong>PBR</strong></td><td>Product Backlog Refinement — ceremony chuốt các story sắp tới.</td></tr>
+          <tr><td><strong>PIR</strong></td><td>Post-Implementation Review — đánh giá sau khi đóng dự án/sự cố.</td></tr>
+          <tr><td><strong>RAG</strong></td><td>Red / Amber / Green — chỉ báo trạng thái dùng trong báo cáo dự án.</td></tr>
+          <tr><td><strong>RTM</strong></td><td>Requirements Traceability Matrix — liên kết yêu cầu tới test và defect.</td></tr>
+          <tr><td><strong>SBV</strong></td><td>State Bank of Vietnam (Ngân hàng Nhà nước) — cơ quan quản lý ngân hàng trung ương.</td></tr>
+          <tr><td><strong>SLA / SLO</strong></td><td>Service Level Agreement / Service Level Objective.</td></tr>
+          <tr><td><strong>SPI / CPI</strong></td><td>Schedule Performance Index / Cost Performance Index — chỉ số PM.</td></tr>
+          <tr><td><strong>UAT</strong></td><td>User Acceptance Testing — nghiệm thu nghiệp vụ cho giải pháp.</td></tr>
+          <tr><td><strong>WBS</strong></td><td>Work Breakdown Structure — chẻ sản phẩm bàn giao thành các gói công việc quản lý được.</td></tr>
+          <tr><td><strong>WSJF</strong></td><td>Weighted Shortest Job First — công thức ưu tiên hoá (Cost of Delay ÷ Job Size).</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 9: TEMPLATES LIBRARY -->
+<div class="section" id="sec-sec9" data-search="templates library document template project charter BRD UAT plan user story thu vien">
+  <div class="breadcrumb">Handbook <span>›</span> 9. Thư viện Template</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📋</div><div><div class="sec-num">Mục 9</div><h2>Thư viện Template</h2><div class="sec-sub">Template chuẩn hoá cho mọi giai đoạn</div></div></div>
+    <div class="card"><div class="card-body" style="padding:0">
+      <table class="hb-table">
+        <thead><tr><th>Template</th><th>Giai đoạn</th><th>Chủ sở hữu</th><th>Định dạng</th></tr></thead>
+        <tbody>
+          <tr><td>📄 Project Charter</td><td>2. Initiation</td><td>PM</td><td>Confluence / Word</td></tr>
+          <tr><td>📄 Stakeholder Register</td><td>2. Initiation</td><td>PM + BA</td><td>Excel / Confluence</td></tr>
+          <tr><td>📄 Risk Register</td><td>2. Initiation</td><td>PM</td><td>Excel / Confluence</td></tr>
+          <tr><td>📄 BRD / SRS Template</td><td>3. SDLC</td><td>BA</td><td>Confluence / Word</td></tr>
+          <tr><td>📄 User Story Template</td><td>3. SDLC</td><td>PO / BA</td><td>Jira</td></tr>
+          <tr><td>📄 UAT Plan &amp; Script Template</td><td>3. SDLC</td><td>BA / QA</td><td>Excel / Confluence</td></tr>
+          <tr><td>📄 Change Request Form</td><td>3. SDLC</td><td>BA / PM</td><td>Jira / Confluence</td></tr>
+          <tr><td>📄 Weekly Status Report</td><td>3. SDLC</td><td>PM</td><td>Confluence / PPT / Email</td></tr>
+          <tr><td>📄 GTM Launch Plan</td><td>4. GTM</td><td>Product Marketing</td><td>Confluence / PPT</td></tr>
+          <tr><td>📄 PIR Report Template</td><td>5. Closure</td><td>PM / BA</td><td>Confluence / Word</td></tr>
+          <tr><td>📄 Project Closure Document</td><td>5. Closure</td><td>PM</td><td>Confluence / Word</td></tr>
+          <tr><td>📄 Incident Report Template</td><td>6. Operate</td><td>Tech Lead</td><td>Jira / Confluence</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 10: TOOLING -->
+<div class="section" id="sec-sec10" data-search="tooling tools Jira Confluence GitHub Jenkins SonarQube Figma Slack monitoring cong cu">
+  <div class="breadcrumb">Handbook <span>›</span> 10. Công cụ</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">🛠️</div><div><div class="sec-num">Mục 10</div><h2>Công cụ</h2><div class="sec-sub">Bộ công cụ chuẩn xuyên vòng đời dự án</div></div></div>
+    <div class="callout c-info"><span class="callout-icon">i</span><div><strong>Mang tính đại diện, không bắt buộc.</strong> Các công cụ nêu ở đây và xuyên suốt các handbook (vd Jira, GitHub, SonarQube, OWASP ZAP, JMeter, Grafana, và các cơ quan quản trị ARB / CAB / GRC) là <strong>ví dụ minh hoạ</strong> cho một bộ công cụ điển hình. Hãy thay bằng công cụ &amp; diễn đàn quản trị thực tế, đã duyệt của tổ chức bạn — <em>thực hành</em> mới là điều quan trọng, không phải sản phẩm cụ thể.</div></div>
+    <div class="card"><div class="card-body" style="padding:0">
+      <table class="hb-table">
+        <thead><tr><th>Nhóm</th><th>Công cụ</th><th>Mục đích</th><th>Chủ sở hữu</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Quản lý dự án</strong></td><td>Jira</td><td>Backlog, sprint, defect, workflow</td><td>PM / SM</td></tr>
+          <tr><td><strong>Tài liệu</strong></td><td>Confluence</td><td>Yêu cầu, tài liệu thiết kế, biên bản họp</td><td>Mọi đội</td></tr>
+          <tr><td><strong>Source Control</strong></td><td>GitHub</td><td>Kho code, pull request, pipeline CI/CD</td><td>Đội Dev</td></tr>
+          <tr><td><strong>CI/CD</strong></td><td>GitHub Actions</td><td>Tự động hoá build, test, deploy</td><td>DevOps</td></tr>
+          <tr><td><strong>Chất lượng code</strong></td><td>SonarQube</td><td>SAST, chỉ số chất lượng code, theo dõi tech debt</td><td>Đội Dev</td></tr>
+          <tr><td><strong>Quét bảo mật</strong></td><td>Snyk + OWASP ZAP</td><td>Quét phụ thuộc (SCA) + DAST</td><td>DevSecOps</td></tr>
+          <tr><td><strong>Thiết kế UX/UI</strong></td><td>Figma</td><td>Wireframe, prototype, design system</td><td>UX/UI Designer</td></tr>
+          <tr><td><strong>Giám sát</strong></td><td>Grafana + Prometheus</td><td>Dashboard, metric, alerting</td><td>DevOps / SRE</td></tr>
+          <tr><td><strong>Quản lý log</strong></td><td>ELK Stack</td><td>Gom log tập trung, tìm kiếm, phân tích</td><td>DevOps / SRE</td></tr>
+          <tr><td><strong>Quản lý sự cố</strong></td><td>PagerDuty / OpsGenie</td><td>Lịch on-call, leo thang, alerting</td><td>DevOps / SRE</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+<!-- CHANGELOG -->
+<div class="section" id="sec-changelog" data-search="changelog version history changes">
+  <div class="breadcrumb">Handbook <span>›</span> Changelog</div>
+  <div class="hb-content">
+    <div class="sec-head"><div class="sec-icon">📝</div><div><div class="sec-num">Changelog</div><h2>Lịch sử phiên bản</h2></div></div>
+    <div class="card"><div class="card-body">
+      <div class="card-title">v1.0 — 2025-Q2 (Phát hành đầu tiên)</div>
+      <table class="hb-table">
+        <thead><tr><th>Loại</th><th>Mô tả</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--status-green);font-weight:700">Thêm</td><td>Mục 0–10: handbook đầy đủ từ Chiến lược đến Công cụ.</td></tr>
+          <tr><td style="color:var(--status-green);font-weight:700">Thêm</td><td>Pipeline tương tác ở trang chủ với điều hướng giai đoạn bấm được.</td></tr>
+          <tr><td style="color:var(--status-green);font-weight:700">Thêm</td><td>Ma trận RACI lọc được theo hoạt động và vai trò.</td></tr>
+          <tr><td style="color:var(--status-green);font-weight:700">Thêm</td><td>Mục quality gate với checklist DoR, Sprint DoD, và Release DoD.</td></tr>
+          <tr><td style="color:var(--status-blue);font-weight:700">Ghi chú</td><td>Mục 3.2 và 3.9 chủ đích liên kết tới các trang handbook khác. Nội dung KHÔNG nhân bản.</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div>
+
+</div><!-- /hb-main -->
+
+<footer id="hb-footer">
+  🏦 Handbook · Project Implementation Handbook v1.0 · Cập nhật lần cuối 2025-Q2 · Chủ quản: PMO &amp; Delivery Governance<br/>
+  Phân loại: MẬT (CONFIDENTIAL) · Thông tư 09/2020/TT-NHNN · Bám ISO 27001 · © 2025
+</footer>
+</div><!-- /#page-content -->
+
+<!-- Page-specific scripts (showSec, toggleAcc, handleSearch, filterRaci) -->
+<script id="page-script">
+function showSec(id, link) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  var target = document.getElementById('sec-' + id);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.sb-nav a').forEach(function(a) {
+    a.classList.remove('active');
+    a.removeAttribute('aria-current');
+  });
+  if (link) {
+    link.classList.add('active');
+    link.setAttribute('aria-current', 'page');
+  } else {
+    var navLink = document.querySelector('.sb-nav a[data-sec="' + id + '"]');
+    if (navLink) { navLink.classList.add('active'); navLink.setAttribute('aria-current', 'page'); }
+  }
+  var sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAcc(btn) {
+  var expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', !expanded);
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+function handleSearch(q) {
+  q = q.toLowerCase().trim();
+  if (!q) { document.querySelectorAll('.sb-nav a[data-sec]').forEach(function(a) { a.style.display = ''; }); return; }
+  document.querySelectorAll('.sb-nav a[data-sec]').forEach(function(a) {
+    var sec = document.getElementById('sec-' + a.dataset.sec);
+    var searchData = (sec ? sec.getAttribute('data-search') : '') + (a.textContent || '');
+    a.style.display = searchData.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function filterRaci() {
+  var phase = document.getElementById('raci-phase').value;
+  var role = document.getElementById('raci-role').value;
+  var rows = document.querySelectorAll('#raci-table tbody tr');
+  var ths = document.querySelectorAll('#raci-table thead th[data-role]');
+  ths.forEach(function(th) {
+    var colIdx = Array.prototype.indexOf.call(th.parentNode.children, th);
+    var show = !role || th.dataset.role === role;
+    th.style.display = show ? '' : 'none';
+    rows.forEach(function(r) { if (r.children[colIdx]) r.children[colIdx].style.display = show ? '' : 'none'; });
+  });
+  rows.forEach(function(r) {
+    var rowPhase = r.children[1] ? r.children[1].textContent : '';
+    r.style.display = (!phase || rowPhase.includes(phase)) ? '' : 'none';
+  });
+}
+
+// Show default section on load
+showSec('landing');
+</script>
