@@ -1,0 +1,330 @@
+<title>Scrum Master Handbook | Handbook</title>
+
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-sm{width:100%;border-collapse:collapse;font-size:12px}
+.table-sm th,.table-sm td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-sm th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-sm tr:hover td{background:var(--bg-hover)}
+.table-sm code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.src{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.src-scrum{color:var(--status-green);border-color:var(--status-green)}
+.src-ext{color:var(--status-blue);border-color:var(--status-blue)}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🌀</div>
+      <div>
+        <div class="bank-title">Scrum Master Handbook</div>
+        <div class="bank-sub">Scrum Guide 2020 · Servant Leadership</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-framework" onclick="setActive(this)"><span class="nav-icon">📐</span> 02 · Khung Scrum</a>
+    <a href="#section-leadership" onclick="setActive(this)"><span class="nav-icon">🤲</span> 03 · Servant Leadership</a>
+  </nav>
+
+  <div class="sidebar-section-label">Điều phối</div>
+  <nav id="sidebar-nav">
+    <a href="#section-events" onclick="setActive(this)"><span class="nav-icon">🔁</span> 04 · Điều phối Events</a>
+    <a href="#section-impediments" onclick="setActive(this)"><span class="nav-icon">🚧</span> 05 · Quản lý Impediment</a>
+    <a href="#section-coaching" onclick="setActive(this)"><span class="nav-icon">🎓</span> 06 · Tư thế Coaching</a>
+    <a href="#section-facilitation" onclick="setActive(this)"><span class="nav-icon">🗣️</span> 07 · Bộ công cụ điều phối</a>
+  </nav>
+
+  <div class="sidebar-section-label">Đội nhóm &amp; Dòng chảy</div>
+  <nav id="sidebar-nav">
+    <a href="#section-team" onclick="setActive(this)"><span class="nav-icon">👥</span> 08 · Sức khoẻ đội nhóm</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 09 · Chỉ số Agile</a>
+    <a href="#section-scaling" onclick="setActive(this)"><span class="nav-icon">🔀</span> 10 · Scaling</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-retro" onclick="setActive(this)"><span class="nav-icon">🔄</span> 11 · Kỹ thuật Retrospective</a>
+    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> 12 · Anti-Pattern</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">🧩</span> 13 · Ranh giới &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🌀 Scrum Guide 2020</span>
+    <span class="comp-pill">🤲 Servant Leader</span>
+    <span class="comp-pill">🔀 Hybrid SDLC</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Scrum Master / Agile<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: Scrum Guide 2020<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🌀 Handbook nội bộ · Bám chuẩn Scrum Guide 2020</div>
+    <h1>Scrum Master (SM)<br/><span>Servant Leadership &amp; Hiệu quả đội nhóm</span></h1>
+    <p>Tài liệu tham chiếu cho vai trò Scrum Master — bám nền Scrum Guide 2020, cùng thực hành điều phối (facilitation), coaching và sức khoẻ đội nhóm. Thuật ngữ chuẩn Scrum gắn nhãn <span class="src src-scrum">Scrum 2020</span>; thực hành mở rộng ghi rõ nguồn <span class="src src-ext">Mở rộng</span>.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Scrum Guide 2020</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Servant Leader</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Facilitation &amp; Coaching</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Accountability <span class="src src-scrum">Scrum 2020</span></div>
+        <p>Scrum Master <strong>chịu trách nhiệm thiết lập Scrum</strong> đúng như Scrum Guide định nghĩa, và chịu trách nhiệm về <strong>hiệu quả của Scrum Team</strong>. SM là <strong>người lãnh đạo thực thụ bằng cách phục vụ</strong> Scrum Team và cả tổ chức — một trong ba accountability (SM, PO, Developers).</p>
+        <p style="margin-top:6px;">SM phục vụ theo ba hướng: <strong>Scrum Team</strong> (coaching, điều phối, gỡ impediment), <strong>Product Owner</strong> (kỹ thuật quản lý backlog &amp; goal), và <strong>Tổ chức</strong> (dẫn dắt áp dụng Scrum, gỡ rào cản giữa stakeholder &amp; các đội).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">SM vs PM vs Agile Coach vs Team Lead</div>
+        <table class="table-sm">
+          <tr><th>Khía cạnh</th><th>Scrum Master</th><th>Project Manager</th><th>Agile Coach</th><th>Team Lead</th></tr>
+          <tr><td>Trọng tâm</td><td>Hiệu quả đội &amp; Scrum</td><td>Phạm vi/thời gian/chi phí của dự án</td><td>Độ linh hoạt toàn tổ chức</td><td>Giao hàng kỹ thuật của một đội</td></tr>
+          <tr><td>Quyền hạn</td><td>Không có quyền ra lệnh — dùng ảnh hưởng</td><td>Quyền dự án chính thức</td><td>Cố vấn xuyên đội</td><td>Quyền chuyên môn/tuyến</td></tr>
+          <tr><td>Tầm nhìn</td><td>Đội nhóm, liên tục</td><td>Dự án, tạm thời</td><td>Nhiều đội</td><td>Codebase của đội</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>SM <strong>không phải</strong> một PM thu nhỏ. Xem <a href="#pm">PM Handbook</a> cho quản trị dự án và <a href="#po">PO Handbook</a> cho quyết định sản phẩm.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 FRAMEWORK -->
+    <section class="section-block" id="section-framework">
+      <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Mục 02</div><h2>Khung Scrum <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Thành phần</th><th>Nội dung</th></tr>
+          <tr><td><strong>Accountabilities</strong></td><td>Product Owner · Scrum Master · Developers <span class="src src-scrum">không phải "roles"</span></td></tr>
+          <tr><td><strong>Events</strong></td><td>Sprint (chiếc hộp chứa) · Sprint Planning · Daily Scrum · Sprint Review · Sprint Retrospective</td></tr>
+          <tr><td><strong>Artifacts + commitment</strong></td><td>Product Backlog → <strong>Product Goal</strong> · Sprint Backlog → <strong>Sprint Goal</strong> · Increment → <strong>Definition of Done</strong></td></tr>
+          <tr><td><strong>Trụ cột</strong></td><td>Minh bạch · Thanh tra · Thích nghi (chủ nghĩa thực nghiệm)</td></tr>
+          <tr><td><strong>Giá trị</strong></td><td>Cam kết · Tập trung · Cởi mở · Tôn trọng · Dũng cảm</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>Dùng thuật ngữ hiện hành: <strong>accountabilities</strong> (không phải "3 roles"), <strong>Developers</strong> (không phải "Development Team"). Refinement là <strong>hoạt động liên tục</strong>, không phải event.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 LEADERSHIP -->
+    <section class="section-block" id="section-leadership">
+      <div class="section-header"><div class="section-icon">🤲</div><div><div class="section-number">Mục 03</div><h2>Servant Leadership</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>SM lãnh đạo bằng cách <strong>phục vụ</strong> — tạo điều kiện để đội thành công, không ra lệnh. <span class="src src-ext">Robert Greenleaf</span></p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Phát triển con người &amp; khả năng tự quản của đội; khiến bản thân ngày càng ít cần thiết.</li>
+          <li>Bảo vệ sự tập trung (chắn nhiễu), nuôi dưỡng <strong>an toàn tâm lý</strong>.</li>
+          <li>Dẫn dắt thay đổi bằng ảnh hưởng &amp; làm gương, không bằng quyền lực.</li>
+          <li>Giữ đội theo giá trị &amp; thoả thuận của Scrum mà không áp đặt <em>cách</em> họ làm việc.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 EVENTS -->
+    <section class="section-block" id="section-events">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Mục 04</div><h2>Điều phối các Event <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Event</th><th style="color:var(--status-green)">SM bảo đảm / làm</th><th style="color:var(--status-red)">SM KHÔNG làm</th></tr>
+          <tr><td><strong>Sprint Planning</strong></td><td>Event diễn ra &amp; hiệu quả; tôn trọng time-box; Sprint Goal rõ ràng.</td><td>Quyết định phạm vi hay giao task.</td></tr>
+          <tr><td><strong>Daily Scrum</strong></td><td>Coach để Developers tự vận hành trong 15 phút.</td><td>Chủ trì hay lấy status.</td></tr>
+          <tr><td><strong>Sprint Review</strong></td><td>Điều phối sự cộng tác với stakeholder; giữ đúng tính chất phiên làm việc.</td><td>Trình bày sản phẩm (việc đó của đội).</td></tr>
+          <tr><td><strong>Retrospective</strong></td><td>Điều phối để thanh tra trung thực &amp; ra cải tiến cụ thể.</td><td>Áp đặt hành động hay bỏ qua event.</td></tr>
+          <tr><td><strong>Refinement</strong> <span class="src src-ext">liên tục</span></td><td>Giúp đội làm refinement hiệu quả &amp; đúng liều lượng.</td><td>Sở hữu backlog (việc của PO).</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Việc điều phối của SM là <strong>một dịch vụ</strong>, không phải điều bắt buộc — đội trưởng thành có thể cần ít hơn. Đích đến là một đội tự quản.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 IMPEDIMENTS -->
+    <section class="section-block" id="section-impediments">
+      <div class="section-header"><div class="section-icon">🚧</div><div><div class="section-number">Mục 05</div><h2>Quản lý Impediment</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Impediment</strong> là bất cứ điều gì làm chậm đội mà đội không tự gỡ được. SM là người khiến chúng được gỡ bỏ.</p>
+        <pre class="art-block">PHÁT HIỆN ─▶ GHI NHẬN ─▶ PHÂN LOẠI ─▶ XỬ LÝ/LEO THANG ─▶ XÁC NHẬN ĐÃ GỠ
+(daily,      (bảng       (đội tự gỡ    (gỡ hoặc leo       (cùng với
+ retro)       hiển thị)    được? cấp     thang lên          đội)
+                           tổ chức?)     quản lý/PM)</pre>
+        <p style="margin-top:6px;">Cấp đội → coach để đội tự giải quyết. Cấp tổ chức → leo thang (tới <a href="#pm">PM</a>/quản lý) với tác động được nêu rõ ràng. Theo dõi impediment công khai đến khi đóng.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 COACHING -->
+    <section class="section-block" id="section-coaching">
+      <div class="section-header"><div class="section-icon">🎓</div><div><div class="section-number">Mục 06</div><h2>Các tư thế Coaching</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Chọn đúng tư thế cho từng tình huống <span class="src src-ext">Agile coaching</span>:</p>
+        <table class="table-sm">
+          <tr><th>Tư thế</th><th>Khi nào</th></tr>
+          <tr><td><strong>Teaching</strong></td><td>Đội thiếu kiến thức về Scrum/thực hành.</td></tr>
+          <tr><td><strong>Mentoring</strong></td><td>Chia sẻ kinh nghiệm cho một thách thức cụ thể.</td></tr>
+          <tr><td><strong>Facilitating</strong></td><td>Đội đã có câu trả lời — dẫn dắt quy trình, trung lập về nội dung.</td></tr>
+          <tr><td><strong>Coaching</strong></td><td>Khai mở tư duy của chính đội bằng câu hỏi đắt giá.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">💬</span><div><strong>Mô hình GROW</strong> <span class="src src-ext">John Whitmore</span>: Goal → Reality → Options → Will. Hỏi, đừng bảo — xây năng lực cho đội.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 FACILITATION -->
+    <section class="section-block" id="section-facilitation">
+      <div class="section-header"><div class="section-icon">🗣️</div><div><div class="section-number">Mục 07</div><h2>Bộ công cụ điều phối</h2></div></div>
+      <div class="card"><div class="card-body">
+        <ul class="step-cl">
+          <li><strong>Working agreement</strong> &amp; mục đích rõ ràng cho mọi phiên làm việc.</li>
+          <li>Dòng chảy phân kỳ → hội tụ; timeboxing; "parking lot" cho các ý ngoài chủ đề.</li>
+          <li>Kỹ thuật: dot voting, fist-of-five, brainstorm im lặng, round-robin, Liberating Structures.</li>
+          <li>Kéo tiếng nói của người trầm lặng; kiểm soát người lấn át; giữ trung lập về nội dung khi điều phối.</li>
+          <li>Cách ra quyết định: consent, consensus, hay advice — chọn tường minh.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 TEAM HEALTH -->
+    <section class="section-block" id="section-team">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 08</div><h2>Hình thành &amp; sức khoẻ đội nhóm</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Các giai đoạn Tuckman</strong> <span class="src src-ext">Bruce Tuckman</span>: Forming → Storming → Norming → Performing → (Adjourning). SM điều chỉnh mức hỗ trợ theo giai đoạn — nhiều cấu trúc lúc đầu, nhiều tự chủ về sau.</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>An toàn tâm lý</strong> <span class="src src-ext">Amy Edmondson</span> là yếu tố dự báo số 1 của hiệu suất đội (Google Project Aristotle).</li>
+          <li>Nuôi dưỡng đội ổn định, đa chức năng, đúng cỡ (Scrum: thường ≤10 người).</li>
+          <li>Quan sát tín hiệu sức khoẻ đội (tâm trạng, xung đột, phụ thuộc, biến động nhân sự); hành động sớm.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 METRICS -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 09</div><h2>Chỉ số Agile — dùng đúng &amp; lạm dụng</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Chỉ số</th><th>Dùng đúng</th><th>Lạm dụng</th></tr>
+          <tr><td><strong>Velocity</strong></td><td>Dự báo năng lực của chính đội</td><td>So sánh giữa các đội / làm chỉ tiêu</td></tr>
+          <tr><td><strong>Burndown / Burnup</strong></td><td>Minh bạch trong Sprint</td><td>Cây gậy quản lý vi mô</td></tr>
+          <tr><td><strong>Cumulative Flow (CFD)</strong></td><td>Nhìn ra điểm nghẽn &amp; WIP</td><td>—</td></tr>
+          <tr><td><strong>Cycle / Lead time</strong></td><td>Cải thiện dòng chảy (xem <a href="#po">PO</a>)</td><td>—</td></tr>
+          <tr><td><strong>Hạnh phúc / an toàn của đội</strong></td><td>Xu hướng sức khoẻ theo thời gian</td><td>Chấm điểm cá nhân</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>Chỉ số là để <strong>đội tự thanh tra &amp; thích nghi</strong>, không bao giờ là vũ khí của quản lý (định luật Goodhart). Outcome &gt; output.</div></div>
+        <table class="table-sm" style="margin-top:10px;">
+          <tr><th>EBM Key Value Area <span class="src src-ext">Scrum.org</span></th><th>Hỏi gì</th></tr>
+          <tr><td><strong>Current Value (CV)</strong></td><td>Giá trị đang giao cho khách hàng/người dùng hôm nay.</td></tr>
+          <tr><td><strong>Unrealized Value (UV)</strong></td><td>Giá trị tiềm năng nếu các nhu cầu được đáp ứng.</td></tr>
+          <tr><td><strong>Time-to-Market (T2M)</strong></td><td>Đội học hỏi &amp; giao nhanh đến đâu.</td></tr>
+          <tr><td><strong>Ability-to-Innovate (A2I)</strong></td><td>Năng lực giao giá trị mới (so với gánh nặng toil/tech-debt).</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🏢</span><div><strong>Phục vụ tổ chức:</strong> duy trì một <strong>backlog impediment cấp tổ chức</strong> và nuôi dưỡng <strong>Community of Practice</strong> — SM gỡ các điểm nghẽn hệ thống vượt ra ngoài một đội.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 SCALING -->
+    <section class="section-block" id="section-scaling">
+      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Mục 10</div><h2>Scaling <span class="src src-ext">Mở rộng</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Framework</th><th>Ý tưởng</th></tr>
+          <tr><td><strong>Nexus</strong> <span class="src src-ext">Scrum.org</span></td><td>3–9 Scrum Team trên một sản phẩm; Nexus Integration Team quản lý phụ thuộc liên đội.</td></tr>
+          <tr><td><strong>LeSS</strong></td><td>Scale Scrum với quy trình bổ sung tối thiểu; một PO, một backlog.</td></tr>
+          <tr><td><strong>SAFe</strong></td><td>ART/PI planning cấp doanh nghiệp; SM thường là "Scrum Master / Team Coach".</td></tr>
+        </table>
+        <p style="margin-top:6px;">Ở quy mô lớn, SM còn điều phối <strong>Scrum of Scrums</strong> / đồng bộ liên đội — phối hợp với <a href="#pm">PM</a> về các phụ thuộc.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 RETRO -->
+    <section class="section-block" id="section-retro">
+      <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Mục 11</div><h2>Kỹ thuật Retrospective</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Đổi format thường xuyên để retro luôn tươi mới &amp; trung thực <span class="src src-ext">Derby &amp; Larsen</span>:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li><strong>Start / Stop / Continue</strong> — đơn giản, hướng hành động.</li>
+          <li><strong>4 Ls</strong> — Liked, Learned, Lacked, Longed for.</li>
+          <li><strong>Mad / Sad / Glad</strong> — làm lộ cảm xúc.</li>
+          <li><strong>Sailboat</strong> — gió (trợ lực) vs mỏ neo (cản trở).</li>
+          <li><strong>5 giai đoạn</strong>: Mở màn → Thu thập dữ liệu → Tạo insight → Chốt hành động → Kết thúc.</li>
+        </ul>
+        <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>Mỗi retro kết thúc với <strong>1–3 hành động cụ thể, có người phụ trách</strong> — và retro kế tiếp soát lại chúng. Không hành động = diễn kịch.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 ANTI-PATTERNS -->
+    <section class="section-block" id="section-antipatterns">
+      <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Mục 12</div><h2>Anti-Pattern</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Anti-pattern</th><th>Thay bằng</th></tr>
+          <tr><td><strong>SM kiểu thư ký</strong> (chỉ đặt phòng, ghi chép)</td><td>Coach, điều phối, gỡ impediment.</td></tr>
+          <tr><td><strong>SM kiểu PM</strong> (giao task, theo dõi status)</td><td>Trao quyền tự quản; PM sở hữu quản trị dự án.</td></tr>
+          <tr><td><strong>"Cảnh sát Scrum"</strong> (áp luật giáo điều)</td><td>Dạy phần <em>tại sao</em>; thích nghi cùng đội.</td></tr>
+          <tr><td><strong>SM vắng mặt / kiêm nhiệm hình thức</strong></td><td>Chủ động phục vụ đội &amp; tổ chức.</td></tr>
+          <tr><td><strong>Velocity làm KPI</strong></td><td>Tập trung vào outcome &amp; sức khoẻ đội.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Mục 13</div><h2>Ranh giới &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sm">
+          <tr><th>Hoạt động</th><th>SM</th><th>PO</th><th>Developers</th><th>PM</th></tr>
+          <tr><td>Thiết lập &amp; coach Scrum</td><td><strong>A/R</strong></td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Điều phối các event</td><td><strong>R</strong></td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Gỡ impediment</td><td><strong>A</strong></td><td>C</td><td>R</td><td>C</td></tr>
+          <tr><td>Backlog &amp; độ ưu tiên</td><td>C</td><td><strong>A</strong></td><td>C</td><td>I</td></tr>
+          <tr><td>Phạm vi / lịch / ngân sách dự án</td><td>I</td><td>C</td><td>I</td><td><strong>A</strong></td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> Scrum Guide 2020 (Schwaber &amp; Sutherland). Mở rộng: Robert Greenleaf (Servant Leadership); John Whitmore (GROW); Bruce Tuckman (các giai đoạn đội nhóm); Amy Edmondson &amp; Google Project Aristotle (an toàn tâm lý); Derby &amp; Larsen (<em>Agile Retrospectives</em>); Scrum.org (Nexus), LeSS, SAFe (scaling). PMBOK 7 cho ranh giới với PM.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Scrum Master Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn Scrum Guide 2020 · Hybrid SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div>
+</div>
