@@ -1,0 +1,510 @@
+<title>QC Testing Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-qc{width:100%;border-collapse:collapse;font-size:12px}
+.table-qc th,.table-qc td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-qc th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-qc tr:hover td{background:var(--bg-hover)}
+.table-qc code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 8px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary)}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🧪</div>
+      <div>
+        <div class="bank-title">QC Testing Handbook</div>
+        <div class="bank-sub">ISTQB CTFL v4.0 · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-process" onclick="setActive(this)"><span class="nav-icon">🔁</span> 02 · Quy trình test (7 bước)</a>
+  </nav>
+
+  <div class="sidebar-section-label">Cấp độ &amp; Kỹ thuật</div>
+  <nav id="sidebar-nav">
+    <a href="#section-static" onclick="setActive(this)"><span class="nav-icon">🔍</span> 03 · Kiểm thử tĩnh</a>
+    <a href="#section-levels" onclick="setActive(this)"><span class="nav-icon">🪜</span> 04 · Cấp độ test (V-Model)</a>
+    <a href="#section-types" onclick="setActive(this)"><span class="nav-icon">🧬</span> 05 · Loại hình test</a>
+    <a href="#section-techniques" onclick="setActive(this)"><span class="nav-icon">🎯</span> 06 · Kỹ thuật thiết kế test</a>
+  </nav>
+
+  <div class="sidebar-section-label">Chiến lược</div>
+  <nav id="sidebar-nav">
+    <a href="#section-sdlc" onclick="setActive(this)"><span class="nav-icon">⚙️</span> 07 · Tích hợp SDLC</a>
+    <a href="#section-risk" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 08 · Test theo rủi ro</a>
+  </nav>
+
+  <div class="sidebar-section-label">Quản trị</div>
+  <nav id="sidebar-nav">
+    <a href="#section-deliverables" onclick="setActive(this)"><span class="nav-icon">📑</span> 09 · Sản phẩm bàn giao QC</a>
+    <a href="#section-criteria" onclick="setActive(this)"><span class="nav-icon">🚦</span> 10 · Entry/Exit · DoR/DoD</a>
+    <a href="#section-defect" onclick="setActive(this)"><span class="nav-icon">🐞</span> 11 · Vòng đời Defect</a>
+    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 12 · Vai trò &amp; RACI</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 13 · Chỉ số &amp; KPI</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🧪 ISTQB CTFL v4.0</span>
+    <span class="comp-pill">🔀 Hybrid SDLC</span>
+    <span class="comp-pill">🏦 SBV 09/2020</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: QA / Test Manager<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: ISTQB CTFL 4.0 (2023)<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🧪 Handbook nội bộ · Bám chuẩn ISTQB CTFL v4.0</div>
+    <h1>Quality Control (QC)<br/><span>Quy trình kiểm thử &amp; Quản trị</span></h1>
+    <p>Tài liệu tham chiếu cho toàn bộ quy trình QC / kiểm thử theo best practice của SDLC và syllabus ISTQB Certified Tester Foundation Level (CTFL) v4.0 (2023). Thuật ngữ bám chặt v4.0 — các thuật ngữ cũ của v3.1 được đánh dấu rõ ở nơi liên quan.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> ISTQB CTFL 4.0</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Quy trình test 7 hoạt động</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Theo rủi ro</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">QA vs QC vs Testing</div>
+        <table class="table-qc">
+          <tr><th style="width:120px">Thuật ngữ</th><th>Trọng tâm</th><th>Bản chất</th><th>Phạm vi</th></tr>
+          <tr><td><strong>Quality Assurance (QA)</strong></td><td>Tuân thủ đúng <strong>quy trình</strong> — xây chất lượng từ gốc</td><td>Phòng ngừa · hướng quy trình</td><td>Tạo niềm tin rằng các yêu cầu chất lượng sẽ được đáp ứng</td></tr>
+          <tr><td><strong>Quality Control (QC)</strong></td><td><strong>Sản phẩm</strong> / work product — phát hiện defect</td><td>Phát hiện · hướng sản phẩm</td><td>Bao gồm các hoạt động kiểm thử giúp đạt mức chất lượng phù hợp</td></tr>
+          <tr><td><strong>Testing</strong></td><td>Đánh giá chất lượng &amp; tìm defect trên đối tượng kiểm thử</td><td>Tĩnh + Động</td><td>Là phần lớn, nhưng không phải toàn bộ, của QC</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">ℹ️</span><div>Theo ISTQB CTFL v4.0: QA hướng quy trình và mang tính phòng ngừa; QC (mà testing phục vụ) hướng sản phẩm. Testing không đồng nghĩa với QA — testing là một trong các hoạt động quality control.</div></div>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Mục tiêu kiểm thử (v4.0 §1.1)</div>
+        <ul class="step-cl" style="margin-top:8px;">
+          <li>Đánh giá các work product (yêu cầu, user story, thiết kế, mã nguồn).</li>
+          <li>Kích hoạt failure và tìm defect.</li>
+          <li>Bảo đảm mức coverage cần thiết trên đối tượng kiểm thử.</li>
+          <li>Giảm mức rủi ro về chất lượng phần mềm không đạt.</li>
+          <li>Xác minh các yêu cầu đã đặc tả có được đáp ứng hay không (verification).</li>
+          <li>Xác minh tuân thủ các yêu cầu hợp đồng, pháp lý &amp; quản lý nhà nước.</li>
+          <li>Cung cấp thông tin để các bên liên quan ra quyết định có cơ sở.</li>
+          <li>Xây dựng niềm tin vào chất lượng của đối tượng kiểm thử.</li>
+          <li>Kiểm chứng đối tượng kiểm thử hoạt động đúng kỳ vọng của người dùng &amp; các bên liên quan (validation).</li>
+        </ul>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">7 nguyên lý kiểm thử (v4.0 §1.3)</div>
+        <ol class="step-cl" style="margin-top:8px;">
+          <li><span class="step-num">1</span><strong>Kiểm thử chứng minh sự tồn tại của defect, không chứng minh sự vắng mặt của chúng.</strong></li>
+          <li><span class="step-num">2</span><strong>Kiểm thử vét cạn là bất khả thi</strong> — thay bằng rủi ro &amp; độ ưu tiên.</li>
+          <li><span class="step-num">3</span><strong>Kiểm thử sớm tiết kiệm thời gian và tiền bạc</strong> (shift-left).</li>
+          <li><span class="step-num">4</span><strong>Defect thường co cụm</strong> — số ít module chứa phần lớn defect.</li>
+          <li><span class="step-num">5</span><strong>Tests wear out</strong> <span class="pill-tag">thuật ngữ v4.0</span> — lặp mãi cùng một bộ test sẽ không tìm ra defect mới (v3.1 gọi là "pesticide paradox").</li>
+          <li><span class="step-num">6</span><strong>Kiểm thử phụ thuộc ngữ cảnh.</strong></li>
+          <li><span class="step-num">7</span><strong>"Không còn lỗi" là một nguỵ biện</strong> — hệ thống sạch defect vẫn có thể không dùng được / không đáp ứng nhu cầu.</li>
+        </ol>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · TEST PROCESS -->
+    <section class="section-block" id="section-process">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Mục 02</div><h2>Quy trình test ISTQB — 7 hoạt động</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Quy trình kiểm thử mang tính ngữ cảnh, nhưng v4.0 định nghĩa bảy hoạt động chính. Chúng phần lớn tuần tự nhưng có thể chồng lấp hoặc lặp lại.</p>
+        <pre class="art-block">1. TEST PLANNING
+   ↓
+2. TEST MONITORING &amp; CONTROL  &lt;── chạy liên tục xuyên suốt mọi hoạt động
+   ↓
+3. TEST ANALYSIS   (test cái gì)
+   ↓
+4. TEST DESIGN     (test như thế nào)
+   ↓
+5. TEST IMPLEMENTATION
+   ↓
+6. TEST EXECUTION
+   ↓
+7. TEST COMPLETION</pre>
+        <table class="table-qc" style="margin-top:12px;">
+          <tr><th style="width:150px">Hoạt động</th><th>Đầu vào</th><th>Nhiệm vụ chính</th><th>Đầu ra / work product</th></tr>
+          <tr><td><strong>1. Test Planning</strong></td><td>Chính sách &amp; chiến lược test, bối cảnh dự án, rủi ro sản phẩm/dự án</td><td>Xác định mục tiêu, phạm vi, cách tiếp cận, ước lượng, lịch &amp; tiêu chí</td><td>Test plan, entry &amp; exit criteria</td></tr>
+          <tr><td><strong>2. Monitoring &amp; Control</strong></td><td>Test plan, tiến độ &amp; kết quả thực tế</td><td>So sánh tiến độ với kế hoạch, kiểm tra exit criteria, ra hành động điều chỉnh</td><td>Báo cáo tiến độ test, chỉ thị điều chỉnh</td></tr>
+          <tr><td><strong>3. Test Analysis</strong></td><td>Test basis (yêu cầu, user story, thiết kế, phân tích rủi ro)</td><td>Phân tích test basis, đánh giá khả năng kiểm thử, xác định &amp; ưu tiên test condition</td><td>Test condition (đã ưu tiên), defect tìm thấy ngay trong test basis</td></tr>
+          <tr><td><strong>4. Test Design</strong></td><td>Test condition, test basis</td><td>Thiết kế test case &amp; bộ test, xác định coverage item &amp; nhu cầu test data, thiết kế môi trường</td><td>Test case (đã ưu tiên), coverage item, yêu cầu test data &amp; môi trường</td></tr>
+          <tr><td><strong>5. Test Implementation</strong></td><td>Test case, thiết kế môi trường</td><td>Tạo/sắp xếp test procedure &amp; test suite, chuẩn bị test data, dựng môi trường, viết test tự động</td><td>Test procedure, suite, test data, môi trường sẵn sàng, lịch thực thi</td></tr>
+          <tr><td><strong>6. Test Execution</strong></td><td>Test suite, môi trường sẵn sàng</td><td>Chạy test, so sánh thực tế với kỳ vọng, ghi log, báo defect, re-test</td><td>Test log, báo cáo defect, kết quả được ghi nhận</td></tr>
+          <tr><td><strong>7. Test Completion</strong></td><td>Kết quả &amp; log test</td><td>Xác nhận defect đã đóng, hoàn thiện &amp; lưu trữ testware, bàn giao, đúc rút bài học</td><td>Test summary report, action item, testware hoàn chỉnh, bài học kinh nghiệm</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · STATIC TESTING -->
+    <section class="section-block" id="section-static">
+      <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Mục 03</div><h2>Kiểm thử tĩnh (Static Testing)</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kiểm thử tĩnh vs động</div>
+        <table class="table-qc">
+          <tr><th style="width:140px">Khía cạnh</th><th>Kiểm thử tĩnh</th><th>Kiểm thử động</th></tr>
+          <tr><td>Có chạy code?</td><td>Không — xem xét work product</td><td>Có — chạy phần mềm</td></tr>
+          <tr><td>Kỹ thuật</td><td>Review (thủ công) &amp; phân tích tĩnh (công cụ)</td><td>Black-box, white-box, dựa kinh nghiệm</td></tr>
+          <tr><td>Tìm ra</td><td>Defect trực tiếp (vd ngay trong yêu cầu)</td><td>Failure do defect gây ra</td></tr>
+          <tr><td>Giá trị</td><td>Phát hiện defect sớm, rẻ nhất (shift-left)</td><td>Kiểm chứng hành vi thực khi chạy</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Các loại review — độ chính thức tăng dần</div>
+        <table class="table-qc">
+          <tr><th style="width:150px">Loại</th><th>Độ chính thức</th><th>Đặc điểm chính</th></tr>
+          <tr><td><strong>Informal review</strong></td><td>Không</td><td>Không quy trình định nghĩa, không tài liệu; mục đích chính = phát hiện defect với chi phí thấp.</td></tr>
+          <tr><td><strong>Walkthrough</strong></td><td>Thấp</td><td>Do chính <strong>tác giả</strong> dẫn dắt; chia sẻ kiến thức, tạo đồng thuận, tìm defect.</td></tr>
+          <tr><td><strong>Technical review</strong></td><td>Trung bình</td><td>Do các đồng nghiệp đủ chuyên môn kỹ thuật thực hiện; đạt đồng thuận &amp; ra quyết định về một vấn đề kỹ thuật.</td></tr>
+          <tr><td><strong>Inspection</strong></td><td>Cao</td><td>Chính thức nhất; theo quy trình định nghĩa với metric, quy tắc &amp; checklist; do moderator dẫn dắt (không phải tác giả).</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Quy trình review (v4.0 §3.2.1) &amp; các vai trò</div>
+        <pre class="art-block">1. PLANNING              → xác định phạm vi, công sức, tiêu chí
+2. REVIEW INITIATION     → phân phối work product &amp; tài liệu
+3. INDIVIDUAL REVIEW     → từng reviewer phân tích, ghi nhận bất thường
+4. COMMUNICATION &amp; ANALYSIS → thảo luận bất thường, chốt trạng thái/hành động
+5. FIXING &amp; REPORTING   → tác giả sửa; báo cáo kết quả &amp; metric</pre>
+        <table class="table-qc" style="margin-top:12px;">
+          <tr><th style="width:150px">Vai trò</th><th>Trách nhiệm</th></tr>
+          <tr><td><strong>Manager</strong></td><td>Quyết định nội dung được review, phân bổ thời gian/ngân sách/nguồn lực.</td></tr>
+          <tr><td><strong>Author</strong></td><td>Tạo &amp; sửa work product được review.</td></tr>
+          <tr><td><strong>Moderator</strong> (điều phối)</td><td>Bảo đảm cuộc họp hiệu quả, hoà giải, giữ tính khách quan của review.</td></tr>
+          <tr><td><strong>Scribe</strong> (thư ký)</td><td>Tổng hợp &amp; ghi lại các bất thường và quyết định.</td></tr>
+          <tr><td><strong>Reviewer</strong></td><td>Thực hiện review; có thể là chuyên gia nghiệp vụ, đồng nghiệp, hoặc bên liên quan.</td></tr>
+          <tr><td><strong>Review leader</strong></td><td>Chịu trách nhiệm tổng thể; quyết định ai tham gia &amp; khi nào.</td></tr>
+        </table>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">Phân tích tĩnh &amp; Shift-Left</div>
+        <p>Phân tích tĩnh dùng <strong>công cụ</strong> để xem xét mã nguồn hoặc mô hình mà không chạy chúng — ép chuẩn viết code (<strong>linting</strong>), phát hiện điểm yếu bảo mật (<strong>SAST</strong>), và phân tích độ phức tạp, luồng dữ liệu &amp; luồng điều khiển.</p>
+        <div class="alert alert-success" style="margin-top:10px;"><span class="alert-icon">⬅️</span><div><strong>Shift-left:</strong> review + phân tích tĩnh chạy càng sớm càng tốt (thường tự động trong CI pipeline), để bắt defect ngay từ yêu cầu/thiết kế/code trước khi kiểm thử động — nơi sửa lỗi rẻ nhất.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · TEST LEVELS -->
+    <section class="section-block" id="section-levels">
+      <div class="section-header"><div class="section-icon">🪜</div><div><div class="section-number">Mục 04</div><h2>Cấp độ kiểm thử &amp; V-Model</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Trong SDLC tuần tự, <strong>V-Model</strong> ghép mỗi giai đoạn phát triển với một cấp độ kiểm thử tương ứng; việc thiết kế test bắt đầu song song với từng giai đoạn phát triển (verification &amp; validation).</p>
+        <pre class="art-block">Requirements  ─────────────────────────────►  Acceptance Testing (UAT)
+   System Spec  ───────────────────────►  System Testing
+      Architecture  ─────────────►  Integration Testing
+         Detailed Design  ──►  Component (Unit) Testing
+                       Coding
+   (trái = xây dựng / cơ sở xác minh)      (phải = cấp độ kiểm thử)</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Các cấp độ kiểm thử (v4.0 §2.2) — mục tiêu &amp; người phụ trách</div>
+        <table class="table-qc">
+          <tr><th style="width:190px">Cấp độ</th><th>Mục tiêu</th><th>Phụ trách điển hình</th></tr>
+          <tr><td><strong>Component / Unit</strong></td><td>Kiểm thử từng thành phần độc lập, đối chiếu thiết kế chi tiết/code.</td><td>Developers</td></tr>
+          <tr><td><strong>Component Integration</strong></td><td>Kiểm thử giao diện &amp; tương tác giữa các thành phần đã tích hợp.</td><td>Developers</td></tr>
+          <tr><td><strong>System</strong></td><td>Kiểm thử hành vi &amp; năng lực của toàn hệ thống/sản phẩm (chức năng &amp; phi chức năng).</td><td>Tester độc lập / QC</td></tr>
+          <tr><td><strong>System Integration</strong></td><td>Kiểm thử giao diện giữa hệ thống với các hệ thống / dịch vụ bên ngoài.</td><td>QC / tester tích hợp</td></tr>
+          <tr><td><strong>Acceptance (UAT)</strong></td><td>Tạo niềm tin &amp; kiểm chứng mức độ phù hợp để sử dụng / sẵn sàng triển khai.</td><td>Người dùng nghiệp vụ / khách hàng</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>v4.0 tách integration thành <strong>component integration</strong> và <strong>system integration</strong>. Các hình thức acceptance gồm <strong>User Acceptance (UAT)</strong>, <strong>Operational Acceptance (OAT)</strong>, <strong>Contractual &amp; Regulatory Acceptance</strong>, và <strong>Alpha &amp; Beta</strong> testing.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · TEST TYPES -->
+    <section class="section-block" id="section-types">
+      <div class="section-header"><div class="section-icon">🧬</div><div><div class="section-number">Mục 05</div><h2>Các loại hình kiểm thử</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Loại hình test (test type)</strong> nhóm các hoạt động kiểm thử theo đặc tính chất lượng cụ thể. Loại hình test có thể thực hiện ở bất kỳ cấp độ nào. (Khác với <em>kỹ thuật thiết kế test</em> ở Mục 06.)</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:180px">Loại</th><th>Kiểm tra gì</th><th>Ví dụ</th></tr>
+          <tr><td><strong>Functional</strong></td><td>Hệ thống làm <em>cái gì</em> — hành vi so với yêu cầu chức năng.</td><td>Quy tắc nghiệp vụ, giao dịch, phép tính</td></tr>
+          <tr><td><strong>Non-functional</strong></td><td>Hệ thống vận hành <em>tốt đến đâu</em> — đặc tính chất lượng (ISO/IEC 25010).</td><td>Hiệu năng, Bảo mật, Usability (khả năng tương tác), Tương thích, Độ tin cậy</td></tr>
+          <tr><td><strong>White-box (cấu trúc)</strong></td><td>Coverage dựa trên cấu trúc bên trong / mã nguồn.</td><td>Statement / branch coverage của một module</td></tr>
+          <tr><td><strong>Change-related</strong></td><td>Kiểm chứng tác động của thay đổi.</td><td><strong>Confirmation (re-test):</strong> xác nhận defect đã sửa xong. <strong>Regression:</strong> xác nhận thay đổi không gây tác dụng phụ ngoài ý muốn.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · TEST DESIGN TECHNIQUES -->
+    <section class="section-block" id="section-techniques">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Mục 06</div><h2>Kỹ thuật thiết kế test (v4.0)</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kỹ thuật Black-box (v4.0 §4.2)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Kỹ thuật</th><th>Ý tưởng &amp; ví dụ ngắn</th></tr>
+          <tr><td><strong>Equivalence Partitioning (EP)</strong></td><td>Chia đầu vào thành các phân vùng được xử lý như nhau; mỗi phân vùng lấy một giá trị. <em>Tuổi: 0–17 không hợp lệ, 18–65 hợp lệ, 66+ cao tuổi → mỗi vùng test một giá trị.</em></td></tr>
+          <tr><td><strong>Boundary Value Analysis (BVA)</strong></td><td>Test tại các biên của phân vùng (BVA 2 giá trị hoặc 3 giá trị). <em>Số tiền 1–100 → test 0, 1, 100, 101.</em></td></tr>
+          <tr><td><strong>Decision Table Testing</strong></td><td>Mô hình hoá tổ hợp điều kiện → hành động. <em>Khoản vay: điểm tín dụng × thu nhập → duyệt / chuyển thẩm định / từ chối.</em></td></tr>
+          <tr><td><strong>State Transition Testing</strong></td><td>Mô hình hoá trạng thái &amp; chuyển đổi hợp lệ/không hợp lệ. <em>Thẻ ATM: Chờ → Đã đút thẻ → PIN đúng → Menu; sai PIN ×3 → Khoá.</em></td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kỹ thuật White-box (v4.0 §4.3)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Kỹ thuật</th><th>Ý tưởng &amp; ví dụ ngắn</th></tr>
+          <tr><td><strong>Statement testing &amp; coverage</strong></td><td>Thực thi các câu lệnh. <em>Coverage = số câu lệnh đã chạy ÷ tổng câu lệnh × 100%.</em></td></tr>
+          <tr><td><strong>Branch testing &amp; coverage</strong></td><td>Thực thi mọi nhánh (mỗi kết cục của một quyết định). <em>Coverage = số nhánh đã chạy ÷ tổng nhánh × 100%.</em> <span class="pill-tag">v4.0 dùng branch coverage — v3.1 gọi là "decision coverage"</span></td></tr>
+        </table>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kỹ thuật dựa kinh nghiệm (v4.0 §4.4)</div>
+        <table class="table-qc">
+          <tr><th style="width:200px">Kỹ thuật</th><th>Ý tưởng &amp; ví dụ ngắn</th></tr>
+          <tr><td><strong>Error Guessing</strong></td><td>Dự đoán các lỗi/defect dễ xảy ra. <em>Đầu vào rỗng, chia cho 0, số tiền âm, bấm gửi hai lần.</em></td></tr>
+          <tr><td><strong>Exploratory Testing</strong></td><td>Vừa học, vừa thiết kế, vừa thực thi test — thường theo phiên (charter có time-box).</td></tr>
+          <tr><td><strong>Checklist-based Testing</strong></td><td>Test theo một checklist điều kiện. <em>Checklist bảo mật, accessibility, UI.</em></td></tr>
+        </table>
+      </div></div>
+
+      <div class="alert alert-warning"><span class="alert-icon">⚠️</span><div><strong>Lưu ý v4.0:</strong> <strong>Use Case Testing</strong> là kỹ thuật cũ của v3.1 và <strong>không</strong> được xếp vào nhóm black-box trong v4.0 — đừng liệt kê nhầm chỗ.</div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · SDLC INTEGRATION -->
+    <section class="section-block" id="section-sdlc">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Mục 07</div><h2>Tích hợp SDLC &amp; cách tiếp cận test</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <table class="table-qc">
+          <tr><th style="width:200px">Mô hình SDLC</th><th>Cách tiếp cận test</th></tr>
+          <tr><td><strong>Waterfall (tuần tự)</strong></td><td><strong>V-Model:</strong> mỗi giai đoạn phát triển ghép một cấp độ test; cổng chính thức &amp; test basis được tài liệu hoá; thiết kế test bắt đầu sớm theo từng giai đoạn.</td></tr>
+          <tr><td><strong>Agile (lặp)</strong></td><td>Kiểm thử liên tục mỗi vòng lặp; cả đội cùng sở hữu chất lượng; nặng về tự động hoá; định hướng bởi <strong>Testing Quadrants</strong> (bên dưới).</td></tr>
+          <tr><td><strong>Hybrid / Water-Scrum-Fall</strong></td><td>Quản trị Waterfall &amp; phase gate (kế hoạch, UAT, phát hành/CAB) bao quanh giao hàng Sprint kiểu Agile — mô hình của handbook này.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Testing Quadrants (Marick; phổ biến bởi Crispin &amp; Gregory)</div>
+        <pre class="art-block">                 HỖ TRỢ ĐỘI NGŨ          │        PHẢN BIỆN SẢN PHẨM
+   HƯỚNG      Q2  Functional tests,      │  Q3  Exploratory, Usability,
+   NGHIỆP VỤ      Story tests, Examples, │      UAT
+                  Prototypes  (auto+man) │      (thủ công)
+   ─────────────────────────────────────┼──────────────────────────────
+   HƯỚNG      Q1  Unit / Component tests │  Q4  Performance, Load,
+   CÔNG NGHỆ      (tự động)             │      Security, Reliability (công cụ)</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Shift-Left Testing</div>
+        <p>Đưa hoạt động kiểm thử <strong>lên sớm hơn</strong> trong vòng đời: review yêu cầu &amp; thiết kế, chạy phân tích tĩnh trong CI, viết test trước/cùng lúc với code (TDD/BDD), và thiết kế test ngay từ khâu phân tích. Trực tiếp phục vụ Nguyên lý 3 — <em>kiểm thử sớm tiết kiệm thời gian và tiền bạc</em>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · RISK-BASED TESTING -->
+    <section class="section-block" id="section-risk">
+      <div class="section-header"><div class="section-icon">⚠️</div><div><div class="section-number">Mục 08</div><h2>Kiểm thử theo rủi ro</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Rủi ro sản phẩm vs rủi ro dự án (v4.0 §5.2)</div>
+        <table class="table-qc">
+          <tr><th style="width:160px">Nhóm rủi ro</th><th>Định nghĩa</th><th>Ví dụ</th></tr>
+          <tr><td><strong>Rủi ro sản phẩm (rủi ro chất lượng)</strong></td><td>Rủi ro sản phẩm không đáp ứng nhu cầu chính đáng — gắn với đối tượng kiểm thử.</td><td>Defect chức năng, lỗ hổng bảo mật, hiệu năng kém, hỏng dữ liệu</td></tr>
+          <tr><td><strong>Rủi ro dự án</strong></td><td>Rủi ro trong quản lý &amp; kiểm soát dự án.</td><td>Trễ tiến độ, thiếu nguồn lực/kỹ năng, môi trường bất ổn, nhà cung cấp chậm</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Phân tích rủi ro &amp; ưu tiên hoá</div>
+        <p><strong>Mức rủi ro = Khả năng xảy ra × Mức ảnh hưởng.</strong> Luồng: nhận diện rủi ro → đánh giá (khả năng × ảnh hưởng) → gán mức rủi ro → ưu tiên công sức test → giảm thiểu bằng kiểm thử → theo dõi.</p>
+        <pre class="art-block">              ẢNH HƯỞNG →
+  K        Thấp       Trung bình  Cao
+  N  Cao   Trung bình Cao         Rất cao   → test trước, coverage sâu
+  Ă  TB    Thấp       Trung bình  Cao
+  N  Thấp  Thấp       Thấp        Trung bình → test sau / nhẹ hơn
+  G</pre>
+        <p>Vùng rủi ro cao được test <strong>sớm hơn, sâu hơn và thường xuyên hơn</strong>; vùng rủi ro thấp coverage nhẹ hơn. Rủi ro cũng quyết định phạm vi regression.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Bối cảnh ngân hàng / tài chính</div>
+        <div class="alert alert-warning"><span class="alert-icon">🏦</span><div>Trong ngân hàng chịu quản lý, rủi ro sản phẩm bị chi phối bởi <strong>bảo mật</strong>, <strong>toàn vẹn giao dịch &amp; dữ liệu</strong>, và <strong>tuân thủ pháp lý</strong> (Thông tư 09/2020/TT-NHNN, ISO 27001, PCI-DSS). Các vùng này <strong>trọng yếu về bảo mật &amp; ảnh hưởng cao</strong> → được ưu tiên coverage sâu nhất, bắt buộc kiểm thử bảo mật, và kiểm thử hiệu năng ở tải đỉnh.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · QC DELIVERABLES -->
+    <section class="section-block" id="section-deliverables">
+      <div class="section-header"><div class="section-icon">📑</div><div><div class="section-number">Mục 09</div><h2>Sản phẩm bàn giao QC theo giai đoạn</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-qc">
+          <tr><th style="width:220px">Sản phẩm</th><th>Tạo ở giai đoạn</th><th>Mục đích</th></tr>
+          <tr><td><strong>Test Strategy</strong></td><td>Planning (cấp tổ chức)</td><td>Cách tiếp cận &amp; chuẩn kiểm thử dài hạn, toàn tổ chức.</td></tr>
+          <tr><td><strong>Test Plan</strong></td><td>Planning (dự án/cấp độ)</td><td>Phạm vi, mục tiêu, cách tiếp cận, lịch, entry/exit criteria cho dự án hoặc cấp độ.</td></tr>
+          <tr><td><strong>Test Case / Script</strong></td><td>Analysis &amp; Design</td><td>Điều kiện, đầu vào, kết quả mong đợi (+ script tự động &amp; test procedure).</td></tr>
+          <tr><td><strong>RTM — Ma trận truy vết yêu cầu</strong></td><td>Analysis &amp; Design</td><td>Truy vết hai chiều: yêu cầu ↔ test case ↔ defect; chứng minh coverage.</td></tr>
+          <tr><td><strong>Test Data</strong></td><td>Implementation</td><td>Dữ liệu đã chuẩn bị &amp; che giấu (mask) phục vụ thực thi (dương/âm/biên).</td></tr>
+          <tr><td><strong>Defect Report</strong></td><td>Execution</td><td>Ghi nhận bất thường: các bước, severity, priority, trạng thái.</td></tr>
+          <tr><td><strong>Test Summary Report</strong></td><td>Completion</td><td>Kết quả so với kế hoạch, coverage, rủi ro tồn dư, đánh giá chất lượng cho quyết định phát hành.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🗄️</span><div><strong>Quản lý test data &amp; môi trường:</strong> chuẩn bị dữ liệu đại diện với <strong>masking/ẩn danh hoá</strong> dữ liệu production (tuyệt đối không dùng PII thật ở non-prod — xem <a href="#sec">Security</a> / PDPD); giữ cấu hình SIT/UAT sát PROD. <strong>Tự động hoá:</strong> theo tháp kiểm thử (nhiều unit → ít integration hơn → rất ít E2E) và chạy kiểm tra tự động trong CI (xem các cổng bên <a href="#deployment">Deployment</a>).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · ENTRY / EXIT + DoR / DoD -->
+    <section class="section-block" id="section-criteria">
+      <div class="section-header"><div class="section-icon">🚦</div><div><div class="section-number">Mục 10</div><h2>Entry / Exit Criteria + DoR / DoD</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p><strong>Entry criteria</strong> = điều kiện tiên quyết để <em>bắt đầu</em> một hoạt động/cấp độ test. <strong>Exit criteria</strong> (chính là <strong>Definition of Done</strong> của kiểm thử trong v4.0) = điều kiện để <em>tuyên bố hoàn thành</em>. Trong Agile, <strong>DoR</strong> gác cổng cho story vào sprint và <strong>DoD</strong> gác cổng ra.</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:170px">Cấp độ test</th><th>Entry criteria (mẫu)</th><th>Exit criteria (mẫu)</th></tr>
+          <tr><td><strong>Component / Unit</strong></td><td>Code biên dịch được; môi trường unit test sẵn sàng</td><td>Đạt statement/branch coverage mục tiêu; unit test pass; không còn blocker mở</td></tr>
+          <tr><td><strong>Integration</strong></td><td>Các thành phần đã qua unit test; giao diện sẵn có</td><td>Các case giao diện pass; không còn defect tích hợp nghiêm trọng mở</td></tr>
+          <tr><td><strong>System</strong></td><td>Build đã lên SIT; test data &amp; test case sẵn sàng</td><td>Đã chạy hết case theo kế hoạch; đạt coverage; không còn defect Critical/Major mở</td></tr>
+          <tr><td><strong>Acceptance (UAT)</strong></td><td>Đã đạt exit của system testing; môi trường UAT &amp; người dùng nghiệp vụ sẵn sàng</td><td>Các case acceptance pass; nghiệp vụ ký duyệt; rủi ro tồn dư được chấp nhận</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DoR vs DoD (Agile)</div>
+        <table class="table-qc">
+          <tr><th style="width:220px">Definition of Ready (DoR)</th><th>Definition of Done (DoD)</th></tr>
+          <tr><td>Story rõ ràng, đã ước lượng &amp; đạt INVEST; acceptance criteria đã định nghĩa; test được; phụ thuộc đã biết.</td><td>Code đã review &amp; merge; unit + functional test pass; đạt acceptance criteria; không còn defect nghiêm trọng mở; tài liệu đã cập nhật.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · DEFECT LIFECYCLE -->
+    <section class="section-block" id="section-defect">
+      <div class="section-header"><div class="section-icon">🐞</div><div><div class="section-number">Mục 11</div><h2>Vòng đời Defect</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <pre class="art-block">NEW ─► ASSIGNED ─► OPEN / IN-PROGRESS ─► FIXED ─► READY-FOR-RETEST ─► RETEST ─┬─► CLOSED
+                                                                              └─► REOPENED ─► (quay lại Assigned)
+
+  Kết cục khác từ triage / retest:
+     REJECTED   (không phải defect hợp lệ / không tái hiện được / đúng thiết kế)
+     DEFERRED   (hợp lệ nhưng dời sang bản phát hành sau)</pre>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th style="width:170px">Trạng thái</th><th>Ý nghĩa</th></tr>
+          <tr><td><strong>New</strong></td><td>Defect được ghi nhận, chờ triage.</td></tr>
+          <tr><td><strong>Assigned</strong></td><td>Đã triage &amp; giao cho developer.</td></tr>
+          <tr><td><strong>Open / In-Progress</strong></td><td>Developer đang phân tích / sửa.</td></tr>
+          <tr><td><strong>Fixed</strong></td><td>Đã sửa, chờ kiểm chứng.</td></tr>
+          <tr><td><strong>Ready-for-Retest</strong></td><td>Bản sửa đã lên build test; xếp hàng chờ confirmation testing.</td></tr>
+          <tr><td><strong>Retest</strong></td><td>Tester chạy confirmation (re-test) + regression liên quan.</td></tr>
+          <tr><td><strong>Closed</strong></td><td>Retest pass — defect đã xử lý.</td></tr>
+          <tr><td><strong>Reopened</strong></td><td>Retest fail — trả lại phía phát triển.</td></tr>
+          <tr><td><strong>Rejected</strong></td><td>Không phải defect hợp lệ (trùng, không tái hiện, đúng thiết kế).</td></tr>
+          <tr><td><strong>Deferred</strong></td><td>Hợp lệ nhưng dời sang bản phát hành tương lai.</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Ma trận Severity vs Priority</div>
+        <p><strong>Severity</strong> = mức ảnh hưởng kỹ thuật lên hệ thống. <strong>Priority</strong> = mức khẩn cấp nghiệp vụ cần sửa. Hai đại lượng độc lập nhau.</p>
+        <table class="table-qc">
+          <tr><th>Severity ↓ / Priority →</th><th>Priority cao</th><th>Priority thấp</th></tr>
+          <tr><td><strong>Severity cao</strong></td><td><span style="color:var(--status-red)">Sửa ngay</span> — luồng thanh toán lõi bị crash.</td><td>Crash chỉ trên một cấu hình cũ hiếm gặp — vẫn sửa, nhưng theo lịch.</td></tr>
+          <tr><td><strong>Severity thấp</strong></td><td><span style="color:var(--status-yellow)">Sửa sớm</span> — sai tên ngân hàng / nội dung pháp lý trên trang chủ.</td><td><span style="color:var(--status-green)">Đưa vào backlog</span> — lệch thẩm mỹ nhỏ trên màn hình nội bộ.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>Thang severity điển hình: <strong>Critical → Major → Moderate → Minor</strong>. Thang priority điển hình: <strong>High → Medium → Low</strong>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · ROLES & RACI -->
+    <section class="section-block" id="section-raci">
+      <div class="section-header"><div class="section-icon">👥</div><div><div class="section-number">Mục 12</div><h2>Vai trò &amp; RACI</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>R</strong> = Responsible (thực hiện) · <strong>A</strong> = Accountable (chịu trách nhiệm cuối) · <strong>C</strong> = Consulted (được tham vấn) · <strong>I</strong> = Informed (được thông báo). (Mỗi hoạt động đúng một <strong>A</strong>.)</p>
+        <table class="table-qc" style="margin-top:8px;">
+          <tr><th>Hoạt động</th><th>PO</th><th>BA</th><th>Dev</th><th>QC / Tester</th><th>Test Lead</th><th>Scrum Master</th></tr>
+          <tr><td>Chiến lược &amp; kế hoạch test</td><td>C</td><td>C</td><td>C</td><td>R</td><td><strong>A</strong></td><td>I</td></tr>
+          <tr><td>Review yêu cầu / story</td><td>C</td><td><strong>A</strong></td><td>C</td><td>R</td><td>C</td><td>I</td></tr>
+          <tr><td>Thiết kế test case / script</td><td>I</td><td>C</td><td>C</td><td><strong>R/A</strong></td><td>C</td><td>I</td></tr>
+          <tr><td>Thực thi test</td><td>I</td><td>I</td><td>C</td><td><strong>R</strong></td><td><strong>A</strong></td><td>I</td></tr>
+          <tr><td>Triage &amp; sửa defect</td><td>C</td><td>C</td><td><strong>R</strong></td><td>R</td><td><strong>A</strong></td><td>C</td></tr>
+          <tr><td>Ký duyệt UAT</td><td><strong>A</strong></td><td>R</td><td>I</td><td>C</td><td>C</td><td>I</td></tr>
+          <tr><td>Quyết định phát hành / quality gate</td><td><strong>A</strong></td><td>C</td><td>C</td><td>C</td><td>R</td><td>C</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>RACI là công cụ tuỳ biến, không phải artefact của ISTQB — hãy điều chỉnh quyền sở hữu theo tổ chức của bạn. Ở một số đội, <strong>Test Lead</strong> chịu trách nhiệm cho khuyến nghị quality-gate còn <strong>PO</strong> nắm quyết định go/no-go cuối cùng.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · METRICS & KPIs -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 13</div><h2>Chỉ số / KPI của QC</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Test Coverage</div><div class="metric-value">số mục đã phủ ÷ tổng số mục × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Density</div><div class="metric-value">số defect ÷ kích thước (KLOC / module)</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Leakage / Escape Rate</div><div class="metric-value">defect lọt ra production ÷ tổng defect × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Pass Rate</div><div class="metric-value">test case pass ÷ số đã chạy × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Tiến độ thực thi test</div><div class="metric-value">đã chạy ÷ kế hoạch × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Defect Removal Efficiency (DRE)</div><div class="metric-value">phát hiện trước phát hành ÷ (trước + sau phát hành) × 100%</div></div>
+        </div>
+        <table class="table-qc" style="margin-top:14px;">
+          <tr><th style="width:230px">Chỉ số</th><th>Công thức</th><th>Đọc là</th></tr>
+          <tr><td><strong>Test Coverage</strong></td><td><code>đã phủ ÷ tổng × 100</code></td><td>Bao nhiêu phần test basis đã được kiểm (cao = tốt).</td></tr>
+          <tr><td><strong>Defect Density</strong></td><td><code>defect ÷ kích thước</code></td><td>Defect trên mỗi đơn vị kích thước; chỉ điểm module mong manh.</td></tr>
+          <tr><td><strong>Defect Leakage / Escape Rate</strong></td><td><code>defect prod ÷ tổng × 100</code></td><td>Hiệu quả của QC (thấp = tốt).</td></tr>
+          <tr><td><strong>Pass Rate</strong></td><td><code>pass ÷ đã chạy × 100</code></td><td>Độ ổn định của build.</td></tr>
+          <tr><td><strong>Tiến độ thực thi test</strong></td><td><code>đã chạy ÷ kế hoạch × 100</code></td><td>Vị trí hiện tại so với kế hoạch.</td></tr>
+          <tr><td><strong>Defect Removal Efficiency (DRE)</strong></td><td><code>trước ÷ (trước + sau) × 100</code></td><td>% defect bắt được trước phát hành (cao = tốt).</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn:</strong> Bám theo <strong>ISTQB® Certified Tester Foundation Level (CTFL) Syllabus v4.0 (2023)</strong>. Chủ đích loại trừ các thuật ngữ v3.1 đã thay thế (vd "pesticide paradox", "decision coverage", Use Case Testing trong nhóm black-box). Testing Quadrants ghi công Brian Marick, phổ biến bởi Lisa Crispin &amp; Janet Gregory.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · QC Testing Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
