@@ -1,0 +1,615 @@
+<title>BA Project Implementation Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.phase-timeline{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.pt-row{display:flex;align-items:stretch;gap:0}
+.pt-spine{display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0}
+.pt-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:var(--font-mono);border:1px solid var(--border);background:var(--surface-raised);color:var(--text-secondary);z-index:1}
+.pt-dot.done{border-color:var(--success);color:var(--success);background:var(--success-bg)}
+.pt-dot.active{border-color:var(--accent);color:var(--accent);background:var(--accent-subtle)}
+.pt-dot.waterfall{border-color:var(--info);color:var(--info);background:var(--info-bg)}
+.pt-dot.agile{border-color:var(--success);color:var(--success);background:var(--success-bg)}
+.pt-dot.hybrid{border-color:var(--status-purple);color:var(--status-purple);background:var(--status-purple-bg)}
+.pt-line{width:1px;flex:1;min-height:20px;background:var(--border-visible);margin:2px auto}
+.pt-content{flex:1;padding:0 0 20px 14px}
+.pt-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-top:4px}
+.pt-phase-label{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-disabled)}
+.pt-title{font-size:14px;font-weight:700;color:var(--text-display)}
+.pt-sdlc-tag{font-family:var(--font-mono);font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em;margin-left:auto;border:1px solid currentColor}
+.pt-body{font-size:13px;color:var(--text-secondary);line-height:1.65}
+.pt-outputs{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.pt-output-tag{font-family:var(--font-mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--surface-overlay);border:1px solid var(--border-visible);color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em}
+.role-map{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.role-node{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;text-align:center;transition:border-color 0.1s}
+.role-node:hover{border-color:var(--border-visible)}
+.role-node.center-ba{grid-column:2;grid-row:1;border-color:var(--accent);background:var(--accent-subtle)}
+.role-node-icon{font-size:20px;margin-bottom:6px}
+.role-node-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-display);text-transform:uppercase;letter-spacing:0.06em}
+.role-node-desc{font-size:11px;color:var(--text-secondary);margin-top:3px;line-height:1.4}
+.tech-matrix{width:100%;border-collapse:collapse;font-size:12px}
+.tech-matrix th{background:var(--black);text-align:left;padding:8px 12px;font-size:9px;font-weight:700;font-family:var(--font-mono);color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.tech-matrix td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;line-height:1.6}
+.tech-matrix tr:last-child td{border-bottom:none}
+.tech-matrix tr:hover td{background:var(--bg-hover)}
+.tech-matrix td:first-child{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-primary);white-space:nowrap;text-transform:uppercase;letter-spacing:0.04em}
+.qg-list{list-style:none;margin:10px 0}
+.qg-list li{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-secondary)}
+.qg-list li:last-child{border-bottom:none}
+.qg-check{width:16px;height:16px;border-radius:3px;border:1px solid var(--border-visible);flex-shrink:0;margin-top:2px;background:var(--surface-overlay)}
+.ap-item{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
+.ap-item:last-child{border-bottom:none}
+.ap-bad{color:var(--accent)}
+.ap-good{color:var(--success)}
+.invest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.invest-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;text-align:center}
+.invest-letter{font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-0.02em}
+.invest-word{font-size:11px;font-weight:700;color:var(--text-primary);margin:2px 0;text-transform:uppercase;letter-spacing:0.06em}
+.invest-desc{font-size:10px;color:var(--text-disabled);line-height:1.4}
+.own-author{color:var(--accent);font-weight:700;font-family:var(--font-mono)}
+.own-contrib{color:var(--warning);font-weight:700;font-family:var(--font-mono)}
+.own-review{color:var(--info);font-weight:700;font-family:var(--font-mono)}
+@media(max-width:900px){.role-map{grid-template-columns:1fr 1fr}.role-node.center-ba{grid-column:1/-1}.invest-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">📋</div>
+      <div>
+        <div class="bank-title">BA Project Handbook</div>
+        <div class="bank-sub">BABOK® v3 · Hybrid SDLC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Tổng quan</div>
+  <nav id="sidebar-nav">
+    <a href="#section-intro" id="nav-intro" onclick="setActive(this)"><span class="nav-icon">🏠</span> Giới thiệu</a>
+    <a href="#section-workflow" id="nav-workflow" onclick="setActive(this)"><span class="nav-icon">🔄</span> Luồng làm việc BA</a>
+    <a href="#section-roles" id="nav-roles" onclick="setActive(this)"><span class="nav-icon">👥</span> Tương tác vai trò</a>
+    <a href="#section-strategy" onclick="setActive(this)"><span class="nav-icon">🎯</span> Strategy Analysis</a>
+  </nav>
+
+  <div class="sidebar-section-label">Các giai đoạn BA</div>
+  <nav id="sidebar-nav">
+    <a href="#section-p0" onclick="setActive(this)"><span class="nav-icon">🚀</span> Giai đoạn 0 — Khởi tạo</a>
+    <a href="#section-p1" onclick="setActive(this)"><span class="nav-icon">🎙️</span> Giai đoạn 1 — Elicitation</a>
+    <a href="#section-p2" onclick="setActive(this)"><span class="nav-icon">📐</span> Giai đoạn 2 — Phân tích</a>
+    <a href="#section-p3" onclick="setActive(this)"><span class="nav-icon">✅</span> Giai đoạn 3 — Phê duyệt</a>
+    <a href="#section-p4" onclick="setActive(this)"><span class="nav-icon">🏗️</span> Giai đoạn 4 — Hỗ trợ thiết kế</a>
+    <a href="#section-p5" onclick="setActive(this)"><span class="nav-icon">⚙️</span> Giai đoạn 5 — Hỗ trợ triển khai</a>
+    <a href="#section-p6" onclick="setActive(this)"><span class="nav-icon">🧪</span> Giai đoạn 6 — UAT</a>
+    <a href="#section-p7" onclick="setActive(this)"><span class="nav-icon">🚢</span> Giai đoạn 7 — Release</a>
+    <a href="#section-p8" onclick="setActive(this)"><span class="nav-icon">📊</span> Giai đoạn 8 — PIR</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-docs" onclick="setActive(this)"><span class="nav-icon">📄</span> Sở hữu tài liệu</a>
+    <a href="#section-techniques" onclick="setActive(this)"><span class="nav-icon">🔧</span> Danh mục kỹ thuật</a>
+    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> Khung NFR</a>
+    <a href="#section-quality" onclick="setActive(this)"><span class="nav-icon">🎯</span> Quality Gates</a>
+    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> Anti-Pattern</a>
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> Chỉ số BA</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">📘 BABOK® v3</span>
+    <span class="comp-pill">🔀 Hybrid SDLC</span>
+    <span class="comp-pill">🏦 SBV 09/2020</span>
+  </div>
+
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: BA Lead<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-yellow)">Bản nháp</span><br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a><br/>
+    <a href="#po">← Product Owner Handbook</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">📋 Handbook nội bộ · Bám chuẩn BABOK® v3</div>
+    <h1>Business Analyst<br/><span>Project Implementation Handbook</span></h1>
+    <p>Cẩm nang toàn diện cho luồng làm việc của Business Analyst trong mô hình SDLC <strong>Hybrid Water-Scrum-Fall</strong> của ngân hàng.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> BABOK® Guide v3</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Hybrid Water-Scrum-Fall</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-green)"></div> 9 giai đoạn BA</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Tuân thủ SBV</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- INTRODUCTION -->
+    <section class="section-block" id="section-intro">
+      <div class="section-header">
+        <div class="section-icon">🏠</div>
+        <div><div class="section-number">Giới thiệu</div><h2>Mục đích &amp; Phạm vi</h2><div class="sec-sub">Ai nên đọc · Bao quát điều gì · Dùng thế nào</div></div>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body">
+          <div class="card-title">Handbook này là gì</div>
+          <p style="margin-bottom:12px;">Handbook định nghĩa <strong>luồng làm việc của Business Analyst (BA)</strong> cho mọi dự án triển khai phần mềm tại ngân hàng. Nó ghi lại trách nhiệm, sản phẩm bàn giao, điểm tương tác và quality gate của BA xuyên suốt mọi giai đoạn thực thi dự án.</p>
+          <p>Tài liệu được thiết kế để <strong>cả đội dự án cùng đọc</strong>, giúp mọi bên hiểu cần kỳ vọng gì từ chức năng BA.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div class="info-tile"><div class="info-tile-icon">👩‍💼</div><div class="info-tile-title">Độc giả chính</div><div class="info-tile-desc">Business Analyst · Project Manager · Solution Architect · QA Lead · Product Owner</div></div>
+        <div class="info-tile"><div class="info-tile-icon">📖</div><div class="info-tile-title">Độc giả thứ cấp</div><div class="info-tile-desc">Đội phát triển · Stakeholder nghiệp vụ · Cán bộ tuân thủ · UX/UI Designer</div></div>
+        <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Khung quản chiếu</div><div class="info-tile-desc">BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · Thông tư 09/2020/TT-NHNN</div></div>
+      </div>
+      <div class="alert alert-info" style="margin-top:16px;">
+        <span class="alert-icon">ℹ️</span>
+        <div><strong>Cách dùng handbook:</strong> Điều hướng theo giai đoạn bằng sidebar. Đối chiếu với <a href="#deployment" style="color:var(--status-blue)">Deployment Runbook</a> cho các thủ tục tiền-production và go-live.</div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- BA WORKFLOW -->
+    <section class="section-block" id="section-workflow">
+      <div class="section-header">
+        <div class="section-icon">🔄</div>
+        <div><div class="section-number">Luồng làm việc BA</div><h2>Vòng đời BA đầu-cuối</h2><div class="sec-sub">9 giai đoạn từ khởi tạo đến post-implementation review</div></div>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-body">
+          <div class="card-title">Phân cấp loại yêu cầu (BABOK)</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;">
+            <div style="background:var(--status-blue-bg);border:1px solid rgba(96,165,250,0.3);border-radius:var(--radius-md);padding:14px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:var(--status-blue);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Business Requirements</div>
+              <div style="font-size:10.5px;color:var(--text-muted);">TẠI SAO — Mục tiêu, KPI, Outcome</div>
+            </div>
+            <div style="background:var(--status-purple-bg);border:1px solid rgba(167,139,250,0.3);border-radius:var(--radius-md);padding:14px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:var(--status-purple);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Stakeholder Requirements</div>
+              <div style="font-size:10.5px;color:var(--text-muted);">AI — Nhu cầu theo nhóm người dùng</div>
+            </div>
+            <div style="background:var(--accent-dim);border:1px solid rgba(124,92,252,0.3);border-radius:var(--radius-md);padding:14px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:var(--accent-bright);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Solution Requirements</div>
+              <div style="font-size:10.5px;color:var(--text-muted);">CÁI GÌ — Năng lực hệ thống</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-timeline">
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot waterfall">0</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 0</div><div class="pt-title">Khởi tạo &amp; Lập kế hoạch dự án</div></div><span class="pt-sdlc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">WATERFALL</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Kickoff dự án. BA đọc Charter/SOW, xây Stakeholder Register, viết Business Need Statement.</div><div class="pt-outputs"><span class="pt-output-tag">Stakeholder Register</span><span class="pt-output-tag">BA Plan</span><span class="pt-output-tag">Business Need Statement</span><span class="pt-output-tag">Checklist phạm vi tuân thủ</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot active">1</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 1</div><div class="pt-title">Elicitation &amp; Cộng tác</div></div><span class="pt-sdlc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">HYBRID</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Đã nhận diện stakeholder; BA plan được duyệt. Thực hiện elicitation (phỏng vấn, workshop, quan sát).</div><div class="pt-outputs"><span class="pt-output-tag">Ghi chú elicitation</span><span class="pt-output-tag">Assumptions Log</span><span class="pt-output-tag">Tóm tắt phỏng vấn</span><span class="pt-output-tag">Đầu vào Risk Register</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot waterfall">2</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 2</div><div class="pt-title">Phân tích yêu cầu &amp; Định nghĩa thiết kế</div></div><span class="pt-sdlc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">HYBRID</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Dữ liệu elicitation đã đủ. Mô hình hoá As-Is/To-Be (BPMN 2.0), viết yêu cầu (SMART), dựng RTM, ưu tiên hoá (MoSCoW/WSJF).</div><div class="pt-outputs"><span class="pt-output-tag">BRD / SRS</span><span class="pt-output-tag">User Story + AC</span><span class="pt-output-tag">Sơ đồ quy trình</span><span class="pt-output-tag">RTM</span><span class="pt-output-tag">Đặc tả NFR</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot waterfall">3</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 3</div><div class="pt-title">Thẩm định &amp; Phê duyệt yêu cầu</div></div><span class="pt-sdlc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">CỔNG WATERFALL</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Yêu cầu ở trạng thái draft-complete. Review chính thức → ký duyệt bằng văn bản → baseline.</div><div class="pt-outputs"><span class="pt-output-tag">Biên bản ký duyệt</span><span class="pt-output-tag">BRD/SRS đã baseline</span><span class="pt-output-tag">Backlog được duyệt</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot agile">4</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 4</div><div class="pt-title">Đánh giá giải pháp &amp; Hỗ trợ thiết kế</div></div><span class="pt-sdlc-tag" style="background:var(--status-green-bg);color:var(--status-green);">AGILE</span></div><div class="pt-body"><strong>Kích hoạt:</strong> SA/DEV bắt đầu thiết kế giải pháp hoặc sprint planning. BA tham gia design review, thẩm định wireframe, viết interface spec.</div><div class="pt-outputs"><span class="pt-output-tag">Phản hồi UI review</span><span class="pt-output-tag">Interface Spec</span><span class="pt-output-tag">Data Mapping</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot agile">5</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 5</div><div class="pt-title">Hỗ trợ triển khai</div></div><span class="pt-sdlc-tag" style="background:var(--status-green-bg);color:var(--status-green);">SPRINT AGILE</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Sprint phát triển bắt đầu. BA là người làm rõ yêu cầu, quản lý Change Request, hỗ trợ triage defect.</div><div class="pt-outputs"><span class="pt-output-tag">Change Request Log</span><span class="pt-output-tag">Đánh giá tác động</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot waterfall">6</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 6</div><div class="pt-title">User Acceptance Testing (UAT)</div></div><span class="pt-sdlc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">CỔNG WATERFALL</span></div><div class="pt-body"><strong>Kích hoạt:</strong> DEV tuyên bố tính năng/bản phát hành sẵn sàng UAT. BA soạn UAT Plan, viết test script từ acceptance criteria.</div><div class="pt-outputs"><span class="pt-output-tag">UAT Plan</span><span class="pt-output-tag">UAT Script</span><span class="pt-output-tag">UAT Defect Log</span><span class="pt-output-tag">UAT Sign-off</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot waterfall">7</div><div class="pt-line"></div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 7</div><div class="pt-title">Release &amp; Chuyển giao</div></div><span class="pt-sdlc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">WATERFALL</span></div><div class="pt-body"><strong>Kích hoạt:</strong> UAT đạt; release được CAB duyệt. BA góp Release Notes, thẩm định tài liệu đào tạo, định nghĩa tiêu chí rollback.</div><div class="pt-outputs"><span class="pt-output-tag">Release Notes (nghiệp vụ)</span><span class="pt-output-tag">Hướng dẫn sử dụng</span><span class="pt-output-tag">Bộ slide đào tạo</span></div></div></div>
+        <div class="pt-row"><div class="pt-spine"><div class="pt-dot done">8</div></div><div class="pt-content"><div class="pt-header"><div><div class="pt-phase-label">Giai đoạn 8</div><div class="pt-title">Post-Implementation Review</div></div><span class="pt-sdlc-tag" style="background:var(--status-green-bg);color:var(--status-green);">REVIEW</span></div><div class="pt-body"><strong>Kích hoạt:</strong> Kết thúc giai đoạn ổn định (2–4 tuần sau go-live). BA đo lại KPI/OKR ban đầu, ghi bài học, gieo backlog kế tiếp.</div><div class="pt-outputs"><span class="pt-output-tag">Báo cáo PIR</span><span class="pt-output-tag">Lessons Learned Log</span><span class="pt-output-tag">Tài liệu quy trình cập nhật</span></div></div></div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ROLE INTERACTIONS -->
+    <section class="section-block" id="section-roles">
+      <div class="section-header">
+        <div class="section-icon">👥</div>
+        <div><div class="section-number">Mô hình cộng tác</div><h2>Bản đồ tương tác vai trò của BA</h2><div class="sec-sub">BA làm việc với ai và luồng thông tin giữa các vai trò</div></div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">BA — đầu mối cộng tác trung tâm</div>
+          <div class="role-map">
+            <div class="role-node"><div class="role-node-icon">🏢</div><div class="role-node-name">Stakeholder nghiệp vụ</div><div class="role-node-desc">→ BA: Nhu cầu, phản hồi, phê duyệt<br/>← BA: User Story, đề nghị ký duyệt</div></div>
+            <div class="role-node center-ba"><div class="role-node-icon">📋</div><div class="role-node-name">Business Analyst</div><div class="role-node-desc">Điểm điều phối trung tâm. Chuyển hoá nhu cầu nghiệp vụ thành yêu cầu có cấu trúc.</div></div>
+            <div class="role-node"><div class="role-node-icon">📅</div><div class="role-node-name">Project Manager</div><div class="role-node-desc">→ BA: Độ ưu tiên, lịch, ràng buộc<br/>← BA: Phạm vi, tác động CR, sign-off</div></div>
+            <div class="role-node"><div class="role-node-icon">🏗️</div><div class="role-node-name">Solution Architect</div><div class="role-node-desc">→ BA: Phản hồi thiết kế, tính khả thi<br/>← BA: BRD, Use Case, Interface Spec</div></div>
+            <div class="role-node"><div class="role-node-icon">💻</div><div class="role-node-name">Developers</div><div class="role-node-desc">→ BA: Câu hỏi, Change Request<br/>← BA: User Story, Acceptance Criteria</div></div>
+            <div class="role-node"><div class="role-node-icon">🧪</div><div class="role-node-name">Đội QA</div><div class="role-node-desc">→ BA: Defect, lỗ hổng yêu cầu<br/>← BA: RTM, AC, UAT Script</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- STRATEGY ANALYSIS (BABOK KA4) -->
+    <section class="section-block" id="section-strategy">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">BABOK KA4</div><h2>Strategy Analysis</h2><div class="sec-sub">Hiện trạng · Tương lai · Rủi ro · Chiến lược thay đổi — trước khi làm yêu cầu</div></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Vì sao phần này đi trước</div>
+        <p>Trước khi thu thập yêu cầu, BA (cùng sponsor &amp; PM) định khung <strong>thay đổi nào đáng làm và tại sao</strong>. Strategy Analysis của BABOK v3 gồm bốn thành phần:</p>
+        <table class="comp-table" style="margin-top:10px;">
+          <thead><tr><th>Thành phần</th><th>BA tạo ra gì</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Analyze Current State</strong></td><td>Năng lực As-Is, điểm đau, KPI, ràng buộc — vạch xuất phát của thay đổi.</td></tr>
+            <tr><td><strong>Define Future State</strong></td><td>Outcome To-Be mong muốn, KPI/OKR mục tiêu, phạm vi không gian giải pháp, thước đo thành công.</td></tr>
+            <tr><td><strong>Assess Risks</strong></td><td>Rủi ro trên đường tới trạng thái tương lai (khả thi, mức tiếp nhận, pháp lý) — nạp vào Risk Register.</td></tr>
+            <tr><td><strong>Define Change Strategy</strong></td><td>Phân tích khoảng cách (As-Is → To-Be), các trạng thái chuyển tiếp, hướng tiếp cận đề xuất — đầu vào cho Business Case.</td></tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">🔗</span><div>BA <strong>đóng góp</strong> phân tích hiện trạng/tương lai vào <strong>Business Case</strong> (do PM/Sponsor sở hữu — xem <a href="#pm">PM Handbook</a>) và bàn giao mục tiêu giá trị cho <a href="#po">Product Owner</a> để lập roadmap.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- PHASES 0-8 DETAILED -->
+    <section class="section-block" id="section-p0">
+      <div class="section-header"><div class="section-icon">🚀</div><div><div class="section-number">Giai đoạn 0 · Cổng Waterfall · Kích hoạt: Kickoff dự án</div><h2>Khởi tạo &amp; Lập kế hoạch dự án</h2><div class="sec-sub">Stakeholder Register · BA Plan · Business Need Statement · Phạm vi tuân thủ</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>BA làm gì ở Giai đoạn 0</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body open"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Đọc Project Charter, SOW hoặc Business Case</strong> — nắm ranh giới phạm vi, khung ngân sách, mức phù hợp chiến lược.</div></li>
+              <li><span class="step-num">2</span><div><strong>Xây Stakeholder Register</strong> — với từng stakeholder: vai trò, mức ảnh hưởng, mức quan tâm, kênh liên lạc ưa thích, vị trí RACI.</div></li>
+              <li><span class="step-num">3</span><div><strong>Phỏng vấn khởi động</strong> — ghi nhận mục tiêu, KPI/OKR, điểm đau. Chưa đề xuất giải pháp ở bước này.</div></li>
+              <li><span class="step-num">4</span><div><strong>Viết Business Need Statement</strong>: <span class="mono">"[Stakeholder] cần [năng lực] để đạt [outcome] bởi vì [lý do]."</span></div></li>
+              <li><span class="step-num">5</span><div><strong>Lập BA Plan</strong> — phương pháp elicitation, công cụ, nhịp review, sản phẩm bàn giao theo giai đoạn, RACI cho các đầu ra của BA.</div></li>
+              <li><span class="step-num">6</span><div><strong>Nhận diện phạm vi tuân thủ/pháp lý</strong> từ sớm — Thông tư 09/2020, Nghị định 13/2023, PCI-DSS nếu có dữ liệu thẻ.</div></li>
+            </ol>
+          </div></div>
+        </div>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Đầu ra</span><h3>Sản phẩm bàn giao chính</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ul class="output-list">
+              <li><span class="output-icon">📋</span><div><strong>Stakeholder Register</strong> — bản đồ vai trò kèm RACI và kênh liên lạc ưa thích</div></li>
+              <li><span class="output-icon">📌</span><div><strong>Business Need Statement</strong> — một câu đóng khung vấn đề/cơ hội cốt lõi</div></li>
+              <li><span class="output-icon">📅</span><div><strong>BA Plan</strong> — lịch elicitation, lựa chọn công cụ, chủ sở hữu sản phẩm bàn giao, nhịp review</div></li>
+              <li><span class="output-icon">⚖️</span><div><strong>Checklist phạm vi tuân thủ</strong> — quy định trong phạm vi, đầu mối pháp chế, các nghĩa vụ chính</div></li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p1">
+      <div class="section-header"><div class="section-icon">🎙️</div><div><div class="section-number">Giai đoạn 1 · Hybrid · Kích hoạt: BA Plan được duyệt</div><h2>Elicitation &amp; Cộng tác</h2><div class="sec-sub">Phỏng vấn · Workshop · Quan sát · Assumptions Log</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Thực hiện elicitation</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body open"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Chọn kỹ thuật elicitation</strong> theo loại stakeholder, độ phức tạp thông tin, và giai đoạn SDLC.</div></li>
+              <li><span class="step-num">2</span><div><strong>Ghi chép thô, không diễn giải</strong> trong buổi làm việc. Tách quan sát khỏi suy luận.</div></li>
+              <li><span class="step-num">3</span><div><strong>Phân loại đầu vào sau buổi làm việc</strong> thành: Yêu cầu / Ràng buộc / Giả định / Rủi ro / Câu hỏi cần theo dõi.</div></li>
+              <li><span class="step-num">4</span><div><strong>Xác nhận lại thông tin đã ghi</strong> với stakeholder — nhắc lại những gì bạn nghe trước khi sang bước phân tích.</div></li>
+            </ol>
+            <div class="alert alert-danger" style="margin-top:14px;"><span class="alert-icon">🚫</span><div><strong>Anti-pattern cần tránh:</strong> Câu hỏi dẫn dắt · Đóng khung giải-pháp-trước · Chỉ nghe stakeholder to tiếng nhất · Bỏ qua bước xác nhận thông tin</div></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p2">
+      <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Giai đoạn 2 · Hybrid · Kích hoạt: Đủ dữ liệu elicitation</div><h2>Phân tích yêu cầu &amp; Định nghĩa thiết kế</h2><div class="sec-sub">BRD · SRS · User Story · RTM · Business Rules · Đặc tả NFR</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Phân tích &amp; Mô hình hoá</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body open"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Phân loại theo BABOK</strong> — Business / Stakeholder / Solution (Functional + Non-Functional) / Transition.</div></li>
+              <li><span class="step-num">2</span><div><strong>Mô hình hoá As-Is và To-Be</strong> bằng BPMN 2.0, Use Case Diagram, DFD/ERD, State Transition Diagram.</div></li>
+              <li><span class="step-num">3</span><div><strong>Tách Business Rules</strong> khỏi yêu cầu chức năng.</div></li>
+              <li><span class="step-num">4</span><div><strong>Đặc tả NFR</strong> theo ISO/IEC 25010 — mọi NFR phải đo được.</div></li>
+              <li><span class="step-num">5</span><div><strong>Viết theo định dạng phù hợp SDLC</strong>: [WATERFALL] câu "shall" trong BRD/SRS · [AGILE] User Story với acceptance criteria dạng GWT.</div></li>
+              <li><span class="step-num">6</span><div><strong>Ưu tiên hoá</strong> bằng MoSCoW (khoá phạm vi Waterfall) hoặc WSJF (backlog Agile).</div></li>
+              <li><span class="step-num">7</span><div><strong>Dựng và duy trì RTM</strong> — liên kết: Business Requirement → Solution Requirement → Test Case → Defect.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p3">
+      <div class="section-header"><div class="section-icon">✅</div><div><div class="section-number">Giai đoạn 3 · Cổng Waterfall · Kích hoạt: Yêu cầu draft-complete</div><h2>Thẩm định &amp; Phê duyệt yêu cầu</h2><div class="sec-sub">Ký duyệt chính thức · Baseline · Kích hoạt quy trình Change Request</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Quy trình review &amp; baseline</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body open"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Tổ chức họp Requirements Review</strong> — thành phần bắt buộc: Stakeholder nghiệp vụ, PM, SA, QA Lead, Cán bộ tuân thủ.</div></li>
+              <li><span class="step-num">2</span><div><strong>Ghi nhận mọi phản hồi</strong>, cập nhật tài liệu trong SLA đã thống nhất.</div></li>
+              <li><span class="step-num">3</span><div><strong>Lấy ký duyệt bằng văn bản</strong> — duyệt miệng KHÔNG chấp nhận cho baseline chính thức.</div></li>
+              <li><span class="step-num">4</span><div><strong>Baseline yêu cầu</strong> — mọi thay đổi sau đó phải đi qua <strong>quy trình Change Request</strong>.</div></li>
+              <li><span class="step-num">5</span><div><strong>Công bố lên kho dùng chung</strong> — thông báo phiên bản baseline cho mọi đội sử dụng.</div></li>
+            </ol>
+            <div class="alert alert-danger" style="margin-top:14px;"><span class="alert-icon">🚫</span><div><strong>Quy tắc sống còn:</strong> Mọi thay đổi phạm vi sau baseline <strong>phải</strong> qua BA đánh giá tác động trước khi PM cập nhật lịch hoặc SA đổi thiết kế.</div></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p4">
+      <div class="section-header"><div class="section-icon">🏗️</div><div><div class="section-number">Giai đoạn 4 · Sprint Agile · Kích hoạt: SA/DEV bắt đầu thiết kế</div><h2>Đánh giá giải pháp &amp; Hỗ trợ thiết kế</h2><div class="sec-sub">Design review · Thẩm định wireframe · Interface spec · Data mapping</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn thiết kế</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Tham gia Solution Design Review</strong> — kiểm chứng thiết kế thoả yêu cầu, không chỉ đẹp về kỹ thuật.</div></li>
+              <li><span class="step-num">2</span><div><strong>Review wireframe và prototype UI/UX</strong> đối chiếu kỳ vọng của stakeholder.</div></li>
+              <li><span class="step-num">3</span><div><strong>Thẩm định Data Mapping</strong> cho các tính năng tích hợp/di trú — bảo đảm mapping trường khớp Data Dictionary.</div></li>
+              <li><span class="step-num">4</span><div><strong>Viết Interface Specification / yêu cầu API</strong> — hợp đồng vào/ra, xử lý lỗi, business rule.</div></li>
+              <li><span class="step-num">5</span><div><strong>Hỗ trợ DEV ước lượng</strong> — cung cấp bối cảnh nghiệp vụ cho Planning Poker.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p5">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Giai đoạn 5 · Sprint Agile · Kích hoạt: Sprint phát triển bắt đầu</div><h2>Hỗ trợ triển khai</h2><div class="sec-sub">Làm rõ yêu cầu · Change Request · Triage defect · Cổng DoR/DoD</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong các Sprint</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Đầu mối làm rõ yêu cầu</strong> cho DEV — phản hồi trong SLA thống nhất (khuyến nghị: trong ngày làm việc).</div></li>
+              <li><span class="step-num">2</span><div><strong>Quản lý Change Request</strong> — phân tích tác động, trình PM + CCB duyệt, cập nhật RTM sau phê duyệt.</div></li>
+              <li><span class="step-num">3</span><div><strong>Review test case</strong> đối chiếu acceptance criteria — bảo đảm QA đang test đúng hành vi.</div></li>
+              <li><span class="step-num">4</span><div><strong>Hỗ trợ triage defect</strong> — phân loại: Defect do yêu cầu (BA sở hữu) vs Defect do triển khai (DEV sở hữu).</div></li>
+              <li><span class="step-num">5</span><div><strong>Giữ cổng Definition of Ready</strong> — không story nào vào sprint khi checklist DoR chưa hoàn tất.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p6">
+      <div class="section-header"><div class="section-icon">🧪</div><div><div class="section-number">Giai đoạn 6 · Cổng Waterfall · Kích hoạt: DEV tuyên bố sẵn sàng UAT</div><h2>User Acceptance Testing (UAT)</h2><div class="sec-sub">UAT Plan · Test Script · Defect Log · Ký duyệt bằng văn bản</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Hoạt động &amp; Đầu ra</span><h3>UAT do BA dẫn dắt</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Soạn UAT Plan</strong> — phạm vi, mục tiêu, entry/exit criteria, lịch, vai trò.</div></li>
+              <li><span class="step-num">2</span><div><strong>Viết UAT Test Script</strong> trực tiếp từ acceptance criteria (định dạng GWT ánh xạ 1:1 sang bước test).</div></li>
+              <li><span class="step-num">3</span><div><strong>Điều phối và hỗ trợ thực thi UAT</strong> cùng người dùng nghiệp vụ — BA không tự chạy test, người dùng nghiệp vụ chạy.</div></li>
+              <li><span class="step-num">4</span><div><strong>Theo dõi và phân loại defect UAT</strong> — Critical / Major / Minor.</div></li>
+              <li><span class="step-num">5</span><div><strong>Lấy UAT Sign-off</strong> từ stakeholder nghiệp vụ có thẩm quyền — bắt buộc bằng văn bản, không duyệt miệng.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p7">
+      <div class="section-header"><div class="section-icon">🚢</div><div><div class="section-number">Giai đoạn 7 · Waterfall · Kích hoạt: UAT đạt, CAB duyệt</div><h2>Release &amp; Chuyển giao</h2><div class="sec-sub">Release Notes · Hướng dẫn sử dụng · Đào tạo · Tiêu chí rollback</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn release</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Đóng góp cho Release Notes</strong> — viết phần tác động nghiệp vụ.</div></li>
+              <li><span class="step-num">2</span><div><strong>Thẩm định tài liệu đào tạo và hướng dẫn sử dụng</strong> — đối chiếu độ chính xác với yêu cầu cuối cùng.</div></li>
+              <li><span class="step-num">3</span><div><strong>Định nghĩa tiêu chí rollback/dự phòng</strong> từ góc nhìn nghiệp vụ.</div></li>
+              <li><span class="step-num">4</span><div><strong>Hỗ trợ giai đoạn hypercare</strong> — sẵn sàng giải đáp cho người dùng nghiệp vụ trong 1–2 tuần đầu sau go-live.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="section-p8">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Giai đoạn 8 · Review · Kích hoạt: Kết thúc ổn định</div><h2>Post-Implementation Review</h2><div class="sec-sub">Benefits realization · Bài học kinh nghiệm · Gieo hạt vòng lặp kế tiếp</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>Các hoạt động PIR</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <ol class="step-cl">
+              <li><span class="step-num">1</span><div><strong>Benefits Realization Review</strong> — đo lại các KPI/OKR đã nêu ở Giai đoạn 0.</div></li>
+              <li><span class="step-num">2</span><div><strong>Ghi lại Lessons Learned</strong> — góc nhìn BA: kỹ thuật elicitation nào hiệu quả, vấn đề yêu cầu nào lộ ra muộn.</div></li>
+              <li><span class="step-num">3</span><div><strong>Cập nhật tài liệu quy trình nghiệp vụ</strong> — To-Be của Giai đoạn 2 trở thành As-Is mới cho các dự án tương lai.</div></li>
+              <li><span class="step-num">4</span><div><strong>Nhận diện backlog item</strong> cho vòng lặp kế tiếp — nạp vào Product Roadmap.</div></li>
+            </ol>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- DOCUMENT OWNERSHIP MATRIX -->
+    <section class="section-block" id="section-docs">
+      <div class="section-header"><div class="section-icon">📄</div><div><div class="section-number">Tra cứu</div><h2>Ma trận sở hữu tài liệu</h2><div class="sec-sub">BA sở hữu, đóng góp, và review những gì</div></div></div>
+      <div class="card">
+        <div class="card-body" style="padding:0;">
+          <div style="padding:14px 22px 10px;display:flex;gap:16px;font-size:11px;border-bottom:1px solid var(--border-subtle);">
+            <span><span class="own-author">■ Tác giả</span> — BA là chủ sở hữu chính</span>
+            <span><span class="own-contrib">■ Đóng góp</span> — BA cung cấp đầu vào</span>
+            <span><span class="own-review">■ Review</span> — BA review, không sở hữu</span>
+          </div>
+          <table class="comp-table">
+            <thead><tr><th>Tài liệu</th><th>Vai trò BA</th><th>Cộng tác chính</th></tr></thead>
+            <tbody>
+              <tr><td>Stakeholder Register</td><td><span class="own-author">Tác giả</span></td><td>PM</td></tr>
+              <tr><td>BA Plan</td><td><span class="own-author">Tác giả</span></td><td>PM</td></tr>
+              <tr><td>BRD / SRS</td><td><span class="own-author">Tác giả</span></td><td>Stakeholder, SA, PM</td></tr>
+              <tr><td>User Story &amp; Acceptance Criteria</td><td><span class="own-author">Tác giả</span></td><td>PO, DEV, QA</td></tr>
+              <tr><td>Sơ đồ quy trình (As-Is / To-Be, BPMN)</td><td><span class="own-author">Tác giả</span></td><td>SME, SA</td></tr>
+              <tr><td>Use Case Specification</td><td><span class="own-author">Tác giả</span></td><td>SA, DEV</td></tr>
+              <tr><td>Data Dictionary &amp; Bảng thuật ngữ</td><td><span class="own-author">Tác giả</span></td><td>SA, DBA</td></tr>
+              <tr><td>Business Rules Catalog</td><td><span class="own-author">Tác giả</span></td><td>Stakeholder, SA</td></tr>
+              <tr><td>Đặc tả NFR</td><td><span class="own-author">Tác giả</span></td><td>SA, Security, Ops</td></tr>
+              <tr><td>Ma trận truy vết yêu cầu (RTM)</td><td><span class="own-author">Tác giả</span></td><td>QA, PM</td></tr>
+              <tr><td>UAT Plan &amp; Script</td><td><span class="own-author">Tác giả</span></td><td>QA, Người dùng nghiệp vụ</td></tr>
+              <tr><td>Change Request Log</td><td><span class="own-author">Tác giả</span></td><td>PM</td></tr>
+              <tr><td>Post-Implementation Review (PIR)</td><td><span class="own-author">Tác giả</span></td><td>PM, Stakeholder</td></tr>
+              <tr><td>Project Charter</td><td><span class="own-contrib">Đóng góp</span></td><td>PM, Sponsor</td></tr>
+              <tr><td>Risk Register</td><td><span class="own-contrib">Đóng góp</span></td><td>PM</td></tr>
+              <tr><td>Release Notes</td><td><span class="own-contrib">Đóng góp</span></td><td>PM, DEV</td></tr>
+              <tr><td>Thiết kế hệ thống (HLD/LLD)</td><td><span class="own-review">Review</span></td><td>SA</td></tr>
+              <tr><td>Test Plan &amp; Test Case</td><td><span class="own-review">Review</span></td><td>QA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TECHNIQUE CATALOG -->
+    <section class="section-block" id="section-techniques">
+      <div class="section-header"><div class="section-icon">🔧</div><div><div class="section-number">Tra cứu</div><h2>Danh mục kỹ thuật BA</h2><div class="sec-sub">Khi nào dùng kỹ thuật nào — ánh xạ theo mục đích</div></div></div>
+      <div class="card">
+        <div class="card-body" style="padding:0;">
+          <table class="tech-matrix">
+            <thead><tr><th>Mục đích</th><th>Kỹ thuật khuyến nghị</th></tr></thead>
+            <tbody>
+              <tr><td>Nhận diện vấn đề</td><td>5 Whys · Fishbone (Ishikawa) · Root Cause Analysis</td></tr>
+              <tr><td>Phân tích stakeholder</td><td>Ma trận Stakeholder (Power/Interest) · Onion Diagram · RACI</td></tr>
+              <tr><td>Elicitation</td><td>Phỏng vấn · Workshop · Quan sát · Phân tích tài liệu · Khảo sát · Focus Group · Prototyping</td></tr>
+              <tr><td>Mô hình hoá quy trình</td><td>BPMN 2.0 · Sơ đồ Swimlane · Value Stream Mapping</td></tr>
+              <tr><td>Xác định phạm vi</td><td>Context Diagram · Use Case Diagram · Feature Decomposition</td></tr>
+              <tr><td>Viết yêu cầu</td><td>User Story + AC dạng GWT · Câu "shall" (IEEE 830) · Specification by Example</td></tr>
+              <tr><td>Mô hình hoá dữ liệu</td><td>ERD · Data Flow Diagram (DFD) · Data Dictionary</td></tr>
+              <tr><td>Quy tắc quyết định</td><td>Decision Table · Decision Tree · Business Rules Catalog</td></tr>
+              <tr><td>Ưu tiên hoá</td><td>MoSCoW · Kano · WSJF · 100-Dollar Test · RICE · Ma trận Value vs Effort</td></tr>
+              <tr><td>Thẩm định</td><td>Walkthrough · Inspection · Prototyping · Review Acceptance Criteria</td></tr>
+              <tr><td>Phân tích khoảng cách</td><td>So sánh As-Is vs To-Be · Ma trận Fit-Gap</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- NFR FRAMEWORK -->
+    <section class="section-block" id="section-nfr">
+      <div class="section-header"><div class="section-icon">⚡</div><div><div class="section-number">Tra cứu · ISO/IEC 25010</div><h2>Khung yêu cầu phi chức năng (NFR)</h2><div class="sec-sub">Mọi NFR phải đo được — không dùng ngôn từ mơ hồ</div></div></div>
+      <div class="alert alert-warning"><span class="alert-icon">📐</span><div><strong>Quy tắc:</strong> Mọi NFR phải <strong>đo được</strong>. ❌ <em>"Hệ thống phải nhanh"</em> — ✅ <em>"Thời gian phản hồi P95 phải &lt; 500ms tại 1.000 người dùng đồng thời"</em></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;" class="grid-2col">
+        <div class="callout-box" style="background:var(--status-blue-bg);border-color:rgba(96,165,250,0.3);"><div class="callout-title" style="color:var(--status-blue);">⚡ Hiệu năng</div><div class="callout-body" style="color:var(--text-secondary);">Thời gian phản hồi · Throughput · Mức dùng tài nguyên<br/><em style="font-size:11px;">vd: P95 API &lt; 500ms, SLA uptime 99.5%</em></div></div>
+        <div class="callout-box" style="background:var(--status-red-bg);border-color:rgba(248,113,113,0.3);"><div class="callout-title" style="color:var(--status-red);">🔒 Bảo mật</div><div class="callout-body" style="color:var(--text-secondary);">AuthN · AuthZ · Mã hoá at-rest/in-transit · Audit log<br/><em style="font-size:11px;">Phải tuân thủ Thông tư 09/2020, Nghị định 13/2023</em></div></div>
+        <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.3);"><div class="callout-title" style="color:var(--status-green);">🛡️ Độ tin cậy</div><div class="callout-body" style="color:var(--text-secondary);">Khả dụng (SLA%) · Chịu lỗi · RTO / RPO<br/><em style="font-size:11px;">vd: RTO &lt; 4h, RPO &lt; 1h cho hệ thống core banking</em></div></div>
+        <div class="callout-box" style="background:var(--status-yellow-bg);border-color:rgba(251,191,36,0.3);"><div class="callout-title" style="color:var(--status-yellow);">♿ Usability</div><div class="callout-body" style="color:var(--text-secondary);">Dễ học · Accessibility (tối thiểu WCAG 2.1 AA) · UX<br/><em style="font-size:11px;">vd: người dùng mới hoàn thành tác vụ lõi trong 3 phút không cần trợ giúp</em></div></div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- QUALITY GATES -->
+    <section class="section-block" id="section-quality">
+      <div class="section-header"><div class="section-icon">🎯</div><div><div class="section-number">Quality Gates</div><h2>SMART · INVEST · DoR · DoD</h2><div class="sec-sub">Tiêu chí BA thẩm định trước khi yêu cầu chuyển sang giai đoạn kế</div></div></div>
+      <div class="card" style="margin-bottom:14px;"><div class="card-body">
+        <div class="card-title">SMART — Chất lượng Business Requirement</div>
+        <div class="invest-grid">
+          <div class="invest-card"><div class="invest-letter">S</div><div class="invest-word">Specific</div><div class="invest-desc">Định nghĩa rõ, không mơ hồ</div></div>
+          <div class="invest-card"><div class="invest-letter">M</div><div class="invest-word">Measurable</div><div class="invest-desc">Có tiêu chí thành công định lượng</div></div>
+          <div class="invest-card"><div class="invest-letter">A</div><div class="invest-word">Achievable</div><div class="invest-desc">Khả thi về kỹ thuật &amp; vận hành</div></div>
+          <div class="invest-card"><div class="invest-letter">R</div><div class="invest-word">Relevant</div><div class="invest-desc">Gắn với mục tiêu kinh doanh</div></div>
+          <div class="invest-card"><div class="invest-letter">T</div><div class="invest-word">Time-bound</div><div class="invest-desc">Có khung thời gian giao rõ ràng</div></div>
+        </div>
+      </div></div>
+      <div class="card" style="margin-bottom:14px;"><div class="card-body">
+        <div class="card-title">INVEST — Chất lượng User Story</div>
+        <div class="invest-grid">
+          <div class="invest-card"><div class="invest-letter">I</div><div class="invest-word">Independent</div><div class="invest-desc">Không phụ thuộc ngầm vào story khác</div></div>
+          <div class="invest-card"><div class="invest-letter">N</div><div class="invest-word">Negotiable</div><div class="invest-desc">Chi tiết có thể tiến hoá qua trao đổi</div></div>
+          <div class="invest-card"><div class="invest-letter">V</div><div class="invest-word">Valuable</div><div class="invest-desc">Mang giá trị cho người dùng hoặc doanh nghiệp</div></div>
+          <div class="invest-card"><div class="invest-letter">E</div><div class="invest-word">Estimable</div><div class="invest-desc">DEV ước lượng được với độ tin cậy</div></div>
+          <div class="invest-card"><div class="invest-letter">S</div><div class="invest-word">Small</div><div class="invest-desc">Hoàn thành được trong một sprint</div></div>
+          <div class="invest-card"><div class="invest-letter">T</div><div class="invest-word">Testable</div><div class="invest-desc">Có acceptance criteria rõ ràng</div></div>
+        </div>
+      </div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="grid-2col">
+        <div class="card"><div class="card-body">
+          <div class="card-title">✅ Definition of Ready (DoR)</div>
+          <ul class="qg-list">
+            <li><div class="qg-check"></div>User story theo định dạng "Là… tôi muốn… để…"</li>
+            <li><div class="qg-check"></div>Acceptance criteria dạng Given-When-Then</li>
+            <li><div class="qg-check"></div>Phụ thuộc đã nhận diện và xử lý hoặc xếp trình tự</li>
+            <li><div class="qg-check"></div>Đính kèm mockup UX (nếu là story giao diện)</li>
+            <li><div class="qg-check"></div>NFR đã nêu hoặc tham chiếu</li>
+            <li><div class="qg-check"></div>Business rule được tham chiếu</li>
+            <li><div class="qg-check"></div>Đội DEV đã ước lượng</li>
+            <li><div class="qg-check"></div>Đủ nhỏ để hoàn thành trong một sprint</li>
+          </ul>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div class="card-title">🏁 Definition of Done (DoD)</div>
+          <ul class="qg-list">
+            <li><div class="qg-check"></div>Mọi acceptance criteria đạt và được kiểm chứng</li>
+            <li><div class="qg-check"></div>Code đã peer-review và merge</li>
+            <li><div class="qg-check"></div>Unit &amp; integration test pass</li>
+            <li><div class="qg-check"></div>QA hoàn tất, không còn defect Critical/Major mở</li>
+            <li><div class="qg-check"></div>Kiểm chứng NFR đạt</li>
+            <li><div class="qg-check"></div>Tài liệu đã cập nhật</li>
+            <li><div class="qg-check"></div>Đã demo và được PO/Nghiệp vụ chấp nhận</li>
+            <li><div class="qg-check"></div>Đã deploy lên môi trường staging</li>
+          </ul>
+        </div></div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ANTI-PATTERNS -->
+    <section class="section-block" id="section-antipatterns">
+      <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Tra cứu</div><h2>Anti-Pattern — Những điều không làm</h2><div class="sec-sub">Sai lầm BA thường gặp và cách làm đúng</div></div></div>
+      <div class="card">
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Elicitation</span><h3>Anti-pattern khi elicitation</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body open"><div class="accordion-content">
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Hỏi <strong>câu dẫn dắt</strong> — "Anh/chị muốn nút ở góc phải trên, đúng không?" Thay bằng: hỏi mở, trung lập.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Chấp nhận <strong>giải pháp thay cho yêu cầu</strong> — "Tôi cần một dropdown 5 mục." <span class="ap-good">✅ Lái lại: "Trước khi bàn giải pháp, anh/chị mô tả giúp bài toán nghiệp vụ nó giải quyết?"</span></div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Chỉ dựa vào <strong>stakeholder to tiếng nhất</strong> — chủ động tìm những tiếng nói im lặng đại diện nhóm người dùng trọng yếu.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Bỏ qua bước <strong>xác nhận</strong> thông tin — luôn nhắc lại những gì đã nghe trước khi phân tích.</div></div>
+          </div></div>
+        </div>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Phân tích</span><h3>Anti-pattern khi phân tích</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Viết yêu cầu <strong>áp đặt cách triển khai</strong> — Yêu cầu nói CÁI GÌ, không nói LÀM THẾ NÀO.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Gộp <strong>nhiều yêu cầu vào một câu</strong> — chữ "và" là tín hiệu cảnh báo. Tách các yêu cầu ghép.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Dùng <strong>từ mơ hồ</strong>: "thân thiện", "nhanh", "mạnh mẽ", "trực quan". Mọi tính từ phải đo được.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Bỏ qua NFR — NFR không ghi lại sẽ trở thành những defect đắt nhất khi phát hiện muộn.</div></div>
+          </div></div>
+        </div>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Ký duyệt &amp; CR</span><h3>Anti-pattern khi ký duyệt &amp; Change Request</h3></div><div class="accordion-chevron">▾</div></button>
+          <div class="accordion-body"><div class="accordion-content">
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Chấp nhận <strong>duyệt miệng</strong> cho baseline chính thức — ký duyệt văn bản là bắt buộc với Waterfall và phạm vi lõi Hybrid.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Cho phép <strong>đổi phạm vi không qua quy trình Change Request</strong> sau baseline — mọi thay đổi cần đánh giá tác động trước khi làm.</div></div>
+            <div class="ap-item"><span class="ap-bad">❌</span><div>Cập nhật yêu cầu <strong>âm thầm</strong> không báo QA và không cập nhật RTM — sẽ tạo lỗ hổng độ phủ test.</div></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- BA METRICS (BABOK KA1 monitoring) -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Tra cứu · BABOK KA1</div><h2>Chỉ số hiệu quả của BA</h2><div class="sec-sub">Đo hiệu quả BA thế nào — Business Analysis Planning &amp; Monitoring</div></div></div>
+      <div class="card"><div class="card-body">
+        <p>KA1 của BABOK v3 yêu cầu đo hiệu quả công việc BA. Theo dõi các chỉ số này để bắt sớm vấn đề yêu cầu — defect gốc từ yêu cầu là loại đắt nhất.</p>
+        <table class="comp-table" style="margin-top:10px;">
+          <thead><tr><th>Chỉ số</th><th>Công thức / định nghĩa</th><th>Tín hiệu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Requirements Volatility</strong></td><td>yêu cầu thay đổi ÷ tổng đã baseline × 100%</td><td>Biến động cao → elicitation yếu / phạm vi mờ</td></tr>
+            <tr><td><strong>Requirements Defect Leakage</strong></td><td>defect truy về yêu cầu ÷ tổng defect × 100%</td><td>Chất lượng yêu cầu (thấp = tốt)</td></tr>
+            <tr><td><strong>RTM Coverage</strong></td><td>yêu cầu có test phủ ÷ tổng × 100%</td><td>Độ hoàn chỉnh truy vết (mục tiêu 100%)</td></tr>
+            <tr><td><strong>Rework Rate</strong></td><td>yêu cầu làm lại sau sign-off ÷ tổng × 100%</td><td>Độ ổn định baseline</td></tr>
+            <tr><td><strong>UAT Pass Rate</strong></td><td>case UAT pass ÷ số đã chạy × 100%</td><td>Độ chính xác của yêu cầu &amp; AC</td></tr>
+            <tr><td><strong>Elicitation Cycle Time</strong></td><td>thời gian từ kickoff → yêu cầu baseline</td><td>Năng suất BA theo giai đoạn</td></tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">🔗</span><div>Defect leakage &amp; RTM coverage dùng chung với <a href="#qc">QC Testing Handbook</a> (chỉ số defect) — BA sở hữu góc nhìn chất lượng-yêu-cầu.</div></div>
+      </div></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · BA Project Implementation Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
