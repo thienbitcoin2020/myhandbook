@@ -1,0 +1,565 @@
+<title>Product Owner Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-po{width:100%;border-collapse:collapse;font-size:12px}
+.table-po th,.table-po td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-po th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-po tr:hover td{background:var(--bg-hover)}
+.table-po code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.src{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.src-scrum{color:var(--status-green);border-color:var(--status-green)}
+.src-ext{color:var(--status-blue);border-color:var(--status-blue)}
+.do-dont{display:grid;grid-template-columns:1fr;gap:0}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🎯</div>
+      <div>
+        <div class="bank-title">Product Owner Handbook</div>
+        <div class="bank-sub">Scrum Guide 2020 · Hướng outcome</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-vision" onclick="setActive(this)"><span class="nav-icon">🔭</span> 02 · Vision &amp; Chiến lược</a>
+  </nav>
+
+  <div class="sidebar-section-label">Discovery</div>
+  <nav id="sidebar-nav">
+    <a href="#section-discovery" onclick="setActive(this)"><span class="nav-icon">🔬</span> 03 · Product Discovery</a>
+    <a href="#section-stakeholder" onclick="setActive(this)"><span class="nav-icon">🤝</span> 04 · Stakeholder &amp; Thị trường</a>
+  </nav>
+
+  <div class="sidebar-section-label">Backlog</div>
+  <nav id="sidebar-nav">
+    <a href="#section-backlog" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 05 · Quản lý Backlog</a>
+    <a href="#section-artifacts" onclick="setActive(this)"><span class="nav-icon">📝</span> 06 · Artifact yêu cầu</a>
+    <a href="#section-prioritization" onclick="setActive(this)"><span class="nav-icon">📊</span> 07 · Ưu tiên hoá</a>
+    <a href="#section-estimation" onclick="setActive(this)"><span class="nav-icon">🎲</span> 08 · Ước lượng &amp; Sizing</a>
+  </nav>
+
+  <div class="sidebar-section-label">Giao hàng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-events" onclick="setActive(this)"><span class="nav-icon">🔁</span> 09 · Scrum Events</a>
+    <a href="#section-dor-dod" onclick="setActive(this)"><span class="nav-icon">🚦</span> 10 · DoR / DoD</a>
+    <a href="#section-release" onclick="setActive(this)"><span class="nav-icon">🚀</span> 11 · Release &amp; Giá trị</a>
+  </nav>
+
+  <div class="sidebar-section-label">Tra cứu</div>
+  <nav id="sidebar-nav">
+    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · Chỉ số / KPI</a>
+    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> 13 · Anti-Pattern</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🎯 Scrum Guide 2020</span>
+    <span class="comp-pill">🔀 Hybrid / PMBOK 7</span>
+    <span class="comp-pill">📈 Hướng outcome</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Product Owner / Product<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: Scrum Guide 2020<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#sa">← Solution Architect Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#pm">← PM Project Handbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🎯 Handbook nội bộ · Bám chuẩn Scrum Guide 2020</div>
+    <h1>Product Owner (PO)<br/><span>Vai trò, Discovery &amp; Giao giá trị</span></h1>
+    <p>Tài liệu tham chiếu cho vai trò Product Owner xuyên suốt SDLC — bám nền Scrum Guide 2020, mở rộng với quản trị sản phẩm hiện đại (discovery, hướng outcome) và thực hành hybrid PMBOK 7. Thuật ngữ chuẩn Scrum được gắn nhãn <span class="src src-scrum">Scrum 2020</span>; phần còn lại ghi rõ nguồn <span class="src src-ext">Mở rộng</span>.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Scrum Guide 2020</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Hướng outcome</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Dual-track Discovery</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Owner là ai <span class="src src-scrum">Scrum 2020</span></div>
+        <p>Theo Scrum Guide 2020, <strong>Product Owner chịu trách nhiệm tối đa hoá giá trị của sản phẩm</strong> tạo ra từ công việc của Scrum Team. PO là một trong <strong>ba accountability</strong> của Scrum Team (Product Owner, Scrum Master, Developers) — bản 2020 đã thay cách gọi cũ "ba role", và <strong>không có đội con hay cấp bậc</strong> trong Scrum Team.</p>
+        <p style="margin-top:8px;">PO cũng chịu trách nhiệm quản lý <strong>Product Backlog</strong> hiệu quả:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Xây dựng và truyền đạt tường minh <strong>Product Goal</strong>.</li>
+          <li>Tạo và truyền đạt rõ ràng các Product Backlog item.</li>
+          <li>Sắp thứ tự các Product Backlog item.</li>
+          <li>Bảo đảm Product Backlog minh bạch, dễ thấy và được thấu hiểu.</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">ℹ️</span><div>Product Owner là <strong>một người, không phải một hội đồng</strong>. PO có thể uỷ thác công việc (vd cho BA) nhưng vẫn giữ trách nhiệm cuối. Để PO thành công, cả tổ chức phải tôn trọng quyết định của họ.</div></div>
+      </div></div>
+
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">PO vs BA vs Product Manager vs Project Manager</div>
+        <table class="table-po">
+          <tr><th>Khía cạnh</th><th>Product Owner</th><th>Business Analyst</th><th>Product Manager</th><th>Project Manager</th></tr>
+          <tr><td><strong>Trọng tâm chính</strong></td><td>Tối đa giá trị sản phẩm; sở hữu backlog</td><td>Thu thập &amp; phân tích yêu cầu</td><td>Chiến lược sản phẩm, thị trường, kết quả kinh doanh</td><td>Giao một dự án: phạm vi, thời gian, chi phí, rủi ro</td></tr>
+          <tr><td><strong>Tầm nhìn</strong></td><td>Sản phẩm (liên tục)</td><td>Yêu cầu / thay đổi</td><td>Vòng đời sản phẩm &amp; thị trường</td><td>Dự án (tạm thời, có time-box)</td></tr>
+          <tr><td><strong>Quyết định</strong></td><td><strong>Cái gì</strong> &amp; <strong>khi nào</strong> (thứ tự backlog)</td><td>Khuyến nghị; không sở hữu độ ưu tiên</td><td>Định hướng, roadmap, giá, go/no-go</td><td>Lịch, nguồn lực, phụ thuộc</td></tr>
+          <tr><td><strong>Chuẩn</strong></td><td>Scrum Guide 2020</td><td>BABOK v3</td><td>Quản trị sản phẩm</td><td>PMBOK 7</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>Ở tổ chức nhỏ, <strong>Product Manager ≈ Product Owner</strong>. Trong Scrum, chỉ <strong>PO</strong> được định nghĩa — BA, Product Manager, Project Manager là vai trò tổ chức, <em>không phải</em> accountability của Scrum. Xem ranh giới ở handbook <a href="#ba">BA</a> và <a href="#pm">PM</a>.</div></div>
+      </div></div>
+
+      <div class="card"><div class="card-body">
+        <div class="card-title">PO trong cấu trúc đội nhóm <span class="src src-scrum">Scrum 2020</span></div>
+        <p><strong>Một Product Owner · một Product Backlog · một Product Goal.</strong> Một PO có thể phục vụ nhiều Developers hoặc nhiều đội cùng làm một sản phẩm, nhưng luôn chỉ có đúng một Product Backlog được sắp thứ tự và một Product Goal tại một thời điểm.</p>
+        <pre class="art-block">          ┌──────────── 1 Product Owner ────────────┐
+          │            1 Product Backlog              │
+          │             1 Product Goal                │
+          └───────┬───────────┬───────────┬──────────┘
+              Team A       Team B       Team C   (dùng chung một backlog)</pre>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Ghi chú scaling <span class="src src-ext">Mở rộng · SAFe / Nexus</span>: các framework scale nhiều đội có thể thêm area/feature PO, nhưng nguyên tắc một-PO-chịu-trách-nhiệm cho mỗi sản phẩm vẫn giữ nguyên.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · VISION & STRATEGY -->
+    <section class="section-block" id="section-vision">
+      <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Mục 02</div><h2>Product Vision &amp; Chiến lược</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Vision → Product Goal → Backlog</div>
+        <pre class="art-block">PRODUCT VISION  (khát vọng — lý do sản phẩm tồn tại)
+      ↓
+PRODUCT GOAL    (trạng thái tương lai cụ thể — mục tiêu dài hạn)  [Scrum 2020]
+      ↓
+PRODUCT BACKLOG (phần "cái gì" để hiện thực hoá Product Goal)     [Scrum 2020]
+      ↓
+SPRINT GOAL     (một mục tiêu duy nhất cho Sprint này)           [Scrum 2020]
+      ↓
+INCREMENT       (một bước tiến có giá trị tới Product Goal)      [Scrum 2020]</pre>
+        <p><strong>Product Goal <span class="src src-scrum">Scrum 2020</span>:</strong> mô tả một trạng thái tương lai của sản phẩm; nằm <em>trong</em> Product Backlog; là mục tiêu dài hạn của Scrum Team. Đội tập trung vào <strong>một Product Goal tại một thời điểm</strong> — hoàn thành (hoặc từ bỏ) trước khi nhận mục tiêu kế tiếp. Đây là <strong>commitment của Product Backlog</strong>.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Công cụ Product Vision <span class="src src-ext">Mở rộng</span></div>
+        <p><strong>Elevator pitch <span class="src src-ext">Geoffrey Moore</span>:</strong></p>
+        <pre class="art-block">Dành cho [khách hàng mục tiêu] đang [nhu cầu/cơ hội],
+[tên sản phẩm] là một [hạng mục sản phẩm]
+mang lại [lợi ích chính / lý do mua].
+Khác với [đối thủ/giải pháp thay thế chính],
+sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
+        <p style="margin-top:6px;"><strong>Vision Board <span class="src src-ext">Roman Pichler</span>:</strong> Vision · Nhóm mục tiêu · Nhu cầu · Sản phẩm · Mục tiêu kinh doanh — canvas một trang để cả đội thống nhất về "tại sao".</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Công cụ chiến lược <span class="src src-ext">Mở rộng</span></div>
+        <table class="table-po">
+          <tr><th>Công cụ</th><th>Nguồn</th><th>Dùng để</th></tr>
+          <tr><td><strong>Business Model Canvas</strong></td><td>A. Osterwalder</td><td>9 khối (giá trị, phân khúc, kênh, doanh thu, chi phí…) — vẽ cách sản phẩm tạo &amp; thu giá trị.</td></tr>
+          <tr><td><strong>Value Proposition Canvas</strong></td><td>Strategyzer</td><td>Độ khớp giữa jobs/pains/gains của khách hàng và pain-reliever/gain-creator của sản phẩm.</td></tr>
+          <tr><td><strong>North Star Metric</strong></td><td>Amplitude / Sean Ellis</td><td>Chỉ số duy nhất phản ánh tốt nhất giá trị cốt lõi giao cho khách hàng; giúp cả đội cùng hướng.</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Product Roadmap <span class="src src-ext">Roman Pichler · Cagan</span></div>
+        <p>Roadmap là cây cầu giữa <strong>Product Goal</strong> và <strong>Backlog</strong> — một kế hoạch <strong>theo outcome</strong>, không phải cam kết tính năng. Ưu tiên dạng <strong>Now / Next / Later</strong> (hoặc theo chủ đề) thay vì roadmap Gantt khoá ngày.</p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Chân trời</th><th>Mức cam kết</th><th>Nội dung</th></tr>
+          <tr><td><strong>Now</strong></td><td>Độ tin cậy cao</td><td>Các outcome đang làm, gắn với Product Goal &amp; các Sprint hiện tại.</td></tr>
+          <tr><td><strong>Next</strong></td><td>Trung bình</td><td>Cơ hội đã kiểm chứng, xếp hàng sau Now.</td></tr>
+          <tr><td><strong>Later</strong></td><td>Thấp / định hướng</td><td>Chủ đề &amp; ván cược còn trong discovery — không hứa ngày.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🎯</span><div>Mỗi mục roadmap nêu <strong>outcome/chỉ số mục tiêu</strong>, không phải danh sách tính năng. Truyền đạt như một ý định, không phải hợp đồng — phòng chống anti-pattern "nhà máy tính năng" (§13).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · PRODUCT DISCOVERY -->
+    <section class="section-block" id="section-discovery">
+      <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Mục 03</div><h2>Product Discovery <span class="src src-ext">Mở rộng</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
+        <p>Discovery và Delivery chạy <strong>song song liên tục</strong>, không phải hai pha nối tiếp. Discovery quyết định <em>cái gì đáng xây</em> (giá trị, dùng được, khả thi, bền vững); Delivery <em>xây tốt những thứ đã kiểm chứng</em>.</p>
+        <pre class="art-block">DISCOVERY  ▸ phỏng vấn ▸ prototype ▸ thí nghiệm ▸ ý tưởng đã kiểm chứng ─┐
+                                                                          ▼
+DELIVERY   ───────────────▸ build ▸ test ▸ giao các backlog item đã kiểm chứng</pre>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
+        <pre class="art-block">           OUTCOME MONG MUỐN  (một kết quả kinh doanh/người dùng đo được)
+                  │
+      ┌───────────┼───────────┐
+  Opportunity  Opportunity  Opportunity   (nhu cầu chưa đáp ứng / nỗi đau / mong muốn)
+      │
+   ┌──┴──┐
+ Solution Solution                        (ý tưởng giải quyết opportunity)
+      │
+  Experiment                              (thí nghiệm kiểm chứng solution)</pre>
+        <p>Giữ mọi solution truy vết được về một <strong>outcome</strong> mong muốn — tránh nhảy sang tính năng khi chưa có vấn đề.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Kiểm chứng trước khi xây</div>
+        <p><strong>Assumption mapping:</strong> làm lộ các giả định rủi ro nhất trên bốn trục <em>desirability, viability, feasibility, usability</em>; kiểm chứng giả định rủi ro nhất trước.</p>
+        <p style="margin-top:6px;"><strong>Định dạng giả thuyết:</strong> <code>Chúng tôi tin rằng [năng lực] dành cho [người dùng] sẽ đạt [outcome]. Chúng tôi biết mình đúng khi [tín hiệu đo được].</code></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Artifact</th><th>Mục đích</th></tr>
+          <tr><td><strong>MVP</strong> (Minimum Viable Product)</td><td>Thứ nhỏ nhất giúp bạn <strong>học</strong> được thông tin kiểm chứng về khách hàng với ít công sức nhất.</td></tr>
+          <tr><td><strong>MMP</strong> (Minimum Marketable Product)</td><td>Bộ tính năng nhỏ nhất đáng <strong>phát hành ra thị trường</strong> để giao giá trị thật.</td></tr>
+          <tr><td><strong>Prototype</strong></td><td>Artifact dùng-rồi-bỏ (giấy → clickable) để thử nghiệm solution rẻ trước khi xây.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔍</span><div><strong>Continuous discovery <span class="src src-ext">Teresa Torres</span>:</strong> tiếp xúc người dùng định kỳ (lý tưởng hàng tuần). Ở lại <strong>không gian vấn đề</strong> (hiểu nhu cầu) trước khi vội sang <strong>không gian giải pháp</strong> (thiết kế câu trả lời).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · STAKEHOLDER & MARKET -->
+    <section class="section-block" id="section-stakeholder">
+      <div class="section-header"><div class="section-icon">🤝</div><div><div class="section-number">Mục 04</div><h2>Stakeholder &amp; Thị trường</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Bản đồ stakeholder — lưới Power / Interest <span class="src src-ext">Mendelow</span></div>
+        <table class="table-po">
+          <tr><th></th><th>Quan tâm thấp</th><th>Quan tâm cao</th></tr>
+          <tr><td><strong>Quyền lực cao</strong></td><td>Giữ cho <strong>hài lòng</strong></td><td><strong>Quản lý sát sao</strong> (nhân vật chủ chốt)</td></tr>
+          <tr><td><strong>Quyền lực thấp</strong></td><td><strong>Theo dõi</strong> (tối thiểu công sức)</td><td>Giữ cho <strong>được thông tin</strong></td></tr>
+        </table>
+        <p style="margin-top:8px;">Xếp từng stakeholder lên lưới, rồi tuỳ chỉnh nhịp tiếp xúc &amp; thông điệp. PO là điểm chịu trách nhiệm duy nhất cho quyết định backlog nhưng phải chủ động quản lý kỳ vọng của các bên.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Phân tích thị trường &amp; cạnh tranh</div>
+        <p><strong>SWOT:</strong> Điểm mạnh · Điểm yếu (nội tại) × Cơ hội · Thách thức (bên ngoài). Đưa phân tích đối thủ, tín hiệu thị trường (thắng/thua, lý do rời bỏ, xu hướng support, analytics) vào backlog và Product Goal.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Đàm phán &amp; thống nhất khi ưu tiên xung đột</div>
+        <ul class="step-cl">
+          <li>Đưa đánh đổi ra <strong>tường minh</strong>: "làm X bây giờ thì Y phải dời — outcome nào quan trọng hơn?"</li>
+          <li>Neo vào <strong>Product Goal &amp; outcome</strong>, không phải vào người nói to nhất.</li>
+          <li>Dùng <strong>framework ưu tiên khách quan</strong> (Mục 07) để quyết định có thể bảo vệ được, không mang tính chính trị.</li>
+          <li>Làm rõ <strong>Cost of Delay</strong> để tháo khung "cái gì cũng gấp".</li>
+          <li>Nói <strong>"chưa phải bây giờ"</strong>, thay vì "không" — sắp thứ tự backlog thay vì từ chối thẳng.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · BACKLOG MANAGEMENT -->
+    <section class="section-block" id="section-backlog">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Mục 05</div><h2>Quản lý Product Backlog</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Backlog <span class="src src-scrum">Scrum 2020</span></div>
+        <p>Một danh sách <strong>tiến hoá, có thứ tự</strong> những gì cần làm để cải thiện sản phẩm — <strong>nguồn công việc duy nhất</strong> của Scrum Team. PO sắp thứ tự. Commitment của nó là <strong>Product Goal</strong>.</p>
+        <p style="margin-top:8px;"><strong>DEEP <span class="src src-ext">Roman Pichler / Mike Cohn</span></strong> — backlog khoẻ mạnh là:</p>
+        <table class="table-po" style="margin-top:6px;">
+          <tr><th>Chữ</th><th>Thuộc tính</th><th>Ý nghĩa</th></tr>
+          <tr><td><strong>D</strong></td><td>Detailed appropriately (chi tiết vừa đủ)</td><td>Mục gần thì mịn; mục xa thì thô.</td></tr>
+          <tr><td><strong>E</strong></td><td>Estimated (có ước lượng)</td><td>Item có kích thước tương đối để sắp thứ tự &amp; dự báo.</td></tr>
+          <tr><td><strong>E</strong></td><td>Emergent (tiến hoá)</td><td>Liên tục thay đổi khi có thêm hiểu biết.</td></tr>
+          <tr><td><strong>P</strong></td><td>Prioritized (có ưu tiên)</td><td>Sắp theo giá trị/rủi ro để phần đỉnh luôn sẵn sàng kéo vào.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Product Backlog Refinement <span class="src src-scrum">Scrum 2020</span></div>
+        <table class="table-po">
+          <tr><th>Khía cạnh</th><th>Chi tiết</th></tr>
+          <tr><td><strong>Là gì</strong></td><td>Hoạt động chẻ nhỏ &amp; định nghĩa thêm các backlog item thành các mục nhỏ hơn, chính xác hơn; bổ sung chi tiết (mô tả, thứ tự, kích thước).</td></tr>
+          <tr><td><strong>Mục tiêu</strong></td><td>Giữ phần đỉnh backlog luôn "sẵn sàng" để Sprint Planning nhanh và ít rủi ro.</td></tr>
+          <tr><td><strong>Nhịp độ</strong></td><td><strong>Hoạt động liên tục</strong> — <em>không phải</em> một event chính thức của Scrum. Thường time-box ~10% năng lực của Developers <span class="src src-ext">hướng dẫn phổ biến</span>.</td></tr>
+          <tr><td><strong>Ai tham gia</strong></td><td>PO + Developers cùng làm; ai làm việc đó thì người đó ước lượng.</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
+        <pre class="art-block">BACKBONE  →  [Hoạt động 1] [Hoạt động 2] [Hoạt động 3]   (trái→phải = hành trình người dùng)
+              │            │            │
+WALKING       [must]      [must]       [must]     ── Release 1 (walking skeleton: lát mỏng chạy end-to-end)
+SKELETON      [should]    [should]                ── Release 2
+(các lát)     [could]                             ── Sau này
+                                                   (trên→dưới = độ ưu tiên)</pre>
+        <p><strong>Backbone</strong> = chuỗi hoạt động của người dùng; <strong>walking skeleton</strong> = lát mỏng nhất chạy được end-to-end; <strong>các lát cắt</strong> = những đường cắt ngang trở thành các bản phát hành. Rất hợp để hình dung MVP trên toàn hành trình.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · REQUIREMENT ARTIFACTS -->
+    <section class="section-block" id="section-artifacts">
+      <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Mục 06</div><h2>Artifact yêu cầu</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Phân cấp backlog item</div>
+        <pre class="art-block">EPIC  ▸  FEATURE  ▸  USER STORY  ▸  TASK
+(khối       (lát giá trị     (mẩu nhỏ,     (bước kỹ thuật
+ việc lớn)   của một epic)    có giá trị)    để xây story)</pre>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Chỉ <strong>"Product Backlog item"</strong> là thuật ngữ của Scrum Guide. <strong>Epic / Feature / Story / Task</strong> là cấu trúc của công cụ &amp; framework scale <span class="src src-ext">Jira / SAFe</span> — hữu ích, nhưng không thuộc Scrum Guide 2020.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">User Story + INVEST <span class="src src-ext">Bill Wake</span></div>
+        <p><strong>Định dạng:</strong> <code>Là [vai trò], tôi muốn [mục tiêu], để [lợi ích].</code></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>INVEST</th><th>Story tốt thì…</th></tr>
+          <tr><td><strong>I</strong>ndependent</td><td>Ít chồng lấn/phụ thuộc với story khác.</td></tr>
+          <tr><td><strong>N</strong>egotiable</td><td>Là khởi đầu cho trao đổi, không phải hợp đồng cứng.</td></tr>
+          <tr><td><strong>V</strong>aluable</td><td>Mang lại giá trị cho người dùng hoặc khách hàng.</td></tr>
+          <tr><td><strong>E</strong>stimable</td><td>Đủ rõ để Developers ước lượng.</td></tr>
+          <tr><td><strong>S</strong>mall</td><td>Vừa vặn trong một Sprint.</td></tr>
+          <tr><td><strong>T</strong>estable</td><td>Có acceptance criteria kiểm chứng được.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Acceptance Criteria — hai kiểu viết</div>
+        <table class="table-po">
+          <tr><th>Given-When-Then (Gherkin)</th><th>Theo quy tắc (checklist)</th></tr>
+          <tr><td><code>Given</code> khách hàng đã đăng nhập với tài khoản đã xác minh,<br/><code>When</code> họ chuyển khoản ≤ số dư,<br/><code>Then</code> giao dịch thành công và cả hai số dư cập nhật.</td><td>• Số tiền chuyển phải &gt; 0 và ≤ số dư.<br/>• Tài khoản bị khoá/đóng băng không được chuyển.<br/>• Hai số dư cập nhật nguyên tử (atomic).<br/>• Ghi một dòng audit log.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Dùng <strong>Given-When-Then</strong> cho hành vi/kịch bản (hợp với BDD); <strong>theo quy tắc</strong> cho danh sách business rule/ràng buộc.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">NFR, ràng buộc &amp; PRD</div>
+        <p><strong>Yêu cầu phi chức năng &amp; ràng buộc</strong> phải <strong>đo được</strong>: hiệu năng (P95 latency), bảo mật, khả dụng (SLA%), usability, tuân thủ (SBV / ISO 27001). Ghi nhận dưới dạng backlog item, AC của story, hoặc Definition of Done toàn cục.</p>
+        <p style="margin-top:6px;"><strong>PRD / product spec <span class="src src-ext">hybrid / PMBOK 7</span>:</strong> với sáng kiến lớn hoặc chịu quản lý, một PRD gọn (vấn đề, mục tiêu, non-goals, chỉ số thành công, phạm vi, rủi ro) bổ trợ — nhưng không thay thế — một backlog tiến hoá.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Story Splitting <span class="src src-ext">Lawrence · Wake</span></div>
+        <p>Khi story quá lớn cho một Sprint (rớt tiêu chí "Small" của INVEST), hãy chẻ <strong>theo chiều dọc</strong> (một lát mỏng giá trị chạy end-to-end), tuyệt đối không chẻ ngang theo tầng (UI/DB).</p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Pattern</th><th>Chẻ theo…</th></tr>
+          <tr><td><strong>Bước quy trình</strong></td><td>Mỗi bước của quy trình thành một story riêng.</td></tr>
+          <tr><td><strong>Business rule</strong></td><td>Happy path trước; các rule ngoại lệ sau.</td></tr>
+          <tr><td><strong>Biến thể dữ liệu</strong></td><td>Một loại dữ liệu/kênh trước, thêm dần các loại khác.</td></tr>
+          <tr><td><strong>Thao tác (CRUD)</strong></td><td>Create trước; read/update/delete tách riêng.</td></tr>
+          <tr><td><strong>SPIDR</strong></td><td>Spikes · Paths · Interfaces · Data · Rules.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔪</span><div>Mỗi lát sau khi chẻ vẫn phải <strong>có giá trị &amp; test được</strong> một cách độc lập — lát chỉ "làm phần backend" không phải story hợp lệ. <a href="#sm">Scrum Master</a> điều phối việc chẻ story trong refinement.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · PRIORITIZATION -->
+    <section class="section-block" id="section-prioritization">
+      <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Mục 07</div><h2>Ưu tiên hoá <span class="src src-ext">Mở rộng</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <table class="table-po">
+          <tr><th>Framework</th><th>Công thức / cơ chế</th><th>Hợp nhất khi</th></tr>
+          <tr><td><strong>MoSCoW</strong> <span class="src src-ext">DSDM</span></td><td>Must · Should · Could · Won't (lần này)</td><td>Đàm phán phạm vi cho một bản phát hành có time-box.</td></tr>
+          <tr><td><strong>RICE</strong> <span class="src src-ext">Intercom</span></td><td><code>(Reach × Impact × Confidence) ÷ Effort</code></td><td>So sánh nhiều tính năng với dữ liệu sơ bộ.</td></tr>
+          <tr><td><strong>WSJF</strong> <span class="src src-ext">SAFe</span></td><td><code>Cost of Delay ÷ Job Size</code><br/>CoD = Giá trị người dùng-kinh doanh + Tính cấp thời + Giảm rủi ro / Mở cơ hội</td><td>Sắp trình tự để tối đa giá trị kinh tế.</td></tr>
+          <tr><td><strong>Kano</strong> <span class="src src-ext">Noriaki Kano</span></td><td>Basic (phải có) · Performance · Excitement (gây thích thú)</td><td>Đánh giá tác động hài lòng của tính năng.</td></tr>
+          <tr><td><strong>Value vs Effort</strong></td><td>2×2: Quick wins · Big bets · Fill-ins · Time sinks</td><td>Phân loại nhanh bằng mắt cho tập nhỏ.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Ví dụ áp dụng — RICE</div>
+        <pre class="art-block">Tính năng: Thanh toán hoá đơn một chạm
+  Reach      = 8.000 người dùng/quý
+  Impact     = 2   (rất lớn=3, cao=2, vừa=1, thấp=.5)
+  Confidence = 80% = 0.8
+  Effort     = 4 người-tháng
+  RICE = (8000 × 2 × 0.8) ÷ 4 = 3.200   → so sánh với các tính năng khác</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Cost of Delay &amp; ngữ cảnh</div>
+        <p><strong>Cost of Delay <span class="src src-ext">Don Reinertsen</span>:</strong> tổn thất kinh tế trên mỗi đơn vị thời gian khi một hạng mục bị trì hoãn — cốt lõi của WSJF. <strong>Chi phí cơ hội:</strong> giá trị của lựa chọn tốt nhất bị bỏ qua khi bạn dồn năng lực vào chỗ khác.</p>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🎯</span><div><strong>Theo ngữ cảnh — không có công thức vạn năng:</strong> MoSCoW để chốt phạm vi phát hành, RICE khi so sánh có dữ liệu, WSJF để sắp trình tự kinh tế (SAFe), Kano để phân tích mức hài lòng, Value/Effort để phân loại nhanh. Framework hỗ trợ quyết định; <strong>PO vẫn là người sở hữu thứ tự</strong>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · ESTIMATION & SIZING -->
+    <section class="section-block" id="section-estimation">
+      <div class="section-header"><div class="section-icon">🎲</div><div><div class="section-number">Mục 08</div><h2>Ước lượng &amp; Sizing <span class="src src-ext">Mở rộng</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="alert alert-info" style="margin-bottom:10px;"><span class="alert-icon">ℹ️</span><div>Scrum Guide 2020 <strong>không</strong> quy định story point hay bất kỳ phương pháp sizing nào. Nó chỉ nói <strong>Developers — người trực tiếp làm việc</strong> — chịu trách nhiệm về sizing. Mọi thứ dưới đây là thực hành phổ biến, không phải kinh điển của Scrum.</div></div>
+        <table class="table-po">
+          <tr><th>Cách tiếp cận</th><th>Là gì</th><th>Đánh đổi</th></tr>
+          <tr><td><strong>Story points</strong></td><td>Kích thước tương đối (độ phức tạp + công sức + bất định), thường theo Fibonacci.</td><td>Nhanh, tương đối theo đội; vô nghĩa khi so giữa các đội.</td></tr>
+          <tr><td><strong>Ideal days</strong></td><td>Công sức tuyệt đối tính bằng ngày không bị gián đoạn.</td><td>Trực quan; chính xác giả tạo, dễ cam kết quá tay.</td></tr>
+          <tr><td><strong>#NoEstimates</strong> <span class="src src-ext">Zuill / Duarte</span></td><td>Chẻ về các mục nhỏ tương đương; dự báo bằng <strong>số lượng &amp; throughput</strong> thay vì điểm.</td><td>Ít lãng phí ước lượng; đòi kỷ luật chẻ nhỏ.</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kỹ thuật</div>
+        <ul class="step-cl">
+          <li><strong>Planning Poker</strong> <span class="src src-ext">Grenning / Cohn</span> — lật bài ước lượng đồng thời; thảo luận giá trị lệch, vote lại.</li>
+          <li><strong>T-shirt sizing</strong> — XS/S/M/L/XL cho sizing thô, giai đoạn sớm, hoặc cấp epic.</li>
+          <li><strong>Affinity estimation</strong> — lặng lẽ gom nhiều item theo kích thước tương đối trên tường; nhanh cho lô lớn.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Velocity — dùng đúng &amp; lạm dụng <span class="src src-ext">không thuộc Scrum Guide</span></div>
+        <table class="table-po">
+          <tr><th style="color:var(--status-green)">✔ Dùng để</th><th style="color:var(--status-red)">✘ KHÔNG dùng để</th></tr>
+          <tr><td>Dự báo năng lực của <em>một</em> đội cho Sprint / release kế tiếp.</td><td>So sánh hay xếp hạng các đội khác nhau.</td></tr>
+          <tr><td>Nhìn xu hướng của chính đội đó theo thời gian.</td><td>Làm chỉ tiêu hay KPI hiệu suất (định luật Goodhart → gian lận số).</td></tr>
+          <tr><td>Ước dải dự báo cho một bản phát hành.</td><td>Đo hiệu suất cá nhân.</td></tr>
+        </table>
+        <p style="margin-top:6px;"><code>Velocity = trung bình story point hoàn thành (đạt DoD) mỗi Sprint</code> — công cụ lập kế hoạch, không bao giờ là mục tiêu.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · SCRUM EVENTS -->
+    <section class="section-block" id="section-events">
+      <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Mục 09</div><h2>Scrum Events — phần của PO <span class="src src-scrum">Scrum 2020</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p><strong>Sprint</strong> là "chiếc hộp" chứa mọi event. Bốn event chính thức là Sprint Planning, Daily Scrum, Sprint Review, và Sprint Retrospective. <strong>Refinement là hoạt động liên tục, không phải event.</strong></p>
+        <table class="table-po" style="margin-top:8px;">
+          <tr><th>Event</th><th style="color:var(--status-green)">PO làm</th><th style="color:var(--status-red)">PO KHÔNG làm</th></tr>
+          <tr><td><strong>Sprint Planning</strong></td><td>Đề xuất cách sản phẩm tăng giá trị; bảo đảm các item đầu bảng được hiểu rõ; cùng xây <strong>Sprint Goal</strong>; trả lời câu hỏi phạm vi.</td><td>Giao task, áp đặt "làm thế nào", hay quyết định Developers nhận bao nhiêu việc — <strong>Developers</strong> tự chọn.</td></tr>
+          <tr><td><strong>Daily Scrum</strong></td><td>Sẵn sàng khi được hỏi; chỉ tham dự nếu đang trực tiếp làm việc trong Sprint Backlog.</td><td>Chủ trì, lấy status, hay biến nó thành buổi báo cáo cho PO — event này <strong>của Developers</strong>.</td></tr>
+          <tr><td><strong>Sprint Review</strong></td><td>Mời stakeholder; thảo luận tiến độ hướng tới <strong>Product Goal</strong>; thu thập phản hồi; cùng nhau điều chỉnh backlog.</td><td>Biến thành buổi demo một chiều hay cổng ký duyệt chính thức — bản 2020 định nghĩa đây là <strong>phiên làm việc</strong>, không phải khâu phê duyệt.</td></tr>
+          <tr><td><strong>Sprint Retrospective</strong></td><td>Tham gia như một thành viên để cải thiện cách đội làm việc.</td><td>Bỏ qua, hoặc dùng nó để quy trách nhiệm.</td></tr>
+          <tr><td><strong>Backlog Refinement</strong><br/><span class="src src-ext">liên tục, không phải event</span></td><td>Mang item đến &amp; sắp thứ tự, làm rõ ý định, cùng đội chẻ nhỏ.</td><td>Tự viết mọi story một mình hay ép ước lượng lên Developers.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · DoR / DoD -->
+    <section class="section-block" id="section-dor-dod">
+      <div class="section-header"><div class="section-icon">🚦</div><div><div class="section-number">Mục 10</div><h2>Definition of Ready / Definition of Done</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Definition of Ready (DoR) <span class="src src-ext">thực hành, KHÔNG thuộc Scrum Guide</span></div>
+        <p>Checklist chung mà một backlog item nên đạt <strong>trước khi</strong> được kéo vào Sprint. Tiêu chí điển hình:</p>
+        <ul class="step-cl" style="margin-top:6px;">
+          <li>Rõ ràng, đạt INVEST, đủ nhỏ cho một Sprint.</li>
+          <li>Acceptance criteria đã định nghĩa &amp; test được.</li>
+          <li>Phụ thuộc đã biết; Developers đã ước lượng; không còn câu hỏi chặn.</li>
+        </ul>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div>DoR là <strong>thực hành hữu ích, không phải Scrum</strong>. Áp cứng nhắc sẽ biến nó thành cổng mini-waterfall — hãy giữ nhẹ nhàng.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Definition of Done (DoD) <span class="src src-scrum">Scrum 2020</span></div>
+        <p>Bản <strong>mô tả chính thức trạng thái của Increment</strong> khi nó đạt các thước đo chất lượng mà sản phẩm yêu cầu. Đây là <strong>commitment của Increment</strong>. Item không đạt DoD thì <strong>không được phát hành hay trình bày</strong> ở Sprint Review và quay về backlog.</p>
+        <p style="margin-top:6px;"><strong>Sở hữu bởi:</strong> <strong>Scrum Team</strong> (nếu tổ chức có chuẩn chung thì đó là mức tối thiểu đội phải theo).</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">DoD vs Acceptance Criteria</div>
+        <table class="table-po">
+          <tr><th></th><th>Acceptance Criteria</th><th>Definition of Done</th></tr>
+          <tr><td><strong>Phạm vi</strong></td><td>Cho <em>một</em> backlog item</td><td>Áp cho <em>mọi</em> Increment / item</td></tr>
+          <tr><td><strong>Trả lời</strong></td><td>"Story <em>này</em> đúng chức năng chưa?"</td><td>"Increment đã đạt <em>chất lượng phát hành</em> chưa?"</td></tr>
+          <tr><td><strong>Ví dụ</strong></td><td>Hành vi cụ thể &amp; business rule</td><td>Code đã review, test pass, quét bảo mật sạch, tài liệu cập nhật, không còn defect Critical</td></tr>
+          <tr><td><strong>Chủ sở hữu</strong></td><td>PO định nghĩa, đội tinh chỉnh</td><td>Scrum Team (hoặc chuẩn tổ chức)</td></tr>
+        </table>
+        <div class="alert alert-success" style="margin-top:8px;"><span class="alert-icon">✅</span><div>Một item chỉ thực sự "done" khi thoả <strong>Acceptance Criteria của nó VÀ Definition of Done</strong>. Xem <a href="#qc">QC Testing Handbook</a> về cách kiểm thử chứng minh DoD.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · RELEASE & VALUE DELIVERY -->
+    <section class="section-block" id="section-release">
+      <div class="section-header"><div class="section-icon">🚀</div><div><div class="section-number">Mục 11</div><h2>Release &amp; Giao giá trị</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Lập kế hoạch release &amp; Increment <span class="src src-scrum">Scrum 2020</span></div>
+        <p><strong>Increment</strong> là một bậc thang cụ thể hướng tới Product Goal; các Increment cộng dồn và phải đạt <strong>Definition of Done</strong> mới dùng được. Việc phát hành <strong>tách rời khỏi Sprint</strong>: một Increment có thể được giao vào bất kỳ thời điểm nào — nhiều Increment có thể phát hành trong cùng một Sprint.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Chiến lược phát hành <span class="src src-ext">Mở rộng</span></div>
+        <table class="table-po">
+          <tr><th>Chiến lược</th><th>Là gì / khi nào</th></tr>
+          <tr><td><strong>MVP release</strong></td><td>Phát hành lát giá trị nhỏ nhất để học từ sử dụng thật trước khi mở rộng phạm vi.</td></tr>
+          <tr><td><strong>Phased / staged rollout</strong></td><td>Mở dần theo % người dùng (canary → tăng dần) để giới hạn vùng ảnh hưởng.</td></tr>
+          <tr><td><strong>Feature flags / toggles</strong></td><td>Deploy code ở trạng thái tắt; bật theo nhóm; tách deploy khỏi release; rollback tức thì.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Phối hợp phần cơ chế với <a href="#deployment">Deployment Runbook</a> (CAB, rollback) và quality gate với <a href="#qc">QC Testing Handbook</a>.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Phụ thuộc &amp; rủi ro — góc nhìn PO</div>
+        <ul class="step-cl">
+          <li>Xếp các hạng mục rủi ro/bất định cao lên <strong>sớm</strong> để mua lấy bài học.</li>
+          <li>Làm rõ phụ thuộc liên đội trên story map / roadmap; sắp thứ tự để gỡ nghẽn.</li>
+          <li>Diễn đạt rủi ro giao hàng theo <strong>Cost of Delay</strong> và giá trị bị đe doạ, phục vụ quyết định quản trị (cùng <a href="#pm">PM</a>).</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · METRICS / KPIs -->
+    <section class="section-block" id="section-metrics">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Mục 12</div><h2>Chỉ số sản phẩm / KPI</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="alert alert-info"><span class="alert-icon">🎯</span><div><strong>Outcome &gt; Output.</strong> <strong>Output</strong> = thứ ta phát hành (tính năng, story point). <strong>Outcome</strong> = thay đổi hành vi người dùng/kinh doanh mà giá trị tạo ra. PO tối ưu cho <strong>outcome</strong>; phát hành nhiều hơn không phải mục tiêu.</div></div>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Các framework sản phẩm <span class="src src-ext">Mở rộng</span></div>
+        <table class="table-po">
+          <tr><th>Framework</th><th>Thành phần</th></tr>
+          <tr><td><strong>AARRR</strong> — Pirate Metrics <span class="src src-ext">Dave McClure</span></td><td>Acquisition · Activation · Retention · Referral · Revenue (phễu).</td></tr>
+          <tr><td><strong>HEART</strong> <span class="src src-ext">Google / Kerry Rodden</span></td><td>Happiness · Engagement · Adoption · Retention · Task success — mỗi mục theo Goals-Signals-Metrics.</td></tr>
+          <tr><td><strong>North Star Metric</strong> <span class="src src-ext">Amplitude</span></td><td>Một chỉ số duy nhất phản ánh giá trị cốt lõi đã giao (vd "người trả phí hoạt động hàng tuần").</td></tr>
+        </table>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Chỉ số giá trị — công thức</div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-title">Adoption</div><div class="metric-value">người dùng tính năng ÷ người đủ điều kiện × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">Retention rate</div><div class="metric-value">((người dùng cuối kỳ − mới) ÷ người dùng đầu kỳ) × 100%</div></div>
+          <div class="metric-card"><div class="metric-title">NPS</div><div class="metric-value">% người ủng hộ (9–10) − % người chê (0–6)</div></div>
+          <div class="metric-card"><div class="metric-title">CSAT</div><div class="metric-value">phản hồi hài lòng ÷ tổng phản hồi × 100%</div></div>
+        </div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Chỉ số dòng chảy / giao hàng — công thức</div>
+        <table class="table-po">
+          <tr><th>Chỉ số</th><th>Định nghĩa / công thức</th></tr>
+          <tr><td><strong>Velocity</strong></td><td><code>trung bình story point hoàn thành mỗi Sprint</code> — hỗ trợ dự báo (một đội).</td></tr>
+          <tr><td><strong>Cycle time</strong></td><td>Thời gian từ lúc <strong>bắt đầu làm</strong> → làm xong.</td></tr>
+          <tr><td><strong>Lead time</strong></td><td>Thời gian từ lúc <strong>tạo yêu cầu</strong> → giao (theo cảm nhận khách hàng).</td></tr>
+          <tr><td><strong>Throughput</strong></td><td>Số item hoàn thành trên mỗi đơn vị thời gian (vd story/tuần).</td></tr>
+          <tr><td><strong>Định luật Little</strong></td><td><code>Cycle Time trung bình = WIP ÷ Throughput</code> — WIP thấp → dòng chảy nhanh.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · ANTI-PATTERNS -->
+    <section class="section-block" id="section-antipatterns">
+      <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Mục 13</div><h2>Anti-Pattern &amp; cạm bẫy</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-po">
+          <tr><th>Anti-pattern</th><th>Vì sao có hại</th><th>Thay bằng</th></tr>
+          <tr><td><strong>PO-proxy</strong></td><td>Một "PO" không có thực quyền, chỉ chuyển tiếp quyết định → chậm, méo mó.</td><td>Trao quyền cho một PO chịu trách nhiệm, có thể tự quyết.</td></tr>
+          <tr><td><strong>Backlog = danh sách to-do</strong></td><td>Bãi rác không thứ tự; cái gì cũng "high"; item mốc meo.</td><td>Sắp theo giá trị/rủi ro, tiến hoá, gắn với Product Goal.</td></tr>
+          <tr><td><strong>PO kiểu "thư ký"</strong></td><td>Chỉ chép lại yêu cầu của stakeholder; không phán đoán giá trị.</td><td>Sở hữu outcome; dám nói "chưa phải lúc"; kiểm chứng bằng discovery.</td></tr>
+          <tr><td><strong>Ám ảnh output</strong> (nhà máy tính năng)</td><td>Đo thành công bằng số tính năng / velocity, không phải tác động.</td><td>Tối ưu outcome; đo giá trị đã giao.</td></tr>
+          <tr><td><strong>Không được trao quyền</strong></td><td>PO phải xin phép mọi quyết định → nút thắt, không ai sở hữu.</td><td>Tổ chức tôn trọng quyết định của PO (yêu cầu của Scrum Guide).</td></tr>
+          <tr><td><strong>PO vắng mặt</strong></td><td>Không liên lạc được → Developers đoán mò, rework tăng.</td><td>Luôn trong tầm với; cộng tác liên tục.</td></tr>
+          <tr><td><strong>Backlog chi tiết quá xa</strong></td><td>Spec đồ sộ từ đầu = waterfall trá hình; lãng phí khi thay đổi.</td><td>Chi tiết phần gần; phần xa giữ thô &amp; tiến hoá.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> <strong>Scrum Guide 2020</strong> (Schwaber &amp; Sutherland) — accountability, Product Goal, các commitment, event, DoD. <strong>PMBOK Guide 7th Ed.</strong> (PMI) — bối cảnh hybrid/PRD. Thực hành mở rộng, đã dẫn trong bài: Teresa Torres (Opportunity Solution Tree, continuous discovery), Jeff Patton (Story Mapping, dual-track), Marty Cagan (product discovery), Bill Wake (INVEST), Roman Pichler / Mike Cohn (DEEP, Vision Board), Geoffrey Moore (elevator pitch), A. Osterwalder / Strategyzer (Business Model &amp; Value Proposition Canvas), DSDM (MoSCoW), Intercom (RICE), SAFe (WSJF), Don Reinertsen (Cost of Delay), Noriaki Kano (mô hình Kano), Woody Zuill / Vasco Duarte (#NoEstimates), James Grenning / Mike Cohn (Planning Poker), Dave McClure (AARRR), Google / Kerry Rodden (HEART), Amplitude / Sean Ellis (North Star Metric), Mendelow (lưới Power/Interest).</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Product Owner Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn Scrum Guide 2020 · Hybrid PMBOK 7 · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
