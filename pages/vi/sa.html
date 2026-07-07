@@ -1,0 +1,436 @@
+<title>Solution Architect Handbook | Handbook</title>
+
+<!-- Page-specific styles -->
+<style id="page-style">
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
+.metric-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.metric-title{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.metric-value{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-display);line-height:1.5}
+.art-block{background:var(--surface-raised);border-left:2px solid var(--accent);padding:16px;margin:12px 0;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);overflow-x:auto;white-space:pre;border:1px solid var(--border)}
+.table-sa{width:100%;border-collapse:collapse;font-size:12px}
+.table-sa th,.table-sa td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-sa th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-sa tr:hover td{background:var(--bg-hover)}
+.table-sa code{font-family:var(--font-mono);font-size:11px;color:var(--accent-bright)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+</style>
+
+<!-- ===== SIDEBAR CONTENT ===== -->
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🏛️</div>
+      <div>
+        <div class="bank-title">Solution Architect Handbook</div>
+        <div class="bank-sub">TOGAF · C4 · arc42 · Well-Architected</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Nền tảng</div>
+  <nav id="sidebar-nav">
+    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-intake" onclick="setActive(this)"><span class="nav-icon">📥</span> 02 · Yêu cầu &amp; Phạm vi</a>
+  </nav>
+
+  <div class="sidebar-section-label">Phân tích</div>
+  <nav id="sidebar-nav">
+    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> 03 · Phân tích NFR</a>
+    <a href="#section-constraints" onclick="setActive(this)"><span class="nav-icon">🧱</span> 04 · Ràng buộc &amp; Giả định</a>
+  </nav>
+
+  <div class="sidebar-section-label">Quyết định</div>
+  <nav id="sidebar-nav">
+    <a href="#section-options" onclick="setActive(this)"><span class="nav-icon">⚖️</span> 05 · Phương án giải pháp</a>
+    <a href="#section-tech" onclick="setActive(this)"><span class="nav-icon">🧰</span> 06 · Chọn công nghệ</a>
+    <a href="#section-adr" onclick="setActive(this)"><span class="nav-icon">📜</span> 07 · Quyết định kiến trúc</a>
+  </nav>
+
+  <div class="sidebar-section-label">Thiết kế</div>
+  <nav id="sidebar-nav">
+    <a href="#section-hld" onclick="setActive(this)"><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
+    <a href="#section-integration" onclick="setActive(this)"><span class="nav-icon">🔌</span> 09 · Tích hợp &amp; API</a>
+    <a href="#section-datasec" onclick="setActive(this)"><span class="nav-icon">🔐</span> 10 · Dữ liệu &amp; Bảo mật</a>
+    <a href="#section-sizing" onclick="setActive(this)"><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
+  </nav>
+
+  <div class="sidebar-section-label">Quản trị</div>
+  <nav id="sidebar-nav">
+    <a href="#section-review" onclick="setActive(this)"><span class="nav-icon">✅</span> 12 · Kiểm chứng &amp; Review</a>
+    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🛡️</span> 13 · Quản trị &amp; Bàn giao</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🏛️ arc42 · C4</span>
+    <span class="comp-pill">☁️ Well-Architected</span>
+    <span class="comp-pill">🏦 SBV · ISO 27001</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Solution Architect<br/>
+    Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Chuẩn: TOGAF · C4 · arc42 · Well-Architected<br/>
+    Kỳ soát xét: 2025-Q4<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#ba">← BA Project Handbook</a><br/>
+    <a href="#qc">← QC Testing Handbook</a><br/>
+    <a href="#deployment">← Deployment Runbook</a>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🏛️ Handbook nội bộ · TOGAF · C4 · arc42 · Well-Architected</div>
+    <h1>Solution Architect (SA)<br/><span>Thiết kế giải pháp &amp; Quản trị</span></h1>
+    <p>Tài liệu tham chiếu cho vai trò Solution Architect đầu-cuối — chuyển hoá yêu cầu nghiệp vụ và ràng buộc doanh nghiệp thành một giải pháp kỹ thuật xây được, vận hành được. Bám nền C4 model, arc42, ADR, và AWS/Azure Well-Architected Framework, giao thoa với Enterprise Architecture (TOGAF Phase G).</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> C4 · arc42</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Well-Architected</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> NFR dẫn dắt</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> LƯU HÀNH NỘI BỘ</div>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 · OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Tổng quan</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Solution Architect là ai</div>
+        <p>SA <strong>chuyển hoá yêu cầu nghiệp vụ &amp; ràng buộc doanh nghiệp thành một giải pháp kỹ thuật cụ thể, xây được, vận hành được</strong> cho một dự án/sản phẩm. Chịu trách nhiệm về: phân tích giải pháp &amp; NFR → thiết kế (HLD/LLD); chọn công nghệ &amp; đánh đổi (ADR); thiết kế tích hợp, API, dữ liệu &amp; bảo mật; tuân thủ chuẩn doanh nghiệp (giao thoa với EA); đồng hành cùng Dev trong giao hàng; rủi ro kỹ thuật, PoC, sizing &amp; khả năng mở rộng.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">SA vs EA vs Tech Lead vs Developer</div>
+        <table class="table-sa">
+          <tr><th>Khía cạnh</th><th>Solution Architect</th><th>Enterprise Architect</th><th>Tech Lead</th><th>Developer</th></tr>
+          <tr><td><strong>Phạm vi</strong></td><td>Một giải pháp / dự án</td><td>Toàn tổ chức</td><td>Codebase của một đội</td><td>Các thành phần được giao</td></tr>
+          <tr><td><strong>Đầu ra</strong></td><td>HLD/LLD, ADR, thiết kế tích hợp</td><td>Roadmap, nguyên tắc, capability map</td><td>Chuẩn code, định hướng kỹ thuật</td><td>Phần mềm chạy được</td></tr>
+          <tr><td><strong>Quan tâm</strong></td><td>Tính khả thi, giao hàng, NFR</td><td>Chuẩn hoá, chiến lược, tái sử dụng</td><td>Chất lượng code, velocity của đội</td><td>Tính đúng đắn, test</td></tr>
+          <tr><td><strong>Tương tác với</strong></td><td>Dev, BA, PO, EA</td><td>C-level, ARB, nghiệp vụ</td><td>SA, Developers</td><td>Tech Lead, SA</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Nguyên tắc làm việc của SA</div>
+        <ul class="step-cl">
+          <li><strong>NFR dẫn dắt thiết kế</strong> — yêu cầu phi chức năng định hình kiến trúc nhiều hơn cả tính năng.</li>
+          <li><strong>Đánh đổi, không có hoàn hảo</strong> — luôn nêu rõ đang đánh đổi điều gì.</li>
+          <li><strong>Ghi lại phần <em>tại sao</em></strong> — ADR lưu lý do, không chỉ kết quả.</li>
+          <li><strong>Đồng hướng với EA</strong> — tuân thủ nguyên tắc &amp; chuẩn doanh nghiệp (giao thoa TOGAF Phase G).</li>
+          <li><strong>Đơn giản nhất mà chạy được</strong> — phức tạp phải được biện minh; tránh over-engineering.</li>
+          <li><strong>Thiết kế cho thất bại</strong> — giả định mọi thứ đều hỏng; xây resilience.</li>
+          <li><strong>Xây được &amp; vận hành được</strong> — Dev xây được, Ops chạy được.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 · REQUIREMENTS & SCOPE -->
+    <section class="section-block" id="section-intake">
+      <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Mục 02</div><h2>Tiếp nhận yêu cầu &amp; Phạm vi</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Nhận BRD/SRS &amp; user story từ <a href="#ba">BA</a>/<a href="#po">PO</a>, làm rõ phạm vi kỹ thuật, và chốt tường minh <strong>trong/ngoài phạm vi</strong>. Neo bằng <strong>sơ đồ System Context (C4 Level 1)</strong>.</p>
+        <pre class="art-block">C4 L1 — SYSTEM CONTEXT
+   [Khách hàng] ──▶ ( Giải pháp mới ) ──▶ [Core Banking]
+                       │  ▲
+                       ▼  │
+                 [Identity / SSO]   [Notification Svc]
+   (Hệ thống nói chuyện với ai/cái gì — chưa vào nội bộ)</pre>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📄</span><div><strong>Đầu ra:</strong> Solution Scope Statement + sơ đồ Context. Phạm vi mơ hồ là nguồn số 1 gây làm lại kiến trúc.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 · NFR ANALYSIS -->
+    <section class="section-block" id="section-nfr">
+      <div class="section-header"><div class="section-icon">⚡</div><div><div class="section-number">Mục 03</div><h2>Phân tích NFR <span class="pill-tag">lõi của SA</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Định lượng các yêu cầu phi chức năng — chúng quyết định kiến trúc nhiều hơn yêu cầu chức năng. Mọi NFR phải <strong>đo được</strong>.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>NFR</th><th>Đo bằng</th><th>Mục tiêu ví dụ</th></tr>
+          <tr><td><strong>Hiệu năng</strong></td><td>Latency (P95/P99), thời gian phản hồi</td><td>P95 API &lt; 300 ms</td></tr>
+          <tr><td><strong>Khả năng mở rộng</strong></td><td>Throughput tại đỉnh; mô hình scale</td><td>5.000 TPS tại đỉnh, scale ngang</td></tr>
+          <tr><td><strong>Khả dụng</strong></td><td>SLA %, <code>RTO</code>, <code>RPO</code></td><td>99,95% · RTO 15 phút · RPO 5 phút</td></tr>
+          <tr><td><strong>Bảo mật</strong></td><td>AuthN/Z, mã hoá, tuân thủ</td><td>OAuth2/OIDC · TLS1.2+ · AES-256</td></tr>
+          <tr><td><strong>Bảo trì được</strong></td><td>Tính module, độ ghép nối, coverage test</td><td>Ranh giới module rõ ràng</td></tr>
+          <tr><td><strong>Observability</strong></td><td>Log, metric, trace</td><td>Đủ 3 trụ cột ngay từ ngày đầu</td></tr>
+          <tr><td><strong>Tuân thủ</strong></td><td>Các control pháp lý</td><td>SBV 09/2020 · ISO 27001 · PCI-DSS</td></tr>
+          <tr><td><strong>Chi phí</strong></td><td>TCO, kinh tế đơn vị</td><td>Trong khung ngân sách cloud</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Quality Attribute Scenario <span class="pill-tag">SEI</span></div>
+        <pre class="art-block">SOURCE   : 10.000 người dùng đồng thời
+STIMULUS : gửi yêu cầu chuyển tiền
+ARTIFACT : API thanh toán
+ENVIRON. : vận hành bình thường giờ cao điểm
+RESPONSE : yêu cầu được xử lý &amp; xác nhận
+MEASURE  : P95 latency &lt; 300 ms, 0 giao dịch thất lạc</pre>
+        <p>Một phát biểu NFR test được để đội QC kiểm chứng sau này — xem <a href="#qc">QC Testing Handbook</a> (kiểm thử phi chức năng).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 · CONSTRAINTS & ASSUMPTIONS -->
+    <section class="section-block" id="section-constraints">
+      <div class="section-header"><div class="section-icon">🧱</div><div><div class="section-number">Mục 04</div><h2>Ràng buộc &amp; Giả định</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sa">
+          <tr><th>Loại</th><th>Ví dụ</th></tr>
+          <tr><td><strong>Kỹ thuật</strong></td><td>Phải tích hợp core banking hiện hữu; chỉ dùng tech stack đã duyệt; hybrid on-prem + cloud.</td></tr>
+          <tr><td><strong>Pháp lý</strong></td><td>Dữ liệu lưu trong nước (SBV); audit log; phân tách nhiệm vụ (SoD).</td></tr>
+          <tr><td><strong>Ngân sách / Thời gian</strong></td><td>Khung chi phí cloud; hạn go-live; quy mô đội.</td></tr>
+          <tr><td><strong>Tổ chức</strong></td><td>Chuẩn doanh nghiệp, yêu cầu tái sử dụng, thoả thuận vendor.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📝</span><div>Duy trì <strong>Constraints &amp; Assumptions Register</strong> — mọi giả định là một rủi ro cho tới khi được kiểm chứng. Nạp giả định vào technical risk register (Mục 12).</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 · SOLUTION OPTIONS -->
+    <section class="section-block" id="section-options">
+      <div class="section-header"><div class="section-icon">⚖️</div><div><div class="section-number">Mục 05</div><h2>Phương án giải pháp &amp; Đánh đổi</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <p>Trình bày <strong>2–3 phương án khả thi</strong> (vd mua vs xây, monolith vs microservices, on-prem vs cloud) và chọn bằng <strong>Weighted Scoring Matrix</strong> tường minh. Không bao giờ trình một phương án duy nhất như chuyện đã rồi.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>Tiêu chí (trọng số)</th><th>PA A · Mua SaaS</th><th>PA B · Xây microservices</th><th>PA C · Mở rộng monolith</th></tr>
+          <tr><td>Đáp ứng NFR (30%)</td><td>3</td><td>5</td><td>3</td></tr>
+          <tr><td>Time-to-market (25%)</td><td>5</td><td>2</td><td>4</td></tr>
+          <tr><td>TCO (20%)</td><td>3</td><td>3</td><td>4</td></tr>
+          <tr><td>Tuân thủ/kiểm soát (15%)</td><td>2</td><td>5</td><td>4</td></tr>
+          <tr><td>Phù hợp kỹ năng đội (10%)</td><td>4</td><td>3</td><td>5</td></tr>
+          <tr><td><strong>Điểm có trọng số</strong></td><td><strong>3.40</strong></td><td><strong>3.75</strong></td><td><strong>3.75</strong></td></tr>
+        </table>
+        <p style="margin-top:6px;">Điểm = Σ(điểm tiêu chí × trọng số) trên thang 1–5. Dùng <strong>PoC/spike</strong> để giảm rủi ro khi điểm sát nhau (Mục 12).</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 06 · TECHNOLOGY SELECTION -->
+    <section class="section-block" id="section-tech">
+      <div class="section-header"><div class="section-icon">🧰</div><div><div class="section-number">Mục 06</div><h2>Lựa chọn công nghệ</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-sa">
+          <tr><th>Lăng kính đánh giá</th><th>Câu hỏi</th></tr>
+          <tr><td><strong>Đáp ứng yêu cầu</strong></td><td>Thoả FR/NFR không? Đã chứng minh ở quy mô của ta chưa?</td></tr>
+          <tr><td><strong>TCO</strong></td><td>Licence + hạ tầng + vận hành + đào tạo trong 3 năm.</td></tr>
+          <tr><td><strong>Độ chín / hỗ trợ</strong></td><td>Cộng đồng, SLA vendor, nhịp vá bảo mật, roadmap.</td></tr>
+          <tr><td><strong>Kỹ năng &amp; tuyển dụng</strong></td><td>Đội đã biết chưa? Tuyển được người không?</td></tr>
+          <tr><td><strong>Phù hợp doanh nghiệp</strong></td><td>Có trong stack đã duyệt / tech radar? Đồng hướng EA?</td></tr>
+          <tr><td><strong>Lối thoát / lock-in</strong></td><td>Đường di trú rời đi; chuẩn mở?</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🧭</span><div>Ghi kết quả thành <strong>Technology Selection Rationale</strong> và chống lưng mỗi lựa chọn quan trọng bằng một <strong>ADR</strong> (Mục 07). Ưu tiên <em>tech radar</em> đã duyệt; đi lệch cần biện minh &amp; EA ký duyệt.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 07 · ADR -->
+    <section class="section-block" id="section-adr">
+      <div class="section-header"><div class="section-icon">📜</div><div><div class="section-number">Mục 07</div><h2>Architecture Decision Records (ADR) <span class="pill-tag">Michael Nygard</span></h2></div></div>
+      <div class="card"><div class="card-body">
+        <p>Ghi lại mỗi quyết định kiến trúc quan trọng thành một bản ghi bất biến, có bối cảnh — lưu <strong>ngay trong repo</strong> cạnh code.</p>
+        <pre class="art-block"># ADR-012: Dùng tích hợp event-driven cho sự kiện thanh toán
+
+Status:   Accepted            (Proposed | Accepted | Superseded by ADR-XXX | Deprecated)
+Context:  Sự kiện thanh toán phải tới 4 hệ thống hạ nguồn; đỉnh 5k TPS;
+          ghép chặt bằng lời gọi sync từng gây sập dây chuyền.
+Decision: Publish sự kiện thanh toán lên Kafka; các consumer tự subscribe.
+Consequences:
+  + Tách rời, scale độc lập, replay được
+  - Nhất quán trễ (eventual); cần consumer idempotent &amp; DLQ
+Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
+          dùng chung database (loại: vi phạm quyền sở hữu dữ liệu của service)</pre>
+        <p style="margin-top:6px;">ADR ánh xạ vào <strong>arc42 §9 (Architecture Decisions)</strong>. Không bao giờ sửa ADR đã Accepted — thay bằng một ADR mới (supersede) để giữ nguyên lịch sử <em>tại sao</em>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 08 · HLD & C4 -->
+    <section class="section-block" id="section-hld">
+      <div class="section-header"><div class="section-icon">🏗️</div><div><div class="section-number">Mục 08</div><h2>High-Level Design &amp; C4 Model <span class="pill-tag">Simon Brown</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">C4 Model — 4 cấp</div>
+        <table class="table-sa">
+          <tr><th>Cấp</th><th>Tên</th><th>Trả lời câu hỏi</th></tr>
+          <tr><td><strong>L1</strong></td><td>System Context</td><td>Hệ thống tương tác với ai/cái gì?</td></tr>
+          <tr><td><strong>L2</strong></td><td>Container</td><td>Gồm những ứng dụng / kho dữ liệu nào?</td></tr>
+          <tr><td><strong>L3</strong></td><td>Component</td><td>Mỗi container chứa những component nào?</td></tr>
+          <tr><td><strong>L4</strong></td><td>Code</td><td>Chi tiết class/code (hiếm khi cần vẽ).</td></tr>
+        </table>
+        <pre class="art-block">C4 L2 — CONTAINERS
+   [Web App] ─▶ [API Gateway] ─▶ [Payment Service] ─▶ (Postgres)
+                     │                   │
+                     ▼                   ▼
+              [Auth Service]        (Kafka topic) ─▶ [Ledger Consumer]</pre>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">arc42 — tài liệu kiến trúc giải pháp 12 mục</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <span class="pill-tag">1 Introduction &amp; Goals</span><span class="pill-tag">2 Constraints</span><span class="pill-tag">3 Context &amp; Scope</span><span class="pill-tag">4 Solution Strategy</span><span class="pill-tag">5 Building Block View</span><span class="pill-tag">6 Runtime View</span><span class="pill-tag">7 Deployment View</span><span class="pill-tag">8 Cross-cutting Concepts</span><span class="pill-tag">9 Architecture Decisions</span><span class="pill-tag">10 Quality Requirements</span><span class="pill-tag">11 Risks &amp; Tech Debt</span><span class="pill-tag">12 Glossary</span>
+        </div>
+        <p style="margin-top:8px;">Dùng arc42 làm khung xương cho tài liệu HLD/LLD; không phải mục nào cũng cần độ sâu như nhau — cân chỉnh theo giải pháp.</p>
+        <table class="table-sa" style="margin-top:8px;">
+          <tr><th>Cấp</th><th>Chứa gì</th><th>Độc giả</th></tr>
+          <tr><td><strong>HLD</strong> (High-Level Design)</td><td>C4 L1–L2, chiến lược giải pháp, tích hợp &amp; luồng dữ liệu, hướng xử lý NFR, các ADR chính</td><td>Stakeholder, PM, EA/ARB</td></tr>
+          <tr><td><strong>LLD</strong> (Low-Level Design)</td><td>C4 L3, class/sequence diagram, API spec đầy đủ (OpenAPI/AsyncAPI), schema DB vật lý, xử lý lỗi</td><td>Developers (sẵn sàng để xây)</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 09 · INTEGRATION & API -->
+    <section class="section-block" id="section-integration">
+      <div class="section-header"><div class="section-icon">🔌</div><div><div class="section-number">Mục 09</div><h2>Thiết kế Tích hợp &amp; API</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Chọn pattern</div>
+        <table class="table-sa">
+          <tr><th>Tình huống</th><th>Pattern</th></tr>
+          <tr><td>Request/response thời gian thực</td><td>REST / gRPC (đồng bộ)</td></tr>
+          <tr><td>Tách rời, bất đồng bộ, scale độc lập</td><td>Event-driven (Kafka / queue)</td></tr>
+          <tr><td>Điều phối một giao dịch xuyên nhiều service</td><td>Saga (choreography / orchestration)</td></tr>
+          <tr><td>Tách đọc &amp; ghi, scale phần đọc</td><td>CQRS</td></tr>
+          <tr><td>Client khác nhau (web/mobile) cần dữ liệu khác nhau</td><td>BFF (Backend-for-Frontend)</td></tr>
+          <tr><td>Gom / bảo vệ nhiều backend</td><td>API Gateway</td></tr>
+        </table>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Kỷ luật API &amp; contract</div>
+        <ul class="step-cl">
+          <li><strong>Contract-first:</strong> định nghĩa <code>OpenAPI</code> (REST) / <code>AsyncAPI</code> (event) trước khi code; đánh version từ ngày đầu (<code>/v1</code>).</li>
+          <li><strong>Idempotency</strong> cho các thao tác có retry (idempotency key) — sống còn với thanh toán &amp; messaging at-least-once.</li>
+          <li><strong>Tương thích ngược:</strong> thay đổi kiểu bổ sung; deprecate, đừng phá; ghi interface vào <strong>Interface Catalog</strong>.</li>
+          <li>Mô hình hoá tương tác bằng <strong>sequence diagram</strong> cho các luồng trọng yếu (C4 runtime / arc42 §6).</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Bối cảnh ngân hàng: tích hợp với <strong>core banking</strong> và <strong>identity/SSO</strong> cần hợp đồng giao diện tường minh, <strong>quyền sở hữu dữ liệu</strong> rõ ràng, và <strong>ranh giới xác thực</strong> được định nghĩa giữa SSO tập trung và các service cấp module.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 10 · DATA & SECURITY -->
+    <section class="section-block" id="section-datasec">
+      <div class="section-header"><div class="section-icon">🔐</div><div><div class="section-number">Mục 10</div><h2>Thiết kế Dữ liệu &amp; Bảo mật</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Kiến trúc dữ liệu (cấp giải pháp)</div>
+        <ul class="step-cl">
+          <li>Mô hình dữ liệu logic + sơ đồ luồng dữ liệu; phân loại dữ liệu (công khai / nội bộ / mật / hạn chế).</li>
+          <li><strong>Polyglot persistence</strong> — chọn kho theo nhu cầu (RDBMS cho giao dịch, cache cho phần đọc, object store cho blob).</li>
+          <li><strong>Chiến lược cache</strong> (cache-aside / write-through) với cơ chế vô hiệu hoá tường minh.</li>
+          <li>Service sở hữu dữ liệu của mình — không ghép nối shared-database xuyên ranh giới service.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Thiết kế bảo mật <span class="pill-tag">STRIDE · Microsoft</span></div>
+        <table class="table-sa">
+          <tr><th>Mối đe doạ STRIDE</th><th>Biện pháp</th></tr>
+          <tr><td><strong>S</strong>poofing (giả mạo)</td><td>AuthN mạnh — OAuth2 / OIDC / SSO, MFA.</td></tr>
+          <tr><td><strong>T</strong>ampering (can thiệp)</td><td>Kiểm tra toàn vẹn, message có ký, TLS 1.2+.</td></tr>
+          <tr><td><strong>R</strong>epudiation (chối bỏ)</td><td>Audit log, dấu vết không thể chối bỏ.</td></tr>
+          <tr><td><strong>I</strong>nformation disclosure (lộ tin)</td><td>Mã hoá at-rest (AES-256) &amp; in-transit; least privilege.</td></tr>
+          <tr><td><strong>D</strong>enial of service</td><td>Rate limiting, autoscaling, WAF.</td></tr>
+          <tr><td><strong>E</strong>levation of privilege (leo quyền)</td><td>AuthZ (RBAC/ABAC), quản lý secret, Zero-Trust.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; canh control theo <strong>Thông tư 09/2020, ISO 27001, PCI-DSS</strong>. Bằng chứng kiểm thử bảo mật nằm ở <a href="#qc">QC Testing Handbook</a>; control lúc triển khai ở <a href="#deployment">Deployment Runbook</a>.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 11 · SIZING & RESILIENCE -->
+    <section class="section-block" id="section-sizing">
+      <div class="section-header"><div class="section-icon">📈</div><div><div class="section-number">Mục 11</div><h2>Sizing, Mở rộng &amp; Resilience <span class="pill-tag">LLD</span></h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Sizing &amp; Scaling</div>
+        <ul class="step-cl">
+          <li><strong>Capacity planning</strong> từ ước lượng tải: TPS đỉnh, tăng trưởng dữ liệu, mức đồng thời — size theo <em>đỉnh</em>, không theo trung bình.</li>
+          <li>Ưu tiên <strong>scale ngang</strong> (scale out, stateless) hơn <strong>scale dọc</strong> (scale up) để đàn hồi; định nghĩa chính sách autoscaling (theo CPU / độ sâu queue).</li>
+          <li>Thiết kế dữ liệu vật lý: schema, index, partitioning/sharding, và <strong>kế hoạch di trú</strong>.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Pattern resilience — thiết kế cho thất bại</div>
+        <table class="table-sa">
+          <tr><th>Pattern</th><th>Chống lại</th></tr>
+          <tr><td><strong>Retry + backoff</strong></td><td>Lỗi thoáng qua (có jitter, có trần).</td></tr>
+          <tr><td><strong>Circuit breaker</strong></td><td>Sập dây chuyền từ một phụ thuộc đang hỏng.</td></tr>
+          <tr><td><strong>Bulkhead</strong></td><td>Một consumer vắt kiệt tài nguyên của cả hệ.</td></tr>
+          <tr><td><strong>Idempotency + DLQ</strong></td><td>Message trùng / message độc trong luồng bất đồng bộ.</td></tr>
+          <tr><td><strong>Graceful degradation</strong></td><td>Sự cố cục bộ — phục vụ chức năng rút gọn, không sập toàn phần.</td></tr>
+        </table>
+        <p style="margin-top:6px;">Gắn trực tiếp với NFR <strong>Khả dụng</strong> (SLA/RTO/RPO) và tư thế DR — phối hợp với <a href="#deployment">Deployment Runbook</a>.</p>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 12 · VALIDATION & REVIEW -->
+    <section class="section-block" id="section-review">
+      <div class="section-header"><div class="section-icon">✅</div><div><div class="section-number">Mục 12</div><h2>Kiểm chứng, PoC &amp; Architecture Review</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Proof of Concept / Spike</div>
+        <p>Thí nghiệm có time-box để kiểm chứng các giả định rủi ro nhất <em>trước khi</em> cam kết xây đầy đủ: tích hợp có khả thi? hiệu năng đạt NFR? công nghệ mới có ổn? Đầu ra = <strong>PoC Report + Go/No-Go</strong>.</p>
+      </div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Well-Architected Review — 6 trụ cột <span class="pill-tag">AWS / Azure</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill-tag">Operational Excellence</span><span class="pill-tag">Security</span><span class="pill-tag">Reliability</span><span class="pill-tag">Performance Efficiency</span><span class="pill-tag">Cost Optimization</span><span class="pill-tag">Sustainability</span>
+        </div>
+        <p style="margin-top:8px;">Chạy Well-Architected Review + peer design review; hệ thống lớn/trọng yếu cần <strong>ATAM</strong> (Architecture Tradeoff Analysis Method <span class="pill-tag">SEI</span>). Lấy <strong>ARB ký duyệt</strong> trước khi xây nếu quản trị yêu cầu.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Technical Risk Register</div>
+        <table class="table-sa">
+          <tr><th>Rủi ro</th><th>Khả năng × Ảnh hưởng</th><th>Giảm thiểu</th></tr>
+          <tr><td>Event-broker mới chưa chứng minh ở 5k TPS</td><td>TB × Cao</td><td>PoC load test; phương án lùi về managed service.</td></tr>
+          <tr><td>Latency API core-banking tăng đột biến</td><td>TB × Cao</td><td>Buffer bất đồng bộ + circuit breaker + cache.</td></tr>
+        </table>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 13 · GOVERNANCE & HANDOVER -->
+    <section class="section-block" id="section-governance">
+      <div class="section-header"><div class="section-icon">🛡️</div><div><div class="section-number">Mục 13</div><h2>Quản trị, Hỗ trợ Build &amp; Bàn giao</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Hỗ trợ build &amp; quản trị kiến trúc</div>
+        <ul class="step-cl">
+          <li>Làm rõ thiết kế trong các sprint; <strong>code review theo mức tuân thủ kiến trúc</strong> (không phải style).</li>
+          <li>Theo dõi <strong>tech debt</strong> trong backlog; cập nhật ADR khi quyết định thay đổi.</li>
+          <li>SA là <strong>người gác cổng tính toàn vẹn kiến trúc</strong> xuyên suốt giao hàng — xem <a href="#handbook">Implementation Handbook §3</a> và trục quản trị của <a href="#pm">PM</a>.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Sản phẩm bàn giao triển khai &amp; chuyển giao</div>
+        <table class="table-sa">
+          <tr><th>Sản phẩm</th><th>Nội dung</th></tr>
+          <tr><td><strong>Solution blueprint / HLD</strong></td><td>C4 L1–L3, tài liệu arc42, chiến lược giải pháp.</td></tr>
+          <tr><td><strong>LLD + API spec</strong></td><td>Thiết kế component/dữ liệu chi tiết, OpenAPI/AsyncAPI.</td></tr>
+          <tr><td><strong>ADR log</strong></td><td>Lịch sử quyết định (phần <em>tại sao</em>).</td></tr>
+          <tr><td><strong>Đặc tả NFR &amp; risk register</strong></td><td>Yêu cầu chất lượng + rủi ro kỹ thuật.</td></tr>
+          <tr><td><strong>Thiết kế deployment &amp; observability</strong></td><td>CI/CD, blue-green/canary, log/metric/trace (3 trụ cột).</td></tr>
+          <tr><td><strong>Architecture Handover Document</strong></td><td>Runbook vận hành, kế hoạch DR, quyền sở hữu.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">📐</span><div><strong>Chỉ số kiến trúc &amp; fitness functions</strong> <span class="pill-tag">Ford/Parsons</span>: biến các NFR then chốt thành kiểm tra tự động liên tục — vd check P95 latency, độ phức tạp cyclomatic, quy tắc phụ thuộc/ghép nối, độ phủ ADR, và tỷ lệ tech-debt — để kiến trúc không xói mòn theo thời gian.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <div class="card"><div class="card-body">
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 trụ cột); <strong>TOGAF 10</strong> (The Open Group — giao thoa EA, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); các pattern tích hợp theo Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Bám Thông tư 09/2020/TT-NHNN &amp; ISO 27001.</div></div>
+    </div></div>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Solution Architect Handbook v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Bám chuẩn C4 · arc42 · Well-Architected · TOGAF 10 · Thông tư 09/2020/TT-NHNN · © 2025
+  </footer>
+</div><!-- /#main-content -->
+</div><!-- /#page-content -->
