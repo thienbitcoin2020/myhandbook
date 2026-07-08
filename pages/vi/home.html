@@ -66,8 +66,8 @@
   <nav id="sidebar-nav">
     <a href="#section-map" onclick="setActive(this)"><span class="nav-icon">🗺️</span> Bản đồ Handbook</a>
     <a href="#section-xwalk" onclick="setActive(this)"><span class="nav-icon">🧭</span> Cross-Walk vòng đời</a>
-    <a href="#section-persona" onclick="setActive(this)"><span class="nav-icon">🙋</span> Bắt đầu theo vai trò</a>
     <a href="#section-model" onclick="setActive(this)"><span class="nav-icon">🔀</span> Mô hình triển khai</a>
+    <a href="#section-persona" onclick="setActive(this)"><span class="nav-icon">🙋</span> Bắt đầu theo vai trò</a>
     <a href="#section-glossary" onclick="setActive(this)"><span class="nav-icon">🔤</span> Bảng thuật ngữ</a>
   </nav>
 
@@ -362,6 +362,21 @@
     </section>
     <div class="section-divider"></div>
 
+    <!-- DELIVERY MODEL -->
+    <section class="section-block" id="section-model">
+      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Bối cảnh</div><h2>Mô hình triển khai</h2></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Hybrid Water-Scrum-Fall</div>
+        <p>Ngân hàng vận hành theo <strong>mô hình lai (hybrid)</strong>: quản trị Waterfall có cấu trúc với các phase gate (lập kế hoạch, phê duyệt, UAT, CAB, phát hành) bao quanh việc giao hàng theo Sprint của Agile/Scrum. Kỷ luật quản trị bảo đảm khả năng kiểm toán trong môi trường chịu quản lý; thực thi Agile giữ nhịp giao hàng lặp.</p>
+        <ul class="step-cl" style="margin-top:10px;">
+          <li><strong>Cổng Waterfall:</strong> Chiến lược &amp; Kế hoạch, ký duyệt Yêu cầu, UAT, phê duyệt CAB &amp; phát hành.</li>
+          <li><strong>Thực thi Agile:</strong> xây dựng &amp; kiểm thử theo Sprint giữa các cổng.</li>
+          <li><strong>PM là xương sống:</strong> sở hữu tích hợp, baseline, rủi ro, thay đổi, báo cáo và kết thúc dự án xuyên suốt mọi giai đoạn.</li>
+        </ul>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
     <!-- START BY ROLE -->
     <section class="section-block" id="section-persona">
       <div class="section-header"><div class="section-icon">🙋</div><div><div class="section-number">Bắt đầu nhanh</div><h2>Bắt đầu theo vai trò</h2></div></div>
@@ -392,7 +407,7 @@
       <div class="section-header"><div class="section-icon">🔤</div><div><div class="section-number">Tra cứu</div><h2>Bảng thuật ngữ chuẩn</h2></div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Thuật ngữ then chốt mọi vai trò cần thống nhất</div>
-        <p>Trong bản tiếng Việt, các <strong>thuật ngữ chuẩn được giữ nguyên tiếng Anh</strong> (đúng cách người trong nghề sử dụng). Dùng bảng này để tra nghĩa từng thuật ngữ — nó giữ cho các handbook nhất quán giữa các vai trò.</p>
+        <p>Các <strong>thuật ngữ chuẩn được dùng bằng tiếng Anh</strong> xuyên suốt mọi handbook — kể cả ở các trang tiếng Việt, nơi chúng được chủ đích giữ nguyên vì đó là cách người trong nghề sử dụng. Dùng bảng này để tra nghĩa từng thuật ngữ; nó giữ cho các handbook nhất quán giữa các vai trò.</p>
         <table class="gloss-table">
           <thead><tr><th style="width:180px">Thuật ngữ</th><th>Ý nghĩa</th><th style="width:90px">Vai trò</th></tr></thead>
           <tbody>
@@ -434,21 +449,6 @@
             <tr><td class="gloss-term">Rollback</td><td>Quay về phiên bản hoạt động ổn định trước đó.</td><td class="gloss-role">Deploy</td></tr>
           </tbody>
         </table>
-      </div></div>
-    </section>
-    <div class="section-divider"></div>
-
-    <!-- DELIVERY MODEL -->
-    <section class="section-block" id="section-model">
-      <div class="section-header"><div class="section-icon">🔀</div><div><div class="section-number">Bối cảnh</div><h2>Mô hình triển khai</h2></div></div>
-      <div class="card"><div class="card-body">
-        <div class="card-title">Hybrid Water-Scrum-Fall</div>
-        <p>Ngân hàng vận hành theo <strong>mô hình lai (hybrid)</strong>: quản trị Waterfall có cấu trúc với các phase gate (lập kế hoạch, phê duyệt, UAT, CAB, phát hành) bao quanh việc giao hàng theo Sprint của Agile/Scrum. Kỷ luật quản trị bảo đảm khả năng kiểm toán trong môi trường chịu quản lý; thực thi Agile giữ nhịp giao hàng lặp.</p>
-        <ul class="step-cl" style="margin-top:10px;">
-          <li><strong>Cổng Waterfall:</strong> Chiến lược &amp; Kế hoạch, ký duyệt Yêu cầu, UAT, phê duyệt CAB &amp; phát hành.</li>
-          <li><strong>Thực thi Agile:</strong> xây dựng &amp; kiểm thử theo Sprint giữa các cổng.</li>
-          <li><strong>PM là xương sống:</strong> sở hữu tích hợp, baseline, rủi ro, thay đổi, báo cáo và kết thúc dự án xuyên suốt mọi giai đoạn.</li>
-        </ul>
       </div></div>
     </section>
     <div class="section-divider"></div>
