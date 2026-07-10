@@ -10,14 +10,15 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#DA2128" />
   <title>Handbook</title>
   <meta name="description" content="Internal Handbook — Project Implementation, Deployment Runbook, BA, PM, PMO, Product Owner, Scrum Master, Solution Architect, UX/UI, QC Testing, Security & Compliance, Operations & SRE handbooks." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260710-powerhome">
   <!-- Anti-FOUC: apply saved theme before first paint -->
-  <script>(function(){var t=localStorage.getItem('nt_theme')||'dark';document.documentElement.setAttribute('data-theme',t)})();</script>
+  <script>(function(){var t=localStorage.getItem('nt_theme')||'light';document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
 
@@ -25,7 +26,7 @@
 <div id="login-overlay">
   <div class="login-box">
     <div class="login-logo">
-      <div class="login-icon">🏦</div>
+      <img class="login-hdbank-logo" src="assets/images/hdbank-logo.png" alt="HDBank" />
       <div class="login-brand">Handbook</div>
       <div class="login-sub">Authorized Personnel Only · Confidential</div>
     </div>
@@ -48,6 +49,17 @@
   </div>
 </div>
 
+<!-- ===== POWERHOME-INSPIRED APP BAR ===== -->
+<header id="app-topbar">
+  <a class="app-brand" href="#home" aria-label="HDBank Handbook home">
+    <img src="assets/images/hdbank-logo.png" alt="HDBank" />
+  </a>
+  <div class="app-context">
+    <span class="app-context-title">Project Handbook</span>
+    <span class="app-context-badge">Internal use</span>
+  </div>
+</header>
+
 <!-- Mobile sidebar toggle -->
 <button id="sidebar-toggle" aria-label="Toggle navigation" onclick="toggleSidebar()">
   <span></span><span></span><span></span>
@@ -64,7 +76,7 @@
   <span>⎋</span> Sign out
 </button>
 
-<script src="assets/js/main.js"></script>
-<script src="assets/js/router.js"></script>
+<script src="assets/js/main.js?v=20260710-powerhome"></script>
+<script src="assets/js/router.js?v=20260710-powerhome"></script>
 </body>
 </html>

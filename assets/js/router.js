@@ -22,6 +22,7 @@ const ROUTES = {
 let _pageStyle  = null;
 let _pageScript = null;
 let _currentPage = null;
+let _scrollObserver = null;
 
 async function navigate(hash) {
   const page = (hash || '').replace(/^#/, '') || 'home';
@@ -109,8 +110,8 @@ async function navigate(hash) {
     // ── Initialise DoD progress bar (deployment page) ─────────
     if (typeof updateDod === 'function') updateDod();
 
-    // ── Scroll-spy for deployment page ────────────────────────
-    if (page === 'deployment') _setupScrollSpy();
+    // ── Scroll-spy for every page that exposes in-page sections ─
+    _setupScrollSpy();
 
     window.scrollTo(0, 0);
 
@@ -137,32 +138,41 @@ function _renderError(page, url, err) {
 }
 
 function _setupScrollSpy() {
-  const navMap = {
-    'section-governance': 'nav-governance',
-    'section-phase1':     'nav-phase1',
-    'section-phase2':     'nav-phase2',
-    'section-phase3':     'nav-phase3',
-    'section-phase4':     'nav-phase4',
+  if (_scrollObserver) {
+    _scrollObserver.disconnect();
+    _scrollObserver = null;
+  }
+
+  const links = Array.from(document.querySelectorAll('#sidebar a[href^="#"], #hb-sidebar a[href^="#"]'));
+  const navMap = new Map();
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const target = id && document.getElementById(id);
+    if (target) navMap.set(target, link);
+  });
+  if (!navMap.size) return;
+
+  const setActiveSection = link => {
+    links.forEach(item => item.classList.remove('active'));
+    link.classList.add('active');
   };
-  const observer = new IntersectionObserver(
+
+  _scrollObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const navId = navMap[entry.target.id];
-          if (navId) {
-            document.querySelectorAll('#sidebar-nav a').forEach(a => a.classList.remove('active'));
-            const el = document.getElementById(navId);
-            if (el) el.classList.add('active');
-          }
+          const link = navMap.get(entry.target);
+          if (link) setActiveSection(link);
         }
       });
     },
     { rootMargin: '-30% 0px -60% 0px' }
   );
-  Object.keys(navMap).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
+  navMap.forEach((link, target) => _scrollObserver.observe(target));
+
+  // Give each page a clear initial navigation state before the observer fires.
+  const firstLink = navMap.values().next().value;
+  if (firstLink) setActiveSection(firstLink);
 }
 
 window.addEventListener('hashchange', () => {
@@ -181,9 +191,26 @@ window.addEventListener('hashchange', () => {
   navigate(location.hash);
 });
 
+// Keep route hashes stable when navigating inside the current handbook.
+// This preserves the active route across refreshes and language changes while
+// still providing smooth, accessible in-page navigation.
+document.addEventListener('click', event => {
+  const link = event.target.closest && event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const id = link.getAttribute('href').slice(1);
+  if (!id || ROUTES[id]) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  event.preventDefault();
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 /** Re-render the current route (used by the language toggle — no reload). */
 function _rerenderCurrentPage() {
+  const route = (_currentPage && ROUTES[_currentPage])
+    ? _currentPage
+    : (ROUTES[location.hash.replace(/^#/, '')] ? location.hash.replace(/^#/, '') : 'home');
   _currentPage = null;
-  navigate(location.hash);
+  navigate('#' + route);
 }
 document.addEventListener('DOMContentLoaded', () => navigate(location.hash));

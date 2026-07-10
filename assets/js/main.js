@@ -8,8 +8,9 @@
 // Runs immediately to prevent flash of wrong theme (FOUC)
 // ============================================================
 (function initTheme() {
-  const saved = localStorage.getItem('nt_theme') || 'dark';
+  const saved = localStorage.getItem('nt_theme') || 'light';
   document.documentElement.setAttribute('data-theme', saved);
+  _syncThemeColor(saved);
   // Enable transitions only after initial paint
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -21,7 +22,13 @@
 function setTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('nt_theme', theme);
+  _syncThemeColor(theme);
   _updateThemeBtns(theme);
+}
+
+function _syncThemeColor(theme) {
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', theme === 'dark' ? '#1B1B1B' : '#DA2128');
 }
 
 function toggleTheme() {
@@ -59,7 +66,7 @@ function _injectThemeToggle() {
   if (header) header.insertAdjacentElement('afterend', wrap);
   else sidebar.insertBefore(wrap, sidebar.firstChild);
 
-  _updateThemeBtns(document.documentElement.getAttribute('data-theme') || 'dark');
+  _updateThemeBtns(document.documentElement.getAttribute('data-theme') || 'light');
 }
 
 document.addEventListener('DOMContentLoaded', _injectThemeToggle);
