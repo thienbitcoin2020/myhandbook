@@ -94,6 +94,7 @@ async function navigate(hash) {
     // ── Re-run shared initialisations ─────────────────────────
     if (typeof _injectThemeToggle === 'function') _injectThemeToggle();
     if (typeof _injectLangToggle  === 'function') _injectLangToggle();
+    if (typeof _enhanceSidebarDetails === 'function') _enhanceSidebarDetails();
     if (typeof syncAuthState      === 'function') syncAuthState();
     if (typeof applyGrids         === 'function') applyGrids();
 

@@ -337,6 +337,103 @@ function updateDod() {
 }
 
 // ============================================================
+// SIDEBAR DETAILS — PowerHome cards for compliance & metadata
+// Page fragments intentionally keep their original content. This enhancer
+// turns the repeated raw sidebar text into consistent, scannable UI cards
+// after every route/language render.
+// ============================================================
+function _enhanceSidebarDetails() {
+  const sidebar = document.getElementById('sidebar') || document.getElementById('hb-sidebar');
+  if (!sidebar) return;
+
+  const isVi = typeof _getLang === 'function' && _getLang() === 'vi';
+  const complianceLabel = isVi ? 'Tuân thủ & tiêu chuẩn' : 'Compliance & standards';
+
+  sidebar.querySelectorAll('.sidebar-compliance').forEach(panel => {
+    panel.classList.add('sidebar-compliance-panel');
+    panel.setAttribute('aria-label', complianceLabel);
+
+    let label = panel.previousElementSibling;
+    if (!label || !label.classList.contains('sidebar-section-label')) {
+      label = document.createElement('div');
+      label.className = 'sidebar-section-label sidebar-compliance-label';
+      label.textContent = complianceLabel;
+      panel.insertAdjacentElement('beforebegin', label);
+    } else {
+      label.classList.add('sidebar-compliance-label');
+    }
+  });
+
+  sidebar.querySelectorAll('.sidebar-meta, .sb-footer').forEach(meta => {
+    if (meta.dataset.enhanced === 'true') return;
+
+    const originalNodes = Array.from(meta.childNodes);
+    const fragment = document.createDocumentFragment();
+    let currentCard = null;
+    let currentBody = null;
+
+    const createCard = titleText => {
+      const card = document.createElement('section');
+      card.className = 'sidebar-detail-card';
+
+      const title = document.createElement('div');
+      title.className = 'sidebar-detail-title';
+      title.textContent = titleText;
+
+      const body = document.createElement('div');
+      body.className = 'sidebar-detail-body';
+
+      card.append(title, body);
+      fragment.appendChild(card);
+      currentCard = card;
+      currentBody = body;
+      return card;
+    };
+
+    originalNodes.forEach(node => {
+      if (node.nodeType === Node.ELEMENT_NODE && node.matches('strong')) {
+        createCard(node.textContent.trim());
+        return;
+      }
+
+      const isWhitespace = node.nodeType === Node.TEXT_NODE && !node.textContent.trim();
+      if (!currentBody && isWhitespace) return;
+      if (!currentBody) createCard(isVi ? 'Thông tin' : 'Details');
+      currentBody.appendChild(node);
+    });
+
+    fragment.querySelectorAll('.sidebar-detail-body').forEach(body => {
+      const isEmptyEdge = node =>
+        (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) ||
+        (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR');
+
+      while (body.firstChild && isEmptyEdge(body.firstChild)) body.firstChild.remove();
+      while (body.lastChild && isEmptyEdge(body.lastChild)) body.lastChild.remove();
+
+      body.querySelectorAll('span').forEach(span => span.classList.add('sidebar-status'));
+      if (body.querySelector('a')) body.parentElement.classList.add('is-quick-links');
+    });
+
+    fragment.querySelectorAll('.sidebar-detail-card').forEach(card => {
+      const title = card.querySelector('.sidebar-detail-title').textContent;
+      if (/document control|kiểm soát tài liệu/i.test(title)) {
+        card.classList.add('is-document-control');
+      }
+    });
+
+    meta.replaceChildren(fragment);
+    meta.dataset.enhanced = 'true';
+    meta.classList.add('sidebar-details-enhanced');
+    const detailTitles = Array.from(meta.querySelectorAll('.sidebar-detail-title'))
+      .map(title => title.textContent.trim())
+      .join(' · ');
+    if (/release/i.test(detailTitles) && /environment|môi trường/i.test(detailTitles) && /cab/i.test(detailTitles)) {
+      meta.classList.add('has-summary-grid');
+    }
+  });
+}
+
+// ============================================================
 // RESPONSIVE - 2-column grid fallback for narrow viewports
 // ============================================================
 function applyGrids() {
