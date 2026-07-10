@@ -1749,10 +1749,10 @@ html[data-theme="light"] body {
 }
 .app-brand:hover { text-decoration: none; }
 .app-brand img {
-  width: 132px;
+  width: 88px;
   height: auto;
   display: block;
-  padding: 3px 8px;
+  padding: 3px 6px;
   border-radius: 10px;
   background: #FFFFFF;
 }
@@ -1809,12 +1809,12 @@ body.locked #app-topbar { display: none !important; }
   height: 5px;
   background: var(--brand-gradient);
 }
-.login-hdbank-logo {
-  width: 148px;
+.login-product-logo {
+  width: 104px;
   height: auto;
   display: block;
   margin: 0 auto 18px;
-  padding: 7px 12px;
+  padding: 7px 10px;
   background: #FFFFFF;
   border-radius: 12px;
 }
@@ -2373,7 +2373,7 @@ select:focus-visible,
     padding: 10px 8px;
     border-right: 0;
   }
-  .app-brand img { width: 112px; }
+  .app-brand img { width: 76px; }
   .app-context { display: none; }
   #logout-btn {
     top: 15px;
@@ -2400,7 +2400,7 @@ select:focus-visible,
 
 @media (max-width: 560px) {
   .login-box { padding: 34px 22px 26px; }
-  .login-hdbank-logo { width: 136px; }
+  .login-product-logo { width: 96px; }
   .top-header, .hb-hero { padding: 34px 20px 28px; }
   .top-header::after, .hb-hero::after { width: 150px; height: 150px; }
   .header-pills { gap: 6px; }
