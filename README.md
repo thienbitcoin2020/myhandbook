@@ -28,8 +28,9 @@ Vietnamese commercial bank:
 
 ```
 project-handbook/
+├── vercel.json             # Canonical /index.html -> / redirect only
 ├── index.html              # CSP-protected SPA shell + empty #sidebar / #app
-├── handbook.html           # Legacy redirect stubs → index.html#<route>
+├── handbook.html           # Legacy redirect stubs → ./#<route>
 ├── ba-handbook.html        # (kept for old deep links)
 ├── pm-handbook.html
 ├── assets/
@@ -130,6 +131,14 @@ monospace stack for diagrams and code.
 ---
 
 ## 🚢 Deployment
+
+On Vercel, `vercel.json` permanently canonicalizes `/index.html` to `/`. URL
+fragments remain browser-side, so a link such as `/index.html#home` lands on
+`/#home` without changing the hash router. The configuration is included in the
+reviewed artifact allowlist and the security gate rejects any additional Vercel
+routing or runtime behavior. This redirect is URL normalization only: it does
+not make the handbook public or replace the required Vercel Deployment
+Protection / corporate SSO access policy.
 
 `.github/workflows/deploy-pages.yml` is intentionally **manual and fail-closed**.
 It will not deploy unless the hosting model has Security approval, the required

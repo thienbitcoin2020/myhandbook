@@ -24,6 +24,25 @@ const ROUTE_ALIASES = {
   'handbook': 'home',
 };
 
+// Keep the public address clean without relying on a redirect (which would
+// reload the SPA). Preserve query parameters and every existing hash so route
+// links, in-page anchors, and search-result deep links continue to work.
+function _canonicalizeShellUrl() {
+  const url = new URL(window.location.href);
+  const canonicalPath = url.pathname.replace(/\/index\.html$/i, '/');
+  const canonicalHash = url.hash || '#home';
+
+  if (canonicalPath !== url.pathname || canonicalHash !== url.hash) {
+    history.replaceState(
+      history.state,
+      '',
+      canonicalPath + url.search + canonicalHash
+    );
+  }
+}
+
+_canonicalizeShellUrl();
+
 let _pageStyle  = null;
 let _currentPage = null;
 let _scrollObserver = null;

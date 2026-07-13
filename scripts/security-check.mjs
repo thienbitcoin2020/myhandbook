@@ -102,11 +102,75 @@ if (!index.includes('name="referrer" content="no-referrer"')) {
   fail('index.html: no-referrer policy is missing');
 }
 
+const router = read(path.join('assets', 'js', 'router.js'));
+for (const invariant of [
+  'function _canonicalizeShellUrl()',
+  "url.pathname.replace(/\\/index\\.html$/i, '/')",
+  'history.replaceState(',
+]) {
+  if (!router.includes(invariant)) {
+    fail(`router.js: clean-shell URL invariant missing: ${invariant}`);
+  }
+}
+
+const legacyRedirects = new Map([
+  ['handbook.html', 'home'],
+  ['ba-handbook.html', 'ba'],
+  ['pm-handbook.html', 'pm'],
+  ['qc-handbook.html', 'qc'],
+  ['po-handbook.html', 'po'],
+  ['sa-handbook.html', 'sa'],
+  ['sec-handbook.html', 'sec'],
+  ['ops-handbook.html', 'ops'],
+  ['sm-handbook.html', 'sm'],
+  ['ux-handbook.html', 'ux'],
+  ['pmo-handbook.html', 'pmo'],
+]);
+
+for (const [relative, route] of legacyRedirects) {
+  const content = read(relative);
+  if (!content.includes(`content="0;url=./#${route}"`)) {
+    fail(`${relative}: legacy redirect must target the clean ./#${route} route`);
+  }
+  if (/index\.html/i.test(content)) {
+    fail(`${relative}: legacy redirect must not expose index.html`);
+  }
+}
+
+const vercelConfigPath = 'vercel.json';
+let vercelConfig;
+try {
+  vercelConfig = JSON.parse(read(vercelConfigPath));
+} catch (error) {
+  fail(`${vercelConfigPath}: invalid JSON (${error.message})`);
+}
+
+if (vercelConfig) {
+  const configKeys = Object.keys(vercelConfig);
+  if (configKeys.length !== 1 || configKeys[0] !== 'redirects') {
+    fail('vercel.json: only the reviewed canonical redirect is allowed');
+  }
+
+  const redirects = vercelConfig.redirects;
+  const canonicalRedirect = Array.isArray(redirects) && redirects.length === 1
+    ? redirects[0]
+    : null;
+  const redirectKeys = canonicalRedirect && typeof canonicalRedirect === 'object'
+    ? Object.keys(canonicalRedirect).sort()
+    : [];
+  if (!canonicalRedirect
+      || redirectKeys.join(',') !== 'destination,permanent,source'
+      || canonicalRedirect.source !== '/index.html'
+      || canonicalRedirect.destination !== '/'
+      || canonicalRedirect.permanent !== true) {
+    fail('vercel.json: /index.html must permanently redirect to / with no additional routing behavior');
+  }
+}
+
 if (fs.existsSync(path.join(root, 'pages', 'home.html')) || fs.existsSync(path.join(root, 'pages', 'vi', 'home.html'))) {
   fail('Duplicate Home fragments must not be restored');
 }
 
-const router = read(path.join('assets', 'js', 'router.js'));
 if (!router.includes("'home':       'pages/handbook.html'")) {
   fail('router.js: #home must resolve to the canonical Implementation Handbook');
 }
