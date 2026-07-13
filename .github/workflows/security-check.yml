@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout candidate without persisted credentials
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
@@ -27,9 +27,12 @@ jobs:
       # candidate checkout that it audits. A PR therefore cannot weaken its own
       # security checker and make the required check pass.
       - name: Checkout trusted security checker
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.base.sha || github.event.repository.default_branch }}
+          # On PRs, always execute the scanner from the immutable base SHA. A
+          # branch push uses its own SHA so the first security-workflow commit
+          # can bootstrap before the scanner exists on the default branch.
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.base.sha || github.sha }}
           persist-credentials: false
           path: trusted
 
