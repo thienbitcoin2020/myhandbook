@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const PUBLISHED_ROOT_FILES = Object.freeze([
+  'vercel.json',
   'index.html',
   'handbook.html',
   'ba-handbook.html',
