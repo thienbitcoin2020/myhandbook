@@ -1,9 +1,24 @@
 @echo off
-echo Attempting to start Python http.server...
-python -m http.server 8080
-if %errorlevel% neq 0 (
-    echo.
-    echo Python failed or is not installed. Trying npx http-server...
-    npx http-server -p 8080
+setlocal
+
+echo Starting a loopback-only preview at http://127.0.0.1:8080 ...
+
+py -3 --version >nul 2>&1
+if %errorlevel% equ 0 (
+    py -3 -m http.server 8080 --bind 127.0.0.1
+    goto :end
 )
+
+python --version >nul 2>&1
+if %errorlevel% equ 0 (
+    python -m http.server 8080 --bind 127.0.0.1
+    goto :end
+)
+
+echo.
+echo Python 3 is required. No package will be downloaded or executed automatically.
 pause
+exit /b 1
+
+:end
+endlocal

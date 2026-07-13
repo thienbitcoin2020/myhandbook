@@ -1,4 +1,4 @@
-<title>PMO Governance &amp; Portfolio | Handbook</title>
+<title>Quản trị PMO &amp; Danh mục | Cẩm nang</title>
 
 <style id="page-style">
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
@@ -27,31 +27,31 @@
 
   <div class="sidebar-section-label">Nền tảng</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
-    <a href="#section-portfolio" onclick="setActive(this)"><span class="nav-icon">🗃️</span> 02 · Portfolio &amp; Intake</a>
-    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 03 · Cơ cấu quản trị</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-portfolio" data-nav-active><span class="nav-icon">🗃️</span> 02 · Portfolio &amp; Intake</a>
+    <a href="#section-governance" data-nav-active><span class="nav-icon">🏛️</span> 03 · Cơ cấu quản trị</a>
   </nav>
 
   <div class="sidebar-section-label">Kiểm soát</div>
   <nav id="sidebar-nav">
-    <a href="#section-raid" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 04 · Quản lý RAID</a>
-    <a href="#section-dependency" onclick="setActive(this)"><span class="nav-icon">🔗</span> 05 · Quản lý phụ thuộc</a>
-    <a href="#section-financial" onclick="setActive(this)"><span class="nav-icon">💰</span> 06 · Quản trị tài chính</a>
-    <a href="#section-benefits" onclick="setActive(this)"><span class="nav-icon">🎁</span> 07 · Benefits Realization</a>
+    <a href="#section-raid" data-nav-active><span class="nav-icon">⚠️</span> 04 · Quản lý RAID</a>
+    <a href="#section-dependency" data-nav-active><span class="nav-icon">🔗</span> 05 · Quản lý phụ thuộc</a>
+    <a href="#section-financial" data-nav-active><span class="nav-icon">💰</span> 06 · Quản trị tài chính</a>
+    <a href="#section-benefits" data-nav-active><span class="nav-icon">🎁</span> 07 · Benefits Realization</a>
   </nav>
 
   <div class="sidebar-section-label">Bảo đảm giao hàng</div>
   <nav id="sidebar-nav">
-    <a href="#section-standards" onclick="setActive(this)"><span class="nav-icon">📚</span> 08 · Chuẩn &amp; Phương pháp</a>
-    <a href="#section-resource" onclick="setActive(this)"><span class="nav-icon">🧑‍🤝‍🧑</span> 09 · Nguồn lực &amp; Capacity</a>
-    <a href="#section-assurance" onclick="setActive(this)"><span class="nav-icon">🔍</span> 10 · Assurance &amp; Audit</a>
+    <a href="#section-standards" data-nav-active><span class="nav-icon">📚</span> 08 · Chuẩn &amp; Phương pháp</a>
+    <a href="#section-resource" data-nav-active><span class="nav-icon">🧑‍🤝‍🧑</span> 09 · Nguồn lực &amp; Capacity</a>
+    <a href="#section-assurance" data-nav-active><span class="nav-icon">🔍</span> 10 · Assurance &amp; Audit</a>
   </nav>
 
   <div class="sidebar-section-label">Tra cứu</div>
   <nav id="sidebar-nav">
-    <a href="#section-reporting" onclick="setActive(this)"><span class="nav-icon">📊</span> 11 · Báo cáo &amp; Dashboard</a>
-    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · KPI Portfolio</a>
-    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+    <a href="#section-reporting" data-nav-active><span class="nav-icon">📊</span> 11 · Báo cáo &amp; Dashboard</a>
+    <a href="#section-metrics" data-nav-active><span class="nav-icon">📈</span> 12 · KPI Portfolio</a>
+    <a href="#section-raci" data-nav-active><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -71,8 +71,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#pm">← PM Project Handbook</a><br/>
     <a href="#po">← Product Owner Handbook</a>
   </div>
@@ -238,7 +237,7 @@ lợi ích     chủ sở hữu,             đo thực     soát xét
 trong       baseline,              tế vs        lợi ích
 business    KPI                    mục tiêu     (3–6 tháng sau go-live)
 case</pre>
-        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🔗</span><div>Mỗi lợi ích có <strong>chủ sở hữu, baseline, KPI mục tiêu, và ngày soát xét</strong>. Gắn với chỉ số outcome của <a href="#po">PO</a> và khâu đóng dự án (PIR) trong <a href="#handbook">Implementation Handbook</a>.</div></div>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🔗</span><div>Mỗi lợi ích có <strong>chủ sở hữu, baseline, KPI mục tiêu, và ngày soát xét</strong>. Gắn với chỉ số outcome của <a href="#po">PO</a> và khâu đóng dự án (PIR) trong <a href="#home">Implementation Handbook</a>.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>

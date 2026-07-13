@@ -1,4 +1,4 @@
-<title>BA Project Implementation Handbook | Handbook</title>
+<title>Cẩm nang Phân tích Nghiệp vụ | Cẩm nang</title>
 
 <!-- Page-specific styles -->
 <style id="page-style">
@@ -66,33 +66,33 @@
 
   <div class="sidebar-section-label">Tổng quan</div>
   <nav id="sidebar-nav">
-    <a href="#section-intro" id="nav-intro" onclick="setActive(this)"><span class="nav-icon">🏠</span> Giới thiệu</a>
-    <a href="#section-workflow" id="nav-workflow" onclick="setActive(this)"><span class="nav-icon">🔄</span> Luồng làm việc BA</a>
-    <a href="#section-roles" id="nav-roles" onclick="setActive(this)"><span class="nav-icon">👥</span> Tương tác vai trò</a>
-    <a href="#section-strategy" onclick="setActive(this)"><span class="nav-icon">🎯</span> Strategy Analysis</a>
+    <a href="#section-intro" id="nav-intro" data-nav-active><span class="nav-icon">🏠</span> Giới thiệu</a>
+    <a href="#section-workflow" id="nav-workflow" data-nav-active><span class="nav-icon">🔄</span> Luồng làm việc BA</a>
+    <a href="#section-roles" id="nav-roles" data-nav-active><span class="nav-icon">👥</span> Tương tác vai trò</a>
+    <a href="#section-strategy" data-nav-active><span class="nav-icon">🎯</span> Strategy Analysis</a>
   </nav>
 
   <div class="sidebar-section-label">Các giai đoạn BA</div>
   <nav id="sidebar-nav">
-    <a href="#section-p0" onclick="setActive(this)"><span class="nav-icon">🚀</span> Giai đoạn 0 — Khởi tạo</a>
-    <a href="#section-p1" onclick="setActive(this)"><span class="nav-icon">🎙️</span> Giai đoạn 1 — Elicitation</a>
-    <a href="#section-p2" onclick="setActive(this)"><span class="nav-icon">📐</span> Giai đoạn 2 — Phân tích</a>
-    <a href="#section-p3" onclick="setActive(this)"><span class="nav-icon">✅</span> Giai đoạn 3 — Phê duyệt</a>
-    <a href="#section-p4" onclick="setActive(this)"><span class="nav-icon">🏗️</span> Giai đoạn 4 — Hỗ trợ thiết kế</a>
-    <a href="#section-p5" onclick="setActive(this)"><span class="nav-icon">⚙️</span> Giai đoạn 5 — Hỗ trợ triển khai</a>
-    <a href="#section-p6" onclick="setActive(this)"><span class="nav-icon">🧪</span> Giai đoạn 6 — UAT</a>
-    <a href="#section-p7" onclick="setActive(this)"><span class="nav-icon">🚢</span> Giai đoạn 7 — Release</a>
-    <a href="#section-p8" onclick="setActive(this)"><span class="nav-icon">📊</span> Giai đoạn 8 — PIR</a>
+    <a href="#section-p0" data-nav-active><span class="nav-icon">🚀</span> Giai đoạn 0 — Khởi tạo</a>
+    <a href="#section-p1" data-nav-active><span class="nav-icon">🎙️</span> Giai đoạn 1 — Elicitation</a>
+    <a href="#section-p2" data-nav-active><span class="nav-icon">📐</span> Giai đoạn 2 — Phân tích</a>
+    <a href="#section-p3" data-nav-active><span class="nav-icon">✅</span> Giai đoạn 3 — Phê duyệt</a>
+    <a href="#section-p4" data-nav-active><span class="nav-icon">🏗️</span> Giai đoạn 4 — Hỗ trợ thiết kế</a>
+    <a href="#section-p5" data-nav-active><span class="nav-icon">⚙️</span> Giai đoạn 5 — Hỗ trợ triển khai</a>
+    <a href="#section-p6" data-nav-active><span class="nav-icon">🧪</span> Giai đoạn 6 — UAT</a>
+    <a href="#section-p7" data-nav-active><span class="nav-icon">🚢</span> Giai đoạn 7 — Release</a>
+    <a href="#section-p8" data-nav-active><span class="nav-icon">📊</span> Giai đoạn 8 — PIR</a>
   </nav>
 
   <div class="sidebar-section-label">Tra cứu</div>
   <nav id="sidebar-nav">
-    <a href="#section-docs" onclick="setActive(this)"><span class="nav-icon">📄</span> Sở hữu tài liệu</a>
-    <a href="#section-techniques" onclick="setActive(this)"><span class="nav-icon">🔧</span> Danh mục kỹ thuật</a>
-    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> Khung NFR</a>
-    <a href="#section-quality" onclick="setActive(this)"><span class="nav-icon">🎯</span> Quality Gates</a>
-    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> Anti-Pattern</a>
-    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> Chỉ số BA</a>
+    <a href="#section-docs" data-nav-active><span class="nav-icon">📄</span> Sở hữu tài liệu</a>
+    <a href="#section-techniques" data-nav-active><span class="nav-icon">🔧</span> Danh mục kỹ thuật</a>
+    <a href="#section-nfr" data-nav-active><span class="nav-icon">⚡</span> Khung NFR</a>
+    <a href="#section-quality" data-nav-active><span class="nav-icon">🎯</span> Quality Gates</a>
+    <a href="#section-antipatterns" data-nav-active><span class="nav-icon">🚫</span> Anti-Pattern</a>
+    <a href="#section-metrics" data-nav-active><span class="nav-icon">📊</span> Chỉ số BA</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -110,8 +110,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#pm">← PM Project Handbook</a><br/>
     <a href="#po">← Product Owner Handbook</a><br/>
     <a href="#sa">← Solution Architect Handbook</a><br/>
@@ -277,7 +276,7 @@
     <section class="section-block" id="section-p0">
       <div class="section-header"><div class="section-icon">🚀</div><div><div class="section-number">Giai đoạn 0 · Cổng Waterfall · Kích hoạt: Kickoff dự án</div><h2>Khởi tạo &amp; Lập kế hoạch dự án</h2><div class="sec-sub">Stakeholder Register · BA Plan · Business Need Statement · Phạm vi tuân thủ</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>BA làm gì ở Giai đoạn 0</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>BA làm gì ở Giai đoạn 0</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Đọc Project Charter, SOW hoặc Business Case</strong> — nắm ranh giới phạm vi, khung ngân sách, mức phù hợp chiến lược.</div></li>
@@ -289,7 +288,7 @@
             </ol>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Đầu ra</span><h3>Sản phẩm bàn giao chính</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Đầu ra</span><h3>Sản phẩm bàn giao chính</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ul class="output-list">
               <li><span class="output-icon">📋</span><div><strong>Stakeholder Register</strong> — bản đồ vai trò kèm RACI và kênh liên lạc ưa thích</div></li>
@@ -305,7 +304,7 @@
     <section class="section-block" id="section-p1">
       <div class="section-header"><div class="section-icon">🎙️</div><div><div class="section-number">Giai đoạn 1 · Hybrid · Kích hoạt: BA Plan được duyệt</div><h2>Elicitation &amp; Cộng tác</h2><div class="sec-sub">Phỏng vấn · Workshop · Quan sát · Assumptions Log</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Thực hiện elicitation</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Thực hiện elicitation</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Chọn kỹ thuật elicitation</strong> theo loại stakeholder, độ phức tạp thông tin, và giai đoạn SDLC.</div></li>
@@ -322,7 +321,7 @@
     <section class="section-block" id="section-p2">
       <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Giai đoạn 2 · Hybrid · Kích hoạt: Đủ dữ liệu elicitation</div><h2>Phân tích yêu cầu &amp; Định nghĩa thiết kế</h2><div class="sec-sub">BRD · SRS · User Story · RTM · Business Rules · Đặc tả NFR</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Phân tích &amp; Mô hình hoá</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Phân tích &amp; Mô hình hoá</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Phân loại theo BABOK</strong> — Business / Stakeholder / Solution (Functional + Non-Functional) / Transition.</div></li>
@@ -341,7 +340,7 @@
     <section class="section-block" id="section-p3">
       <div class="section-header"><div class="section-icon">✅</div><div><div class="section-number">Giai đoạn 3 · Cổng Waterfall · Kích hoạt: Yêu cầu draft-complete</div><h2>Thẩm định &amp; Phê duyệt yêu cầu</h2><div class="sec-sub">Ký duyệt chính thức · Baseline · Kích hoạt quy trình Change Request</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Quy trình review &amp; baseline</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động</span><h3>Quy trình review &amp; baseline</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Tổ chức họp Requirements Review</strong> — thành phần bắt buộc: Stakeholder nghiệp vụ, PM, SA, QA Lead, Cán bộ tuân thủ.</div></li>
@@ -359,7 +358,7 @@
     <section class="section-block" id="section-p4">
       <div class="section-header"><div class="section-icon">🏗️</div><div><div class="section-number">Giai đoạn 4 · Sprint Agile · Kích hoạt: SA/DEV bắt đầu thiết kế</div><h2>Đánh giá giải pháp &amp; Hỗ trợ thiết kế</h2><div class="sec-sub">Design review · Thẩm định wireframe · Interface spec · Data mapping</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn thiết kế</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn thiết kế</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Tham gia Solution Design Review</strong> — kiểm chứng thiết kế thoả yêu cầu, không chỉ đẹp về kỹ thuật.</div></li>
@@ -376,7 +375,7 @@
     <section class="section-block" id="section-p5">
       <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Giai đoạn 5 · Sprint Agile · Kích hoạt: Sprint phát triển bắt đầu</div><h2>Hỗ trợ triển khai</h2><div class="sec-sub">Làm rõ yêu cầu · Change Request · Triage defect · Cổng DoR/DoD</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong các Sprint</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>BA trong các Sprint</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Đầu mối làm rõ yêu cầu</strong> cho DEV — phản hồi trong SLA thống nhất (khuyến nghị: trong ngày làm việc).</div></li>
@@ -393,7 +392,7 @@
     <section class="section-block" id="section-p6">
       <div class="section-header"><div class="section-icon">🧪</div><div><div class="section-number">Giai đoạn 6 · Cổng Waterfall · Kích hoạt: DEV tuyên bố sẵn sàng UAT</div><h2>User Acceptance Testing (UAT)</h2><div class="sec-sub">UAT Plan · Test Script · Defect Log · Ký duyệt bằng văn bản</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Hoạt động &amp; Đầu ra</span><h3>UAT do BA dẫn dắt</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Hoạt động &amp; Đầu ra</span><h3>UAT do BA dẫn dắt</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Soạn UAT Plan</strong> — phạm vi, mục tiêu, entry/exit criteria, lịch, vai trò.</div></li>
@@ -410,7 +409,7 @@
     <section class="section-block" id="section-p7">
       <div class="section-header"><div class="section-icon">🚢</div><div><div class="section-number">Giai đoạn 7 · Waterfall · Kích hoạt: UAT đạt, CAB duyệt</div><h2>Release &amp; Chuyển giao</h2><div class="sec-sub">Release Notes · Hướng dẫn sử dụng · Đào tạo · Tiêu chí rollback</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn release</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Hoạt động &amp; Đầu ra</span><h3>BA trong giai đoạn release</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Đóng góp cho Release Notes</strong> — viết phần tác động nghiệp vụ.</div></li>
@@ -426,7 +425,7 @@
     <section class="section-block" id="section-p8">
       <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Giai đoạn 8 · Review · Kích hoạt: Kết thúc ổn định</div><h2>Post-Implementation Review</h2><div class="sec-sub">Benefits realization · Bài học kinh nghiệm · Gieo hạt vòng lặp kế tiếp</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>Các hoạt động PIR</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Hoạt động &amp; Đầu ra</span><h3>Các hoạt động PIR</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Benefits Realization Review</strong> — đo lại các KPI/OKR đã nêu ở Giai đoạn 0.</div></li>
@@ -581,7 +580,7 @@
     <section class="section-block" id="section-antipatterns">
       <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Tra cứu</div><h2>Anti-Pattern — Những điều không làm</h2><div class="sec-sub">Sai lầm BA thường gặp và cách làm đúng</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Elicitation</span><h3>Anti-pattern khi elicitation</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Elicitation</span><h3>Anti-pattern khi elicitation</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Hỏi <strong>câu dẫn dắt</strong> — "Anh/chị muốn nút ở góc phải trên, đúng không?" Thay bằng: hỏi mở, trung lập.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Chấp nhận <strong>giải pháp thay cho yêu cầu</strong> — "Tôi cần một dropdown 5 mục." <span class="ap-good">✅ Lái lại: "Trước khi bàn giải pháp, anh/chị mô tả giúp bài toán nghiệp vụ nó giải quyết?"</span></div></div>
@@ -589,7 +588,7 @@
             <div class="ap-item"><span class="ap-bad">❌</span><div>Bỏ qua bước <strong>xác nhận</strong> thông tin — luôn nhắc lại những gì đã nghe trước khi phân tích.</div></div>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Phân tích</span><h3>Anti-pattern khi phân tích</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Phân tích</span><h3>Anti-pattern khi phân tích</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Viết yêu cầu <strong>áp đặt cách triển khai</strong> — Yêu cầu nói CÁI GÌ, không nói LÀM THẾ NÀO.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Gộp <strong>nhiều yêu cầu vào một câu</strong> — chữ "và" là tín hiệu cảnh báo. Tách các yêu cầu ghép.</div></div>
@@ -597,7 +596,7 @@
             <div class="ap-item"><span class="ap-bad">❌</span><div>Bỏ qua NFR — NFR không ghi lại sẽ trở thành những defect đắt nhất khi phát hiện muộn.</div></div>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Ký duyệt &amp; CR</span><h3>Anti-pattern khi ký duyệt &amp; Change Request</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Ký duyệt &amp; CR</span><h3>Anti-pattern khi ký duyệt &amp; Change Request</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Chấp nhận <strong>duyệt miệng</strong> cho baseline chính thức — ký duyệt văn bản là bắt buộc với Waterfall và phạm vi lõi Hybrid.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Cho phép <strong>đổi phạm vi không qua quy trình Change Request</strong> sau baseline — mọi thay đổi cần đánh giá tác động trước khi làm.</div></div>

@@ -14,19 +14,19 @@
 
   <div class="sidebar-section-label">Navigation</div>
   <nav id="sidebar-nav">
-    <a href="#section-governance" id="nav-governance" class="active" onclick="setActive(this)">
+    <a href="#section-governance" id="nav-governance" class="active" data-nav-active>
       <span class="nav-icon">📋</span> Governance &amp; SDLC
     </a>
-    <a href="#section-phase1" id="nav-phase1" onclick="setActive(this)">
+    <a href="#section-phase1" id="nav-phase1" data-nav-active>
       <span class="nav-icon">🔭</span> Phase 1 · Discovery
     </a>
-    <a href="#section-phase2" id="nav-phase2" onclick="setActive(this)">
+    <a href="#section-phase2" id="nav-phase2" data-nav-active>
       <span class="nav-icon">⚡</span> Phase 2 · Agile Build
     </a>
-    <a href="#section-phase3" id="nav-phase3" onclick="setActive(this)">
+    <a href="#section-phase3" id="nav-phase3" data-nav-active>
       <span class="nav-icon">🔐</span> Phase 3 · Pre-Deploy
     </a>
-    <a href="#section-phase4" id="nav-phase4" onclick="setActive(this)">
+    <a href="#section-phase4" id="nav-phase4" data-nav-active>
       <span class="nav-icon">🚀</span> Phase 4 · Deployment
     </a>
   </nav>
@@ -35,8 +35,7 @@
 
   <div class="sidebar-section-label">Handbooks</div>
   <nav id="sidebar-nav-docs">
-    <a href="#home"><span class="nav-icon">🏦</span> Handbook Home</a>
-    <a href="#handbook"><span class="nav-icon">📘</span> Implementation Handbook</a>
+    <a href="#home"><span class="nav-icon">📘</span> Implementation Handbook</a>
     <a href="#pm"><span class="nav-icon">👔</span> PM Project Handbook</a>
     <a href="#po"><span class="nav-icon">🎯</span> Product Owner Handbook</a>
     <a href="#ba"><span class="nav-icon">📖</span> BA Project Handbook</a>
@@ -158,7 +157,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="true">
             <div class="acc-left"><span>⚔️</span><h3>Strict Segregation of Duties (SoD)</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Mandatory</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -180,7 +179,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>🔍</span><h3>Mandatory Security Audits</h3><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Pre-Release Gate</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -199,7 +198,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>🗳️</span><h3>Formal Change Advisory Board (CAB) Approvals</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Governance Gate</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -381,9 +380,9 @@
         <div class="card-body">
           <div class="card-title">👤 View by Role — Duties &amp; Responsibilities</div>
           <div class="role-tabs" role="tablist">
-            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" onclick="switchRole('rm')">📋 Release Manager</button>
-            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" onclick="switchRole('pt')">📊 Performance Tester</button>
-            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" onclick="switchRole('st')">🔐 Security Tester</button>
+            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" data-role-target="rm">📋 Release Manager</button>
+            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" data-role-target="pt">📊 Performance Tester</button>
+            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" data-role-target="st">🔐 Security Tester</button>
           </div>
 
           <div id="panel-rm" class="role-panel active">
@@ -444,14 +443,14 @@
           <p style="font-size:12px;margin-bottom:14px;">Click each item to check off. All 8 must be ✅ before requesting CAB approval.</p>
 
           <div class="dod-grid" id="dod-checklist">
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Performance Tested</div><div class="dod-sub">All SLA thresholds met. PT Report signed.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Security Tested</div><div class="dod-sub">No High/Critical findings. CISO signed off.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT Accepted</div><div class="dod-sub">Business Owner sign-off obtained.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB Approved</div><div class="dod-sub">Change Request approved. Deployment window set.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Rollback Plan Ready</div><div class="dod-sub">Rollback procedure documented and tested.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact Verified</div><div class="dod-sub">Build SHA verified. Deployment package validated.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Ops Team Notified</div><div class="dod-sub">Ops Handover Document issued. L1 Support briefed.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Monitoring Configured</div><div class="dod-sub">Dashboards live. Alerts tuned. On-call rotation set.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Performance Tested</div><div class="dod-sub">All SLA thresholds met. PT Report signed.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Security Tested</div><div class="dod-sub">No High/Critical findings. CISO signed off.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT Accepted</div><div class="dod-sub">Business Owner sign-off obtained.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB Approved</div><div class="dod-sub">Change Request approved. Deployment window set.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Rollback Plan Ready</div><div class="dod-sub">Rollback procedure documented and tested.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact Verified</div><div class="dod-sub">Build SHA verified. Deployment package validated.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Ops Team Notified</div><div class="dod-sub">Ops Handover Document issued. L1 Support briefed.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Monitoring Configured</div><div class="dod-sub">Dashboards live. Alerts tuned. On-call rotation set.</div></div></div>
           </div>
 
           <div class="dod-progress">
@@ -558,7 +557,7 @@
           <div class="card-title" style="margin-bottom:0;">📁 Commercialization Artifacts Reference</div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📘</span><h3>Operations Handover Document</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Required</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -577,7 +576,7 @@
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📊</span><h3>Monitoring Dashboard &amp; Alerting</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Live</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -593,7 +592,7 @@
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📋</span><h3>Deployment Execution Tracker</h3><span class="acc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">Audit Trail</span></div>
             <div class="accordion-chevron">▾</div>
           </button>

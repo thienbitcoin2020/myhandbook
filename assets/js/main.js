@@ -1,6 +1,6 @@
 /**
  * main.js - Handbook deployment pages
- * Handles: authentication, theme, sidebar navigation, accordion, role tabs, DoD checklist
+ * Handles: theme, language, sidebar navigation, accordion, role tabs, DoD checklist
  */
 
 // ============================================================
@@ -42,6 +42,8 @@ function _updateThemeBtns(theme) {
   if (!darkBtn || !lightBtn) return;
   darkBtn.classList.toggle('active',  theme === 'dark');
   lightBtn.classList.toggle('active', theme === 'light');
+  darkBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+  lightBtn.setAttribute('aria-pressed', String(theme === 'light'));
 }
 
 function _injectThemeToggle() {
@@ -52,21 +54,38 @@ function _injectThemeToggle() {
   const wrap = document.createElement('div');
   wrap.className = 'theme-toggle-wrap';
   wrap.id = 'theme-toggle-wrap';
-  wrap.innerHTML = `
-    <div class="theme-seg">
-      <button class="ts-btn" id="ts-dark"  onclick="setTheme('dark')">
-        <span>☽</span><span>Dark</span>
-      </button>
-      <button class="ts-btn" id="ts-light" onclick="setTheme('light')">
-        <span>☀</span><span>Light</span>
-      </button>
-    </div>`;
+  const segment = document.createElement('div');
+  segment.className = 'theme-seg';
+
+  const darkButton = document.createElement('button');
+  darkButton.className = 'ts-btn';
+  darkButton.id = 'ts-dark';
+  darkButton.type = 'button';
+  darkButton.append(Object.assign(document.createElement('span'), { textContent: '☽' }));
+  const darkLabel = Object.assign(document.createElement('span'), { textContent: 'Dark' });
+  darkLabel.className = 'theme-label';
+  darkButton.append(darkLabel);
+  darkButton.addEventListener('click', () => setTheme('dark'));
+
+  const lightButton = document.createElement('button');
+  lightButton.className = 'ts-btn';
+  lightButton.id = 'ts-light';
+  lightButton.type = 'button';
+  lightButton.append(Object.assign(document.createElement('span'), { textContent: '☀' }));
+  const lightLabel = Object.assign(document.createElement('span'), { textContent: 'Light' });
+  lightLabel.className = 'theme-label';
+  lightButton.append(lightLabel);
+  lightButton.addEventListener('click', () => setTheme('light'));
+
+  segment.append(darkButton, lightButton);
+  wrap.append(segment);
 
   const header = sidebar.querySelector('.sidebar-top, .sb-top');
   if (header) header.insertAdjacentElement('afterend', wrap);
   else sidebar.insertBefore(wrap, sidebar.firstChild);
 
   _updateThemeBtns(document.documentElement.getAttribute('data-theme') || 'light');
+  if (typeof _syncSharedLanguage === 'function') _syncSharedLanguage(_getLang());
 }
 
 document.addEventListener('DOMContentLoaded', _injectThemeToggle);
@@ -81,11 +100,82 @@ function _getLang() {
   return localStorage.getItem('nt_lang') === 'vi' ? 'vi' : 'en';
 }
 
+const SHARED_UI_COPY = {
+  en: {
+    appTitle: 'Project Handbook',
+    internalUse: 'Internal use',
+    brandHome: 'Power Home Handbook home',
+    toggleNavigation: 'Toggle navigation',
+    dark: 'Dark',
+    light: 'Light',
+    switchEnglish: 'Switch to English',
+    switchVietnamese: 'Switch to Vietnamese',
+    complete: 'complete',
+    errorHeading: "Couldn't load this page",
+    errorSectionPrefix: 'Section ',
+    errorSectionSuffix: ' could not be loaded (',
+    unknownError: 'unknown error',
+    errorGuidance: 'Check your connection and try again.',
+    retry: 'Retry',
+  },
+  vi: {
+    appTitle: 'Cẩm nang Dự án',
+    internalUse: 'Sử dụng nội bộ',
+    brandHome: 'Trang chủ Cẩm nang Power Home',
+    toggleNavigation: 'Mở hoặc đóng điều hướng',
+    dark: 'Tối',
+    light: 'Sáng',
+    switchEnglish: 'Chuyển sang tiếng Anh',
+    switchVietnamese: 'Chuyển sang tiếng Việt',
+    complete: 'hoàn thành',
+    errorHeading: 'Không thể tải trang này',
+    errorSectionPrefix: 'Không thể tải mục ',
+    errorSectionSuffix: ' (',
+    unknownError: 'lỗi không xác định',
+    errorGuidance: 'Kiểm tra kết nối rồi thử lại.',
+    retry: 'Thử lại',
+  },
+};
+
+function getSharedUiText(key, lang = _getLang()) {
+  const dictionary = SHARED_UI_COPY[lang] || SHARED_UI_COPY.en;
+  return dictionary[key] || SHARED_UI_COPY.en[key] || key;
+}
+
+function _syncSharedLanguage(lang = _getLang()) {
+  lang = lang === 'vi' ? 'vi' : 'en';
+  document.documentElement.lang = lang;
+
+  const appTitle = document.querySelector('.app-context-title');
+  const appBadge = document.querySelector('.app-context-badge');
+  const brand = document.querySelector('.app-brand');
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  if (appTitle) appTitle.textContent = getSharedUiText('appTitle', lang);
+  if (appBadge) appBadge.textContent = getSharedUiText('internalUse', lang);
+  if (brand) brand.setAttribute('aria-label', getSharedUiText('brandHome', lang));
+  if (sidebarToggle) sidebarToggle.setAttribute('aria-label', getSharedUiText('toggleNavigation', lang));
+
+  const darkLabel = document.querySelector('#ts-dark .theme-label');
+  const lightLabel = document.querySelector('#ts-light .theme-label');
+  if (darkLabel) darkLabel.textContent = getSharedUiText('dark', lang);
+  if (lightLabel) lightLabel.textContent = getSharedUiText('light', lang);
+
+  const englishButton = document.getElementById('lng-en');
+  const vietnameseButton = document.getElementById('lng-vi');
+  if (englishButton) englishButton.setAttribute('aria-label', getSharedUiText('switchEnglish', lang));
+  if (vietnameseButton) vietnameseButton.setAttribute('aria-label', getSharedUiText('switchVietnamese', lang));
+}
+
 function setLang(lang) {
   lang = (lang === 'vi') ? 'vi' : 'en';
-  if (lang === _getLang()) { _updateLangBtns(lang); return; }
+  if (lang === _getLang()) {
+    _updateLangBtns(lang);
+    _syncSharedLanguage(lang);
+    return;
+  }
   localStorage.setItem('nt_lang', lang);
   _updateLangBtns(lang);
+  _syncSharedLanguage(lang);
   // Instant re-render of the current route in the new language
   if (typeof _rerenderCurrentPage === 'function') _rerenderCurrentPage();
 }
@@ -96,6 +186,8 @@ function _updateLangBtns(lang) {
   if (!en || !vi) return;
   en.classList.toggle('active', lang !== 'vi');
   vi.classList.toggle('active', lang === 'vi');
+  en.setAttribute('aria-pressed', String(lang !== 'vi'));
+  vi.setAttribute('aria-pressed', String(lang === 'vi'));
 }
 
 function _injectLangToggle() {
@@ -107,11 +199,25 @@ function _injectLangToggle() {
   wrap.className = 'lang-toggle-wrap notranslate';
   wrap.id = 'lang-toggle-wrap';
   wrap.setAttribute('translate', 'no');
-  wrap.innerHTML = `
-    <div class="lang-seg">
-      <button class="lang-btn" id="lng-en" onclick="setLang('en')">🇬🇧 EN</button>
-      <button class="lang-btn" id="lng-vi" onclick="setLang('vi')">🇻🇳 VI</button>
-    </div>`;
+  const segment = document.createElement('div');
+  segment.className = 'lang-seg';
+
+  const englishButton = document.createElement('button');
+  englishButton.className = 'lang-btn';
+  englishButton.id = 'lng-en';
+  englishButton.type = 'button';
+  englishButton.textContent = '🇬🇧 EN';
+  englishButton.addEventListener('click', () => setLang('en'));
+
+  const vietnameseButton = document.createElement('button');
+  vietnameseButton.className = 'lang-btn';
+  vietnameseButton.id = 'lng-vi';
+  vietnameseButton.type = 'button';
+  vietnameseButton.textContent = '🇻🇳 VI';
+  vietnameseButton.addEventListener('click', () => setLang('vi'));
+
+  segment.append(englishButton, vietnameseButton);
+  wrap.append(segment);
 
   const themeWrap = document.getElementById('theme-toggle-wrap');
   if (themeWrap) {
@@ -122,124 +228,11 @@ function _injectLangToggle() {
     else sidebar.insertBefore(wrap, sidebar.firstChild);
   }
   _updateLangBtns(_getLang());
+  _syncSharedLanguage(_getLang());
 }
 
 document.addEventListener('DOMContentLoaded', _injectLangToggle);
-
-// ============================================================
-// AUTHENTICATION
-// Credentials are intentionally client-side for this static
-// internal tool. Not suitable for high-security prod systems.
-// ============================================================
-const AUTH_KEY = 'handbook_auth';
-const AUTH_USER = 'admin';
-const AUTH_PASS = 'Admin@!23';
-const AUTH_TTL_MS = 24 * 60 * 60 * 1000;
-
-function clearAuth() {
-  localStorage.removeItem(AUTH_KEY);
-}
-
-function getAuthRecord() {
-  try {
-    const raw = localStorage.getItem(AUTH_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    clearAuth();
-    return null;
-  }
-}
-
-function isAuthenticated() {
-  const record = getAuthRecord();
-  if (!record || record.status !== 'authenticated' || typeof record.authenticatedAt !== 'number') {
-    clearAuth();
-    return false;
-  }
-
-  if (Date.now() - record.authenticatedAt > AUTH_TTL_MS) {
-    clearAuth();
-    return false;
-  }
-
-  return true;
-}
-
-function persistAuth() {
-  localStorage.setItem(
-    AUTH_KEY,
-    JSON.stringify({
-      status: 'authenticated',
-      authenticatedAt: Date.now(),
-    })
-  );
-}
-
-function syncAuthState() {
-  const overlay = document.getElementById('login-overlay');
-
-  if (isAuthenticated()) {
-    document.body.classList.remove('locked');
-    if (overlay) overlay.classList.add('hidden');
-    return;
-  }
-
-  document.body.classList.add('locked');
-  if (overlay) overlay.classList.remove('hidden');
-}
-
-/** Check auth state on every page load */
-(function initAuth() {
-  syncAuthState();
-})();
-
-/** Handle login form submit */
-function handleLogin(e) {
-  e.preventDefault();
-  const username = document.getElementById('login-username').value.trim();
-  const password = document.getElementById('login-password').value;
-  const errorBox = document.getElementById('login-error');
-  const submitBtn = document.getElementById('login-submit');
-
-  submitBtn.disabled = true;
-  submitBtn.classList.add('loading');
-  errorBox.classList.remove('show');
-
-  setTimeout(() => {
-    if (username === AUTH_USER && password === AUTH_PASS) {
-      persistAuth();
-      syncAuthState();
-    } else {
-      errorBox.textContent = 'Incorrect username or password. Please try again.';
-      errorBox.classList.add('show');
-      document.getElementById('login-password').value = '';
-      document.getElementById('login-password').focus();
-    }
-
-    submitBtn.disabled = false;
-    submitBtn.classList.remove('loading');
-  }, 400);
-}
-
-/** Handle logout */
-function handleLogout() {
-  clearAuth();
-  syncAuthState();
-  document.getElementById('login-username').value = '';
-  document.getElementById('login-password').value = '';
-  document.getElementById('login-error').classList.remove('show');
-}
-
-/** Toggle password visibility */
-function togglePw() {
-  const input = document.getElementById('login-password');
-  const toggle = document.querySelector('.pw-toggle');
-  const nowVisible = input.type === 'password';
-  input.type = nowVisible ? 'text' : 'password';
-  // Keep the icon consistent with the initial 👁 glyph in index.html
-  toggle.textContent = nowVisible ? '🙈' : '👁';
-  toggle.setAttribute('aria-label', nowVisible ? 'Hide password' : 'Show password');
-}
+document.addEventListener('DOMContentLoaded', () => _syncSharedLanguage(_getLang()));
 
 // ============================================================
 // SIDEBAR - Mobile toggle
@@ -287,6 +280,73 @@ function toggleAccordion(btn) {
   btn.nextElementSibling.classList.toggle('open', !expanded);
 }
 
+// Implementation Handbook section switcher. This lives in the shared bundle
+// so fragments never need to execute dynamically injected scripts.
+function showSec(id, link) {
+  document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  const target = document.getElementById('sec-' + id);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.sb-nav a').forEach(item => {
+    item.classList.remove('active');
+    item.removeAttribute('aria-current');
+  });
+
+  const navLink = link || document.querySelector(`.sb-nav a[data-sec="${id}"]`);
+  if (navLink) {
+    navLink.classList.add('active');
+    navLink.setAttribute('aria-current', 'page');
+  }
+
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAcc(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  if (btn.nextElementSibling) btn.nextElementSibling.classList.toggle('open', !expanded);
+}
+
+function handleSearch(query) {
+  const normalized = query.toLowerCase().trim();
+  document.querySelectorAll('.sb-nav a[data-sec]').forEach(link => {
+    if (!normalized) {
+      link.style.display = '';
+      return;
+    }
+    const section = document.getElementById('sec-' + link.dataset.sec);
+    const searchData = (section ? section.getAttribute('data-search') : '') + (link.textContent || '');
+    link.style.display = searchData.toLowerCase().includes(normalized) ? '' : 'none';
+  });
+}
+
+function filterRaci() {
+  const phaseControl = document.getElementById('raci-phase');
+  const roleControl = document.getElementById('raci-role');
+  if (!phaseControl || !roleControl) return;
+
+  const phase = phaseControl.value;
+  const role = roleControl.value;
+  const rows = document.querySelectorAll('#raci-table tbody tr');
+  const headers = document.querySelectorAll('#raci-table thead th[data-role]');
+
+  headers.forEach(header => {
+    const columnIndex = Array.prototype.indexOf.call(header.parentNode.children, header);
+    const show = !role || header.dataset.role === role;
+    header.style.display = show ? '' : 'none';
+    rows.forEach(row => {
+      if (row.children[columnIndex]) row.children[columnIndex].style.display = show ? '' : 'none';
+    });
+  });
+
+  rows.forEach(row => {
+    const rowPhase = row.children[1] ? row.children[1].textContent : '';
+    row.style.display = !phase || rowPhase.includes(phase) ? '' : 'none';
+  });
+}
+
 // ============================================================
 // ROLE TABS - Switch perspective panels
 // ============================================================
@@ -331,10 +391,71 @@ function updateDod() {
   const barEl = document.getElementById('dod-bar');
   const banner = document.getElementById('dod-complete-banner');
 
-  if (countEl) countEl.textContent = `${checked} / ${total} complete`;
+  if (countEl) countEl.textContent = `${checked} / ${total} ${getSharedUiText('complete')}`;
   if (barEl) barEl.style.width = `${pct}%`;
   if (banner) banner.classList.toggle('show', checked === total);
 }
+
+// One delegated interaction layer replaces hundreds of inline event handlers
+// across the static fragments, allowing a strict script-src 'self' CSP.
+document.addEventListener('click', event => {
+  const target = event.target.closest && event.target.closest('*');
+  if (!target) return;
+
+  const sidebarToggle = target.closest('#sidebar-toggle');
+  if (sidebarToggle) {
+    toggleSidebar();
+    return;
+  }
+
+  const sectionTrigger = target.closest('[data-section-target]');
+  if (sectionTrigger) {
+    event.preventDefault();
+    showSec(sectionTrigger.dataset.sectionTarget, sectionTrigger.matches('.sb-nav a') ? sectionTrigger : null);
+    return;
+  }
+
+  const routeTrigger = target.closest('[data-route-target]');
+  if (routeTrigger) {
+    location.hash = '#' + routeTrigger.dataset.routeTarget;
+    return;
+  }
+
+  const roleTrigger = target.closest('[data-role-target]');
+  if (roleTrigger) {
+    switchRole(roleTrigger.dataset.roleTarget);
+    return;
+  }
+
+  const accordionTrigger = target.closest('.accordion-trigger');
+  if (accordionTrigger) {
+    toggleAccordion(accordionTrigger);
+    return;
+  }
+
+  const compactAccordionTrigger = target.closest('.acc-trigger');
+  if (compactAccordionTrigger) {
+    toggleAcc(compactAccordionTrigger);
+    return;
+  }
+
+  const dodItem = target.closest('.dod-item');
+  if (dodItem) {
+    toggleDod(dodItem);
+    return;
+  }
+
+  const navLink = target.closest('[data-nav-active]');
+  if (navLink) setActive(navLink);
+});
+
+document.addEventListener('input', event => {
+  if (event.target.id === 'hb-search') handleSearch(event.target.value);
+});
+
+document.addEventListener('change', event => {
+  if (event.target.id === 'raci-phase' || event.target.id === 'raci-role') filterRaci();
+});
 
 // ============================================================
 // SIDEBAR DETAILS — PowerHome cards for compliance & metadata
@@ -444,6 +565,3 @@ function applyGrids() {
 
 applyGrids();
 window.addEventListener('resize', applyGrids);
-window.addEventListener('storage', e => {
-  if (e.key === AUTH_KEY) syncAuthState();
-});

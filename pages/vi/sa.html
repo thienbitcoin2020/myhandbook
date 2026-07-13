@@ -1,4 +1,4 @@
-<title>Solution Architect Handbook | Handbook</title>
+<title>Cẩm nang Kiến trúc Giải pháp | Cẩm nang</title>
 
 <!-- Page-specific styles -->
 <style id="page-style">
@@ -29,35 +29,35 @@
 
   <div class="sidebar-section-label">Nền tảng</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
-    <a href="#section-intake" onclick="setActive(this)"><span class="nav-icon">📥</span> 02 · Yêu cầu &amp; Phạm vi</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-intake" data-nav-active><span class="nav-icon">📥</span> 02 · Yêu cầu &amp; Phạm vi</a>
   </nav>
 
   <div class="sidebar-section-label">Phân tích</div>
   <nav id="sidebar-nav">
-    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> 03 · Phân tích NFR</a>
-    <a href="#section-constraints" onclick="setActive(this)"><span class="nav-icon">🧱</span> 04 · Ràng buộc &amp; Giả định</a>
+    <a href="#section-nfr" data-nav-active><span class="nav-icon">⚡</span> 03 · Phân tích NFR</a>
+    <a href="#section-constraints" data-nav-active><span class="nav-icon">🧱</span> 04 · Ràng buộc &amp; Giả định</a>
   </nav>
 
   <div class="sidebar-section-label">Quyết định</div>
   <nav id="sidebar-nav">
-    <a href="#section-options" onclick="setActive(this)"><span class="nav-icon">⚖️</span> 05 · Phương án giải pháp</a>
-    <a href="#section-tech" onclick="setActive(this)"><span class="nav-icon">🧰</span> 06 · Chọn công nghệ</a>
-    <a href="#section-adr" onclick="setActive(this)"><span class="nav-icon">📜</span> 07 · Quyết định kiến trúc</a>
+    <a href="#section-options" data-nav-active><span class="nav-icon">⚖️</span> 05 · Phương án giải pháp</a>
+    <a href="#section-tech" data-nav-active><span class="nav-icon">🧰</span> 06 · Chọn công nghệ</a>
+    <a href="#section-adr" data-nav-active><span class="nav-icon">📜</span> 07 · Quyết định kiến trúc</a>
   </nav>
 
   <div class="sidebar-section-label">Thiết kế</div>
   <nav id="sidebar-nav">
-    <a href="#section-hld" onclick="setActive(this)"><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
-    <a href="#section-integration" onclick="setActive(this)"><span class="nav-icon">🔌</span> 09 · Tích hợp &amp; API</a>
-    <a href="#section-datasec" onclick="setActive(this)"><span class="nav-icon">🔐</span> 10 · Dữ liệu &amp; Bảo mật</a>
-    <a href="#section-sizing" onclick="setActive(this)"><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
+    <a href="#section-hld" data-nav-active><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
+    <a href="#section-integration" data-nav-active><span class="nav-icon">🔌</span> 09 · Tích hợp &amp; API</a>
+    <a href="#section-datasec" data-nav-active><span class="nav-icon">🔐</span> 10 · Dữ liệu &amp; Bảo mật</a>
+    <a href="#section-sizing" data-nav-active><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
   </nav>
 
   <div class="sidebar-section-label">Quản trị</div>
   <nav id="sidebar-nav">
-    <a href="#section-review" onclick="setActive(this)"><span class="nav-icon">✅</span> 12 · Kiểm chứng &amp; Review</a>
-    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🛡️</span> 13 · Quản trị &amp; Bàn giao</a>
+    <a href="#section-review" data-nav-active><span class="nav-icon">✅</span> 12 · Kiểm chứng &amp; Review</a>
+    <a href="#section-governance" data-nav-active><span class="nav-icon">🛡️</span> 13 · Quản trị &amp; Bàn giao</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -77,8 +77,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#ba">← BA Project Handbook</a><br/>
     <a href="#qc">← QC Testing Handbook</a><br/>
     <a href="#deployment">← Deployment Runbook</a>
@@ -425,7 +424,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
         <ul class="step-cl">
           <li>Làm rõ thiết kế trong các sprint; <strong>code review theo mức tuân thủ kiến trúc</strong> (không phải style).</li>
           <li>Theo dõi <strong>tech debt</strong> trong backlog; cập nhật ADR khi quyết định thay đổi.</li>
-          <li>SA là <strong>người gác cổng tính toàn vẹn kiến trúc</strong> xuyên suốt giao hàng — xem <a href="#handbook">Implementation Handbook §3</a> và trục quản trị của <a href="#pm">PM</a>.</li>
+          <li>SA là <strong>người gác cổng tính toàn vẹn kiến trúc</strong> xuyên suốt giao hàng — xem <a href="#home">Implementation Handbook §3</a> và trục quản trị của <a href="#pm">PM</a>.</li>
         </ul>
       </div></div>
       <div class="card"><div class="card-body">

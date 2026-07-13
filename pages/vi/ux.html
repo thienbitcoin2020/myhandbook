@@ -1,4 +1,4 @@
-<title>UX/UI Designer Handbook | Handbook</title>
+<title>Cẩm nang Thiết kế UX/UI | Cẩm nang</title>
 
 <style id="page-style">
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
@@ -27,31 +27,31 @@
 
   <div class="sidebar-section-label">Nền tảng</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
-    <a href="#section-discover" onclick="setActive(this)"><span class="nav-icon">🔎</span> 02 · Discover / Nghiên cứu</a>
-    <a href="#section-define" onclick="setActive(this)"><span class="nav-icon">🎯</span> 03 · Define / Tổng hợp</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-discover" data-nav-active><span class="nav-icon">🔎</span> 02 · Discover / Nghiên cứu</a>
+    <a href="#section-define" data-nav-active><span class="nav-icon">🎯</span> 03 · Define / Tổng hợp</a>
   </nav>
 
   <div class="sidebar-section-label">Thiết kế</div>
   <nav id="sidebar-nav">
-    <a href="#section-ia" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 04 · IA &amp; User Flow</a>
-    <a href="#section-wireframe" onclick="setActive(this)"><span class="nav-icon">📐</span> 05 · Wireframing</a>
-    <a href="#section-ui" onclick="setActive(this)"><span class="nav-icon">🖌️</span> 06 · Nguyên tắc UI</a>
-    <a href="#section-designsystem" onclick="setActive(this)"><span class="nav-icon">🧩</span> 07 · Design System</a>
-    <a href="#section-interaction" onclick="setActive(this)"><span class="nav-icon">✨</span> 08 · Tương tác &amp; Trạng thái</a>
+    <a href="#section-ia" data-nav-active><span class="nav-icon">🗂️</span> 04 · IA &amp; User Flow</a>
+    <a href="#section-wireframe" data-nav-active><span class="nav-icon">📐</span> 05 · Wireframing</a>
+    <a href="#section-ui" data-nav-active><span class="nav-icon">🖌️</span> 06 · Nguyên tắc UI</a>
+    <a href="#section-designsystem" data-nav-active><span class="nav-icon">🧩</span> 07 · Design System</a>
+    <a href="#section-interaction" data-nav-active><span class="nav-icon">✨</span> 08 · Tương tác &amp; Trạng thái</a>
   </nav>
 
   <div class="sidebar-section-label">Kiểm chứng</div>
   <nav id="sidebar-nav">
-    <a href="#section-usability" onclick="setActive(this)"><span class="nav-icon">🧪</span> 09 · Usability Testing</a>
-    <a href="#section-heuristics" onclick="setActive(this)"><span class="nav-icon">🔟</span> 10 · Heuristic Evaluation</a>
-    <a href="#section-a11y" onclick="setActive(this)"><span class="nav-icon">♿</span> 11 · Accessibility (WCAG)</a>
+    <a href="#section-usability" data-nav-active><span class="nav-icon">🧪</span> 09 · Usability Testing</a>
+    <a href="#section-heuristics" data-nav-active><span class="nav-icon">🔟</span> 10 · Heuristic Evaluation</a>
+    <a href="#section-a11y" data-nav-active><span class="nav-icon">♿</span> 11 · Accessibility (WCAG)</a>
   </nav>
 
   <div class="sidebar-section-label">Tra cứu</div>
   <nav id="sidebar-nav">
-    <a href="#section-handoff" onclick="setActive(this)"><span class="nav-icon">🤝</span> 12 · Bàn giao cho Dev</a>
-    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+    <a href="#section-handoff" data-nav-active><span class="nav-icon">🤝</span> 12 · Bàn giao cho Dev</a>
+    <a href="#section-raci" data-nav-active><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -71,7 +71,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#ba">← BA Project Handbook</a><br/>
     <a href="#po">← Product Owner Handbook</a><br/>
     <a href="#qc">← QC Testing Handbook</a>
