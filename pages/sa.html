@@ -29,35 +29,35 @@
 
   <div class="sidebar-section-label">Foundations</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Overview</a>
-    <a href="#section-intake" onclick="setActive(this)"><span class="nav-icon">📥</span> 02 · Requirements &amp; Scope</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Overview</a>
+    <a href="#section-intake" data-nav-active><span class="nav-icon">📥</span> 02 · Requirements &amp; Scope</a>
   </nav>
 
   <div class="sidebar-section-label">Analysis</div>
   <nav id="sidebar-nav">
-    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> 03 · NFR Analysis</a>
-    <a href="#section-constraints" onclick="setActive(this)"><span class="nav-icon">🧱</span> 04 · Constraints &amp; Assumptions</a>
+    <a href="#section-nfr" data-nav-active><span class="nav-icon">⚡</span> 03 · NFR Analysis</a>
+    <a href="#section-constraints" data-nav-active><span class="nav-icon">🧱</span> 04 · Constraints &amp; Assumptions</a>
   </nav>
 
   <div class="sidebar-section-label">Decisions</div>
   <nav id="sidebar-nav">
-    <a href="#section-options" onclick="setActive(this)"><span class="nav-icon">⚖️</span> 05 · Solution Options</a>
-    <a href="#section-tech" onclick="setActive(this)"><span class="nav-icon">🧰</span> 06 · Technology Selection</a>
-    <a href="#section-adr" onclick="setActive(this)"><span class="nav-icon">📜</span> 07 · Architecture Decisions</a>
+    <a href="#section-options" data-nav-active><span class="nav-icon">⚖️</span> 05 · Solution Options</a>
+    <a href="#section-tech" data-nav-active><span class="nav-icon">🧰</span> 06 · Technology Selection</a>
+    <a href="#section-adr" data-nav-active><span class="nav-icon">📜</span> 07 · Architecture Decisions</a>
   </nav>
 
   <div class="sidebar-section-label">Design</div>
   <nav id="sidebar-nav">
-    <a href="#section-hld" onclick="setActive(this)"><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
-    <a href="#section-integration" onclick="setActive(this)"><span class="nav-icon">🔌</span> 09 · Integration &amp; API</a>
-    <a href="#section-datasec" onclick="setActive(this)"><span class="nav-icon">🔐</span> 10 · Data &amp; Security</a>
-    <a href="#section-sizing" onclick="setActive(this)"><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
+    <a href="#section-hld" data-nav-active><span class="nav-icon">🏗️</span> 08 · HLD &amp; C4 Model</a>
+    <a href="#section-integration" data-nav-active><span class="nav-icon">🔌</span> 09 · Integration &amp; API</a>
+    <a href="#section-datasec" data-nav-active><span class="nav-icon">🔐</span> 10 · Data &amp; Security</a>
+    <a href="#section-sizing" data-nav-active><span class="nav-icon">📈</span> 11 · Sizing &amp; Resilience</a>
   </nav>
 
   <div class="sidebar-section-label">Governance</div>
   <nav id="sidebar-nav">
-    <a href="#section-review" onclick="setActive(this)"><span class="nav-icon">✅</span> 12 · Validation &amp; Review</a>
-    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🛡️</span> 13 · Governance &amp; Handover</a>
+    <a href="#section-review" data-nav-active><span class="nav-icon">✅</span> 12 · Validation &amp; Review</a>
+    <a href="#section-governance" data-nav-active><span class="nav-icon">🛡️</span> 13 · Governance &amp; Handover</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -77,8 +77,7 @@
     Next review: 2025-Q4<br/>
     Classification: CONFIDENTIAL
     <strong>Quick Links</strong>
-    <a href="#home">← Handbook Home</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#ba">← BA Project Handbook</a><br/>
     <a href="#qc">← QC Testing Handbook</a><br/>
     <a href="#deployment">← Deployment Runbook</a>
@@ -425,7 +424,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
         <ul class="step-cl">
           <li>Design clarifications during sprints; <strong>code review for architecture compliance</strong> (not style).</li>
           <li>Track <strong>tech debt</strong> in the backlog; update ADRs when decisions change.</li>
-          <li>SA is the <strong>guardian of architectural integrity</strong> across delivery — see <a href="#handbook">Implementation Handbook §3</a> and the <a href="#pm">PM</a> governance spine.</li>
+          <li>SA is the <strong>guardian of architectural integrity</strong> across delivery — see <a href="#home">Implementation Handbook §3</a> and the <a href="#pm">PM</a> governance spine.</li>
         </ul>
       </div></div>
       <div class="card"><div class="card-body">

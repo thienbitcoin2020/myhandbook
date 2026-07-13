@@ -16,6 +16,7 @@ desktop.ini
 # Build outputs (if any tooling added later)
 dist/
 build/
+public/
 node_modules/
 
 # Environment files

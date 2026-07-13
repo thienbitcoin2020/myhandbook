@@ -4,9 +4,8 @@
  */
 
 const ROUTES = {
-  'home':       'pages/home.html',
+  'home':       'pages/handbook.html',
   'deployment': 'pages/deployment.html',
-  'handbook':   'pages/handbook.html',
   'ba':         'pages/ba.html',
   'pm':         'pages/pm.html',
   'qc':         'pages/qc.html',
@@ -19,14 +18,31 @@ const ROUTES = {
   'pmo':        'pages/pmo.html',
 };
 
+// The former #handbook route is kept only as a compatibility alias. Home is
+// now the single canonical entry point for the Implementation Handbook.
+const ROUTE_ALIASES = {
+  'handbook': 'home',
+};
+
 let _pageStyle  = null;
-let _pageScript = null;
 let _currentPage = null;
 let _scrollObserver = null;
 
+function _replaceWithTrustedFragment(destination, source) {
+  // Fragments are fetched only from the fixed same-origin ROUTES allowlist.
+  const nodes = Array.from(source.childNodes, node => document.importNode(node, true));
+  destination.replaceChildren(...nodes);
+}
+
 async function navigate(hash) {
-  const page = (hash || '').replace(/^#/, '') || 'home';
-  const url  = ROUTES[page] || ROUTES['home'];
+  const requestedPage = (hash || '').replace(/^#/, '') || 'home';
+  const page = ROUTE_ALIASES[requestedPage]
+    || (ROUTES[requestedPage] ? requestedPage : 'home');
+  const url = ROUTES[page];
+
+  if (requestedPage !== page && ROUTE_ALIASES[requestedPage]) {
+    history.replaceState(null, '', '#home');
+  }
 
   if (page === _currentPage) return;
   _currentPage = page;
@@ -35,6 +51,7 @@ async function navigate(hash) {
   // If a page has no VI version yet, fall back to English with a notice.
   const wantVi = (typeof _getLang === 'function' && _getLang() === 'vi');
   let viFellBack = false;
+  if (typeof _syncSharedLanguage === 'function') _syncSharedLanguage(wantVi ? 'vi' : 'en');
 
   try {
     let res;
@@ -52,18 +69,18 @@ async function navigate(hash) {
     const sidebarDest = document.getElementById('sidebar');
     const sidebarSrc  = doc.getElementById('sidebar-inner');
     if (sidebarDest && sidebarSrc) {
-      sidebarDest.innerHTML = sidebarSrc.innerHTML;
+      _replaceWithTrustedFragment(sidebarDest, sidebarSrc);
     }
 
     // ── Main content ─────────────────────────────────────────
     const app         = document.getElementById('app');
     const contentSrc  = doc.getElementById('page-content');
     if (app && contentSrc) {
-      app.innerHTML = contentSrc.innerHTML;
+      _replaceWithTrustedFragment(app, contentSrc);
       if (viFellBack) {
         const note = document.createElement('div');
         note.className = 'vi-fallback-note';
-        note.innerHTML = '🇻🇳 Bản dịch tiếng Việt cho trang này đang được biên soạn — nội dung tạm hiển thị bằng tiếng Anh.';
+        note.textContent = '🇻🇳 Bản dịch tiếng Việt cho trang này đang được biên soạn — nội dung tạm hiển thị bằng tiếng Anh.';
         app.insertBefore(note, app.firstChild);
       }
     }
@@ -82,20 +99,10 @@ async function navigate(hash) {
       document.head.appendChild(_pageStyle);
     }
 
-    // ── Page-specific scripts ─────────────────────────────────
-    if (_pageScript) { _pageScript.remove(); _pageScript = null; }
-    const scriptSrc = doc.getElementById('page-script');
-    if (scriptSrc) {
-      _pageScript = document.createElement('script');
-      _pageScript.textContent = scriptSrc.textContent;
-      document.body.appendChild(_pageScript);
-    }
-
     // ── Re-run shared initialisations ─────────────────────────
     if (typeof _injectThemeToggle === 'function') _injectThemeToggle();
     if (typeof _injectLangToggle  === 'function') _injectLangToggle();
     if (typeof _enhanceSidebarDetails === 'function') _enhanceSidebarDetails();
-    if (typeof syncAuthState      === 'function') syncAuthState();
     if (typeof applyGrids         === 'function') applyGrids();
 
     // ── DoD keyboard listeners (deployment page) ──────────────
@@ -116,6 +123,15 @@ async function navigate(hash) {
 
     window.scrollTo(0, 0);
 
+    // Consumers such as global search need a deterministic signal that the
+    // requested fragment has been injected and all page UI is ready.
+    document.dispatchEvent(new CustomEvent('handbook:page-ready', {
+      detail: {
+        page,
+        lang: wantVi && !viFellBack ? 'vi' : 'en',
+      },
+    }));
+
   } catch (err) {
     console.error('[Router] Failed to load', url, err);
     _renderError(page, url, err);
@@ -126,16 +142,48 @@ async function navigate(hash) {
 function _renderError(page, url, err) {
   const app = document.getElementById('app');
   if (!app) return;
-  app.innerHTML = `
-    <div class="router-error" role="alert">
-      <div class="router-error-icon">⚠️</div>
-      <h1>Couldn't load this page</h1>
-      <p>The section <code>#${page}</code> failed to load
-         (<code>${url}</code> — ${err && err.message ? err.message : 'unknown error'}).</p>
-      <p>Check your connection and try again.</p>
-      <button type="button" class="router-error-btn"
-              onclick="_currentPage=null; navigate(location.hash)">Retry</button>
-    </div>`;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'router-error';
+  wrapper.setAttribute('role', 'alert');
+
+  const icon = document.createElement('div');
+  icon.className = 'router-error-icon';
+  icon.textContent = '⚠️';
+
+  const heading = document.createElement('h1');
+  heading.textContent = typeof getSharedUiText === 'function'
+    ? getSharedUiText('errorHeading')
+    : "Couldn't load this page";
+
+  const details = document.createElement('p');
+  const pageCode = document.createElement('code');
+  pageCode.textContent = '#' + page;
+  const urlCode = document.createElement('code');
+  urlCode.textContent = url;
+  const prefix = typeof getSharedUiText === 'function' ? getSharedUiText('errorSectionPrefix') : 'Section ';
+  const suffix = typeof getSharedUiText === 'function' ? getSharedUiText('errorSectionSuffix') : ' could not be loaded (';
+  const unknownError = typeof getSharedUiText === 'function' ? getSharedUiText('unknownError') : 'unknown error';
+  details.append(prefix, pageCode, suffix, urlCode, ' — ');
+  details.append(document.createTextNode(err && err.message ? err.message : unknownError));
+  details.append(').');
+
+  const guidance = document.createElement('p');
+  guidance.textContent = typeof getSharedUiText === 'function'
+    ? getSharedUiText('errorGuidance')
+    : 'Check your connection and try again.';
+
+  const retry = document.createElement('button');
+  retry.type = 'button';
+  retry.className = 'router-error-btn';
+  retry.textContent = typeof getSharedUiText === 'function' ? getSharedUiText('retry') : 'Retry';
+  retry.addEventListener('click', () => {
+    _currentPage = null;
+    navigate(location.hash);
+  });
+
+  wrapper.append(icon, heading, details, guidance, retry);
+  app.replaceChildren(wrapper);
 }
 
 function _setupScrollSpy() {
@@ -178,11 +226,12 @@ function _setupScrollSpy() {
 
 window.addEventListener('hashchange', () => {
   const page = location.hash.replace(/^#/, '');
+  const route = ROUTE_ALIASES[page] || page;
 
   // In-page anchor (e.g. #section-p2 inside a role page): NOT a route.
   // Just scroll to it — do NOT re-route (previously this fell back to the
   // default route and wiped the current page) and do NOT reload in VI mode.
-  if (page && !ROUTES[page]) {
+  if (page && !ROUTES[route]) {
     const el = document.getElementById(page);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
@@ -208,9 +257,11 @@ document.addEventListener('click', event => {
 
 /** Re-render the current route (used by the language toggle — no reload). */
 function _rerenderCurrentPage() {
+  const requestedRoute = location.hash.replace(/^#/, '');
+  const canonicalRoute = ROUTE_ALIASES[requestedRoute] || requestedRoute;
   const route = (_currentPage && ROUTES[_currentPage])
     ? _currentPage
-    : (ROUTES[location.hash.replace(/^#/, '')] ? location.hash.replace(/^#/, '') : 'home');
+    : (ROUTES[canonicalRoute] ? canonicalRoute : 'home');
   _currentPage = null;
   navigate('#' + route);
 }

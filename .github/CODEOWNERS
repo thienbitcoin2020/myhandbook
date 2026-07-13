@@ -1,0 +1,6 @@
+# These files define the release boundary. Repository rules must require review
+# from Code Owners before changes to them can merge.
+/.github/workflows/ @thienpv99
+/scripts/ @thienpv99
+/SECURITY.md @thienpv99
+/start_server.bat @thienpv99

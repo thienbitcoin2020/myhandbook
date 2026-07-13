@@ -1,4 +1,4 @@
-<title>Deployment Runbook | Handbook</title>
+<title>Sổ tay Triển khai | Cẩm nang</title>
 
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
@@ -14,19 +14,19 @@
 
   <div class="sidebar-section-label">Điều hướng</div>
   <nav id="sidebar-nav">
-    <a href="#section-governance" id="nav-governance" class="active" onclick="setActive(this)">
+    <a href="#section-governance" id="nav-governance" class="active" data-nav-active>
       <span class="nav-icon">📋</span> Quản trị &amp; SDLC
     </a>
-    <a href="#section-phase1" id="nav-phase1" onclick="setActive(this)">
+    <a href="#section-phase1" id="nav-phase1" data-nav-active>
       <span class="nav-icon">🔭</span> Giai đoạn 1 · Discovery
     </a>
-    <a href="#section-phase2" id="nav-phase2" onclick="setActive(this)">
+    <a href="#section-phase2" id="nav-phase2" data-nav-active>
       <span class="nav-icon">⚡</span> Giai đoạn 2 · Agile Build
     </a>
-    <a href="#section-phase3" id="nav-phase3" onclick="setActive(this)">
+    <a href="#section-phase3" id="nav-phase3" data-nav-active>
       <span class="nav-icon">🔐</span> Giai đoạn 3 · Pre-Deploy
     </a>
-    <a href="#section-phase4" id="nav-phase4" onclick="setActive(this)">
+    <a href="#section-phase4" id="nav-phase4" data-nav-active>
       <span class="nav-icon">🚀</span> Giai đoạn 4 · Deployment
     </a>
   </nav>
@@ -35,8 +35,7 @@
 
   <div class="sidebar-section-label">Handbooks</div>
   <nav id="sidebar-nav-docs">
-    <a href="#home"><span class="nav-icon">🏦</span> Trang chủ Handbook</a>
-    <a href="#handbook"><span class="nav-icon">📘</span> Implementation Handbook</a>
+    <a href="#home"><span class="nav-icon">📘</span> Implementation Handbook</a>
     <a href="#pm"><span class="nav-icon">👔</span> PM Project Handbook</a>
     <a href="#po"><span class="nav-icon">🎯</span> Product Owner Handbook</a>
     <a href="#ba"><span class="nav-icon">📖</span> BA Project Handbook</a>
@@ -158,7 +157,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="true">
             <div class="acc-left"><span>⚔️</span><h3>Phân tách nhiệm vụ nghiêm ngặt (SoD)</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Bắt buộc</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -180,7 +179,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>🔍</span><h3>Audit bảo mật bắt buộc</h3><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Cổng tiền phát hành</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -199,7 +198,7 @@
         </div>
 
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>🗳️</span><h3>Phê duyệt Change Advisory Board (CAB) chính thức</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Cổng quản trị</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -381,9 +380,9 @@
         <div class="card-body">
           <div class="card-title">👤 Xem theo vai trò — Nhiệm vụ &amp; Trách nhiệm</div>
           <div class="role-tabs" role="tablist">
-            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" onclick="switchRole('rm')">📋 Release Manager</button>
-            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" onclick="switchRole('pt')">📊 Performance Tester</button>
-            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" onclick="switchRole('st')">🔐 Security Tester</button>
+            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" data-role-target="rm">📋 Release Manager</button>
+            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" data-role-target="pt">📊 Performance Tester</button>
+            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" data-role-target="st">🔐 Security Tester</button>
           </div>
 
           <div id="panel-rm" class="role-panel active">
@@ -444,14 +443,14 @@
           <p style="font-size:12px;margin-bottom:14px;">Bấm từng mục để tích. Cả 8 phải ✅ trước khi xin CAB phê duyệt.</p>
 
           <div class="dod-grid" id="dod-checklist">
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Đã test hiệu năng</div><div class="dod-sub">Đạt mọi ngưỡng SLA. Ký PT Report.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Đã test bảo mật</div><div class="dod-sub">Không phát hiện High/Critical. CISO đã ký.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT được chấp nhận</div><div class="dod-sub">Có sign-off của Business Owner.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB đã duyệt</div><div class="dod-sub">Change Request được duyệt. Đặt cửa sổ triển khai.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Kế hoạch rollback sẵn sàng</div><div class="dod-sub">Quy trình rollback được ghi lại và test.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact được kiểm chứng</div><div class="dod-sub">Xác minh build SHA. Gói triển khai được kiểm chứng.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Đội Ops được thông báo</div><div class="dod-sub">Phát Ops Handover Document. Brief hỗ trợ L1.</div></div></div>
-            <div class="dod-item" onclick="toggleDod(this)" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Giám sát được cấu hình</div><div class="dod-sub">Dashboard chạy. Tinh chỉnh alert. Đặt ca on-call.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">⚡ Đã test hiệu năng</div><div class="dod-sub">Đạt mọi ngưỡng SLA. Ký PT Report.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🔐 Đã test bảo mật</div><div class="dod-sub">Không phát hiện High/Critical. CISO đã ký.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">👥 UAT được chấp nhận</div><div class="dod-sub">Có sign-off của Business Owner.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">🗳️ CAB đã duyệt</div><div class="dod-sub">Change Request được duyệt. Đặt cửa sổ triển khai.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📋 Kế hoạch rollback sẵn sàng</div><div class="dod-sub">Quy trình rollback được ghi lại và test.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📦 Artifact được kiểm chứng</div><div class="dod-sub">Xác minh build SHA. Gói triển khai được kiểm chứng.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📣 Đội Ops được thông báo</div><div class="dod-sub">Phát Ops Handover Document. Brief hỗ trợ L1.</div></div></div>
+            <div class="dod-item" role="checkbox" aria-checked="false" tabindex="0"><div class="dod-checkbox"></div><div><div class="dod-label">📊 Giám sát được cấu hình</div><div class="dod-sub">Dashboard chạy. Tinh chỉnh alert. Đặt ca on-call.</div></div></div>
           </div>
 
           <div class="dod-progress">
@@ -558,7 +557,7 @@
           <div class="card-title" style="margin-bottom:0;">📁 Tham chiếu Artifact thương mại hoá</div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📘</span><h3>Operations Handover Document</h3><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Bắt buộc</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -577,7 +576,7 @@
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📊</span><h3>Monitoring Dashboard &amp; Alerting</h3><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Trực tiếp</span></div>
             <div class="accordion-chevron">▾</div>
           </button>
@@ -593,7 +592,7 @@
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <button class="accordion-trigger" aria-expanded="false">
             <div class="acc-left"><span>📋</span><h3>Deployment Execution Tracker</h3><span class="acc-tag" style="background:var(--status-purple-bg);color:var(--status-purple);">Audit Trail</span></div>
             <div class="accordion-chevron">▾</div>
           </button>

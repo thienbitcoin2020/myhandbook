@@ -3,15 +3,14 @@
 > **Classification:** INTERNAL USE ONLY — CONFIDENTIAL
 > **Compliance:** SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned
 
-A governed, interactive **single-page application (SPA)** that bundles four internal
+A governed, interactive **single-page application (SPA)** that bundles twelve internal
 handbooks for software delivery under the **Hybrid Water-Scrum-Fall** model at a
 Vietnamese commercial bank:
 
 | Route | Page | Focus |
 |-------|------|-------|
-| `#home` | Handbook Home (default) | Hub: handbook map, master lifecycle cross-walk, start-by-role |
+| `#home` | Implementation Handbook (default) | Canonical lifecycle, governance and handbook entry point |
 | `#deployment` | Deployment Runbook | Release pipeline, CAB, rollback, DoD checklist |
-| `#handbook` | Implementation Handbook | Parent umbrella linking the other pages |
 | `#ba` | BA Project Handbook | BA process, BRD/FRD, ceremonies |
 | `#pm` | PM Project Handbook | PMBOK-aligned PM role & workflow |
 | `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
@@ -29,20 +28,21 @@ Vietnamese commercial bank:
 
 ```
 project-handbook/
-├── index.html              # SPA shell: login overlay + empty #sidebar / #app
+├── index.html              # CSP-protected SPA shell + empty #sidebar / #app
 ├── handbook.html           # Legacy redirect stubs → index.html#<route>
 ├── ba-handbook.html        # (kept for old deep links)
 ├── pm-handbook.html
 ├── assets/
 │   ├── css/
-│   │   └── styles.css      # Ferrari design system (dark/light theme)
+│   │   └── styles.css      # Power Home / HDBank design system
 │   └── js/
-│       ├── main.js         # Auth, theme, sidebar, accordion, role tabs, DoD checklist
-│       └── router.js       # Hash-based router — fetches page fragments into the shell
+│       ├── theme-init.js   # Early local theme initialization (no inline script)
+│       ├── main.js         # Theme, sidebar, accordion, role tabs, DoD checklist
+│       ├── router.js       # Hash-based router — fetches page fragments into the shell
+│       └── search.js       # Local EN/VI full-text index and exact-result navigation
 ├── pages/                  # Page fragments fetched at runtime by the router
-│   ├── home.html           #   hub landing (default route): map + lifecycle cross-walk
+│   ├── handbook.html       #   canonical home + implementation lifecycle
 │   ├── deployment.html     #   each contains #sidebar-inner + #page-content
-│   ├── handbook.html       #   (+ optional #page-style / #page-script)
 │   ├── ba.html
 │   ├── pm.html
 │   ├── qc.html
@@ -53,18 +53,23 @@ project-handbook/
 │   ├── sm.html
 │   ├── ux.html
 │   └── pmo.html
-├── start_server.bat        # Windows helper: python http.server, npx http-server fallback
+├── start_server.bat        # Windows helper: loopback-only Python preview
+├── scripts/                # Shared artifact allowlist, builder, security gate
 ├── .github/workflows/
-│   └── deploy-pages.yml    # GitHub Pages auto-deploy on push to main
+│   ├── security-check.yml  # Trusted-base checks for pushes and pull requests
+│   └── deploy-pages.yml    # Manual, fail-closed deployment only
 └── README.md
 ```
 
 ### How it works
 `index.html` is a thin shell. `router.js` listens on `hashchange`, `fetch()`es the
 matching fragment from `pages/*.html`, and injects its `#sidebar-inner` and
-`#page-content` into the shell — plus any per-page `#page-style` / `#page-script`.
-Shared behaviour (theme toggle, auth gate, scroll-spy, DoD checklist) is re-bound
+`#page-content` into the shell, plus any allowlisted per-page `#page-style`.
+Shared behaviour (theme toggle, scroll-spy, delegated interactions, DoD checklist, global search) is re-bound
 after each navigation.
+
+The former `#handbook` hash remains a compatibility alias and is normalized to
+the canonical `#home` route, so existing bookmarks continue to work.
 
 > ⚠️ Because the router uses `fetch()`, the site **must be served over HTTP** —
 > opening `index.html` via `file://` will fail to load the page fragments.
@@ -74,43 +79,46 @@ after each navigation.
 ## 🚀 Running Locally
 
 ### Option 1 — `start_server.bat` (Windows)
-Double-click `start_server.bat`. It tries `python -m http.server 8080`, then falls
-back to `npx http-server -p 8080`. Open <http://localhost:8080>.
+Double-click `start_server.bat`. It uses an installed Python 3 runtime and binds
+the preview to `127.0.0.1` only. It never downloads or executes an on-demand
+package. Open <http://127.0.0.1:8080>.
 
 ### Option 2 — Any static server
 ```bash
-python -m http.server 8080        # or:  npx http-server -p 8080
+python -m http.server 8080 --bind 127.0.0.1
 ```
 
-> Google Fonts (Inter / JetBrains Mono) require an internet connection; the
-> page falls back to system fonts offline.
+All runtime fonts are self-hosted or use the operating system's monospace stack;
+the handbook does not depend on a third-party font CDN.
 
 ---
 
-## 🔐 Authentication
+## 🔐 Access control
 
-The login gate (`main.js`) is **client-side only** — credentials live in the JS
-and the page fragments are publicly fetchable. It deters casual access but is **not**
-real security. For genuinely confidential content, place the site behind
-server-side auth (reverse-proxy Basic Auth / SSO) or a private Pages deployment.
-See the note at the top of `main.js`.
+The former browser-only login has been removed because credentials in JavaScript
+do not protect static files. Confidential deployments must sit behind real
+server-side corporate SSO/MFA and group authorization, or an approved privately
+published GitHub Enterprise Cloud Pages site. See [SECURITY.md](SECURITY.md).
 
 ---
 
 ## 🎨 Design System
 
-Uses the **Ferrari** design system (see `DESIGN-ferrari.md` in Downloads) —
-with a dark/light theme toggle. The selected theme is persisted in `localStorage`
+Uses the **Power Home / HDBank** visual system with a dark/light theme toggle.
+The selected theme is persisted in `localStorage`
 (`nt_theme`) and applied before first paint to avoid a flash of unstyled content.
 
-Typography: **Inter** (FerrariSans substitute) + **JetBrains Mono** (diagrams/code) via Google Fonts.
+Typography uses self-hosted **Myriad Pro** plus the operating system's local
+monospace stack for diagrams and code.
 
 ---
 
 ## ⚡ Interactive Features
 
-- **Hash-based SPA routing** across the four handbooks (no full page reloads)
-- **Client-side login gate** with 24h persisted session
+- **Hash-based SPA routing** across the implementation and specialist handbooks
+- **Full-text search** across every current-language page, with case/diacritic-insensitive matching, keyboard navigation, snippets, exact-page jumps and result highlighting
+- **Bilingual EN/VI experience** including localized shared controls, search UI, accessible labels and document language metadata
+- **Strict script CSP** with no inline scripts or inline event handlers
 - **Dark / light theme toggle** injected into every page's sidebar
 - **Sticky sidebar** with scroll-aware active-link highlighting (Intersection Observer)
 - **Collapsible accordions** for compliance pillars and artifacts
@@ -123,14 +131,18 @@ Typography: **Inter** (FerrariSans substitute) + **JetBrains Mono** (diagrams/co
 
 ## 🚢 Deployment
 
-`.github/workflows/deploy-pages.yml` publishes to **GitHub Pages** on push to
-`main`. The job copies `index.html`, the redirect stubs, `assets/`, **and
-`pages/`** into `public/` — the `pages/` directory is required because the router
-fetches those fragments at runtime — then deploys via `actions/deploy-pages`.
+`.github/workflows/deploy-pages.yml` is intentionally **manual and fail-closed**.
+It will not deploy unless the hosting model has Security approval, the required
+repository variable is enabled, and an approved ticket reference is supplied.
+The build runs `scripts/security-check.mjs`, uses least-privilege permissions,
+pins all GitHub Actions to full commit SHAs, and assembles the site from a shared
+file allowlist so every published file is scanned. Pull requests are checked by
+the scanner and workflow definition from their trusted base revision rather
+than a PR-modified copy. The PR checkout is treated only as data; CI never
+executes candidate scripts or package lifecycle hooks.
 
-> One-time setup: **Settings → Pages → Source: GitHub Actions**.
-
-Live URL: <https://thienpv99.github.io/project-handbook/>
+Public GitHub Pages is not an approved target for content classified as
+confidential. Follow the release gate in [SECURITY.md](SECURITY.md).
 
 ---
 

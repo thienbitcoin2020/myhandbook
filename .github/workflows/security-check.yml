@@ -1,0 +1,43 @@
+name: Security checks
+
+on:
+  push:
+  # This event always uses the workflow definition from the trusted base
+  # branch. The job below must never execute code from the candidate checkout.
+  pull_request_target:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout candidate without persisted credentials
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          path: candidate
+
+      # The scanner comes from the trusted base/default branch, not from the
+      # candidate checkout that it audits. A PR therefore cannot weaken its own
+      # security checker and make the required check pass.
+      - name: Checkout trusted security checker
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          # On PRs, always execute the scanner from the immutable base SHA. A
+          # branch push uses its own SHA so the first security-workflow commit
+          # can bootstrap before the scanner exists on the default branch.
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.base.sha || github.sha }}
+          persist-credentials: false
+          path: trusted
+
+      # Safe with pull_request_target: this executes only the trusted script.
+      # Candidate files are opened as data and no candidate package/script runs.
+      - name: Verify security invariants
+        working-directory: candidate
+        run: node ../trusted/scripts/security-check.mjs

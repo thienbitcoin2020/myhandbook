@@ -1,4 +1,4 @@
-<title>Security &amp; Compliance Runbook | Handbook</title>
+<title>Sổ tay Bảo mật &amp; Tuân thủ | Cẩm nang</title>
 
 <style id="page-style">
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
@@ -27,31 +27,31 @@
 
   <div class="sidebar-section-label">Nền tảng</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
-    <a href="#section-governance" onclick="setActive(this)"><span class="nav-icon">🏛️</span> 02 · Khung quản trị</a>
-    <a href="#section-risk" onclick="setActive(this)"><span class="nav-icon">⚠️</span> 03 · Quản lý rủi ro</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-governance" data-nav-active><span class="nav-icon">🏛️</span> 02 · Khung quản trị</a>
+    <a href="#section-risk" data-nav-active><span class="nav-icon">⚠️</span> 03 · Quản lý rủi ro</a>
   </nav>
 
   <div class="sidebar-section-label">Xây dựng an toàn</div>
   <nav id="sidebar-nav">
-    <a href="#section-devsecops" onclick="setActive(this)"><span class="nav-icon">🔄</span> 04 · Secure SDLC / DevSecOps</a>
-    <a href="#section-threat" onclick="setActive(this)"><span class="nav-icon">🎯</span> 05 · Threat Modeling</a>
-    <a href="#section-iam" onclick="setActive(this)"><span class="nav-icon">🔑</span> 06 · Định danh &amp; Truy cập</a>
-    <a href="#section-data" onclick="setActive(this)"><span class="nav-icon">🔐</span> 07 · Bảo vệ dữ liệu</a>
-    <a href="#section-appinfra" onclick="setActive(this)"><span class="nav-icon">🧱</span> 08 · Bảo mật App &amp; Hạ tầng</a>
+    <a href="#section-devsecops" data-nav-active><span class="nav-icon">🔄</span> 04 · Secure SDLC / DevSecOps</a>
+    <a href="#section-threat" data-nav-active><span class="nav-icon">🎯</span> 05 · Threat Modeling</a>
+    <a href="#section-iam" data-nav-active><span class="nav-icon">🔑</span> 06 · Định danh &amp; Truy cập</a>
+    <a href="#section-data" data-nav-active><span class="nav-icon">🔐</span> 07 · Bảo vệ dữ liệu</a>
+    <a href="#section-appinfra" data-nav-active><span class="nav-icon">🧱</span> 08 · Bảo mật App &amp; Hạ tầng</a>
   </nav>
 
   <div class="sidebar-section-label">Vận hành &amp; Bảo đảm</div>
   <nav id="sidebar-nav">
-    <a href="#section-vuln" onclick="setActive(this)"><span class="nav-icon">🔍</span> 09 · Quản lý lỗ hổng</a>
-    <a href="#section-ir" onclick="setActive(this)"><span class="nav-icon">🚨</span> 10 · SecOps &amp; Sự cố</a>
-    <a href="#section-audit" onclick="setActive(this)"><span class="nav-icon">📋</span> 11 · Tuân thủ &amp; Audit</a>
+    <a href="#section-vuln" data-nav-active><span class="nav-icon">🔍</span> 09 · Quản lý lỗ hổng</a>
+    <a href="#section-ir" data-nav-active><span class="nav-icon">🚨</span> 10 · SecOps &amp; Sự cố</a>
+    <a href="#section-audit" data-nav-active><span class="nav-icon">📋</span> 11 · Tuân thủ &amp; Audit</a>
   </nav>
 
   <div class="sidebar-section-label">Tra cứu</div>
   <nav id="sidebar-nav">
-    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> 12 · Chỉ số / KPI</a>
-    <a href="#section-raci" onclick="setActive(this)"><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
+    <a href="#section-metrics" data-nav-active><span class="nav-icon">📊</span> 12 · Chỉ số / KPI</a>
+    <a href="#section-raci" data-nav-active><span class="nav-icon">👥</span> 13 · Vai trò &amp; RACI</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -71,7 +71,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#sa">← Solution Architect Handbook</a><br/>
     <a href="#qc">← QC Testing Handbook</a><br/>
     <a href="#deployment">← Deployment Runbook</a>

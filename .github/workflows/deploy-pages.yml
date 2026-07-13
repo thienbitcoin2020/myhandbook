@@ -1,62 +1,90 @@
-name: Deploy to GitHub Pages
+name: Deploy secure handbook site
 
-# Publishes the static handbook site to GitHub Pages on every push to main.
-# Live URL: https://thienpv99.github.io/project-handbook/
-
+# Fail closed: deployment is manual and remains blocked until the repository
+# variable HANDBOOK_DEPLOYMENT_APPROVED is explicitly set to "true" after the
+# repository and hosting access controls have been approved by Security.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      change_ticket:
+        description: Approved security/change ticket reference
+        required: true
+        type: string
 
-# Permissions required by the Pages deploy actions
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: {}
 
-# Allow one concurrent deployment; don't cancel an in-progress publish
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: secure-handbook-pages
+  cancel-in-progress: true
 
 jobs:
-  build:
+  authorization:
+    name: Verify deployment authorization
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Enforce security approval
+        env:
+          DEPLOYMENT_APPROVED: ${{ vars.HANDBOOK_DEPLOYMENT_APPROVED }}
+          CHANGE_TICKET: ${{ inputs.change_ticket }}
+          DISPATCH_REF: ${{ github.ref }}
+          EXPECTED_REF: refs/heads/${{ github.event.repository.default_branch }}
+        run: |
+          if [ "$DEPLOYMENT_APPROVED" != "true" ]; then
+            echo "::error::Deployment is blocked. Security must approve the hosting access-control model first."
+            exit 1
+          fi
+          if [ -z "$CHANGE_TICKET" ]; then
+            echo "::error::An approved security/change ticket reference is required."
+            exit 1
+          fi
+          if [ "$DISPATCH_REF" != "$EXPECTED_REF" ]; then
+            echo "::error::Deployment must be dispatched from the protected default branch."
+            exit 1
+          fi
+
+  build:
+    name: Build reviewed static artifact
+    needs: authorization
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Checkout reviewed revision
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Run security checks
+        run: node scripts/security-check.mjs
 
       - name: Assemble static site
-        run: |
-          mkdir -p public
-          cp index.html public/
-          # Legacy redirect stubs (index.html#<page> deep links)
-          cp handbook.html ba-handbook.html pm-handbook.html qc-handbook.html po-handbook.html sa-handbook.html public/
-          cp sec-handbook.html ops-handbook.html sm-handbook.html ux-handbook.html pmo-handbook.html public/
-          # Shared assets AND the page fragments the SPA router fetches at runtime
-          cp -r assets public/
-          cp -r pages public/
-          echo "Published files:"
-          ls -R public
+        run: node scripts/build-static-artifact.mjs
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Auto-enable Pages (source = GitHub Actions) on first run if not already enabled
-          enablement: true
+      - name: Configure Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload reviewed artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
           path: public
 
   deploy:
+    name: Deploy approved artifact
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

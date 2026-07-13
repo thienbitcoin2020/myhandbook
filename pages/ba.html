@@ -66,33 +66,33 @@
 
   <div class="sidebar-section-label">Overview</div>
   <nav id="sidebar-nav">
-    <a href="#section-intro" id="nav-intro" onclick="setActive(this)"><span class="nav-icon">🏠</span> Introduction</a>
-    <a href="#section-workflow" id="nav-workflow" onclick="setActive(this)"><span class="nav-icon">🔄</span> BA Workflow</a>
-    <a href="#section-roles" id="nav-roles" onclick="setActive(this)"><span class="nav-icon">👥</span> Role Interactions</a>
-    <a href="#section-strategy" onclick="setActive(this)"><span class="nav-icon">🎯</span> Strategy Analysis</a>
+    <a href="#section-intro" id="nav-intro" data-nav-active><span class="nav-icon">🏠</span> Introduction</a>
+    <a href="#section-workflow" id="nav-workflow" data-nav-active><span class="nav-icon">🔄</span> BA Workflow</a>
+    <a href="#section-roles" id="nav-roles" data-nav-active><span class="nav-icon">👥</span> Role Interactions</a>
+    <a href="#section-strategy" data-nav-active><span class="nav-icon">🎯</span> Strategy Analysis</a>
   </nav>
 
   <div class="sidebar-section-label">BA Phases</div>
   <nav id="sidebar-nav">
-    <a href="#section-p0" onclick="setActive(this)"><span class="nav-icon">🚀</span> Phase 0 — Initiation</a>
-    <a href="#section-p1" onclick="setActive(this)"><span class="nav-icon">🎙️</span> Phase 1 — Elicitation</a>
-    <a href="#section-p2" onclick="setActive(this)"><span class="nav-icon">📐</span> Phase 2 — Analysis</a>
-    <a href="#section-p3" onclick="setActive(this)"><span class="nav-icon">✅</span> Phase 3 — Validation</a>
-    <a href="#section-p4" onclick="setActive(this)"><span class="nav-icon">🏗️</span> Phase 4 — Design Support</a>
-    <a href="#section-p5" onclick="setActive(this)"><span class="nav-icon">⚙️</span> Phase 5 — Implementation</a>
-    <a href="#section-p6" onclick="setActive(this)"><span class="nav-icon">🧪</span> Phase 6 — UAT</a>
-    <a href="#section-p7" onclick="setActive(this)"><span class="nav-icon">🚢</span> Phase 7 — Release</a>
-    <a href="#section-p8" onclick="setActive(this)"><span class="nav-icon">📊</span> Phase 8 — PIR</a>
+    <a href="#section-p0" data-nav-active><span class="nav-icon">🚀</span> Phase 0 — Initiation</a>
+    <a href="#section-p1" data-nav-active><span class="nav-icon">🎙️</span> Phase 1 — Elicitation</a>
+    <a href="#section-p2" data-nav-active><span class="nav-icon">📐</span> Phase 2 — Analysis</a>
+    <a href="#section-p3" data-nav-active><span class="nav-icon">✅</span> Phase 3 — Validation</a>
+    <a href="#section-p4" data-nav-active><span class="nav-icon">🏗️</span> Phase 4 — Design Support</a>
+    <a href="#section-p5" data-nav-active><span class="nav-icon">⚙️</span> Phase 5 — Implementation</a>
+    <a href="#section-p6" data-nav-active><span class="nav-icon">🧪</span> Phase 6 — UAT</a>
+    <a href="#section-p7" data-nav-active><span class="nav-icon">🚢</span> Phase 7 — Release</a>
+    <a href="#section-p8" data-nav-active><span class="nav-icon">📊</span> Phase 8 — PIR</a>
   </nav>
 
   <div class="sidebar-section-label">Reference</div>
   <nav id="sidebar-nav">
-    <a href="#section-docs" onclick="setActive(this)"><span class="nav-icon">📄</span> Document Ownership</a>
-    <a href="#section-techniques" onclick="setActive(this)"><span class="nav-icon">🔧</span> Technique Catalog</a>
-    <a href="#section-nfr" onclick="setActive(this)"><span class="nav-icon">⚡</span> NFR Framework</a>
-    <a href="#section-quality" onclick="setActive(this)"><span class="nav-icon">🎯</span> Quality Gates</a>
-    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> Anti-Patterns</a>
-    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📊</span> BA Metrics</a>
+    <a href="#section-docs" data-nav-active><span class="nav-icon">📄</span> Document Ownership</a>
+    <a href="#section-techniques" data-nav-active><span class="nav-icon">🔧</span> Technique Catalog</a>
+    <a href="#section-nfr" data-nav-active><span class="nav-icon">⚡</span> NFR Framework</a>
+    <a href="#section-quality" data-nav-active><span class="nav-icon">🎯</span> Quality Gates</a>
+    <a href="#section-antipatterns" data-nav-active><span class="nav-icon">🚫</span> Anti-Patterns</a>
+    <a href="#section-metrics" data-nav-active><span class="nav-icon">📊</span> BA Metrics</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -110,8 +110,7 @@
     Next review: 2025-Q4<br/>
     Classification: CONFIDENTIAL
     <strong>Quick Links</strong>
-    <a href="#home">← Handbook Home</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#pm">← PM Project Handbook</a><br/>
     <a href="#po">← Product Owner Handbook</a><br/>
     <a href="#sa">← Solution Architect Handbook</a><br/>
@@ -277,7 +276,7 @@
     <section class="section-block" id="section-p0">
       <div class="section-header"><div class="section-icon">🚀</div><div><div class="section-number">Phase 0 · Waterfall Gate · Trigger: Project Kickoff</div><h2>Project Initiation &amp; Planning</h2><div class="sec-sub">Stakeholder Register · BA Plan · Business Need Statement · Compliance Scope</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>What the BA Does in Phase 0</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>What the BA Does in Phase 0</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Review Project Charter, SOW, or Business Case</strong> — understand scope boundaries, budget envelope, strategic alignment.</div></li>
@@ -289,7 +288,7 @@
             </ol>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Outputs</span><h3>Primary Deliverables</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Outputs</span><h3>Primary Deliverables</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ul class="output-list">
               <li><span class="output-icon">📋</span><div><strong>Stakeholder Register</strong> — role mapping with RACI and communication preferences</div></li>
@@ -305,7 +304,7 @@
     <section class="section-block" id="section-p1">
       <div class="section-header"><div class="section-icon">🎙️</div><div><div class="section-number">Phase 1 · Hybrid · Trigger: BA Plan Approved</div><h2>Elicitation &amp; Collaboration</h2><div class="sec-sub">Interviews · Workshops · Observation · Assumptions Log</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Elicitation Execution</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Elicitation Execution</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Select elicitation technique</strong> based on stakeholder type, information complexity, and SDLC phase.</div></li>
@@ -322,7 +321,7 @@
     <section class="section-block" id="section-p2">
       <div class="section-header"><div class="section-icon">📐</div><div><div class="section-number">Phase 2 · Hybrid · Trigger: Sufficient Elicitation Data</div><h2>Requirements Analysis &amp; Design Definition</h2><div class="sec-sub">BRD · SRS · User Stories · RTM · Business Rules · NFR Spec</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Analysis &amp; Modeling</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Analysis &amp; Modeling</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Classify by BABOK type</strong> — Business / Stakeholder / Solution (Functional + Non-Functional) / Transition.</div></li>
@@ -341,7 +340,7 @@
     <section class="section-block" id="section-p3">
       <div class="section-header"><div class="section-icon">✅</div><div><div class="section-number">Phase 3 · Waterfall Gate · Trigger: Draft-Complete Requirements</div><h2>Requirements Validation &amp; Approval</h2><div class="sec-sub">Formal sign-off · Baseline · Change Request process activation</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Review &amp; Baseline Process</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities</span><h3>Review &amp; Baseline Process</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Conduct Requirements Review meeting</strong> — mandatory attendees: Business Stakeholders, PM, SA, QA Lead, Compliance Officer.</div></li>
@@ -359,7 +358,7 @@
     <section class="section-block" id="section-p4">
       <div class="section-header"><div class="section-icon">🏗️</div><div><div class="section-number">Phase 4 · Agile Sprint · Trigger: SA/DEV Begins Design</div><h2>Solution Evaluation &amp; Design Support</h2><div class="sec-sub">Design reviews · Wireframe validation · Interface specs · Data mapping</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>BA in Design Phase</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>BA in Design Phase</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Participate in Solution Design Reviews</strong> — verify design satisfies requirements, not just technical elegance.</div></li>
@@ -376,7 +375,7 @@
     <section class="section-block" id="section-p5">
       <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Phase 5 · Agile Sprint · Trigger: Development Sprint Begins</div><h2>Implementation Support</h2><div class="sec-sub">Clarifications · Change Requests · Defect triage · DoR/DoD gates</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>BA During Sprints</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>BA During Sprints</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Primary requirements clarifier</strong> for DEV — respond to clarification requests within agreed SLA (recommended: same business day).</div></li>
@@ -393,7 +392,7 @@
     <section class="section-block" id="section-p6">
       <div class="section-header"><div class="section-icon">🧪</div><div><div class="section-number">Phase 6 · Waterfall Gate · Trigger: DEV Declares UAT-Ready</div><h2>User Acceptance Testing (UAT)</h2><div class="sec-sub">UAT Plan · Test Scripts · Defect Log · Written Sign-off</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Activities &amp; Outputs</span><h3>BA-Led UAT</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-yellow-bg);color:var(--status-yellow);">Activities &amp; Outputs</span><h3>BA-Led UAT</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Prepare UAT Plan</strong> — scope, objectives, entry/exit criteria, schedule, roles.</div></li>
@@ -410,7 +409,7 @@
     <section class="section-block" id="section-p7">
       <div class="section-header"><div class="section-icon">🚢</div><div><div class="section-number">Phase 7 · Waterfall · Trigger: UAT Passed, CAB Approved</div><h2>Release &amp; Transition</h2><div class="sec-sub">Release Notes · User Guide · Training · Rollback criteria</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities &amp; Outputs</span><h3>BA in Release Phase</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-blue-bg);color:var(--status-blue);">Activities &amp; Outputs</span><h3>BA in Release Phase</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Contribute to Release Notes</strong> — write the business impact section.</div></li>
@@ -426,7 +425,7 @@
     <section class="section-block" id="section-p8">
       <div class="section-header"><div class="section-icon">📊</div><div><div class="section-number">Phase 8 · Review · Trigger: Stabilization Ends</div><h2>Post-Implementation Review</h2><div class="sec-sub">Benefits realization · Lessons learned · Next iteration seeding</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>PIR Activities</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-green-bg);color:var(--status-green);">Activities &amp; Outputs</span><h3>PIR Activities</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <ol class="step-cl">
               <li><span class="step-num">1</span><div><strong>Benefits Realization Review</strong> — measure original KPIs/OKRs stated in Phase 0.</div></li>
@@ -581,7 +580,7 @@
     <section class="section-block" id="section-antipatterns">
       <div class="section-header"><div class="section-icon">🚫</div><div><div class="section-number">Reference</div><h2>Anti-Patterns — What Not to Do</h2><div class="sec-sub">Common BA mistakes and the correct approach</div></div></div>
       <div class="card">
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Elicitation</span><h3>Elicitation Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="true"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Elicitation</span><h3>Elicitation Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body open"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Ask <strong>leading questions</strong> — "You want the button on the top right, correct?" Instead: ask open-ended, neutral questions.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Accept <strong>solutions as requirements</strong> — "I need a dropdown with 5 items." <span class="ap-good">✅ Redirect: "Before the solution, can you describe the business problem it solves?"</span></div></div>
@@ -589,7 +588,7 @@
             <div class="ap-item"><span class="ap-bad">❌</span><div>Skip <strong>confirmation</strong> of captured information — always replay what you heard before moving to analysis.</div></div>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Analysis</span><h3>Analysis Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Analysis</span><h3>Analysis Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Write requirements that <strong>dictate implementation</strong> — Requirements say WHAT, not HOW.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Mix <strong>multiple requirements in one statement</strong> — use "and" as a smell indicator. Split compound requirements.</div></div>
@@ -597,7 +596,7 @@
             <div class="ap-item"><span class="ap-bad">❌</span><div>Skip NFRs — undocumented NFRs become the most expensive defects to fix late.</div></div>
           </div></div>
         </div>
-        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Sign-off &amp; CR</span><h3>Sign-off &amp; Change Request Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
+        <div class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><div class="acc-left"><span class="acc-tag" style="background:var(--status-red-bg);color:var(--status-red);">Sign-off &amp; CR</span><h3>Sign-off &amp; Change Request Anti-Patterns</h3></div><div class="accordion-chevron">▾</div></button>
           <div class="accordion-body"><div class="accordion-content">
             <div class="ap-item"><span class="ap-bad">❌</span><div>Accept <strong>verbal approval</strong> for formal baseline — written sign-off is mandatory for Waterfall and Hybrid core scope.</div></div>
             <div class="ap-item"><span class="ap-bad">❌</span><div>Allow <strong>scope changes without Change Request process</strong> post-baseline — every change needs impact assessment before implementation.</div></div>

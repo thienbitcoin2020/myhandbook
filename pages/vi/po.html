@@ -1,4 +1,4 @@
-<title>Product Owner Handbook | Handbook</title>
+<title>Cẩm nang Product Owner | Cẩm nang</title>
 
 <!-- Page-specific styles -->
 <style id="page-style">
@@ -32,35 +32,35 @@
 
   <div class="sidebar-section-label">Nền tảng</div>
   <nav id="sidebar-nav">
-    <a href="#section-overview" onclick="setActive(this)"><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
-    <a href="#section-vision" onclick="setActive(this)"><span class="nav-icon">🔭</span> 02 · Vision &amp; Chiến lược</a>
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan</a>
+    <a href="#section-vision" data-nav-active><span class="nav-icon">🔭</span> 02 · Vision &amp; Chiến lược</a>
   </nav>
 
   <div class="sidebar-section-label">Discovery</div>
   <nav id="sidebar-nav">
-    <a href="#section-discovery" onclick="setActive(this)"><span class="nav-icon">🔬</span> 03 · Product Discovery</a>
-    <a href="#section-stakeholder" onclick="setActive(this)"><span class="nav-icon">🤝</span> 04 · Stakeholder &amp; Thị trường</a>
+    <a href="#section-discovery" data-nav-active><span class="nav-icon">🔬</span> 03 · Product Discovery</a>
+    <a href="#section-stakeholder" data-nav-active><span class="nav-icon">🤝</span> 04 · Stakeholder &amp; Thị trường</a>
   </nav>
 
   <div class="sidebar-section-label">Backlog</div>
   <nav id="sidebar-nav">
-    <a href="#section-backlog" onclick="setActive(this)"><span class="nav-icon">🗂️</span> 05 · Quản lý Backlog</a>
-    <a href="#section-artifacts" onclick="setActive(this)"><span class="nav-icon">📝</span> 06 · Artifact yêu cầu</a>
-    <a href="#section-prioritization" onclick="setActive(this)"><span class="nav-icon">📊</span> 07 · Ưu tiên hoá</a>
-    <a href="#section-estimation" onclick="setActive(this)"><span class="nav-icon">🎲</span> 08 · Ước lượng &amp; Sizing</a>
+    <a href="#section-backlog" data-nav-active><span class="nav-icon">🗂️</span> 05 · Quản lý Backlog</a>
+    <a href="#section-artifacts" data-nav-active><span class="nav-icon">📝</span> 06 · Artifact yêu cầu</a>
+    <a href="#section-prioritization" data-nav-active><span class="nav-icon">📊</span> 07 · Ưu tiên hoá</a>
+    <a href="#section-estimation" data-nav-active><span class="nav-icon">🎲</span> 08 · Ước lượng &amp; Sizing</a>
   </nav>
 
   <div class="sidebar-section-label">Giao hàng</div>
   <nav id="sidebar-nav">
-    <a href="#section-events" onclick="setActive(this)"><span class="nav-icon">🔁</span> 09 · Scrum Events</a>
-    <a href="#section-dor-dod" onclick="setActive(this)"><span class="nav-icon">🚦</span> 10 · DoR / DoD</a>
-    <a href="#section-release" onclick="setActive(this)"><span class="nav-icon">🚀</span> 11 · Release &amp; Giá trị</a>
+    <a href="#section-events" data-nav-active><span class="nav-icon">🔁</span> 09 · Scrum Events</a>
+    <a href="#section-dor-dod" data-nav-active><span class="nav-icon">🚦</span> 10 · DoR / DoD</a>
+    <a href="#section-release" data-nav-active><span class="nav-icon">🚀</span> 11 · Release &amp; Giá trị</a>
   </nav>
 
   <div class="sidebar-section-label">Tra cứu</div>
   <nav id="sidebar-nav">
-    <a href="#section-metrics" onclick="setActive(this)"><span class="nav-icon">📈</span> 12 · Chỉ số / KPI</a>
-    <a href="#section-antipatterns" onclick="setActive(this)"><span class="nav-icon">🚫</span> 13 · Anti-Pattern</a>
+    <a href="#section-metrics" data-nav-active><span class="nav-icon">📈</span> 12 · Chỉ số / KPI</a>
+    <a href="#section-antipatterns" data-nav-active><span class="nav-icon">🚫</span> 13 · Anti-Pattern</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -80,8 +80,7 @@
     Kỳ soát xét: 2025-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
     <strong>Liên kết nhanh</strong>
-    <a href="#home">← Trang chủ Handbook</a><br/>
-    <a href="#handbook">← Implementation Handbook</a><br/>
+    <a href="#home">← Implementation Handbook</a><br/>
     <a href="#ba">← BA Project Handbook</a><br/>
     <a href="#sa">← Solution Architect Handbook</a><br/>
     <a href="#qc">← QC Testing Handbook</a><br/>
