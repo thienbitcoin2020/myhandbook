@@ -206,14 +206,14 @@ function _injectLangToggle() {
   englishButton.className = 'lang-btn';
   englishButton.id = 'lng-en';
   englishButton.type = 'button';
-  englishButton.textContent = '🇬🇧 EN';
+  englishButton.textContent = 'EN';
   englishButton.addEventListener('click', () => setLang('en'));
 
   const vietnameseButton = document.createElement('button');
   vietnameseButton.className = 'lang-btn';
   vietnameseButton.id = 'lng-vi';
   vietnameseButton.type = 'button';
-  vietnameseButton.textContent = '🇻🇳 VI';
+  vietnameseButton.textContent = 'VI';
   vietnameseButton.addEventListener('click', () => setLang('vi'));
 
   segment.append(englishButton, vietnameseButton);
