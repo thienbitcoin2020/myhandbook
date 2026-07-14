@@ -72,6 +72,12 @@ after each navigation.
 The former `#handbook` hash remains a compatibility alias and is normalized to
 the canonical `#home` route, so existing bookmarks continue to work.
 
+The Implementation Handbook overview is intentionally consolidated into two
+working views: **Overview & Roles** (pipeline, handbook map, role entry points)
+and **Delivery Lifecycle** (hybrid delivery model plus the lifecycle cross-walk).
+Legacy section hashes such as `#sec-secmap`, `#sec-secmodel`, and
+`#sec-secxwalk` are still resolved to the correct consolidated view.
+
 > ⚠️ Because the router uses `fetch()`, the site **must be served over HTTP** —
 > opening `index.html` via `file://` will fail to load the page fragments.
 

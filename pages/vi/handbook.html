@@ -74,13 +74,9 @@
   <div class="sb-label">Tổng quan</div>
   <nav class="sb-nav" id="main-nav">
     <a href="#" data-sec="landing" data-section-target="landing" class="active" aria-current="page">
-      <span class="sb-icon-sm">🏠</span> Trang chủ &amp; Pipeline</a>
-    <a href="#" data-sec="secmap" data-section-target="secmap">
-      <span class="sb-icon-sm">🗺️</span> Bản đồ Handbook &amp; Vai trò</a>
+      <span class="sb-icon-sm">🏠</span> Tổng quan &amp; Vai trò</a>
     <a href="#" data-sec="secxwalk" data-section-target="secxwalk">
-      <span class="sb-icon-sm">🧭</span> Cross-Walk vòng đời</a>
-    <a href="#" data-sec="secmodel" data-section-target="secmodel">
-      <span class="sb-icon-sm">🔀</span> Mô hình triển khai</a>
+      <span class="sb-icon-sm">🧭</span> Vòng đời triển khai</a>
     <a href="#" data-sec="sec0" data-section-target="sec0">
       <span class="sb-icon-sm">📖</span> 0. Cách sử dụng</a>
     <a href="#" data-sec="secpm" data-section-target="secpm">
@@ -159,12 +155,17 @@
 <div id="hb-main">
 
 <!-- LANDING PAGE -->
-<div class="section active" id="sec-landing" data-search="Home landing pipeline overview idea planning discovery initiation SDLC deploy GTM operate closure trang chu tong quan">
+<div class="section active" id="sec-landing" data-search="home landing pipeline overview handbook map ban do vai tro chu quan idea planning discovery initiation SDLC deploy GTM operate closure trang chu tong quan">
   <header class="hb-hero">
     <div class="hb-eyebrow">📘 Handbook nội bộ · Hybrid Water-Scrum-Fall</div>
     <h1>Project Implementation<br/><span>Handbook</span></h1>
     <p>Điểm truy cập duy nhất cho kho tri thức triển khai dự án của ngân hàng, quản trị hành trình từ <strong>ý tưởng đến đóng dự án</strong>. Dùng pipeline bên dưới, xem bản đồ handbook, đối chiếu mọi vai trò trên một vòng đời chung, hoặc vào thẳng theo vai trò của bạn.</p>
   </header>
+  <nav class="overview-jumpbar" aria-label="Các mục tổng quan">
+    <a class="overview-jump" href="#sec-landing"><span class="overview-jump-index">01</span><span>Pipeline triển khai</span></a>
+    <a class="overview-jump" href="#sec-secmap"><span class="overview-jump-index">02</span><span>Bản đồ Handbook &amp; Vai trò</span></a>
+    <a class="overview-jump" href="#sec-secxwalk" data-section-target="secxwalk"><span class="overview-jump-index">03</span><span>Vòng đời triển khai</span></a>
+  </nav>
   <div class="hb-content">
     <div class="card">
       <div class="card-body">
@@ -204,13 +205,11 @@
       <button type="button" class="tile" data-section-target="sec4"><span class="tile-icon">🚀</span><span class="tile-title">Go-to-Market</span><span class="tile-desc">Roadmap ra mắt từ beta nội bộ đến GA, marketing, sales enablement.</span></button>
     </div>
   </div>
-</div>
 
 <!-- HANDBOOK MAP & ROLE-BASED START -->
-<div class="section" id="sec-secmap" data-search="handbook map ban do vai tro chu quan bat dau nhanh specialist source of truth">
-  <div class="breadcrumb">Handbook <span>›</span> Bản đồ &amp; Vai trò</div>
+<section class="overview-subsection" id="sec-secmap" data-search="handbook map ban do vai tro chu quan bat dau nhanh specialist source of truth" aria-labelledby="overview-map-heading">
   <div class="hb-content">
-    <div class="sec-head"><div class="sec-icon">🗺️</div><div><div class="sec-num">Tổng quan</div><h2>Bản đồ Handbook</h2><div class="sec-sub">12 handbook và vai trò chủ quản</div></div></div>
+    <div class="sec-head"><div class="sec-icon">🗺️</div><div><div class="sec-num">Tổng quan</div><h2 id="overview-map-heading">Bản đồ Handbook</h2><div class="sec-sub">12 handbook và vai trò chủ quản</div></div></div>
     <div class="card"><div class="card-body">
       <div class="card-title">Một ô quản trị chung · mười một nguồn sự thật chuyên môn</div>
       <p><strong>Implementation Handbook</strong> là "chiếc ô" cha quản trị toàn bộ vòng đời và liên kết tới mười một handbook chuyên môn theo vai trò. Mỗi handbook chuyên môn là nguồn thông tin chuẩn (source of truth) duy nhất cho lĩnh vực của nó.</p>
@@ -288,11 +287,27 @@
       <div class="alert alert-info" style="margin-top:12px"><span class="alert-icon">💡</span><div>Mới vào đội? Hãy bắt đầu với <a href="#sec-sec0" data-section-target="sec0" style="color:var(--accent-bright)">Mục 0 (Cách sử dụng)</a> để nắm bức tranh tổng thể, rồi đi sâu vào handbook của vai trò mình.</div></div>
     </div></div>
   </div>
+</section>
 </div>
 
 <!-- MASTER LIFECYCLE CROSS-WALK -->
-<div class="section" id="sec-secxwalk" data-search="master lifecycle cross-walk doi chieu vai tro giai doan ban giao PMO PO PM SM BA UX SA security QC operations deployment">
-  <div class="breadcrumb">Handbook <span>›</span> Cross-Walk vòng đời</div>
+<div class="section" id="sec-secxwalk" data-search="delivery lifecycle model mo hinh trien khai hybrid water scrum fall waterfall agile sprint phase gate master cross-walk doi chieu vai tro giai doan ban giao PMO PO PM SM BA UX SA security QC operations deployment">
+  <div class="breadcrumb">Handbook <span>›</span> Vòng đời triển khai</div>
+  <section class="overview-subsection overview-subsection--first" id="sec-secmodel" data-search="delivery model mo hinh trien khai hybrid water scrum fall waterfall agile sprint phase gate audit" aria-labelledby="delivery-model-heading">
+    <div class="hb-content">
+      <div class="sec-head"><div class="sec-icon">🔀</div><div><div class="sec-num">Bối cảnh</div><h2 id="delivery-model-heading">Mô hình triển khai</h2><div class="sec-sub">Quản trị có cấu trúc bao quanh nhịp bàn giao lặp</div></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Hybrid Water-Scrum-Fall</div>
+        <p>Ngân hàng vận hành theo <strong>mô hình lai (hybrid)</strong>: quản trị Waterfall có cấu trúc với các phase gate (lập kế hoạch, phê duyệt, UAT, CAB, phát hành) bao quanh việc giao hàng theo Sprint của Agile/Scrum. Kỷ luật quản trị bảo đảm khả năng kiểm toán trong môi trường chịu quản lý; thực thi Agile giữ nhịp giao hàng lặp.</p>
+        <ul class="step-cl" style="margin-top:10px">
+          <li><strong>Cổng Waterfall:</strong> Chiến lược &amp; Kế hoạch, ký duyệt Yêu cầu, UAT, phê duyệt CAB &amp; phát hành.</li>
+          <li><strong>Thực thi Agile:</strong> xây dựng &amp; kiểm thử theo Sprint giữa các cổng.</li>
+          <li><strong>PM là xương sống:</strong> sở hữu tích hợp, baseline, rủi ro, thay đổi, báo cáo và kết thúc dự án xuyên suốt mọi giai đoạn.</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+  <div class="overview-subsection" id="lifecycle-crosswalk">
   <div class="hb-content">
     <div class="sec-head"><div class="sec-icon">🧭</div><div><div class="sec-num">Đối chiếu</div><h2>Cross-Walk vòng đời tổng thể</h2><div class="sec-sub">Giai đoạn của từng vai trò khớp thế nào trên một vòng đời chung</div></div></div>
     <div class="card"><div class="card-body">
@@ -351,22 +366,6 @@
       <div class="alert alert-info" style="margin-top:12px"><span class="alert-icon">ℹ️</span><div>Các cột là vòng đời triển khai chuẩn. Các thanh cho thấy giai đoạn (đánh số riêng) của từng vai trò nằm ở đâu — ví dụ BA <strong>P6 UAT</strong>, QC <strong>Thực thi test</strong> và Deployment <strong>Pre-Deploy</strong> đều dồn quanh cửa sổ <strong>Kiểm thử → Pre-Deploy</strong>: đây chính là nơi các điểm bàn giao cần phối hợp chặt nhất.</div></div>
     </div></div>
   </div>
-</div>
-
-<!-- DELIVERY MODEL -->
-<div class="section" id="sec-secmodel" data-search="delivery model mo hinh trien khai hybrid water scrum fall waterfall agile sprint phase gate audit">
-  <div class="breadcrumb">Handbook <span>›</span> Mô hình triển khai</div>
-  <div class="hb-content">
-    <div class="sec-head"><div class="sec-icon">🔀</div><div><div class="sec-num">Bối cảnh</div><h2>Mô hình triển khai</h2><div class="sec-sub">Quản trị có cấu trúc bao quanh nhịp bàn giao lặp</div></div></div>
-    <div class="card"><div class="card-body">
-      <div class="card-title">Hybrid Water-Scrum-Fall</div>
-      <p>Ngân hàng vận hành theo <strong>mô hình lai (hybrid)</strong>: quản trị Waterfall có cấu trúc với các phase gate (lập kế hoạch, phê duyệt, UAT, CAB, phát hành) bao quanh việc giao hàng theo Sprint của Agile/Scrum. Kỷ luật quản trị bảo đảm khả năng kiểm toán trong môi trường chịu quản lý; thực thi Agile giữ nhịp giao hàng lặp.</p>
-      <ul class="step-cl" style="margin-top:10px">
-        <li><strong>Cổng Waterfall:</strong> Chiến lược &amp; Kế hoạch, ký duyệt Yêu cầu, UAT, phê duyệt CAB &amp; phát hành.</li>
-        <li><strong>Thực thi Agile:</strong> xây dựng &amp; kiểm thử theo Sprint giữa các cổng.</li>
-        <li><strong>PM là xương sống:</strong> sở hữu tích hợp, baseline, rủi ro, thay đổi, báo cáo và kết thúc dự án xuyên suốt mọi giai đoạn.</li>
-      </ul>
-    </div></div>
   </div>
 </div>
 

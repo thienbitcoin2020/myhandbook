@@ -24,6 +24,20 @@ const ROUTE_ALIASES = {
   'handbook': 'home',
 };
 
+// The overview information architecture was consolidated from four switcher
+// views into two. Preserve former section hashes and short keys so bookmarks,
+// cached markup, and shared search links still open the correct parent view.
+const HOME_SECTION_HASHES = {
+  'sec-landing':  { parent: 'landing', target: 'sec-landing' },
+  'sec-secmap':   { parent: 'landing', target: 'sec-secmap' },
+  'sec-secxwalk': { parent: 'secxwalk', target: 'sec-secxwalk' },
+  'sec-secmodel': { parent: 'secxwalk', target: 'sec-secmodel' },
+  'landing':      { parent: 'landing', target: 'sec-landing' },
+  'secmap':       { parent: 'landing', target: 'sec-secmap' },
+  'secxwalk':     { parent: 'secxwalk', target: 'sec-secxwalk' },
+  'secmodel':     { parent: 'secxwalk', target: 'sec-secmodel' },
+};
+
 // Keep the public address clean without relying on a redirect (which would
 // reload the SPA). Preserve query parameters and every existing hash so route
 // links, in-page anchors, and search-result deep links continue to work.
@@ -55,8 +69,10 @@ function _replaceWithTrustedFragment(destination, source) {
 
 async function navigate(hash) {
   const requestedPage = (hash || '').replace(/^#/, '') || 'home';
-  const page = ROUTE_ALIASES[requestedPage]
-    || (ROUTES[requestedPage] ? requestedPage : 'home');
+  const homeSectionRequest = HOME_SECTION_HASHES[requestedPage] || null;
+  const requestedRoute = homeSectionRequest ? 'home' : requestedPage;
+  const page = ROUTE_ALIASES[requestedRoute]
+    || (ROUTES[requestedRoute] ? requestedRoute : 'home');
   const url = ROUTES[page];
 
   if (requestedPage !== page && ROUTE_ALIASES[requestedPage]) {
@@ -140,7 +156,8 @@ async function navigate(hash) {
     // ── Scroll-spy for every page that exposes in-page sections ─
     _setupScrollSpy();
 
-    window.scrollTo(0, 0);
+    if (homeSectionRequest) _revealHomeSection(homeSectionRequest);
+    else window.scrollTo(0, 0);
 
     // Consumers such as global search need a deterministic signal that the
     // requested fragment has been injected and all page UI is ready.
@@ -205,6 +222,22 @@ function _renderError(page, url, err) {
   app.replaceChildren(wrapper);
 }
 
+function _revealHomeSection(request) {
+  if (!request) return;
+
+  if (typeof showSec === 'function') {
+    const navLink = document.querySelector(`.sb-nav a[data-sec="${request.parent}"]`);
+    showSec(request.parent, navLink, { scroll: false });
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const target = document.getElementById(request.target);
+      if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    });
+  });
+}
+
 function _setupScrollSpy() {
   if (_scrollObserver) {
     _scrollObserver.disconnect();
@@ -246,6 +279,17 @@ function _setupScrollSpy() {
 window.addEventListener('hashchange', () => {
   const page = location.hash.replace(/^#/, '');
   const route = ROUTE_ALIASES[page] || page;
+  const homeSectionRequest = HOME_SECTION_HASHES[page];
+
+  if (homeSectionRequest) {
+    if (_currentPage === 'home' && document.getElementById(homeSectionRequest.target)) {
+      _revealHomeSection(homeSectionRequest);
+    } else {
+      _currentPage = null;
+      navigate(location.hash);
+    }
+    return;
+  }
 
   // In-page anchor (e.g. #section-p2 inside a role page): NOT a route.
   // Just scroll to it — do NOT re-route (previously this fell back to the
@@ -277,6 +321,11 @@ document.addEventListener('click', event => {
 /** Re-render the current route (used by the language toggle — no reload). */
 function _rerenderCurrentPage() {
   const requestedRoute = location.hash.replace(/^#/, '');
+  if (HOME_SECTION_HASHES[requestedRoute]) {
+    _currentPage = null;
+    navigate('#' + requestedRoute);
+    return;
+  }
   const canonicalRoute = ROUTE_ALIASES[requestedRoute] || requestedRoute;
   const route = (_currentPage && ROUTES[_currentPage])
     ? _currentPage
