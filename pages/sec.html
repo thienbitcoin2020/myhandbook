@@ -143,10 +143,13 @@
       <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Section 02</div><h2>Governance Frameworks</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">NIST CSF — 5 core functions <span class="pill-tag">NIST</span></div>
-        <pre class="art-block">IDENTIFY ─▶ PROTECT ─▶ DETECT ─▶ RESPOND ─▶ RECOVER
-(assets,    (controls,  (monitor,  (incident   (restore,
- risk)       IAM,        SIEM)      response)    lessons)
-             encryption)</pre>
+        <ol class="process-diagram" role="list" aria-label="NIST Cybersecurity Framework five core functions">
+          <li class="process-step"><strong class="process-step-title">IDENTIFY</strong><span class="process-step-detail">assets, risk</span></li>
+          <li class="process-step"><strong class="process-step-title">PROTECT</strong><span class="process-step-detail">controls, IAM, encryption</span></li>
+          <li class="process-step"><strong class="process-step-title">DETECT</strong><span class="process-step-detail">monitor, SIEM</span></li>
+          <li class="process-step"><strong class="process-step-title">RESPOND</strong><span class="process-step-detail">incident response</span></li>
+          <li class="process-step"><strong class="process-step-title">RECOVER</strong><span class="process-step-detail">restore, lessons</span></li>
+        </ol>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Standards mapping</div>
@@ -186,11 +189,14 @@
       <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Section 04</div><h2>Secure SDLC / DevSecOps</h2></div></div>
       <div class="card"><div class="card-body">
         <p><strong>Shift-left:</strong> security controls embedded in the pipeline, failing the build on Critical/High findings.</p>
-        <pre class="art-block">CODE ─▶ COMMIT ─▶ BUILD ─▶ TEST ─▶ DEPLOY ─▶ OPERATE
-  │        │        │       │         │          │
- IDE     secrets   SAST    DAST     IaC scan   runtime
- lint    scan      SCA     pen      signing    SIEM/EDR
-                  (deps)   test     policy     monitoring</pre>
+        <ol class="process-diagram" role="list" aria-label="DevSecOps pipeline">
+          <li class="process-step"><strong class="process-step-title">CODE</strong><span class="process-step-detail">IDE lint</span></li>
+          <li class="process-step"><strong class="process-step-title">COMMIT</strong><span class="process-step-detail">secrets scan</span></li>
+          <li class="process-step"><strong class="process-step-title">BUILD</strong><span class="process-step-detail">SAST · SCA (deps)</span></li>
+          <li class="process-step"><strong class="process-step-title">TEST</strong><span class="process-step-detail">DAST · pen test</span></li>
+          <li class="process-step"><strong class="process-step-title">DEPLOY</strong><span class="process-step-detail">IaC scan · signing policy</span></li>
+          <li class="process-step"><strong class="process-step-title">OPERATE</strong><span class="process-step-detail">runtime · SIEM/EDR monitoring</span></li>
+        </ol>
         <table class="table-sec" style="margin-top:8px;">
           <tr><th>Gate</th><th>Tooling / control</th></tr>
           <tr><td><strong>SAST</strong></td><td>Static code analysis (SonarQube, GitHub Advanced Security/CodeQL).</td></tr>
@@ -299,8 +305,14 @@
       <div class="section-header"><div class="section-icon">🚨</div><div><div class="section-number">Section 10</div><h2>SecOps &amp; Incident Response</h2></div></div>
       <div class="card"><div class="card-body">
         <p><strong>SOC</strong> with <strong>SIEM</strong> (correlation, alerting) + <strong>EDR/XDR</strong>. Incident response lifecycle <span class="pill-tag">NIST SP 800-61</span>:</p>
-        <pre class="art-block">PREPARE ─▶ DETECT &amp; ANALYZE ─▶ CONTAIN ─▶ ERADICATE ─▶ RECOVER ─▶ LESSONS LEARNED
-(playbooks) (SIEM alerts)      (isolate)  (remove)    (restore)   (post-incident)</pre>
+        <ol class="process-diagram" role="list" aria-label="Security incident response lifecycle">
+          <li class="process-step"><strong class="process-step-title">PREPARE</strong><span class="process-step-detail">playbooks</span></li>
+          <li class="process-step"><strong class="process-step-title">DETECT &amp; ANALYZE</strong><span class="process-step-detail">SIEM alerts</span></li>
+          <li class="process-step"><strong class="process-step-title">CONTAIN</strong><span class="process-step-detail">isolate</span></li>
+          <li class="process-step"><strong class="process-step-title">ERADICATE</strong><span class="process-step-detail">remove</span></li>
+          <li class="process-step"><strong class="process-step-title">RECOVER</strong><span class="process-step-detail">restore</span></li>
+          <li class="process-step"><strong class="process-step-title">LESSONS LEARNED</strong><span class="process-step-detail">post-incident</span></li>
+        </ol>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Regulatory breach notification timelines apply (SBV / data-protection). Coordinate operational restoration with the <a href="#ops">Operations &amp; SRE Runbook</a> (major incident &amp; DR).</div></div>
       </div></div>
     </section>

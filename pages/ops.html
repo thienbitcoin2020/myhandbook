@@ -153,9 +153,11 @@
     <section class="section-block" id="section-observability">
       <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Section 03</div><h2>Observability — 3 Pillars</h2></div></div>
       <div class="card"><div class="card-body">
-        <pre class="art-block">LOGS            METRICS              TRACES
-(what happened) (how much / trend)   (where time went, cross-service)
- Loki/ELK        Prometheus/Grafana   Jaeger/OTel</pre>
+        <ul class="process-diagram process-diagram--pillars" role="list" aria-label="Observability pillars">
+          <li class="process-step"><strong class="process-step-title">LOGS</strong><span class="process-step-detail">what happened</span><span class="process-step-output">Loki/ELK</span></li>
+          <li class="process-step"><strong class="process-step-title">METRICS</strong><span class="process-step-detail">how much / trend</span><span class="process-step-output">Prometheus/Grafana</span></li>
+          <li class="process-step"><strong class="process-step-title">TRACES</strong><span class="process-step-detail">where time went, cross-service</span><span class="process-step-output">Jaeger/OTel</span></li>
+        </ul>
         <ul class="step-cl" style="margin-top:6px;">
           <li><strong>Golden Signals</strong> (SRE): Latency, Traffic, Errors, Saturation.</li>
           <li>Alert on <strong>symptoms &amp; SLO burn rate</strong>, not every cause — reduce alert fatigue.</li>
@@ -179,10 +181,13 @@
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Incident lifecycle &amp; roles</div>
-        <pre class="art-block">DETECT ─▶ TRIAGE/DECLARE ─▶ MITIGATE ─▶ RESOLVE ─▶ POSTMORTEM
-   │            │              │           │           │
- alert     assign IC       restore     confirm     blameless
-           + comms lead    service     SLO met      RCA</pre>
+        <ol class="process-diagram" role="list" aria-label="Incident lifecycle">
+          <li class="process-step"><strong class="process-step-title">DETECT</strong><span class="process-step-detail">alert</span></li>
+          <li class="process-step"><strong class="process-step-title">TRIAGE/DECLARE</strong><span class="process-step-detail">assign IC + comms lead</span></li>
+          <li class="process-step"><strong class="process-step-title">MITIGATE</strong><span class="process-step-detail">restore service</span></li>
+          <li class="process-step"><strong class="process-step-title">RESOLVE</strong><span class="process-step-detail">confirm SLO met</span></li>
+          <li class="process-step"><strong class="process-step-title">POSTMORTEM</strong><span class="process-step-detail">blameless RCA</span></li>
+        </ol>
         <p style="margin-top:6px;">Key roles: <strong>Incident Commander (IC)</strong> (coordinates, decides), <strong>Comms Lead</strong> (stakeholder updates), <strong>Ops/SME</strong> (fix). Security incidents → coordinate with <a href="#sec">Security &amp; Compliance</a> (SBV breach notification).</p>
       </div></div>
     </section>

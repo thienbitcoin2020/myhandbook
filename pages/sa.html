@@ -161,12 +161,28 @@
       <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Section 02</div><h2>Requirements Intake &amp; Scope</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>Take the BRD/SRS &amp; user stories from the <a href="#ba">BA</a>/<a href="#po">PO</a>, clarify technical scope, and set explicit <strong>in/out of scope</strong>. Anchor with a <strong>System Context diagram (C4 Level 1)</strong>.</p>
-        <pre class="art-block">C4 L1 — SYSTEM CONTEXT
-   [Customer] ──▶ ( New Solution ) ──▶ [Core Banking]
-                       │  ▲
-                       ▼  │
-                 [Identity / SSO]   [Notification Svc]
-   (Who/what the system talks to — no internals yet)</pre>
+        <figure class="diagram diagram--context" role="group" aria-label="C4 Level 1 system context: Customer uses New Solution, which connects to Core Banking and Identity / SSO. Notification Svc is also shown in the context without an explicit relationship.">
+          <div class="diagram-title">C4 L1 — SYSTEM CONTEXT</div>
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--primary" role="list" aria-label="Primary system context path">
+              <div class="diagram-node diagram-node--actor" role="listitem"><span class="diagram-node-label">Customer</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">New Solution</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Banking</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--context" role="list" aria-label="New Solution dependencies">
+              <div class="diagram-branch-item diagram-branch-item--identity" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical diagram-edge--bidirectional" aria-hidden="true"></span>
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Identity / SSO</span></div>
+              </div>
+              <div class="diagram-branch-item diagram-branch-item--notification" role="listitem">
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Notification Svc</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="diagram-caption">(Who/what the system talks to — no internals yet)</figcaption>
+        </figure>
         <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📄</span><div><strong>Output:</strong> Solution Scope Statement + Context diagram. Ambiguous scope is the #1 source of architecture rework.</div></div>
       </div></div>
     </section>
@@ -288,11 +304,34 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <tr><td><strong>L3</strong></td><td>Component</td><td>What components sit inside each container?</td></tr>
           <tr><td><strong>L4</strong></td><td>Code</td><td>Class/code detail (rarely drawn).</td></tr>
         </table>
-        <pre class="art-block">C4 L2 — CONTAINERS
-   [Web App] ─▶ [API Gateway] ─▶ [Payment Service] ─▶ (Postgres)
-                     │                   │
-                     ▼                   ▼
-              [Auth Service]        (Kafka topic) ─▶ [Ledger Consumer]</pre>
+        <figure class="diagram diagram--containers" role="group" aria-label="C4 Level 2 containers: Web App connects through API Gateway to Payment Service and Postgres. API Gateway connects to Auth Service. Payment Service publishes to Kafka topic, which connects to Ledger Consumer.">
+          <div class="diagram-title">C4 L2 — CONTAINERS</div>
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--primary" role="list" aria-label="Primary container path">
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Web App</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">API Gateway</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Payment Service</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Postgres</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--containers" role="list" aria-label="Container dependencies">
+              <div class="diagram-branch-item diagram-branch-item--gateway" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Auth Service</span></div>
+              </div>
+              <div class="diagram-branch-item diagram-branch-item--payment" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
+                <div class="diagram-path diagram-path--nested" role="list" aria-label="Payment event path">
+                  <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Kafka topic</span></div>
+                  <span class="diagram-edge" aria-hidden="true"></span>
+                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Ledger Consumer</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">arc42 — the 12-section solution architecture document</div>

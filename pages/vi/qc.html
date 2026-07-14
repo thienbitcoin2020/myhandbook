@@ -176,19 +176,15 @@
       <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Mục 02</div><h2>Quy trình test ISTQB — 7 hoạt động</h2></div></div>
       <div class="card"><div class="card-body">
         <p>Quy trình kiểm thử mang tính ngữ cảnh, nhưng v4.0 định nghĩa bảy hoạt động chính. Chúng phần lớn tuần tự nhưng có thể chồng lấp hoặc lặp lại.</p>
-        <pre class="art-block">1. TEST PLANNING
-   ↓
-2. TEST MONITORING &amp; CONTROL  &lt;── chạy liên tục xuyên suốt mọi hoạt động
-   ↓
-3. TEST ANALYSIS   (test cái gì)
-   ↓
-4. TEST DESIGN     (test như thế nào)
-   ↓
-5. TEST IMPLEMENTATION
-   ↓
-6. TEST EXECUTION
-   ↓
-7. TEST COMPLETION</pre>
+        <div class="diagram diagram--istqb" role="list" aria-label="Các hoạt động trong quy trình test ISTQB">
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">1</span><strong class="diagram-label">TEST PLANNING</strong></div>
+          <div class="diagram-rail" role="listitem"><span class="diagram-number">2</span><strong class="diagram-label">TEST MONITORING &amp; CONTROL</strong><span class="diagram-note">chạy liên tục xuyên suốt mọi hoạt động</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">3</span><strong class="diagram-label">TEST ANALYSIS</strong><span class="diagram-note">test cái gì</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">4</span><strong class="diagram-label">TEST DESIGN</strong><span class="diagram-note">test như thế nào</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">5</span><strong class="diagram-label">TEST IMPLEMENTATION</strong></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">6</span><strong class="diagram-label">TEST EXECUTION</strong></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">7</span><strong class="diagram-label">TEST COMPLETION</strong></div>
+        </div>
         <table class="table-qc" style="margin-top:12px;">
           <tr><th style="width:150px">Hoạt động</th><th>Đầu vào</th><th>Nhiệm vụ chính</th><th>Đầu ra / work product</th></tr>
           <tr><td><strong>1. Test Planning</strong></td><td>Chính sách &amp; chiến lược test, bối cảnh dự án, rủi ro sản phẩm/dự án</td><td>Xác định mục tiêu, phạm vi, cách tiếp cận, ước lượng, lịch &amp; tiêu chí</td><td>Test plan, entry &amp; exit criteria</td></tr>
@@ -231,11 +227,13 @@
 
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Quy trình review (v4.0 §3.2.1) &amp; các vai trò</div>
-        <pre class="art-block">1. PLANNING              → xác định phạm vi, công sức, tiêu chí
-2. REVIEW INITIATION     → phân phối work product &amp; tài liệu
-3. INDIVIDUAL REVIEW     → từng reviewer phân tích, ghi nhận bất thường
-4. COMMUNICATION &amp; ANALYSIS → thảo luận bất thường, chốt trạng thái/hành động
-5. FIXING &amp; REPORTING   → tác giả sửa; báo cáo kết quả &amp; metric</pre>
+        <ol class="process-diagram" role="list" aria-label="Quy trình review chính thức">
+          <li class="process-step"><strong class="process-step-title">PLANNING</strong><span class="process-step-detail">xác định phạm vi, công sức, tiêu chí</span></li>
+          <li class="process-step"><strong class="process-step-title">REVIEW INITIATION</strong><span class="process-step-detail">phân phối work product &amp; tài liệu</span></li>
+          <li class="process-step"><strong class="process-step-title">INDIVIDUAL REVIEW</strong><span class="process-step-detail">từng reviewer phân tích, ghi nhận bất thường</span></li>
+          <li class="process-step"><strong class="process-step-title">COMMUNICATION &amp; ANALYSIS</strong><span class="process-step-detail">thảo luận bất thường, chốt trạng thái/hành động</span></li>
+          <li class="process-step"><strong class="process-step-title">FIXING &amp; REPORTING</strong><span class="process-step-detail">tác giả sửa; báo cáo kết quả &amp; metric</span></li>
+        </ol>
         <table class="table-qc" style="margin-top:12px;">
           <tr><th style="width:150px">Vai trò</th><th>Trách nhiệm</th></tr>
           <tr><td><strong>Manager</strong></td><td>Quyết định nội dung được review, phân bổ thời gian/ngân sách/nguồn lực.</td></tr>
@@ -260,12 +258,16 @@
       <div class="section-header"><div class="section-icon">🪜</div><div><div class="section-number">Mục 04</div><h2>Cấp độ kiểm thử &amp; V-Model</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>Trong SDLC tuần tự, <strong>V-Model</strong> ghép mỗi giai đoạn phát triển với một cấp độ kiểm thử tương ứng; việc thiết kế test bắt đầu song song với từng giai đoạn phát triển (verification &amp; validation).</p>
-        <pre class="art-block">Requirements  ─────────────────────────────►  Acceptance Testing (UAT)
-   System Spec  ───────────────────────►  System Testing
-      Architecture  ─────────────►  Integration Testing
-         Detailed Design  ──►  Component (Unit) Testing
-                       Coding
-   (trái = xây dựng / cơ sở xác minh)      (phải = cấp độ kiểm thử)</pre>
+        <figure class="diagram diagram--v-model" aria-label="V-Model giữa các giai đoạn phát triển và cấp độ kiểm thử tương ứng">
+          <div class="diagram-track" role="list">
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Requirements</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Acceptance Testing (UAT)</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">System Spec</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">System Testing</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Architecture</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Integration Testing</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Detailed Design</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Component (Unit) Testing</span></div>
+            <div class="diagram-row diagram-row--apex" role="listitem"><span class="diagram-node diagram-node--apex">Coding</span></div>
+          </div>
+          <figcaption class="diagram-caption"><span>trái = xây dựng / cơ sở xác minh</span><span>phải = cấp độ kiểm thử</span></figcaption>
+        </figure>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Các cấp độ kiểm thử (v4.0 §2.2) — mục tiêu &amp; người phụ trách</div>
@@ -349,13 +351,14 @@
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Testing Quadrants (Marick; phổ biến bởi Crispin &amp; Gregory)</div>
-        <pre class="art-block">                 HỖ TRỢ ĐỘI NGŨ          │        PHẢN BIỆN SẢN PHẨM
-   HƯỚNG      Q2  Functional tests,      │  Q3  Exploratory, Usability,
-   NGHIỆP VỤ      Story tests, Examples, │      UAT
-                  Prototypes  (auto+man) │      (thủ công)
-   ─────────────────────────────────────┼──────────────────────────────
-   HƯỚNG      Q1  Unit / Component tests │  Q4  Performance, Load,
-   CÔNG NGHỆ      (tự động)             │      Security, Reliability (công cụ)</pre>
+        <table class="diagram diagram--quadrants" aria-label="Các góc phần tư kiểm thử Agile">
+          <caption class="visually-hidden">Testing Quadrants</caption>
+          <thead><tr><th scope="col"><span class="visually-hidden">Định hướng</span></th><th scope="col">HỖ TRỢ ĐỘI NGŨ</th><th scope="col">PHẢN BIỆN SẢN PHẨM</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">HƯỚNG NGHIỆP VỤ</th><td><strong class="diagram-label">Q2</strong><span class="diagram-note">Functional tests, Story tests, Examples, Prototypes (auto+man)</span></td><td><strong class="diagram-label">Q3</strong><span class="diagram-note">Exploratory, Usability, UAT (thủ công)</span></td></tr>
+            <tr><th scope="row">HƯỚNG CÔNG NGHỆ</th><td><strong class="diagram-label">Q1</strong><span class="diagram-note">Unit / Component tests (tự động)</span></td><td><strong class="diagram-label">Q4</strong><span class="diagram-note">Performance, Load, Security, Reliability (công cụ)</span></td></tr>
+          </tbody>
+        </table>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Shift-Left Testing</div>
@@ -378,12 +381,15 @@
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Phân tích rủi ro &amp; ưu tiên hoá</div>
         <p><strong>Mức rủi ro = Khả năng xảy ra × Mức ảnh hưởng.</strong> Luồng: nhận diện rủi ro → đánh giá (khả năng × ảnh hưởng) → gán mức rủi ro → ưu tiên công sức test → giảm thiểu bằng kiểm thử → theo dõi.</p>
-        <pre class="art-block">              ẢNH HƯỞNG →
-  K        Thấp       Trung bình  Cao
-  N  Cao   Trung bình Cao         Rất cao   → test trước, coverage sâu
-  Ă  TB    Thấp       Trung bình  Cao
-  N  Thấp  Thấp       Thấp        Trung bình → test sau / nhẹ hơn
-  G</pre>
+        <table class="diagram diagram--heatmap" aria-label="Mức rủi ro theo khả năng xảy ra và mức ảnh hưởng">
+          <caption class="visually-hidden">Ma trận ưu tiên rủi ro</caption>
+          <thead><tr><th scope="col">KHẢ NĂNG / ẢNH HƯỞNG <span aria-hidden="true">→</span></th><th scope="col">Thấp</th><th scope="col">Trung bình</th><th scope="col">Cao</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Cao</th><td class="diagram-risk diagram-risk--medium">Trung bình</td><td class="diagram-risk diagram-risk--high">Cao</td><td class="diagram-risk diagram-risk--very-high">Rất cao<span class="diagram-note">test trước, coverage sâu</span></td></tr>
+            <tr><th scope="row">TB</th><td class="diagram-risk diagram-risk--low">Thấp</td><td class="diagram-risk diagram-risk--medium">Trung bình</td><td class="diagram-risk diagram-risk--high">Cao</td></tr>
+            <tr><th scope="row">Thấp</th><td class="diagram-risk diagram-risk--low">Thấp</td><td class="diagram-risk diagram-risk--low">Thấp</td><td class="diagram-risk diagram-risk--medium">Trung bình<span class="diagram-note">test sau / nhẹ hơn</span></td></tr>
+          </tbody>
+        </table>
         <p>Vùng rủi ro cao được test <strong>sớm hơn, sâu hơn và thường xuyên hơn</strong>; vùng rủi ro thấp coverage nhẹ hơn. Rủi ro cũng quyết định phạm vi regression.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -439,12 +445,24 @@
     <section class="section-block" id="section-defect">
       <div class="section-header"><div class="section-icon">🐞</div><div><div class="section-number">Mục 11</div><h2>Vòng đời Defect</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <pre class="art-block">NEW ─► ASSIGNED ─► OPEN / IN-PROGRESS ─► FIXED ─► READY-FOR-RETEST ─► RETEST ─┬─► CLOSED
-                                                                              └─► REOPENED ─► (quay lại Assigned)
-
-  Kết cục khác từ triage / retest:
-     REJECTED   (không phải defect hợp lệ / không tái hiện được / đúng thiết kế)
-     DEFERRED   (hợp lệ nhưng dời sang bản phát hành sau)</pre>
+        <figure class="diagram diagram--state" aria-label="Vòng đời defect và các kết cục khác">
+          <div class="diagram-track" role="list" aria-label="Vòng đời defect chính">
+            <div class="diagram-node" role="listitem">NEW</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">ASSIGNED</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">OPEN / IN-PROGRESS</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">FIXED</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">READY-FOR-RETEST</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">RETEST</div>
+          </div>
+          <div class="diagram-branches" role="list" aria-label="Kết quả retest">
+            <div class="diagram-branch diagram-branch--closed" role="listitem"><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node">CLOSED</span></div>
+            <div class="diagram-branch diagram-branch--reopened" role="listitem"><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node">REOPENED</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-note">(quay lại Assigned)</span></div>
+          </div>
+          <figcaption class="diagram-outcomes">
+            <strong class="diagram-label">Kết cục khác từ triage / retest:</strong>
+            <dl class="diagram-outcome-list"><dt>REJECTED</dt><dd>(không phải defect hợp lệ / không tái hiện được / đúng thiết kế)</dd><dt>DEFERRED</dt><dd>(hợp lệ nhưng dời sang bản phát hành sau)</dd></dl>
+          </figcaption>
+        </figure>
         <table class="table-qc" style="margin-top:8px;">
           <tr><th style="width:170px">Trạng thái</th><th>Ý nghĩa</th></tr>
           <tr><td><strong>New</strong></td><td>Defect được ghi nhận, chờ triage.</td></tr>

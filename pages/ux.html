@@ -130,10 +130,12 @@
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Double Diamond — the process spine <span class="pill-tag">Design Council</span></div>
-        <pre class="art-block">DISCOVER ─▶ DEFINE ─▶ DEVELOP ─▶ DELIVER
-(diverge)   (converge) (diverge)   (converge)
-research     problem     ideate &amp;    prototype,
-&amp; empathy    statement   wireframe   test &amp; handoff</pre>
+        <ol class="process-diagram process-diagram--diamond" role="list" aria-label="Double Diamond process">
+          <li class="process-step process-step--diverge"><span class="process-step-phase">Diverge</span><strong class="process-step-title">DISCOVER</strong><span class="process-step-detail">research &amp; empathy</span></li>
+          <li class="process-step process-step--converge"><span class="process-step-phase">Converge</span><strong class="process-step-title">DEFINE</strong><span class="process-step-detail">problem statement</span></li>
+          <li class="process-step process-step--diverge"><span class="process-step-phase">Diverge</span><strong class="process-step-title">DEVELOP</strong><span class="process-step-detail">ideate &amp; wireframe</span></li>
+          <li class="process-step process-step--converge"><span class="process-step-phase">Converge</span><strong class="process-step-title">DELIVER</strong><span class="process-step-detail">prototype, test &amp; handoff</span></li>
+        </ol>
         <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Internal bank tools: optimize for <strong>efficiency</strong> (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.</div></div>
       </div></div>
     </section>
@@ -179,13 +181,33 @@ research     problem     ideate &amp;    prototype,
           <li><strong>User flows:</strong> step-by-step path to complete a task — rectangles (screens), diamonds (decisions), arrows.</li>
           <li>Always design <strong>happy path + error paths + edge cases</strong>.</li>
         </ul>
-        <pre class="art-block">[Login] ─▶ &lt;Auth ok?&gt; ──no──▶ [Error + retry]
-              │yes
-              ▼
-         [Dashboard] ─▶ [Transfer] ─▶ &lt;Valid?&gt; ──no──▶ [Inline error]
-                                          │yes
-                                          ▼
-                                     [Confirm] ─▶ [Success]</pre>
+        <figure class="diagram diagram--decision" role="group" aria-label="User decision flow: Login leads to Auth ok. No leads to Error plus retry. Yes leads through Dashboard and Transfer to Valid. No leads to Inline error. Yes leads through Confirm to Success.">
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--decision-main" role="list" aria-label="Successful user path">
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Login</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Auth ok?</span></div>
+              <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">yes</span></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Dashboard</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Transfer</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Valid?</span></div>
+              <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">yes</span></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Confirm</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--success" role="listitem"><span class="diagram-node-label">Success</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--auth-no" role="group" aria-label="Authentication failure path">
+              <span class="diagram-edge" aria-hidden="true"><span class="diagram-edge-label">no</span></span>
+              <div class="diagram-node diagram-node--error"><span class="diagram-node-label">Error + retry</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--validation-no" role="group" aria-label="Validation failure path">
+              <span class="diagram-edge" aria-hidden="true"><span class="diagram-edge-label">no</span></span>
+              <div class="diagram-node diagram-node--error"><span class="diagram-node-label">Inline error</span></div>
+            </div>
+          </div>
+        </figure>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -226,8 +248,13 @@ research     problem     ideate &amp;    prototype,
     <section class="section-block" id="section-designsystem">
       <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Section 07</div><h2>Design System <span class="pill-tag">Atomic Design · Brad Frost</span></h2></div></div>
       <div class="card"><div class="card-body">
-        <pre class="art-block">ATOMS ─▶ MOLECULES ─▶ ORGANISMS ─▶ TEMPLATES ─▶ PAGES
-(Button)  (Form field)  (Header)     (Layout)     (Full screen)</pre>
+        <ol class="process-diagram" role="list" aria-label="Atomic Design hierarchy">
+          <li class="process-step"><strong class="process-step-title">ATOMS</strong><span class="process-step-detail">Button</span></li>
+          <li class="process-step"><strong class="process-step-title">MOLECULES</strong><span class="process-step-detail">Form field</span></li>
+          <li class="process-step"><strong class="process-step-title">ORGANISMS</strong><span class="process-step-detail">Header</span></li>
+          <li class="process-step"><strong class="process-step-title">TEMPLATES</strong><span class="process-step-detail">Layout</span></li>
+          <li class="process-step"><strong class="process-step-title">PAGES</strong><span class="process-step-detail">Full screen</span></li>
+        </ol>
         <ul class="step-cl" style="margin-top:6px;">
           <li><strong>Foundations:</strong> color tokens, typography, spacing, icons, grid, motion.</li>
           <li><strong>Design tokens:</strong> <code>color.primary.500</code>, <code>spacing.md=16px</code>, <code>radius.card=8px</code> — single source of truth shared with dev.</li>
