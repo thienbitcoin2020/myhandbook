@@ -280,11 +280,22 @@ function toggleAccordion(btn) {
   btn.nextElementSibling.classList.toggle('open', !expanded);
 }
 
+// The former Map and Delivery Model views now live inside two consolidated
+// parent views. Keep these aliases so cached fragments and legacy triggers do
+// not leave users on a blank section.
+const HANDBOOK_SECTION_ALIASES = {
+  secmap: { parent: 'landing', anchor: 'sec-secmap' },
+  secmodel: { parent: 'secxwalk', anchor: 'sec-secmodel' },
+};
+
 // Implementation Handbook section switcher. This lives in the shared bundle
 // so fragments never need to execute dynamically injected scripts.
-function showSec(id, link) {
+function showSec(id, link, options = {}) {
+  const alias = HANDBOOK_SECTION_ALIASES[id];
+  const parentId = alias ? alias.parent : id;
+
   document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-  const target = document.getElementById('sec-' + id);
+  const target = document.getElementById('sec-' + parentId);
   if (target) target.classList.add('active');
 
   document.querySelectorAll('.sb-nav a').forEach(item => {
@@ -292,7 +303,9 @@ function showSec(id, link) {
     item.removeAttribute('aria-current');
   });
 
-  const navLink = link || document.querySelector(`.sb-nav a[data-sec="${id}"]`);
+  const navLink = alias
+    ? document.querySelector(`.sb-nav a[data-sec="${parentId}"]`)
+    : (link || document.querySelector(`.sb-nav a[data-sec="${parentId}"]`));
   if (navLink) {
     navLink.classList.add('active');
     navLink.setAttribute('aria-current', 'page');
@@ -300,7 +313,17 @@ function showSec(id, link) {
 
   const sidebar = document.getElementById('sidebar');
   if (sidebar) sidebar.classList.remove('open');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (options.scroll === false) return;
+
+  if (alias) {
+    requestAnimationFrame(() => {
+      const anchor = document.getElementById(alias.anchor);
+      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 function toggleAcc(btn) {

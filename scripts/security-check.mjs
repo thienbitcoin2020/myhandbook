@@ -175,6 +175,33 @@ if (!router.includes("'home':       'pages/handbook.html'")) {
   fail('router.js: #home must resolve to the canonical Implementation Handbook');
 }
 
+for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
+  const content = read(relative);
+  for (const legacySwitcher of ['data-sec="secmap"', 'data-sec="secmodel"']) {
+    if (content.includes(legacySwitcher)) {
+      fail(`${relative}: consolidated overview must not restore the ${legacySwitcher} sidebar view`);
+    }
+  }
+  for (const childId of ['sec-secmap', 'sec-secmodel']) {
+    const occurrences = content.match(new RegExp(`id="${childId}"`, 'g')) || [];
+    if (occurrences.length !== 1
+        || !new RegExp(`<section class="overview-subsection[^"]*" id="${childId}"`).test(content)) {
+      fail(`${relative}: consolidated child section ${childId} must exist exactly once`);
+    }
+  }
+  for (const parentId of ['sec-landing', 'sec-secxwalk']) {
+    if (!new RegExp(`<div class="section(?: active)?" id="${parentId}"`).test(content)) {
+      fail(`${relative}: consolidated parent view ${parentId} is missing`);
+    }
+  }
+}
+
+for (const sectionHash of ['sec-secmap', 'sec-secmodel', 'sec-secxwalk']) {
+  if (!router.includes(`'${sectionHash}':`)) {
+    fail(`router.js: legacy overview hash ${sectionHash} must remain supported`);
+  }
+}
+
 const deployWorkflow = read(path.join('.github', 'workflows', 'deploy-pages.yml'));
 if (/^\s*(?:push|pull_request|schedule)\s*:/m.test(deployWorkflow)
     || /^\s*on\s*:\s*\[[^\]]*(?:push|pull_request|schedule)/m.test(deployWorkflow)) {

@@ -74,13 +74,9 @@
   <div class="sb-label">Overview</div>
   <nav class="sb-nav" id="main-nav">
     <a href="#" data-sec="landing" data-section-target="landing" class="active" aria-current="page">
-      <span class="sb-icon-sm">🏠</span> Home &amp; Pipeline</a>
-    <a href="#" data-sec="secmap" data-section-target="secmap">
-      <span class="sb-icon-sm">🗺️</span> Handbook Map &amp; Roles</a>
+      <span class="sb-icon-sm">🏠</span> Overview &amp; Roles</a>
     <a href="#" data-sec="secxwalk" data-section-target="secxwalk">
-      <span class="sb-icon-sm">🧭</span> Lifecycle Cross-Walk</a>
-    <a href="#" data-sec="secmodel" data-section-target="secmodel">
-      <span class="sb-icon-sm">🔀</span> Delivery Model</a>
+      <span class="sb-icon-sm">🧭</span> Delivery Lifecycle</a>
     <a href="#" data-sec="sec0" data-section-target="sec0">
       <span class="sb-icon-sm">📖</span> 0. How to Use</a>
     <a href="#" data-sec="secpm" data-section-target="secpm">
@@ -159,12 +155,17 @@
 <div id="hb-main">
 
 <!-- LANDING PAGE -->
-<div class="section active" id="sec-landing" data-search="Home landing pipeline overview idea planning discovery initiation SDLC deploy GTM operate closure">
+<div class="section active" id="sec-landing" data-search="home landing pipeline overview handbook map roles owners personas idea planning discovery initiation SDLC deploy GTM operate closure">
   <header class="hb-hero">
     <div class="hb-eyebrow">📘 Internal Handbook · Hybrid Water-Scrum-Fall</div>
     <h1>Project Implementation<br/><span>Handbook</span></h1>
     <p>The single entry point for the bank's project delivery knowledge base, governing the journey from <strong>idea to closure</strong>. Use the pipeline below, browse the handbook map, see how every role aligns to one lifecycle, or jump straight in by role.</p>
   </header>
+  <nav class="overview-jumpbar" aria-label="Overview sections">
+    <a class="overview-jump" href="#sec-landing"><span class="overview-jump-index">01</span><span>Implementation Pipeline</span></a>
+    <a class="overview-jump" href="#sec-secmap"><span class="overview-jump-index">02</span><span>Handbook Map &amp; Roles</span></a>
+    <a class="overview-jump" href="#sec-secxwalk" data-section-target="secxwalk"><span class="overview-jump-index">03</span><span>Delivery Lifecycle</span></a>
+  </nav>
   <div class="hb-content">
     <div class="card">
       <div class="card-body">
@@ -204,13 +205,11 @@
       <button type="button" class="tile" data-section-target="sec4"><span class="tile-icon">🚀</span><span class="tile-title">Go-to-Market</span><span class="tile-desc">Launch roadmap from internal beta to GA, marketing, sales enablement.</span></button>
     </div>
   </div>
-</div>
 
 <!-- HANDBOOK MAP & ROLE-BASED START -->
-<div class="section" id="sec-secmap" data-search="handbook map role owner persona quick start specialist source of truth">
-  <div class="breadcrumb">Handbook <span>›</span> Map &amp; Roles</div>
+<section class="overview-subsection" id="sec-secmap" data-search="handbook map role owner persona quick start specialist source of truth" aria-labelledby="overview-map-heading">
   <div class="hb-content">
-    <div class="sec-head"><div class="sec-icon">🗺️</div><div><div class="sec-num">Overview</div><h2>Handbook Map</h2><div class="sec-sub">The twelve handbooks and who owns them</div></div></div>
+    <div class="sec-head"><div class="sec-icon">🗺️</div><div><div class="sec-num">Overview</div><h2 id="overview-map-heading">Handbook Map</h2><div class="sec-sub">The twelve handbooks and who owns them</div></div></div>
     <div class="card"><div class="card-body">
       <div class="card-title">One governance umbrella · eleven specialist sources of truth</div>
       <p>The <strong>Implementation Handbook</strong> is the parent umbrella that governs the end-to-end lifecycle and links to eleven specialist role handbooks. Each specialist handbook is the single source of truth for its own domain.</p>
@@ -288,11 +287,27 @@
       <div class="alert alert-info" style="margin-top:12px"><span class="alert-icon">💡</span><div>New to the team? Start with <a href="#sec-sec0" data-section-target="sec0" style="color:var(--accent-bright)">Section 0 (How to Use)</a> for the full picture, then drill into your role handbook.</div></div>
     </div></div>
   </div>
+</section>
 </div>
 
 <!-- MASTER LIFECYCLE CROSS-WALK -->
-<div class="section" id="sec-secxwalk" data-search="master lifecycle cross-walk alignment role phase handoff PMO PO PM SM BA UX SA security QC operations deployment">
-  <div class="breadcrumb">Handbook <span>›</span> Lifecycle Cross-Walk</div>
+<div class="section" id="sec-secxwalk" data-search="delivery lifecycle model hybrid water scrum fall waterfall agile sprint phase gate master cross-walk alignment role handoff PMO PO PM SM BA UX SA security QC operations deployment">
+  <div class="breadcrumb">Handbook <span>›</span> Delivery Lifecycle</div>
+  <section class="overview-subsection overview-subsection--first" id="sec-secmodel" data-search="delivery model hybrid water scrum fall waterfall agile sprint phase gate audit regulated" aria-labelledby="delivery-model-heading">
+    <div class="hb-content">
+      <div class="sec-head"><div class="sec-icon">🔀</div><div><div class="sec-num">Context</div><h2 id="delivery-model-heading">Delivery Model</h2><div class="sec-sub">Structured governance around iterative delivery</div></div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Hybrid Water-Scrum-Fall</div>
+        <p>The bank runs a <strong>hybrid model</strong>: structured Waterfall governance &amp; phase gates (planning, approvals, UAT, CAB, release) wrapped around Agile/Scrum sprint delivery. Governance discipline gives auditability for a regulated environment; Agile execution keeps delivery iterative.</p>
+        <ul class="step-cl" style="margin-top:10px">
+          <li><strong>Waterfall gates:</strong> Strategy &amp; Planning, Requirements sign-off, UAT, CAB &amp; release approval.</li>
+          <li><strong>Agile execution:</strong> Sprint-based build &amp; test between the gates.</li>
+          <li><strong>PM as the spine:</strong> owns integration, baselines, risk, change, reporting, and closure across every phase.</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+  <div class="overview-subsection" id="lifecycle-crosswalk">
   <div class="hb-content">
     <div class="sec-head"><div class="sec-icon">🧭</div><div><div class="sec-num">Alignment</div><h2>Master Lifecycle Cross-Walk</h2><div class="sec-sub">How each role's phases line up on one delivery lifecycle</div></div></div>
     <div class="card"><div class="card-body">
@@ -353,22 +368,6 @@
       <div class="alert alert-info" style="margin-top:12px"><span class="alert-icon">ℹ️</span><div>Columns are the canonical delivery lifecycle. Bars show where each role's own numbered phases sit — e.g. BA <strong>P6 UAT</strong>, QC <strong>Test Execution</strong>, and Deployment <strong>Pre-Deploy</strong> all cluster around the <strong>Test → Pre-Deploy</strong> window, which is where hand-offs need the tightest coordination.</div></div>
     </div></div>
   </div>
-</div>
-
-<!-- DELIVERY MODEL -->
-<div class="section" id="sec-secmodel" data-search="delivery model hybrid water scrum fall waterfall agile sprint phase gate audit regulated">
-  <div class="breadcrumb">Handbook <span>›</span> Delivery Model</div>
-  <div class="hb-content">
-    <div class="sec-head"><div class="sec-icon">🔀</div><div><div class="sec-num">Context</div><h2>Delivery Model</h2><div class="sec-sub">Structured governance around iterative delivery</div></div></div>
-    <div class="card"><div class="card-body">
-      <div class="card-title">Hybrid Water-Scrum-Fall</div>
-      <p>The bank runs a <strong>hybrid model</strong>: structured Waterfall governance &amp; phase gates (planning, approvals, UAT, CAB, release) wrapped around Agile/Scrum sprint delivery. Governance discipline gives auditability for a regulated environment; Agile execution keeps delivery iterative.</p>
-      <ul class="step-cl" style="margin-top:10px">
-        <li><strong>Waterfall gates:</strong> Strategy &amp; Planning, Requirements sign-off, UAT, CAB &amp; release approval.</li>
-        <li><strong>Agile execution:</strong> Sprint-based build &amp; test between the gates.</li>
-        <li><strong>PM as the spine:</strong> owns integration, baselines, risk, change, reporting, and closure across every phase.</li>
-      </ul>
-    </div></div>
   </div>
 </div>
 
