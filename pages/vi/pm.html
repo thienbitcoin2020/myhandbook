@@ -164,13 +164,24 @@
       <div class="section-header"><div class="section-icon">👁️</div><div><div class="section-number">Tổng quan</div><h2>Nhìn nhanh bằng hình</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Năm Process Group</div>
-        <pre class="art-block">INITIATING (Charter, nhận diện stakeholder)
-   ↓
-PLANNING (PM plan, toàn bộ baseline)
-   ↓
-EXECUTING (Thực hiện công việc) &lt;───&gt; MONITORING &amp; CONTROLLING (Theo dõi, hiệu chỉnh)
-   ↓                                       ┊
-CLOSING (Bàn giao, bài học) &lt;┈┈(Change request)┈┈ PLANNING</pre>
+        <figure class="diagram diagram--process-groups" role="group" aria-label="Năm Process Group PMBOK. Luồng chính: Initiating, Planning, Executing, Closing. Monitoring và Controlling chạy song song, kết nối hai chiều với Executing và gửi change request ngược về Planning.">
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--primary" role="list" aria-label="Luồng thực thi dự án chính">
+              <div class="diagram-node" role="listitem"><strong class="diagram-node-title">INITIATING</strong><span class="diagram-node-detail">Charter, nhận diện stakeholder</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node" role="listitem"><strong class="diagram-node-title">PLANNING</strong><span class="diagram-node-detail">PM plan, toàn bộ baseline</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node" role="listitem"><strong class="diagram-node-title">EXECUTING</strong><span class="diagram-node-detail">Thực hiện công việc</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node" role="listitem"><strong class="diagram-node-title">CLOSING</strong><span class="diagram-node-detail">Bàn giao, bài học</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--sidecar" role="group" aria-label="Vòng phản hồi Monitoring và Controlling chạy song song">
+              <span class="diagram-edge diagram-edge--vertical diagram-edge--bidirectional" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--sidecar"><strong class="diagram-node-title">MONITORING &amp; CONTROLLING</strong><span class="diagram-node-detail">Theo dõi, hiệu chỉnh</span><span class="diagram-node-note">↔ EXECUTING · Change request → PLANNING</span></div>
+              <span class="diagram-edge diagram-edge--feedback" aria-hidden="true"></span>
+            </div>
+          </div>
+        </figure>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Mười Knowledge Area (PMBOK)</div>

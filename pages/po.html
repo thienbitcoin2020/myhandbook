@@ -157,13 +157,22 @@
       </div></div>
 
       <div class="card"><div class="card-body">
-        <div class="card-title">PO in Team Topology <span class="src src-scrum">Scrum 2020</span></div>
+        <div class="card-title" id="po-team-topology-title">PO in Team Topology <span class="src src-scrum">Scrum 2020</span></div>
         <p><strong>One Product Owner · one Product Backlog · one Product Goal.</strong> A single PO may serve multiple Developers or several teams working on the same product, but there remains exactly one ordered Product Backlog and one Product Goal at a time.</p>
-        <pre class="art-block">          ┌──────────── 1 Product Owner ────────────┐
-          │            1 Product Backlog              │
-          │             1 Product Goal                │
-          └───────┬───────────┬───────────┬──────────┘
-              Team A       Team B       Team C   (share one backlog)</pre>
+        <figure class="diagram-canvas diagram-topology" role="group" aria-labelledby="po-team-topology-title">
+          <div class="diagram-node diagram-node--primary">
+            <strong class="diagram-node-title">1 Product Owner</strong>
+            <span class="diagram-node-detail">1 Product Backlog</span>
+            <span class="diagram-node-detail">1 Product Goal</span>
+          </div>
+          <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+          <ul class="diagram-topology-branches" aria-label="Team A, Team B, Team C">
+            <li class="diagram-node diagram-node--team">Team A</li>
+            <li class="diagram-node diagram-node--team">Team B</li>
+            <li class="diagram-node diagram-node--team">Team C</li>
+          </ul>
+          <p class="diagram-note">(share one backlog)</p>
+        </figure>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Scaling note <span class="src src-ext">Extended · SAFe / Nexus</span>: multi-team scaling frameworks may add area/feature POs, but the single-accountable-PO principle per product still holds.</div></div>
       </div></div>
     </section>
@@ -174,15 +183,13 @@
       <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Section 02</div><h2>Product Vision &amp; Strategy</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Vision → Product Goal → Backlog</div>
-        <pre class="art-block">PRODUCT VISION  (aspirational — why the product exists)
-      ↓
-PRODUCT GOAL    (concrete future state — the long-term target)  [Scrum 2020]
-      ↓
-PRODUCT BACKLOG (the "what" that fulfils the Product Goal)      [Scrum 2020]
-      ↓
-SPRINT GOAL     (single objective for this Sprint)             [Scrum 2020]
-      ↓
-INCREMENT       (a valuable step toward the Product Goal)      [Scrum 2020]</pre>
+        <ol class="process-diagram" role="list" aria-label="Product vision to increment hierarchy">
+          <li class="process-step"><strong class="process-step-title">PRODUCT VISION</strong><span class="process-step-detail">aspirational — why the product exists</span></li>
+          <li class="process-step"><strong class="process-step-title">PRODUCT GOAL</strong><span class="process-step-detail">concrete future state — the long-term target</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">PRODUCT BACKLOG</strong><span class="process-step-detail">the "what" that fulfils the Product Goal</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">SPRINT GOAL</strong><span class="process-step-detail">single objective for this Sprint</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">INCREMENT</strong><span class="process-step-detail">a valuable step toward the Product Goal</span><span class="process-step-output">Scrum 2020</span></li>
+        </ol>
         <p><strong>Product Goal <span class="src src-scrum">Scrum 2020</span>:</strong> describes a future state of the product; lives <em>in</em> the Product Backlog; is the Scrum Team's long-term objective. The team focuses on <strong>one Product Goal at a time</strong> — fulfil (or abandon) it before taking the next. It is the <strong>commitment for the Product Backlog</strong>.</p>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
@@ -222,23 +229,65 @@ our product [key differentiation].</pre>
     <section class="section-block" id="section-discovery">
       <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Section 03</div><h2>Product Discovery <span class="src src-ext">Extended</span></h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <div class="card-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
+        <div class="card-title" id="po-dual-track-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
         <p>Discovery and Delivery run <strong>continuously in parallel</strong>, not as sequential phases. Discovery decides <em>what is worth building</em> (valuable, usable, feasible, viable); Delivery <em>builds validated items</em> well.</p>
-        <pre class="art-block">DISCOVERY  ▸ interviews ▸ prototypes ▸ experiments ▸ validated ideas ─┐
-                                                                       ▼
-DELIVERY   ───────────────▸ build ▸ test ▸ ship validated backlog items</pre>
+        <figure class="diagram-canvas diagram-lanes" role="group" aria-labelledby="po-dual-track-title">
+          <div class="diagram-lane diagram-lane--discovery">
+            <strong class="diagram-lane-title">DISCOVERY</strong>
+            <ol class="diagram-lane-steps" aria-label="DISCOVERY">
+              <li class="diagram-node">interviews</li>
+              <li class="diagram-node">prototypes</li>
+              <li class="diagram-node">experiments</li>
+              <li class="diagram-node">validated ideas</li>
+            </ol>
+          </div>
+          <span class="diagram-connector diagram-connector--handoff" aria-hidden="true"></span>
+          <div class="diagram-lane diagram-lane--delivery">
+            <strong class="diagram-lane-title">DELIVERY</strong>
+            <ol class="diagram-lane-steps" aria-label="DELIVERY">
+              <li class="diagram-node">build</li>
+              <li class="diagram-node">test</li>
+              <li class="diagram-node">ship validated backlog items</li>
+            </ol>
+          </div>
+        </figure>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <div class="card-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
-        <pre class="art-block">           DESIRED OUTCOME  (a measurable business/user outcome)
-                  │
-      ┌───────────┼───────────┐
-  Opportunity  Opportunity  Opportunity   (unmet needs / pains / desires)
-      │
-   ┌──┴──┐
- Solution Solution                        (ideas that address the opportunity)
-      │
-  Experiment                              (test to validate the solution)</pre>
+        <div class="card-title" id="po-opportunity-tree-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
+        <figure class="diagram-canvas diagram-tree" role="group" aria-labelledby="po-opportunity-tree-title">
+          <div class="diagram-node diagram-node--outcome">
+            <strong class="diagram-node-title">DESIRED OUTCOME</strong>
+            <span class="diagram-node-detail">(a measurable business/user outcome)</span>
+          </div>
+          <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+          <div class="diagram-tree-level diagram-tree-level--opportunities">
+            <ul class="diagram-tree-branches" aria-label="Opportunity">
+              <li class="diagram-tree-branch diagram-tree-branch--expanded">
+                <div class="diagram-node">Opportunity</div>
+                <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+                <div class="diagram-tree-level diagram-tree-level--solutions">
+                  <ul class="diagram-tree-branches" aria-label="Solution">
+                    <li class="diagram-tree-branch diagram-tree-branch--expanded">
+                      <div class="diagram-node">Solution</div>
+                      <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+                      <ul class="diagram-tree-branches diagram-tree-branches--experiments" aria-label="Experiment">
+                        <li class="diagram-tree-branch">
+                          <div class="diagram-node">Experiment</div>
+                        </li>
+                      </ul>
+                      <p class="diagram-note">(test to validate the solution)</p>
+                    </li>
+                    <li class="diagram-tree-branch"><div class="diagram-node">Solution</div></li>
+                  </ul>
+                  <p class="diagram-note">(ideas that address the opportunity)</p>
+                </div>
+              </li>
+              <li class="diagram-tree-branch"><div class="diagram-node">Opportunity</div></li>
+              <li class="diagram-tree-branch"><div class="diagram-node">Opportunity</div></li>
+            </ul>
+            <p class="diagram-note">(unmet needs / pains / desires)</p>
+          </div>
+        </figure>
         <p>Keeps every solution traceable to a desired <strong>outcome</strong> — prevents jumping to features without a problem.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -311,13 +360,46 @@ DELIVERY   ───────────────▸ build ▸ test ▸ s
         </table>
       </div></div>
       <div class="card"><div class="card-body">
-        <div class="card-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
-        <pre class="art-block">BACKBONE  →  [User activity 1] [User activity 2] [User activity 3]   (left→right = journey)
-              │            │            │
-WALKING       [must]      [must]       [must]     ── Release 1 (walking skeleton: thin end-to-end)
-SKELETON      [should]    [should]                ── Release 2
-(slices)      [could]                             ── Later
-                                                   (top→bottom = priority)</pre>
+        <div class="card-title" id="po-story-map-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
+        <figure class="diagram-canvas diagram-story-map" role="group" aria-labelledby="po-story-map-title">
+          <div class="diagram-story-map-scroll">
+            <table class="diagram-story-map-table" aria-labelledby="po-story-map-title">
+              <thead>
+                <tr>
+                  <th scope="col" class="diagram-story-map-axis">BACKBONE <span class="diagram-connector diagram-connector--inline" aria-hidden="true">→</span></th>
+                  <th scope="col" class="diagram-node">[User activity 1]</th>
+                  <th scope="col" class="diagram-node">[User activity 2]</th>
+                  <th scope="col" class="diagram-node">[User activity 3]</th>
+                  <th scope="col" class="diagram-note">(left→right = journey)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="diagram-story-map-row diagram-story-map-row--release-1">
+                  <th scope="row" class="diagram-story-map-axis">WALKING</th>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-story-map-release">Release 1 (walking skeleton: thin end-to-end)</td>
+                </tr>
+                <tr class="diagram-story-map-row diagram-story-map-row--release-2">
+                  <th scope="row" class="diagram-story-map-axis">SKELETON</th>
+                  <td class="diagram-node">[should]</td>
+                  <td class="diagram-node">[should]</td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-release">Release 2</td>
+                </tr>
+                <tr class="diagram-story-map-row diagram-story-map-row--later">
+                  <th scope="row" class="diagram-story-map-axis">(slices)</th>
+                  <td class="diagram-node">[could]</td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-release">Later</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="diagram-note diagram-story-map-priority">(top→bottom = priority)</p>
+        </figure>
         <p><strong>Backbone</strong> = the sequence of user activities; <strong>walking skeleton</strong> = the thinnest slice that works end-to-end; <strong>slices</strong> = horizontal cuts that become releases. Great for visualising an MVP against the whole journey.</p>
       </div></div>
     </section>
@@ -328,10 +410,12 @@ SKELETON      [should]    [should]                ── Release 2
       <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Section 06</div><h2>Requirement Artifacts</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Backlog Item Hierarchy</div>
-        <pre class="art-block">EPIC  ▸  FEATURE  ▸  USER STORY  ▸  TASK
-(large      (deliverable    (small,       (technical
- body of     slice of        valuable      step to
- work)       an epic)        increment)    build a story)</pre>
+        <ol class="process-diagram" role="list" aria-label="Backlog item hierarchy">
+          <li class="process-step"><strong class="process-step-title">EPIC</strong><span class="process-step-detail">large body of work</span></li>
+          <li class="process-step"><strong class="process-step-title">FEATURE</strong><span class="process-step-detail">deliverable slice of an epic</span></li>
+          <li class="process-step"><strong class="process-step-title">USER STORY</strong><span class="process-step-detail">small, valuable increment</span></li>
+          <li class="process-step"><strong class="process-step-title">TASK</strong><span class="process-step-detail">technical step to build a story</span></li>
+        </ol>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Only <strong>"Product Backlog item"</strong> is a Scrum Guide term. <strong>Epic / Feature / Story / Task</strong> are tooling &amp; scaling constructs <span class="src src-ext">Jira / SAFe</span> — useful, but not part of the Scrum Guide 2020.</div></div>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">

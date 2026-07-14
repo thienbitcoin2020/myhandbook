@@ -143,10 +143,13 @@
       <div class="section-header"><div class="section-icon">🏛️</div><div><div class="section-number">Mục 02</div><h2>Khung quản trị</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">NIST CSF — 5 chức năng lõi <span class="pill-tag">NIST</span></div>
-        <pre class="art-block">IDENTIFY ─▶ PROTECT ─▶ DETECT ─▶ RESPOND ─▶ RECOVER
-(tài sản,   (control,   (giám sát, (phản ứng   (khôi phục,
- rủi ro)     IAM,        SIEM)      sự cố)      bài học)
-             mã hoá)</pre>
+        <ol class="process-diagram" role="list" aria-label="Năm chức năng cốt lõi của NIST Cybersecurity Framework">
+          <li class="process-step"><strong class="process-step-title">IDENTIFY</strong><span class="process-step-detail">tài sản, rủi ro</span></li>
+          <li class="process-step"><strong class="process-step-title">PROTECT</strong><span class="process-step-detail">control, IAM, mã hoá</span></li>
+          <li class="process-step"><strong class="process-step-title">DETECT</strong><span class="process-step-detail">giám sát, SIEM</span></li>
+          <li class="process-step"><strong class="process-step-title">RESPOND</strong><span class="process-step-detail">phản ứng sự cố</span></li>
+          <li class="process-step"><strong class="process-step-title">RECOVER</strong><span class="process-step-detail">khôi phục, bài học</span></li>
+        </ol>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Ánh xạ các chuẩn</div>
@@ -186,11 +189,14 @@
       <div class="section-header"><div class="section-icon">🔄</div><div><div class="section-number">Mục 04</div><h2>Secure SDLC / DevSecOps</h2></div></div>
       <div class="card"><div class="card-body">
         <p><strong>Shift-left:</strong> control bảo mật nhúng thẳng vào pipeline, fail build khi có phát hiện Critical/High.</p>
-        <pre class="art-block">CODE ─▶ COMMIT ─▶ BUILD ─▶ TEST ─▶ DEPLOY ─▶ OPERATE
-  │        │        │       │         │          │
- IDE     secrets   SAST    DAST     IaC scan   runtime
- lint    scan      SCA     pen      signing    SIEM/EDR
-                  (deps)   test     policy     giám sát</pre>
+        <ol class="process-diagram" role="list" aria-label="Pipeline DevSecOps">
+          <li class="process-step"><strong class="process-step-title">CODE</strong><span class="process-step-detail">IDE lint</span></li>
+          <li class="process-step"><strong class="process-step-title">COMMIT</strong><span class="process-step-detail">secrets scan</span></li>
+          <li class="process-step"><strong class="process-step-title">BUILD</strong><span class="process-step-detail">SAST · SCA (deps)</span></li>
+          <li class="process-step"><strong class="process-step-title">TEST</strong><span class="process-step-detail">DAST · pen test</span></li>
+          <li class="process-step"><strong class="process-step-title">DEPLOY</strong><span class="process-step-detail">IaC scan · signing policy</span></li>
+          <li class="process-step"><strong class="process-step-title">OPERATE</strong><span class="process-step-detail">runtime · SIEM/EDR giám sát</span></li>
+        </ol>
         <table class="table-sec" style="margin-top:8px;">
           <tr><th>Cổng</th><th>Công cụ / control</th></tr>
           <tr><td><strong>SAST</strong></td><td>Phân tích code tĩnh (SonarQube, GitHub Advanced Security/CodeQL).</td></tr>
@@ -299,8 +305,14 @@
       <div class="section-header"><div class="section-icon">🚨</div><div><div class="section-number">Mục 10</div><h2>SecOps &amp; Phản ứng sự cố</h2></div></div>
       <div class="card"><div class="card-body">
         <p><strong>SOC</strong> với <strong>SIEM</strong> (tương quan, cảnh báo) + <strong>EDR/XDR</strong>. Vòng đời phản ứng sự cố <span class="pill-tag">NIST SP 800-61</span>:</p>
-        <pre class="art-block">CHUẨN BỊ ─▶ PHÁT HIỆN &amp; PHÂN TÍCH ─▶ KHOANH VÙNG ─▶ LOẠI BỎ ─▶ KHÔI PHỤC ─▶ RÚT KINH NGHIỆM
-(playbook)  (cảnh báo SIEM)          (cô lập)       (gỡ bỏ)    (phục hồi)   (hậu sự cố)</pre>
+        <ol class="process-diagram" role="list" aria-label="Vòng đời phản ứng sự cố bảo mật">
+          <li class="process-step"><strong class="process-step-title">CHUẨN BỊ</strong><span class="process-step-detail">playbook</span></li>
+          <li class="process-step"><strong class="process-step-title">PHÁT HIỆN &amp; PHÂN TÍCH</strong><span class="process-step-detail">cảnh báo SIEM</span></li>
+          <li class="process-step"><strong class="process-step-title">KHOANH VÙNG</strong><span class="process-step-detail">cô lập</span></li>
+          <li class="process-step"><strong class="process-step-title">LOẠI BỎ</strong><span class="process-step-detail">gỡ bỏ</span></li>
+          <li class="process-step"><strong class="process-step-title">KHÔI PHỤC</strong><span class="process-step-detail">phục hồi</span></li>
+          <li class="process-step"><strong class="process-step-title">RÚT KINH NGHIỆM</strong><span class="process-step-detail">hậu sự cố</span></li>
+        </ol>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Áp dụng thời hạn báo cáo vi phạm theo quy định (SBV / bảo vệ dữ liệu). Phối hợp khôi phục vận hành với <a href="#ops">Operations &amp; SRE Runbook</a> (sự cố lớn &amp; DR).</div></div>
       </div></div>
     </section>

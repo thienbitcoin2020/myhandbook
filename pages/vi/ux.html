@@ -130,10 +130,12 @@
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Double Diamond — trục quy trình <span class="pill-tag">Design Council</span></div>
-        <pre class="art-block">DISCOVER ─▶ DEFINE ─▶ DEVELOP ─▶ DELIVER
-(phân kỳ)   (hội tụ)   (phân kỳ)   (hội tụ)
-nghiên cứu   phát biểu   ý tưởng &amp;    prototype,
-&amp; thấu cảm   vấn đề      wireframe    test &amp; bàn giao</pre>
+        <ol class="process-diagram process-diagram--diamond" role="list" aria-label="Quy trình Double Diamond">
+          <li class="process-step process-step--diverge"><span class="process-step-phase">Phân kỳ</span><strong class="process-step-title">DISCOVER</strong><span class="process-step-detail">nghiên cứu &amp; thấu cảm</span></li>
+          <li class="process-step process-step--converge"><span class="process-step-phase">Hội tụ</span><strong class="process-step-title">DEFINE</strong><span class="process-step-detail">phát biểu vấn đề</span></li>
+          <li class="process-step process-step--diverge"><span class="process-step-phase">Phân kỳ</span><strong class="process-step-title">DEVELOP</strong><span class="process-step-detail">ý tưởng &amp; wireframe</span></li>
+          <li class="process-step process-step--converge"><span class="process-step-phase">Hội tụ</span><strong class="process-step-title">DELIVER</strong><span class="process-step-detail">prototype, test &amp; bàn giao</span></li>
+        </ol>
         <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Công cụ nội bộ ngân hàng: tối ưu cho <strong>hiệu quả</strong> (tốc độ tác vụ, ít cú bấm, tải nhận thức thấp) hơn là sự "thích thú". Accessibility (WCAG AA) không phải tuỳ chọn.</div></div>
       </div></div>
     </section>
@@ -179,13 +181,33 @@ nghiên cứu   phát biểu   ý tưởng &amp;    prototype,
           <li><strong>User flow:</strong> lộ trình từng bước để hoàn thành tác vụ — hình chữ nhật (màn hình), hình thoi (quyết định), mũi tên.</li>
           <li>Luôn thiết kế cả <strong>happy path + đường lỗi + edge case</strong>.</li>
         </ul>
-        <pre class="art-block">[Login] ─▶ &lt;Auth ok?&gt; ──không──▶ [Lỗi + thử lại]
-              │có
-              ▼
-         [Dashboard] ─▶ [Chuyển tiền] ─▶ &lt;Hợp lệ?&gt; ──không──▶ [Lỗi inline]
-                                            │có
-                                            ▼
-                                       [Xác nhận] ─▶ [Thành công]</pre>
+        <figure class="diagram diagram--decision" role="group" aria-label="Luồng quyết định người dùng: Login dẫn tới Auth ok. Không dẫn tới Lỗi và thử lại. Có dẫn qua Dashboard và Chuyển tiền tới Hợp lệ. Không dẫn tới Lỗi inline. Có dẫn qua Xác nhận tới Thành công.">
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--decision-main" role="list" aria-label="Luồng người dùng thành công">
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Login</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Auth ok?</span></div>
+              <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">có</span></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Dashboard</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Chuyển tiền</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Hợp lệ?</span></div>
+              <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">có</span></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Xác nhận</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--success" role="listitem"><span class="diagram-node-label">Thành công</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--auth-no" role="group" aria-label="Luồng xác thực thất bại">
+              <span class="diagram-edge" aria-hidden="true"><span class="diagram-edge-label">không</span></span>
+              <div class="diagram-node diagram-node--error"><span class="diagram-node-label">Lỗi + thử lại</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--validation-no" role="group" aria-label="Luồng kiểm tra hợp lệ thất bại">
+              <span class="diagram-edge" aria-hidden="true"><span class="diagram-edge-label">không</span></span>
+              <div class="diagram-node diagram-node--error"><span class="diagram-node-label">Lỗi inline</span></div>
+            </div>
+          </div>
+        </figure>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -226,8 +248,13 @@ nghiên cứu   phát biểu   ý tưởng &amp;    prototype,
     <section class="section-block" id="section-designsystem">
       <div class="section-header"><div class="section-icon">🧩</div><div><div class="section-number">Mục 07</div><h2>Design System <span class="pill-tag">Atomic Design · Brad Frost</span></h2></div></div>
       <div class="card"><div class="card-body">
-        <pre class="art-block">ATOMS ─▶ MOLECULES ─▶ ORGANISMS ─▶ TEMPLATES ─▶ PAGES
-(Button)  (Form field)  (Header)     (Layout)     (Màn hình đầy đủ)</pre>
+        <ol class="process-diagram" role="list" aria-label="Phân cấp Atomic Design">
+          <li class="process-step"><strong class="process-step-title">ATOMS</strong><span class="process-step-detail">Button</span></li>
+          <li class="process-step"><strong class="process-step-title">MOLECULES</strong><span class="process-step-detail">Form field</span></li>
+          <li class="process-step"><strong class="process-step-title">ORGANISMS</strong><span class="process-step-detail">Header</span></li>
+          <li class="process-step"><strong class="process-step-title">TEMPLATES</strong><span class="process-step-detail">Layout</span></li>
+          <li class="process-step"><strong class="process-step-title">PAGES</strong><span class="process-step-detail">Màn hình đầy đủ</span></li>
+        </ol>
         <ul class="step-cl" style="margin-top:6px;">
           <li><strong>Nền tảng:</strong> token màu, typography, spacing, icon, lưới, motion.</li>
           <li><strong>Design token:</strong> <code>color.primary.500</code>, <code>spacing.md=16px</code>, <code>radius.card=8px</code> — một nguồn sự thật dùng chung với dev.</li>

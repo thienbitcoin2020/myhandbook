@@ -153,10 +153,11 @@
     <section class="section-block" id="section-observability">
       <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Mục 03</div><h2>Observability — 3 trụ cột</h2></div></div>
       <div class="card"><div class="card-body">
-        <pre class="art-block">LOGS            METRICS              TRACES
-(chuyện gì       (bao nhiêu / xu      (thời gian trôi đâu,
- đã xảy ra)       hướng)               xuyên service)
- Loki/ELK        Prometheus/Grafana   Jaeger/OTel</pre>
+        <ul class="process-diagram process-diagram--pillars" role="list" aria-label="Ba trụ cột observability">
+          <li class="process-step"><strong class="process-step-title">LOGS</strong><span class="process-step-detail">chuyện gì đã xảy ra</span><span class="process-step-output">Loki/ELK</span></li>
+          <li class="process-step"><strong class="process-step-title">METRICS</strong><span class="process-step-detail">bao nhiêu / xu hướng</span><span class="process-step-output">Prometheus/Grafana</span></li>
+          <li class="process-step"><strong class="process-step-title">TRACES</strong><span class="process-step-detail">thời gian trôi đâu, xuyên service</span><span class="process-step-output">Jaeger/OTel</span></li>
+        </ul>
         <ul class="step-cl" style="margin-top:6px;">
           <li><strong>Golden Signals</strong> (SRE): Latency, Traffic, Errors, Saturation.</li>
           <li>Cảnh báo theo <strong>triệu chứng &amp; tốc độ đốt SLO</strong>, không theo từng nguyên nhân — giảm alert fatigue.</li>
@@ -180,10 +181,13 @@
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Vòng đời &amp; vai trò trong sự cố</div>
-        <pre class="art-block">PHÁT HIỆN ─▶ TRIAGE/DECLARE ─▶ GIẢM THIỂU ─▶ GIẢI QUYẾT ─▶ POSTMORTEM
-   │             │                │             │             │
- cảnh báo     chỉ định IC       khôi phục     xác nhận      RCA
-             + comms lead      dịch vụ       đạt SLO       blameless</pre>
+        <ol class="process-diagram" role="list" aria-label="Vòng đời sự cố">
+          <li class="process-step"><strong class="process-step-title">PHÁT HIỆN</strong><span class="process-step-detail">cảnh báo</span></li>
+          <li class="process-step"><strong class="process-step-title">TRIAGE/DECLARE</strong><span class="process-step-detail">chỉ định IC + comms lead</span></li>
+          <li class="process-step"><strong class="process-step-title">GIẢM THIỂU</strong><span class="process-step-detail">khôi phục dịch vụ</span></li>
+          <li class="process-step"><strong class="process-step-title">GIẢI QUYẾT</strong><span class="process-step-detail">xác nhận đạt SLO</span></li>
+          <li class="process-step"><strong class="process-step-title">POSTMORTEM</strong><span class="process-step-detail">RCA blameless</span></li>
+        </ol>
         <p style="margin-top:6px;">Vai trò chính: <strong>Incident Commander (IC)</strong> (điều phối, quyết định), <strong>Comms Lead</strong> (cập nhật stakeholder), <strong>Ops/SME</strong> (khắc phục). Sự cố bảo mật → phối hợp <a href="#sec">Security &amp; Compliance</a> (thời hạn báo cáo vi phạm của SBV).</p>
       </div></div>
     </section>

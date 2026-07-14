@@ -161,12 +161,28 @@
       <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Mục 02</div><h2>Tiếp nhận yêu cầu &amp; Phạm vi</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>Nhận BRD/SRS &amp; user story từ <a href="#ba">BA</a>/<a href="#po">PO</a>, làm rõ phạm vi kỹ thuật, và chốt tường minh <strong>trong/ngoài phạm vi</strong>. Neo bằng <strong>sơ đồ System Context (C4 Level 1)</strong>.</p>
-        <pre class="art-block">C4 L1 — SYSTEM CONTEXT
-   [Khách hàng] ──▶ ( Giải pháp mới ) ──▶ [Core Banking]
-                       │  ▲
-                       ▼  │
-                 [Identity / SSO]   [Notification Svc]
-   (Hệ thống nói chuyện với ai/cái gì — chưa vào nội bộ)</pre>
+        <figure class="diagram diagram--context" role="group" aria-label="Sơ đồ ngữ cảnh hệ thống C4 Level 1: Khách hàng sử dụng Giải pháp mới; giải pháp kết nối với Core Banking và Identity / SSO. Notification Svc cũng được hiển thị trong ngữ cảnh nhưng không có quan hệ tường minh.">
+          <div class="diagram-title">C4 L1 — SYSTEM CONTEXT</div>
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--primary" role="list" aria-label="Luồng ngữ cảnh hệ thống chính">
+              <div class="diagram-node diagram-node--actor" role="listitem"><span class="diagram-node-label">Khách hàng</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Giải pháp mới</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Banking</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--context" role="list" aria-label="Các phụ thuộc của Giải pháp mới">
+              <div class="diagram-branch-item diagram-branch-item--identity" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical diagram-edge--bidirectional" aria-hidden="true"></span>
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Identity / SSO</span></div>
+              </div>
+              <div class="diagram-branch-item diagram-branch-item--notification" role="listitem">
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Notification Svc</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="diagram-caption">(Hệ thống nói chuyện với ai/cái gì — chưa vào nội bộ)</figcaption>
+        </figure>
         <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📄</span><div><strong>Đầu ra:</strong> Solution Scope Statement + sơ đồ Context. Phạm vi mơ hồ là nguồn số 1 gây làm lại kiến trúc.</div></div>
       </div></div>
     </section>
@@ -288,11 +304,34 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
           <tr><td><strong>L3</strong></td><td>Component</td><td>Mỗi container chứa những component nào?</td></tr>
           <tr><td><strong>L4</strong></td><td>Code</td><td>Chi tiết class/code (hiếm khi cần vẽ).</td></tr>
         </table>
-        <pre class="art-block">C4 L2 — CONTAINERS
-   [Web App] ─▶ [API Gateway] ─▶ [Payment Service] ─▶ (Postgres)
-                     │                   │
-                     ▼                   ▼
-              [Auth Service]        (Kafka topic) ─▶ [Ledger Consumer]</pre>
+        <figure class="diagram diagram--containers" role="group" aria-label="Sơ đồ container C4 Level 2: Web App kết nối qua API Gateway tới Payment Service và Postgres. API Gateway kết nối Auth Service. Payment Service phát sự kiện vào Kafka topic, rồi kết nối Ledger Consumer.">
+          <div class="diagram-title">C4 L2 — CONTAINERS</div>
+          <div class="diagram-canvas">
+            <div class="diagram-path diagram-path--primary" role="list" aria-label="Luồng container chính">
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Web App</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">API Gateway</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Payment Service</span></div>
+              <span class="diagram-edge" aria-hidden="true"></span>
+              <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Postgres</span></div>
+            </div>
+            <div class="diagram-branch diagram-branch--containers" role="list" aria-label="Các phụ thuộc container">
+              <div class="diagram-branch-item diagram-branch-item--gateway" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
+                <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Auth Service</span></div>
+              </div>
+              <div class="diagram-branch-item diagram-branch-item--payment" role="listitem">
+                <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
+                <div class="diagram-path diagram-path--nested" role="list" aria-label="Luồng sự kiện thanh toán">
+                  <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Kafka topic</span></div>
+                  <span class="diagram-edge" aria-hidden="true"></span>
+                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Ledger Consumer</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">arc42 — tài liệu kiến trúc giải pháp 12 mục</div>

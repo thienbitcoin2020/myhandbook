@@ -157,13 +157,22 @@
       </div></div>
 
       <div class="card"><div class="card-body">
-        <div class="card-title">PO trong cấu trúc đội nhóm <span class="src src-scrum">Scrum 2020</span></div>
+        <div class="card-title" id="po-team-topology-title">PO trong cấu trúc đội nhóm <span class="src src-scrum">Scrum 2020</span></div>
         <p><strong>Một Product Owner · một Product Backlog · một Product Goal.</strong> Một PO có thể phục vụ nhiều Developers hoặc nhiều đội cùng làm một sản phẩm, nhưng luôn chỉ có đúng một Product Backlog được sắp thứ tự và một Product Goal tại một thời điểm.</p>
-        <pre class="art-block">          ┌──────────── 1 Product Owner ────────────┐
-          │            1 Product Backlog              │
-          │             1 Product Goal                │
-          └───────┬───────────┬───────────┬──────────┘
-              Team A       Team B       Team C   (dùng chung một backlog)</pre>
+        <figure class="diagram-canvas diagram-topology" role="group" aria-labelledby="po-team-topology-title">
+          <div class="diagram-node diagram-node--primary">
+            <strong class="diagram-node-title">1 Product Owner</strong>
+            <span class="diagram-node-detail">1 Product Backlog</span>
+            <span class="diagram-node-detail">1 Product Goal</span>
+          </div>
+          <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+          <ul class="diagram-topology-branches" aria-label="Team A, Team B, Team C">
+            <li class="diagram-node diagram-node--team">Team A</li>
+            <li class="diagram-node diagram-node--team">Team B</li>
+            <li class="diagram-node diagram-node--team">Team C</li>
+          </ul>
+          <p class="diagram-note">(dùng chung một backlog)</p>
+        </figure>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Ghi chú scaling <span class="src src-ext">Mở rộng · SAFe / Nexus</span>: các framework scale nhiều đội có thể thêm area/feature PO, nhưng nguyên tắc một-PO-chịu-trách-nhiệm cho mỗi sản phẩm vẫn giữ nguyên.</div></div>
       </div></div>
     </section>
@@ -174,15 +183,13 @@
       <div class="section-header"><div class="section-icon">🔭</div><div><div class="section-number">Mục 02</div><h2>Product Vision &amp; Chiến lược</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Vision → Product Goal → Backlog</div>
-        <pre class="art-block">PRODUCT VISION  (khát vọng — lý do sản phẩm tồn tại)
-      ↓
-PRODUCT GOAL    (trạng thái tương lai cụ thể — mục tiêu dài hạn)  [Scrum 2020]
-      ↓
-PRODUCT BACKLOG (phần "cái gì" để hiện thực hoá Product Goal)     [Scrum 2020]
-      ↓
-SPRINT GOAL     (một mục tiêu duy nhất cho Sprint này)           [Scrum 2020]
-      ↓
-INCREMENT       (một bước tiến có giá trị tới Product Goal)      [Scrum 2020]</pre>
+        <ol class="process-diagram" role="list" aria-label="Phân cấp từ Product Vision đến Increment">
+          <li class="process-step"><strong class="process-step-title">PRODUCT VISION</strong><span class="process-step-detail">khát vọng — lý do sản phẩm tồn tại</span></li>
+          <li class="process-step"><strong class="process-step-title">PRODUCT GOAL</strong><span class="process-step-detail">trạng thái tương lai cụ thể — mục tiêu dài hạn</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">PRODUCT BACKLOG</strong><span class="process-step-detail">phần "cái gì" để hiện thực hoá Product Goal</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">SPRINT GOAL</strong><span class="process-step-detail">một mục tiêu duy nhất cho Sprint này</span><span class="process-step-output">Scrum 2020</span></li>
+          <li class="process-step"><strong class="process-step-title">INCREMENT</strong><span class="process-step-detail">một bước tiến có giá trị tới Product Goal</span><span class="process-step-output">Scrum 2020</span></li>
+        </ol>
         <p><strong>Product Goal <span class="src src-scrum">Scrum 2020</span>:</strong> mô tả một trạng thái tương lai của sản phẩm; nằm <em>trong</em> Product Backlog; là mục tiêu dài hạn của Scrum Team. Đội tập trung vào <strong>một Product Goal tại một thời điểm</strong> — hoàn thành (hoặc từ bỏ) trước khi nhận mục tiêu kế tiếp. Đây là <strong>commitment của Product Backlog</strong>.</p>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
@@ -222,23 +229,65 @@ sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
     <section class="section-block" id="section-discovery">
       <div class="section-header"><div class="section-icon">🔬</div><div><div class="section-number">Mục 03</div><h2>Product Discovery <span class="src src-ext">Mở rộng</span></h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <div class="card-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
+        <div class="card-title" id="po-dual-track-title">Dual-Track Agile <span class="src src-ext">Jeff Patton / Marty Cagan</span></div>
         <p>Discovery và Delivery chạy <strong>song song liên tục</strong>, không phải hai pha nối tiếp. Discovery quyết định <em>cái gì đáng xây</em> (giá trị, dùng được, khả thi, bền vững); Delivery <em>xây tốt những thứ đã kiểm chứng</em>.</p>
-        <pre class="art-block">DISCOVERY  ▸ phỏng vấn ▸ prototype ▸ thí nghiệm ▸ ý tưởng đã kiểm chứng ─┐
-                                                                          ▼
-DELIVERY   ───────────────▸ build ▸ test ▸ giao các backlog item đã kiểm chứng</pre>
+        <figure class="diagram-canvas diagram-lanes" role="group" aria-labelledby="po-dual-track-title">
+          <div class="diagram-lane diagram-lane--discovery">
+            <strong class="diagram-lane-title">DISCOVERY</strong>
+            <ol class="diagram-lane-steps" aria-label="DISCOVERY">
+              <li class="diagram-node">phỏng vấn</li>
+              <li class="diagram-node">prototype</li>
+              <li class="diagram-node">thí nghiệm</li>
+              <li class="diagram-node">ý tưởng đã kiểm chứng</li>
+            </ol>
+          </div>
+          <span class="diagram-connector diagram-connector--handoff" aria-hidden="true"></span>
+          <div class="diagram-lane diagram-lane--delivery">
+            <strong class="diagram-lane-title">DELIVERY</strong>
+            <ol class="diagram-lane-steps" aria-label="DELIVERY">
+              <li class="diagram-node">build</li>
+              <li class="diagram-node">test</li>
+              <li class="diagram-node">giao các backlog item đã kiểm chứng</li>
+            </ol>
+          </div>
+        </figure>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <div class="card-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
-        <pre class="art-block">           OUTCOME MONG MUỐN  (một kết quả kinh doanh/người dùng đo được)
-                  │
-      ┌───────────┼───────────┐
-  Opportunity  Opportunity  Opportunity   (nhu cầu chưa đáp ứng / nỗi đau / mong muốn)
-      │
-   ┌──┴──┐
- Solution Solution                        (ý tưởng giải quyết opportunity)
-      │
-  Experiment                              (thí nghiệm kiểm chứng solution)</pre>
+        <div class="card-title" id="po-opportunity-tree-title">Opportunity Solution Tree <span class="src src-ext">Teresa Torres</span></div>
+        <figure class="diagram-canvas diagram-tree" role="group" aria-labelledby="po-opportunity-tree-title">
+          <div class="diagram-node diagram-node--outcome">
+            <strong class="diagram-node-title">OUTCOME MONG MUỐN</strong>
+            <span class="diagram-node-detail">(một kết quả kinh doanh/người dùng đo được)</span>
+          </div>
+          <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+          <div class="diagram-tree-level diagram-tree-level--opportunities">
+            <ul class="diagram-tree-branches" aria-label="Opportunity">
+              <li class="diagram-tree-branch diagram-tree-branch--expanded">
+                <div class="diagram-node">Opportunity</div>
+                <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+                <div class="diagram-tree-level diagram-tree-level--solutions">
+                  <ul class="diagram-tree-branches" aria-label="Solution">
+                    <li class="diagram-tree-branch diagram-tree-branch--expanded">
+                      <div class="diagram-node">Solution</div>
+                      <span class="diagram-connector diagram-connector--branch" aria-hidden="true"></span>
+                      <ul class="diagram-tree-branches diagram-tree-branches--experiments" aria-label="Experiment">
+                        <li class="diagram-tree-branch">
+                          <div class="diagram-node">Experiment</div>
+                        </li>
+                      </ul>
+                      <p class="diagram-note">(thí nghiệm kiểm chứng solution)</p>
+                    </li>
+                    <li class="diagram-tree-branch"><div class="diagram-node">Solution</div></li>
+                  </ul>
+                  <p class="diagram-note">(ý tưởng giải quyết opportunity)</p>
+                </div>
+              </li>
+              <li class="diagram-tree-branch"><div class="diagram-node">Opportunity</div></li>
+              <li class="diagram-tree-branch"><div class="diagram-node">Opportunity</div></li>
+            </ul>
+            <p class="diagram-note">(nhu cầu chưa đáp ứng / nỗi đau / mong muốn)</p>
+          </div>
+        </figure>
         <p>Giữ mọi solution truy vết được về một <strong>outcome</strong> mong muốn — tránh nhảy sang tính năng khi chưa có vấn đề.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -311,13 +360,46 @@ DELIVERY   ───────────────▸ build ▸ test ▸ g
         </table>
       </div></div>
       <div class="card"><div class="card-body">
-        <div class="card-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
-        <pre class="art-block">BACKBONE  →  [Hoạt động 1] [Hoạt động 2] [Hoạt động 3]   (trái→phải = hành trình người dùng)
-              │            │            │
-WALKING       [must]      [must]       [must]     ── Release 1 (walking skeleton: lát mỏng chạy end-to-end)
-SKELETON      [should]    [should]                ── Release 2
-(các lát)     [could]                             ── Sau này
-                                                   (trên→dưới = độ ưu tiên)</pre>
+        <div class="card-title" id="po-story-map-title">Story Mapping <span class="src src-ext">Jeff Patton</span></div>
+        <figure class="diagram-canvas diagram-story-map" role="group" aria-labelledby="po-story-map-title">
+          <div class="diagram-story-map-scroll">
+            <table class="diagram-story-map-table" aria-labelledby="po-story-map-title">
+              <thead>
+                <tr>
+                  <th scope="col" class="diagram-story-map-axis">BACKBONE <span class="diagram-connector diagram-connector--inline" aria-hidden="true">→</span></th>
+                  <th scope="col" class="diagram-node">[Hoạt động 1]</th>
+                  <th scope="col" class="diagram-node">[Hoạt động 2]</th>
+                  <th scope="col" class="diagram-node">[Hoạt động 3]</th>
+                  <th scope="col" class="diagram-note">(trái→phải = hành trình người dùng)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="diagram-story-map-row diagram-story-map-row--release-1">
+                  <th scope="row" class="diagram-story-map-axis">WALKING</th>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-node">[must]</td>
+                  <td class="diagram-story-map-release">Release 1 (walking skeleton: lát mỏng chạy end-to-end)</td>
+                </tr>
+                <tr class="diagram-story-map-row diagram-story-map-row--release-2">
+                  <th scope="row" class="diagram-story-map-axis">SKELETON</th>
+                  <td class="diagram-node">[should]</td>
+                  <td class="diagram-node">[should]</td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-release">Release 2</td>
+                </tr>
+                <tr class="diagram-story-map-row diagram-story-map-row--later">
+                  <th scope="row" class="diagram-story-map-axis">(các lát)</th>
+                  <td class="diagram-node">[could]</td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-empty" aria-hidden="true"></td>
+                  <td class="diagram-story-map-release">Sau này</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="diagram-note diagram-story-map-priority">(trên→dưới = độ ưu tiên)</p>
+        </figure>
         <p><strong>Backbone</strong> = chuỗi hoạt động của người dùng; <strong>walking skeleton</strong> = lát mỏng nhất chạy được end-to-end; <strong>các lát cắt</strong> = những đường cắt ngang trở thành các bản phát hành. Rất hợp để hình dung MVP trên toàn hành trình.</p>
       </div></div>
     </section>
@@ -328,9 +410,12 @@ SKELETON      [should]    [should]                ── Release 2
       <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Mục 06</div><h2>Artifact yêu cầu</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Phân cấp backlog item</div>
-        <pre class="art-block">EPIC  ▸  FEATURE  ▸  USER STORY  ▸  TASK
-(khối       (lát giá trị     (mẩu nhỏ,     (bước kỹ thuật
- việc lớn)   của một epic)    có giá trị)    để xây story)</pre>
+        <ol class="process-diagram" role="list" aria-label="Phân cấp backlog item">
+          <li class="process-step"><strong class="process-step-title">EPIC</strong><span class="process-step-detail">khối việc lớn</span></li>
+          <li class="process-step"><strong class="process-step-title">FEATURE</strong><span class="process-step-detail">lát giá trị của một epic</span></li>
+          <li class="process-step"><strong class="process-step-title">USER STORY</strong><span class="process-step-detail">mẩu nhỏ, có giá trị</span></li>
+          <li class="process-step"><strong class="process-step-title">TASK</strong><span class="process-step-detail">bước kỹ thuật để xây story</span></li>
+        </ol>
         <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">⚠️</span><div>Chỉ <strong>"Product Backlog item"</strong> là thuật ngữ của Scrum Guide. <strong>Epic / Feature / Story / Task</strong> là cấu trúc của công cụ &amp; framework scale <span class="src src-ext">Jira / SAFe</span> — hữu ích, nhưng không thuộc Scrum Guide 2020.</div></div>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">

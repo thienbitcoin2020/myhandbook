@@ -176,19 +176,15 @@
       <div class="section-header"><div class="section-icon">🔁</div><div><div class="section-number">Section 02</div><h2>ISTQB Test Process — 7 Activities</h2></div></div>
       <div class="card"><div class="card-body">
         <p>The test process is contextual, but v4.0 defines seven main activities. They are largely sequential but may overlap or iterate.</p>
-        <pre class="art-block">1. TEST PLANNING
-   ↓
-2. TEST MONITORING &amp; CONTROL  &lt;── runs continuously across all activities
-   ↓
-3. TEST ANALYSIS   (what to test)
-   ↓
-4. TEST DESIGN     (how to test)
-   ↓
-5. TEST IMPLEMENTATION
-   ↓
-6. TEST EXECUTION
-   ↓
-7. TEST COMPLETION</pre>
+        <div class="diagram diagram--istqb" role="list" aria-label="ISTQB test process activities">
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">1</span><strong class="diagram-label">TEST PLANNING</strong></div>
+          <div class="diagram-rail" role="listitem"><span class="diagram-number">2</span><strong class="diagram-label">TEST MONITORING &amp; CONTROL</strong><span class="diagram-note">runs continuously across all activities</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">3</span><strong class="diagram-label">TEST ANALYSIS</strong><span class="diagram-note">what to test</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">4</span><strong class="diagram-label">TEST DESIGN</strong><span class="diagram-note">how to test</span></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">5</span><strong class="diagram-label">TEST IMPLEMENTATION</strong></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">6</span><strong class="diagram-label">TEST EXECUTION</strong></div>
+          <div class="diagram-node diagram-node--sequence" role="listitem"><span class="diagram-number">7</span><strong class="diagram-label">TEST COMPLETION</strong></div>
+        </div>
         <table class="table-qc" style="margin-top:12px;">
           <tr><th style="width:150px">Activity</th><th>Input</th><th>Main tasks</th><th>Output / work products</th></tr>
           <tr><td><strong>1. Test Planning</strong></td><td>Test policy &amp; strategy, project context, product/project risks</td><td>Define objectives, scope, approach, estimates, schedule &amp; criteria</td><td>Test plan, entry &amp; exit criteria</td></tr>
@@ -231,11 +227,13 @@
 
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Review Process (v4.0 §3.2.1) &amp; Roles</div>
-        <pre class="art-block">1. PLANNING              → define scope, effort, criteria
-2. REVIEW INITIATION     → distribute work product &amp; materials
-3. INDIVIDUAL REVIEW     → each reviewer analyses, logs anomalies
-4. COMMUNICATION &amp; ANALYSIS → discuss anomalies, decide status/actions
-5. FIXING &amp; REPORTING   → author fixes; results &amp; metrics reported</pre>
+        <ol class="process-diagram" role="list" aria-label="Formal review process">
+          <li class="process-step"><strong class="process-step-title">PLANNING</strong><span class="process-step-detail">define scope, effort, criteria</span></li>
+          <li class="process-step"><strong class="process-step-title">REVIEW INITIATION</strong><span class="process-step-detail">distribute work product &amp; materials</span></li>
+          <li class="process-step"><strong class="process-step-title">INDIVIDUAL REVIEW</strong><span class="process-step-detail">each reviewer analyses, logs anomalies</span></li>
+          <li class="process-step"><strong class="process-step-title">COMMUNICATION &amp; ANALYSIS</strong><span class="process-step-detail">discuss anomalies, decide status/actions</span></li>
+          <li class="process-step"><strong class="process-step-title">FIXING &amp; REPORTING</strong><span class="process-step-detail">author fixes; results &amp; metrics reported</span></li>
+        </ol>
         <table class="table-qc" style="margin-top:12px;">
           <tr><th style="width:150px">Role</th><th>Responsibility</th></tr>
           <tr><td><strong>Manager</strong></td><td>Decides what is reviewed, allocates time/budget/resources.</td></tr>
@@ -260,12 +258,16 @@
       <div class="section-header"><div class="section-icon">🪜</div><div><div class="section-number">Section 04</div><h2>Test Levels &amp; the V-Model</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>In a sequential SDLC the <strong>V-Model</strong> pairs each development phase with a corresponding test level; test design begins in parallel with each development phase (verification &amp; validation).</p>
-        <pre class="art-block">Requirements  ─────────────────────────────►  Acceptance Testing (UAT)
-   System Spec  ───────────────────────►  System Testing
-      Architecture  ─────────────►  Integration Testing
-         Detailed Design  ──►  Component (Unit) Testing
-                       Coding
-   (left = build / verify basis)      (right = test level)</pre>
+        <figure class="diagram diagram--v-model" aria-label="V-Model development phases and corresponding test levels">
+          <div class="diagram-track" role="list">
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Requirements</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Acceptance Testing (UAT)</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">System Spec</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">System Testing</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Architecture</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Integration Testing</span></div>
+            <div class="diagram-row" role="listitem"><span class="diagram-node diagram-node--build">Detailed Design</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node diagram-node--test">Component (Unit) Testing</span></div>
+            <div class="diagram-row diagram-row--apex" role="listitem"><span class="diagram-node diagram-node--apex">Coding</span></div>
+          </div>
+          <figcaption class="diagram-caption"><span>left = build / verify basis</span><span>right = test level</span></figcaption>
+        </figure>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Test Levels (v4.0 §2.2) — objective &amp; owner</div>
@@ -349,13 +351,14 @@
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Testing Quadrants (Marick; popularised by Crispin &amp; Gregory)</div>
-        <pre class="art-block">                 SUPPORT THE TEAM        │        CRITIQUE THE PRODUCT
-   BUSINESS   Q2  Functional tests,      │  Q3  Exploratory, Usability,
-   FACING         Story tests, Examples, │      UAT
-                  Prototypes  (auto+man) │      (manual)
-   ─────────────────────────────────────┼──────────────────────────────
-   TECHNOLOGY Q1  Unit / Component tests │  Q4  Performance, Load,
-   FACING         (automated)           │      Security, Reliability (tools)</pre>
+        <table class="diagram diagram--quadrants" aria-label="Agile testing quadrants">
+          <caption class="visually-hidden">Testing Quadrants</caption>
+          <thead><tr><th scope="col"><span class="visually-hidden">Orientation</span></th><th scope="col">SUPPORT THE TEAM</th><th scope="col">CRITIQUE THE PRODUCT</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">BUSINESS FACING</th><td><strong class="diagram-label">Q2</strong><span class="diagram-note">Functional tests, Story tests, Examples, Prototypes (auto+man)</span></td><td><strong class="diagram-label">Q3</strong><span class="diagram-note">Exploratory, Usability, UAT (manual)</span></td></tr>
+            <tr><th scope="row">TECHNOLOGY FACING</th><td><strong class="diagram-label">Q1</strong><span class="diagram-note">Unit / Component tests (automated)</span></td><td><strong class="diagram-label">Q4</strong><span class="diagram-note">Performance, Load, Security, Reliability (tools)</span></td></tr>
+          </tbody>
+        </table>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Shift-Left Testing</div>
@@ -378,11 +381,15 @@
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Risk Analysis &amp; Prioritisation</div>
         <p><strong>Risk level = Likelihood × Impact.</strong> Flow: identify risks → assess (likelihood × impact) → assign risk level → prioritise test effort → mitigate via testing → monitor.</p>
-        <pre class="art-block">              IMPACT →
-  L        Low        Medium      High
-  I  High  Medium     High        Very High  → test first, deep coverage
-  K  Med   Low        Medium      High
-  E  Low   Low        Low         Medium     → test later / lighter</pre>
+        <table class="diagram diagram--heatmap" aria-label="Risk level by likelihood and impact">
+          <caption class="visually-hidden">Risk prioritisation matrix</caption>
+          <thead><tr><th scope="col">LIKELIHOOD / IMPACT <span aria-hidden="true">→</span></th><th scope="col">Low</th><th scope="col">Medium</th><th scope="col">High</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">High</th><td class="diagram-risk diagram-risk--medium">Medium</td><td class="diagram-risk diagram-risk--high">High</td><td class="diagram-risk diagram-risk--very-high">Very High<span class="diagram-note">test first, deep coverage</span></td></tr>
+            <tr><th scope="row">Med</th><td class="diagram-risk diagram-risk--low">Low</td><td class="diagram-risk diagram-risk--medium">Medium</td><td class="diagram-risk diagram-risk--high">High</td></tr>
+            <tr><th scope="row">Low</th><td class="diagram-risk diagram-risk--low">Low</td><td class="diagram-risk diagram-risk--low">Low</td><td class="diagram-risk diagram-risk--medium">Medium<span class="diagram-note">test later / lighter</span></td></tr>
+          </tbody>
+        </table>
         <p>Higher-risk areas get <strong>earlier, deeper and more frequent</strong> testing; lower-risk areas get lighter coverage. Risk also drives regression scope.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -438,12 +445,24 @@
     <section class="section-block" id="section-defect">
       <div class="section-header"><div class="section-icon">🐞</div><div><div class="section-number">Section 11</div><h2>Defect Lifecycle</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
-        <pre class="art-block">NEW ─► ASSIGNED ─► OPEN / IN-PROGRESS ─► FIXED ─► READY-FOR-RETEST ─► RETEST ─┬─► CLOSED
-                                                                              └─► REOPENED ─► (back to Assigned)
-
-  Alternate outcomes from triage / retest:
-     REJECTED   (not a valid defect / not reproducible / works as designed)
-     DEFERRED   (valid but postponed to a later release)</pre>
+        <figure class="diagram diagram--state" aria-label="Defect lifecycle and alternate outcomes">
+          <div class="diagram-track" role="list" aria-label="Primary defect lifecycle">
+            <div class="diagram-node" role="listitem">NEW</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">ASSIGNED</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">OPEN / IN-PROGRESS</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">FIXED</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">READY-FOR-RETEST</div><span class="diagram-arrow" aria-hidden="true">→</span>
+            <div class="diagram-node" role="listitem">RETEST</div>
+          </div>
+          <div class="diagram-branches" role="list" aria-label="Retest outcomes">
+            <div class="diagram-branch diagram-branch--closed" role="listitem"><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node">CLOSED</span></div>
+            <div class="diagram-branch diagram-branch--reopened" role="listitem"><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node">REOPENED</span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-note">(back to Assigned)</span></div>
+          </div>
+          <figcaption class="diagram-outcomes">
+            <strong class="diagram-label">Alternate outcomes from triage / retest:</strong>
+            <dl class="diagram-outcome-list"><dt>REJECTED</dt><dd>(not a valid defect / not reproducible / works as designed)</dd><dt>DEFERRED</dt><dd>(valid but postponed to a later release)</dd></dl>
+          </figcaption>
+        </figure>
         <table class="table-qc" style="margin-top:8px;">
           <tr><th style="width:170px">State</th><th>Meaning</th></tr>
           <tr><td><strong>New</strong></td><td>Defect logged, awaiting triage.</td></tr>
