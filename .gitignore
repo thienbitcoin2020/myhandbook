@@ -7,8 +7,13 @@ desktop.ini
 .vscode/
 .idea/
 .claude/
+.agents/
 *.suo
 *.user
+
+# Design source material (brand guidebook exports, Figma component shots).
+# Reference assets only — never published, and not part of the reviewed artifact.
+Design component/
 
 # Logs
 *.log

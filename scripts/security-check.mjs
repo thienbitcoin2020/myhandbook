@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { getPublishedFiles } from './artifact-files.mjs';
+import { getPublishedEntries, LEGACY_REDIRECT_DIR } from './artifact-files.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -24,12 +24,14 @@ function collect(directory, extension) {
   return results;
 }
 
-let publishedFiles = [];
+let publishedEntries = [];
 try {
-  publishedFiles = getPublishedFiles(root);
+  publishedEntries = getPublishedEntries(root);
 } catch (error) {
   fail(`artifact allowlist: ${error.message}`);
 }
+// Scanning is always done against the reviewed source file.
+const publishedFiles = publishedEntries.map(entry => entry.source);
 
 const htmlFiles = publishedFiles.filter(relative => relative.endsWith('.html'));
 const jsFiles = publishedFiles.filter(relative => relative.endsWith('.js'));
@@ -178,6 +180,9 @@ for (const invariant of [
   }
 }
 
+// Legacy shims live in legacy/ but publish at the artifact root, so the URL a
+// user hits is the *published* name. Verify against that name, not the source
+// path, and confirm the builder still lands each one at the root.
 const legacyRedirects = new Map([
   ['handbook.html', 'home'],
   ['ba-handbook.html', 'ba'],
@@ -192,13 +197,31 @@ const legacyRedirects = new Map([
   ['pmo-handbook.html', 'pmo'],
 ]);
 
-for (const [relative, route] of legacyRedirects) {
-  const content = read(relative);
+const legacyEntries = new Map(
+  publishedEntries
+    .filter(entry => entry.source.startsWith(`${LEGACY_REDIRECT_DIR}/`))
+    .map(entry => [entry.published, entry.source]),
+);
+
+for (const [published, route] of legacyRedirects) {
+  const source = legacyEntries.get(published);
+  if (!source) {
+    fail(`${published}: legacy redirect is no longer published at the artifact root`);
+    continue;
+  }
+  const content = read(source);
   if (!content.includes(`content="0;url=./#${route}"`)) {
-    fail(`${relative}: legacy redirect must target the clean ./#${route} route`);
+    fail(`${source}: legacy redirect must target the clean ./#${route} route`);
   }
   if (/index\.html/i.test(content)) {
-    fail(`${relative}: legacy redirect must not expose index.html`);
+    fail(`${source}: legacy redirect must not expose index.html`);
+  }
+}
+
+// A stray file in legacy/ would silently publish to the site root.
+for (const published of legacyEntries.keys()) {
+  if (!legacyRedirects.has(published)) {
+    fail(`${LEGACY_REDIRECT_DIR}/${published}: unreviewed file would publish to the artifact root`);
   }
 }
 

@@ -30,9 +30,10 @@ Vietnamese commercial bank:
 project-handbook/
 ├── vercel.json             # Canonical /index.html -> / redirect only
 ├── index.html              # CSP-protected SPA shell + empty #sidebar / #app
-├── handbook.html           # Legacy redirect stubs → ./#<route>
-├── ba-handbook.html        # (kept for old deep links)
-├── pm-handbook.html
+├── legacy/                 # Legacy deep-link shims → ./#<route>
+│   ├── handbook.html       #   kept for old bookmarks; the builder republishes
+│   ├── pm-handbook.html    #   each one at the ARTIFACT ROOT (/pm-handbook.html),
+│   └── …                   #   because that root path *is* the historical URL
 ├── assets/
 │   ├── css/
 │   │   └── styles.css      # Power Home / HDBank design system

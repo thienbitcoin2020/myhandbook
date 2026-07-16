@@ -4,18 +4,22 @@ import path from 'node:path';
 export const PUBLISHED_ROOT_FILES = Object.freeze([
   'vercel.json',
   'index.html',
-  'handbook.html',
-  'ba-handbook.html',
-  'pm-handbook.html',
-  'qc-handbook.html',
-  'po-handbook.html',
-  'sa-handbook.html',
-  'sec-handbook.html',
-  'ops-handbook.html',
-  'sm-handbook.html',
-  'ux-handbook.html',
-  'pmo-handbook.html',
 ]);
+
+/**
+ * Legacy deep-link shims.
+ *
+ * These must be *published* at the artifact root because the root path is the
+ * historical URL (`/pm-handbook.html`), and a static host such as GitHub Pages
+ * cannot rewrite it server-side. Keeping eleven near-identical files in the
+ * repository root buried the two real entry points, so they live in `legacy/`
+ * and the builder puts them back at the root of `public/`.
+ *
+ * They are deliberately still committed files rather than build-time output:
+ * the security gate runs before the build and scans every source file, so a
+ * generated redirect would ship without ever passing the scanner.
+ */
+export const LEGACY_REDIRECT_DIR = 'legacy';
 
 const PUBLISHED_TREES = Object.freeze([
   { directory: 'pages', extensions: new Set(['.html']) },
@@ -64,21 +68,57 @@ function collectTree(root, directory, extensions, results) {
 }
 
 /**
- * Return the complete, deterministic list of files allowed in the static
+ * Return every published file as an explicit { source, published } pair.
+ *
+ * `source` is the reviewed file in the repository (what the security scanner
+ * reads); `published` is where it lands inside the artifact. They are identical
+ * for everything except the legacy redirects, which are stored in `legacy/` but
+ * published at the artifact root.
+ */
+export function getPublishedEntries(root = process.cwd()) {
+  const entries = [];
+
+  for (const relative of PUBLISHED_ROOT_FILES) {
+    assertRegularFile(root, relative);
+    entries.push({ source: normalize(relative), published: normalize(relative) });
+  }
+
+  const legacyFiles = [];
+  collectTree(root, LEGACY_REDIRECT_DIR, new Set(['.html']), legacyFiles);
+  for (const relative of legacyFiles) {
+    const published = normalize(relative).slice(LEGACY_REDIRECT_DIR.length + 1);
+    // The remap is the one place a source path and a URL diverge, so keep it
+    // dumb and verifiable: flat files only, no nesting, no traversal.
+    if (published.includes('/') || published.startsWith('.')) {
+      throw new Error(`${normalize(relative)}: legacy redirects must be flat files directly in ${LEGACY_REDIRECT_DIR}/`);
+    }
+    entries.push({ source: normalize(relative), published });
+  }
+
+  for (const { directory, extensions } of PUBLISHED_TREES) {
+    const results = [];
+    collectTree(root, directory, extensions, results);
+    for (const relative of results) {
+      entries.push({ source: relative, published: relative });
+    }
+  }
+
+  const claimed = new Set();
+  for (const { source, published } of entries) {
+    if (claimed.has(published)) {
+      throw new Error(`${published} would be published twice (second source: ${source})`);
+    }
+    claimed.add(published);
+  }
+
+  return entries.sort((left, right) => left.published.localeCompare(right.published));
+}
+
+/**
+ * Return the complete, deterministic list of source files allowed in the static
  * artifact. Both the security scanner and artifact builder consume this list,
  * so no file can be published without first passing the same gate.
  */
 export function getPublishedFiles(root = process.cwd()) {
-  const files = [];
-
-  for (const relative of PUBLISHED_ROOT_FILES) {
-    assertRegularFile(root, relative);
-    files.push(normalize(relative));
-  }
-
-  for (const { directory, extensions } of PUBLISHED_TREES) {
-    collectTree(root, directory, extensions, files);
-  }
-
-  return files.sort((left, right) => left.localeCompare(right));
+  return getPublishedEntries(root).map(entry => entry.source);
 }

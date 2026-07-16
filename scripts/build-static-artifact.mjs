@@ -1,10 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { getPublishedFiles } from './artifact-files.mjs';
+import { getPublishedEntries } from './artifact-files.mjs';
 
 const root = process.cwd();
 const output = path.join(root, 'public');
-const files = getPublishedFiles(root);
+const entries = getPublishedEntries(root);
+// Version stamping addresses files by where they live in the artifact.
+const files = entries.map(entry => entry.published);
 
 const VERSION_PATTERN = /^v[A-Za-z0-9][A-Za-z0-9._-]{2,47}$/;
 const VERSION_REPLACEMENTS = Object.freeze([
@@ -125,9 +127,9 @@ const deploymentVersion = resolveDeploymentVersion();
 
 fs.rmSync(output, { recursive: true, force: true });
 
-for (const relative of files) {
-  const source = path.join(root, relative);
-  const destination = path.join(output, relative);
+for (const entry of entries) {
+  const source = path.join(root, entry.source);
+  const destination = path.join(output, entry.published);
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(source, destination);
 }
