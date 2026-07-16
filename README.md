@@ -117,10 +117,30 @@ section, no dead `#route` links, and a rectangular lifecycle cross-walk
 > pins the exact `vercel.json` build command, so adding a step there also means
 > editing the security gate itself. That needs Code Owner / Security approval —
 > see [SECURITY.md](SECURITY.md).
->
-> Browser-level E2E (fast tab switching, 390px mobile, refresh, deep links,
-> upgrade-from-stale-cache) still needs a real test runner and would introduce
-> the repository's first npm dependency — a deliberate, separate decision.
+
+### Decision: no test-runner dependency
+
+Browser-level E2E (fast tab switching, 390px mobile, refresh, deep links) is
+**deliberately not automated**, and this repository stays dependency-free — no
+`package.json`, no `node_modules`.
+
+The reason is that a runner such as Playwright would contradict the security
+posture stated above: `npm install` executes package lifecycle hooks (Playwright's
+postinstall downloads browser binaries) and pulls in hundreds of transitive
+packages, while this repo's CI is explicitly built so that it *never executes
+candidate scripts or package lifecycle hooks*. Automating those tests would cost
+more than the bugs they would catch, which are already fixed.
+
+Instead:
+
+- **Structure** is covered by `consistency-check.mjs` above (zero dependencies).
+- **Behaviour** is verified manually against production when it changes.
+
+The P0/P1 navigation fixes were verified this way on
+`project-handbook.vercel.app` — 12 routes × EN/VI all rendering, rapid tab
+switching and a mid-flight language change never leaving a stale or blank page,
+the 390px sidebar closing on navigation with its backdrop, deep links cold-loading
+onto the requested sub-view, and `/pm-handbook.html` still resolving to `#pm`.
 
 ---
 
