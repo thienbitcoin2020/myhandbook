@@ -1088,29 +1088,90 @@
 </div>
 
 <!-- SECTION 9: TEMPLATES LIBRARY -->
-<div class="section" id="sec-sec9" data-search="templates library document template project charter BRD UAT plan user story thu vien">
+<div class="section" id="sec-sec9" data-search="templates library document project charter project management plan RAID status report RTM SRS use case user story product vision roadmap ADR solution architecture thu vien">
   <div class="breadcrumb">Handbook <span>›</span> 9. Thư viện Template</div>
   <div class="hb-content">
-    <div class="sec-head"><div class="sec-icon">📋</div><div><div class="sec-num">Mục 9</div><h2>Thư viện Template</h2><div class="sec-sub">Template chuẩn hoá cho mọi giai đoạn</div></div></div>
-    <div class="card"><div class="card-body" style="padding:0">
-      <table class="hb-table">
-        <thead><tr><th>Template</th><th>Giai đoạn</th><th>Chủ sở hữu</th><th>Định dạng</th></tr></thead>
-        <tbody>
-          <tr><td>📄 Project Charter</td><td>2. Initiation</td><td>PM</td><td>Confluence / Word</td></tr>
-          <tr><td>📄 Stakeholder Register</td><td>2. Initiation</td><td>PM + BA</td><td>Excel / Confluence</td></tr>
-          <tr><td>📄 Risk Register</td><td>2. Initiation</td><td>PM</td><td>Excel / Confluence</td></tr>
-          <tr><td>📄 BRD / SRS Template</td><td>3. SDLC</td><td>BA</td><td>Confluence / Word</td></tr>
-          <tr><td>📄 User Story Template</td><td>3. SDLC</td><td>PO / BA</td><td>Jira</td></tr>
-          <tr><td>📄 UAT Plan &amp; Script Template</td><td>3. SDLC</td><td>BA / QA</td><td>Excel / Confluence</td></tr>
-          <tr><td>📄 Change Request Form</td><td>3. SDLC</td><td>BA / PM</td><td>Jira / Confluence</td></tr>
-          <tr><td>📄 Weekly Status Report</td><td>3. SDLC</td><td>PM</td><td>Confluence / PPT / Email</td></tr>
-          <tr><td>📄 GTM Launch Plan</td><td>4. GTM</td><td>Product Marketing</td><td>Confluence / PPT</td></tr>
-          <tr><td>📄 PIR Report Template</td><td>5. Closure</td><td>PM / BA</td><td>Confluence / Word</td></tr>
-          <tr><td>📄 Project Closure Document</td><td>5. Closure</td><td>PM</td><td>Confluence / Word</td></tr>
-          <tr><td>📄 Incident Report Template</td><td>6. Operate</td><td>Tech Lead</td><td>Jira / Confluence</td></tr>
-        </tbody>
-      </table>
-    </div></div>
+    <div class="sec-head"><div class="sec-icon">📋</div><div><div class="sec-num">Mục 9</div><h2>Thư viện Template</h2><div class="sec-sub">File đã rà soát, dùng được ngay — gom theo vai trò chủ quản</div></div></div>
+    <div class="template-library" role="list">
+      <p class="template-library__intro">Chỉ liệt kê các bản tải đã được rà soát và hiện có sẵn. Template cho các vai trò khác sẽ xuất hiện tại đây sau khi được biên soạn.</p>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-ba-rtm-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · BA</span></div>
+        <h3 class="template-card__title" id="library-template-ba-rtm-title">Requirements Traceability Matrix</h3>
+        <p class="template-card__description">Truy vết yêu cầu từ nguồn và thiết kế tới bằng chứng kiểm thử và phát hành.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Cần một góc nhìn truy vết &amp; độ phủ phục vụ audit.</dd></div><div><dt>Hỗ trợ</dt><dd>PO · QC · PM</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/ba/requirements-traceability-matrix.docx" data-template-download download aria-label="Tải template Requirements Traceability Matrix DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-ba-srs-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · BA</span></div>
+        <h3 class="template-card__title" id="library-template-ba-srs-title">Software Requirements Specification</h3>
+        <p class="template-card__description">Baseline yêu cầu chức năng &amp; phi chức năng có cấu trúc cho phạm vi phức tạp hoặc chịu quản lý.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Cần một baseline yêu cầu dùng chung trước khi build.</dd></div><div><dt>Hỗ trợ</dt><dd>SA · Dev · QC · Security</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/ba/software-requirements-specification.docx" data-template-download download aria-label="Tải template Software Requirements Specification DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-ba-use-case-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · BA</span></div>
+        <h3 class="template-card__title" id="library-template-ba-use-case-title">Use Case Specification</h3>
+        <p class="template-card__description">Mô tả actor, tiền điều kiện, luồng chính, luồng thay thế và ngoại lệ cho các tương tác phức tạp.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Chi tiết kịch bản không nhét gọn được vào một user story.</dd></div><div><dt>Hỗ trợ</dt><dd>PO · SA · Dev · QC</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/ba/use-case-specification.docx" data-template-download download aria-label="Tải template Use Case Specification DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-pm-plan-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PM</span></div>
+        <h3 class="template-card__title" id="library-template-pm-plan-title">Project Management Plan</h3>
+        <p class="template-card__description">Thiết lập cách tiếp cận giao hàng tích hợp, quản trị, baseline, control và tailoring.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Dự án cần một baseline quản lý được thống nhất.</dd></div><div><dt>Hỗ trợ</dt><dd>PMO · PO · BA · SA · Trưởng các workstream</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/pm/project-management-plan.docx" data-template-download download aria-label="Tải template Project Management Plan DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-pm-raid-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PM</span></div>
+        <h3 class="template-card__title" id="library-template-pm-raid-title">RAID Log</h3>
+        <p class="template-card__description">Quản lý rủi ro, giả định, vấn đề và phụ thuộc trong một sổ làm việc duy nhất.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Bất định &amp; blocker cần chủ sở hữu, trigger và hành động.</dd></div><div><dt>Hỗ trợ</dt><dd>Trưởng mọi workstream</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/pm/raid-log.docx" data-template-download download aria-label="Tải template RAID Log DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-pm-status-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PM</span></div>
+        <h3 class="template-card__title" id="library-template-pm-status-title">Status Report 1 trang</h3>
+        <p class="template-card__description">Tóm tắt sức khoẻ, tiến độ, quyết định, rủi ro và bước kế tiếp cho kỳ báo cáo.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Diễn đàn quản trị cần bản cập nhật sẵn-sàng-quyết-định.</dd></div><div><dt>Hỗ trợ</dt><dd>Sponsor · PMO · Trưởng các workstream</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/pm/status-report-one-page.docx" data-template-download download aria-label="Tải template Status Report 1 trang DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-pm-charter-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PM</span></div>
+        <h3 class="template-card__title" id="library-template-pm-charter-title">Project Charter</h3>
+        <p class="template-card__description">Chính thức khởi động sáng kiến; thống nhất mục đích, outcome, ranh giới, quản trị và thẩm quyền PM.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Sponsor cần khởi tạo và trao quyền cho dự án một cách chính thức.</dd></div><div><dt>Hỗ trợ</dt><dd>Sponsor · PO · BA · SA</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/pm/project-charter.docx" data-template-download download aria-label="Tải template Project Charter DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-po-stories-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PO</span></div>
+        <h3 class="template-card__title" id="library-template-po-stories-title">Epic to User Stories</h3>
+        <p class="template-card__description">Phân rã một epic đã duyệt thành các story mỏng, có giá trị, test được với acceptance criteria rõ ràng.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Epic bắt đầu vào refinement và chuẩn bị giao hàng.</dd></div><div><dt>Hỗ trợ</dt><dd>BA · Dev · QC · UX</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/po/epic-to-user-stories.docx" data-template-download download aria-label="Tải template Epic to User Stories DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-po-vision-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · PO</span></div>
+        <h3 class="template-card__title" id="library-template-po-vision-title">Product Vision &amp; Roadmap</h3>
+        <p class="template-card__description">Thống nhất bài toán sản phẩm, outcome mục tiêu, thước đo thành công, độ ưu tiên và các chân trời roadmap.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Một sản phẩm hoặc sáng kiến lớn cần định hướng chung.</dd></div><div><dt>Hỗ trợ</dt><dd>Sponsor · BA · UX · PM</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/po/product-vision-roadmap.docx" data-template-download download aria-label="Tải template Product Vision và Roadmap DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-sa-adr-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · SA</span></div>
+        <h3 class="template-card__title" id="library-template-sa-adr-title">Architecture Decision Record</h3>
+        <p class="template-card__description">Ghi lại một quyết định kiến trúc hệ trọng, bối cảnh, các phương án đã cân nhắc và hệ quả.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Một quyết định ảnh hưởng chất lượng, ràng buộc hoặc thay đổi tương lai.</dd></div><div><dt>Hỗ trợ</dt><dd>Dev · Security · Ops</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/sa/architecture-decision-record.docx" data-template-download download aria-label="Tải template Architecture Decision Record DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+      <article class="template-card" role="listitem" aria-labelledby="library-template-sa-sad-title">
+        <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Chủ quản · SA</span></div>
+        <h3 class="template-card__title" id="library-template-sa-sad-title">Solution Architecture Document</h3>
+        <p class="template-card__description">Baseline giải pháp đầu-cuối: tích hợp, dữ liệu, bảo mật, triển khai và các thuộc tính chất lượng.</p>
+        <dl class="template-card__meta"><div><dt>Dùng khi</dt><dd>Các đội giao hàng cần một tài liệu kiến trúc đã review làm tham chiếu chung.</dd></div><div><dt>Hỗ trợ</dt><dd>BA · Dev · Security · Ops · QC</dd></div></dl>
+        <a class="template-card__action" href="assets/templates/sa/solution-architecture-document.docx" data-template-download download aria-label="Tải template Solution Architecture Document DOCX"><span>Tải template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+      </article>
+    </div>
   </div>
 </div>
 

@@ -57,6 +57,7 @@
   <div class="sidebar-section-label">Governance</div>
   <nav class="sidebar-nav">
     <a href="#section-review" data-nav-active><span class="nav-icon">✅</span> 12 · Validation &amp; Review</a>
+    <a href="#section-templates" data-nav-active><span class="nav-icon">📥</span> Architecture Templates</a>
     <a href="#section-governance" data-nav-active><span class="nav-icon">🛡️</span> 13 · Governance &amp; Handover</a>
   </nav>
 
@@ -451,6 +452,34 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <tr><td>Core-banking API latency spikes</td><td>Med × High</td><td>Async buffer + circuit breaker + cache.</td></tr>
         </table>
       </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- CURATED ARCHITECTURE TEMPLATES -->
+    <section class="section-block" id="section-templates">
+      <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Reference</div><h2>Architecture Document Templates</h2><div class="sec-sub">Curated working files for decisions and solution baselines</div></div></div>
+      <div class="template-library" role="list">
+        <article class="template-card" role="listitem" aria-labelledby="sa-template-adr-title">
+          <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Owner · SA</span></div>
+          <h3 class="template-card__title" id="sa-template-adr-title">Architecture Decision Record</h3>
+          <p class="template-card__description">Use to capture a consequential architecture decision, its context, considered options, and consequences.</p>
+          <dl class="template-card__meta">
+            <div><dt>Use when</dt><dd>A decision affects architecture quality, constraints, or future change.</dd></div>
+            <div><dt>Supports</dt><dd>Dev · Security · Ops</dd></div>
+          </dl>
+          <a class="template-card__action" href="assets/templates/sa/architecture-decision-record.docx" data-template-download download aria-label="Download Architecture Decision Record DOCX"><span>Download template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+        </article>
+        <article class="template-card" role="listitem" aria-labelledby="sa-template-sad-title">
+          <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Owner · SA</span></div>
+          <h3 class="template-card__title" id="sa-template-sad-title">Solution Architecture Document</h3>
+          <p class="template-card__description">Use to baseline the end-to-end solution, integrations, data, security, deployment, and key quality attributes.</p>
+          <dl class="template-card__meta">
+            <div><dt>Use when</dt><dd>Delivery teams need one reviewed architecture reference.</dd></div>
+            <div><dt>Supports</dt><dd>BA · Dev · Security · Ops · QC</dd></div>
+          </dl>
+          <a class="template-card__action" href="assets/templates/sa/solution-architecture-document.docx" data-template-download download aria-label="Download Solution Architecture Document DOCX"><span>Download template</span><span class="template-card__action-mark" aria-hidden="true">↓</span></a>
+        </article>
+      </div>
     </section>
     <div class="section-divider"></div>
 

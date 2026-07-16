@@ -21,6 +21,26 @@ export const PUBLISHED_ROOT_FILES = Object.freeze([
  */
 export const LEGACY_REDIRECT_DIR = 'legacy';
 
+/**
+ * Curated Office documents are intentionally listed one-by-one. Never replace
+ * this with a recursive assets/templates allowlist: a newly dropped source
+ * document must not become downloadable until its content, metadata and OOXML
+ * package have passed review.
+ */
+export const PUBLISHED_DOCUMENTS = Object.freeze([
+  'assets/templates/ba/requirements-traceability-matrix.docx',
+  'assets/templates/ba/software-requirements-specification.docx',
+  'assets/templates/ba/use-case-specification.docx',
+  'assets/templates/pm/project-charter.docx',
+  'assets/templates/pm/project-management-plan.docx',
+  'assets/templates/pm/raid-log.docx',
+  'assets/templates/pm/status-report-one-page.docx',
+  'assets/templates/po/epic-to-user-stories.docx',
+  'assets/templates/po/product-vision-roadmap.docx',
+  'assets/templates/sa/architecture-decision-record.docx',
+  'assets/templates/sa/solution-architecture-document.docx',
+]);
+
 const PUBLISHED_TREES = Object.freeze([
   { directory: 'pages', extensions: new Set(['.html']) },
   { directory: path.join('assets', 'css'), extensions: new Set(['.css']) },
@@ -101,6 +121,11 @@ export function getPublishedEntries(root = process.cwd()) {
     for (const relative of results) {
       entries.push({ source: relative, published: relative });
     }
+  }
+
+  for (const relative of PUBLISHED_DOCUMENTS) {
+    assertRegularFile(root, relative);
+    entries.push({ source: normalize(relative), published: normalize(relative) });
   }
 
   const claimed = new Set();

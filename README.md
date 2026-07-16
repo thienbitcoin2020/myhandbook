@@ -37,11 +37,16 @@ project-handbook/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css      # Power Home / HDBank design system
-│   └── js/
-│       ├── theme-init.js   # Early local theme initialization (no inline script)
-│       ├── main.js         # Theme, sidebar, accordion, role tabs, DoD checklist
-│       ├── router.js       # Hash-based router — fetches page fragments into the shell
-│       └── search.js       # Local EN/VI full-text index and exact-result navigation
+│   ├── js/
+│   │   ├── theme-init.js   # Early local theme initialization (no inline script)
+│   │   ├── main.js         # Theme, sidebar, accordion, role tabs, DoD checklist
+│   │   ├── router.js       # Hash-based router — fetches page fragments into the shell
+│   │   └── search.js       # Local EN/VI full-text index and exact-result navigation
+│   └── templates/          # Sanitized, explicitly allowlisted DOCX downloads
+│       ├── ba/
+│       ├── pm/
+│       ├── po/
+│       └── sa/
 ├── pages/                  # Page fragments fetched at runtime by the router
 │   ├── handbook.html       #   canonical home + implementation lifecycle
 │   ├── deployment.html     #   each contains #sidebar-inner + #page-content
@@ -111,7 +116,29 @@ every route resolving to a real **EN and VI** fragment, the
 `#sidebar-inner` / `#page-content` contract, no inline event handlers (CSP), no
 duplicate ids, every `data-sec` / `data-section-target` resolving to a real
 section, no dead `#route` links, and a rectangular lifecycle cross-walk
-(colspan sums must equal the column count).
+(colspan sums must equal the column count). It also verifies that every
+`data-template-download` link resolves to an explicitly published DOCX, and
+that EN/VI pages expose the same curated downloads in the same order.
+
+### Curated role templates
+
+The downloadable BA, PM, PO, and SA templates in `assets/templates/` are
+sanitized release copies. The local `Template/` folder is an ignored staging
+area for unreviewed originals and legacy formats; files placed there are never
+published automatically. A new document becomes downloadable only after it is:
+
+1. reviewed for role relevance and unnecessary content;
+2. scrubbed of personal/core metadata and real project or customer data;
+3. added by exact path to `PUBLISHED_DOCUMENTS` in
+   `scripts/artifact-files.mjs`;
+4. linked symmetrically from the EN and VI handbook; and
+5. accepted by both the security and consistency checks.
+
+The DOCX gate inspects decompressed OOXML without third-party dependencies. It
+blocks macros, ActiveX, embedded/OLE content, `altChunk`, executable payloads,
+external relationships, unsafe ZIP paths, suspicious compression, secrets,
+high-confidence personal data, and non-empty author metadata. See
+[SECURITY.md](SECURITY.md) for the release policy.
 
 > Not yet wired into the deploy gate on purpose: `scripts/security-check.mjs`
 > pins the exact `vercel.json` build command, so adding a step there also means

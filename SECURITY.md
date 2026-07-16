@@ -35,6 +35,33 @@ change cannot weaken its own checker. That workflow must remain read-only and
 must never execute scripts, build commands, or package lifecycle hooks from the
 candidate checkout; candidate files are inspected strictly as data.
 
+## Curated DOCX release boundary
+
+Role-document source files under the local `Template/` working folder are not
+publishable and are intentionally ignored by Git. Only sanitized copies named
+individually in `PUBLISHED_DOCUMENTS` in `scripts/artifact-files.mjs` may be
+placed under `assets/templates/` and included in a deployment. Do not replace
+that list with a recursive directory allowlist.
+
+Before adding or replacing a curated DOCX, the document owner and the relevant
+role owner must review its business content and remove real employee, customer,
+project, environment, credential, and production data. The Office package must
+then pass `node scripts/security-check.mjs`, which rejects:
+
+- encrypted, malformed, path-traversing, oversized, or suspiciously compressed
+  ZIP/OOXML packages;
+- VBA/macros, ActiveX, embedded packages or OLE objects, `altChunk` content,
+  executable/script payloads, and signed-package additions;
+- all external OOXML relationships, including remote hyperlinks and attached
+  templates;
+- secrets and high-confidence personal data found in decompressed XML; and
+- non-empty `creator` or `lastModifiedBy` core metadata.
+
+Every curated file is Code Owner protected. Its EN and VI download links must
+remain symmetric and must pass `node scripts/consistency-check.mjs`. A document
+that has not completed this review stays outside `assets/templates/`, even when
+the handbook mentions it as a future or missing artifact.
+
 ## Local preview
 
 Local preview servers must bind to `127.0.0.1`, not all network interfaces. The

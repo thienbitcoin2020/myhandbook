@@ -13,6 +13,7 @@
  *   5. every data-sec / data-section-target resolves to a real section id
  *   6. every in-page #route link points at a declared route
  *   7. the lifecycle cross-walk is rectangular (colspan sums == column count)
+ *   8. curated template downloads are allowlisted and EN/VI-symmetric
  *
  * Browser-level E2E (fast tab switching, 390px mobile, cache upgrade) needs a
  * real test runner and is tracked separately — see README.
@@ -20,6 +21,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { PUBLISHED_DOCUMENTS } from './artifact-files.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -65,6 +67,48 @@ for (const [route, enPath] of routes) {
 const fragments = [];
 for (const [, enPath] of routes) {
   fragments.push(enPath, enPath.replace('pages/', 'pages/vi/'));
+}
+
+const publishedDocumentSet = new Set(PUBLISHED_DOCUMENTS);
+const templateLinksByFragment = new Map();
+const linkedDocumentsByLanguage = {
+  en: new Set(),
+  vi: new Set(),
+};
+
+function templateDownloadLinks(relative, html) {
+  const links = [];
+  for (const anchor of html.matchAll(/<a\b([^>]*\bdata-template-download\b[^>]*)>/gi)) {
+    const attributes = anchor[1];
+    const href = /\bhref\s*=\s*(["'])(.*?)\1/i.exec(attributes);
+    if (!href) {
+      fail('template-download', `${relative} has a data-template-download link without href`);
+      continue;
+    }
+    if (!/\bdownload(?:\s|=|$)/i.test(attributes)) {
+      fail('template-download', `${relative} template link ${href[2]} is missing the download attribute`);
+    }
+
+    const documentPath = href[2];
+    if (documentPath.includes('\\')
+        || documentPath.startsWith('/')
+        || documentPath.startsWith('.')
+        || /[?#]/.test(documentPath)
+        || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(documentPath)) {
+      fail('template-download', `${relative} has an unsafe or non-portable template href: ${documentPath}`);
+      continue;
+    }
+    if (!publishedDocumentSet.has(documentPath)) {
+      fail('template-download', `${relative} links to a document outside the publish allowlist: ${documentPath}`);
+      continue;
+    }
+    if (!exists(documentPath)) {
+      fail('template-download', `${relative} links to a missing document: ${documentPath}`);
+      continue;
+    }
+    links.push(documentPath);
+  }
+  return links;
 }
 
 for (const relative of [...new Set(fragments)]) {
@@ -113,6 +157,33 @@ for (const relative of [...new Set(fragments)]) {
     const isAlias = anchor === 'handbook' || anchor.startsWith('sec-');
     if (!isRoute && !isLocal && !isAlias) {
       fail('dead-link', `${relative} links to #${anchor} which is neither a route nor an id on the page`);
+    }
+  }
+
+  const templateLinks = templateDownloadLinks(relative, html);
+  templateLinksByFragment.set(relative, templateLinks);
+  const language = relative.startsWith('pages/vi/') ? 'vi' : 'en';
+  for (const documentPath of templateLinks) linkedDocumentsByLanguage[language].add(documentPath);
+}
+
+// The same route must expose the same curated files in the same order in both
+// languages. Labels/descriptions may be localized; the release boundary may not.
+for (const [, enPath] of routes) {
+  const viPath = enPath.replace('pages/', 'pages/vi/');
+  const enLinks = templateLinksByFragment.get(enPath) || [];
+  const viLinks = templateLinksByFragment.get(viPath) || [];
+  if (enLinks.join('\n') !== viLinks.join('\n')) {
+    fail('template-symmetry', `${enPath} and ${viPath} expose different template files or ordering`);
+  }
+}
+
+// Publishing an unreferenced document is both confusing and an unnecessary
+// data exposure. Every reviewed file must be discoverable in both languages.
+for (const documentPath of PUBLISHED_DOCUMENTS) {
+  if (!exists(documentPath)) fail('template-manifest', `allowlisted document is missing: ${documentPath}`);
+  for (const language of ['en', 'vi']) {
+    if (!linkedDocumentsByLanguage[language].has(documentPath)) {
+      fail('template-coverage', `${documentPath} is not linked from any ${language.toUpperCase()} fragment`);
     }
   }
 }

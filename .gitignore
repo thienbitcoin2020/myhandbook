@@ -15,6 +15,10 @@ desktop.ini
 # Reference assets only — never published, and not part of the reviewed artifact.
 Design component/
 
+# Unreviewed working copies of role documents. Only sanitized, explicitly
+# allowlisted files under assets/templates/ may be published.
+Template/
+
 # Logs
 *.log
 

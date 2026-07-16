@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { inflateRawSync } from 'node:zlib';
 import { getPublishedEntries, LEGACY_REDIRECT_DIR } from './artifact-files.mjs';
 
 const root = process.cwd();
@@ -36,6 +37,7 @@ const publishedFiles = publishedEntries.map(entry => entry.source);
 const htmlFiles = publishedFiles.filter(relative => relative.endsWith('.html'));
 const jsFiles = publishedFiles.filter(relative => relative.endsWith('.js'));
 const cssFiles = publishedFiles.filter(relative => relative.endsWith('.css'));
+const docxFiles = publishedFiles.filter(relative => relative.endsWith('.docx'));
 const textRuntimeFiles = [...htmlFiles, ...jsFiles, ...cssFiles];
 
 const secretPatterns = [
@@ -50,6 +52,234 @@ const secretPatterns = [
   ['generic assigned secret', /\b(?:password|passwd|secret|api[_-]?key|access[_-]?token)\s*[:=]\s*['"][^'"\r\n]{8,}['"]/i],
 ];
 
+// High-confidence personal-data patterns are limited to curated document XML.
+// Placeholders such as "[enter email]" remain valid; real-looking values do not.
+const documentPiiPatterns = [
+  ['email address', /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i],
+  ['Vietnamese phone number', /(?:^|[^0-9])(?:\+84|0)(?:3|5|7|8|9)[0-9]{8}(?:[^0-9]|$)/],
+  // Hex boundaries are excluded on purpose: sanitized media parts are renamed
+  // to their SHA-1 (word/media/<40-hex>.png), and any 12 consecutive decimal
+  // digits inside such a hash tripped this as a false positive. A real citizen
+  // ID in document text is never embedded inside a longer hex string.
+  ['12-digit citizen identifier', /(?:^|[^0-9a-fA-F])[0-9]{12}(?:[^0-9a-fA-F]|$)/],
+];
+
+const DOCX_MAX_ENTRIES = 2048;
+const DOCX_MAX_ENTRY_BYTES = 20 * 1024 * 1024;
+const DOCX_MAX_TOTAL_BYTES = 50 * 1024 * 1024;
+const DOCX_MAX_COMPRESSION_RATIO = 200;
+
+function findEndOfCentralDirectory(buffer) {
+  const signature = 0x06054b50;
+  const earliest = Math.max(0, buffer.length - 65_557);
+  for (let offset = buffer.length - 22; offset >= earliest; offset -= 1) {
+    if (buffer.readUInt32LE(offset) !== signature) continue;
+    const commentLength = buffer.readUInt16LE(offset + 20);
+    if (offset + 22 + commentLength === buffer.length) return offset;
+  }
+  throw new Error('not a valid ZIP package (end-of-central-directory record is missing)');
+}
+
+function decodeZipName(bytes) {
+  const name = bytes.toString('utf8');
+  if (!name || name.includes('\u0000') || name.includes('\ufffd')) {
+    throw new Error('ZIP entry has an invalid UTF-8 filename');
+  }
+  return name;
+}
+
+function validateZipPath(name) {
+  if (name.includes('\\')
+      || name.startsWith('/')
+      || /^[A-Za-z]:/.test(name)
+      || name.includes('//')
+      || /(^|\/)\.\.?(\/|$)/.test(name)) {
+    throw new Error(`unsafe ZIP entry path: ${name}`);
+  }
+}
+
+function parseZipEntries(buffer) {
+  const eocd = findEndOfCentralDirectory(buffer);
+  const disk = buffer.readUInt16LE(eocd + 4);
+  const centralDisk = buffer.readUInt16LE(eocd + 6);
+  const diskEntries = buffer.readUInt16LE(eocd + 8);
+  const totalEntries = buffer.readUInt16LE(eocd + 10);
+  const centralSize = buffer.readUInt32LE(eocd + 12);
+  const centralOffset = buffer.readUInt32LE(eocd + 16);
+
+  if (disk !== 0 || centralDisk !== 0 || diskEntries !== totalEntries) {
+    throw new Error('multi-disk ZIP packages are forbidden');
+  }
+  if (totalEntries === 0 || totalEntries > DOCX_MAX_ENTRIES) {
+    throw new Error(`ZIP entry count must be between 1 and ${DOCX_MAX_ENTRIES}`);
+  }
+  if (totalEntries === 0xffff || centralSize === 0xffffffff || centralOffset === 0xffffffff) {
+    throw new Error('ZIP64 packages are forbidden');
+  }
+  if (centralOffset + centralSize !== eocd || centralOffset > buffer.length) {
+    throw new Error('ZIP central directory boundaries are invalid');
+  }
+
+  const entries = [];
+  const names = new Set();
+  let cursor = centralOffset;
+  let totalUncompressed = 0;
+  let totalCompressed = 0;
+
+  for (let index = 0; index < totalEntries; index += 1) {
+    if (cursor + 46 > eocd || buffer.readUInt32LE(cursor) !== 0x02014b50) {
+      throw new Error(`ZIP central-directory entry ${index + 1} is malformed`);
+    }
+
+    const flags = buffer.readUInt16LE(cursor + 8);
+    const method = buffer.readUInt16LE(cursor + 10);
+    const compressedSize = buffer.readUInt32LE(cursor + 20);
+    const uncompressedSize = buffer.readUInt32LE(cursor + 24);
+    const nameLength = buffer.readUInt16LE(cursor + 28);
+    const extraLength = buffer.readUInt16LE(cursor + 30);
+    const commentLength = buffer.readUInt16LE(cursor + 32);
+    const localOffset = buffer.readUInt32LE(cursor + 42);
+    const next = cursor + 46 + nameLength + extraLength + commentLength;
+    if (next > eocd) throw new Error(`ZIP central-directory entry ${index + 1} exceeds its boundary`);
+
+    const name = decodeZipName(buffer.subarray(cursor + 46, cursor + 46 + nameLength));
+    validateZipPath(name);
+    const canonicalName = name.toLowerCase();
+    if (names.has(canonicalName)) throw new Error(`duplicate ZIP entry name: ${name}`);
+    names.add(canonicalName);
+
+    if ((flags & 0x0001) !== 0) throw new Error(`${name}: encrypted ZIP entries are forbidden`);
+    if (method !== 0 && method !== 8) throw new Error(`${name}: unsupported ZIP compression method ${method}`);
+    if (uncompressedSize > DOCX_MAX_ENTRY_BYTES) {
+      throw new Error(`${name}: uncompressed entry exceeds ${DOCX_MAX_ENTRY_BYTES / 1024 / 1024} MiB`);
+    }
+    if (uncompressedSize > 0 && compressedSize === 0) throw new Error(`${name}: invalid zero compressed size`);
+    if (compressedSize > 0 && uncompressedSize / compressedSize > DOCX_MAX_COMPRESSION_RATIO) {
+      throw new Error(`${name}: suspicious compression ratio`);
+    }
+
+    totalUncompressed += uncompressedSize;
+    totalCompressed += compressedSize;
+    if (totalUncompressed > DOCX_MAX_TOTAL_BYTES) {
+      throw new Error(`DOCX expands beyond ${DOCX_MAX_TOTAL_BYTES / 1024 / 1024} MiB`);
+    }
+
+    entries.push({ name, canonicalName, flags, method, compressedSize, uncompressedSize, localOffset });
+    cursor = next;
+  }
+
+  if (cursor !== eocd) throw new Error('ZIP central directory contains unparsed data');
+  if (totalCompressed > 0 && totalUncompressed / totalCompressed > DOCX_MAX_COMPRESSION_RATIO) {
+    throw new Error('DOCX has a suspicious aggregate compression ratio');
+  }
+
+  return entries;
+}
+
+function inflateZipEntry(packageBuffer, entry, centralDirectoryOffset) {
+  const { name, flags, method, compressedSize, uncompressedSize, localOffset } = entry;
+  if (localOffset + 30 > centralDirectoryOffset || packageBuffer.readUInt32LE(localOffset) !== 0x04034b50) {
+    throw new Error(`${name}: local ZIP header is invalid`);
+  }
+
+  const localFlags = packageBuffer.readUInt16LE(localOffset + 6);
+  const localMethod = packageBuffer.readUInt16LE(localOffset + 8);
+  const localNameLength = packageBuffer.readUInt16LE(localOffset + 26);
+  const localExtraLength = packageBuffer.readUInt16LE(localOffset + 28);
+  const dataOffset = localOffset + 30 + localNameLength + localExtraLength;
+  const dataEnd = dataOffset + compressedSize;
+  if (dataEnd > centralDirectoryOffset) throw new Error(`${name}: compressed data exceeds the file-data region`);
+  if ((localFlags & 0x0001) !== 0 || localFlags !== flags || localMethod !== method) {
+    throw new Error(`${name}: local and central ZIP headers disagree`);
+  }
+
+  const localName = decodeZipName(packageBuffer.subarray(localOffset + 30, localOffset + 30 + localNameLength));
+  if (localName !== name) throw new Error(`${name}: local and central ZIP filenames disagree`);
+
+  const compressed = packageBuffer.subarray(dataOffset, dataEnd);
+  const output = method === 0
+    ? Buffer.from(compressed)
+    : inflateRawSync(compressed, { maxOutputLength: DOCX_MAX_ENTRY_BYTES + 1 });
+  if (output.length !== uncompressedSize) throw new Error(`${name}: declared and actual sizes disagree`);
+  return output;
+}
+
+function xmlElementValue(xml, localName) {
+  const prefix = '(?:[A-Za-z_][\\w.-]*:)?';
+  const paired = new RegExp(`<${prefix}${localName}\\b[^>]*>([\\s\\S]*?)<\\/${prefix}${localName}\\s*>`, 'i').exec(xml);
+  if (paired) {
+    return paired[1]
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&#x([0-9a-f]+);/gi, (_, value) => String.fromCodePoint(parseInt(value, 16)))
+      .replace(/&#([0-9]+);/g, (_, value) => String.fromCodePoint(parseInt(value, 10)))
+      .replace(/&(amp|lt|gt|quot|apos);/g, (_, entity) => ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" })[entity])
+      .trim();
+  }
+  const selfClosing = new RegExp(`<${prefix}${localName}\\b[^>]*/\\s*>`, 'i');
+  return selfClosing.test(xml) ? '' : null;
+}
+
+function scanSensitiveDocumentXml(relative, entryName, xml) {
+  for (const [label, pattern] of [...secretPatterns, ...documentPiiPatterns]) {
+    pattern.lastIndex = 0;
+    if (pattern.test(xml)) fail(`${relative} (${entryName}): ${label} detected`);
+  }
+}
+
+function inspectDocx(relative) {
+  const packageBuffer = fs.readFileSync(path.join(root, relative));
+  const eocd = findEndOfCentralDirectory(packageBuffer);
+  const centralDirectoryOffset = packageBuffer.readUInt32LE(eocd + 16);
+  const entries = parseZipEntries(packageBuffer);
+  const content = new Map();
+
+  for (const entry of entries) {
+    const name = entry.canonicalName;
+    if (/^word\/(?:activex|embeddings)\//i.test(name)
+        || /(?:^|\/)(?:vbaproject\.bin|oleobject[^/]*|afchunk[^/]*|altchunk[^/]*)$/i.test(name)
+        || /^_xmlsignatures\//i.test(name)
+        || /\.(?:exe|dll|com|scr|bat|cmd|ps1|vbs|js|jar|msi|hta|sh|py|pl|php)$/i.test(name)) {
+      throw new Error(`${entry.name}: active or embedded content is forbidden`);
+    }
+
+    if (entry.name.endsWith('/')) continue;
+    const bytes = inflateZipEntry(packageBuffer, entry, centralDirectoryOffset);
+    content.set(name, bytes);
+
+    if (/\.(?:xml|rels)$/i.test(name) || name === '[content_types].xml') {
+      const xml = bytes.toString('utf8');
+      if (xml.includes('\ufffd') || xml.includes('\u0000')) throw new Error(`${entry.name}: XML is not valid UTF-8 text`);
+      scanSensitiveDocumentXml(relative, entry.name, xml);
+      if (/\b(?:macroEnabled|vbaProject)\b/i.test(xml)
+          || /<(?:[A-Za-z_][\w.-]*:)?altChunk\b/i.test(xml)) {
+        throw new Error(`${entry.name}: macro or altChunk content is forbidden`);
+      }
+      if (/\.rels$/i.test(name)
+          && (/<(?:[A-Za-z_][\w.-]*:)?Relationship\b[^>]*\bTargetMode\s*=\s*["']External["']/i.test(xml)
+            || /<(?:[A-Za-z_][\w.-]*:)?Relationship\b[^>]*\bTarget\s*=\s*["'](?:https?:|mailto:|file:|\\\\)/i.test(xml))) {
+        throw new Error(`${entry.name}: external relationships are forbidden`);
+      }
+    }
+  }
+
+  for (const required of ['[content_types].xml', '_rels/.rels', 'word/document.xml', 'docprops/core.xml']) {
+    if (!content.has(required)) throw new Error(`required OOXML part is missing: ${required}`);
+  }
+
+  const contentTypes = content.get('[content_types].xml').toString('utf8');
+  if (!/application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document\.main\+xml/i.test(contentTypes)) {
+    throw new Error('package is not a standard macro-free Word document');
+  }
+
+  const core = content.get('docprops/core.xml').toString('utf8');
+  for (const field of ['creator', 'lastModifiedBy']) {
+    const value = xmlElementValue(core, field);
+    if (value === null) throw new Error(`core metadata field is missing: ${field}`);
+    if (value !== '') throw new Error(`core metadata must be empty: ${field}`);
+  }
+}
+
 for (const relative of publishedFiles) {
   const absolute = path.join(root, relative);
   const stat = fs.statSync(absolute);
@@ -59,6 +289,14 @@ for (const relative of publishedFiles) {
   const content = fs.readFileSync(absolute).toString('utf8');
   for (const [label, pattern] of secretPatterns) {
     if (pattern.test(content)) fail(`${relative}: ${label} detected`);
+  }
+}
+
+for (const relative of docxFiles) {
+  try {
+    inspectDocx(relative);
+  } catch (error) {
+    fail(`${relative}: DOCX package rejected (${error.message})`);
   }
 }
 
@@ -366,7 +604,7 @@ if (!fs.existsSync(path.join(root, codeownersPath))) {
   fail('CODEOWNERS: security-critical ownership rules are missing');
 } else {
   const codeowners = read(codeownersPath);
-  for (const protectedPath of ['/.github/workflows/', '/scripts/', '/SECURITY.md', '/start_server.bat']) {
+  for (const protectedPath of ['/.github/workflows/', '/scripts/', '/assets/templates/', '/SECURITY.md', '/start_server.bat']) {
     if (!codeowners.includes(protectedPath)) {
       fail(`CODEOWNERS: security-critical path is not owned: ${protectedPath}`);
     }

@@ -2,5 +2,6 @@
 # from Code Owners before changes to them can merge.
 /.github/workflows/ @thienpv99
 /scripts/ @thienpv99
+/assets/templates/ @thienpv99
 /SECURITY.md @thienpv99
 /start_server.bat @thienpv99
