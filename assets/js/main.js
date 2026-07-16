@@ -11,19 +11,38 @@
   const saved = localStorage.getItem('nt_theme') || 'light';
   document.documentElement.setAttribute('data-theme', saved);
   _syncThemeColor(saved);
-  // Enable transitions only after initial paint
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add('theme-ready');
-    });
-  });
 })();
 
-function setTheme(theme) {
+function _applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('nt_theme', theme);
   _syncThemeColor(theme);
   _updateThemeBtns(theme);
+}
+
+/**
+ * Theme switching is an atomic flip, never a per-element colour tween.
+ * `.theme-switching` suspends all author transitions so nothing can lag behind
+ * the data-theme change (that lag is what produced mixed dark/light frames).
+ * Where the View Transitions API exists, the flip is wrapped in a GPU-composited
+ * snapshot cross-fade (duration in styles.css); elsewhere it lands instantly.
+ */
+function setTheme(theme) {
+  const root = document.documentElement;
+  root.classList.add('theme-switching');
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && typeof document.startViewTransition === 'function') {
+    const viewTransition = document.startViewTransition(() => _applyTheme(theme));
+    viewTransition.finished.finally(() => root.classList.remove('theme-switching'));
+    return;
+  }
+
+  _applyTheme(theme);
+  // Let the flipped theme paint once before author transitions come back.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => root.classList.remove('theme-switching'));
+  });
 }
 
 function _syncThemeColor(theme) {

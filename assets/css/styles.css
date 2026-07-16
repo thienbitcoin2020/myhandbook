@@ -116,9 +116,6 @@
   --space-xl:  32px;
   --space-2xl: 48px;
   --space-3xl: 64px;
-
-  /* ── Theme transition speed ── */
-  --theme-transition: 0.22s ease;
 }
 
 /* ========================================================
@@ -194,38 +191,28 @@ html[data-theme="light"] {
 html { scroll-behavior: smooth; }
 
 /*
-  Theme transition — targeted elements only (NOT wildcard *).
-  Wildcard transitions on hundreds of DOM nodes causes jank.
-  We only animate the surfaces and text that actually change.
+  Theme switch — atomic flip, optionally cross-faded by the View Transitions API.
+
+  Per-element colour transitions were tried here and removed on purpose: any
+  allowlist of selectors leaves everything else flipping instantly (a mixed
+  half-dark/half-light frame), and on #home the list included td/th — 800+
+  simultaneous animations under a blurred topbar, i.e. jank. Snapshot
+  cross-fade (View Transitions) is both smooth and incapable of mixed states;
+  browsers without it get an instant flip, which is still atomic.
+
+  While .theme-switching is set, every author transition is suspended so no
+  element can lag behind the data-theme flip.
 */
-html.theme-ready body,
-html.theme-ready #sidebar,
-html.theme-ready #hb-sidebar,
-html.theme-ready #main-content,
-html.theme-ready #hb-main,
-html.theme-ready .top-header,
-html.theme-ready .hb-hero,
-html.theme-ready .sidebar-top,
-html.theme-ready .sb-top,
-html.theme-ready .card,
-html.theme-ready .acc-item,
-html.theme-ready .accordion-item,
-html.theme-ready .pipeline-card,
-html.theme-ready .section-header,
-html.theme-ready .sec-head,
-html.theme-ready .sb-nav a,
-html.theme-ready .nav-link,
-html.theme-ready .ts-btn,
-html.theme-ready .theme-seg,
-html.theme-ready .site-footer,
-html.theme-ready footer,
-html.theme-ready table,
-html.theme-ready th,
-html.theme-ready td {
-  transition:
-    background-color 0.15s ease,
-    border-color     0.15s ease,
-    color            0.15s ease;
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.18s;
+  animation-timing-function: ease;
 }
 
 body {
