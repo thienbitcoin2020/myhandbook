@@ -13,7 +13,7 @@
   </div>
 
   <div class="sidebar-section-label">Navigation</div>
-  <nav id="sidebar-nav">
+  <nav class="sidebar-nav">
     <a href="#section-governance" id="nav-governance" class="active" data-nav-active>
       <span class="nav-icon">📋</span> Governance &amp; SDLC
     </a>
@@ -67,10 +67,10 @@
     <strong>Status</strong>
     <span style="color:var(--status-yellow)">● In Security Testing</span>
     <strong>Document Control</strong>
-    Owner: Release Manager<br/>
+    Owner: Thiện Phạm (Power Home PO)<br/>
     Version: v2.4 · Effective 2025-Q2<br/>
     Doc status: <span style="color:var(--status-green)">Active</span><br/>
-    Next review: 2025-Q4<br/>
+    Next review: 2026-Q4<br/>
     Classification: CONFIDENTIAL
   </div>
 </div>
@@ -375,17 +375,17 @@
         </div>
       </div>
 
-      <!-- ROLE TABS -->
+      <!-- ROLE PERSPECTIVE JUMP NAVIGATION -->
       <div class="card" style="margin-bottom:16px;">
         <div class="card-body">
           <div class="card-title">👤 View by Role — Duties &amp; Responsibilities</div>
-          <div class="role-tabs" role="tablist">
-            <button class="role-tab active" id="tab-rm" role="tab" aria-selected="true" data-role-target="rm">📋 Release Manager</button>
-            <button class="role-tab" id="tab-pt" role="tab" aria-selected="false" data-role-target="pt">📊 Performance Tester</button>
-            <button class="role-tab" id="tab-st" role="tab" aria-selected="false" data-role-target="st">🔐 Security Tester</button>
+          <div class="role-tabs" role="navigation" aria-label="Role perspectives">
+            <button class="role-tab active" id="tab-rm" type="button" aria-current="location" aria-controls="panel-rm" data-role-target="rm">📋 Release Manager</button>
+            <button class="role-tab" id="tab-pt" type="button" aria-controls="panel-pt" data-role-target="pt">📊 Performance Tester</button>
+            <button class="role-tab" id="tab-st" type="button" aria-controls="panel-st" data-role-target="st">🔐 Security Tester</button>
           </div>
 
-          <div id="panel-rm" class="role-panel active">
+          <div id="panel-rm" class="role-panel active" role="region" aria-labelledby="tab-rm" tabindex="-1">
             <div class="role-card"><div class="role-avatar">📋</div><div><div class="role-name" style="font-size:14px;">Release Manager</div><div class="role-desc">Owns the end-to-end release lifecycle. Single point of accountability for production deployment.</div></div></div>
             <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Pre-Deployment Duties</p>
             <ul class="duty-list">
@@ -402,7 +402,7 @@
             <div class="alert alert-info" style="margin-top:12px;"><span class="alert-icon">📌</span><div>The Release Manager is the <strong>only role</strong> authorized to transition the pipeline at Steps 1→2, 5→6, and 10→11. These require explicit sign-off entries in the GRC system.</div></div>
           </div>
 
-          <div id="panel-pt" class="role-panel">
+          <div id="panel-pt" class="role-panel" role="region" aria-labelledby="tab-pt" tabindex="-1">
             <div class="role-card"><div class="role-avatar">📊</div><div><div class="role-name" style="font-size:14px;">Performance Tester</div><div class="role-desc">Responsible for validating system throughput, latency, and stability under peak banking load.</div></div></div>
             <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Performance Testing Duties</p>
             <ul class="duty-list">
@@ -418,7 +418,7 @@
             <div class="alert alert-warning" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>If any KPI fails SLA thresholds (e.g., P95 latency &gt; 2000ms for core banking APIs), the release is immediately blocked. Dev team notified for remediation before re-testing.</div></div>
           </div>
 
-          <div id="panel-st" class="role-panel">
+          <div id="panel-st" class="role-panel" role="region" aria-labelledby="tab-st" tabindex="-1">
             <div class="role-card"><div class="role-avatar">🔐</div><div><div class="role-name" style="font-size:14px;">Security Tester</div><div class="role-desc">Independent security team responsible for identifying vulnerabilities before production exposure.</div></div></div>
             <p style="font-size:12px;color:var(--text-muted);margin:12px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Security Testing Duties</p>
             <ul class="duty-list">

@@ -55,7 +55,8 @@ project-handbook/
 │   ├── ux.html
 │   └── pmo.html
 ├── start_server.bat        # Windows helper: loopback-only Python preview
-├── scripts/                # Shared artifact allowlist, builder, security gate
+├── scripts/                # Shared artifact allowlist, builder, security gate,
+│                           #   consistency-check.mjs (structural regression gate)
 ├── .github/workflows/
 │   ├── security-check.yml  # Trusted-base checks for pushes and pull requests
 │   └── deploy-pages.yml    # Manual, fail-closed deployment only
@@ -98,6 +99,28 @@ python -m http.server 8080 --bind 127.0.0.1
 All runtime fonts are self-hosted or use the operating system's monospace stack;
 the handbook does not depend on a third-party font CDN.
 
+### Structural regression check
+
+```bash
+node scripts/consistency-check.mjs
+```
+
+Dependency-free gate that fails on the defects behind "this tab has no content":
+every route resolving to a real **EN and VI** fragment, the
+`#sidebar-inner` / `#page-content` contract, no inline event handlers (CSP), no
+duplicate ids, every `data-sec` / `data-section-target` resolving to a real
+section, no dead `#route` links, and a rectangular lifecycle cross-walk
+(colspan sums must equal the column count).
+
+> Not yet wired into the deploy gate on purpose: `scripts/security-check.mjs`
+> pins the exact `vercel.json` build command, so adding a step there also means
+> editing the security gate itself. That needs Code Owner / Security approval —
+> see [SECURITY.md](SECURITY.md).
+>
+> Browser-level E2E (fast tab switching, 390px mobile, refresh, deep links,
+> upgrade-from-stale-cache) still needs a real test runner and would introduce
+> the repository's first npm dependency — a deliberate, separate decision.
+
 ---
 
 ## 🔐 Access control
@@ -129,7 +152,8 @@ monospace stack for diagrams and code.
 - **Dark / light theme toggle** injected into every page's sidebar
 - **Sticky sidebar** with scroll-aware active-link highlighting (Intersection Observer)
 - **Collapsible accordions** for compliance pillars and artifacts
-- **Role perspective tabs** — Release Manager / Performance Tester / Security Tester
+- **Always-visible handbook sections** — sidebar controls scroll to content instead of hiding sibling sections
+- **Role perspective jump navigation** — Release Manager / Performance Tester / Security Tester remain visible together
 - **Release DoD checklist** — clickable items with live progress bar and completion banner
 - **Responsive layout** — collapses to a hamburger sidebar on mobile
 - **Graceful error state** when a page fragment fails to load, with a Retry action
@@ -155,6 +179,13 @@ file allowlist so every published file is scanned. Pull requests are checked by
 the scanner and workflow definition from their trusted base revision rather
 than a PR-modified copy. The PR checkout is treated only as data; CI never
 executes candidate scripts or package lifecycle hooks.
+
+Both Vercel and GitHub Pages deploy the reviewed `public/` artifact. During each
+build, `scripts/build-static-artifact.mjs` stamps one deployment version across
+all current Document Control blocks, sidebar badges, and footers. GitHub Pages
+uses the workflow run ID and retry attempt; Vercel uses its deployment ID when
+available and otherwise falls back to the UTC build timestamp. Historical
+entries in the Version History remain unchanged.
 
 Public GitHub Pages is not an approved target for content classified as
 confidential. Follow the release gate in [SECURITY.md](SECURITY.md).

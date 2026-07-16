@@ -237,9 +237,35 @@ document.addEventListener('DOMContentLoaded', () => _syncSharedLanguage(_getLang
 // ============================================================
 // SIDEBAR - Mobile toggle
 // ============================================================
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
+let _focusContentAfterNavigation = false;
+
+function _setSidebarOpen(open, options = {}) {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sidebar-toggle');
+  if (!sidebar) return;
+
+  sidebar.classList.toggle('open', open);
+  if (document.body) {
+    document.body.classList.toggle('sidebar-open', open && window.innerWidth <= 900);
+  }
+  if (toggle) {
+    toggle.setAttribute('aria-controls', 'sidebar');
+    toggle.setAttribute('aria-expanded', String(open));
+    if (!open && options.restoreFocus === true) toggle.focus({ preventScroll: true });
+  }
 }
+
+function _closeSidebar(options = {}) {
+  _setSidebarOpen(false, options);
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if (!sidebar) return;
+  _setSidebarOpen(!sidebar.classList.contains('open'));
+}
+
+document.addEventListener('DOMContentLoaded', () => _setSidebarOpen(false));
 
 // Close sidebar when clicking outside on mobile
 document.addEventListener('click', function (e) {
@@ -247,22 +273,42 @@ document.addEventListener('click', function (e) {
   const toggle = document.getElementById('sidebar-toggle');
   if (
     window.innerWidth <= 900 &&
+    sidebar &&
     sidebar.classList.contains('open') &&
     !sidebar.contains(e.target) &&
-    !toggle.contains(e.target)
+    (!toggle || !toggle.contains(e.target))
   ) {
-    sidebar.classList.remove('open');
+    _closeSidebar();
   }
+});
+
+document.addEventListener('keydown', event => {
+  const sidebar = document.getElementById('sidebar');
+  if (event.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
+    _closeSidebar({ restoreFocus: true });
+  }
+});
+
+document.addEventListener('handbook:page-ready', () => {
+  if (!_focusContentAfterNavigation) return;
+  _focusContentAfterNavigation = false;
+
+  const content = document.getElementById('main-content')
+    || document.getElementById('page-content')
+    || document.getElementById('app');
+  if (!content) return;
+  if (!content.hasAttribute('tabindex')) content.setAttribute('tabindex', '-1');
+  content.focus({ preventScroll: true });
 });
 
 // ============================================================
 // SIDEBAR NAV - Active link on click
 // ============================================================
 function setActive(el) {
-  document.querySelectorAll('#sidebar-nav a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
   el.classList.add('active');
   if (window.innerWidth <= 900) {
-    document.getElementById('sidebar').classList.remove('open');
+    _closeSidebar();
   }
 }
 
@@ -291,39 +337,49 @@ const HANDBOOK_SECTION_ALIASES = {
 // Implementation Handbook section switcher. This lives in the shared bundle
 // so fragments never need to execute dynamically injected scripts.
 function showSec(id, link, options = {}) {
-  const alias = HANDBOOK_SECTION_ALIASES[id];
-  const parentId = alias ? alias.parent : id;
+  const requestedId = String(id || '').replace(/^sec-/, '');
+  const alias = HANDBOOK_SECTION_ALIASES[requestedId];
+  const requestedTarget = document.getElementById('sec-' + requestedId);
+  const requestedStandalone = requestedTarget && requestedTarget.classList.contains('section')
+    ? requestedTarget
+    : null;
+  const aliasParent = alias ? document.getElementById('sec-' + alias.parent) : null;
+  const target = requestedStandalone
+    || aliasParent
+    || (requestedTarget && requestedTarget.closest('.section'))
+    || requestedTarget;
+  if (!target) return;
+
+  const parentId = requestedStandalone ? requestedId : (aliasParent ? alias.parent : requestedId);
 
   document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-  const target = document.getElementById('sec-' + parentId);
-  if (target) target.classList.add('active');
+  target.classList.add('active');
 
   document.querySelectorAll('.sb-nav a').forEach(item => {
     item.classList.remove('active');
     item.removeAttribute('aria-current');
   });
 
-  const navLink = alias
-    ? document.querySelector(`.sb-nav a[data-sec="${parentId}"]`)
-    : (link || document.querySelector(`.sb-nav a[data-sec="${parentId}"]`));
+  const suppliedLink = link && link.isConnected && link.matches('.sb-nav a') ? link : null;
+  const navLink = suppliedLink
+    || document.querySelector(`.sb-nav a[data-sec="${parentId}"]`)
+    || document.querySelector(`.sb-nav a[data-sec="${requestedId}"]`);
   if (navLink) {
     navLink.classList.add('active');
     navLink.setAttribute('aria-current', 'page');
   }
 
   const sidebar = document.getElementById('sidebar');
-  if (sidebar) sidebar.classList.remove('open');
+  if (sidebar) _closeSidebar();
 
   if (options.scroll === false) return;
 
-  if (alias) {
-    requestAnimationFrame(() => {
-      const anchor = document.getElementById(alias.anchor);
-      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  const scrollTarget = alias
+    ? (requestedTarget || document.getElementById(alias.anchor) || target)
+    : target;
+  requestAnimationFrame(() => {
+    scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 function toggleAcc(btn) {
@@ -373,22 +429,63 @@ function filterRaci() {
 // ============================================================
 // ROLE TABS - Switch perspective panels
 // ============================================================
-function switchRole(role) {
+function switchRole(role, options = {}) {
+  const tab = document.getElementById('tab-' + role);
+  const panel = document.getElementById('panel-' + role);
+  if (!tab || !panel) return;
+
   document.querySelectorAll('.role-tab').forEach(t => {
     t.classList.remove('active');
     t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
   });
 
-  document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.role-panel').forEach(p => {
+    p.classList.remove('active');
+    p.setAttribute('aria-hidden', 'true');
+  });
 
-  const tab = document.getElementById('tab-' + role);
-  const panel = document.getElementById('panel-' + role);
-  if (tab) {
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
+  tab.classList.add('active');
+  tab.setAttribute('aria-selected', 'true');
+  tab.setAttribute('tabindex', '0');
+  panel.classList.add('active');
+  panel.setAttribute('aria-hidden', 'false');
+  if (!panel.hasAttribute('role')) panel.setAttribute('role', 'tabpanel');
+  if (!panel.hasAttribute('aria-labelledby')) panel.setAttribute('aria-labelledby', tab.id);
+
+  if (options.focus !== false && document.activeElement !== tab) {
+    tab.focus({ preventScroll: true });
   }
-  if (panel) panel.classList.add('active');
 }
+
+document.addEventListener('keydown', event => {
+  const currentTab = event.target.closest && event.target.closest('.role-tab[role="tab"]');
+  if (!currentTab) return;
+
+  const tabList = currentTab.closest('[role="tablist"]');
+  if (!tabList) return;
+  const tabs = Array.from(tabList.querySelectorAll('.role-tab[role="tab"]'))
+    .filter(tabItem => !tabItem.disabled);
+  const currentIndex = tabs.indexOf(currentTab);
+  if (currentIndex < 0) return;
+
+  let nextIndex = null;
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    nextIndex = (currentIndex + 1) % tabs.length;
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+  } else if (event.key === 'Home') {
+    nextIndex = 0;
+  } else if (event.key === 'End') {
+    nextIndex = tabs.length - 1;
+  }
+
+  if (nextIndex === null) return;
+  event.preventDefault();
+  const nextTab = tabs[nextIndex];
+  switchRole(nextTab.dataset.roleTarget, { focus: false });
+  nextTab.focus({ preventScroll: true });
+});
 
 // ============================================================
 // DOD CHECKLIST - Toggle items & update progress bar
@@ -425,6 +522,17 @@ document.addEventListener('click', event => {
   const target = event.target.closest && event.target.closest('*');
   if (!target) return;
 
+  const sidebarLink = target.closest('#sidebar a[href]');
+  if (sidebarLink) {
+    const href = sidebarLink.getAttribute('href') || '';
+    const isRouteNavigation = href.startsWith('#')
+      && href.length > 1
+      && !sidebarLink.matches('[data-section-target]')
+      && href !== location.hash;
+    if (isRouteNavigation) _focusContentAfterNavigation = true;
+    if (window.innerWidth <= 900) _closeSidebar();
+  }
+
   const sidebarToggle = target.closest('#sidebar-toggle');
   if (sidebarToggle) {
     toggleSidebar();
@@ -440,7 +548,10 @@ document.addEventListener('click', event => {
 
   const routeTrigger = target.closest('[data-route-target]');
   if (routeTrigger) {
-    location.hash = '#' + routeTrigger.dataset.routeTarget;
+    const routeHash = '#' + routeTrigger.dataset.routeTarget;
+    if (routeHash !== location.hash) _focusContentAfterNavigation = true;
+    if (window.innerWidth <= 900) _closeSidebar();
+    location.hash = routeHash;
     return;
   }
 

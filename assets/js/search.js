@@ -246,7 +246,8 @@
     const path = lang === 'vi'
       ? `pages/vi/${route.file}`
       : `pages/${route.file}`;
-    const response = await fetch(path, { credentials: 'same-origin' });
+    const versionedPath = typeof _fragmentUrl === 'function' ? _fragmentUrl(path) : path;
+    const response = await fetch(versionedPath, { credentials: 'same-origin' });
     if (!response.ok) throw new Error(`HTTP ${response.status}: ${path}`);
 
     const html = await response.text();
@@ -684,7 +685,7 @@
     if (handbookSection && typeof showSec === 'function') {
       const sectionKey = handbookSection.id.slice(4);
       const navLink = document.querySelector(`.sb-nav a[data-sec="${sectionKey}"]`);
-      showSec(sectionKey, navLink);
+      showSec(sectionKey, navLink, { scroll: false });
     }
 
     let ancestor = target.parentElement;
@@ -701,7 +702,7 @@
 
     const rolePanel = target.closest('.role-panel[id^="panel-"]');
     if (rolePanel && typeof switchRole === 'function') {
-      switchRole(rolePanel.id.slice('panel-'.length));
+      switchRole(rolePanel.id.slice('panel-'.length), { scroll: false, focus: false });
     }
   }
 

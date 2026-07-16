@@ -63,6 +63,8 @@ jobs:
         run: node scripts/security-check.mjs
 
       - name: Assemble static site
+        env:
+          HANDBOOK_DEPLOY_ID: ${{ github.run_id }}-${{ github.run_attempt }}
         run: node scripts/build-static-artifact.mjs
 
       - name: Configure Pages

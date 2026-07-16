@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/security-check.mjs && node scripts/build-static-artifact.mjs",
+  "outputDirectory": "public",
   "redirects": [
     {
       "source": "/index.html",

@@ -43,6 +43,7 @@
 .xw-po,.xw-sec{background:color-mix(in srgb,#E64A25 13%,transparent);border-color:#E64A25!important;color:#C83B1B!important}
 .xw-sa,.xw-ux{background:color-mix(in srgb,#F37920 14%,transparent);border-color:#F37920!important;color:#C75A08!important}
 .xw-ops,.xw-pmo{background:color-mix(in srgb,#666 12%,transparent);border-color:#777!important;color:var(--text-secondary)!important}
+.xw-ext{background:color-mix(in srgb,#7A6A5F 12%,transparent);border-color:#7A6A5F!important;color:var(--text-secondary)!important}
 .xw-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary)}
 .xw-legend span{display:inline-flex;align-items:center;gap:6px}
 .xw-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -143,9 +144,9 @@
 
   <div class="sb-footer">
     <strong>Kiểm soát tài liệu</strong><br/>
-    Chủ quản: PMO &amp; Delivery Governance<br/>
+    Chủ quản: Thiện Phạm (Power Home PO)<br/>
     Phiên bản: v1.0 · Hiệu lực 2025-Q2<br/>
-    Trạng thái: Đang hiệu lực · Kỳ soát xét 2025-Q4<br/>
+    Trạng thái: Đang hiệu lực · Kỳ soát xét 2026-Q4<br/>
     Phân loại: MẬT (CONFIDENTIAL)
   </div>
 </div>
@@ -357,11 +358,20 @@
             <tr>
               <td class="xw-rolelabel">🚢 Deployment</td><td class="xw-empty" colspan="2"></td><td class="xw-seg xw-dep"><a href="#deployment">GĐ1 Khám phá &amp; Khởi tạo</a></td><td class="xw-empty" colspan="2"></td><td class="xw-seg xw-dep"><a href="#deployment">GĐ2 Phát triển</a></td><td class="xw-empty"></td><td class="xw-seg xw-dep"><a href="#deployment">GĐ3 Pre-Deploy</a></td><td class="xw-seg xw-dep"><a href="#deployment">GĐ4 Triển khai</a></td><td class="xw-empty"></td>
             </tr>
+            <tr>
+              <td class="xw-rolelabel">👤 Sponsor / Steering</td><td class="xw-seg xw-ext" colspan="2"><a href="#sec-sec1" data-section-target="sec1">Business case &amp; cấp vốn</a></td><td class="xw-seg xw-ext"><a href="#sec-sec2" data-section-target="sec2">Ký duyệt Charter</a></td><td class="xw-seg xw-ext" colspan="5"><a href="#sec-secpm" data-section-target="secpm">Steering · leo thang · duyệt thay đổi</a></td><td class="xw-seg xw-ext"><a href="#sec-sec4" data-section-target="sec4">Go/No-Go</a></td><td class="xw-seg xw-ext"><a href="#sec-sec5" data-section-target="sec5">Ký duyệt lợi ích</a></td>
+            </tr>
+            <tr>
+              <td class="xw-rolelabel">💻 Developer</td><td class="xw-empty" colspan="3"></td><td class="xw-seg xw-ext"><a href="#sec-sec36" data-section-target="sec36">Ước lượng &amp; refinement</a></td><td class="xw-seg xw-ext"><a href="#sec-sec3sub" data-section-target="sec3sub">Góp ý thiết kế kỹ thuật</a></td><td class="xw-seg xw-ext"><a href="#sec-sec3sub" data-section-target="sec3sub">Build · code review · unit test</a></td><td class="xw-seg xw-ext"><a href="#sec-sec3sub" data-section-target="sec3sub">Sửa defect</a></td><td class="xw-seg xw-ext"><a href="#deployment">Hỗ trợ phát hành</a></td><td class="xw-seg xw-ext"><a href="#deployment">Trực deploy</a></td><td class="xw-seg xw-ext"><a href="#sec-sec6" data-section-target="sec6">Hotfix hypercare</a></td>
+            </tr>
+            <tr>
+              <td class="xw-rolelabel">📢 Marketing / Sales</td><td class="xw-empty" colspan="5"></td><td class="xw-seg xw-ext" colspan="2"><a href="#sec-sec4" data-section-target="sec4">Định vị · nội dung · chiến dịch</a></td><td class="xw-seg xw-ext"><a href="#sec-sec4" data-section-target="sec4">Sẵn sàng ra mắt · sales enablement</a></td><td class="xw-seg xw-ext"><a href="#sec-sec4" data-section-target="sec4">Ra mắt: internal → beta → soft → GA</a></td><td class="xw-seg xw-ext"><a href="#sec-sec4" data-section-target="sec4">Soát mức tiếp nhận &amp; KPI</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
       <div class="xw-legend">
-        <span><span class="xw-dot" style="background:#DA2128"></span> Implementation (ô cha)</span><span><span class="xw-dot" style="background:#E64A25"></span> PO</span><span><span class="xw-dot" style="background:#C61D24"></span> PM</span><span><span class="xw-dot" style="background:#FAA61A"></span> BA</span><span><span class="xw-dot" style="background:#F37920"></span> SA / UX</span><span><span class="xw-dot" style="background:#D99A00"></span> QC</span><span><span class="xw-dot" style="background:#DA2128"></span> Deployment</span><span><span class="xw-dot" style="background:#777"></span> PMO / Ops</span><span><span class="xw-dot" style="background:#C61D24"></span> SM</span><span><span class="xw-dot" style="background:#E64A25"></span> Security</span>
+        <span><span class="xw-dot" style="background:#DA2128"></span> Implementation (ô cha)</span><span><span class="xw-dot" style="background:#E64A25"></span> PO</span><span><span class="xw-dot" style="background:#C61D24"></span> PM</span><span><span class="xw-dot" style="background:#FAA61A"></span> BA</span><span><span class="xw-dot" style="background:#F37920"></span> SA / UX</span><span><span class="xw-dot" style="background:#D99A00"></span> QC</span><span><span class="xw-dot" style="background:#DA2128"></span> Deployment</span><span><span class="xw-dot" style="background:#777"></span> PMO / Ops</span><span><span class="xw-dot" style="background:#C61D24"></span> SM</span><span><span class="xw-dot" style="background:#E64A25"></span> Security</span><span><span class="xw-dot" style="background:#7A6A5F"></span> Sponsor · Developer · Marketing (không có handbook riêng — nội dung nằm trong các handbook mà ô này trỏ tới)</span>
       </div>
       <div class="alert alert-info" style="margin-top:12px"><span class="alert-icon">ℹ️</span><div>Các cột là vòng đời triển khai chuẩn. Các thanh cho thấy giai đoạn (đánh số riêng) của từng vai trò nằm ở đâu — ví dụ BA <strong>P6 UAT</strong>, QC <strong>Thực thi test</strong> và Deployment <strong>Pre-Deploy</strong> đều dồn quanh cửa sổ <strong>Kiểm thử → Pre-Deploy</strong>: đây chính là nơi các điểm bàn giao cần phối hợp chặt nhất.</div></div>
     </div></div>
@@ -1154,7 +1164,7 @@
 </div><!-- /hb-main -->
 
 <footer id="hb-footer">
-  🏦 Handbook · Project Implementation Handbook v1.0 · Cập nhật lần cuối 2025-Q2 · Chủ quản: PMO &amp; Delivery Governance<br/>
+  🏦 Handbook · Project Implementation Handbook v1.0 · Cập nhật lần cuối 2025-Q2 · Chủ quản: Thiện Phạm (Power Home PO)<br/>
   Phân loại: MẬT (CONFIDENTIAL) · Thông tư 09/2020/TT-NHNN · Bám ISO 27001 · © 2025
 </footer>
 </div><!-- /#page-content -->

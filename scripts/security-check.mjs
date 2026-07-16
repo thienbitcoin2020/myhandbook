@@ -78,6 +78,71 @@ for (const relative of htmlFiles) {
   }
 }
 
+const handbookFragments = collect('pages', '.html');
+if (handbookFragments.length !== 24) {
+  fail(`document control: expected 24 EN/VI handbook fragments, found ${handbookFragments.length}`);
+}
+
+const indexDocument = read('index.html');
+if (!/<meta name="handbook-deployment-version" content="v[^"]+" \/>/.test(indexDocument)) {
+  fail('index.html: deployment-version metadata is missing');
+}
+
+for (const relative of handbookFragments) {
+  const content = read(relative);
+  const isVietnamese = relative.split(path.sep).includes('vi');
+  const heading = isVietnamese ? 'Kiểm soát tài liệu' : 'Document Control';
+  const owner = isVietnamese
+    ? 'Chủ quản: Thiện Phạm (Power Home PO)<br/>'
+    : 'Owner: Thiện Phạm (Power Home PO)<br/>';
+  const versionPattern = isVietnamese
+    ? /Phiên bản: v\d+(?:\.\d+)* · Hiệu lực /
+    : /Version: v\d+(?:\.\d+)* · Effective /;
+  const headingIndex = content.indexOf(`<strong>${heading}</strong>`);
+  const controlBlock = headingIndex >= 0 ? content.slice(headingIndex, headingIndex + 600) : '';
+
+  if (headingIndex < 0) fail(`${relative}: ${heading} block is missing`);
+  if (!controlBlock.includes(owner)) fail(`${relative}: document-control owner must be Thiện Phạm (Power Home PO)`);
+  if (!versionPattern.test(controlBlock)) fail(`${relative}: deploy-stampable document version is missing`);
+}
+
+for (const [relative, owner] of [
+  ['pages/handbook.html', 'Owner: Thiện Phạm (Power Home PO)'],
+  ['pages/vi/handbook.html', 'Chủ quản: Thiện Phạm (Power Home PO)'],
+]) {
+  if (!read(relative).includes(owner)) fail(`${relative}: handbook footer owner is not synchronized`);
+}
+
+const sharedStyles = read(path.join('assets', 'css', 'styles.css'));
+for (const [label, pattern] of [
+  ['handbook sections', /\.section\s*\{[^}]*display\s*:\s*none/i],
+  ['generic tab panels', /\.tab-panel\s*\{[^}]*display\s*:\s*none/i],
+  ['role panels', /\.role-panel\s*\{[^}]*display\s*:\s*none/i],
+]) {
+  if (pattern.test(sharedStyles)) fail(`styles.css: ${label} must be visible by default`);
+}
+if (!/\.section\s*\{[^}]*display\s*:\s*block/i.test(sharedStyles)) {
+  fail('styles.css: handbook sections must explicitly render as blocks');
+}
+if (!/\.tab-panel,\s*\.role-panel\s*\{[^}]*display\s*:\s*block/i.test(sharedStyles)) {
+  fail('styles.css: tab and role panels must explicitly render as blocks');
+}
+
+for (const relative of ['pages/deployment.html', 'pages/vi/deployment.html']) {
+  const content = read(relative);
+  if (content.includes('role="tablist"') || content.includes('aria-selected=')) {
+    fail(`${relative}: always-visible role navigation must not expose hidden-tab semantics`);
+  }
+  for (const role of ['rm', 'pt', 'st']) {
+    if (!content.includes(`aria-controls="panel-${role}"`)) {
+      fail(`${relative}: role navigation is missing aria-controls for ${role}`);
+    }
+    if (!content.includes(`id="panel-${role}" class="role-panel`) || !content.includes(`aria-labelledby="tab-${role}"`)) {
+      fail(`${relative}: visible role panel ${role} is missing region labelling`);
+    }
+  }
+}
+
 for (const relative of jsFiles) {
   const content = read(relative);
   if (/\b(?:innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval)\b|new\s+Function\b/.test(content)) {
@@ -146,9 +211,15 @@ try {
 }
 
 if (vercelConfig) {
-  const configKeys = Object.keys(vercelConfig);
-  if (configKeys.length !== 1 || configKeys[0] !== 'redirects') {
-    fail('vercel.json: only the reviewed canonical redirect is allowed');
+  const configKeys = Object.keys(vercelConfig).sort();
+  if (configKeys.join(',') !== 'buildCommand,outputDirectory,redirects') {
+    fail('vercel.json: only the reviewed static build, output directory, and canonical redirect are allowed');
+  }
+  if (vercelConfig.buildCommand !== 'node scripts/security-check.mjs && node scripts/build-static-artifact.mjs') {
+    fail('vercel.json: build command must run the security gate before assembling the artifact');
+  }
+  if (vercelConfig.outputDirectory !== 'public') {
+    fail('vercel.json: only the reviewed public/ artifact may be deployed');
   }
 
   const redirects = vercelConfig.redirects;
@@ -196,10 +267,14 @@ for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
   }
 }
 
-for (const sectionHash of ['sec-secmap', 'sec-secmodel', 'sec-secxwalk']) {
+for (const sectionHash of ['sec-secmap', 'sec-secmodel']) {
   if (!router.includes(`'${sectionHash}':`)) {
     fail(`router.js: legacy overview hash ${sectionHash} must remain supported`);
   }
+}
+
+if (!router.includes("'secxwalk'") || !router.includes('hashes[`sec-${parent}`] = request;')) {
+  fail('router.js: generated legacy overview hash sec-secxwalk must remain supported');
 }
 
 const deployWorkflow = read(path.join('.github', 'workflows', 'deploy-pages.yml'));
@@ -213,12 +288,27 @@ if (!deployWorkflow.includes('HANDBOOK_DEPLOYMENT_APPROVED')) {
 if (!deployWorkflow.includes('node scripts/build-static-artifact.mjs')) {
   fail('deploy-pages.yml: artifact must be assembled from the shared publish allowlist');
 }
+if (!deployWorkflow.includes('HANDBOOK_DEPLOY_ID: ${{ github.run_id }}-${{ github.run_attempt }}')) {
+  fail('deploy-pages.yml: every deployment must receive a unique run ID for document versioning');
+}
 if (!deployWorkflow.includes('DISPATCH_REF: ${{ github.ref }}')
     || !deployWorkflow.includes('EXPECTED_REF: refs/heads/${{ github.event.repository.default_branch }}')) {
   fail('deploy-pages.yml: dispatch must be restricted to the protected default branch');
 }
 if (!deployWorkflow.includes('ref: ${{ github.sha }}')) {
   fail('deploy-pages.yml: deployment must build the exact immutable dispatched revision');
+}
+
+const artifactBuilder = read(path.join('scripts', 'build-static-artifact.mjs'));
+for (const invariant of [
+  'const VERSION_REPLACEMENTS',
+  'function resolveDeploymentVersion',
+  'function stampDeploymentVersion',
+  'Deployment version stamped:',
+]) {
+  if (!artifactBuilder.includes(invariant)) {
+    fail(`build-static-artifact.mjs: deployment-version invariant missing: ${invariant}`);
+  }
 }
 
 const securityWorkflowPath = path.join('.github', 'workflows', 'security-check.yml');

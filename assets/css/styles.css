@@ -458,13 +458,13 @@ html[data-theme="light"] .lang-seg { background: var(--surface-raised); }
 }
 
 /* ── Nav links ── */
-nav#sidebar-nav, nav#sidebar-nav-docs,
+nav.sidebar-nav, nav#sidebar-nav-docs,
 .sb-nav {
   display: flex; flex-direction: column;
   padding: 0;
 }
 
-nav#sidebar-nav a, nav#sidebar-nav-docs a,
+nav.sidebar-nav a, nav#sidebar-nav-docs a,
 .sb-nav a, .sb-nav button {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 20px;
@@ -477,14 +477,14 @@ nav#sidebar-nav a, nav#sidebar-nav-docs a,
   transition: color 0.1s, background 0.1s, border-color 0.1s;
 }
 
-nav#sidebar-nav a:hover, nav#sidebar-nav-docs a:hover,
+nav.sidebar-nav a:hover, nav#sidebar-nav-docs a:hover,
 .sb-nav a:hover, .sb-nav button:hover {
   color: var(--text-primary);
   background: var(--bg-hover);
   text-decoration: none;
 }
 
-nav#sidebar-nav a.active,
+nav.sidebar-nav a.active,
 .sb-nav a.active {
   color: var(--text-display);
   background: var(--surface-raised);
@@ -495,7 +495,7 @@ nav#sidebar-nav a.active,
   font-size: 12px; opacity: 0.7;
   width: 16px; text-align: center; flex-shrink: 0;
 }
-nav#sidebar-nav a.active .nav-icon { opacity: 1; }
+nav.sidebar-nav a.active .nav-icon { opacity: 1; }
 
 /* ── Dividers ── */
 .sidebar-divider, .sb-divider {
@@ -658,8 +658,12 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
 .section-block     { margin-bottom: 56px; }
 .hb-content        { padding: 32px 48px 72px; }
 
-.section { display: none; }
-.section.active { display: block; animation: fadeIn 0.2s ease; }
+.section {
+  display: block;
+  scroll-margin-top: calc(var(--topbar-h, 64px) + 20px);
+}
+.section.active { animation: fadeIn 0.2s ease; }
+.section + .section { border-top: 1px solid var(--border); }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
@@ -1058,11 +1062,18 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
 }
 .tab-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
 .tab-btn.active { background: var(--surface-overlay); color: var(--text-display); border: 1px solid var(--border-visible); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+.tab-panel,
+.role-panel {
+  display: block;
+  scroll-margin-top: calc(var(--topbar-h, 64px) + 20px);
+}
 
-.role-panel        { display: none; }
-.role-panel.active { display: block; }
+.tab-panel + .tab-panel,
+.role-panel + .role-panel {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
 
 /* ========================================================
    DOD CHECKLIST — Nothing segmented style
@@ -1512,6 +1523,15 @@ nav#sidebar-nav a.active .nav-icon { opacity: 1; }
    RESPONSIVE
 ======================================================== */
 @media (max-width: 900px) {
+  body.sidebar-open { overflow: hidden; }
+  body.sidebar-open::after {
+    content: '';
+    position: fixed;
+    inset: var(--topbar-h, 64px) 0 0;
+    z-index: 90;
+    background: rgba(20, 16, 14, .34);
+    backdrop-filter: blur(2px);
+  }
   #sidebar { transform: translateX(-100%); }
   #sidebar.open { transform: translateX(0); }
   #hb-sidebar { transform: translateX(-100%); }
@@ -1790,8 +1810,8 @@ html[data-theme="light"] body {
   font-size: 10px;
   letter-spacing: .07em;
 }
-nav#sidebar-nav, nav#sidebar-nav-docs, .sb-nav { gap: 3px; }
-nav#sidebar-nav a, nav#sidebar-nav-docs a,
+nav.sidebar-nav, nav#sidebar-nav-docs, .sb-nav { gap: 3px; }
+nav.sidebar-nav a, nav#sidebar-nav-docs a,
 .sb-nav a, .sb-nav button {
   min-height: 40px;
   padding: 9px 11px;
@@ -1803,12 +1823,12 @@ nav#sidebar-nav a, nav#sidebar-nav-docs a,
   font-weight: 600;
   line-height: 1.35;
 }
-nav#sidebar-nav a:hover, nav#sidebar-nav-docs a:hover,
+nav.sidebar-nav a:hover, nav#sidebar-nav-docs a:hover,
 .sb-nav a:hover, .sb-nav button:hover {
   color: var(--text-display);
   background: var(--bg-hover);
 }
-nav#sidebar-nav a.active,
+nav.sidebar-nav a.active,
 .sb-nav a.active {
   color: var(--accent-bright);
   background: var(--accent-dim);
