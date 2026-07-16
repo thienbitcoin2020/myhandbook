@@ -1721,6 +1721,16 @@ html[data-theme="light"] body {
   border-radius: 10px;
   background: #FFFFFF;
 }
+/* The logo's "HOME" wordmark is #5F5F62, which disappears against the dark
+   canvas (#181818) — hence the white plate. On dark, swap in the variant whose
+   wordmark is white so the mark can sit straight on the canvas: red "POWER" and
+   the yellow house already have plenty of contrast there. */
+html[data-theme="dark"] .app-brand img {
+  content: url('../images/power-home-logo-dark.png');
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
 .app-context {
   min-width: 0;
   padding: 0 24px;
@@ -4296,6 +4306,15 @@ html[data-theme="dark"] figure.diagram-canvas {
   border-radius: 15px;
   background: #FFFFFF url('../images/power-home-logo.png') center / 54px auto no-repeat;
   box-shadow: 0 8px 24px rgba(91, 24, 24, .10);
+}
+/* Same story as the header mark: on the dark canvas drop the white plate and
+   use the white-wordmark variant instead of boxing the logo in. */
+html[data-theme="dark"] .site-footer::before,
+html[data-theme="dark"] #hb-footer::before {
+  background-color: transparent;
+  background-image: url('../images/power-home-logo-dark.png');
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .site-footer::after,
