@@ -231,13 +231,14 @@
     <section class="section-block" id="section-iam">
       <div class="section-header"><div class="section-icon">🔑</div><div><div class="section-number">Mục 06</div><h2>Quản lý định danh &amp; truy cập (IAM)</h2></div></div>
       <div class="card"><div class="card-body">
-        <ul class="step-cl">
-          <li><strong>AuthN:</strong> SSO tập trung (OAuth2/OIDC/SAML) + <strong>MFA</strong> cho mọi truy cập đặc quyền &amp; từ xa.</li>
-          <li><strong>AuthZ:</strong> <strong>RBAC</strong> / <strong>ABAC</strong>, thực thi <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</li>
-          <li><strong>Segregation of Duties (SoD):</strong> không ai một mình kiểm soát dev + release + prod (yêu cầu SBV) — xem <a href="#deployment">Deployment Runbook</a>.</li>
-          <li><strong>PAM:</strong> truy cập đặc quyền qua vault, cấp just-in-time, ghi hình phiên.</li>
-          <li><strong>Joiner-Mover-Leaver (JML):</strong> cấp &amp; thu hồi quyền kịp thời; tái xác nhận quyền định kỳ.</li>
-        </ul>
+        <table class="table-sec">
+          <tr><th style="width:190px">Control</th><th>Ở đây nghĩa là gì</th></tr>
+          <tr><td><strong>AuthN</strong></td><td>SSO tập trung (OAuth2/OIDC/SAML) + <strong>MFA</strong> cho mọi truy cập đặc quyền &amp; từ xa.</td></tr>
+          <tr><td><strong>AuthZ</strong></td><td><strong>RBAC</strong> / <strong>ABAC</strong>, thực thi <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</td></tr>
+          <tr><td><strong>Segregation of Duties (SoD)</strong></td><td>Không ai một mình kiểm soát dev + release + prod (yêu cầu SBV) — xem <a href="#deployment">Deployment Runbook</a>.</td></tr>
+          <tr><td><strong>PAM</strong></td><td>Truy cập đặc quyền qua vault, cấp just-in-time, ghi hình phiên.</td></tr>
+          <tr><td><strong>Joiner-Mover-Leaver (JML)</strong></td><td>Cấp &amp; thu hồi quyền kịp thời; tái xác nhận quyền định kỳ.</td></tr>
+        </table>
       </div></div>
     </section>
     <div class="section-divider"></div>

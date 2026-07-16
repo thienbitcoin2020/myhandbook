@@ -231,13 +231,14 @@
     <section class="section-block" id="section-iam">
       <div class="section-header"><div class="section-icon">🔑</div><div><div class="section-number">Section 06</div><h2>Identity &amp; Access Management</h2></div></div>
       <div class="card"><div class="card-body">
-        <ul class="step-cl">
-          <li><strong>AuthN:</strong> centralized SSO (OAuth2/OIDC/SAML) + <strong>MFA</strong> for all privileged &amp; remote access.</li>
-          <li><strong>AuthZ:</strong> <strong>RBAC</strong> / <strong>ABAC</strong>, enforce <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</li>
-          <li><strong>Segregation of Duties (SoD):</strong> no one person controls dev + release + prod (SBV requirement) — see <a href="#deployment">Deployment Runbook</a>.</li>
-          <li><strong>PAM:</strong> privileged access via vault, just-in-time, session recording.</li>
-          <li><strong>Joiner-Mover-Leaver (JML):</strong> provisioning &amp; timely de-provisioning; periodic access recertification.</li>
-        </ul>
+        <table class="table-sec">
+          <tr><th style="width:190px">Control</th><th>What it means here</th></tr>
+          <tr><td><strong>AuthN</strong></td><td>Centralized SSO (OAuth2/OIDC/SAML) + <strong>MFA</strong> for all privileged &amp; remote access.</td></tr>
+          <tr><td><strong>AuthZ</strong></td><td><strong>RBAC</strong> / <strong>ABAC</strong>, enforce <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</td></tr>
+          <tr><td><strong>Segregation of Duties (SoD)</strong></td><td>No one person controls dev + release + prod (SBV requirement) — see <a href="#deployment">Deployment Runbook</a>.</td></tr>
+          <tr><td><strong>PAM</strong></td><td>Privileged access via vault, just-in-time, session recording.</td></tr>
+          <tr><td><strong>Joiner-Mover-Leaver (JML)</strong></td><td>Provisioning &amp; timely de-provisioning; periodic access recertification.</td></tr>
+        </table>
       </div></div>
     </section>
     <div class="section-divider"></div>
