@@ -2953,7 +2953,8 @@ html[data-theme="dark"] .process-step {
 
   .process-step {
     width: 100%;
-    min-height: 0;
+    flex: 0 0 auto;
+    min-height: auto;
     padding: 18px 18px 17px 64px;
   }
 
@@ -3050,7 +3051,8 @@ html[data-theme="dark"] .process-step {
   }
   .process-diagram:has(> .process-step:nth-child(6)) > .process-step {
     width: 100%;
-    min-height: 0;
+    flex: 0 0 auto;
+    min-height: auto;
     padding: 18px 18px 17px 64px;
   }
   .process-diagram:has(> .process-step:nth-child(6)) > .process-step::before {
@@ -3079,7 +3081,8 @@ html[data-theme="dark"] .process-step {
   }
   .process-diagram > .process-step {
     width: 100%;
-    min-height: 0;
+    flex: 0 0 auto;
+    min-height: auto;
     padding: 18px 18px 17px 62px;
   }
   .process-diagram > .process-step::before {
