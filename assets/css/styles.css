@@ -1717,19 +1717,13 @@ html[data-theme="light"] body {
   width: 88px;
   height: auto;
   display: block;
-  padding: 3px 6px;
-  border-radius: 10px;
-  background: #FFFFFF;
 }
-/* The logo's "HOME" wordmark is #5F5F62, which disappears against the dark
-   canvas (#181818) — hence the white plate. On dark, swap in the variant whose
-   wordmark is white so the mark can sit straight on the canvas: red "POWER" and
-   the yellow house already have plenty of contrast there. */
+/* No plate on either canvas. The only reason one existed is that the "HOME"
+   wordmark is #5F5F62 and vanishes on the dark canvas (#181818) — dark gets a
+   variant with a white wordmark instead. Red "POWER" and the yellow house carry
+   on both canvases unaided. */
 html[data-theme="dark"] .app-brand img {
   content: url('../images/power-home-logo-dark.png');
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
 }
 .app-context {
   min-width: 0;
@@ -4302,19 +4296,12 @@ html[data-theme="dark"] figure.diagram-canvas {
   width: 66px;
   height: 52px;
   transform: translateY(-50%);
-  border: 1px solid rgba(218, 33, 40, .12);
-  border-radius: 15px;
-  background: #FFFFFF url('../images/power-home-logo.png') center / 54px auto no-repeat;
-  box-shadow: 0 8px 24px rgba(91, 24, 24, .10);
+  background: url('../images/power-home-logo.png') center / 54px auto no-repeat;
 }
-/* Same story as the header mark: on the dark canvas drop the white plate and
-   use the white-wordmark variant instead of boxing the logo in. */
+/* Same story as the header mark: no plate, just the canvas-appropriate variant. */
 html[data-theme="dark"] .site-footer::before,
 html[data-theme="dark"] #hb-footer::before {
-  background-color: transparent;
   background-image: url('../images/power-home-logo-dark.png');
-  border-color: transparent;
-  box-shadow: none;
 }
 
 .site-footer::after,
