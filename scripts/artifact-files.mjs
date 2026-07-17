@@ -28,6 +28,7 @@ export const LEGACY_REDIRECT_DIR = 'legacy';
  * package have passed review.
  */
 export const PUBLISHED_DOCUMENTS = Object.freeze([
+  'assets/templates/ba/business-requirements-document.docx',
   'assets/templates/ba/requirements-traceability-matrix.docx',
   'assets/templates/ba/software-requirements-specification.docx',
   'assets/templates/ba/use-case-specification.docx',
@@ -36,6 +37,8 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
   'assets/templates/pm/raid-log.docx',
   'assets/templates/pm/status-report-one-page.docx',
   'assets/templates/po/epic-to-user-stories.docx',
+  'assets/templates/po/functional-specification-document.docx',
+  'assets/templates/po/product-requirements-document.docx',
   'assets/templates/po/product-vision-roadmap.docx',
   'assets/templates/sa/architecture-decision-record.docx',
   'assets/templates/sa/solution-architecture-document.docx',

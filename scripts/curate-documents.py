@@ -531,6 +531,247 @@ def curate(source: Path, destination: Path, transform: Callable[[DocumentObject]
     Document(destination)
 
 
+# ── Confluence MHTML sources ────────────────────────────────────────────
+# BRD/FRD/PRD arrived as Confluence page exports saved with a .doc extension
+# (MIME multipart + quoted-printable HTML — Word opens them, python-docx does
+# not). They are parsed into structured blocks, trimmed by the same editorial
+# rules as the native DOCX sources (no change history, no static TOC, no
+# duplicated page title), then emitted as fresh DOCX packages through the
+# same sanitizer.
+
+import email
+import email.policy
+from html.parser import HTMLParser
+
+
+class _ConfluenceBlockParser(HTMLParser):
+    """Flatten Confluence export HTML into heading/para/list/table blocks."""
+
+    _HEADINGS = {"h1": 1, "h2": 2, "h3": 3, "h4": 4, "h5": 5, "h6": 6}
+    _SKIP = {"script", "style", "head", "title"}
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.blocks: list[dict] = []
+        self._skip_depth = 0
+        self._heading: int | None = None
+        self._runs: list[tuple[str, bool, bool]] = []
+        self._bold = 0
+        self._italic = 0
+        self._in_list_item = False
+        self._table: list[list[str]] | None = None
+        self._row: list[str] | None = None
+        self._cell: list[str] | None = None
+
+    # ── text assembly ────────────────────────────────────────────────
+    def _flush_paragraph(self, kind: str = "para") -> None:
+        runs = [(t, b, i) for t, b, i in self._runs if t.strip()]
+        if runs:
+            block = {"kind": kind, "runs": runs}
+            if kind == "heading":
+                block["level"] = self._heading or 2
+            self.blocks.append(block)
+        self._runs = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self._SKIP:
+            self._skip_depth += 1
+            return
+        if self._skip_depth:
+            return
+        if tag in self._HEADINGS:
+            self._flush_paragraph("li" if self._in_list_item else "para")
+            self._heading = self._HEADINGS[tag]
+        elif tag == "table" and self._table is None:
+            self._flush_paragraph()
+            self._table = []
+        elif tag == "tr" and self._table is not None:
+            self._row = []
+        elif tag in ("td", "th") and self._row is not None:
+            self._cell = []
+        elif tag == "li":
+            self._flush_paragraph()
+            self._in_list_item = True
+        elif tag in ("p", "div", "br") and self._table is None:
+            self._flush_paragraph("li" if self._in_list_item else "para")
+        elif tag in ("strong", "b"):
+            self._bold += 1
+        elif tag in ("em", "i"):
+            self._italic += 1
+
+    def handle_endtag(self, tag):
+        if tag in self._SKIP:
+            self._skip_depth = max(0, self._skip_depth - 1)
+            return
+        if self._skip_depth:
+            return
+        if tag in self._HEADINGS:
+            self._flush_paragraph("heading")
+            self._heading = None
+        elif tag == "table" and self._table is not None:
+            width = max((len(row) for row in self._table), default=0)
+            rows = [row + [""] * (width - len(row)) for row in self._table if any(c.strip() for c in row)]
+            if rows and width:
+                self.blocks.append({"kind": "table", "rows": rows})
+            self._table = None
+        elif tag == "tr" and self._table is not None and self._row is not None:
+            self._table.append(self._row)
+            self._row = None
+        elif tag in ("td", "th") and self._cell is not None:
+            text = " ".join("".join(self._cell).split())
+            if self._row is not None:
+                self._row.append(text)
+            self._cell = None
+        elif tag == "li":
+            self._flush_paragraph("li")
+            self._in_list_item = False
+        elif tag in ("p", "div"):
+            self._flush_paragraph("li" if self._in_list_item else "para")
+        elif tag in ("strong", "b"):
+            self._bold = max(0, self._bold - 1)
+        elif tag in ("em", "i"):
+            self._italic = max(0, self._italic - 1)
+
+    def handle_data(self, data):
+        if self._skip_depth:
+            return
+        text = data.replace("\xa0", " ")
+        if self._cell is not None:
+            self._cell.append(text)
+            return
+        if text.strip() or (self._runs and not text.isspace()):
+            collapsed = " ".join(text.split())
+            if text[:1].isspace() and self._runs:
+                collapsed = " " + collapsed
+            if text[-1:].isspace():
+                collapsed += " "
+            if collapsed:
+                self._runs.append((collapsed, self._bold > 0, self._italic > 0))
+
+
+def _block_text(block: dict) -> str:
+    if block["kind"] == "table":
+        return " ".join(cell for row in block["rows"] for cell in row)
+    return "".join(text for text, _, _ in block.get("runs", []))
+
+
+def parse_confluence_export(source: Path) -> list[dict]:
+    message = email.message_from_bytes(source.read_bytes(), policy=email.policy.default)
+    html = None
+    for part in message.walk():
+        if part.get_content_type() == "text/html":
+            html = part.get_content()
+            break
+    if html is None:
+        raise ValueError(f"{source.name}: no text/html part in the Confluence export")
+    parser = _ConfluenceBlockParser()
+    parser.feed(html)
+    parser._flush_paragraph()
+    return parser.blocks
+
+
+def drop_block_section(blocks: list[dict], title_marker: str) -> list[dict]:
+    """Remove a heading and everything under it (until a same/higher heading)."""
+    result: list[dict] = []
+    index = 0
+    found = False
+    while index < len(blocks):
+        block = blocks[index]
+        if (not found and block["kind"] == "heading"
+                and title_marker.lower() in _block_text(block).lower()):
+            found = True
+            level = block["level"]
+            index += 1
+            while index < len(blocks):
+                nxt = blocks[index]
+                if nxt["kind"] == "heading" and nxt["level"] <= level:
+                    break
+                index += 1
+            continue
+        result.append(block)
+        index += 1
+    if not found:
+        raise ValueError(f"Confluence trim marker not found: {title_marker!r}")
+    return result
+
+
+def emit_blocks_to_document(blocks: list[dict]) -> DocumentObject:
+    document = Document()
+    for block in blocks:
+        if block["kind"] == "heading":
+            paragraph = document.add_heading("", level=min(block["level"], 4))
+            for text, bold, italic in block["runs"]:
+                run = paragraph.add_run(text)
+                run.bold = bold or None
+                run.italic = italic
+        elif block["kind"] == "table":
+            rows = block["rows"]
+            table = document.add_table(rows=len(rows), cols=len(rows[0]))
+            table.style = "Table Grid"
+            for row_values, row in zip(rows, table.rows):
+                for value, cell in zip(row_values, row.cells):
+                    cell.text = value
+        else:
+            style = "List Bullet" if block["kind"] == "li" else None
+            paragraph = document.add_paragraph(style=style)
+            for text, bold, italic in block["runs"]:
+                run = paragraph.add_run(text)
+                run.bold = bold or None
+                run.italic = italic
+    return document
+
+
+def curate_confluence(source: Path, destination: Path, trims: Iterable[str], expect: str) -> None:
+    if not source.is_file():
+        raise FileNotFoundError(source)
+    blocks = parse_confluence_export(source)
+
+    # Confluence prepends the page name as an extra h1 duplicating the real
+    # document title beneath it — the same "remove duplicated boilerplate"
+    # rule the native DOCX sources follow.
+    if blocks and blocks[0]["kind"] == "heading" and "Template" in _block_text(blocks[0]):
+        blocks = blocks[1:]
+
+    for marker in trims:
+        blocks = drop_block_section(blocks, marker)
+
+    joined = " ".join(_block_text(block) for block in blocks)
+    if expect not in joined:
+        raise ValueError(f"{source.name}: expected content marker missing after trim: {expect!r}")
+
+    document = emit_blocks_to_document(blocks)
+    document.core_properties.author = ""
+    document.core_properties.last_modified_by = ""
+    with tempfile.TemporaryDirectory(prefix="handbook-docx-") as temp_dir:
+        intermediate = Path(temp_dir) / destination.name
+        document.save(intermediate)
+        sanitized_package(intermediate, destination)
+    Document(destination)
+
+
+# (source, destination, sections dropped, content marker that must survive)
+CONFLUENCE_CURATIONS: tuple[tuple[str, str, tuple[str, ...], str], ...] = (
+    (
+        "BA/BRD+Template++-+Best+Practice+Version.doc",
+        "ba/business-requirements-document.docx",
+        ("Lịch sử Thay đổi", "MỤC LỤC"),
+        "PHẦN V: YÊU CẦU PHI CHỨC NĂNG",
+    ),
+    (
+        "PO/FRD+Template+-+Best+Practice+Version.doc",
+        "po/functional-specification-document.docx",
+        ("Lịch sử thay đổi", "Mục lục"),
+        "8.3 Đặc tả chuyển đổi dữ liệu",
+    ),
+    (
+        "PO/PRD+Template+-+Best+Practice+Version.doc",
+        "po/product-requirements-document.docx",
+        ("Lịch sử thay đổi", "Mục lục"),
+        "7. Câu hỏi mở",
+    ),
+)
+
+
 # ── HTML previews ───────────────────────────────────────────────────────
 # The documents are CONFIDENTIAL, so the site's primary interaction is
 # *reading in the browser*; the DOCX download is offered from inside the
@@ -702,11 +943,15 @@ def render_preview_page(document: DocumentObject, destination_name: str) -> str:
 """
 
 
+def _all_destination_names() -> list[str]:
+    return [dest for _, dest, _ in CURATIONS] + [dest for _, dest, _, _ in CONFLUENCE_CURATIONS]
+
+
 def build_previews(output_root: Path) -> list[Path]:
     previews_root = output_root / "previews"
     previews_root.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
-    for _, destination_name, _ in CURATIONS:
+    for destination_name in _all_destination_names():
         docx_path = output_root / destination_name
         if not docx_path.is_file():
             raise FileNotFoundError(f"Curated document missing before preview build: {docx_path}")
@@ -737,10 +982,25 @@ def main() -> None:
         action="store_true",
         help="Rebuild only the HTML previews from the existing curated DOCX files",
     )
+    parser.add_argument(
+        "--confluence-only",
+        action="store_true",
+        help="Curate only the Confluence-export sources (leaves native DOCX outputs untouched), then rebuild previews",
+    )
     args = parser.parse_args()
     output_root = args.output_root.resolve()
 
     if args.previews_only:
+        previews = build_previews(output_root)
+        print(f"[OK] rendered {len(previews)} HTML previews")
+        return
+
+    if args.confluence_only:
+        for source_name, destination_name, trims, expect in CONFLUENCE_CURATIONS:
+            source = SOURCE_ROOT / source_name
+            destination = output_root / destination_name
+            curate_confluence(source, destination, trims, expect)
+            print(f"[OK] {source.relative_to(ROOT)} -> {destination.relative_to(ROOT)} (Confluence export)")
         previews = build_previews(output_root)
         print(f"[OK] rendered {len(previews)} HTML previews")
         return
@@ -755,6 +1015,12 @@ def main() -> None:
         curate(source, destination, transform)
         written.append(destination)
         print(f"[OK] {source.relative_to(ROOT)} -> {destination.relative_to(ROOT)}")
+    for source_name, destination_name, trims, expect in CONFLUENCE_CURATIONS:
+        source = SOURCE_ROOT / source_name
+        destination = output_root / destination_name
+        curate_confluence(source, destination, trims, expect)
+        written.append(destination)
+        print(f"[OK] {source.relative_to(ROOT)} -> {destination.relative_to(ROOT)} (Confluence export)")
     print(f"[OK] curated {len(written)} publishable DOCX files")
     previews = build_previews(output_root)
     print(f"[OK] rendered {len(previews)} HTML previews")

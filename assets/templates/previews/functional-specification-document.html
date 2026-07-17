@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>TÀI LIỆU ĐẶC TẢ CHỨC NĂNG (FUNCTIONAL SPECIFICATION DOCUMENT) — Phê duyệt — Xem trước</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="../po/functional-specification-document.docx" download>Tải bản DOCX</a></p>
+</header>
+<h2>TÀI LIỆU ĐẶC TẢ CHỨC NĂNG (FUNCTIONAL SPECIFICATION DOCUMENT)</h2>
+<table><tr class="doc-preview-thead"><td>Hạng mục</td><td>Nội dung chi tiết</td></tr><tr><td>Tên Dự án</td><td>&#160;</td></tr><tr><td>Mã Dự án</td><td>[Mã số quản lý nội bộ]</td></tr><tr><td>Phiên bản</td><td>&#160;</td></tr><tr><td>Trạng thái</td><td>&#160;</td></tr><tr><td>Ngày cập nhật</td><td>&#160;</td></tr></table>
+<h3><strong>Phê duyệt</strong></h3>
+<table><tr class="doc-preview-thead"><td>Ngày phê duyệt</td><td>Phiên bản đã phê duyệt</td><td>Vai trò người phê duyệt</td><td>Người phê duyệt</td></tr></table>
+<h2>1. Giới thiệu</h2>
+<p><em>&lt; Xác định và mô tả nhu cầu kinh doanh hoặc vấn đề mà tài liệu này giải quyết. Bao gồm thông tin nền.&gt;</em></p>
+<h3>1.1 Mục đích của tài liệu</h3>
+<p><em>&lt; Mô tả tài liệu Đặc tả Chức năng và mục đích dự kiến đối với người đọc. Dưới đây là mục đích chuẩn của FSD, điều chỉnh nếu cần.&gt;</em></p>
+<p>Tài liệu Đặc tả Chức năng cung cấp chi tiết về <em>cách</em> giải pháp hệ thống hoạt động và hành vi yêu cầu. Nó dựa trên các yêu cầu cấp cao trong Tài liệu Yêu cầu Kinh doanh và cho phép truy xuất các đặc tả chức năng về yêu cầu kinh doanh. Bao gồm yêu cầu chức năng chi tiết, trường hợp sử dụng, đầu vào và đầu ra, luồng quy trình, sơ đồ và mô phỏng.</p>
+<h3>1.2 Phạm vi dự án</h3>
+<p><em>&lt;Mô tả phạm vi dự án giải quyết nhu cầu hoặc vấn đề kinh doanh. Bao gồm thông tin cấp cao về giải pháp&gt;.</em></p>
+<h3>1.3 Phạm vi của tài liệu</h3>
+<p><em>&lt;Nếu có nhiều tài liệu FSD cho dự án, mô tả phạm vi cụ thể của tài liệu này. Mục 1.2 và 1.3 có thể kết hợp&gt;.</em></p>
+<h3>1.4 Tài liệu liên quan</h3>
+<p><em>&lt;Thêm tài liệu liên quan đến FSD như Dự thảo Dự án, Tài liệu Yêu cầu Kinh doanh, v.v.&gt;.</em></p>
+<table><tr class="doc-preview-thead"><td>Thành phần</td><td>Tên (với liên kết đến tài liệu)</td><td>Mô tả</td></tr></table>
+<h3>1.5 Thuật ngữ/ Từ viết tắt và Định nghĩa</h3>
+<p><em>&lt;Nêu thuật ngữ và định nghĩa trong đặc tả chức năng. Bao gồm từ viết tắt trong tài liệu.&gt;</em></p>
+<table><tr class="doc-preview-thead"><td>Thuật ngữ/ Từ viết tắt</td><td>Định nghĩa</td><td>Mô tả</td></tr></table>
+<h3>1.6 Rủi ro và Giả định</h3>
+<p><em>&lt;Liệt kê yếu tố giả định và rủi ro ảnh hưởng đến thiết kế chức năng hệ thống. Bao gồm thành phần bên thứ ba, môi trường vận hành hoặc giới hạn.&gt;</em></p>
+<h2>2. Tổng quan hệ thống/giải pháp</h2>
+<p><em>&lt;Mô tả ngắn gọn phần mềm và giải pháp, mục đích, lợi ích và mục tiêu.&gt;</em></p>
+<h3>2.1. Sơ đồ ngữ cảnh/giao diện/luồng dữ liệu, luồng màn hình ứng dụng, sơ đồ trang web, luồng quy trình</h3>
+<p><em>&lt;Cung cấp biểu diễn đồ họa liên quan đến hệ thống và dự án như sơ đồ ngữ cảnh, giao diện, luồng dữ liệu, luồng màn hình, sơ đồ trang web hoặc luồng quy trình.&gt;</em></p>
+<h3>2.2. Diễn viên hệ thống</h3>
+<h4>2.2.1. Vai trò người dùng và trách nhiệm / yêu cầu quyền hạn</h4>
+<table><tr class="doc-preview-thead"><td>Người dùng/Vai trò</td><td>Ví dụ</td><td>Tần suất sử dụng</td><td>Bảo mật/Truy cập, Tính năng sử dụng</td><td>Ghi chú bổ sung</td></tr><tr><td>&lt;bao gồm người dùng/vai trò cụ thể như Quản lý Mua hàng, Quản trị viên Bộ phận, Giảng viên, Sinh viên, v.v&gt;</td><td>&lt;bao gồm ví dụ về những người thực tế trong vai trò&gt;</td><td>&lt;mô tả tần suất họ sử dụng hệ thống. Nêu Thường xuyên, Thỉnh thoảng hoặc Hiếm&gt;</td><td>&lt;mô tả các tính năng hệ thống có sẵn cho vai trò và quyền truy cập cần nêu&gt;</td><td>&lt;thêm ghi chú bổ sung hoặc tài liệu hỗ trợ cần thiết&gt;</td></tr></table>
+<h3>2.3. Phụ thuộc và tác động thay đổi</h3>
+<h4>2.3.1. Phụ thuộc hệ thống</h4>
+<p><em>&lt;Liệt kê và xác định phụ thuộc của giải pháp đề xuất với các hệ thống khác.&gt;</em></p>
+<h4>2.3.2. Tác động thay đổi</h4>
+<p><em>&lt;Liệt kê và xác định hệ thống hiện có bị ảnh hưởng bởi triển khai giải pháp đề xuất.&gt;</em></p>
+<h2>3. Đặc tả chức năng</h2>
+<p><em>&lt;Bắt đầu mô tả các đặc tả liên quan đến hệ thống tổng thể. Có thể tạo bảng/ chỉ mục các chức năng và liên kết đến các mục dưới đây&gt;</em></p>
+<p><em>&lt;Nếu không có tài liệu tham chiếu/truy xuất riêng cho dự án, sử dụng phần này để ánh xạ yêu cầu kinh doanh, trường hợp sử dụng, yêu cầu chức năng và kiểm thử&gt;</em></p>
+<p><em>&lt;Phân nhóm đặc tả chức năng phù hợp dự án. Có thể chia theo màn hình, khu vực chức năng, vai trò người dùng, vé JIRA hoặc chức năng cấp cao và chi tiết&gt;</em></p>
+<h3>3.1 &lt;Tiêu đề&gt;</h3>
+<h4>3.1.1 Mục đích/Mô tả</h4>
+<p><em>&lt;Mô tả cấp cao và mục đích các đặc tả trong phần này.&gt;</em></p>
+<h4>3.1.2 Trường hợp sử dụng</h4>
+<p><em>&lt;Ánh xạ yêu cầu chức năng với trường hợp sử dụng trong tài liệu Yêu cầu Kinh doanh. Nếu không có mô tả chi tiết, mô tả trường hợp sử dụng tại đây. Thường gồm các yếu tố trong bảng sau.&gt;</em></p>
+<table><tr class="doc-preview-thead"><td>UC-1</td><td>&lt;Tên trường hợp sử dụng&gt;</td></tr><tr><td>Diễn viên chính</td><td>&lt;diễn viên chính tham gia trường hợp sử dụng này&gt;</td></tr><tr><td>Các bên liên quan và mối quan tâm</td><td>&lt;Mô tả các bên liên quan khác&gt;</td></tr><tr><td>Kích hoạt</td><td>&lt;Điều kiện/hành động khởi đầu trường hợp sử dụng&gt;</td></tr><tr><td>Điều kiện tiên quyết</td><td>&lt;Điều kiện giả định đúng trước bước đầu tiên&gt;</td></tr><tr><td>Điều kiện sau khi thực hiện</td><td>&lt;Điều kiện sau khi trường hợp sử dụng thành công&gt;</td></tr><tr><td>Kịch bản thành công chính</td><td>&lt;thăm điểm BẮT ĐẦU Bước Bước Đảm bảo MỤC TIÊU ĐẠT ĐƯỢC&gt;</td></tr><tr><td>Phần mở rộng</td><td>Nếu Điều kiện, thì Các bước thay thế &lt;Liệt kê các bước/kịch bản mở rộng ngoài kịch bản thành công chính.&gt;</td></tr><tr><td>Ưu tiên</td><td>&lt;chỉ ra ưu tiên cao, trung bình hoặc thấp&gt;</td></tr><tr><td>Yêu cầu đặc biệt</td><td>&lt;Yêu cầu đặc biệt liên quan đến hệ thống để hoàn thành trường hợp sử dụng&gt;</td></tr><tr><td>Câu hỏi mở</td><td>&lt;Ghi chú và câu hỏi&gt;</td></tr></table>
+<h4>3.1.3 Mô phỏng</h4>
+<p><em>&lt;Cung cấp mô phỏng chức năng hoặc toàn bộ trang&gt;</em></p>
+<h4>3.1.4 Yêu cầu chức năng</h4>
+<p><em>&lt;Mô tả chi tiết cấp trang không có trong mục 3.1.5. Bao gồm yêu cầu liên quan đến Menu Điều hướng, Hành động, trạng thái giao dịch, xác minh và xác thực, v.v.</em></p>
+<p><em>Đảm bảo mỗi đặc tả có số tham chiếu và được giải thích theo định dạng sau.&gt;</em></p>
+<table><tr class="doc-preview-thead"><td>Mã đặc tả</td><td>Mô tả đặc tả</td><td>Quy tắc kinh doanh/Phụ thuộc dữ liệu</td></tr><tr><td>&lt;Mã định danh đặc tả&gt;</td><td>&lt;Giải thích ngắn gọn về đặc tả&gt;</td><td>&lt;Bất kỳ quy tắc xác thực hoặc quy tắc kinh doanh nào&gt;</td></tr></table>
+<p><em>&lt;Lưu ý: Mục 3.1.4 và 3.1.5 có thể kết hợp nếu có vài chức năng trên một trang&gt;</em></p>
+<h4>3.1.5 Đặc tả cấp trường</h4>
+<p><em>&lt;Chỉ định tất cả phần tử dữ liệu trường liên quan đến yêu cầu chức năng trong hai bảng dưới đây.&gt;</em></p>
+<p><strong>Các phần tử biểu mẫu:</strong></p>
+<table><tr class="doc-preview-thead"><td>Gọi ra</td><td>Tên trường dữ liệu</td><td>Điều khiển giao diện người dùng</td><td>Bắt buộc?</td><td>Có thể chỉnh sửa</td><td>Loại dữ liệu</td><td>Bộ giá trị</td><td>Giá trị mặc định</td><td>Ví dụ dữ liệu</td><td>Nguồn dữ liệu</td></tr><tr><td>&lt;tham chiếu mô phỏng&gt;</td><td>&lt;Tên nhãn&gt;</td><td>&lt;chỉ định điều khiển giao diện người dùng trên màn hình&gt;</td><td>&lt;chỉ định nếu trường bắt buộc&gt;</td><td>&lt;chỉ định nếu trường có thể chỉnh sửa&gt;</td><td>&lt;Chỉ định loại dữ liệu sử dụng cho trường này&gt;</td><td>&lt;Nếu giá trị thuộc bộ, chỉ định toàn bộ bộ giá trị&gt;</td><td>&lt;Chỉ định nếu trường mặc định giá trị nào&gt;</td><td>&lt;Cung cấp ví dụ dữ liệu&gt;</td><td>&lt;Chỉ định nguồn dữ liệu&gt;</td></tr><tr><td>Ví dụ: Gọi ra 1</td><td>Tên người dùng</td><td>hộp văn bản</td><td>Có</td><td>Có</td><td>Chữ và số</td><td>không</td><td>Không áp dụng</td><td>agujar</td><td>Nhập liệu người dùng</td></tr></table>
+<p><strong>Quy tắc kinh doanh và phụ thuộc biểu mẫu:</strong></p>
+<p><strong>Nút bấm, liên kết và biểu tượng:</strong></p>
+<table><tr class="doc-preview-thead"><td>Nhãn nút bấm, liên kết, biểu tượng</td><td>Sự kiện OnClick</td><td>Sự kiện khác</td><td>Hiển thị</td><td>Bật vs Tắt</td><td>Điều hướng đến</td><td>Xác thực</td><td>Phụ thuộc</td></tr><tr><td>&lt;Tên nhãn nút bấm&gt;</td><td>&lt;Chỉ định thao tác khi sự kiện on-click xảy ra&gt;</td><td>&lt;Chỉ định thao tác khi các sự kiện khác xảy ra&gt;</td><td>&lt;Chỉ định trạng thái hiển thị mặc định của nút bấm&gt;</td><td>&lt;Chỉ định nút bấm bật hay tắt và điều kiện nếu có&gt;</td><td>&lt;Chỉ định liên kết trang chuyển hướng nếu có&gt;</td><td>&lt;Chỉ định quy tắc xác thực khi vận hành nút bấm&gt;</td><td>&lt;Nêu rõ nếu có phụ thuộc với phần tử biểu mẫu hoặc nút bấm khác&gt;</td></tr><tr><td>Ví dụ: Gửi</td><td>Xác minh tên người dùng và mật khẩu đúng. Nếu đúng, đăng nhập người dùng.</td><td>Khi rê chuột hiển thị thông báo: “Vui lòng cung cấp thông tin xác thực web để đăng nhập”</td><td>Có, luôn luôn</td><td>Tắt, mặc định. Bật, sau khi nhập phím đầu tiên ở trường tên người dùng hoặc mật khẩu.</td><td>Trang Bảng điều khiển người dùng</td><td>Xác minh tên người dùng là ID sunet hợp lệ và mật khẩu khớp với dữ liệu đăng ký.</td><td>Vô hiệu hóa chức năng Người dùng mới trên các trang tiếp theo nếu người dùng đăng nhập qua nút này.</td></tr></table>
+<h2>4. Cấu hình hệ thống</h2>
+<p><em>&lt;Tổng quan các bước hoặc thiết lập cần thiết để cấu hình ứng dụng/chương trình. Nêu rõ mục đích đằng sau mỗi thiết lập. Thảo luận về lựa chọn thay thế, tùy chỉnh, giải pháp tạm thời, điều kiện và phụ thuộc. Với ứng dụng Oracle, liệt kê BR100 hoặc tài liệu thiết lập ứng dụng áp dụng&gt;</em></p>
+<h2>5. Yêu cầu hệ thống khác/Yêu cầu phi chức năng</h2>
+<p><em>&lt;Phần này ghi các chi tiết bổ sung về chất lượng và hành vi hệ thống ngoài yêu cầu chức năng. Ghi lại kỳ vọng ngầm của các bên liên quan về hiệu suất trong hoàn cảnh nhất định. Nêu SLA về thời gian phản hồi, hiệu suất, độ trễ, quản lý sự cố, bảo mật, sao lưu, tuân thủ pháp lý, v.v. Thuật ngữ ‘hệ thống’ bao gồm tích hợp với nền tảng di động, thiết bị di động, máy tính bảng và điện thoại thông minh.&gt;</em></p>
+<p>=&gt; Có thể lấy bên BRD để bổ sung tham khảo</p>
+<h2>6. Yêu cầu báo cáo</h2>
+<p><em>&lt;Ghi nhu cầu báo cáo, bao gồm phạm vi, định dạng, phần tử dữ liệu, nội dung, loại tệp, cơ chế trích xuất, người dùng, mức độ truy cập, tần suất, v.v. Cung cấp mô phỏng báo cáo nếu cần. Tạo tài liệu riêng nếu cần.&gt;</em></p>
+<h2>7. Yêu cầu tích hợp</h2>
+<p><em>&lt;Xác định nhu cầu tích hợp và nêu giao diện với phần cứng, phần mềm và người dùng bên ngoài giải pháp. Bao gồm sơ đồ tổng quan kiến trúc, sơ đồ luồng dữ liệu cấp cao, cấu trúc bảng, giao thức giao diện, API, điều kiện lỗi, xác thực lỗi, nhắn tin, xử lý tự động, v.v. Có thể nêu phụ thuộc phần cứng/phần mềm, yêu cầu nâng cấp, vấn đề tương thích với khung và giải pháp hiện có.&gt;</em></p>
+<p><em>(Sơ đồ luồng dữ liệu, sơ đồ giao diện – nếu cần thiết)</em></p>
+<h3>7.1 Xử lý ngoại lệ/Báo cáo lỗi</h3>
+<p><em>&lt;Giải thích điều kiện lỗi/ngoại lệ thường xảy ra trong giao diện hoặc tích hợp hệ thống chéo. Giải thích bản chất, mã lỗi, nguyên nhân gốc rễ và chiến lược xử lý. Chỉ ra chương trình tự động xử lý bản ghi lỗi hoặc điều kiện lỗi. Nêu nếu có báo cáo lỗi hoặc thông báo cảnh báo nhóm hỗ trợ và quản trị viên hệ thống khi lỗi hoặc gián đoạn giao diện&gt;</em></p>
+<table><tr class="doc-preview-thead"><td>Mã ngoại lệ/Lỗi</td><td>Lỗi</td><td>Nguyên nhân</td><td>Chiến lược giải pháp</td></tr></table>
+<h2>8. Yêu cầu di cư/chuyển đổi dữ liệu</h2>
+<p><em>&lt;Giải thích kế hoạch chuyển đổi dữ liệu. Cung cấp thông tin nhận dạng cho hệ thống tự động, ứng dụng hoặc tình huống áp dụng kế hoạch. Mô tả giả định, giới hạn hoặc rủi ro liên quan đến chuyển đổi dữ liệu. (Chi tiết trong mục 1.6)&gt;</em></p>
+<h3>8.1 Chiến lược chuyển đổi dữ liệu</h3>
+<p><em>&lt;Bao gồm chiến lược tổng thể cho chuyển đổi dữ liệu, cách và thời điểm thực hiện, phương pháp trích xuất, chuyển đổi, tải dữ liệu, lịch trình và kế hoạch kiểm tra&gt;</em></p>
+<h3>8.2 Chuẩn bị chuyển đổi dữ liệu</h3>
+<p><em>&lt;Chi tiết điều kiện tiên quyết cho chuyển đổi. Thảo luận chiến lược sao lưu, quy trình phục hồi khi chuyển đổi thất bại.&gt;</em></p>
+<h3>8.3 Đặc tả chuyển đổi dữ liệu</h3>
+<table><tr class="doc-preview-thead"><td>Nguồn</td><td>Phần tử dữ liệu nguồn</td><td>Đích</td><td>Phần tử dữ liệu đích</td><td>Quy tắc chuyển đổi</td><td>Ghi chú</td></tr><tr><td>&lt;Vị trí nguồn&gt;</td><td>&lt;Mã định danh phần tử dữ liệu nguồn&gt;</td><td>&lt;Vị trí đích&gt;</td><td>&lt;Mã định danh phần tử dữ liệu đích&gt;</td><td>&lt;Mô tả quy tắc chuyển đổi dữ liệu&gt;</td><td>&lt;Ghi chú bổ sung&gt;</td></tr></table>
+<h2>9. Tài liệu tham khảo</h2>
+<p><em>&lt;Liệt kê tài liệu tham khảo bên ngoài dùng làm thông tin nền hoặc kiến thức cho FSD. Ví dụ: trang web tuân thủ, trang web Stanford, v.v&gt;</em></p>
+<h2>10. Vấn đề mở</h2>
+<table><tr class="doc-preview-thead"><td>Mã vấn đề</td><td>Vấn đề</td><td>Người nêu</td><td>Ngày nêu</td><td>Giải pháp/Quyết định</td><td>Người giải quyết</td><td>Ngày giải quyết</td><td>Trạng thái</td></tr></table>
+<h2>Phụ lục</h2>
+</article>
+</body>
+</html>
