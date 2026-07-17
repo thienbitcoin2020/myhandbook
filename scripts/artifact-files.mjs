@@ -41,6 +41,17 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
   'assets/templates/sa/solution-architecture-document.docx',
 ]);
 
+/**
+ * The documents are confidential, so the site opens an in-browser reader first
+ * and offers the DOCX from inside it. Each published document therefore ships
+ * with exactly one derived HTML preview; the path mapping is fixed so neither
+ * the pages nor the checks ever hold a second hand-maintained list.
+ */
+export function documentPreviewPath(documentPath) {
+  const fileName = documentPath.slice(documentPath.lastIndexOf('/') + 1);
+  return `assets/templates/previews/${fileName.replace(/\.docx$/, '.html')}`;
+}
+
 const PUBLISHED_TREES = Object.freeze([
   { directory: 'pages', extensions: new Set(['.html']) },
   { directory: path.join('assets', 'css'), extensions: new Set(['.css']) },
@@ -126,6 +137,10 @@ export function getPublishedEntries(root = process.cwd()) {
   for (const relative of PUBLISHED_DOCUMENTS) {
     assertRegularFile(root, relative);
     entries.push({ source: normalize(relative), published: normalize(relative) });
+
+    const preview = documentPreviewPath(relative);
+    assertRegularFile(root, preview);
+    entries.push({ source: normalize(preview), published: normalize(preview) });
   }
 
   const claimed = new Set();

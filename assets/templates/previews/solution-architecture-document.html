@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>SOLUTION ARCHITECTURE DOCUMENT — (Tài liệu Kiến trúc Giải pháp — khung arc42 + C4 Model) — Xem trước</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="../sa/solution-architecture-document.docx" download>Tải bản DOCX</a></p>
+</header>
+<p><strong>SOLUTION ARCHITECTURE DOCUMENT</strong></p>
+<p>(Tài liệu Kiến trúc Giải pháp — khung arc42 + C4 Model)</p>
+<p><em>[TÊN DỰ ÁN / HỆ THỐNG]</em></p>
+<table><tr class="doc-preview-thead"><td><strong>Thuộc tính</strong></td><td><strong>Giá trị</strong></td></tr><tr><td>Mã dự án</td><td><em>[ĐIỀN mã dự án]</em></td></tr><tr><td>Trạng thái</td><td><em>[Draft / In Review / Approved]</em></td></tr><tr><td>Người review</td><td><em>[ĐIỀN — VD: EA, Tech Lead, Security]</em></td></tr><tr><td>Người phê duyệt</td><td><em>[ĐIỀN — VD: ARB / CTO]</em></td></tr><tr><td>Phạm vi bảo mật</td><td><em>[Internal / Confidential]</em></td></tr></table>
+<h3><strong>Tài liệu tham chiếu</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Mã</strong></td><td><strong>Tên tài liệu</strong></td><td><strong>Phiên bản</strong></td><td><strong>Ghi chú</strong></td></tr><tr><td><em>[SRS-XXX]</em></td><td><em>[Software Requirements Specification]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Nguồn FR/NFR — chỉ tham chiếu mã FR, không copy chi tiết]</em></td></tr><tr><td><em>[BRD-XXX]</em></td><td><em>[Business Requirements Document]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[ADR-log]</em></td><td><em>[Architecture Decision Records]</em></td><td><em>[link repo]</em></td><td><em>[Xem Mục 9]</em></td></tr></table>
+<h2><strong>Mục lục</strong></h2>
+<h2><strong>1. Introduction &amp; Goals (Giới thiệu &amp; Mục tiêu)</strong></h2>
+<h3><strong>1.1 Tổng quan yêu cầu</strong></h3>
+<p>Tóm tắt ngắn gọn (5–10 dòng) bài toán nghiệp vụ và phạm vi giải pháp. Chi tiết yêu cầu chức năng KHÔNG lặp lại ở đây — chỉ tham chiếu mã FR trong SRS: <em>[ĐIỀN — VD: FR-001 ÷ FR-045, xem SRS-XXX mục 3]</em>.</p>
+<p><em>[ĐIỀN mô tả tổng quan bài toán và giá trị nghiệp vụ kỳ vọng]</em></p>
+<h3><strong>1.2 Quality Goals (Top 3–5, xếp hạng ưu tiên)</strong></h3>
+<p><em>  Best practice: quality goals quyết định kiến trúc nhiều hơn FR. Mỗi goal phải đo được và gắn với NFR ở Mục 10.</em></p>
+<table><tr class="doc-preview-thead"><td><strong>Hạng</strong></td><td><strong>Quality Goal</strong></td><td><strong>Động lực / Kịch bản đo lường (Quality Scenario)</strong></td></tr><tr><td>1</td><td><em>[VD: Performance]</em></td><td><em>[VD: 95% request API &lt; 500ms tại peak [ĐIỀN]</em> concurrent users]</td></tr><tr><td>2</td><td><em>[VD: Availability]</em></td><td><em>[VD: SLA ≥ 99.9%/tháng; RTO ≤ [ĐIỀN]</em>, RPO ≤ <em>[ĐIỀN]</em>]</td></tr><tr><td>3</td><td><em>[VD: Security]</em></td><td><em>[VD: Tuân thủ [ĐIỀN chuẩn — ISO 27001 / PCI-DSS / NĐ 13]</em>]</td></tr><tr><td>4</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>5</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>1.3 Stakeholders</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Vai trò</strong></td><td><strong>Tên / Đơn vị</strong></td><td><strong>Kỳ vọng đối với kiến trúc</strong></td></tr><tr><td><em>[Product Owner]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Enterprise Architect]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Tuân thủ EA principles &amp; standards]</em></td></tr><tr><td><em>[Dev Team / Vendor]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Design buildable, rõ interface]</em></td></tr><tr><td><em>[Security / Compliance]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Operations]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Vận hành được: observability, runbook]</em></td></tr></table>
+<h2><strong>2. Constraints (Ràng buộc)</strong></h2>
+<h3><strong>2.1 Ràng buộc kỹ thuật</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Ràng buộc</strong></td><td><strong>Nguồn / Lý do</strong></td></tr><tr><td>TC-01</td><td><em>[VD: Bắt buộc dùng tech stack [ĐIỀN theo input &#x27;Tech stack ưu tiên/bắt buộc&#x27;]</em>]</td><td><em>[VD: Chuẩn công nghệ của tổ chức]</em></td></tr><tr><td>TC-02</td><td><em>[VD: Phải tích hợp với hệ thống hiện hữu [ĐIỀN theo input &#x27;Hệ thống hiện hữu&#x27;]</em>]</td><td><em>[ĐIỀN]</em></td></tr><tr><td>TC-03</td><td><em>[VD: Triển khai on-premise / cloud [ĐIỀN]</em>]</td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>2.2 Ràng buộc tổ chức</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Ràng buộc</strong></td><td><strong>Nguồn / Lý do</strong></td></tr><tr><td>OC-01</td><td><em>[VD: Deadline go-live [ĐIỀN]</em>; ngân sách <em>[ĐIỀN]</em>]</td><td><em>[ĐIỀN]</em></td></tr><tr><td>OC-02</td><td><em>[VD: Đội phát triển vendor [ĐIỀN]</em>, quy trình release theo <em>[ĐIỀN]</em>]</td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>2.3 Ràng buộc quy định / pháp lý</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Ràng buộc</strong></td><td><strong>Nguồn / Lý do</strong></td></tr><tr><td>RC-01</td><td><em>[VD: Bảo vệ dữ liệu cá nhân theo [ĐIỀN — VD: Nghị định 13/2023/NĐ-CP]</em>]</td><td><em>[Pháp lý]</em></td></tr><tr><td>RC-02</td><td><em>[VD: Quy định ngành [ĐIỀN — VD: SBV, PCI-DSS, ISO 27001]</em>]</td><td><em>[ĐIỀN]</em></td></tr><tr><td>RC-03</td><td><em>[VD: Dữ liệu phải lưu trữ tại [ĐIỀN — data residency]</em>]</td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>3. Context &amp; Scope (Bối cảnh &amp; Phạm vi)</strong></h2>
+<h3><strong>3.1 Business Context — C4 Level 1: System Context</strong></h3>
+<p>Sơ đồ dưới đây thể hiện hệ thống mục tiêu, các nhóm người dùng và hệ thống ngoài tương tác. Thay các nhãn <em>[ĐIỀN]</em> bằng thông tin thực tế của dự án (mã Mermaid ở Phụ lục A.1).</p>
+<p><em>Hình 3-1. C4 Level 1 — System Context (template)</em></p>
+<h3><strong>3.2 Danh mục interface ngoài (External Interfaces)</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Hệ thống ngoài</strong></td><td><strong>Chiều</strong></td><td><strong>Giao thức</strong></td><td><strong>Dữ liệu trao đổi</strong></td><td><strong>SLA / Ghi chú</strong></td></tr><tr><td><em>[SSO/IdP]</em></td><td><em>[Out]</em></td><td><em>[OIDC/SAML]</em></td><td><em>[Token, user claims]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Hệ thống lõi — ĐIỀN]</em></td><td><em>[In/Out]</em></td><td><em>[REST/MQ/File]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Notification — ĐIỀN]</em></td><td><em>[Out]</em></td><td><em>[REST/SMTP]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>3.3 In scope / Out of scope</strong></h3>
+<ul><li>In scope: <em>[ĐIỀN — liệt kê theo mã FR, VD: FR-001÷FR-030]</em></li><li>Out of scope: <em>[ĐIỀN — nêu rõ để tránh scope creep, VD: mobile offline mode]</em></li></ul>
+<h2><strong>4. Solution Strategy (Chiến lược giải pháp)</strong></h2>
+<p><em>  Best practice: mỗi quyết định lớn phải nêu ít nhất 1 phương án bị loại và lý do loại. Chi tiết đầy đủ ghi trong ADR (Mục 9).</em></p>
+<table><tr class="doc-preview-thead"><td><strong>#</strong></td><td><strong>Quyết định chính</strong></td><td><strong>Phương án chọn + lý do</strong></td><td><strong>Phương án bị loại + lý do loại</strong></td><td><strong>ADR</strong></td></tr><tr><td>1</td><td><em>[Kiến trúc tổng thể]</em></td><td><em>[VD: Modular monolith — phù hợp quy mô team, đơn giản vận hành]</em></td><td><em>[VD: Microservices — chi phí vận hành cao, team chưa sẵn sàng]</em></td><td><em>[ADR-001]</em></td></tr><tr><td>2</td><td><em>[Tech stack backend]</em></td><td><em>[ĐIỀN theo tech stack bắt buộc/ưu tiên + lý do]</em></td><td><em>[ĐIỀN phương án bị loại + lý do]</em></td><td><em>[ADR-002]</em></td></tr><tr><td>3</td><td><em>[Chiến lược tích hợp]</em></td><td><em>[VD: API-led qua API Gateway + event async cho batch]</em></td><td><em>[VD: Tích hợp point-to-point — khó bảo trì, không tái sử dụng]</em></td><td><em>[ADR-003]</em></td></tr><tr><td>4</td><td><em>[Data store]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ADR-004]</em></td></tr><tr><td>5</td><td><em>[Deployment model]</em></td><td><em>[VD: On-prem K8s / Cloud [ĐIỀN]</em>]</td><td><em>[ĐIỀN]</em></td><td><em>[ADR-005]</em></td></tr></table>
+<h2><strong>5. Building Block View — C4 Level 2: Container</strong></h2>
+<p>Sơ đồ container thể hiện các khối triển khai được (ứng dụng, service, data store) bên trong hệ thống. Điều chỉnh theo giải pháp thực tế — xóa/bổ sung container không dùng (mã Mermaid ở Phụ lục A.2).</p>
+<p><em>Hình 5-1. C4 Level 2 — Container Diagram (template)</em></p>
+<h3><strong>5.1 Trách nhiệm từng container</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Container</strong></td><td><strong>Công nghệ</strong></td><td><strong>Trách nhiệm chính</strong></td><td><strong>Ghi chú</strong></td></tr><tr><td><em>[Web App]</em></td><td><em>[ĐIỀN]</em></td><td><em>[UI web, gọi API qua Gateway, không chứa business logic]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Mobile App]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Xóa nếu không có mobile]</em></td></tr><tr><td><em>[API Gateway]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Routing, authN token, rate limiting, logging edge]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Backend Service]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Business logic chính, expose REST API, tham chiếu FR: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Background Worker]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Xử lý async: batch, tích hợp hệ thống ngoài, retry]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Database]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Dữ liệu nghiệp vụ; ownership: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td><em>[Cache]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Session, hot data; TTL: ĐIỀN]</em></td><td><em>[Xóa nếu không dùng]</em></td></tr><tr><td><em>[Message Broker]</em></td><td><em>[ĐIỀN]</em></td><td><em>[Event bus, decoupling, DLQ]</em></td><td><em>[Xóa nếu không dùng]</em></td></tr></table>
+<h2><strong>6. Runtime View (Luồng xử lý chính)</strong></h2>
+<p>Chọn 2–3 luồng quan trọng nhất về mặt kiến trúc (rủi ro cao, nhiều tương tác, thể hiện quality goals). Mã Mermaid ở Phụ lục A.3–A.4.</p>
+<h3><strong>6.1 Luồng 1: [ĐIỀN — VD: Xác thực &amp; truy cập qua SSO]</strong></h3>
+<p><em>Hình 6-1. Sequence — Luồng 1 (template)</em></p>
+<p>Điểm cần lưu ý: <em>[ĐIỀN — timeout, transaction boundary, xử lý lỗi từng bước]</em></p>
+<h3><strong>6.2 Luồng 2: [ĐIỀN — VD: Xử lý bất đồng bộ / tích hợp hệ thống ngoài]</strong></h3>
+<p><em>Hình 6-2. Sequence — Luồng 2 (template)</em></p>
+<p>Điểm cần lưu ý: <em>[ĐIỀN — idempotency, retry/backoff, DLQ, circuit breaker]</em></p>
+<h3><strong>6.3 Luồng 3: [ĐIỀN — tùy chọn]</strong></h3>
+<p><em>[ĐIỀN sequence diagram nếu cần — sao chép cấu trúc Mermaid ở Phụ lục]</em></p>
+<h2><strong>7. Deployment View (Triển khai)</strong></h2>
+<h3><strong>7.1 Topology &amp; Network Zone</strong></h3>
+<p><em>Hình 7-1. Deployment topology theo network zone (template — mã Mermaid ở Phụ lục A.5)</em></p>
+<h3><strong>7.2 Môi trường</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Môi trường</strong></td><td><strong>Mục đích</strong></td><td><strong>Hạ tầng / Sizing</strong></td><td><strong>Dữ liệu</strong></td></tr><tr><td>DEV</td><td><em>[Phát triển]</em></td><td><em>[ĐIỀN spec]</em></td><td><em>[Dữ liệu giả lập]</em></td></tr><tr><td>SIT/UAT</td><td><em>[Kiểm thử tích hợp / nghiệm thu]</em></td><td><em>[ĐIỀN spec]</em></td><td><em>[Dữ liệu masked]</em></td></tr><tr><td>STAGING</td><td><em>[Pre-prod, giống PROD]</em></td><td><em>[ĐIỀN spec]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>PROD</td><td><em>[Vận hành]</em></td><td><em>[ĐIỀN spec — HA: ĐIỀN node; DR: ĐIỀN]</em></td><td><em>[Dữ liệu thật — kiểm soát truy cập]</em></td></tr></table>
+<h3><strong>7.3 CI/CD &amp; chiến lược release</strong></h3>
+<ul><li>Pipeline: <em>[ĐIỀN — VD: GitLab CI → build → scan (SAST/DAST) → deploy]</em></li><li>Chiến lược release: <em>[Blue-green / Canary / Rolling — ĐIỀN + lý do]</em></li><li>Rollback: <em>[ĐIỀN cơ chế và thời gian rollback tối đa]</em></li></ul>
+<h2><strong>8. Crosscutting Concepts (Khái niệm xuyên suốt)</strong></h2>
+<table><tr class="doc-preview-thead"><td><strong>Chủ đề</strong></td><td><strong>Giải pháp thiết kế</strong></td><td><strong>Chuẩn / Công cụ</strong></td></tr><tr><td>Authentication</td><td><em>[VD: SSO qua OIDC, token JWT, MFA cho admin]</em></td><td><em>[ĐIỀN — VD: Keycloak/Azure AD]</em></td></tr><tr><td>Authorization</td><td><em>[VD: RBAC theo vai trò [ĐIỀN]</em>; kiểm tra tại Gateway + service]</td><td><em>[ĐIỀN]</em></td></tr><tr><td>Logging &amp; Audit</td><td><em>[VD: Structured log JSON, correlation-id xuyên suốt; audit trail thao tác nhạy cảm]</em></td><td><em>[ĐIỀN — VD: ELK]</em></td></tr><tr><td>Monitoring &amp; Tracing</td><td><em>[VD: Metrics + distributed tracing; alert theo SLO]</em></td><td><em>[ĐIỀN — VD: Prometheus/Grafana]</em></td></tr><tr><td>Error Handling</td><td><em>[VD: Error code chuẩn hóa, retry/backoff, circuit breaker, DLQ]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Caching</td><td><em>[VD: Cache-aside, TTL [ĐIỀN]</em>, invalidation khi <em>[ĐIỀN]</em>]</td><td><em>[ĐIỀN — VD: Redis]</em></td></tr><tr><td>Data Protection</td><td><em>[VD: Mã hóa at-rest [ĐIỀN]</em> + in-transit TLS 1.2+; masking PII trong log]</td><td><em>[ĐIỀN chuẩn]</em></td></tr><tr><td>Secrets Management</td><td><em>[VD: Vault / KMS, không hardcode credential]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>i18n / l10n</td><td><em>[VD: Đa ngôn ngữ [ĐIỀN]</em>; múi giờ, định dạng ngày]</td><td><em>[ĐIỀN]</em></td></tr><tr><td>Configuration</td><td><em>[VD: Config tách khỏi code, theo môi trường]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>9. Architecture Decisions (ADR)</strong></h2>
+<p><em>  Mỗi ADR lưu riêng trong repo (immutable), format: Title · Status · Context · Decision · Consequences · Alternatives considered. Bảng dưới là danh mục tham chiếu.</em></p>
+<table><tr class="doc-preview-thead"><td><strong>ADR ID</strong></td><td><strong>Tiêu đề quyết định</strong></td><td><strong>Trạng thái</strong></td><td><strong>Link</strong></td></tr><tr><td>ADR-001</td><td><em>[Kiến trúc tổng thể: ĐIỀN]</em></td><td><em>[Proposed/Accepted]</em></td><td><em>[link repo]</em></td></tr><tr><td>ADR-002</td><td><em>[Tech stack: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[link repo]</em></td></tr><tr><td>ADR-003</td><td><em>[Chiến lược tích hợp: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[link repo]</em></td></tr><tr><td>ADR-004</td><td><em>[Data store: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[link repo]</em></td></tr><tr><td>ADR-005</td><td><em>[Deployment model: ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[link repo]</em></td></tr><tr><td><em>[ADR-00n]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[link repo]</em></td></tr></table>
+<h2><strong>10. Quality Requirements &amp; cách đạt được</strong></h2>
+<p><em>  Map từng NFR trọng yếu (theo input) → giải pháp kiến trúc cụ thể → cách kiểm chứng. NFR không kiểm chứng được là NFR chưa hoàn chỉnh.</em></p>
+<table><tr class="doc-preview-thead"><td><strong>NFR ID</strong></td><td><strong>Yêu cầu (định lượng)</strong></td><td><strong>Giải pháp kiến trúc đáp ứng</strong></td><td><strong>Cách kiểm chứng</strong></td></tr><tr><td>NFR-PER-01</td><td><em>[VD: p95 latency &lt; 500ms @ [ĐIỀN]</em> CCU]</td><td><em>[VD: Cache-aside Redis, connection pool, index tối ưu, autoscaling]</em></td><td><em>[Load test — kịch bản ĐIỀN]</em></td></tr><tr><td>NFR-AVA-01</td><td><em>[VD: SLA 99.9%; RTO ≤ ĐIỀN; RPO ≤ ĐIỀN]</em></td><td><em>[VD: HA ≥ 2 node, DB replication, health check + auto failover]</em></td><td><em>[DR drill định kỳ ĐIỀN]</em></td></tr><tr><td>NFR-SEC-01</td><td><em>[VD: Tuân thủ ĐIỀN chuẩn bảo mật]</em></td><td><em>[VD: OIDC + RBAC, mã hóa at-rest/in-transit, WAF, secrets vault]</em></td><td><em>[Pentest / security review]</em></td></tr><tr><td>NFR-SCA-01</td><td><em>[VD: Chịu tải tăng ĐIỀN% trong ĐIỀN năm]</em></td><td><em>[VD: Stateless service, horizontal scaling, partition dữ liệu]</em></td><td><em>[Capacity test]</em></td></tr><tr><td>NFR-MAI-01</td><td><em>[VD: Thay đổi nhỏ release trong ĐIỀN ngày]</em></td><td><em>[VD: Modular design, CI/CD, test tự động ≥ ĐIỀN% coverage]</em></td><td><em>[Lead time đo qua pipeline]</em></td></tr><tr><td><em>[NFR-...]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>11. Risks &amp; Technical Debt</strong></h2>
+<h3><strong>11.1 Rủi ro kỹ thuật</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Rủi ro</strong></td><td><strong>Khả năng</strong></td><td><strong>Tác động</strong></td><td><strong>Giảm thiểu</strong></td></tr><tr><td>R-01</td><td><em>[VD: Hệ thống hiện hữu [ĐIỀN]</em> chưa có API — phụ thuộc timeline vendor]</td><td><em>[C/T/T]</em></td><td><em>[Cao]</em></td><td><em>[VD: PoC integration sớm; fallback file-based]</em></td></tr><tr><td>R-02</td><td><em>[VD: NFR performance chưa được xác nhận với tải thực]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[VD: Load test từ Sprint ĐIỀN]</em></td></tr><tr><td>R-03</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>11.2 Technical Debt chấp nhận có chủ đích</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Debt</strong></td><td><strong>Lý do chấp nhận</strong></td><td><strong>Kế hoạch trả</strong></td></tr><tr><td>TD-01</td><td><em>[ĐIỀN — VD: chưa có distributed tracing ở phase 1]</em></td><td><em>[VD: Ưu tiên go-live]</em></td><td><em>[VD: Phase 2 — Q ĐIỀN]</em></td></tr><tr><td>TD-02</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>12. Glossary (Thuật ngữ)</strong></h2>
+<table><tr class="doc-preview-thead"><td><strong>Thuật ngữ</strong></td><td><strong>Định nghĩa</strong></td></tr><tr><td>ADR</td><td>Architecture Decision Record — bản ghi quyết định kiến trúc kèm bối cảnh và hệ quả</td></tr><tr><td>C4 Model</td><td>Mô hình sơ đồ hóa kiến trúc 4 cấp: Context → Container → Component → Code</td></tr><tr><td>NFR</td><td>Non-Functional Requirement — yêu cầu phi chức năng</td></tr><tr><td>RTO / RPO</td><td>Recovery Time / Point Objective — thời gian phục hồi tối đa / mức mất dữ liệu tối đa</td></tr><tr><td>DLQ</td><td>Dead Letter Queue — hàng đợi chứa message xử lý thất bại</td></tr><tr><td><em>[ĐIỀN]</em></td><td><em>[Bổ sung thuật ngữ đặc thù dự án]</em></td></tr></table>
+</article>
+</body>
+</html>

@@ -4562,3 +4562,140 @@ html[data-theme="dark"] #hb-footer {
     transform: none;
   }
 }
+
+/* ============================================================
+   DOCUMENT READER — in-page confidential template viewer.
+   The card opens this reader; the DOCX download lives in its footer.
+   ============================================================ */
+.doc-reader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 420;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 10, 10, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+body.doc-reader-open { overflow: hidden; }
+
+.doc-reader-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(920px, 100%);
+  max-height: min(88vh, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  border-radius: 18px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+  overflow: hidden;
+}
+
+.doc-reader-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.doc-reader-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--text-display);
+}
+.doc-reader-close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border-visible);
+  border-radius: 10px;
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.doc-reader-close:hover { color: var(--text-display); border-color: var(--accent); }
+.doc-reader-close:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.doc-reader-body {
+  overflow: auto;
+  padding: 20px 24px 28px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+/* The standalone preview page carries its own head + download link; inside
+   the reader the dialog chrome replaces both. */
+.doc-reader-body .doc-preview-head { display: none; }
+.doc-reader-body h1 { font-size: 20px; margin: 14px 0 6px; color: var(--text-display); }
+.doc-reader-body h2 { font-size: 17px; margin: 22px 0 8px; color: var(--text-display); }
+.doc-reader-body h3 { font-size: 15px; margin: 18px 0 6px; color: var(--text-display); }
+.doc-reader-body h4, .doc-reader-body h5 { font-size: 13.5px; margin: 14px 0 6px; color: var(--text-display); }
+.doc-reader-body p { margin: 8px 0; }
+.doc-reader-body ul { margin: 8px 0 8px 22px; padding: 0; }
+.doc-reader-body li { margin: 4px 0; }
+.doc-reader-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  font-size: 12.5px;
+}
+.doc-reader-body td {
+  border: 1px solid var(--border-visible);
+  padding: 6px 9px;
+  vertical-align: top;
+}
+.doc-reader-body tr.doc-preview-thead td {
+  background: var(--surface-raised);
+  font-weight: 600;
+  color: var(--text-display);
+}
+.doc-reader-body mark {
+  background: color-mix(in srgb, var(--brand-yellow, #FAA61A) 35%, transparent);
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.doc-reader-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+.doc-reader-note {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.doc-reader-download {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 9px 20px;
+  border-radius: 10px;
+  background: var(--brand-red, #DA2128);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+.doc-reader-download:hover { filter: brightness(1.08); text-decoration: none; }
+.doc-reader-download:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 640px) {
+  .doc-reader-overlay { padding: 10px; }
+  .doc-reader-dialog { max-height: 96vh; border-radius: 12px; }
+  .doc-reader-foot { flex-direction: column; align-items: stretch; text-align: center; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-reader-dialog { animation: fadeIn 0.18s ease; }
+}

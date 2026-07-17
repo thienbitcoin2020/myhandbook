@@ -531,6 +531,194 @@ def curate(source: Path, destination: Path, transform: Callable[[DocumentObject]
     Document(destination)
 
 
+# ── HTML previews ───────────────────────────────────────────────────────
+# The documents are CONFIDENTIAL, so the site's primary interaction is
+# *reading in the browser*; the DOCX download is offered from inside the
+# reader. Previews are rendered from the already-curated packages (never from
+# Template/ working copies), so what the reader shows is byte-derived from
+# exactly what the download delivers.
+
+import html as html_escape_module
+
+PREVIEW_STYLE = """
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+"""
+
+
+def _render_runs(paragraph: Paragraph) -> str:
+    parts: list[str] = []
+    for run in paragraph.runs:
+        text = html_escape_module.escape(run.text)
+        if not text.strip():
+            if text:
+                parts.append(text)
+            continue
+        if run.font.highlight_color is not None:
+            text = f"<mark>{text}</mark>"
+        if run.bold:
+            text = f"<strong>{text}</strong>"
+        if run.italic:
+            text = f"<em>{text}</em>"
+        parts.append(text)
+    rendered = "".join(parts)
+    return rendered if rendered.strip() else ""
+
+
+def _paragraph_tag(paragraph: Paragraph) -> str:
+    style_name = paragraph.style.name if paragraph.style is not None else ""
+    style_name = style_name or ""
+    if style_name == "Title":
+        return "h1"
+    if style_name.startswith("Heading"):
+        try:
+            level = int(style_name.rsplit(" ", 1)[-1])
+        except ValueError:
+            level = 1
+        return f"h{min(level + 1, 5)}"
+    return "p"
+
+
+def _is_list_item(paragraph: Paragraph) -> bool:
+    properties = paragraph._p.pPr
+    if properties is not None and properties.find(qn("w:numPr")) is not None:
+        return True
+    style_name = paragraph.style.name if paragraph.style is not None else ""
+    return (style_name or "").startswith("List")
+
+
+def render_preview_body(document: DocumentObject) -> str:
+    blocks: list[str] = []
+    list_items: list[str] = []
+
+    def flush_list() -> None:
+        nonlocal list_items
+        if list_items:
+            items = "".join(f"<li>{item}</li>" for item in list_items)
+            blocks.append(f"<ul>{items}</ul>")
+            list_items = []
+
+    for child in document.element.body.iterchildren():
+        if child.tag == qn("w:p"):
+            paragraph = Paragraph(child, document)
+            rendered = _render_runs(paragraph)
+            if not rendered:
+                continue
+            if _is_list_item(paragraph):
+                list_items.append(rendered)
+                continue
+            flush_list()
+            tag = _paragraph_tag(paragraph)
+            blocks.append(f"<{tag}>{rendered}</{tag}>")
+        elif child.tag == qn("w:tbl"):
+            flush_list()
+            table = Table(child, document)
+            rows_html: list[str] = []
+            for row_index, row in enumerate(table.rows):
+                cells_html: list[str] = []
+                seen_cells: set[int] = set()  # merged cells repeat the same tc
+                for cell in row.cells:
+                    marker = id(cell._tc)
+                    if marker in seen_cells:
+                        continue
+                    seen_cells.add(marker)
+                    cell_parts = []
+                    for cell_paragraph in cell.paragraphs:
+                        rendered = _render_runs(cell_paragraph)
+                        if rendered:
+                            cell_parts.append(rendered)
+                    cells_html.append(f"<td>{'<br/>'.join(cell_parts) or '&#160;'}</td>")
+                row_class = ' class="doc-preview-thead"' if row_index == 0 else ""
+                rows_html.append(f"<tr{row_class}>{''.join(cells_html)}</tr>")
+            blocks.append(f"<table>{''.join(rows_html)}</table>")
+    flush_list()
+    return "\n".join(blocks)
+
+
+def render_preview_page(document: DocumentObject, destination_name: str) -> str:
+    body = render_preview_body(document)
+    # Titles come from the same run-level renderer as the body: raw body_text()
+    # walks mc:AlternateContent Choice AND Fallback branches and repeats banner
+    # text, so the naive first-paragraph approach produced tripled titles.
+    title_parts: list[str] = []
+    for child in document.element.body.iterchildren():
+        if child.tag != qn("w:p"):
+            continue
+        rendered = re.sub(r"<[^>]+>", "", _render_runs(Paragraph(child, document))).strip()
+        if rendered:
+            title_parts.append(rendered)
+        if len(title_parts) == 2:
+            break
+    title = " — ".join(title_parts) if title_parts else Path(destination_name).stem
+    title = html_escape_module.escape(title[:110])
+    # previews live in assets/templates/previews/, one level beside the role dirs
+    download_href = "../" + destination_name.replace("\\", "/")
+    return f"""<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>{title} — Xem trước</title>
+<style>{PREVIEW_STYLE}</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="{download_href}" download>Tải bản DOCX</a></p>
+</header>
+{body}
+</article>
+</body>
+</html>
+"""
+
+
+def build_previews(output_root: Path) -> list[Path]:
+    previews_root = output_root / "previews"
+    previews_root.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for _, destination_name, _ in CURATIONS:
+        docx_path = output_root / destination_name
+        if not docx_path.is_file():
+            raise FileNotFoundError(f"Curated document missing before preview build: {docx_path}")
+        document = Document(docx_path)
+        page = render_preview_page(document, destination_name)
+        preview_path = previews_root / (Path(destination_name).stem + ".html")
+        preview_path.write_text(page, encoding="utf-8", newline="\n")
+        written.append(preview_path)
+        print(f"[OK] preview {preview_path.relative_to(ROOT)}")
+    return written
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -544,8 +732,19 @@ def main() -> None:
         action="store_true",
         help="Delete the output root before rebuilding the explicit curated set",
     )
+    parser.add_argument(
+        "--previews-only",
+        action="store_true",
+        help="Rebuild only the HTML previews from the existing curated DOCX files",
+    )
     args = parser.parse_args()
     output_root = args.output_root.resolve()
+
+    if args.previews_only:
+        previews = build_previews(output_root)
+        print(f"[OK] rendered {len(previews)} HTML previews")
+        return
+
     if args.clean and output_root.exists():
         shutil.rmtree(output_root)
 
@@ -557,6 +756,8 @@ def main() -> None:
         written.append(destination)
         print(f"[OK] {source.relative_to(ROOT)} -> {destination.relative_to(ROOT)}")
     print(f"[OK] curated {len(written)} publishable DOCX files")
+    previews = build_previews(output_root)
+    print(f"[OK] rendered {len(previews)} HTML previews")
 
 
 if __name__ == "__main__":

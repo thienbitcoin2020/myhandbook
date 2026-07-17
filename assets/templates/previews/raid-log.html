@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>RAID LOG — RISKS · ASSUMPTIONS · ISSUES · DEPENDENCIES — Ngữ cảnh RAID Log — Xem trước</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="../pm/raid-log.docx" download>Tải bản DOCX</a></p>
+</header>
+<p><strong>RAID LOG — RISKS · ASSUMPTIONS · ISSUES · DEPENDENCIES</strong></p>
+<h3>Ngữ cảnh RAID Log</h3>
+<table><tr class="doc-preview-thead"><td><strong>Trường</strong></td><td><strong>Nội dung</strong></td></tr><tr><td>Tên dự án</td><td>[ĐIỀN tên dự án]</td></tr><tr><td>Mã dự án</td><td>[ĐIỀN mã/ID dự án]</td></tr><tr><td>Khẩu vị rủi ro của Sponsor</td><td>[ĐIỀN: Thấp / Trung bình / Cao — chưa được cung cấp trong input]</td></tr><tr><td>Tần suất review định kỳ</td><td>[ĐIỀN — vd: risk review trong họp tiến độ hàng tuần; rà soát toàn bộ hàng tháng]</td></tr><tr><td>Vị trí lưu bản chính (single source of truth)</td><td>[ĐIỀN link / đường dẫn]</td></tr><tr><td>Tài liệu tham chiếu</td><td>Project Charter Mục 8; Project Management Plan Mục 8 (khung quản lý rủi ro) &amp; Mục 4.3 (contingency reserve)</td></tr><tr><td>Chuẩn tham chiếu</td><td>PMBOK® Guide — Seventh Edition (tài liệu tham chiếu của mẫu)</td></tr></table>
+<h2>Thang đánh giá &amp; ngưỡng escalate</h2>
+<h3>Thang Probability &amp; Impact (1–5)</h3>
+<table><tr class="doc-preview-thead"><td><strong>Mức</strong></td><td><strong>Probability (khả năng xảy ra)</strong></td><td><strong>Impact (tác động)</strong></td></tr><tr><td>1</td><td>Hiếm (&lt;10%)</td><td>Không đáng kể — hấp thụ trong kế hoạch hiện tại</td></tr><tr><td>2</td><td>Khó xảy ra (10–30%)</td><td>Nhỏ — ảnh hưởng cục bộ, nằm trong buffer</td></tr><tr><td>3</td><td>Có thể xảy ra (30–50%)</td><td>Trung bình — ảnh hưởng milestone/chi phí trong ngưỡng cho phép</td></tr><tr><td>4</td><td>Nhiều khả năng (50–80%)</td><td>Lớn — trượt baseline, cần Change Request</td></tr><tr><td>5</td><td>Gần như chắc chắn (&gt;80%)</td><td>Nghiêm trọng — đe doạ objective, tuân thủ hoặc uy tín tổ chức</td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Ngưỡng % và định nghĩa impact có thể hiệu chỉnh theo dự án tại risk workshop [ĐIỀN nếu khác]. Impact đánh giá trên cả 4 chiều: cost / schedule / scope / quality — lấy mức cao nhất.</em></p>
+<h3>Phân dải Score &amp; ngưỡng escalate theo khẩu vị rủi ro</h3>
+<table><tr class="doc-preview-thead"><td><strong>Dải Score (P×I)</strong></td><td><strong>Quy tắc xử lý</strong></td></tr><tr><td>1 – 5 (Thấp)</td><td>Theo dõi; review định kỳ; có thể Accept có kiểm soát</td></tr><tr><td>6 – 11 (Trung bình)</td><td>Bắt buộc có mitigation plan và Owner; review mỗi kỳ</td></tr><tr><td>12 – 25 (Cao)</td><td>Bắt buộc có CẢ mitigation LẪN contingency plan; báo cáo trong status report; escalate Sponsor theo ngưỡng dưới</td></tr></table>
+<table><tr class="doc-preview-thead"><td><strong>Khẩu vị rủi ro của Sponsor</strong></td><td><strong>Ngưỡng escalate Sponsor (gợi ý — chốt cùng Sponsor)</strong></td></tr><tr><td>Thấp</td><td>Score ≥ 9</td></tr><tr><td>Trung bình</td><td>Score ≥ 12</td></tr><tr><td>Cao</td><td>Score ≥ 15</td></tr><tr><td><strong>Áp dụng cho dự án này</strong></td><td><strong>[ĐIỀN — theo khẩu vị đã chọn ở Document Control; chưa được cung cấp trong input]</strong></td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Trạng thái sử dụng — Risks: Open / Monitoring / Escalated / Closed. Issues: Open / In progress / Resolved / Closed. Dependencies &amp; Assumptions: Open / Validated / At risk / Closed.</em></p>
+<h2>1. RISKS (Bảng rủi ro) — sắp theo Score giảm dần</h2>
+<p>Mô tả theo cấu trúc « Do &lt;nguyên nhân&gt;, có thể xảy ra &lt;sự kiện&gt;, dẫn đến &lt;tác động&gt; ». Chấm P/I trong risk workshop và cập nhật khi có dữ liệu mới.</p>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Mô tả (nguyên nhân → sự kiện → tác động)</strong></td><td><strong>Category</strong></td><td><strong>P</strong></td><td><strong>I</strong></td><td><strong>Score</strong></td><td><strong>Response</strong></td><td><strong>Mitigation / Contingency plan</strong></td><td><strong>Owner</strong></td><td><strong>Trigger</strong></td><td><strong>Status</strong></td></tr><tr><td>R-001</td><td>[ĐIỀN: nguyên nhân → sự kiện → tác động]</td><td>[ĐIỀN]</td><td>[1–5]</td><td>[1–5]</td><td>[P×I]</td><td>[Avoid / Mitigate / Transfer / Accept]</td><td>[ĐIỀN: mitigation / contingency]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN điều kiện kích hoạt]</td><td>Open</td></tr><tr><td>R-002</td><td>[ĐIỀN: nguyên nhân → sự kiện → tác động]</td><td>[ĐIỀN]</td><td>[1–5]</td><td>[1–5]</td><td>[P×I]</td><td>[Avoid / Mitigate / Transfer / Accept]</td><td>[ĐIỀN: mitigation / contingency]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN điều kiện kích hoạt]</td><td>Open</td></tr><tr><td>R-003</td><td>[ĐIỀN: nguyên nhân → sự kiện → tác động]</td><td>[ĐIỀN]</td><td>[1–5]</td><td>[1–5]</td><td>[P×I]</td><td>[Avoid / Mitigate / Transfer / Accept]</td><td>[ĐIỀN: mitigation / contingency]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN điều kiện kích hoạt]</td><td>Open</td></tr><tr><td>R-004</td><td>[ĐIỀN: nguyên nhân → sự kiện → tác động]</td><td>[ĐIỀN]</td><td>[1–5]</td><td>[1–5]</td><td>[P×I]</td><td>[Avoid / Mitigate / Transfer / Accept]</td><td>[ĐIỀN: mitigation / contingency]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN điều kiện kích hoạt]</td><td>Open</td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Khi trigger của một rủi ro kích hoạt (rủi ro đã xảy ra), chuyển thành dòng mới trong bảng ISSUES kèm tham chiếu ID gốc, cập nhật status rủi ro thành Closed (materialized).</em></p>
+<h2>2. ASSUMPTIONS (Bảng giả định)</h2>
+<p>Chỉ ghi các giả định có ảnh hưởng đến kế hoạch hoặc quyết định; mỗi giả định phải có owner và hạn xác nhận.</p>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Mô tả giả định</strong></td><td><strong>Ảnh hưởng nếu giả định sai</strong></td><td><strong>Hạn validate</strong></td><td><strong>Owner</strong></td></tr><tr><td>A-001</td><td>[ĐIỀN giả định]</td><td>[ĐIỀN tác động]</td><td>[ĐIỀN hạn validate]</td><td>[ĐIỀN tên]</td></tr><tr><td>A-002</td><td>[ĐIỀN giả định]</td><td>[ĐIỀN tác động]</td><td>[ĐIỀN hạn validate]</td><td>[ĐIỀN tên]</td></tr><tr><td>A-003</td><td>[ĐIỀN giả định]</td><td>[ĐIỀN tác động]</td><td>[ĐIỀN hạn validate]</td><td>[ĐIỀN tên]</td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Giả định quá hạn validate mà chưa xác nhận được → chuyển trạng thái « At risk » và cân nhắc mở rủi ro tương ứng trong bảng RISKS.</em></p>
+<h2>3. ISSUES (Bảng vấn đề hiện hữu)</h2>
+<p><em>Issue là rủi ro ĐÃ xảy ra hoặc vấn đề đang tồn tại — không dự đoán trước. Register khởi tạo để trống; ghi nhận khi phát sinh thực tế. Severity: Critical / High / Medium / Low.</em></p>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Mô tả vấn đề</strong></td><td><strong>Severity</strong></td><td><strong>Action (hành động xử lý)</strong></td><td><strong>Owner</strong></td><td><strong>Deadline</strong></td><td><strong>Status</strong></td></tr><tr><td>I-001</td><td>[ĐIỀN vấn đề hiện hữu]</td><td>[Critical / High / Medium / Low]</td><td>[ĐIỀN hành động xử lý]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN]</td><td>Open</td></tr><tr><td>I-002</td><td>[ĐIỀN vấn đề hiện hữu]</td><td>[Critical / High / Medium / Low]</td><td>[ĐIỀN hành động xử lý]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN]</td><td>Open</td></tr><tr><td>I-003</td><td>[ĐIỀN vấn đề hiện hữu]</td><td>[Critical / High / Medium / Low]</td><td>[ĐIỀN hành động xử lý]</td><td>[ĐIỀN tên]</td><td>[ĐIỀN]</td><td>Open</td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Issue Severity Critical/High phải xuất hiện trong status report gần nhất và escalate theo Communication Matrix (PMP Mục 7.2).</em></p>
+<h2>4. DEPENDENCIES (Bảng phụ thuộc)</h2>
+<p><em>Loại: Internal (giữa các nhóm/hạng mục trong dự án hoặc tổ chức) / External (bên ngoài: vendor, đối tác, hệ thống thứ ba, quy định).</em></p>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Mô tả phụ thuộc</strong></td><td><strong>Loại</strong></td><td><strong>Bên liên quan</strong></td><td><strong>Due date</strong></td><td><strong>Status</strong></td></tr><tr><td>D-001</td><td>[ĐIỀN phụ thuộc]</td><td>[Internal / External]</td><td>[ĐIỀN bên liên quan]</td><td>[ĐIỀN due date]</td><td>Open</td></tr><tr><td>D-002</td><td>[ĐIỀN phụ thuộc]</td><td>[Internal / External]</td><td>[ĐIỀN bên liên quan]</td><td>[ĐIỀN due date]</td><td>Open</td></tr><tr><td>D-003</td><td>[ĐIỀN phụ thuộc]</td><td>[Internal / External]</td><td>[ĐIỀN bên liên quan]</td><td>[ĐIỀN due date]</td><td>Open</td></tr></table>
+<p><em><strong>Lưu ý: </strong></em><em>Dependency trễ hoặc « At risk » nằm trên đường găng → mở rủi ro tương ứng trong bảng RISKS và đưa vào họp tiến độ gần nhất.</em></p>
+</article>
+</body>
+</html>

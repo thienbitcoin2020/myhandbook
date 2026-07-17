@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>TEMPLATE · PRODUCT BACKLOG — EPIC → USER STORIES — Xem trước</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="../po/epic-to-user-stories.docx" download>Tải bản DOCX</a></p>
+</header>
+<p><strong>TEMPLATE · PRODUCT BACKLOG</strong></p>
+<p><strong>EPIC → USER STORIES</strong></p>
+<p><strong>PHÂN RÃ CHUẨN INVEST · ACCEPTANCE CRITERIA GHERKIN</strong></p>
+<p><em>User Story theo thin vertical slice · Ưu tiên MoSCoW · Size S/M/L · Definition of Ready cho từng story</em></p>
+<h2>1 · Input epic cần phân rã</h2>
+<table><tr class="doc-preview-thead"><td><strong>Trường</strong></td><td><strong>Nội dung</strong></td></tr><tr><td><strong>Tên &amp; mô tả epic</strong></td><td><em><mark>[ĐIỀN: tên epic + mô tả 2–3 câu]</mark></em></td></tr><tr><td><strong>Mục tiêu business của epic</strong></td><td><em><mark>[ĐIỀN: outcome kinh doanh kỳ vọng, gắn metric nếu có]</mark></em></td></tr><tr><td><strong>Ràng buộc đã biết</strong></td><td><em><mark>[ĐIỀN: kỹ thuật, pháp lý, thời hạn, nguồn lực…]</mark></em></td></tr><tr><td><strong>Phạm vi loại trừ (nếu đã biết)</strong></td><td><em><mark>[ĐIỀN: những gì epic này KHÔNG bao gồm]</mark></em></td></tr></table>
+<h2>2 · Nguyên tắc phân rã &amp; viết AC</h2>
+<h3>2.1 · Chuẩn INVEST — mỗi story phải qua đủ 6 cửa</h3>
+<table><tr class="doc-preview-thead"><td><strong>Chữ</strong></td><td><strong>Ý nghĩa</strong></td><td><strong>Câu hỏi kiểm tra</strong></td></tr><tr><td><strong>I</strong></td><td>Independent — story tự đứng, không kẹt thứ tự với story khác</td><td><em>Có thể làm &amp; giao mà không phải chờ story nào?</em></td></tr><tr><td><strong>N</strong></td><td>Negotiable — chi tiết giải pháp còn thương lượng, không phải hợp đồng cứng</td><td><em>Còn chỗ để trao đổi cách làm với Dev?</em></td></tr><tr><td><strong>V</strong></td><td>Valuable — giao ra giá trị cho người dùng / khách hàng</td><td><em>Người dùng nhận được gì khi story xong?</em></td></tr><tr><td><strong>E</strong></td><td>Estimable — đủ rõ để đội ước lượng</td><td><em>Team ước lượng được S/M/L không?</em></td></tr><tr><td><strong>S</strong></td><td>Small — làm xong gọn trong 1 sprint</td><td><em>Nếu không xong trong 1 sprint → tách tiếp (xem 3.2)</em></td></tr><tr><td><strong>T</strong></td><td>Testable — có AC kiểm chứng được</td><td><em>QC viết được test case trực tiếp từ AC không?</em></td></tr></table>
+<h3>2.2 · Story quá lớn → tách theo các mẫu sau</h3>
+<ul><li>Theo bước trong workflow — mỗi bước người dùng đi qua là một story.</li><li>Theo thao tác CRUD — tạo / xem / sửa / xoá tách riêng.</li><li>Theo business rule — mỗi rule phức tạp là một story.</li><li>Theo biến thể dữ liệu hoặc loại người dùng.</li><li>Happy path trước, ngoại lệ và trường hợp lỗi thành story sau.</li><li>Tách spike (nghiên cứu kỹ thuật, timebox) khỏi story giao giá trị. <em>Mẹo nhớ: SPIDR — Spike · Path · Interface · Data · Rules.</em></li></ul>
+<h3>2.3 · Thin vertical slice — cắt dọc, giao sớm</h3>
+<ul><li>Mỗi story cắt dọc qua đủ các tầng UI → logic → data và giao ra thứ người dùng <strong>dùng được</strong>, dù nhỏ.</li><li>Không tách theo tầng kỹ thuật (“làm DB”, “làm API”, “làm màn hình”) — các mảnh đó không tự giao giá trị.</li><li>Story #1 của epic là slice mỏng nhất chạy được end-to-end (walking skeleton); các story sau bồi dần độ dày.</li></ul>
+<h3>2.4 · Từ cần tránh trong Acceptance Criteria</h3>
+<p>AC phải kiểm chứng được bằng con số, trạng thái hoặc thông điệp cụ thể. Gặp từ mơ hồ thì thay bằng tiêu chí đo được:</p>
+<table><tr class="doc-preview-thead"><td><strong>Từ cấm</strong></td><td><strong>Thay bằng tiêu chí đo được (ví dụ)</strong></td></tr><tr><td><strong>“nhanh”</strong></td><td>Phản hồi ≤ <em><mark>[ĐIỀN: X]</mark></em> giây ở p95, đo trên <em><mark>[ĐIỀN: môi trường]</mark></em></td></tr><tr><td><strong>“dễ dùng”</strong></td><td>Hoàn thành tác vụ trong ≤ <em><mark>[ĐIỀN: N]</mark></em> bước, không cần hướng dẫn</td></tr><tr><td><strong>“thân thiện”</strong></td><td>Đạt <em><mark>[ĐIỀN: tiêu chí cụ thể, vd. WCAG 2.1 AA]</mark></em></td></tr><tr><td><strong>“ổn định”</strong></td><td>Tỷ lệ lỗi &lt; <em><mark>[ĐIỀN: X]</mark></em>% trên <em><mark>[ĐIỀN: N]</mark></em> request</td></tr><tr><td><strong>“đẹp / hiện đại”</strong></td><td>Khớp design đã duyệt tại <em><mark>[ĐIỀN: link Figma / spec]</mark></em></td></tr></table>
+<h2>3 · Backlog tổng quan — thứ tự giao giá trị</h2>
+<p>Sắp story theo thứ tự giao giá trị sớm nhất, không theo thứ tự kỹ thuật. Chỉ tạo các story cần thiết để epic có thể được lập kế hoạch và kiểm chứng.</p>
+<table><tr class="doc-preview-thead"><td><strong>#</strong></td><td><strong>ID</strong></td><td><strong>Title</strong></td><td><strong>Slice giá trị giao được</strong></td><td><strong>MoSCoW</strong></td><td><strong>Size</strong></td></tr><tr><td><strong>1</strong></td><td>US-01</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr><tr><td><strong>2</strong></td><td>US-02</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr><tr><td><strong>3</strong></td><td>US-03</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr><tr><td><strong>4</strong></td><td>US-04</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr><tr><td><strong>5</strong></td><td>US-05</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr><tr><td><strong>6</strong></td><td>US-06</td><td><em><mark>[ĐIỀN: title story]</mark></em></td><td><em><mark>[ĐIỀN: giá trị người dùng nhận được khi story xong]</mark></em></td><td><em><mark>[ĐIỀN: M/S/C/W]</mark></em></td><td><em><mark>[ĐIỀN]</mark></em></td></tr></table>
+<ul><li>Story #1 phải là walking skeleton — luồng mỏng nhất chạy end-to-end.</li><li>MoSCoW: Must = thiếu là epic vô nghĩa · Should = quan trọng nhưng có đường vòng · Could = tăng trải nghiệm · Won’t = chốt không làm kỳ này (ghi rõ để chặn scope creep).</li><li>Size S/M/L là tương đối giữa các story trong epic; story L → quay lại mục 2.2 để tách tiếp.</li></ul>
+<h2>4 · Chi tiết User Story — mỗi story một block</h2>
+<p>Mẫu cung cấp một block US-01. Nhân bản block khi cần và chỉ giữ các story thực sự thuộc epic; mỗi story phải có giá trị, tiêu chí chấp nhận và quan hệ phụ thuộc rõ ràng.</p>
+<table><tr class="doc-preview-thead"><td><strong>US-01</strong>  ·  <em><mark>[ĐIỀN: title — &lt;động từ&gt; + &lt;đối tượng&gt;]</mark></em></td></tr><tr><td><strong>User Story</strong></td><td><em>As a </em><em><mark>[ĐIỀN: persona]</mark></em><em>, I want </em><em><mark>[ĐIỀN: goal — hành động / khả năng]</mark></em><em>, so that </em><em><mark>[ĐIỀN: benefit — giá trị nhận được]</mark></em><em>.</em></td></tr><tr><td><strong>Acceptance Criteria (Gherkin)</strong></td><td><strong>Scenario 1 — Happy path: </strong><em><mark>[ĐIỀN: tên scenario]</mark></em><br/><strong>  Given </strong><em><mark>[ĐIỀN: bối cảnh / trạng thái ban đầu]</mark></em><br/><strong>  When </strong><em><mark>[ĐIỀN: hành động của người dùng]</mark></em><br/><strong>  Then </strong><em><mark>[ĐIỀN: kết quả mong đợi — trạng thái / giá trị cụ thể]</mark></em><br/><strong>Scenario 2 — Edge case: </strong><em><mark>[ĐIỀN: tên scenario]</mark></em><br/><strong>  Given </strong><em><mark>[ĐIỀN: bối cảnh ở điều kiện biên / giới hạn]</mark></em><br/><strong>  When </strong><em><mark>[ĐIỀN: hành động tại giá trị biên]</mark></em><br/><strong>  Then </strong><em><mark>[ĐIỀN: hành vi đúng tại giá trị biên]</mark></em><br/><strong>Scenario 3 — Negative case: </strong><em><mark>[ĐIỀN: tên scenario]</mark></em><br/><strong>  Given </strong><em><mark>[ĐIỀN: bối cảnh dẫn tới thao tác không hợp lệ]</mark></em><br/><strong>  When </strong><em><mark>[ĐIỀN: hành động sai / bị cấm]</mark></em><br/><strong>  Then </strong><em><mark>[ĐIỀN: thông báo lỗi / hành vi chặn cụ thể]</mark></em><br/><em>Thêm And/But khi cần. Mỗi Then phải kiểm chứng được bằng số liệu, trạng thái hoặc thông điệp cụ thể — không dùng từ mơ hồ (mục 3.4).</em></td></tr><tr><td><strong>Priority &amp; Size</strong></td><td><strong>MoSCoW: </strong><em><mark>[ĐIỀN: Must / Should / Could / Won’t]</mark></em> — lý do: <em><mark>[ĐIỀN: vì sao ở mức này]</mark></em><br/><strong>Size: </strong><em><mark>[ĐIỀN: S / M / L]</mark></em> (tương đối so với các story còn lại; L → tách tiếp theo mục 3.2)</td></tr><tr><td><strong>Dependencies &amp; Notes</strong></td><td><strong>Phụ thuộc: </strong><em><mark>[ĐIỀN: story / API / hệ thống — ghi “Không” nếu độc lập]</mark></em><br/><strong>Note cho Dev: </strong><em><mark>[ĐIỀN: ràng buộc kỹ thuật, API, dữ liệu]</mark></em><br/><strong>Note cho QC: </strong><em><mark>[ĐIỀN: dữ liệu test, môi trường, case cần chú ý]</mark></em></td></tr><tr><td><strong>Definition of Ready</strong></td><td>☐  Story đúng format &amp; đã kiểm đủ 6 chữ INVEST (vi phạm S → đã tách)<br/>☐  AC đủ 3 scenario happy · edge · negative; không chứa từ mơ hồ<br/>☐  Dependencies đã rõ, không còn blocker mở<br/>☐  Team đã thống nhất size (S/M/L)<br/>☐  Mock-up / dữ liệu mẫu đính kèm (nếu có UI/data): <em><mark>[ĐIỀN: link]</mark></em><br/>☐  PO đã duyệt nội dung &amp; vị trí ưu tiên trong backlog</td></tr></table>
+</article>
+</body>
+</html>

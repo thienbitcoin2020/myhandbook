@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="referrer" content="no-referrer"/>
+<title>ARCHITECTURE DECISION RECORD (ADR) — ADR-[xxx]: [Động từ + quyết định — VD: Chọn &amp;lt;phương án X&amp;gt; làm &amp;lt;v — Xem trước</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 20px 64px;
+         font: 15px/1.65 system-ui, 'Segoe UI', sans-serif;
+         background: #ffffff; color: #1c1c1c; }
+  h1 { font-size: 24px; line-height: 1.3; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 26px 0 8px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  h4, h5 { font-size: 14.5px; margin: 16px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0 8px 22px; padding: 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13.5px; }
+  td { border: 1px solid #d0d0d0; padding: 6px 9px; vertical-align: top; }
+  tr.doc-preview-thead td { background: #f3f3f3; font-weight: 600; }
+  mark { background: #ffe58a; padding: 0 2px; border-radius: 2px; }
+  .doc-preview-head { border-bottom: 2px solid #da2128; padding-bottom: 14px; margin-bottom: 18px; }
+  .doc-preview-classification { font-weight: 700; color: #b31217; letter-spacing: .04em;
+                                text-transform: uppercase; font-size: 12px; margin: 0 0 6px; }
+  .doc-preview-note { margin: 0 0 10px; font-size: 13px; color: #555; }
+  .doc-preview-standalone-download a { display: inline-block; background: #da2128; color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 18px; border-radius: 8px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #181818; color: #e6e6e6; }
+    td { border-color: #3a3a3a; }
+    tr.doc-preview-thead td { background: #262626; }
+    mark { background: #7a5d00; color: #fff; }
+    .doc-preview-note { color: #a8a8a8; }
+  }
+</style>
+</head>
+<body>
+<article id="doc-preview-content" class="doc-preview">
+<header class="doc-preview-head">
+<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
+<p class="doc-preview-standalone-download"><a href="../sa/architecture-decision-record.docx" download>Tải bản DOCX</a></p>
+</header>
+<p><strong>ARCHITECTURE DECISION RECORD (ADR)</strong></p>
+<h2><strong>ADR-</strong><em>[xxx]</em><strong>: </strong><em>[Động từ + quyết định — VD: Chọn &lt;phương án X&gt; làm &lt;vấn đề — message broker / database / pattern giao tiếp giữa services&gt;]</em></h2>
+<table><tr class="doc-preview-thead"><td><strong>Thuộc tính</strong></td><td><strong>Giá trị</strong></td></tr><tr><td>Ngày quyết định</td><td><em>[dd/mm/yyyy]</em></td></tr><tr><td>Người quyết định (deciders)</td><td><em>[ĐIỀN — SA + Tech Lead + ĐIỀN, người có quyền chốt]</em></td></tr><tr><td>Người tư vấn / được tham vấn</td><td><em>[ĐIỀN — VD: EA, Security, DBA, vendor]</em></td></tr><tr><td>Tham chiếu</td><td><em>[Link SRS/BRD mã FR/NFR liên quan; link ADR liên quan]</em></td></tr></table>
+<h2><strong>1. Status (Trạng thái)</strong></h2>
+<p><em>[Proposed / Accepted / Deprecated / Superseded by ADR-yyy / Rejected]</em></p>
+<h2><strong>2. Context (Bối cảnh &amp; các lực tác động)</strong></h2>
+<p>Mô tả vấn đề cần quyết định và các &quot;lực&quot; (forces) đang tác động — cả business lẫn technical. Không nêu giải pháp ở đây.</p>
+<ul><li>Vấn đề: <em>[ĐIỀN — VD: chọn message broker / database / pattern giao tiếp giữa services]</em></li><li>Lực business: <em>[ĐIỀN — VD: deadline, ngân sách, cam kết SLA với khách hàng]</em></li><li>Lực technical: <em>[ĐIỀN — VD: hệ thống hiện hữu phải tích hợp, tải dự kiến, tech stack hiện tại]</em></li><li>Ràng buộc (constraints): <em>[ĐIỀN — budget, kỹ năng team, deadline, hệ thống hiện hữu, quy định pháp lý]</em></li><li>Giả định (assumptions): <em>[ĐIỀN — điều đang tin là đúng nhưng chưa xác nhận]</em></li></ul>
+<h2><strong>3. Decision Drivers (Tiêu chí đánh giá + trọng số)</strong></h2>
+<p><em>  Best practice: chốt driver và trọng số TRƯỚC khi chấm điểm option — tránh &quot;chấm ngược&quot; để hợp thức hóa phương án đã thích sẵn. Tổng trọng số = 100%.</em></p>
+<table><tr class="doc-preview-thead"><td><strong>ID</strong></td><td><strong>Tiêu chí (driver)</strong></td><td><strong>Trọng số</strong></td><td><strong>Cách đo / diễn giải</strong></td></tr><tr><td>D1</td><td><em>[VD: Phù hợp NFR — throughput/latency yêu cầu]</em></td><td><em>[30%]</em></td><td><em>[ĐIỀN — VD: đạt ≥ ĐIỀN msg/s trong PoC]</em></td></tr><tr><td>D2</td><td><em>[VD: Kỹ năng team &amp; learning curve]</em></td><td><em>[20%]</em></td><td><em>[ĐIỀN — VD: số người đã có kinh nghiệm]</em></td></tr><tr><td>D3</td><td><em>[VD: Chi phí (license + hạ tầng + vận hành, TCO 3 năm)]</em></td><td><em>[20%]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>D4</td><td><em>[VD: Độ trưởng thành &amp; hệ sinh thái, hỗ trợ vendor]</em></td><td><em>[15%]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>D5</td><td><em>[VD: Khả năng tích hợp với hệ thống hiện hữu ĐIỀN]</em></td><td><em>[15%]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>4. Considered Options (Các phương án đã cân nhắc)</strong></h2>
+<h3><strong>4.1 Bảng so sánh theo driver</strong></h3>
+<p><em>  Thang điểm gợi ý: 1 (kém) – 5 (tốt). Điểm có trọng số = Σ(điểm × trọng số driver).</em></p>
+<table><tr class="doc-preview-thead"><td><strong>Driver (trọng số)</strong></td><td><strong>Option A: </strong><em><strong>[ĐIỀN]</strong></em></td><td><strong>Option B: </strong><em><strong>[ĐIỀN]</strong></em></td><td><strong>Option C: </strong><em><strong>[ĐIỀN]</strong></em></td></tr><tr><td>D1 <em>[30%]</em></td><td><em>[điểm 1–5]</em></td><td><em>[điểm 1–5]</em></td><td><em>[điểm 1–5]</em></td></tr><tr><td>D2 <em>[20%]</em></td><td><em>[...]</em></td><td><em>[...]</em></td><td><em>[...]</em></td></tr><tr><td>D3 <em>[20%]</em></td><td><em>[...]</em></td><td><em>[...]</em></td><td><em>[...]</em></td></tr><tr><td>D4 <em>[15%]</em></td><td><em>[...]</em></td><td><em>[...]</em></td><td><em>[...]</em></td></tr><tr><td>D5 <em>[15%]</em></td><td><em>[...]</em></td><td><em>[...]</em></td><td><em>[...]</em></td></tr><tr><td>Tổng có trọng số</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h3><strong>4.2 Phân tích chi tiết từng option</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Khía cạnh</strong></td><td><strong>Option A: </strong><em><strong>[ĐIỀN]</strong></em></td><td><strong>Option B: </strong><em><strong>[ĐIỀN]</strong></em></td><td><strong>Option C: </strong><em><strong>[ĐIỀN]</strong></em></td></tr><tr><td>Ưu điểm</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Nhược điểm</td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Chi phí (TCO)</td><td><em>[ĐIỀN — license/hạ tầng/người]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Rủi ro chính</td><td><em>[ĐIỀN + mức C/T/T]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Độ trưởng thành</td><td><em>[ĐIỀN — version, cộng đồng, LTS, case study cùng ngành]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr><tr><td>Fit với constraints</td><td><em>[ĐIỀN — đối chiếu ràng buộc ở Mục 2]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>5. Decision (Quyết định)</strong></h2>
+<p>Chọn: <em>[Option ĐIỀN — tên phương án]</em>.</p>
+<p>Lý do: <em>[ĐIỀN — tóm tắt 3–5 dòng vì sao option này thắng theo driver; nêu rõ trade-off đã chấp nhận. VD: &quot;Option A đạt điểm cao nhất ở D1, D5 vốn chiếm 45% trọng số; chấp nhận nhược điểm về D2 vì có kế hoạch đào tạo ở Mục 8.&quot;]</em></p>
+<p>Các phương án bị loại và lý do loại: <em>[ĐIỀN — bắt buộc, mỗi option 1–2 dòng. VD: &quot;Option B bị loại vì vượt budget ĐIỀN%; Option C bị loại vì chưa có hỗ trợ chính thức cho ĐIỀN.&quot;]</em></p>
+<h2><strong>6. Consequences (Hệ quả)</strong></h2>
+<h3><strong>6.1 Tích cực</strong></h3>
+<ul><li><em>[ĐIỀN — VD: đáp ứng NFR throughput; giảm chi phí vận hành ĐIỀN%]</em></li><li><em>[ĐIỀN]</em></li></ul>
+<h3><strong>6.2 Tiêu cực / đánh đổi</strong></h3>
+<ul><li><em>[ĐIỀN — VD: team cần ĐIỀN tuần ramp-up; thêm 1 thành phần hạ tầng phải vận hành]</em></li><li><em>[ĐIỀN]</em></li></ul>
+<h3><strong>6.3 Technical debt chấp nhận có chủ đích</strong></h3>
+<table><tr class="doc-preview-thead"><td><strong>Debt</strong></td><td><strong>Lý do chấp nhận</strong></td><td><strong>Kế hoạch trả / thời điểm xem lại</strong></td></tr><tr><td><em>[ĐIỀN — VD: chưa bật multi-DC replication ở phase 1]</em></td><td><em>[ĐIỀN — VD: ưu tiên go-live]</em></td><td><em>[ĐIỀN — VD: review lại tại phase 2 / Q ĐIỀN]</em></td></tr><tr><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td></tr></table>
+<h2><strong>7. Follow-up Actions (Hành động tiếp theo)</strong></h2>
+<table><tr class="doc-preview-thead"><td><strong>#</strong></td><td><strong>Hành động</strong></td><td><strong>Người phụ trách</strong></td><td><strong>Hạn</strong></td><td><strong>Trạng thái</strong></td></tr><tr><td>1</td><td><em>[VD: PoC xác nhận driver D1 với tải ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[dd/mm]</em></td><td><em>[Open]</em></td></tr><tr><td>2</td><td><em>[VD: Cập nhật SAD Mục 4/5 theo quyết định này]</em></td><td><em>[ĐIỀN]</em></td><td><em>[dd/mm]</em></td><td><em>[Open]</em></td></tr><tr><td>3</td><td><em>[VD: Kế hoạch đào tạo team về ĐIỀN]</em></td><td><em>[ĐIỀN]</em></td><td><em>[dd/mm]</em></td><td><em>[Open]</em></td></tr><tr><td>4</td><td><em>[VD: Thông báo quyết định tới EA/ARB, dev team, vendor]</em></td><td><em>[ĐIỀN]</em></td><td><em>[dd/mm]</em></td><td><em>[Open]</em></td></tr></table>
+</article>
+</body>
+</html>

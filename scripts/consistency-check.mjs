@@ -13,7 +13,10 @@
  *   5. every data-sec / data-section-target resolves to a real section id
  *   6. every in-page #route link points at a declared route
  *   7. the lifecycle cross-walk is rectangular (colspan sums == column count)
- *   8. curated template downloads are allowlisted and EN/VI-symmetric
+ *   8. curated documents open in the in-page reader first: every template card
+ *      links the derived HTML preview of an allowlisted DOCX (read-then-
+ *      download, no direct download from cards), EN/VI-symmetric, and every
+ *      published document is reachable from both languages
  *
  * Browser-level E2E (fast tab switching, 390px mobile, cache upgrade) needs a
  * real test runner and is tracked separately — see README.
@@ -21,7 +24,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { PUBLISHED_DOCUMENTS } from './artifact-files.mjs';
+import { PUBLISHED_DOCUMENTS, documentPreviewPath } from './artifact-files.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -76,35 +79,64 @@ const linkedDocumentsByLanguage = {
   vi: new Set(),
 };
 
-function templateDownloadLinks(relative, html) {
+function _unsafePath(value) {
+  return value.includes('\\')
+    || value.startsWith('/')
+    || value.startsWith('.')
+    || /[?#]/.test(value)
+    || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(value);
+}
+
+// The documents are confidential: cards must open the in-page reader (the
+// derived HTML preview), never trigger a direct download. The download anchor
+// exists only inside the reader chrome, which main.js builds from the same
+// data-template-preview attribute validated here.
+function templatePreviewLinks(relative, html) {
   const links = [];
-  for (const anchor of html.matchAll(/<a\b([^>]*\bdata-template-download\b[^>]*)>/gi)) {
+
+  const directDownload = html.match(/\bdata-template-download\b/);
+  if (directDownload) {
+    fail('template-reader', `${relative} still has a legacy direct-download template link`);
+  }
+
+  for (const anchor of html.matchAll(/<a\b([^>]*\bdata-template-preview\b[^>]*)>/gi)) {
     const attributes = anchor[1];
     const href = /\bhref\s*=\s*(["'])(.*?)\1/i.exec(attributes);
-    if (!href) {
-      fail('template-download', `${relative} has a data-template-download link without href`);
+    const documentAttr = /\bdata-template-preview\s*=\s*(["'])(.*?)\1/i.exec(attributes);
+
+    if (!href || !documentAttr || !documentAttr[2]) {
+      fail('template-reader', `${relative} has a template card link without href or a document path`);
       continue;
     }
-    if (!/\bdownload(?:\s|=|$)/i.test(attributes)) {
-      fail('template-download', `${relative} template link ${href[2]} is missing the download attribute`);
+    if (/\sdownload(?:\s|=|>|$)/i.test(` ${attributes}`)) {
+      fail('template-reader', `${relative} card for ${documentAttr[2]} downloads directly instead of opening the reader`);
     }
 
-    const documentPath = href[2];
-    if (documentPath.includes('\\')
-        || documentPath.startsWith('/')
-        || documentPath.startsWith('.')
-        || /[?#]/.test(documentPath)
-        || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(documentPath)) {
-      fail('template-download', `${relative} has an unsafe or non-portable template href: ${documentPath}`);
+    const documentPath = documentAttr[2];
+    const previewPath = href[2];
+    if (_unsafePath(documentPath) || _unsafePath(previewPath)) {
+      fail('template-reader', `${relative} has an unsafe or non-portable template path: ${previewPath} / ${documentPath}`);
       continue;
     }
     if (!publishedDocumentSet.has(documentPath)) {
-      fail('template-download', `${relative} links to a document outside the publish allowlist: ${documentPath}`);
+      fail('template-reader', `${relative} references a document outside the publish allowlist: ${documentPath}`);
+      continue;
+    }
+    if (previewPath !== documentPreviewPath(documentPath)) {
+      fail('template-reader', `${relative} card href ${previewPath} is not the derived preview of ${documentPath}`);
       continue;
     }
     if (!exists(documentPath)) {
-      fail('template-download', `${relative} links to a missing document: ${documentPath}`);
+      fail('template-reader', `${relative} references a missing document: ${documentPath}`);
       continue;
+    }
+    if (!exists(previewPath)) {
+      fail('template-reader', `${relative} references a missing preview: ${previewPath}`);
+      continue;
+    }
+    const previewHtml = read(previewPath);
+    if (!previewHtml.includes('id="doc-preview-content"')) {
+      fail('template-reader', `${previewPath} has no #doc-preview-content for the in-page reader`);
     }
     links.push(documentPath);
   }
@@ -160,7 +192,7 @@ for (const relative of [...new Set(fragments)]) {
     }
   }
 
-  const templateLinks = templateDownloadLinks(relative, html);
+  const templateLinks = templatePreviewLinks(relative, html);
   templateLinksByFragment.set(relative, templateLinks);
   const language = relative.startsWith('pages/vi/') ? 'vi' : 'en';
   for (const documentPath of templateLinks) linkedDocumentsByLanguage[language].add(documentPath);
@@ -181,6 +213,9 @@ for (const [, enPath] of routes) {
 // data exposure. Every reviewed file must be discoverable in both languages.
 for (const documentPath of PUBLISHED_DOCUMENTS) {
   if (!exists(documentPath)) fail('template-manifest', `allowlisted document is missing: ${documentPath}`);
+  if (!exists(documentPreviewPath(documentPath))) {
+    fail('template-manifest', `derived reader preview is missing: ${documentPreviewPath(documentPath)}`);
+  }
   for (const language of ['en', 'vi']) {
     if (!linkedDocumentsByLanguage[language].has(documentPath)) {
       fail('template-coverage', `${documentPath} is not linked from any ${language.toUpperCase()} fragment`);
