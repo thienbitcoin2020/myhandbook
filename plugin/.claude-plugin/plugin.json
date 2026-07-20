@@ -1,0 +1,15 @@
+{
+  "name": "project-handbook",
+  "version": "0.1.0",
+  "description": "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) with 16 document templates",
+  "author": {
+    "name": "Thiện Phạm (Power Home PO)"
+  },
+  "keywords": [
+    "sdlc",
+    "handbook",
+    "templates",
+    "banking",
+    "water-scrum-fall"
+  ]
+}

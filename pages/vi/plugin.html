@@ -1,0 +1,284 @@
+<title>Claude Plugin | Cẩm nang</title>
+
+<style id="page-style">
+.table-plg{width:100%;border-collapse:collapse;font-size:12px}
+.table-plg th,.table-plg td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-plg th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-plg tr:hover td{background:var(--bg-hover)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+.plugin-cta{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+.dl-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;font-size:13px;padding:12px 20px;border-radius:var(--radius-sm);text-decoration:none;border:1px solid transparent;transition:filter 0.15s ease}
+.dl-btn:hover{filter:brightness(1.12)}
+.dl-btn:focus-visible{outline:3px solid var(--focus-color,var(--accent));outline-offset:3px}
+.dl-meta{font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)}
+.cmd-row{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px}
+.cmd-row code{flex:1;font-family:var(--font-mono);font-size:12px;color:var(--accent-bright);overflow-x:auto;white-space:nowrap}
+.prompt-row{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px}
+.prompt-row code{flex:1;font-family:var(--font-mono);font-size:11.5px;color:var(--text-secondary);white-space:normal}
+.copy-btn{flex-shrink:0;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);background:transparent;border:1px solid var(--border-visible);border-radius:999px;padding:5px 12px;cursor:pointer;transition:color 0.15s ease,border-color 0.15s ease}
+.copy-btn:hover{color:var(--text-display);border-color:var(--accent)}
+.copy-btn:focus-visible{outline:3px solid var(--focus-color,var(--accent));outline-offset:2px}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:10px}
+.skill-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:10px}
+.skill-head{display:flex;align-items:flex-start;gap:10px}
+.skill-icon{font-size:20px;line-height:1.2}
+.skill-name{font-size:14px;font-weight:700;color:var(--text-display);margin:0}
+.skill-id{font-family:var(--font-mono);font-size:10px;color:var(--accent-bright)}
+.skill-count{margin-left:auto;font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);border:1px solid var(--border-visible);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.skill-desc{font-size:12px;color:var(--text-secondary);margin:0;line-height:1.55}
+.skill-triggers{display:flex;flex-wrap:wrap;gap:6px}
+.trigger-chip{font-family:var(--font-mono);font-size:9px;color:var(--text-secondary);border:1px solid var(--border);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.skill-templates summary{cursor:pointer;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.skill-templates summary:hover{color:var(--text-display)}
+.skill-templates ul{margin:8px 0 0 18px;font-size:12px;color:var(--text-secondary)}
+.skill-templates li{margin:3px 0}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🧩</div>
+      <div>
+        <div class="bank-title">Claude Plugin</div>
+        <div class="bank-sub">Cẩm nang dạng skill cài đặt được</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Bắt đầu</div>
+  <nav class="sidebar-nav">
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Tổng quan &amp; Tải về</a>
+    <a href="#section-install" data-nav-active><span class="nav-icon">⚙️</span> 02 · Hướng dẫn cài đặt</a>
+  </nav>
+
+  <div class="sidebar-section-label">Nội dung</div>
+  <nav class="sidebar-nav">
+    <a href="#section-skills" data-nav-active><span class="nav-icon">🗂️</span> 03 · Danh mục Skill</a>
+    <a href="#section-prompts" data-nav-active><span class="nav-icon">💬</span> 04 · Prompt mẫu</a>
+    <a href="#section-changelog" data-nav-active><span class="nav-icon">📝</span> 05 · Changelog &amp; Đồng bộ</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🧩 12 skills</span>
+    <span class="comp-pill">📄 16 templates</span>
+    <span class="comp-pill">🔒 Bảo mật</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Kiểm soát tài liệu</strong>
+    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Phiên bản: v1.0 · Hiệu lực 2026-Q3<br/>
+    Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
+    Nguồn: sinh tự động từ cẩm nang này<br/>
+    Phân loại: MẬT (CONFIDENTIAL)
+    <strong>Liên kết nhanh</strong>
+    <a href="#home">← Cẩm nang Triển khai</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🧩 Claude Plugin · Sinh từ Cẩm nang Power Home</div>
+    <h1>Claude Plugin<br/><span>Toàn bộ cẩm nang, dưới dạng skill</span></h1>
+    <p>Cài toàn bộ Cẩm nang Dự án vào Claude dưới dạng các skill theo vai trò. Ai cài plugin đều có thể hỏi kiến thức theo role và soạn tài liệu đúng chuẩn cẩm nang — PRD, BRD, Charter, ADR, Test Plan... — mà không cần mở cẩm nang. Cùng nguồn nội dung, cùng template, cùng ranh giới bảo mật.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> 12 skills</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 16 templates</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Chương EN · Template VI</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> BẢO MẬT</div>
+    </div>
+    <div class="plugin-cta">
+      <a class="dl-btn" href="assets/downloads/project-handbook.plugin" download>⬇️ Tải project-handbook.plugin</a>
+      <span class="dl-meta">Plugin 0.1.0 · ~170 KB · chỉ Markdown + JSON</span>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 TỔNG QUAN -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Mục 01</div><h2>Bên trong plugin có gì</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-plg">
+          <tr><th>Thành phần</th><th>Chi tiết</th></tr>
+          <tr><td><strong>11 skill theo role + 1 skill tổng quan</strong></td><td>Mỗi role trong cẩm nang là một skill (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) cộng thêm Cẩm nang Triển khai xuyên suốt (các phase SDLC, quản trị, quality gates, RACI, thuật ngữ).</td></tr>
+          <tr><td><strong>16 template tài liệu</strong></td><td>14 template đã kiểm duyệt từ <a href="#home">Thư viện Template</a>, chuyển đổi 1:1 từ đúng bản render mà trình đọc trên web dùng, cùng 2 template sinh tự động (Test Plan, Blameless Postmortem) từ outline trong trang và được đánh dấu rõ.</td></tr>
+          <tr><td><strong>Chương đầy đủ làm tài liệu tham chiếu</strong></td><td>Mỗi skill mang theo trọn chương cẩm nang của nó — Claude chỉ nạp khi cần (progressive disclosure) nên plugin luôn nhẹ và nhanh.</td></tr>
+          <tr><td><strong>DECISIONS.md</strong></td><td>Mọi quyết định tự động khi sinh plugin đều được ghi lại để rà soát — điền gap, phân quyền sở hữu template, chính sách ngôn ngữ.</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:10px;"><span class="alert-icon">🔒</span><div><strong>Phân loại: MẬT (CONFIDENTIAL).</strong> Plugin chứa đúng nội dung nội bộ của cẩm nang. Chỉ chia sẻ cho người được phép truy cập cẩm nang.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 CÀI ĐẶT -->
+    <section class="section-block" id="section-install">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Mục 02</div><h2>Hướng dẫn cài đặt</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Cách A — Cowork / Claude desktop <span class="pill-tag">Dễ nhất</span></div>
+        <ul class="step-cl">
+          <li>Tải <strong>project-handbook.plugin</strong> bằng nút phía trên.</li>
+          <li><strong>Kéo &amp; thả</strong> file vào bất kỳ đoạn chat nào với Claude.</li>
+          <li>Claude xác nhận cài đặt — 12 skill sẽ tự kích hoạt mỗi khi yêu cầu khớp với một role.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Cách B — Claude Code (CLI)</div>
+        <p style="font-size:12px;">Chạy trong thư mục chứa file vừa tải:</p>
+        <div class="cmd-row"><code>claude plugin install ./project-handbook.plugin</code><button type="button" class="copy-btn" data-copy="claude plugin install ./project-handbook.plugin" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <p style="font-size:12px;margin-top:12px;">Cách thủ công — file là ZIP chuẩn; giải nén vào thư mục plugins:</p>
+        <div class="cmd-row"><code>Expand-Archive project-handbook.plugin ~\.claude\plugins\project-handbook</code><button type="button" class="copy-btn" data-copy="Expand-Archive project-handbook.plugin ~\.claude\plugins\project-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="cmd-row"><code>unzip project-handbook.plugin -d ~/.claude/plugins/project-handbook</code><button type="button" class="copy-btn" data-copy="unzip project-handbook.plugin -d ~/.claude/plugins/project-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>Không cần cấu hình gì thêm. Mỗi skill tự mô tả trigger của nó nên Claude tự chọn đúng role theo câu hỏi — hỏi nghiệp vụ BA thì skill BA kích hoạt.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 DANH MỤC SKILL -->
+    <section class="section-block" id="section-skills">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Mục 03</div><h2>Danh mục Skill</h2></div></div>
+      <div class="skill-grid">
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">📘</span><div><h3 class="skill-name">Tổng quan Cẩm nang</h3><code class="skill-id">handbook-overview</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">Kiến thức xuyên suốt: các phase SDLC 1–6, tầng quản trị, quality gates (DoR / Sprint DoD / Release DoD), RACI các bên liên quan, thuật ngữ, GTM và hypercare.</p>
+          <div class="skill-triggers"><span class="trigger-chip">SDLC phases</span><span class="trigger-chip">quality gates</span><span class="trigger-chip">RACI</span><span class="trigger-chip">thuật ngữ</span><span class="trigger-chip">quản trị</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🎯</span><div><h3 class="skill-name">Product Owner</h3><code class="skill-id">role-po</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">Tầm nhìn &amp; roadmap, discovery, quản lý backlog, ưu tiên hoá (MoSCoW, RICE, WSJF), epic và user story, chỉ số release &amp; giá trị.</p>
+          <div class="skill-triggers"><span class="trigger-chip">PRD / FSD</span><span class="trigger-chip">backlog</span><span class="trigger-chip">epic → stories</span><span class="trigger-chip">ưu tiên hoá</span><span class="trigger-chip">roadmap</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Epic to User Stories</li>
+            <li>Product Vision &amp; Roadmap</li>
+            <li>Product Requirements Document (PRD)</li>
+            <li>Functional Specification Document (FSD)</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">📋</span><div><h3 class="skill-name">Business Analyst</h3><code class="skill-id">role-ba</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">BABOK v3 qua 9 phase: khai thác yêu cầu, phân tích chiến lược, tài liệu BRD/SRS, use case, truy vết yêu cầu, UAT và đánh giá sau triển khai.</p>
+          <div class="skill-triggers"><span class="trigger-chip">BRD / SRS</span><span class="trigger-chip">khai thác yêu cầu</span><span class="trigger-chip">use case</span><span class="trigger-chip">RTM</span><span class="trigger-chip">UAT</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Business Requirements Document (BRD)</li>
+            <li>Requirements Traceability Matrix (RTM)</li>
+            <li>Software Requirements Specification (SRS)</li>
+            <li>Use Case Specification</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">👔</span><div><h3 class="skill-name">Project Manager</h3><code class="skill-id">role-pm</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">PMBOK 7 trong SDLC hybrid: charter, kế hoạch và baseline, RAID, nhịp giao tiếp stakeholder, báo cáo RAG, EVM, kiểm soát thay đổi và đóng dự án.</p>
+          <div class="skill-triggers"><span class="trigger-chip">charter</span><span class="trigger-chip">PM plan</span><span class="trigger-chip">RAID</span><span class="trigger-chip">status report</span><span class="trigger-chip">EVM</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Project Charter</li>
+            <li>Project Management Plan</li>
+            <li>RAID Log</li>
+            <li>One-page Status Report</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🌀</span><div><h3 class="skill-name">Scrum Master</h3><code class="skill-id">role-sm</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">Scrum Guide 2020: điều phối sự kiện, xử lý impediment, coaching, sức khoẻ đội nhóm, agile metrics trung thực, retro và scaling.</p>
+          <div class="skill-triggers"><span class="trigger-chip">điều phối</span><span class="trigger-chip">impediments</span><span class="trigger-chip">retrospective</span><span class="trigger-chip">metrics</span><span class="trigger-chip">coaching</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🧪</span><div><h3 class="skill-name">QC / Tester</h3><code class="skill-id">role-qc</code></div><span class="skill-count">1 template</span></div>
+          <p class="skill-desc">ISTQB CTFL v4.0: quy trình test 7 bước, test levels và types, kỹ thuật thiết kế test, test theo rủi ro và vòng đời defect.</p>
+          <div class="skill-triggers"><span class="trigger-chip">test plan</span><span class="trigger-chip">thiết kế test</span><span class="trigger-chip">vòng đời defect</span><span class="trigger-chip">theo rủi ro</span><span class="trigger-chip">entry/exit</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Test Plan <span class="pill-tag">tự sinh</span></li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🏛️</span><div><h3 class="skill-name">Solution Architect</h3><code class="skill-id">role-sa</code></div><span class="skill-count">2 templates</span></div>
+          <p class="skill-desc">Thiết kế theo NFR với C4 / arc42: phương án giải pháp và trade-off, ADR, mẫu tích hợp, thiết kế bảo mật, sizing và khả năng chịu lỗi.</p>
+          <div class="skill-triggers"><span class="trigger-chip">ADR</span><span class="trigger-chip">tài liệu kiến trúc</span><span class="trigger-chip">C4 model</span><span class="trigger-chip">NFR</span><span class="trigger-chip">trade-off</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Architecture Decision Record (ADR)</li>
+            <li>Solution Architecture Document</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🎨</span><div><h3 class="skill-name">UX/UI Designer</h3><code class="skill-id">role-ux</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">Double Diamond trọn vòng: nghiên cứu, persona và journey, IA và luồng, design system, usability testing, tiếp cận WCAG 2.2, bàn giao dev.</p>
+          <div class="skill-triggers"><span class="trigger-chip">nghiên cứu</span><span class="trigger-chip">wireframe</span><span class="trigger-chip">design system</span><span class="trigger-chip">WCAG</span><span class="trigger-chip">usability</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🛡️</span><div><h3 class="skill-name">Security &amp; Compliance</h3><code class="skill-id">role-security</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">ISO 27001 / NIST CSF / OWASP cho ngân hàng: cổng secure SDLC, threat modeling, IAM, bảo vệ dữ liệu, SLA lỗ hổng, ứng phó sự cố, audit.</p>
+          <div class="skill-triggers"><span class="trigger-chip">DevSecOps</span><span class="trigger-chip">STRIDE</span><span class="trigger-chip">IAM</span><span class="trigger-chip">OWASP</span><span class="trigger-chip">ứng phó sự cố</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🛰️</span><div><h3 class="skill-name">Operations &amp; SRE</h3><code class="skill-id">role-ops</code></div><span class="skill-count">1 template</span></div>
+          <p class="skill-desc">Google SRE + ITIL 4: SLO và error budget, observability, quản lý incident và problem, DR/BCP, chỉ số DORA, on-call.</p>
+          <div class="skill-triggers"><span class="trigger-chip">SLO</span><span class="trigger-chip">incident</span><span class="trigger-chip">postmortem</span><span class="trigger-chip">DR / BCP</span><span class="trigger-chip">DORA</span></div>
+          <details class="skill-templates"><summary>Template kèm theo</summary><ul>
+            <li>Blameless Postmortem <span class="pill-tag">tự sinh</span></li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🚢</span><div><h3 class="skill-name">Release / Deployment</h3><code class="skill-id">role-deployment</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">Quản trị release: pipeline 12 bước, CAB/ECAB, phân tách nhiệm vụ, release DoD, runbook deploy &amp; rollback, hypercare.</p>
+          <div class="skill-triggers"><span class="trigger-chip">release pipeline</span><span class="trigger-chip">CAB</span><span class="trigger-chip">release DoD</span><span class="trigger-chip">rollback</span><span class="trigger-chip">hypercare</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🏢</span><div><h3 class="skill-name">PMO Governance</h3><code class="skill-id">role-pmo</code></div><span class="skill-count">Chương</span></div>
+          <p class="skill-desc">Tiếp nhận danh mục và stage gate, các cấp quản trị, RAID hợp nhất, EVM và hiện thực hoá lợi ích, chuẩn giao phẩm, đảm bảo chất lượng.</p>
+          <div class="skill-triggers"><span class="trigger-chip">portfolio</span><span class="trigger-chip">stage gates</span><span class="trigger-chip">EVM</span><span class="trigger-chip">lợi ích</span><span class="trigger-chip">assurance</span></div>
+        </article>
+
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 PROMPT MẪU -->
+    <section class="section-block" id="section-prompts">
+      <div class="section-header"><div class="section-icon">💬</div><div><div class="section-number">Mục 04</div><h2>Prompt mẫu</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p style="font-size:12px;">Cài xong thì thử ngay — sao chép một prompt và dán vào Claude:</p>
+        <div class="prompt-row"><code>Draft a BRD for feature X using the handbook template</code><button type="button" class="copy-btn" data-copy="Draft a BRD for feature X using the handbook template" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook</code><button type="button" class="copy-btn" data-copy="Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Viết Project Charter cho dự án onboarding số theo template Power Home</code><button type="button" class="copy-btn" data-copy="Viết Project Charter cho dự án onboarding số theo template Power Home" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>What does the handbook say about the release DoD before CAB?</code><button type="button" class="copy-btn" data-copy="What does the handbook say about the release DoD before CAB?" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Draft a blameless postmortem for yesterday&#39;s SEV2 incident</code><button type="button" class="copy-btn" data-copy="Draft a blameless postmortem for yesterday's SEV2 incident" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook</code><button type="button" class="copy-btn" data-copy="Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 CHANGELOG & ĐỒNG BỘ -->
+    <section class="section-block" id="section-changelog">
+      <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Mục 05</div><h2>Changelog &amp; Quy tắc đồng bộ</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-plg">
+          <tr><th style="width:90px">Plugin</th><th style="width:110px">Ngày</th><th>Ghi chú</th></tr>
+          <tr><td><strong>0.1.0</strong></td><td>2026-07-19</td><td>Bản đầu tiên — 12 skill, 16 template (14 từ Thư viện Template, 2 sinh tự động từ outline trong trang), chương đầy đủ làm tài liệu tham chiếu, nhật ký DECISIONS.md.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔄</span><div><strong>Quy tắc đồng bộ.</strong> Cẩm nang này là nguồn chân lý duy nhất. Mỗi khi nội dung cẩm nang thay đổi, plugin được sinh lại từ nguồn (<code>scripts/build-plugin.py</code>), tăng semver và thay file tải về phía trên — plugin không bao giờ tự sửa nội dung.</div></div>
+      </div></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Claude Plugin v1.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    Sinh từ nguồn cẩm nang · 12 skills · 16 templates · © 2026
+  </footer>
+</div>
+</div>

@@ -646,6 +646,23 @@ async function _openDocReader(trigger) {
   }
 }
 
+// Copy-to-clipboard for the plugin page's install commands and example
+// prompts. Feedback swaps the button label only — no DOM insertion.
+function _copyToClipboard(button) {
+  const text = button.dataset.copy || '';
+  if (!text || !navigator.clipboard || !navigator.clipboard.writeText) return;
+  if (!button.dataset.copyRestoreLabel) {
+    button.dataset.copyRestoreLabel = button.textContent;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    button.textContent = button.dataset.copiedLabel || '✓';
+    window.clearTimeout(Number(button.dataset.copyTimer || 0));
+    button.dataset.copyTimer = String(window.setTimeout(() => {
+      button.textContent = button.dataset.copyRestoreLabel;
+    }, 1600));
+  }).catch(() => {});
+}
+
 // One delegated interaction layer replaces hundreds of inline event handlers
 // across the static fragments, allowing a strict script-src 'self' CSP.
 document.addEventListener('click', event => {
@@ -656,6 +673,13 @@ document.addEventListener('click', event => {
   if (docReaderTrigger) {
     event.preventDefault();
     _openDocReader(docReaderTrigger);
+    return;
+  }
+
+  const copyTrigger = target.closest('[data-copy]');
+  if (copyTrigger) {
+    event.preventDefault();
+    _copyToClipboard(copyTrigger);
     return;
   }
 

@@ -1,0 +1,284 @@
+<title>Claude Plugin | Handbook</title>
+
+<style id="page-style">
+.table-plg{width:100%;border-collapse:collapse;font-size:12px}
+.table-plg th,.table-plg td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.table-plg th{background:var(--black);font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-disabled);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border-visible)}
+.table-plg tr:hover td{background:var(--bg-hover)}
+.pill-tag{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--border-visible);color:var(--text-secondary);vertical-align:middle;white-space:nowrap}
+.plugin-cta{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+.dl-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;font-size:13px;padding:12px 20px;border-radius:var(--radius-sm);text-decoration:none;border:1px solid transparent;transition:filter 0.15s ease}
+.dl-btn:hover{filter:brightness(1.12)}
+.dl-btn:focus-visible{outline:3px solid var(--focus-color,var(--accent));outline-offset:3px}
+.dl-meta{font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)}
+.cmd-row{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px}
+.cmd-row code{flex:1;font-family:var(--font-mono);font-size:12px;color:var(--accent-bright);overflow-x:auto;white-space:nowrap}
+.prompt-row{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-top:8px}
+.prompt-row code{flex:1;font-family:var(--font-mono);font-size:11.5px;color:var(--text-secondary);white-space:normal}
+.copy-btn{flex-shrink:0;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);background:transparent;border:1px solid var(--border-visible);border-radius:999px;padding:5px 12px;cursor:pointer;transition:color 0.15s ease,border-color 0.15s ease}
+.copy-btn:hover{color:var(--text-display);border-color:var(--accent)}
+.copy-btn:focus-visible{outline:3px solid var(--focus-color,var(--accent));outline-offset:2px}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:10px}
+.skill-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;display:flex;flex-direction:column;gap:10px}
+.skill-head{display:flex;align-items:flex-start;gap:10px}
+.skill-icon{font-size:20px;line-height:1.2}
+.skill-name{font-size:14px;font-weight:700;color:var(--text-display);margin:0}
+.skill-id{font-family:var(--font-mono);font-size:10px;color:var(--accent-bright)}
+.skill-count{margin-left:auto;font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);border:1px solid var(--border-visible);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.skill-desc{font-size:12px;color:var(--text-secondary);margin:0;line-height:1.55}
+.skill-triggers{display:flex;flex-wrap:wrap;gap:6px}
+.trigger-chip{font-family:var(--font-mono);font-size:9px;color:var(--text-secondary);border:1px solid var(--border);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.skill-templates summary{cursor:pointer;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.skill-templates summary:hover{color:var(--text-display)}
+.skill-templates ul{margin:8px 0 0 18px;font-size:12px;color:var(--text-secondary)}
+.skill-templates li{margin:3px 0}
+</style>
+
+<div id="sidebar-inner">
+  <div class="sidebar-top">
+    <div class="bank-badge">
+      <div class="bank-icon">🧩</div>
+      <div>
+        <div class="bank-title">Claude Plugin</div>
+        <div class="bank-sub">Handbook as installable skills</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-section-label">Get started</div>
+  <nav class="sidebar-nav">
+    <a href="#section-overview" data-nav-active><span class="nav-icon">🧭</span> 01 · Overview &amp; Download</a>
+    <a href="#section-install" data-nav-active><span class="nav-icon">⚙️</span> 02 · Install Guide</a>
+  </nav>
+
+  <div class="sidebar-section-label">Contents</div>
+  <nav class="sidebar-nav">
+    <a href="#section-skills" data-nav-active><span class="nav-icon">🗂️</span> 03 · Skill Catalog</a>
+    <a href="#section-prompts" data-nav-active><span class="nav-icon">💬</span> 04 · Example Prompts</a>
+    <a href="#section-changelog" data-nav-active><span class="nav-icon">📝</span> 05 · Changelog &amp; Sync</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-compliance">
+    <span class="comp-pill">🧩 12 skills</span>
+    <span class="comp-pill">📄 16 templates</span>
+    <span class="comp-pill">🔒 Confidential</span>
+  </div>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-meta">
+    <strong>Document Control</strong>
+    Owner: Thiện Phạm (Power Home PO)<br/>
+    Version: v1.0 · Effective 2026-Q3<br/>
+    Status: <span style="color:var(--status-green)">Active</span><br/>
+    Source: generated from this handbook<br/>
+    Classification: CONFIDENTIAL
+    <strong>Quick Links</strong>
+    <a href="#home">← Implementation Handbook</a>
+  </div>
+</div>
+
+<div id="page-content">
+<div id="main-content">
+
+  <header class="top-header">
+    <div class="header-eyebrow">🧩 Claude Plugin · Generated from the Power Home Handbook</div>
+    <h1>Claude Plugin<br/><span>The whole handbook, as skills</span></h1>
+    <p>Install the entire Project Handbook into Claude as role-based skills. Anyone with the plugin can ask role questions and draft handbook-standard documents — PRD, BRD, Charter, ADR, Test Plan and more — without opening the handbook itself. Same source, same templates, same confidential boundary.</p>
+    <div class="header-pills">
+      <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> 12 skills</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 16 templates</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> EN chapters · VI templates</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> CONFIDENTIAL</div>
+    </div>
+    <div class="plugin-cta">
+      <a class="dl-btn" href="assets/downloads/project-handbook.plugin" download>⬇️ Download project-handbook.plugin</a>
+      <span class="dl-meta">Plugin 0.1.0 · ~170 KB · Markdown + JSON only</span>
+    </div>
+  </header>
+
+  <main class="content-sections">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section-block" id="section-overview">
+      <div class="section-header"><div class="section-icon">🧭</div><div><div class="section-number">Section 01</div><h2>What you get</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-plg">
+          <tr><th>Inside the plugin</th><th>Detail</th></tr>
+          <tr><td><strong>11 role skills + 1 overview skill</strong></td><td>One skill per handbook role (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) plus the cross-cutting Implementation Handbook (SDLC phases, governance, quality gates, RACI, glossary).</td></tr>
+          <tr><td><strong>16 document templates</strong></td><td>The 14 curated templates from the <a href="#home">Templates Library</a>, converted 1:1 from the same renders the in-page reader uses, plus 2 auto-generated ones (Test Plan, Blameless Postmortem) built from in-page outlines and clearly marked.</td></tr>
+          <tr><td><strong>Full chapters as references</strong></td><td>Each skill carries its complete handbook chapter for deep answers — Claude loads it only when needed (progressive disclosure), so the plugin stays fast.</td></tr>
+          <tr><td><strong>DECISIONS.md</strong></td><td>Every automatic decision made while generating the plugin is logged for review — gap fills, ownership calls, language policy.</td></tr>
+        </table>
+        <div class="alert alert-warning" style="margin-top:10px;"><span class="alert-icon">🔒</span><div><strong>Classification: CONFIDENTIAL.</strong> The plugin contains the same internal content as this handbook. Share it only with people who may access the handbook itself.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 02 INSTALL -->
+    <section class="section-block" id="section-install">
+      <div class="section-header"><div class="section-icon">⚙️</div><div><div class="section-number">Section 02</div><h2>Install Guide</h2></div></div>
+      <div class="card" style="margin-bottom:16px;"><div class="card-body">
+        <div class="card-title">Option A — Cowork / Claude desktop <span class="pill-tag">Easiest</span></div>
+        <ul class="step-cl">
+          <li>Download <strong>project-handbook.plugin</strong> with the button above.</li>
+          <li><strong>Drag &amp; drop</strong> the file into any Claude chat.</li>
+          <li>Claude confirms the installation — the 12 skills then trigger automatically whenever a request matches a role.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-title">Option B — Claude Code (CLI)</div>
+        <p style="font-size:12px;">Run in the folder where you saved the download:</p>
+        <div class="cmd-row"><code>claude plugin install ./project-handbook.plugin</code><button type="button" class="copy-btn" data-copy="claude plugin install ./project-handbook.plugin" data-copied-label="✓ Copied">Copy</button></div>
+        <p style="font-size:12px;margin-top:12px;">Manual alternative — the file is a standard ZIP; extract it into your plugins folder:</p>
+        <div class="cmd-row"><code>Expand-Archive project-handbook.plugin ~\.claude\plugins\project-handbook</code><button type="button" class="copy-btn" data-copy="Expand-Archive project-handbook.plugin ~\.claude\plugins\project-handbook" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="cmd-row"><code>unzip project-handbook.plugin -d ~/.claude/plugins/project-handbook</code><button type="button" class="copy-btn" data-copy="unzip project-handbook.plugin -d ~/.claude/plugins/project-handbook" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>No configuration needed. Skills describe their own triggers, so Claude picks the right role from your request — ask a BA question, get the BA skill.</div></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 03 SKILL CATALOG -->
+    <section class="section-block" id="section-skills">
+      <div class="section-header"><div class="section-icon">🗂️</div><div><div class="section-number">Section 03</div><h2>Skill Catalog</h2></div></div>
+      <div class="skill-grid">
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">📘</span><div><h3 class="skill-name">Handbook Overview</h3><code class="skill-id">handbook-overview</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">Cross-cutting knowledge: SDLC phases 1–6, governance layers, quality gates (DoR / Sprint DoD / Release DoD), stakeholder RACI, glossary, GTM and hypercare.</p>
+          <div class="skill-triggers"><span class="trigger-chip">SDLC phases</span><span class="trigger-chip">quality gates</span><span class="trigger-chip">RACI</span><span class="trigger-chip">glossary</span><span class="trigger-chip">governance</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🎯</span><div><h3 class="skill-name">Product Owner</h3><code class="skill-id">role-po</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">Vision &amp; roadmap, discovery, backlog management, prioritization (MoSCoW, RICE, WSJF), epics and user stories, release &amp; value metrics.</p>
+          <div class="skill-triggers"><span class="trigger-chip">PRD / FSD</span><span class="trigger-chip">backlog</span><span class="trigger-chip">epic → stories</span><span class="trigger-chip">prioritization</span><span class="trigger-chip">roadmap</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Epic to User Stories</li>
+            <li>Product Vision &amp; Roadmap</li>
+            <li>Product Requirements Document (PRD)</li>
+            <li>Functional Specification Document (FSD)</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">📋</span><div><h3 class="skill-name">Business Analyst</h3><code class="skill-id">role-ba</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">BABOK v3 across 9 phases: elicitation, strategy analysis, BRD/SRS documentation, use cases, traceability, UAT and post-implementation review.</p>
+          <div class="skill-triggers"><span class="trigger-chip">BRD / SRS</span><span class="trigger-chip">elicitation</span><span class="trigger-chip">use case</span><span class="trigger-chip">RTM</span><span class="trigger-chip">UAT</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Business Requirements Document (BRD)</li>
+            <li>Requirements Traceability Matrix (RTM)</li>
+            <li>Software Requirements Specification (SRS)</li>
+            <li>Use Case Specification</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">👔</span><div><h3 class="skill-name">Project Manager</h3><code class="skill-id">role-pm</code></div><span class="skill-count">4 templates</span></div>
+          <p class="skill-desc">PMBOK 7 in a hybrid SDLC: charters, plans and baselines, RAID, stakeholder cadence, RAG reporting, EVM, change control and closure.</p>
+          <div class="skill-triggers"><span class="trigger-chip">charter</span><span class="trigger-chip">PM plan</span><span class="trigger-chip">RAID</span><span class="trigger-chip">status report</span><span class="trigger-chip">EVM</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Project Charter</li>
+            <li>Project Management Plan</li>
+            <li>RAID Log</li>
+            <li>One-page Status Report</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🌀</span><div><h3 class="skill-name">Scrum Master</h3><code class="skill-id">role-sm</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">Scrum Guide 2020: facilitation, impediment management, coaching stances, team health, honest agile metrics, retros and scaling.</p>
+          <div class="skill-triggers"><span class="trigger-chip">facilitation</span><span class="trigger-chip">impediments</span><span class="trigger-chip">retrospective</span><span class="trigger-chip">metrics</span><span class="trigger-chip">coaching</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🧪</span><div><h3 class="skill-name">QC / Tester</h3><code class="skill-id">role-qc</code></div><span class="skill-count">1 template</span></div>
+          <p class="skill-desc">ISTQB CTFL v4.0: the seven-step test process, levels and types, design techniques, risk-based testing and the defect lifecycle.</p>
+          <div class="skill-triggers"><span class="trigger-chip">test plan</span><span class="trigger-chip">test design</span><span class="trigger-chip">defect lifecycle</span><span class="trigger-chip">risk-based</span><span class="trigger-chip">entry/exit</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Test Plan <span class="pill-tag">auto-generated</span></li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🏛️</span><div><h3 class="skill-name">Solution Architect</h3><code class="skill-id">role-sa</code></div><span class="skill-count">2 templates</span></div>
+          <p class="skill-desc">NFR-driven design with C4 / arc42: solution options and trade-offs, ADRs, integration patterns, security design, sizing and resilience.</p>
+          <div class="skill-triggers"><span class="trigger-chip">ADR</span><span class="trigger-chip">architecture doc</span><span class="trigger-chip">C4 model</span><span class="trigger-chip">NFR</span><span class="trigger-chip">trade-off</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Architecture Decision Record (ADR)</li>
+            <li>Solution Architecture Document</li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🎨</span><div><h3 class="skill-name">UX/UI Designer</h3><code class="skill-id">role-ux</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">Double Diamond end to end: research, personas and journeys, IA and flows, design systems, usability testing, WCAG 2.2 accessibility, handoff.</p>
+          <div class="skill-triggers"><span class="trigger-chip">research</span><span class="trigger-chip">wireframe</span><span class="trigger-chip">design system</span><span class="trigger-chip">WCAG</span><span class="trigger-chip">usability</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🛡️</span><div><h3 class="skill-name">Security &amp; Compliance</h3><code class="skill-id">role-security</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">ISO 27001 / NIST CSF / OWASP for banking: secure SDLC gates, threat modeling, IAM, data protection, vulnerability SLAs, incident response, audit.</p>
+          <div class="skill-triggers"><span class="trigger-chip">DevSecOps</span><span class="trigger-chip">STRIDE</span><span class="trigger-chip">IAM</span><span class="trigger-chip">OWASP</span><span class="trigger-chip">incident response</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🛰️</span><div><h3 class="skill-name">Operations &amp; SRE</h3><code class="skill-id">role-ops</code></div><span class="skill-count">1 template</span></div>
+          <p class="skill-desc">Google SRE + ITIL 4: SLO and error budgets, observability, incident and problem management, DR/BCP, DORA metrics, on-call.</p>
+          <div class="skill-triggers"><span class="trigger-chip">SLO</span><span class="trigger-chip">incident</span><span class="trigger-chip">postmortem</span><span class="trigger-chip">DR / BCP</span><span class="trigger-chip">DORA</span></div>
+          <details class="skill-templates"><summary>Included templates</summary><ul>
+            <li>Blameless Postmortem <span class="pill-tag">auto-generated</span></li>
+          </ul></details>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🚢</span><div><h3 class="skill-name">Release / Deployment</h3><code class="skill-id">role-deployment</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">Governed release management: the 12-step pipeline, CAB/ECAB, segregation of duties, release DoD, deploy &amp; rollback runbook, hypercare.</p>
+          <div class="skill-triggers"><span class="trigger-chip">release pipeline</span><span class="trigger-chip">CAB</span><span class="trigger-chip">release DoD</span><span class="trigger-chip">rollback</span><span class="trigger-chip">hypercare</span></div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-head"><span class="skill-icon">🏢</span><div><h3 class="skill-name">PMO Governance</h3><code class="skill-id">role-pmo</code></div><span class="skill-count">Chapter</span></div>
+          <p class="skill-desc">Portfolio intake and stage gates, governance bodies, consolidated RAID, EVM and benefits realization, delivery standards, assurance.</p>
+          <div class="skill-triggers"><span class="trigger-chip">portfolio</span><span class="trigger-chip">stage gates</span><span class="trigger-chip">EVM</span><span class="trigger-chip">benefits</span><span class="trigger-chip">assurance</span></div>
+        </article>
+
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 04 EXAMPLE PROMPTS -->
+    <section class="section-block" id="section-prompts">
+      <div class="section-header"><div class="section-icon">💬</div><div><div class="section-number">Section 04</div><h2>Example Prompts</h2></div></div>
+      <div class="card"><div class="card-body">
+        <p style="font-size:12px;">Once installed, try these — copy one and paste it into Claude:</p>
+        <div class="prompt-row"><code>Draft a BRD for feature X using the handbook template</code><button type="button" class="copy-btn" data-copy="Draft a BRD for feature X using the handbook template" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="prompt-row"><code>Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook</code><button type="button" class="copy-btn" data-copy="Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="prompt-row"><code>Viết Project Charter cho dự án onboarding số theo template Power Home</code><button type="button" class="copy-btn" data-copy="Viết Project Charter cho dự án onboarding số theo template Power Home" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="prompt-row"><code>What does the handbook say about the release DoD before CAB?</code><button type="button" class="copy-btn" data-copy="What does the handbook say about the release DoD before CAB?" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="prompt-row"><code>Draft a blameless postmortem for yesterday&#39;s SEV2 incident</code><button type="button" class="copy-btn" data-copy="Draft a blameless postmortem for yesterday's SEV2 incident" data-copied-label="✓ Copied">Copy</button></div>
+        <div class="prompt-row"><code>Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook</code><button type="button" class="copy-btn" data-copy="Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook" data-copied-label="✓ Copied">Copy</button></div>
+      </div></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <!-- 05 CHANGELOG & SYNC -->
+    <section class="section-block" id="section-changelog">
+      <div class="section-header"><div class="section-icon">📝</div><div><div class="section-number">Section 05</div><h2>Changelog &amp; Sync Rule</h2></div></div>
+      <div class="card"><div class="card-body">
+        <table class="table-plg">
+          <tr><th style="width:90px">Plugin</th><th style="width:110px">Date</th><th>Notes</th></tr>
+          <tr><td><strong>0.1.0</strong></td><td>2026-07-19</td><td>Initial release — 12 skills, 16 templates (14 from the Templates Library, 2 auto-generated from in-page outlines), full chapters as references, DECISIONS.md audit log.</td></tr>
+        </table>
+        <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔄</span><div><strong>Sync rule.</strong> This handbook is the single source of truth. Whenever handbook content changes, the plugin is regenerated from source (<code>scripts/build-plugin.py</code>), its semver bumped, and the download above replaced — the plugin never edits content of its own.</div></div>
+      </div></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    🏦 Handbook · Claude Plugin v1.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
+    Generated from handbook source · 12 skills · 16 templates · © 2026
+  </footer>
+</div>
+</div>

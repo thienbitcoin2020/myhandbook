@@ -45,6 +45,16 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
 ]);
 
 /**
+ * Distributable bundles are, like the documents above, allowlisted one-by-one.
+ * The plugin package is generated from reviewed handbook sources by
+ * scripts/build-plugin.py and re-inspected as a ZIP by the security gate
+ * (Markdown/JSON entries only) before it may publish.
+ */
+export const PUBLISHED_DOWNLOADS = Object.freeze([
+  'assets/downloads/project-handbook.plugin',
+]);
+
+/**
  * The documents are confidential, so the site opens an in-browser reader first
  * and offers the DOCX from inside it. Each published document therefore ships
  * with exactly one derived HTML preview; the path mapping is fixed so neither
@@ -144,6 +154,11 @@ export function getPublishedEntries(root = process.cwd()) {
     const preview = documentPreviewPath(relative);
     assertRegularFile(root, preview);
     entries.push({ source: normalize(preview), published: normalize(preview) });
+  }
+
+  for (const relative of PUBLISHED_DOWNLOADS) {
+    assertRegularFile(root, relative);
+    entries.push({ source: normalize(relative), published: normalize(relative) });
   }
 
   const claimed = new Set();

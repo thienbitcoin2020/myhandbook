@@ -13,12 +13,12 @@ const VERSION_REPLACEMENTS = Object.freeze([
   {
     label: 'document-control versions',
     pattern: /((?:Version|Phiên bản):\s*)v\d+(?:\.\d+)*/g,
-    expected: 24,
+    expected: 26,
   },
   {
     label: 'current-version footers',
     pattern: /(Handbook · [^<\r\n]*?)v\d+(?:\.\d+)*(?= ·)/g,
-    expected: 24,
+    expected: 26,
   },
   {
     label: 'deployment sidebar versions',

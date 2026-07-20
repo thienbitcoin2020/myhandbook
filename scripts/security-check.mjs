@@ -300,6 +300,50 @@ for (const relative of docxFiles) {
   }
 }
 
+// The Claude plugin bundle reuses the hardened ZIP parser: safe entry paths,
+// no encryption, sane compression ratios. On top of that it may only carry
+// Markdown and JSON text, must declare the reviewed manifest, and every entry
+// is scanned with the same secret patterns as any published text file.
+function inspectPluginPackage(relative) {
+  const packageBuffer = fs.readFileSync(path.join(root, relative));
+  const eocd = findEndOfCentralDirectory(packageBuffer);
+  const centralDirectoryOffset = packageBuffer.readUInt32LE(eocd + 16);
+  const entries = parseZipEntries(packageBuffer);
+  let manifestSeen = false;
+
+  for (const entry of entries) {
+    if (entry.name.endsWith('/')) continue;
+    if (!/\.(?:md|json)$/i.test(entry.canonicalName)) {
+      throw new Error(`${entry.name}: only Markdown and JSON entries may ship in the plugin package`);
+    }
+    const text = inflateZipEntry(packageBuffer, entry, centralDirectoryOffset).toString('utf8');
+    if (text.includes('\u0000') || text.includes('\ufffd')) {
+      throw new Error(`${entry.name}: entry is not valid UTF-8 text`);
+    }
+    for (const [label, pattern] of secretPatterns) {
+      pattern.lastIndex = 0;
+      if (pattern.test(text)) fail(`${relative} (${entry.name}): ${label} detected`);
+    }
+    if (entry.canonicalName === '.claude-plugin/plugin.json') {
+      manifestSeen = true;
+      const manifest = JSON.parse(text);
+      if (manifest.name !== 'project-handbook' || !/^\d+\.\d+\.\d+$/.test(String(manifest.version))) {
+        throw new Error('plugin manifest must declare the project-handbook name and a semver version');
+      }
+    }
+  }
+
+  if (!manifestSeen) throw new Error('required manifest is missing: .claude-plugin/plugin.json');
+}
+
+for (const relative of publishedFiles.filter(file => file.endsWith('.plugin'))) {
+  try {
+    inspectPluginPackage(relative);
+  } catch (error) {
+    fail(`${relative}: plugin package rejected (${error.message})`);
+  }
+}
+
 for (const relative of textRuntimeFiles) {
   const content = read(relative);
   if (/https?:\/\//i.test(content)) fail(`${relative}: external runtime URL detected`);
@@ -319,8 +363,8 @@ for (const relative of htmlFiles) {
 }
 
 const handbookFragments = collect('pages', '.html');
-if (handbookFragments.length !== 24) {
-  fail(`document control: expected 24 EN/VI handbook fragments, found ${handbookFragments.length}`);
+if (handbookFragments.length !== 26) {
+  fail(`document control: expected 26 EN/VI handbook fragments, found ${handbookFragments.length}`);
 }
 
 const indexDocument = read('index.html');

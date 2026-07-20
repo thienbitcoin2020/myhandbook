@@ -16,6 +16,7 @@ const ROUTES = {
   'sm':         'pages/sm.html',
   'ux':         'pages/ux.html',
   'pmo':        'pages/pmo.html',
+  'plugin':     'pages/plugin.html',
 };
 
 // The former #handbook route is kept only as a compatibility alias. Home is
