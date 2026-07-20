@@ -246,6 +246,26 @@ for (const documentPath of PUBLISHED_DOCUMENTS) {
   }
 }
 
+// The canonical library is the primary discovery surface. Role pages may
+// provide contextual shortcuts, but every published document must also be
+// listed exactly once on the EN and VI Handbook template-library section.
+for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
+  if (!exists(relative)) continue;
+  const html = read(relative);
+  const section = html.match(/<!-- SECTION 9: TEMPLATES LIBRARY -->([\s\S]*?)<!-- SECTION 10:/);
+  if (!section) {
+    fail('central-template-library', `${relative} has no bounded template-library section`);
+    continue;
+  }
+  const links = templatePreviewLinks(relative, section[1]);
+  for (const documentPath of PUBLISHED_DOCUMENTS) {
+    const occurrences = links.filter(link => link === documentPath).length;
+    if (occurrences !== 1) {
+      fail('central-template-library', `${relative} lists ${documentPath} ${occurrences} time(s); expected exactly once`);
+    }
+  }
+}
+
 // ── 7. Cross-walk must be rectangular ──────────────────────────────────
 for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
   if (!exists(relative)) continue;
