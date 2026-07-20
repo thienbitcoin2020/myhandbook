@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { inflateRawSync } from 'node:zlib';
-import { getPublishedEntries, LEGACY_REDIRECT_DIR } from './artifact-files.mjs';
+import {
+  getPublishedEntries,
+  LEGACY_REDIRECT_DIR,
+  ROLE_PLUGIN_PACKAGES,
+} from './artifact-files.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -304,12 +308,19 @@ for (const relative of docxFiles) {
 // no encryption, sane compression ratios. On top of that it may only carry
 // Markdown and JSON text, must declare the reviewed manifest, and every entry
 // is scanned with the same secret patterns as any published text file.
+const rolePluginByPath = new Map(ROLE_PLUGIN_PACKAGES.map(spec => [spec.path, spec]));
+
 function inspectPluginPackage(relative) {
   const packageBuffer = fs.readFileSync(path.join(root, relative));
   const eocd = findEndOfCentralDirectory(packageBuffer);
   const centralDirectoryOffset = packageBuffer.readUInt32LE(eocd + 16);
   const entries = parseZipEntries(packageBuffer);
   let manifestSeen = false;
+  let manifestVersion = '';
+  const skillNames = new Set();
+  let templateCount = 0;
+  const roleSpec = rolePluginByPath.get(relative);
+  const expectedName = roleSpec ? `project-handbook-${roleSpec.role}` : 'project-handbook';
 
   for (const entry of entries) {
     if (entry.name.endsWith('/')) continue;
@@ -327,21 +338,89 @@ function inspectPluginPackage(relative) {
     if (entry.canonicalName === '.claude-plugin/plugin.json') {
       manifestSeen = true;
       const manifest = JSON.parse(text);
-      if (manifest.name !== 'project-handbook' || !/^\d+\.\d+\.\d+$/.test(String(manifest.version))) {
-        throw new Error('plugin manifest must declare the project-handbook name and a semver version');
+      manifestVersion = String(manifest.version ?? '');
+      if (manifest.name !== expectedName || !/^\d+\.\d+\.\d+$/.test(manifestVersion)) {
+        throw new Error(`plugin manifest must declare ${expectedName} and a semver version`);
       }
+      if (!manifest.displayName || !manifest.description || !manifest.author?.name || !manifest.author?.email) {
+        throw new Error('plugin manifest is missing reviewed display or owner metadata');
+      }
+    }
+    const skillMatch = entry.canonicalName.match(/^skills\/([^/]+)\/skill\.md$/);
+    if (skillMatch) {
+      const frontmatter = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+      if (!frontmatter
+          || !new RegExp(`(?:^|\\r?\\n)name:\\s*${skillMatch[1]}\\s*(?:\\r?\\n|$)`).test(frontmatter[1])
+          || !/(?:^|\r?\n)description:\s*(?:>|>-|\S)/.test(frontmatter[1])) {
+        throw new Error(`${entry.name}: skill frontmatter must declare matching name and description`);
+      }
+      skillNames.add(skillMatch[1]);
+    }
+    if (/^skills\/[^/]+\/references\/templates\/[^/]+\.md$/.test(entry.canonicalName)) {
+      templateCount += 1;
     }
   }
 
   if (!manifestSeen) throw new Error('required manifest is missing: .claude-plugin/plugin.json');
+  if (roleSpec) {
+    if (skillNames.size !== 1 || !skillNames.has(roleSpec.skill)) {
+      throw new Error(`standalone package must contain only ${roleSpec.skill}`);
+    }
+    if (templateCount !== roleSpec.templates) {
+      throw new Error(`expected ${roleSpec.templates} role templates, found ${templateCount}`);
+    }
+  } else if (skillNames.size !== 12 || templateCount !== 42) {
+    throw new Error(`full package expected 12 skills and 42 templates, found ${skillNames.size}/${templateCount}`);
+  }
+  return manifestVersion;
 }
 
+const pluginVersions = new Set();
 for (const relative of publishedFiles.filter(file => file.endsWith('.plugin'))) {
   try {
-    inspectPluginPackage(relative);
+    pluginVersions.add(inspectPluginPackage(relative));
   } catch (error) {
     fail(`${relative}: plugin package rejected (${error.message})`);
   }
+}
+if (pluginVersions.size > 1) {
+  fail(`plugin packages must share one release version (found ${[...pluginVersions].join(', ')})`);
+}
+
+try {
+  const marketplacePath = '.claude-plugin/marketplace.json';
+  const marketplaceText = read(marketplacePath);
+  for (const [label, pattern] of secretPatterns) {
+    pattern.lastIndex = 0;
+    if (pattern.test(marketplaceText)) throw new Error(`${label} detected`);
+  }
+  const marketplace = JSON.parse(marketplaceText);
+  if (marketplace.name !== 'power-home-handbook' || !marketplace.owner?.name) {
+    throw new Error('marketplace name or owner is missing');
+  }
+  if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length !== 12) {
+    throw new Error('marketplace must expose one full plugin and 11 role plugins');
+  }
+  const names = new Set();
+  for (const plugin of marketplace.plugins) {
+    if (names.has(plugin.name)) throw new Error(`duplicate plugin entry: ${plugin.name}`);
+    names.add(plugin.name);
+  }
+  const fullEntry = marketplace.plugins.find(plugin => plugin.name === 'project-handbook');
+  if (!fullEntry || fullEntry.source !== './plugin') {
+    throw new Error('full project-handbook entry or source is missing');
+  }
+  const packageVersion = [...pluginVersions][0];
+  for (const spec of ROLE_PLUGIN_PACKAGES) {
+    const entry = marketplace.plugins.find(plugin => plugin.name === `project-handbook-${spec.role}`);
+    if (!entry || entry.strict !== false
+        || entry.source !== './' || entry.version !== packageVersion
+        || entry.skills?.length !== 1 || entry.skills[0] !== `./plugin/skills/${spec.skill}`) {
+      throw new Error(`${spec.role}: marketplace entry is not isolated to ${spec.skill}`);
+    }
+  }
+} catch (error) {
+  fail(`Claude marketplace rejected (${error.message})`);
 }
 
 for (const relative of textRuntimeFiles) {

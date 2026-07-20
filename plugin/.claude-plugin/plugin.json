@@ -1,10 +1,15 @@
 {
   "name": "project-handbook",
-  "version": "0.3.0",
+  "displayName": "Power Home Project Handbook",
+  "version": "0.4.0",
   "description": "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) with 42 document templates",
   "author": {
-    "name": "Thiện Phạm (Power Home PO)"
+    "name": "Thiện Phạm (Power Home PO)",
+    "email": "thienpv99@gmail.com",
+    "url": "https://github.com/thienpv99"
   },
+  "homepage": "https://project-handbook.vercel.app/#plugin",
+  "repository": "https://github.com/thienpv99/project-handbook",
   "keywords": [
     "sdlc",
     "handbook",

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Build the installable Claude plugin from the handbook source.
 
-Generates plugin/ (source tree, committed for review) and packages it as
-assets/downloads/project-handbook.plugin so the site can serve it.
+Generates plugin/ (source tree, committed for review), the full installable
+package, 11 standalone role packages, and the Claude marketplace catalog.
 
 Content is derived, never retyped:
   - role chapters   <- pages/<role>.html            (EN fragments)
   - templates       <- assets/templates/previews/*  (same renders the site's
                        reader and the DOCX downloads are built from)
-Two templates the handbook names but ships no body for are generated from the
-in-page outlines and are marked AUTO-GENERATED (see DECISIONS.md).
+Only reviewed preview/DOCX pairs are packaged; generated role packages reuse
+the exact same skill source tree rather than maintaining duplicate content.
 """
 
 from __future__ import annotations
@@ -24,7 +24,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugin"
 PACKAGE_PATH = ROOT / "assets" / "downloads" / "project-handbook.plugin"
-PLUGIN_VERSION = "0.3.0"
+ROLE_PACKAGE_DIR = ROOT / "assets" / "downloads" / "roles"
+MARKETPLACE_PATH = ROOT / ".claude-plugin" / "marketplace.json"
+PLUGIN_VERSION = "0.4.0"
+PLUGIN_AUTHOR = {
+    "name": "Thiện Phạm (Power Home PO)",
+    "email": "thienpv99@gmail.com",
+    "url": "https://github.com/thienpv99",
+}
+PLUGIN_HOMEPAGE = "https://project-handbook.vercel.app/#plugin"
+PLUGIN_REPOSITORY = "https://github.com/thienpv99/project-handbook"
+MARKETPLACE_NAME = "power-home-handbook"
 
 
 # ── HTML -> Markdown ────────────────────────────────────────────────────
@@ -428,10 +438,12 @@ TEMPLATE_TITLES = {
     "stage-gate-review-template": "Stage Gate Review Template",
     "portfolio-status-report": "Portfolio Status Report",
     "benefits-realization-plan": "Benefits Realization Plan",
-    "test-plan": "Test Plan (AUTO-GENERATED)",
-    "blameless-postmortem": "Blameless Postmortem (AUTO-GENERATED)",
+    "blameless-postmortem": "Blameless Postmortem",
 }
 
+# Historical fallback bodies retained only to document the v0.1 migration.
+# The build path below deliberately refuses to package them: every current
+# template must have a reviewed HTML preview paired with a published DOCX.
 AUTO_GENERATED = {
     "test-plan": """<!-- AUTO-GENERATED: not in original handbook -->
 # TEST PLAN — [ĐIỀN: tên dự án / release]
@@ -554,16 +566,133 @@ def skill_md(meta: dict) -> str:
     return "\n".join(lines)
 
 
-PLUGIN_JSON = {
-    "name": "project-handbook",
-    "version": PLUGIN_VERSION,
-    "description": (
+def role_slug(meta: dict) -> str:
+    return meta["name"].removeprefix("role-")
+
+
+def plugin_manifest(name: str, display_name: str, description: str, keywords: list[str]) -> dict:
+    """Return a Claude Code manifest using only documented metadata fields."""
+    return {
+        "name": name,
+        "displayName": display_name,
+        "version": PLUGIN_VERSION,
+        "description": description,
+        "author": PLUGIN_AUTHOR,
+        "homepage": PLUGIN_HOMEPAGE,
+        "repository": PLUGIN_REPOSITORY,
+        "keywords": keywords,
+    }
+
+
+PLUGIN_JSON = plugin_manifest(
+    "project-handbook",
+    "Power Home Project Handbook",
+    (
         "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, "
         f"Security, Ops, Deployment, PMO) with {sum(len(skill['templates']) for skill in SKILLS)} document templates"
     ),
-    "author": {"name": "Thiện Phạm (Power Home PO)"},
-    "keywords": ["sdlc", "handbook", "templates", "banking", "water-scrum-fall"],
-}
+    ["sdlc", "handbook", "templates", "banking", "water-scrum-fall"],
+)
+
+
+def role_plugin_manifest(meta: dict) -> dict:
+    slug = role_slug(meta)
+    count = len(meta["templates"])
+    if count:
+        template_label = "template" if count == 1 else "templates"
+        coverage = f"the full role chapter and {count} reviewed {template_label}"
+    else:
+        coverage = "the full role chapter; no reviewed role-owned document template is published yet"
+    return plugin_manifest(
+        f"project-handbook-{slug}",
+        f"Power Home Handbook — {meta['title']}",
+        (
+            f"Standalone {meta['title']} skill from the Power Home SDLC Handbook, including "
+            f"{coverage}."
+        ),
+        ["sdlc", "handbook", "role-skill", slug, "templates", "banking"],
+    )
+
+
+def marketplace_manifest() -> dict:
+    plugins = [
+        {
+            "name": "project-handbook",
+            "source": "./plugin",
+            "displayName": "Power Home Project Handbook — Full",
+            "description": "All 11 role skills, the overview skill, and 42 reviewed templates.",
+            "category": "Productivity",
+            "tags": ["sdlc", "handbook", "templates", "banking"],
+        }
+    ]
+    for meta in SKILLS:
+        if meta["name"] == "handbook-overview":
+            continue
+        slug = role_slug(meta)
+        plugins.append(
+            {
+                "name": f"project-handbook-{slug}",
+                "source": "./",
+                "displayName": f"Power Home Handbook — {meta['title']}",
+                "description": role_plugin_manifest(meta)["description"],
+                "version": PLUGIN_VERSION,
+                "category": "Productivity",
+                "tags": ["sdlc", "role-skill", slug],
+                "strict": False,
+                "skills": [f"./plugin/skills/{meta['name']}"],
+            }
+        )
+    return {
+        "name": MARKETPLACE_NAME,
+        "owner": {"name": PLUGIN_AUTHOR["name"], "email": PLUGIN_AUTHOR["email"]},
+        "description": "Power Home SDLC handbook skills: install the full handbook or one role only.",
+        "plugins": plugins,
+    }
+
+
+def package_tree(source_root: Path, package_path: Path) -> None:
+    package_path.parent.mkdir(parents=True, exist_ok=True)
+    if package_path.exists():
+        package_path.unlink()
+    with zipfile.ZipFile(package_path, "w", zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(source_root.rglob("*")):
+            if path.is_file():
+                archive.write(path, path.relative_to(source_root).as_posix())
+
+
+def package_role_plugins() -> list[tuple[dict, Path]]:
+    """Build one self-contained Claude plugin per handbook role."""
+    ROLE_PACKAGE_DIR.mkdir(parents=True, exist_ok=True)
+    expected = set()
+    built = []
+
+    for meta in SKILLS:
+        if meta["name"] == "handbook-overview":
+            continue
+        slug = role_slug(meta)
+        package_path = ROLE_PACKAGE_DIR / f"project-handbook-{slug}.plugin"
+        expected.add(package_path.name)
+        manifest = json.dumps(
+            role_plugin_manifest(meta), ensure_ascii=False, indent=2
+        ) + "\n"
+        skill_root = PLUGIN_ROOT / "skills" / meta["name"]
+
+        if package_path.exists():
+            package_path.unlink()
+        with zipfile.ZipFile(package_path, "w", zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr(".claude-plugin/plugin.json", manifest)
+            for path in sorted(skill_root.rglob("*")):
+                if path.is_file():
+                    archive.write(
+                        path,
+                        (Path("skills") / meta["name"] / path.relative_to(skill_root)).as_posix(),
+                    )
+        built.append((meta, package_path))
+
+    for stale in ROLE_PACKAGE_DIR.glob("*.plugin"):
+        if stale.name not in expected:
+            stale.unlink()
+    return built
 
 
 def build() -> None:
@@ -595,20 +724,30 @@ def build() -> None:
             tdir.mkdir()
             for stem in meta["templates"]:
                 preview_exists = (ROOT / "assets" / "templates" / "previews" / f"{stem}.html").is_file()
-                if stem in AUTO_GENERATED and not preview_exists:
-                    content = AUTO_GENERATED[stem]
-                else:
-                    content = (
-                        f"# {TEMPLATE_TITLES[stem]}\n\n"
-                        f"> Verbatim conversion of the handbook DOCX template "
-                        f"`assets/templates/**/{stem}.docx` (Vietnamese-first; keep "
-                        f"`[ĐIỀN: ...]` placeholders that the user has not answered).\n\n"
-                        + preview_markdown(stem) + "\n"
+                if not preview_exists:
+                    raise FileNotFoundError(
+                        f"Reviewed preview is required before packaging template: {stem}"
                     )
+                content = (
+                    f"# {TEMPLATE_TITLES[stem]}\n\n"
+                    f"> Verbatim conversion of the handbook DOCX template "
+                    f"`assets/templates/**/{stem}.docx` (Vietnamese-first; keep "
+                    f"`[ĐIỀN: ...]` placeholders that the user has not answered).\n\n"
+                    + preview_markdown(stem) + "\n"
+                )
                 (tdir / f"{stem}.md").write_text(content, encoding="utf-8")
                 total_templates += 1
         catalog_rows.append(
             f"| `{meta['name']}` | {meta['title']} | {len(meta['templates'])} |"
+        )
+
+    role_package_rows = []
+    for meta in SKILLS:
+        if meta["name"] == "handbook-overview":
+            continue
+        slug = role_slug(meta)
+        role_package_rows.append(
+            f"| `{meta['name']}` | `project-handbook-{slug}.plugin` | {len(meta['templates'])} |"
         )
 
     readme = f"""# Power Home Project Handbook — Claude Plugin
@@ -631,7 +770,23 @@ previews used by the in-page reader and DOCX downloads.
 ## Install
 
 - **Cowork / Claude desktop:** drag & drop `project-handbook.plugin` into the chat.
-- **Claude Code:** `claude plugin install ./project-handbook.plugin`
+- **Claude Code (persistent):** add the GitHub marketplace, then install
+  `project-handbook@{MARKETPLACE_NAME}`.
+- **Claude Code (local test):** extract the archive, then run
+  `claude --plugin-dir ./project-handbook`.
+
+## Standalone role packages
+
+Install only the role needed when the full handbook would add unnecessary context.
+Each package contains exactly one role skill, its full handbook chapter, and only
+the reviewed templates owned by that role.
+
+| Skill | Package | Templates |
+|---|---|---|
+{chr(10).join(role_package_rows)}
+
+The Scrum Master package intentionally has no document template; its handbook
+chapter remains useful for facilitation, coaching, impediments and team health.
 
 ## Example prompts
 
@@ -646,8 +801,8 @@ previews used by the in-page reader and DOCX downloads.
 The handbook is the single source of truth. Whenever handbook content changes:
 run `python scripts/build-plugin.py` again, bump `version` (semver) in
 `scripts/build-plugin.py`, and let it repackage
-`assets/downloads/project-handbook.plugin`. The site's `#plugin` page serves
-that file.
+the full plugin plus all role packages under `assets/downloads/roles/`. The
+site's `#plugin` page serves those reviewed files.
 
 Classification: CONFIDENTIAL — internal use only, same boundary as the handbook.
 """
@@ -678,26 +833,39 @@ Plugin v{PLUGIN_VERSION}, generated {__import__('datetime').date.today().isoform
    single source of truth. QC coordinates UAT evidence; business owners sign off.
 6. **Not included**: `Template/BA/Guideline Template.docx` (meta-guide about
    writing templates, not a project template — also unpublished on the site).
-7. **Distribution**: packaged file is served from the handbook app at
-   `assets/downloads/project-handbook.plugin` behind the same access boundary
-   as the rest of the CONFIDENTIAL site; added to the publish allowlist
-   explicitly.
-8. **Sync rule**: regenerate + semver bump on any handbook change (see README).
+7. **Distribution**: the full package plus 11 standalone role packages are
+   served behind the same access boundary as the rest of the CONFIDENTIAL site;
+   every package is named explicitly in the publish allowlist.
+8. **Standalone boundary**: a role package contains exactly one `role-*` skill,
+   the matching handbook chapter and only templates owned by that role. It does
+   not pull in `handbook-overview` or another role implicitly. Scrum Master has
+   zero templates by design until a reviewed owner-approved template exists.
+9. **Marketplace boundary**: the Claude marketplace exposes the full plugin and
+   11 role-scoped entries from the same generated source. Role entries resolve
+   from the marketplace root and declare one complete skill path, using Claude's
+   marketplace-root isolation rule so installing BA cannot activate PO/PM.
+10. **Sync rule**: regenerate + semver bump on any handbook change (see README).
 """
     (PLUGIN_ROOT / "DECISIONS.md").write_text(decisions, encoding="utf-8")
 
     # ── package ─────────────────────────────────────────────────────────
-    PACKAGE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    if PACKAGE_PATH.exists():
-        PACKAGE_PATH.unlink()
-    with zipfile.ZipFile(PACKAGE_PATH, "w", zipfile.ZIP_DEFLATED) as z:
-        for path in sorted(PLUGIN_ROOT.rglob("*")):
-            if path.is_file():
-                z.write(path, path.relative_to(PLUGIN_ROOT).as_posix())
+    package_tree(PLUGIN_ROOT, PACKAGE_PATH)
+    role_packages = package_role_plugins()
+    MARKETPLACE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    MARKETPLACE_PATH.write_text(
+        json.dumps(marketplace_manifest(), ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
     files = sum(1 for p in PLUGIN_ROOT.rglob("*") if p.is_file())
     print(f"[OK] plugin tree: {files} files, {len(SKILLS)} skills, {total_templates} templates")
     print(f"[OK] packaged {PACKAGE_PATH.relative_to(ROOT)} ({PACKAGE_PATH.stat().st_size // 1024} KB)")
+    for meta, package_path in role_packages:
+        print(
+            f"[OK] role package {role_slug(meta)}: 1 skill, "
+            f"{len(meta['templates'])} templates ({package_path.stat().st_size // 1024} KB)"
+        )
+    print(f"[OK] marketplace {MARKETPLACE_PATH.relative_to(ROOT)}: {1 + len(role_packages)} plugins")
 
 
 if __name__ == "__main__":

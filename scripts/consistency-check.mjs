@@ -24,7 +24,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { PUBLISHED_DOCUMENTS, documentPreviewPath } from './artifact-files.mjs';
+import {
+  PUBLISHED_DOCUMENTS,
+  ROLE_PLUGIN_PACKAGES,
+  documentPreviewPath,
+} from './artifact-files.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -308,6 +312,47 @@ for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
 }
 
 // ── Report ─────────────────────────────────────────────────────────────
+// The Claude plugin page must offer both distribution scopes: one full bundle
+// and exactly one isolated package per role. EN/VI links and template counts
+// are release metadata, so they must remain identical.
+for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
+  if (!exists(relative)) continue;
+  const html = read(relative);
+  const anchors = [...html.matchAll(/<a\b([^>]*)>/g)].map(match => match[1]);
+  const full = anchors.filter(attributes => (
+    /href="assets\/downloads\/project-handbook\.plugin"/.test(attributes)
+    && /(?:^|\s)download(?:\s|=|$)/.test(attributes)
+  ));
+  if (full.length !== 1) {
+    fail('plugin-distribution', `${relative} must expose the full plugin exactly once`);
+  }
+
+  const discovered = new Set();
+  for (const attributes of anchors) {
+    const role = attributes.match(/data-role-plugin="([^"]+)"/)?.[1];
+    if (!role) continue;
+    const spec = ROLE_PLUGIN_PACKAGES.find(item => item.role === role);
+    if (!spec) {
+      fail('plugin-distribution', `${relative} exposes unknown role package: ${role}`);
+      continue;
+    }
+    if (discovered.has(role)) {
+      fail('plugin-distribution', `${relative} exposes role package twice: ${role}`);
+    }
+    discovered.add(role);
+    const href = attributes.match(/href="([^"]+)"/)?.[1];
+    const count = Number(attributes.match(/data-template-count="(\d+)"/)?.[1]);
+    if (href !== spec.path || count !== spec.templates || !/(?:^|\s)download(?:\s|=|$)/.test(attributes)) {
+      fail('plugin-distribution', `${relative} has stale metadata for ${role}`);
+    }
+  }
+  for (const spec of ROLE_PLUGIN_PACKAGES) {
+    if (!discovered.has(spec.role)) {
+      fail('plugin-distribution', `${relative} does not expose ${spec.path}`);
+    }
+  }
+}
+
 for (const note of notes) console.log(`note  ${note}`);
 
 if (failures.length) {

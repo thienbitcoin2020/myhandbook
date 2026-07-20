@@ -1,4 +1,4 @@
-# Blameless Postmortem (AUTO-GENERATED)
+# Blameless Postmortem
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/blameless-postmortem.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 

@@ -54,8 +54,23 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
  * scripts/build-plugin.py and re-inspected as a ZIP by the security gate
  * (Markdown/JSON entries only) before it may publish.
  */
+export const ROLE_PLUGIN_PACKAGES = Object.freeze([
+  { role: 'po', skill: 'role-po', templates: 3, path: 'assets/downloads/roles/project-handbook-po.plugin' },
+  { role: 'ba', skill: 'role-ba', templates: 4, path: 'assets/downloads/roles/project-handbook-ba.plugin' },
+  { role: 'pm', skill: 'role-pm', templates: 4, path: 'assets/downloads/roles/project-handbook-pm.plugin' },
+  { role: 'sm', skill: 'role-sm', templates: 0, path: 'assets/downloads/roles/project-handbook-sm.plugin' },
+  { role: 'qc', skill: 'role-qc', templates: 5, path: 'assets/downloads/roles/project-handbook-qc.plugin' },
+  { role: 'sa', skill: 'role-sa', templates: 4, path: 'assets/downloads/roles/project-handbook-sa.plugin' },
+  { role: 'ux', skill: 'role-ux', templates: 5, path: 'assets/downloads/roles/project-handbook-ux.plugin' },
+  { role: 'security', skill: 'role-security', templates: 5, path: 'assets/downloads/roles/project-handbook-security.plugin' },
+  { role: 'ops', skill: 'role-ops', templates: 4, path: 'assets/downloads/roles/project-handbook-ops.plugin' },
+  { role: 'deployment', skill: 'role-deployment', templates: 4, path: 'assets/downloads/roles/project-handbook-deployment.plugin' },
+  { role: 'pmo', skill: 'role-pmo', templates: 4, path: 'assets/downloads/roles/project-handbook-pmo.plugin' },
+]);
+
 export const PUBLISHED_DOWNLOADS = Object.freeze([
   'assets/downloads/project-handbook.plugin',
+  ...ROLE_PLUGIN_PACKAGES.map(({ path: packagePath }) => packagePath),
 ]);
 
 /**
