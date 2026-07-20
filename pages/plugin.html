@@ -61,7 +61,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-compliance">
     <span class="comp-pill">🧩 12 skills</span>
-    <span class="comp-pill">📄 43 templates</span>
+    <span class="comp-pill">📄 42 templates</span>
     <span class="comp-pill">🔒 Confidential</span>
   </div>
 
@@ -88,13 +88,13 @@
     <p>Install the entire Project Handbook into Claude as role-based skills. Anyone with the plugin can ask role questions and draft handbook-standard documents — PRD, BRD, Charter, ADR, Test Plan and more — without opening the handbook itself. Same source, same templates, same confidential boundary.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> 12 skills</div>
-      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 43 templates</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 42 templates</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> EN chapters · VI templates</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> CONFIDENTIAL</div>
     </div>
     <div class="plugin-cta">
       <a class="dl-btn" href="assets/downloads/project-handbook.plugin" download>⬇️ Download project-handbook.plugin</a>
-      <span class="dl-meta">Plugin 0.2.0 · Markdown + JSON only</span>
+      <span class="dl-meta">Plugin 0.3.0 · Markdown + JSON only</span>
     </div>
   </header>
 
@@ -107,7 +107,7 @@
         <table class="table-plg">
           <tr><th>Inside the plugin</th><th>Detail</th></tr>
           <tr><td><strong>11 role skills + 1 overview skill</strong></td><td>One skill per handbook role (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) plus the cross-cutting Implementation Handbook (SDLC phases, governance, quality gates, RACI, glossary).</td></tr>
-          <tr><td><strong>43 reviewed document templates</strong></td><td>Every template comes from the <a href="#home">Templates Library</a> and is converted 1:1 from the same preview paired with the downloadable DOCX. The v0.2.0 library adds SA, UX, QC, Security, Ops/SRE, Deployment and PMO coverage without changing the existing PO, PM, BA or Scrum Master sets.</td></tr>
+          <tr><td><strong>42 reviewed document templates</strong></td><td>Every template comes from the <a href="#home">Templates Library</a> and is converted 1:1 from the same preview paired with the downloadable DOCX. The v0.3.0 review removes the duplicate PO-owned FSD and uses the BA-owned SRS as the implementation-ready requirements source of truth.</td></tr>
           <tr><td><strong>Full chapters as references</strong></td><td>Each skill carries its complete handbook chapter for deep answers — Claude loads it only when needed (progressive disclosure), so the plugin stays fast.</td></tr>
           <tr><td><strong>DECISIONS.md</strong></td><td>Every automatic decision made while generating the plugin is logged for review — gap fills, ownership calls, language policy.</td></tr>
         </table>
@@ -269,6 +269,7 @@
       <div class="card"><div class="card-body">
         <table class="table-plg">
           <tr><th style="width:90px">Plugin</th><th style="width:110px">Date</th><th>Notes</th></tr>
+          <tr><td><strong>0.3.0</strong></td><td>2026-07-20</td><td>SDLC ownership review: retired the duplicate PO FSD, mapped it to BA SRS, and streamlined generated document boilerplate.</td></tr>
           <tr><td><strong>0.2.0</strong></td><td>2026-07-20</td><td>Expanded to 43 reviewed templates: 29 new role-owned files for SA, UX, QC, Security, Ops/SRE, Deployment and PMO; removed the two outline-only plugin fallbacks.</td></tr>
           <tr><td><strong>0.1.0</strong></td><td>2026-07-19</td><td>Initial release — 12 skills, 16 templates (14 from the Templates Library, 2 auto-generated from in-page outlines), full chapters as references, DECISIONS.md audit log.</td></tr>
         </table>
@@ -280,7 +281,7 @@
 
   <footer class="site-footer">
     🏦 Handbook · Claude Plugin v2.0 · Internal Use Only · Classification: CONFIDENTIAL<br/>
-    Generated from handbook source · 12 skills · 43 templates · © 2026
+    Generated from handbook source · 12 skills · 42 templates · © 2026
   </footer>
 </div>
 </div>

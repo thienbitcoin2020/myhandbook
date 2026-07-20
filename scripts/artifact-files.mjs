@@ -41,7 +41,6 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
   'assets/templates/pm/raid-log.docx',
   'assets/templates/pm/status-report-one-page.docx',
   'assets/templates/po/epic-to-user-stories.docx',
-  'assets/templates/po/functional-specification-document.docx',
   'assets/templates/po/product-requirements-document.docx',
   'assets/templates/po/product-vision-roadmap.docx',
   'assets/templates/sa/architecture-decision-record.docx',

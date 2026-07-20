@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Compliance Officer / Security Engineer kiêm nhiệm | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), nội dung chính dạng bảng gap assessment, kèm roadmap.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,51 +32,39 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Tóm tắt chuẩn
 
-**Yêu cầu từ prompt: **Tóm tắt chuẩn: phạm vi áp dụng, các nhóm yêu cầu chính
+Tóm tắt chuẩn: phạm vi áp dụng, các nhóm yêu cầu chính
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Bảng gap assessment
 
-**Yêu cầu từ prompt: **Bảng gap assessment: từng control/điều khoản — trạng thái (Đạt / Đạt một phần / Chưa đạt / Không áp dụng) — bằng chứng cần có — gap cụ thể
+Bảng gap assessment: từng control/điều khoản — trạng thái (Đạt / Đạt một phần / Chưa đạt / Không áp dụng) — bằng chứng cần có — gap cụ thể
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Xếp ưu tiên gap theo rủi ro và effort (ma trận quick win / dự án lớn)
 
-**Yêu cầu từ prompt: **Xếp ưu tiên gap theo rủi ro và effort (ma trận quick win / dự án lớn)
+Xếp ưu tiên gap theo rủi ro và effort (ma trận quick win / dự án lớn)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Remediation roadmap
 
-**Yêu cầu từ prompt: **Remediation roadmap: hành động, owner đề xuất, timeline, phụ thuộc
+Remediation roadmap: hành động, owner đề xuất, timeline, phụ thuộc
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Danh sách bằng chứng (evidence) cần thu thập cho audit
 
-**Yêu cầu từ prompt: **Danh sách bằng chứng (evidence) cần thu thập cho audit
+Danh sách bằng chứng (evidence) cần thu thập cho audit
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Rủi ro nếu không tuân thủ
 
-**Yêu cầu từ prompt: **Rủi ro nếu không tuân thủ: phạt, mất hợp đồng, uy tín
+Rủi ro nếu không tuân thủ: phạt, mất hợp đồng, uy tín
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -111,7 +84,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - "Không áp dụng" phải kèm justification bằng văn bản — auditor sẽ hỏi
 
@@ -122,13 +95,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

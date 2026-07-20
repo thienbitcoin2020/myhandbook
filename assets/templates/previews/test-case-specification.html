@@ -49,45 +49,31 @@
 <table><tr class="doc-preview-thead"><td><strong>Trường</strong></td><td><strong>Giá trị kiểm soát</strong></td></tr><tr><td><strong>Mã tài liệu</strong></td><td>[ĐIỀN: &lt;TÊN DỰ ÁN&gt;-62-v1.0-YYYYMMDD]</td></tr><tr><td><strong>PIC duy nhất</strong></td><td>QC Engineer</td></tr><tr><td><strong>Trạng thái</strong></td><td>Draft → In Review → Approved → Superseded</td></tr><tr><td><strong>Ngày hiệu lực</strong></td><td>[ĐIỀN: dd/mm/yyyy]</td></tr><tr><td><strong>Phân loại</strong></td><td>MẬT (CONFIDENTIAL) · Lưu hành nội bộ</td></tr></table>
 <p><strong>Nguyên tắc sử dụng: </strong>Đây là template dùng chung, không gắn với dự án cụ thể. Giữ nguyên mọi ô [ĐIỀN...] cho đến khi PIC có dữ liệu được xác nhận; không tự suy diễn bối cảnh hay số liệu.</p>
 <ul><li>Chỉ bản Approved được dùng làm căn cứ thực thi hoặc ra quyết định.</li><li>Các role khác đóng góp qua review/input; chỉ PIC cập nhật bản chính.</li><li>Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].</li></ul>
-<h2>Kiểm soát tài liệu</h2>
-<p><strong>Revision History</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Version</strong></td><td><strong>Ngày</strong></td><td><strong>Người sửa (PIC)</strong></td><td><strong>Nội dung thay đổi</strong></td><td><strong>Người duyệt</strong></td></tr><tr><td>1.0</td><td>[ĐIỀN]</td><td>QC Engineer</td><td>Bản template đầu tiên</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>Mục lục</h2>
-<p>Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.</p>
-<p><strong>Output yêu cầu: </strong>File Word (.docx), nội dung chính dạng bảng, kèm phần câu hỏi làm rõ (nếu có).</p>
 <h2>1. Thông tin đầu vào</h2>
 <table><tr class="doc-preview-thead"><td><strong>Đầu vào bắt buộc</strong></td><td><strong>Giá trị / Tham chiếu</strong></td><td><strong>Trạng thái</strong></td></tr><tr><td>[DÁN USER STORY + AC — ưu tiên định dạng Gherkin nếu có]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr></table>
 <h2>2. Nội dung tài liệu</h2>
 <h3>1. Áp dụng tối thiểu 3 kỹ thuật</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Áp dụng tối thiểu 3 kỹ thuật: Equivalence Partitioning, Boundary Value Analysis, Decision Table (nếu có logic điều kiện phức hợp)</p>
+<p>Áp dụng tối thiểu 3 kỹ thuật: Equivalence Partitioning, Boundary Value Analysis, Decision Table (nếu có logic điều kiện phức hợp)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>2. Mỗi test case gồm</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Mỗi test case gồm: ID (quy ước TC-[MODULE]-[SỐ]), tiêu đề, precondition, test data, các bước thực hiện đánh số, expected result cụ thể, loại (positive/negative), độ ưu tiên</p>
+<p>Mỗi test case gồm: ID (quy ước TC-[MODULE]-[SỐ]), tiêu đề, precondition, test data, các bước thực hiện đánh số, expected result cụ thể, loại (positive/negative), độ ưu tiên</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>3. Phủ đủ</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Phủ đủ: happy path, negative case, boundary case, edge case (giá trị rỗng, ký tự đặc biệt, giá trị cực đại/cực tiểu)</p>
+<p>Phủ đủ: happy path, negative case, boundary case, edge case (giá trị rỗng, ký tự đặc biệt, giá trị cực đại/cực tiểu)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>4. Đánh dấu test case nào nên đưa vào regression suite</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Đánh dấu test case nào nên đưa vào regression suite và test case nào phù hợp automation</p>
+<p>Đánh dấu test case nào nên đưa vào regression suite và test case nào phù hợp automation</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>5. Bảng traceability</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Bảng traceability: Test Case ID ↔ AC ID ↔ User Story ID</p>
+<p>Bảng traceability: Test Case ID ↔ AC ID ↔ User Story ID</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h2>3. Biểu mẫu làm việc</h2>
 <p><strong>Test cases</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>TC ID</strong></td><td><strong>Precondition</strong></td><td><strong>Steps</strong></td><td><strong>Expected result</strong></td><td><strong>Priority</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 <p><strong>Traceability</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>TC ID</strong></td><td><strong>Requirement / AC</strong></td><td><strong>Test data</strong></td><td><strong>Result</strong></td><td><strong>Defect ID</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>4. Nguyên tắc chất lượng</h2>
+<h2>4. Hướng dẫn chất lượng</h2>
 <ul><li>Expected result phải cụ thể, kiểm chứng được (&quot;hiển thị thông báo X&quot;, không viết &quot;hoạt động đúng&quot;)</li><li>Test case độc lập nhau, không phụ thuộc thứ tự chạy trừ khi ghi rõ precondition</li><li>Mỗi test case chỉ kiểm chứng 1 điều — không gộp nhiều kiểm chứng vào 1 case</li><li>AC nào chưa đủ rõ để viết test → liệt kê câu hỏi gửi BA/PO, đánh dấu [CẦN XÁC NHẬN]</li><li>PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.</li><li>Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.</li></ul>
-<h2>5. Review &amp; phê duyệt</h2>
-<p><strong>Sign-off</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Vai trò</strong></td><td><strong>Họ tên</strong></td><td><strong>Kết luận</strong></td><td><strong>Ngày</strong></td><td><strong>Điều kiện / Ghi chú</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 </article>
 </body>
 </html>

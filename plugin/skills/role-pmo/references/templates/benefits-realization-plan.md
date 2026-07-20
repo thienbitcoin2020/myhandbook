@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | PMO Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), có bảng benefit register; benefit map chèn dạng hình ảnh, mã Mermaid đặt ở phụ lục tài liệu.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,59 +32,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Benefit map
 
-**Yêu cầu từ prompt: **Benefit map: Output dự án → Outcome nghiệp vụ → Benefit đo được → Mục tiêu chiến lược (vẽ Mermaid flowchart)
+Benefit map: Output dự án → Outcome nghiệp vụ → Benefit đo được → Mục tiêu chiến lược (vẽ Mermaid flowchart)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Bảng benefit register
 
-**Yêu cầu từ prompt: **Bảng benefit register: từng benefit — cách đo (công thức cụ thể) — baseline — target — thời điểm kỳ vọng đạt (nhiều benefit chỉ đến 6-12 tháng sau go-live) — Benefit Owner (người nghiệp vụ)
+Bảng benefit register: từng benefit — cách đo (công thức cụ thể) — baseline — target — thời điểm kỳ vọng đạt (nhiều benefit chỉ đến 6-12 tháng sau go-live) — Benefit Owner (người nghiệp vụ)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Phân loại
 
-**Yêu cầu từ prompt: **Phân loại: benefit tài chính (quy được ra tiền) vs phi tài chính (chất lượng, hài lòng, rủi ro giảm) — cách đo từng loại
+Phân loại: benefit tài chính (quy được ra tiền) vs phi tài chính (chất lượng, hài lòng, rủi ro giảm) — cách đo từng loại
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Kế hoạch đo
 
-**Yêu cầu từ prompt: **Kế hoạch đo: nguồn dữ liệu, tần suất đo, ai đo, báo cáo cho ai
+Kế hoạch đo: nguồn dữ liệu, tần suất đo, ai đo, báo cáo cho ai
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Điều kiện tiên quyết để benefit xảy ra
 
-**Yêu cầu từ prompt: **Điều kiện tiên quyết để benefit xảy ra: user thật sự dùng hệ thống, quy trình cũ được tắt, training hoàn thành — theo dõi các điều kiện này
+Điều kiện tiên quyết để benefit xảy ra: user thật sự dùng hệ thống, quy trình cũ được tắt, training hoàn thành — theo dõi các điều kiện này
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Dis-benefit (tác động tiêu cực kèm theo)
 
-**Yêu cầu từ prompt: **Dis-benefit (tác động tiêu cực kèm theo): nhận diện + kế hoạch giảm thiểu
+Dis-benefit (tác động tiêu cực kèm theo): nhận diện + kế hoạch giảm thiểu
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Lịch benefit review
 
-**Yêu cầu từ prompt: **Lịch benefit review: các mốc sau go-live ([3/6/12] tháng), quyết định tại mỗi mốc nếu benefit không đạt
+Lịch benefit review: các mốc sau go-live ([3/6/12] tháng), quyết định tại mỗi mốc nếu benefit không đạt
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +98,7 @@ Hình minh hoạ là khung placeholder. PIC phải thay nhãn bằng nội dung 
 
 flowchart LR OUTPUT --> OUTCOME --> BENEFIT --> GOAL[Strategic goal]
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Benefit không có owner phía nghiệp vụ = benefit sẽ không ai đòi — không chấp nhận benefit "vô chủ"
 
@@ -141,7 +112,7 @@ flowchart LR OUTPUT --> OUTCOME --> BENEFIT --> GOAL[Strategic goal]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -149,4 +120,3 @@ flowchart LR OUTPUT --> OUTCOME --> BENEFIT --> GOAL[Strategic goal]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

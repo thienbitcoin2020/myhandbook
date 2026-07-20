@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | UX (input từ PO, BA) | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), bảng journey.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,35 +32,27 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. 2-3 Persona, mỗi persona
 
-**Yêu cầu từ prompt: **2-3 Persona, mỗi persona: tên, demographic, goals, pain points, behaviors, tech proficiency, quote đặc trưng, mức ưu tiên (primary/secondary)
+2-3 Persona, mỗi persona: tên, demographic, goals, pain points, behaviors, tech proficiency, quote đặc trưng, mức ưu tiên (primary/secondary)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Journey Map cho persona chính theo flow trọng tâm
 
-**Yêu cầu từ prompt: **Journey Map cho persona chính theo flow trọng tâm: Stage → Actions → Thoughts → Emotions (đường cong cảm xúc) → Pain points → Opportunities → Touchpoints
+Journey Map cho persona chính theo flow trọng tâm: Stage → Actions → Thoughts → Emotions (đường cong cảm xúc) → Pain points → Opportunities → Touchpoints
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Phân biệt rõ
 
-**Yêu cầu từ prompt: **Phân biệt rõ: điểm nào dựa trên DATA vs điểm nào là [GIẢ ĐỊNH – CẦN RESEARCH]
+Phân biệt rõ: điểm nào dựa trên DATA vs điểm nào là [GIẢ ĐỊNH – CẦN RESEARCH]
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Top 5 opportunity đề xuất, xếp theo impact
 
-**Yêu cầu từ prompt: **Top 5 opportunity đề xuất, xếp theo impact
+Top 5 opportunity đề xuất, xếp theo impact
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -95,7 +72,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Persona dựa trên dữ liệu, không phải stereotype
 
@@ -104,13 +81,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Release Engineer / DevOps | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), nội dung chính dạng bảng checklist, kèm mẫu biên bản.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,75 +32,57 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Code & Build
 
-**Yêu cầu từ prompt: **Code & Build: code freeze đúng hạn, build thành công, artifact đã tag version, không còn PR treo trong scope
+Code & Build: code freeze đúng hạn, build thành công, artifact đã tag version, không còn PR treo trong scope
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Testing
 
-**Yêu cầu từ prompt: **Testing: test summary report phát hành, exit criteria đạt, defect Critical/High = 0 hoặc có waiver được duyệt, regression pass, UAT sign-off
+Testing: test summary report phát hành, exit criteria đạt, defect Critical/High = 0 hoặc có waiver được duyệt, regression pass, UAT sign-off
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Security
 
-**Yêu cầu từ prompt: **Security: security scan không còn finding High trở lên chưa xử lý, secret không nằm trong code, pentest (nếu yêu cầu) đã xong
+Security: security scan không còn finding High trở lên chưa xử lý, secret không nằm trong code, pentest (nếu yêu cầu) đã xong
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Tài liệu
 
-**Yêu cầu từ prompt: **Tài liệu: release notes sẵn sàng, tài liệu user cập nhật, API doc cập nhật, runbook deploy đã review
+Tài liệu: release notes sẵn sàng, tài liệu user cập nhật, API doc cập nhật, runbook deploy đã review
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Vận hành
 
-**Yêu cầu từ prompt: **Vận hành: monitoring/alert cấu hình cho tính năng mới, capacity đủ, backup trước deploy đã lên lịch, rollback plan đã review, on-call sắp xếp
+Vận hành: monitoring/alert cấu hình cho tính năng mới, capacity đủ, backup trước deploy đã lên lịch, rollback plan đã review, on-call sắp xếp
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Nghiệp vụ
 
-**Yêu cầu từ prompt: **Nghiệp vụ: PO chấp nhận, thông báo khách hàng/CS chuẩn bị, kế hoạch truyền thông (nếu có), pháp lý/compliance clear (nếu liên quan)
+Nghiệp vụ: PO chấp nhận, thông báo khách hàng/CS chuẩn bị, kế hoạch truyền thông (nếu có), pháp lý/compliance clear (nếu liên quan)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Rollback readiness
 
-**Yêu cầu từ prompt: **Rollback readiness: tiêu chí rollback thống nhất, người có quyền quyết định rollback được chỉ định, rollback đã test trên staging Kèm theo:
+Rollback readiness: tiêu chí rollback thống nhất, người có quyền quyết định rollback được chỉ định, rollback đã test trên staging Kèm theo:
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Mẫu biên bản Go/No-Go
 
-**Yêu cầu từ prompt: **Mẫu biên bản Go/No-Go: quyết định (GO / GO CÓ ĐIỀU KIỆN / NO-GO), điều kiện kèm theo, người quyết định ký, ngày giờ
+Mẫu biên bản Go/No-Go: quyết định (GO / GO CÓ ĐIỀU KIỆN / NO-GO), điều kiện kèm theo, người quyết định ký, ngày giờ
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 9. Quy tắc
 
-**Yêu cầu từ prompt: **Quy tắc: mục nào ❌ mà không có waiver được duyệt → mặc định NO-GO
+Quy tắc: mục nào ❌ mà không có waiver được duyệt → mặc định NO-GO
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -135,7 +102,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Mỗi mục checklist phải có ĐÚNG 1 bên xác nhận — không có mục "của chung"
 
@@ -147,7 +114,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -155,4 +122,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

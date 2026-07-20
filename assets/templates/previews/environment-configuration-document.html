@@ -49,53 +49,37 @@
 <table><tr class="doc-preview-thead"><td><strong>Trường</strong></td><td><strong>Giá trị kiểm soát</strong></td></tr><tr><td><strong>Mã tài liệu</strong></td><td>[ĐIỀN: &lt;TÊN DỰ ÁN&gt;-104-v1.0-YYYYMMDD]</td></tr><tr><td><strong>PIC duy nhất</strong></td><td>DevOps Engineer</td></tr><tr><td><strong>Trạng thái</strong></td><td>Draft → In Review → Approved → Superseded</td></tr><tr><td><strong>Ngày hiệu lực</strong></td><td>[ĐIỀN: dd/mm/yyyy]</td></tr><tr><td><strong>Phân loại</strong></td><td>MẬT (CONFIDENTIAL) · Lưu hành nội bộ</td></tr></table>
 <p><strong>Nguyên tắc sử dụng: </strong>Đây là template dùng chung, không gắn với dự án cụ thể. Giữ nguyên mọi ô [ĐIỀN...] cho đến khi PIC có dữ liệu được xác nhận; không tự suy diễn bối cảnh hay số liệu.</p>
 <ul><li>Chỉ bản Approved được dùng làm căn cứ thực thi hoặc ra quyết định.</li><li>Các role khác đóng góp qua review/input; chỉ PIC cập nhật bản chính.</li><li>Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].</li></ul>
-<h2>Kiểm soát tài liệu</h2>
-<p><strong>Revision History</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Version</strong></td><td><strong>Ngày</strong></td><td><strong>Người sửa (PIC)</strong></td><td><strong>Nội dung thay đổi</strong></td><td><strong>Người duyệt</strong></td></tr><tr><td>1.0</td><td>[ĐIỀN]</td><td>DevOps Engineer</td><td>Bản template đầu tiên</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>Mục lục</h2>
-<p>Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.</p>
-<p><strong>Output yêu cầu: </strong>File Word (.docx), kèm bảng so sánh môi trường.</p>
 <h2>1. Thông tin đầu vào</h2>
 <table><tr class="doc-preview-thead"><td><strong>Đầu vào bắt buộc</strong></td><td><strong>Giá trị / Tham chiếu</strong></td><td><strong>Trạng thái</strong></td></tr><tr><td>Danh sách môi trường: [DEV / STAGING / UAT / PROD...]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr><tr><td>Hạ tầng: [CLOUD PROVIDER, REGION, IAC TOOL NẾU CÓ]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr><tr><td>Điểm khác biệt đã biết giữa các môi trường: [MÔ TẢ]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr></table>
 <h2>2. Nội dung tài liệu</h2>
 <h3>1. Bảng so sánh môi trường</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Bảng so sánh môi trường: mục đích, URL, hạ tầng (size/replica), DB (loại, size, data gì), third-party (sandbox hay live), ai được truy cập</p>
+<p>Bảng so sánh môi trường: mục đích, URL, hạ tầng (size/replica), DB (loại, size, data gì), third-party (sandbox hay live), ai được truy cập</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>2. Nguyên tắc parity</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Nguyên tắc parity: staging giống prod ở điểm nào, khác ở điểm nào + lý do (chi phí, license) + rủi ro của khác biệt đó</p>
+<p>Nguyên tắc parity: staging giống prod ở điểm nào, khác ở điểm nào + lý do (chi phí, license) + rủi ro của khác biệt đó</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>3. Quản lý config</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Quản lý config: config nào nằm ở env variable / config file / secret manager — quy ước đặt tên</p>
+<p>Quản lý config: config nào nằm ở env variable / config file / secret manager — quy ước đặt tên</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>4. Quản lý secret</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Quản lý secret: công cụ lưu (Vault/AWS Secrets Manager...), quy trình cấp phát, chu kỳ rotate — TUYỆT ĐỐI không ghi giá trị secret thật vào tài liệu, chỉ ghi tên biến + nơi lấy</p>
+<p>Quản lý secret: công cụ lưu (Vault/AWS Secrets Manager...), quy trình cấp phát, chu kỳ rotate — TUYỆT ĐỐI không ghi giá trị secret thật vào tài liệu, chỉ ghi tên biến + nơi lấy</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>5. Data policy từng môi trường</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Data policy từng môi trường: môi trường nào được dùng data thật (đã mask/ẩn danh chưa), quy tắc refresh data</p>
+<p>Data policy từng môi trường: môi trường nào được dùng data thật (đã mask/ẩn danh chưa), quy tắc refresh data</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>6. IaC</h3>
-<p><strong>Yêu cầu từ prompt: </strong>IaC: repo nào quản lý môi trường nào, cách apply thay đổi, cấm sửa tay (configuration drift)</p>
+<p>IaC: repo nào quản lý môi trường nào, cách apply thay đổi, cấm sửa tay (configuration drift)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>7. Quy trình xin cấp / thay đổi môi trường</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Quy trình xin cấp / thay đổi môi trường: ai duyệt, SLA</p>
+<p>Quy trình xin cấp / thay đổi môi trường: ai duyệt, SLA</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h2>3. Biểu mẫu làm việc</h2>
 <p><strong>Environment comparison</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>Dimension</strong></td><td><strong>DEV</strong></td><td><strong>SIT</strong></td><td><strong>UAT</strong></td><td><strong>PROD</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 <p><strong>Configuration inventory</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>Variable / Resource</strong></td><td><strong>Reference</strong></td><td><strong>Owner</strong></td><td><strong>Drift check</strong></td><td><strong>Status</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>4. Nguyên tắc chất lượng</h2>
+<h2>4. Hướng dẫn chất lượng</h2>
 <ul><li>Tài liệu này KHÔNG chứa secret thật — chỉ chứa tên biến và con trỏ đến secret manager</li><li>Khác biệt staging vs prod phải được liệt kê tường minh — khác biệt ngầm là nguồn gốc &quot;works on staging&quot;</li><li>Môi trường quản lý bằng IaC, sửa tay là vi phạm — mọi drift phải được phát hiện và xử lý</li><li>PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.</li><li>Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.</li></ul>
-<h2>5. Review &amp; phê duyệt</h2>
-<p><strong>Sign-off</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Vai trò</strong></td><td><strong>Họ tên</strong></td><td><strong>Kết luận</strong></td><td><strong>Ngày</strong></td><td><strong>Điều kiện / Ghi chú</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 </article>
 </body>
 </html>

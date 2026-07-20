@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | PMO Analyst / PMO Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng dashboard.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,59 +32,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Executive dashboard 1 trang
 
-**Yêu cầu từ prompt: **Executive dashboard 1 trang: tổng số dự án theo RAG (🟢🟡🔴), ngân sách tổng (kế hoạch vs thực tế), milestone lớn kỳ tới, top 3 việc cần lãnh đạo quyết
+Executive dashboard 1 trang: tổng số dự án theo RAG (🟢🟡🔴), ngân sách tổng (kế hoạch vs thực tế), milestone lớn kỳ tới, top 3 việc cần lãnh đạo quyết
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Bảng portfolio
 
-**Yêu cầu từ prompt: **Bảng portfolio: từng dự án — RAG tổng + RAG theo chiều (scope/schedule/cost/risk) — % hoàn thành — milestone tới — vấn đề chính 1 dòng
+Bảng portfolio: từng dự án — RAG tổng + RAG theo chiều (scope/schedule/cost/risk) — % hoàn thành — milestone tới — vấn đề chính 1 dòng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Strategic alignment
 
-**Yêu cầu từ prompt: **Strategic alignment: dự án nào phục vụ mục tiêu chiến lược nào — phát hiện dự án "mồ côi" không map được mục tiêu
+Strategic alignment: dự án nào phục vụ mục tiêu chiến lược nào — phát hiện dự án "mồ côi" không map được mục tiêu
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Xung đột liên dự án
 
-**Yêu cầu từ prompt: **Xung đột liên dự án: tranh chấp resource (ai bị giành giữa các dự án), phụ thuộc chéo đang rủi ro
+Xung đột liên dự án: tranh chấp resource (ai bị giành giữa các dự án), phụ thuộc chéo đang rủi ro
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Rủi ro mức portfolio
 
-**Yêu cầu từ prompt: **Rủi ro mức portfolio: rủi ro xuất hiện ở nhiều dự án cùng lúc (systemic), rủi ro tập trung (nhiều dự án phụ thuộc 1 vendor/1 người)
+Rủi ro mức portfolio: rủi ro xuất hiện ở nhiều dự án cùng lúc (systemic), rủi ro tập trung (nhiều dự án phụ thuộc 1 vendor/1 người)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Dự án 🔴
 
-**Yêu cầu từ prompt: **Dự án 🔴: mỗi dự án 3-4 câu — vì sao đỏ, PM đã làm gì, cần lãnh đạo làm gì, deadline quyết định
+Dự án 🔴: mỗi dự án 3-4 câu — vì sao đỏ, PM đã làm gì, cần lãnh đạo làm gì, deadline quyết định
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Đề xuất của PMO
 
-**Yêu cầu từ prompt: **Đề xuất của PMO: dự án nào cần can thiệp / tạm dừng / bổ sung nguồn lực
+Đề xuất của PMO: dự án nào cần can thiệp / tạm dừng / bổ sung nguồn lực
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -119,7 +90,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Báo cáo lãnh đạo: dashboard 1 trang đứng trước, chi tiết là phụ lục
 
@@ -132,13 +103,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

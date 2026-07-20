@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | SA (input từ BA, SRE, Security) | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), nội dung chính dạng bảng theo nhóm.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Performance (response time p95/p99, throughput)
 
-**Yêu cầu từ prompt: **Performance (response time p95/p99, throughput)
+Performance (response time p95/p99, throughput)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Availability & Reliability (uptime %, RTO/RPO, MTTR)
 
-**Yêu cầu từ prompt: **Availability & Reliability (uptime %, RTO/RPO, MTTR)
+Availability & Reliability (uptime %, RTO/RPO, MTTR)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Scalability (horizontal/vertical, giới hạn thiết kế)
 
-**Yêu cầu từ prompt: **Scalability (horizontal/vertical, giới hạn thiết kế)
+Scalability (horizontal/vertical, giới hạn thiết kế)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Security (map sang OWASP ASVS level, chuẩn mã hoá)
 
-**Yêu cầu từ prompt: **Security (map sang OWASP ASVS level, chuẩn mã hoá)
+Security (map sang OWASP ASVS level, chuẩn mã hoá)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Usability & Accessibility (WCAG 2.2 AA)
 
-**Yêu cầu từ prompt: **Usability & Accessibility (WCAG 2.2 AA)
+Usability & Accessibility (WCAG 2.2 AA)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Maintainability (test coverage tối thiểu, quality gate)
 
-**Yêu cầu từ prompt: **Maintainability (test coverage tối thiểu, quality gate)
+Maintainability (test coverage tối thiểu, quality gate)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Compatibility (ma trận browser/OS/device)
 
-**Yêu cầu từ prompt: **Compatibility (ma trận browser/OS/device)
+Compatibility (ma trận browser/OS/device)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Compliance & Auditability (log retention, audit trail) Format mỗi NFR
 
-**Yêu cầu từ prompt: **Compliance & Auditability (log retention, audit trail) Format mỗi NFR: NFR-xxx | Category | Mô tả đo được | Target | Cách đo/verify | Priority | Nguồn (BA/SRE/Security)
+Compliance & Auditability (log retention, audit trail) Format mỗi NFR: NFR-xxx | Category | Mô tả đo được | Target | Cách đo/verify | Priority | Nguồn (BA/SRE/Security)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Cấm từ mơ hồ ("nhanh", "an toàn", "ổn định") — mọi NFR phải testable
 
@@ -136,13 +105,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | DevOps Engineer | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng so sánh môi trường.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,59 +32,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Bảng so sánh môi trường
 
-**Yêu cầu từ prompt: **Bảng so sánh môi trường: mục đích, URL, hạ tầng (size/replica), DB (loại, size, data gì), third-party (sandbox hay live), ai được truy cập
+Bảng so sánh môi trường: mục đích, URL, hạ tầng (size/replica), DB (loại, size, data gì), third-party (sandbox hay live), ai được truy cập
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Nguyên tắc parity
 
-**Yêu cầu từ prompt: **Nguyên tắc parity: staging giống prod ở điểm nào, khác ở điểm nào + lý do (chi phí, license) + rủi ro của khác biệt đó
+Nguyên tắc parity: staging giống prod ở điểm nào, khác ở điểm nào + lý do (chi phí, license) + rủi ro của khác biệt đó
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Quản lý config
 
-**Yêu cầu từ prompt: **Quản lý config: config nào nằm ở env variable / config file / secret manager — quy ước đặt tên
+Quản lý config: config nào nằm ở env variable / config file / secret manager — quy ước đặt tên
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Quản lý secret
 
-**Yêu cầu từ prompt: **Quản lý secret: công cụ lưu (Vault/AWS Secrets Manager...), quy trình cấp phát, chu kỳ rotate — TUYỆT ĐỐI không ghi giá trị secret thật vào tài liệu, chỉ ghi tên biến + nơi lấy
+Quản lý secret: công cụ lưu (Vault/AWS Secrets Manager...), quy trình cấp phát, chu kỳ rotate — TUYỆT ĐỐI không ghi giá trị secret thật vào tài liệu, chỉ ghi tên biến + nơi lấy
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Data policy từng môi trường
 
-**Yêu cầu từ prompt: **Data policy từng môi trường: môi trường nào được dùng data thật (đã mask/ẩn danh chưa), quy tắc refresh data
+Data policy từng môi trường: môi trường nào được dùng data thật (đã mask/ẩn danh chưa), quy tắc refresh data
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. IaC
 
-**Yêu cầu từ prompt: **IaC: repo nào quản lý môi trường nào, cách apply thay đổi, cấm sửa tay (configuration drift)
+IaC: repo nào quản lý môi trường nào, cách apply thay đổi, cấm sửa tay (configuration drift)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Quy trình xin cấp / thay đổi môi trường
 
-**Yêu cầu từ prompt: **Quy trình xin cấp / thay đổi môi trường: ai duyệt, SLA
+Quy trình xin cấp / thay đổi môi trường: ai duyệt, SLA
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -119,7 +90,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Tài liệu này KHÔNG chứa secret thật — chỉ chứa tên biến và con trỏ đến secret manager
 
@@ -130,13 +101,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

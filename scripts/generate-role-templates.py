@@ -682,7 +682,15 @@ def add_front_matter(doc, record: PromptRecord) -> None:
 
 def section_title(requirement: str, ordinal: int) -> str:
     text = re.sub(r"^\d+\.\s*", "", requirement)
+    # Some prompt records use "Phần 1 — <real section name>". Keeping only
+    # "Phần 1" produced meaningless repeated headings in the final template.
+    text = re.sub(r"^Phần\s+\d+\s*[—–-]\s*", "", text, flags=re.IGNORECASE)
+    # Usability Test uses a second generic wrapper ("Test Plan:" / "Report
+    # template:"). Promote the actual field name so the heading is semantic.
+    text = re.sub(r"^(?:Test Plan|Report template)\s*:\s*", "", text, flags=re.IGNORECASE)
     candidate = re.split(r"\s+[—–-]\s+|:\s+", text, maxsplit=1)[0]
+    if candidate.casefold() in {"bảng", "table"} and ":" in text:
+        candidate = "Bảng " + " ".join(text.split(":", 1)[1].split()[:6])
     candidate = candidate.strip().rstrip(".")
     if len(candidate) > 80:
         candidate = " ".join(candidate.split()[:10])
@@ -758,7 +766,6 @@ def build_document(record: PromptRecord, role: str, role_label: str, destination
     doc.core_properties.last_modified_by = ""
     doc.core_properties.comments = "Generated from the reviewed role prompt pack; PIC review required."
     add_cover(doc, record, role_label)
-    add_front_matter(doc, record)
 
     add_heading(doc, "1. Thông tin đầu vào", 1)
     inputs = record.inputs or ("[ĐIỀN: dữ liệu đầu vào đã được PIC xác nhận]",)
@@ -777,9 +784,8 @@ def build_document(record: PromptRecord, role: str, role_label: str, destination
     add_heading(doc, "2. Nội dung tài liệu", 1)
     for ordinal, requirement in enumerate(record.sections, 1):
         add_heading(doc, section_title(requirement, ordinal), 2)
-        add_callout(doc, "Yêu cầu từ prompt", requirement)
+        add_body(doc, requirement)
         add_body(doc, "[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]")
-        add_body(doc, "Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]")
 
     add_heading(doc, "3. Biểu mẫu làm việc", 1)
     for sheet_title, columns, weights in WORKSHEETS[record.code]:
@@ -789,20 +795,22 @@ def build_document(record: PromptRecord, role: str, role_label: str, destination
         with tempfile.TemporaryDirectory(prefix="handbook-diagram-") as temp:
             add_diagram(doc, Path(temp), record.code)
 
-    add_heading(doc, "4. Nguyên tắc chất lượng", 1)
+    add_heading(doc, "4. Hướng dẫn chất lượng", 1)
     for principle in record.principles:
         add_bullet(doc, principle)
     add_bullet(doc, "PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.")
     add_bullet(doc, "Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.")
 
-    add_heading(doc, "5. Review & phê duyệt", 1)
-    add_table(
-        doc,
-        "Sign-off",
-        ("Vai trò", "Họ tên", "Kết luận", "Ngày", "Điều kiện / Ghi chú"),
-        (20, 20, 18, 14, 28),
-        rows=3,
-    )
+    sign_off_codes = {"6.4", "6.5", "7.3", "7.4", "8.4", "10.2", "11.1", "11.2", "11.4"}
+    if record.code in sign_off_codes:
+        add_heading(doc, "5. Phê duyệt quyết định", 1)
+        add_table(
+            doc,
+            "Sign-off",
+            ("Vai trò", "Họ tên", "Kết luận", "Ngày", "Điều kiện / Ghi chú"),
+            (20, 20, 18, 14, 28),
+            rows=2,
+        )
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     PREVIEW_ROOT.mkdir(parents=True, exist_ok=True)

@@ -5,7 +5,7 @@ description: >-
   the user asks about PO responsibilities, product vision or roadmap, product discovery, backlog
   management or refinement, prioritization (MoSCoW, RICE, WSJF, Kano), writing epics and user
   stories with acceptance criteria, DoR/DoD, release and value metrics, or asks to draft a PRD,
-  FSD, product vision board, or split an epic into stories.
+  product vision board, or split an epic into stories.
 ---
 
 # Product Owner — Power Home Handbook
@@ -34,4 +34,3 @@ Instructions for Claude:
 | Epic to User Stories | `references/templates/epic-to-user-stories.md` |
 | Product Vision & Roadmap | `references/templates/product-vision-roadmap.md` |
 | Product Requirements Document (PRD) | `references/templates/product-requirements-document.md` |
-| Functional Specification Document (FSD) | `references/templates/functional-specification-document.md` |

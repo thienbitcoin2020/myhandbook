@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | QC Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), có bảng đối chiếu exit criteria.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -48,59 +33,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Executive Summary
 
-**Yêu cầu từ prompt: **Executive Summary: 3-5 câu cho người không làm kỹ thuật
+Executive Summary: 3-5 câu cho người không làm kỹ thuật
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Đối chiếu Exit Criteria trong Test Plan
 
-**Yêu cầu từ prompt: **Đối chiếu Exit Criteria trong Test Plan: đạt / không đạt từng tiêu chí (bảng)
+Đối chiếu Exit Criteria trong Test Plan: đạt / không đạt từng tiêu chí (bảng)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Thống kê kết quả
 
-**Yêu cầu từ prompt: **Thống kê kết quả: pass rate theo module, defect density, xu hướng defect theo thời gian
+Thống kê kết quả: pass rate theo module, defect density, xu hướng defect theo thời gian
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Phân tích defect còn mở
 
-**Yêu cầu từ prompt: **Phân tích defect còn mở: ảnh hưởng nghiệp vụ, workaround, đề xuất xử lý (fix trước release / defer)
+Phân tích defect còn mở: ảnh hưởng nghiệp vụ, workaround, đề xuất xử lý (fix trước release / defer)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Rủi ro tồn đọng khi release với trạng thái hiện tại
 
-**Yêu cầu từ prompt: **Rủi ro tồn đọng khi release với trạng thái hiện tại
+Rủi ro tồn đọng khi release với trạng thái hiện tại
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Khuyến nghị
 
-**Yêu cầu từ prompt: **Khuyến nghị: GO / GO có điều kiện / NO-GO + căn cứ
+Khuyến nghị: GO / GO có điều kiện / NO-GO + căn cứ
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Bài học cho chu kỳ test sau
 
-**Yêu cầu từ prompt: **Bài học cho chu kỳ test sau
+Bài học cho chu kỳ test sau
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -120,7 +91,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Khuyến nghị dựa trên exit criteria đã thống nhất, không dựa cảm tính
 
@@ -132,7 +103,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -140,4 +111,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

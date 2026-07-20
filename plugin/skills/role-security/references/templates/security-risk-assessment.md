@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Security Engineer / CISO đại diện | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng ma trận rủi ro.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,59 +32,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Danh mục tài sản (asset inventory) + phân loại CIA
 
-**Yêu cầu từ prompt: **Danh mục tài sản (asset inventory) + phân loại CIA (Confidentiality/Integrity/Availability) từng tài sản
+Danh mục tài sản (asset inventory) + phân loại CIA (Confidentiality/Integrity/Availability) từng tài sản
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Nhận diện threat & vulnerability cho từng tài sản quan trọng
 
-**Yêu cầu từ prompt: **Nhận diện threat & vulnerability cho từng tài sản quan trọng
+Nhận diện threat & vulnerability cho từng tài sản quan trọng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Ma trận rủi ro
 
-**Yêu cầu từ prompt: **Ma trận rủi ro: Likelihood × Impact, thang 5×5, kèm định nghĩa từng mức
+Ma trận rủi ro: Likelihood × Impact, thang 5×5, kèm định nghĩa từng mức
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Xếp hạng rủi ro + risk owner đề xuất cho từng rủi ro
 
-**Yêu cầu từ prompt: **Xếp hạng rủi ro + risk owner đề xuất cho từng rủi ro
+Xếp hạng rủi ro + risk owner đề xuất cho từng rủi ro
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Phương án xử lý theo 4 chiến lược
 
-**Yêu cầu từ prompt: **Phương án xử lý theo 4 chiến lược: Mitigate / Transfer / Avoid / Accept
+Phương án xử lý theo 4 chiến lược: Mitigate / Transfer / Avoid / Accept
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Kế hoạch xử lý rủi ro ưu tiên cao
 
-**Yêu cầu từ prompt: **Kế hoạch xử lý rủi ro ưu tiên cao: hành động, deadline, chi phí ước lượng
+Kế hoạch xử lý rủi ro ưu tiên cao: hành động, deadline, chi phí ước lượng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Rủi ro tồn dư (residual risk) sau xử lý + ai phê duyệt chấp nhận
 
-**Yêu cầu từ prompt: **Rủi ro tồn dư (residual risk) sau xử lý + ai phê duyệt chấp nhận
+Rủi ro tồn dư (residual risk) sau xử lý + ai phê duyệt chấp nhận
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -119,7 +90,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Mỗi rủi ro có 1 risk owner cụ thể — không để "cả team chịu trách nhiệm"
 
@@ -131,7 +102,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -139,4 +110,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

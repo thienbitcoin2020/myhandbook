@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | PMO Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng tiêu chí từng gate và 2 mẫu biểu.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -46,59 +31,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Bản đồ gate
 
-**Yêu cầu từ prompt: **Bản đồ gate: G0 Ý tưởng → G1 Nghiên cứu khả thi → G2 Business Case → G3 Kế hoạch chi tiết → G4 Sẵn sàng triển khai/Go-live → G5 Đóng & Benefits — mô tả mục đích từng gate
+Bản đồ gate: G0 Ý tưởng → G1 Nghiên cứu khả thi → G2 Business Case → G3 Kế hoạch chi tiết → G4 Sẵn sàng triển khai/Go-live → G5 Đóng & Benefits — mô tả mục đích từng gate
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Với TỪNG gate
 
-**Yêu cầu từ prompt: **Với TỪNG gate: câu hỏi trọng tâm gate phải trả lời, tài liệu bắt buộc trình (deliverables), tiêu chí đánh giá (bảng scorecard chấm được), người quyết định
+Với TỪNG gate: câu hỏi trọng tâm gate phải trả lời, tài liệu bắt buộc trình (deliverables), tiêu chí đánh giá (bảng scorecard chấm được), người quyết định
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. 4 kết luận hợp lệ tại mỗi gate
 
-**Yêu cầu từ prompt: **4 kết luận hợp lệ tại mỗi gate: GO / GO có điều kiện / HOLD (chờ) / KILL (dừng dự án) — định nghĩa rõ từng kết luận
+4 kết luận hợp lệ tại mỗi gate: GO / GO có điều kiện / HOLD (chờ) / KILL (dừng dự án) — định nghĩa rõ từng kết luận
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Mẫu hồ sơ trình gate cho PM
 
-**Yêu cầu từ prompt: **Mẫu hồ sơ trình gate cho PM: tóm tắt 1 trang + phụ lục minh chứng
+Mẫu hồ sơ trình gate cho PM: tóm tắt 1 trang + phụ lục minh chứng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Mẫu biên bản gate
 
-**Yêu cầu từ prompt: **Mẫu biên bản gate: quyết định, điều kiện, action, chữ ký, ngày
+Mẫu biên bản gate: quyết định, điều kiện, action, chữ ký, ngày
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Quy trình gate
 
-**Yêu cầu từ prompt: **Quy trình gate: trình hồ sơ trước [X] ngày, ai review trước, họp bao lâu, thông báo kết quả trong bao lâu
+Quy trình gate: trình hồ sơ trước [X] ngày, ai review trước, họp bao lâu, thông báo kết quả trong bao lâu
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Ngoại lệ
 
-**Yêu cầu từ prompt: **Ngoại lệ: fast-track cho dự án nhỏ/khẩn cấp — điều kiện và gate rút gọn
+Ngoại lệ: fast-track cho dự án nhỏ/khẩn cấp — điều kiện và gate rút gọn
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -118,7 +89,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - KILL là kết luận hợp lệ và đáng khen khi business case không còn đứng vững — dừng sớm là tiết kiệm, nêu rõ văn hóa này trong template
 
@@ -130,7 +101,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -138,4 +109,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

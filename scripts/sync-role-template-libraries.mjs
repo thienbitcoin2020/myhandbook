@@ -30,26 +30,11 @@ function renderCard(group, document, lang, index, scope = 'generated') {
 }
 
 function renderCentralGroups(lang) {
-  const vi = lang === 'vi';
-  const groups = GENERATED_ROLE_TEMPLATE_GROUPS.map(group => {
-    const cards = group.documents
+  return GENERATED_ROLE_TEMPLATE_GROUPS.map(group => {
+    return group.documents
       .map((document, index) => renderCard(group, document, lang, index, 'library'))
       .join('\n');
-    return `      <div class="template-library__group" role="presentation">
-        <h3>${escapeHtml(group.title[lang])}</h3>
-        <p>${escapeHtml(group.subtitle[lang])}</p>
-      </div>
-${cards}`;
   }).join('\n');
-
-  return `${centralStartMarker}
-      <div class="template-library__group template-library__group--new" role="presentation">
-        <h3>${vi ? 'Template mới theo vai trò' : 'Additional role-owned templates'}</h3>
-        <p>${vi ? '29 master file đã rà soát, được nhóm theo chủ quản trong toàn bộ SDLC.' : '29 reviewed master files grouped by accountable owner across the SDLC.'}</p>
-      </div>
-${groups}
-${centralEndMarker}
-`;
 }
 
 function renderSection(group, lang) {
@@ -85,7 +70,7 @@ function syncCentralLibrary(lang) {
   const relative = path.join('pages', lang === 'vi' ? 'vi' : '', 'handbook.html');
   const absolute = path.join(root, relative);
   let html = fs.readFileSync(absolute, 'utf8');
-  const markerPattern = new RegExp(`${centralStartMarker}[\\s\\S]*?${centralEndMarker}`, 'g');
+  const markerPattern = new RegExp(`${centralStartMarker}[\\s\\S]*?${centralEndMarker}\\r?\\n?`, 'g');
   html = html.replace(markerPattern, '');
 
   const sectionStart = html.indexOf('<!-- SECTION 9: TEMPLATES LIBRARY -->');
@@ -95,15 +80,19 @@ function syncCentralLibrary(lang) {
   const libraryClose = html.lastIndexOf('    </div>', sectionEnd);
   if (libraryClose < sectionStart) throw new Error(`${relative}: template library closing tag not found`);
 
-  html = html.slice(0, libraryClose) + renderCentralGroups(lang) + html.slice(libraryClose);
-  html = html.replace(
-    lang === 'vi'
-      ? 'Chỉ liệt kê các bản tải đã được rà soát và hiện có sẵn. Template cho các vai trò khác sẽ xuất hiện tại đây sau khi được biên soạn.'
-      : 'Only reviewed downloads that are currently available are listed. Additional role templates will appear here after curation.',
-    lang === 'vi'
-      ? '43 template DOCX đã rà soát, dùng được ngay và được nhóm theo vai trò chủ quản.'
-      : '43 reviewed DOCX templates, ready to use and grouped by accountable owner.',
+  const generatedCards = renderCentralGroups(lang);
+  const generatedBlock = `${centralStartMarker}\n${generatedCards}\n${centralEndMarker}\n`;
+  const beforeLibraryClose = html.slice(0, libraryClose).replace(/[ \t\r\n]*$/, '\n');
+  html = beforeLibraryClose + generatedBlock + html.slice(libraryClose);
+
+  const refreshedSectionEnd = html.indexOf('<!-- SECTION 10:', sectionStart);
+  const section = html.slice(sectionStart, refreshedSectionEnd).replace(
+    /<p class="template-library__intro">[\s\S]*?<\/p>/,
+    `<p class="template-library__intro">${lang === 'vi'
+      ? '42 template DOCX đã rà soát và dùng được ngay.'
+      : '42 reviewed DOCX templates, ready to use.'}</p>`,
   );
+  html = html.slice(0, sectionStart) + section + html.slice(refreshedSectionEnd);
   fs.writeFileSync(absolute, html, 'utf8');
   console.log(`[OK] ${relative} (central library)`);
 }

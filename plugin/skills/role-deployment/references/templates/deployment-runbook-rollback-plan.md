@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | DevOps Engineer | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), lệnh trong code block, bảng tiêu chí rollback.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -48,67 +33,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Thông tin release
 
-**Yêu cầu từ prompt: **Thông tin release: version, scope thay đổi, ticket liên quan, cửa sổ deploy (ngày giờ, múi giờ), thời lượng dự kiến
+Thông tin release: version, scope thay đổi, ticket liên quan, cửa sổ deploy (ngày giờ, múi giờ), thời lượng dự kiến
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Pre-deployment checklist
 
-**Yêu cầu từ prompt: **Pre-deployment checklist: approval đã có, backup đã chạy, thông báo stakeholder, feature flag chuẩn bị, điều kiện dừng ngay từ đầu
+Pre-deployment checklist: approval đã có, backup đã chạy, thông báo stakeholder, feature flag chuẩn bị, điều kiện dừng ngay từ đầu
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Các bước deploy
 
-**Yêu cầu từ prompt: **Các bước deploy: đánh số, mỗi bước có lệnh cụ thể (copy-paste được) + expected output + bước verify trước khi sang bước tiếp
+Các bước deploy: đánh số, mỗi bước có lệnh cụ thể (copy-paste được) + expected output + bước verify trước khi sang bước tiếp
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Nếu canary
 
-**Yêu cầu từ prompt: **Nếu canary: tỷ lệ tăng dần ([5% → 25% → 50% → 100%]), metric theo dõi ở mỗi nấc, thời gian quan sát tối thiểu, tiêu chí lên nấc tiếp
+Nếu canary: tỷ lệ tăng dần ([5% → 25% → 50% → 100%]), metric theo dõi ở mỗi nấc, thời gian quan sát tối thiểu, tiêu chí lên nấc tiếp
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Xử lý DB migration
 
-**Yêu cầu từ prompt: **Xử lý DB migration: thứ tự (migrate trước hay sau deploy code), tính tương thích ngược, cách rollback migration
+Xử lý DB migration: thứ tự (migrate trước hay sau deploy code), tính tương thích ngược, cách rollback migration
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Smoke test sau deploy
 
-**Yêu cầu từ prompt: **Smoke test sau deploy: danh sách kiểm tra + ai xác nhận
+Smoke test sau deploy: danh sách kiểm tra + ai xác nhận
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Rollback plan
 
-**Yêu cầu từ prompt: **Rollback plan: TIÊU CHÍ KÍCH HOẠT CỤ THỂ (VD: error rate > X% trong Y phút, latency p99 > Z ms), các bước rollback từng bước như deploy, ai có quyền quyết định rollback, thời gian rollback dự kiến
+Rollback plan: TIÊU CHÍ KÍCH HOẠT CỤ THỂ (VD: error rate > X% trong Y phút, latency p99 > Z ms), các bước rollback từng bước như deploy, ai có quyền quyết định rollback, thời gian rollback dự kiến
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Liên lạc
 
-**Yêu cầu từ prompt: **Liên lạc: kênh war-room, ai cần online trong cửa sổ deploy, template thông báo deploy thành công/thất bại
+Liên lạc: kênh war-room, ai cần online trong cửa sổ deploy, template thông báo deploy thành công/thất bại
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -128,7 +97,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Rollback phải được nghĩ TRƯỚC khi deploy, không phải lúc cháy nhà
 
@@ -143,13 +112,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

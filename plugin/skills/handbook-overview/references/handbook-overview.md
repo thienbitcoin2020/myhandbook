@@ -1087,7 +1087,7 @@ Section 9
 
 Curated, ready-to-use files grouped by primary owner
 
-Only reviewed downloads that are currently available are listed. Additional role templates will appear here after curation.
+42 reviewed DOCX templates, ready to use.
 
 DOCXOwner · BA
 
@@ -1221,18 +1221,6 @@ SupportsBA · UX · Dev · PM
 
 Read document→
 
-DOCXOwner · PO
-
-#### Functional Specification Document
-
-Specify system behaviour end-to-end: actors, flows, field-level detail, configuration, integration, reporting, and data migration.
-
-Use whenBuild teams need an implementation-ready functional baseline.
-
-SupportsBA · SA · Dev · QC
-
-Read document→
-
 DOCXOwner · SA
 
 #### Architecture Decision Record
@@ -1254,6 +1242,296 @@ Baseline the end-to-end solution, integrations, data, security, deployment, and 
 Use whenDelivery teams need one reviewed architecture reference.
 
 SupportsBA · Dev · Security · Ops · QC
+
+Read document→
+
+DOCXOwner · Solution Architect
+
+#### API Specification
+
+Define contracts, authentication, errors, versioning and service expectations.
+
+SupportsDev · QC · Security · Ops
+
+Read document→
+
+DOCXOwner · Solution Architect
+
+#### Non-Functional Requirements Specification
+
+Capture measurable quality attributes and their verification method.
+
+SupportsDev · QC · Security · Ops
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### User Persona & Customer Journey Map
+
+Connect evidence-backed personas to stages, touchpoints and opportunities.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Information Architecture & Wireframe Brief
+
+Baseline sitemap, user flow, content inventory and wireframe scope.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Design System / UI Style Guide
+
+Govern tokens, components, states, accessibility and versioning.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Usability Test Plan & Report
+
+Plan tasks and participants, then record evidence and prioritized findings.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Design Handoff Specification
+
+Give delivery teams one traceable source for screens, states and design QA.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Strategy & Test Plan
+
+Set scope, risk, levels, environments, entry and exit criteria.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Case Specification
+
+Turn requirements and acceptance criteria into traceable tests.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Defect Report
+
+Record reproducible evidence, severity, priority and lifecycle ownership.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Summary Report
+
+Summarize execution, residual risk and release recommendation.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### UAT Plan
+
+Coordinate business scenarios, participants, evidence and sign-off.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Threat Model (STRIDE)
+
+Model data flows, trust boundaries, threats and mitigations.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Security Requirements Checklist
+
+Create verifiable security requirements for delivery and assurance.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Security Risk Assessment
+
+Assess scenarios, likelihood, impact, treatment and residual risk.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Incident Response Plan
+
+Define roles, triggers, communications, evidence and response playbooks.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Compliance Gap Checklist
+
+Map clauses to evidence, gaps, remediation and accountable owners.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### SLI / SLO / SLA Document
+
+Define indicators, objectives, windows and error-budget policy.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Operational Runbook
+
+Guide diagnosis, safe action, verification and escalation.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Blameless Postmortem
+
+Capture timeline, contributing conditions and verified corrective actions.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Disaster Recovery Plan
+
+Baseline recovery objectives, procedures, ownership and exercises.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Deployment Runbook & Rollback Plan
+
+Execute releases through verified steps and explicit rollback triggers.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Release Go / No-Go Checklist
+
+Collect role evidence and record one accountable release decision.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### CI/CD Pipeline Documentation
+
+Document stages, gates, artifacts, permissions and failure behavior.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Environment Configuration Document
+
+Compare environments without exposing secrets and control configuration drift.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### PMO Charter & Governance Framework
+
+Define PMO mandate, services, decision rights, tailoring and KPIs.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Stage Gate Review Template
+
+Score gate evidence and record GO, conditional GO, HOLD or KILL.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Portfolio Status Report
+
+Give leaders a decision-focused portfolio dashboard and systemic risks.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Benefits Realization Plan
+
+Trace outputs to owned, measurable benefits beyond go-live.
+
+SupportsSponsor · PM · PO · Finance
 
 Read document→
 

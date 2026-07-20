@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Security Engineer | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng escalation matrix.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Phân loại sự cố
 
-**Yêu cầu từ prompt: **Phân loại sự cố: định nghĩa mức P1-P4 với ví dụ cụ thể từng mức
+Phân loại sự cố: định nghĩa mức P1-P4 với ví dụ cụ thể từng mức
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Quy trình 6 giai đoạn NIST
 
-**Yêu cầu từ prompt: **Quy trình 6 giai đoạn NIST: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Post-Incident Activity, mỗi giai đoạn ghi rõ hành động + người thực hiện
+Quy trình 6 giai đoạn NIST: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Post-Incident Activity, mỗi giai đoạn ghi rõ hành động + người thực hiện
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Cây liên lạc (escalation matrix)
 
-**Yêu cầu từ prompt: **Cây liên lạc (escalation matrix): ai báo ai, trong bao lâu, kênh nào — kể cả ngoài giờ
+Cây liên lạc (escalation matrix): ai báo ai, trong bao lâu, kênh nào — kể cả ngoài giờ
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Mẫu incident log
 
-**Yêu cầu từ prompt: **Mẫu incident log: timeline, hành động, quyết định, bằng chứng
+Mẫu incident log: timeline, hành động, quyết định, bằng chứng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Quy tắc bảo toàn chứng cứ (evidence preservation) trước khi khắc phục
 
-**Yêu cầu từ prompt: **Quy tắc bảo toàn chứng cứ (evidence preservation) trước khi khắc phục
+Quy tắc bảo toàn chứng cứ (evidence preservation) trước khi khắc phục
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Communication plan
 
-**Yêu cầu từ prompt: **Communication plan: nội bộ, khách hàng, cơ quan quản lý (kèm deadline pháp lý), báo chí (nếu có)
+Communication plan: nội bộ, khách hàng, cơ quan quản lý (kèm deadline pháp lý), báo chí (nếu có)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Tiêu chí đóng sự cố + yêu cầu post-incident review trong [X] ngày
 
-**Yêu cầu từ prompt: **Tiêu chí đóng sự cố + yêu cầu post-incident review trong [X] ngày
+Tiêu chí đóng sự cố + yêu cầu post-incident review trong [X] ngày
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Lịch diễn tập (tabletop exercise) định kỳ
 
-**Yêu cầu từ prompt: **Lịch diễn tập (tabletop exercise) định kỳ
+Lịch diễn tập (tabletop exercise) định kỳ
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Kế hoạch phải dùng được lúc 3h sáng: ngắn gọn, số điện thoại thật, không lý thuyết
 
@@ -141,7 +110,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -149,4 +118,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

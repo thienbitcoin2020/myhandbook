@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Security Engineer | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), có bảng STRIDE; sơ đồ DFD chèn dạng hình ảnh, mã Mermaid đặt ở phụ lục tài liệu.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,59 +32,45 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Data Flow Diagram
 
-**Yêu cầu từ prompt: **Data Flow Diagram: vẽ bằng Mermaid, đánh dấu trust boundary rõ ràng
+Data Flow Diagram: vẽ bằng Mermaid, đánh dấu trust boundary rõ ràng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Phân rã hệ thống
 
-**Yêu cầu từ prompt: **Phân rã hệ thống: external entity, process, data store, data flow
+Phân rã hệ thống: external entity, process, data store, data flow
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Bảng phân tích STRIDE cho từng thành phần
 
-**Yêu cầu từ prompt: **Bảng phân tích STRIDE cho từng thành phần: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
+Bảng phân tích STRIDE cho từng thành phần: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Đánh giá rủi ro từng threat
 
-**Yêu cầu từ prompt: **Đánh giá rủi ro từng threat: Likelihood × Impact (thang 1-5), xếp hạng
+Đánh giá rủi ro từng threat: Likelihood × Impact (thang 1-5), xếp hạng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Mitigation cho từng threat mức Medium trở lên
 
-**Yêu cầu từ prompt: **Mitigation cho từng threat mức Medium trở lên: biện pháp cụ thể, tham chiếu OWASP ASVS control tương ứng
+Mitigation cho từng threat mức Medium trở lên: biện pháp cụ thể, tham chiếu OWASP ASVS control tương ứng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Threat chấp nhận rủi ro (risk acceptance)
 
-**Yêu cầu từ prompt: **Threat chấp nhận rủi ro (risk acceptance): lý do + người phê duyệt
+Threat chấp nhận rủi ro (risk acceptance): lý do + người phê duyệt
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Danh sách hành động đưa vào backlog
 
-**Yêu cầu từ prompt: **Danh sách hành động đưa vào backlog: ưu tiên, gợi ý assignee
+Danh sách hành động đưa vào backlog: ưu tiên, gợi ý assignee
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +98,7 @@ Hình minh hoạ là khung placeholder. PIC phải thay nhãn bằng nội dung 
 
 flowchart LR EXT[External entity] --> BOUNDARY[Trust boundary] BOUNDARY --> SYSTEM[System] SYSTEM --> STORE[(Data store)]
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Threat model làm ở giai đoạn thiết kế, cập nhật khi kiến trúc thay đổi đáng kể
 
@@ -140,13 +111,3 @@ flowchart LR EXT[External entity] --> BOUNDARY[Trust boundary] BOUNDARY --> SYST
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

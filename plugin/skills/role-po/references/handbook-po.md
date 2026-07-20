@@ -388,18 +388,6 @@ SupportsBA · UX · Dev · PM
 
 Read document→
 
-DOCXOwner · PO
-
-#### Functional Specification Document
-
-Specify system behaviour end-to-end: actors, flows, field-level detail, configuration, integration, reporting, and data migration.
-
-Use whenBuild teams need an implementation-ready functional baseline.
-
-SupportsBA · SA · Dev · QC
-
-Read document→
-
 📊
 
 Section 07

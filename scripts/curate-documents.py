@@ -138,6 +138,15 @@ def reset_data_rows(table: Table, rows: list[list[str]]) -> None:
             cell.text = value
 
 
+def set_inline_shape_alt_texts(document: DocumentObject, descriptions: tuple[str, ...]) -> None:
+    shapes = tuple(document.inline_shapes)
+    if len(shapes) != len(descriptions):
+        raise ValueError(f"Expected {len(descriptions)} inline images, found {len(shapes)}")
+    for shape, description in zip(shapes, descriptions):
+        shape._inline.docPr.set("descr", description)
+        shape._inline.docPr.set("title", description)
+
+
 def trim_epic(document: DocumentObject) -> None:
     require_body_text(document, 5, "Chủ trì (PIC)")
     require_body_text(document, 7, "Cách dùng & phân vai")
@@ -425,6 +434,16 @@ def trim_solution_architecture(document: DocumentObject) -> None:
         keep_header=True,
     )
     remove_body_indices(document, [6, 7, 8, *range(88, 219)])
+    set_inline_shape_alt_texts(
+        document,
+        (
+            "Sơ đồ C4 System Context: người dùng, quản trị viên và các hệ thống ngoài kết nối tới hệ thống mục tiêu.",
+            "Sơ đồ C4 Container: web, mobile, API gateway, backend, worker, database, cache và message broker.",
+            "Sequence diagram luồng đồng bộ: người dùng, ứng dụng, API gateway, backend, identity provider và database.",
+            "Sequence diagram luồng bất đồng bộ: backend phát sự kiện qua message broker tới worker và hệ thống ngoài.",
+            "Sơ đồ triển khai: DMZ, application, data và partner zone cùng các node, database, cache và message broker.",
+        ),
+    )
 
 
 CURATIONS: tuple[tuple[str, str, Callable[[DocumentObject], None]], ...] = (
@@ -756,12 +775,6 @@ CONFLUENCE_CURATIONS: tuple[tuple[str, str, tuple[str, ...], str], ...] = (
         "ba/business-requirements-document.docx",
         ("Lịch sử Thay đổi", "MỤC LỤC"),
         "PHẦN V: YÊU CẦU PHI CHỨC NĂNG",
-    ),
-    (
-        "PO/FRD+Template+-+Best+Practice+Version.doc",
-        "po/functional-specification-document.docx",
-        ("Lịch sử thay đổi", "Mục lục"),
-        "8.3 Đặc tả chuyển đổi dữ liệu",
     ),
     (
         "PO/PRD+Template+-+Best+Practice+Version.doc",

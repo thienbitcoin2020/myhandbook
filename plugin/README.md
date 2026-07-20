@@ -1,6 +1,6 @@
 # Power Home Project Handbook — Claude Plugin
 
-v0.2.0 · generated from the handbook source by `scripts/build-plugin.py`
+v0.3.0 · generated from the handbook source by `scripts/build-plugin.py`
 
 Installs the entire Power Home SDLC handbook as role-based Claude skills, so
 anyone with the plugin can ask role questions and draft handbook-standard
@@ -11,7 +11,7 @@ documents without the original handbook.
 | Skill | Role | Templates |
 |---|---|---|
 | `handbook-overview` | Power Home Handbook — Overview, SDLC & Governance | 0 |
-| `role-po` | Product Owner | 4 |
+| `role-po` | Product Owner | 3 |
 | `role-ba` | Business Analyst | 4 |
 | `role-pm` | Project Manager | 4 |
 | `role-sm` | Scrum Master | 0 |
@@ -23,7 +23,7 @@ documents without the original handbook.
 | `role-deployment` | Release Manager / Deployment | 4 |
 | `role-pmo` | PMO Governance & Portfolio | 4 |
 
-**43 reviewed templates** total, converted from the same handbook
+**42 reviewed templates** total, converted from the same handbook
 previews used by the in-page reader and DOCX downloads.
 
 ## Install

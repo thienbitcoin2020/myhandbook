@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | QC Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng scenario và mẫu sign-off.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Mục tiêu UAT & phân biệt với System Test (UAT
 
-**Yêu cầu từ prompt: **Mục tiêu UAT & phân biệt với System Test (UAT xác nhận "đúng nghiệp vụ", không phải tìm bug kỹ thuật)
+Mục tiêu UAT & phân biệt với System Test (UAT xác nhận "đúng nghiệp vụ", không phải tìm bug kỹ thuật)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. UAT Scenario
 
-**Yêu cầu từ prompt: **UAT Scenario: viết theo ngôn ngữ nghiệp vụ, theo flow công việc thật hằng ngày của user (không copy test case kỹ thuật)
+UAT Scenario: viết theo ngôn ngữ nghiệp vụ, theo flow công việc thật hằng ngày của user (không copy test case kỹ thuật)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Lịch trình
 
-**Yêu cầu từ prompt: **Lịch trình: buổi kickoff/training, các phiên test, buổi tổng kết
+Lịch trình: buổi kickoff/training, các phiên test, buổi tổng kết
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Phân công
 
-**Yêu cầu từ prompt: **Phân công: scenario nào — user nào test — ai hỗ trợ
+Phân công: scenario nào — user nào test — ai hỗ trợ
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Môi trường & test data
 
-**Yêu cầu từ prompt: **Môi trường & test data: yêu cầu data giống thật (đã ẩn danh nếu là data thật)
+Môi trường & test data: yêu cầu data giống thật (đã ẩn danh nếu là data thật)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Quy trình ghi nhận feedback/defect từ business user (form đơn
 
-**Yêu cầu từ prompt: **Quy trình ghi nhận feedback/defect từ business user (form đơn giản, không bắt user học tool QC)
+Quy trình ghi nhận feedback/defect từ business user (form đơn giản, không bắt user học tool QC)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Acceptance Criteria của UAT
 
-**Yêu cầu từ prompt: **Acceptance Criteria của UAT: điều kiện để business ký chấp nhận
+Acceptance Criteria của UAT: điều kiện để business ký chấp nhận
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Mẫu biên bản nghiệm thu UAT (sign-off form)
 
-**Yêu cầu từ prompt: **Mẫu biên bản nghiệm thu UAT (sign-off form)
+Mẫu biên bản nghiệm thu UAT (sign-off form)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Scenario viết bằng ngôn ngữ nghiệp vụ thuần, tránh thuật ngữ kỹ thuật
 
@@ -139,7 +108,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -147,4 +116,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

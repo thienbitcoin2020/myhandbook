@@ -1,6 +1,6 @@
 # DECISIONS.md — auto-decision log (one-shot build)
 
-Plugin v0.2.0, generated 2026-07-20 by `scripts/build-plugin.py`.
+Plugin v0.3.0, generated 2026-07-20 by `scripts/build-plugin.py`.
 
 1. **Roles**: exactly the 11 role pages + the parent Implementation Handbook
    (overview skill). No roles invented. `home`/`handbook` routes are one page →
@@ -15,12 +15,12 @@ Plugin v0.2.0, generated 2026-07-20 by `scripts/build-plugin.py`.
    `assets/templates/previews/*.html` — the same derived renders the site's
    reader and DOCX downloads are built from — so plugin, reader and download
    cannot drift. `[ĐIỀN: ...]` placeholders preserved.
-4. **Template coverage**: all 43 plugin templates come from reviewed handbook
+4. **Template coverage**: all 42 plugin templates come from reviewed handbook
    preview/DOCX pairs. The former outline-only QC Test Plan and Ops Postmortem
    gaps are superseded by the role prompt-pack templates in library v0.2.0.
-5. **Ambiguous ownership**: FSD lives under the PO role (the handbook stores it
-   in the PO template folder), even though BAs co-author it — noted in the PO
-   skill. UAT plan/script remains BA-owned per the handbook's ownership matrix.
+5. **Ownership boundary**: the duplicate PO-owned FSD was retired in v0.3.0;
+   implementation-ready functional requirements now use BA-owned SRS as the
+   single source of truth. QC coordinates UAT evidence; business owners sign off.
 6. **Not included**: `Template/BA/Guideline Template.docx` (meta-guide about
    writing templates, not a project template — also unpublished on the site).
 7. **Distribution**: packaged file is served from the handbook app at

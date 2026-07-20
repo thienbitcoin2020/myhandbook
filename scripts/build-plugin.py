@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugin"
 PACKAGE_PATH = ROOT / "assets" / "downloads" / "project-handbook.plugin"
-PLUGIN_VERSION = "0.2.0"
+PLUGIN_VERSION = "0.3.0"
 
 
 # ── HTML -> Markdown ────────────────────────────────────────────────────
@@ -172,14 +172,13 @@ SKILLS = [
             "epic-to-user-stories",
             "product-vision-roadmap",
             "product-requirements-document",
-            "functional-specification-document",
         ],
         "description": (
             "Product Owner skill from the Power Home Handbook (Scrum Guide 2020, outcome-driven). "
             "Use when the user asks about PO responsibilities, product vision or roadmap, product "
             "discovery, backlog management or refinement, prioritization (MoSCoW, RICE, WSJF, Kano), "
             "writing epics and user stories with acceptance criteria, DoR/DoD, release and value "
-            "metrics, or asks to draft a PRD, FSD, product vision board, or split an epic into stories."
+            "metrics, or asks to draft a PRD, product vision board, or split an epic into stories."
         ),
         "focus": "vision & strategy, discovery, backlog, prioritization, Scrum events, release & value",
     },
@@ -399,7 +398,6 @@ TEMPLATE_TITLES = {
     "epic-to-user-stories": "Epic to User Stories",
     "product-vision-roadmap": "Product Vision & Roadmap",
     "product-requirements-document": "Product Requirements Document (PRD)",
-    "functional-specification-document": "Functional Specification Document (FSD)",
     "architecture-decision-record": "Architecture Decision Record (ADR)",
     "solution-architecture-document": "Solution Architecture Document",
     "api-specification": "API Specification",
@@ -561,7 +559,7 @@ PLUGIN_JSON = {
     "version": PLUGIN_VERSION,
     "description": (
         "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, "
-        "Security, Ops, Deployment, PMO) with 43 document templates"
+        f"Security, Ops, Deployment, PMO) with {sum(len(skill['templates']) for skill in SKILLS)} document templates"
     ),
     "author": {"name": "Thiện Phạm (Power Home PO)"},
     "keywords": ["sdlc", "handbook", "templates", "banking", "water-scrum-fall"],
@@ -672,12 +670,12 @@ Plugin v{PLUGIN_VERSION}, generated {__import__('datetime').date.today().isoform
    `assets/templates/previews/*.html` — the same derived renders the site's
    reader and DOCX downloads are built from — so plugin, reader and download
    cannot drift. `[ĐIỀN: ...]` placeholders preserved.
-4. **Template coverage**: all 43 plugin templates come from reviewed handbook
+4. **Template coverage**: all 42 plugin templates come from reviewed handbook
    preview/DOCX pairs. The former outline-only QC Test Plan and Ops Postmortem
    gaps are superseded by the role prompt-pack templates in library v0.2.0.
-5. **Ambiguous ownership**: FSD lives under the PO role (the handbook stores it
-   in the PO template folder), even though BAs co-author it — noted in the PO
-   skill. UAT plan/script remains BA-owned per the handbook's ownership matrix.
+5. **Ownership boundary**: the duplicate PO-owned FSD was retired in v0.3.0;
+   implementation-ready functional requirements now use BA-owned SRS as the
+   single source of truth. QC coordinates UAT evidence; business owners sign off.
 6. **Not included**: `Template/BA/Guideline Template.docx` (meta-guide about
    writing templates, not a project template — also unpublished on the site).
 7. **Distribution**: packaged file is served from the handbook app at

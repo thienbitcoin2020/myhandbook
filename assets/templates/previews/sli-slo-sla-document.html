@@ -49,53 +49,37 @@
 <table><tr class="doc-preview-thead"><td><strong>Trường</strong></td><td><strong>Giá trị kiểm soát</strong></td></tr><tr><td><strong>Mã tài liệu</strong></td><td>[ĐIỀN: &lt;TÊN DỰ ÁN&gt;-81-v1.0-YYYYMMDD]</td></tr><tr><td><strong>PIC duy nhất</strong></td><td>SRE Lead</td></tr><tr><td><strong>Trạng thái</strong></td><td>Draft → In Review → Approved → Superseded</td></tr><tr><td><strong>Ngày hiệu lực</strong></td><td>[ĐIỀN: dd/mm/yyyy]</td></tr><tr><td><strong>Phân loại</strong></td><td>MẬT (CONFIDENTIAL) · Lưu hành nội bộ</td></tr></table>
 <p><strong>Nguyên tắc sử dụng: </strong>Đây là template dùng chung, không gắn với dự án cụ thể. Giữ nguyên mọi ô [ĐIỀN...] cho đến khi PIC có dữ liệu được xác nhận; không tự suy diễn bối cảnh hay số liệu.</p>
 <ul><li>Chỉ bản Approved được dùng làm căn cứ thực thi hoặc ra quyết định.</li><li>Các role khác đóng góp qua review/input; chỉ PIC cập nhật bản chính.</li><li>Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].</li></ul>
-<h2>Kiểm soát tài liệu</h2>
-<p><strong>Revision History</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Version</strong></td><td><strong>Ngày</strong></td><td><strong>Người sửa (PIC)</strong></td><td><strong>Nội dung thay đổi</strong></td><td><strong>Người duyệt</strong></td></tr><tr><td>1.0</td><td>[ĐIỀN]</td><td>SRE Lead</td><td>Bản template đầu tiên</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>Mục lục</h2>
-<p>Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.</p>
-<p><strong>Output yêu cầu: </strong>File Word (.docx), kèm bảng SLI/SLO và ví dụ tính error budget.</p>
 <h2>1. Thông tin đầu vào</h2>
 <table><tr class="doc-preview-thead"><td><strong>Đầu vào bắt buộc</strong></td><td><strong>Giá trị / Tham chiếu</strong></td><td><strong>Trạng thái</strong></td></tr><tr><td>Dịch vụ/tính năng trong phạm vi: [LIỆT KÊ]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr><tr><td>Kỳ vọng nghiệp vụ: [VD: THANH TOÁN KHÔNG ĐƯỢC GIÁN ĐOẠN QUÁ X PHÚT]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr><tr><td>Công cụ monitoring hiện có: [PROMETHEUS / DATADOG / CLOUDWATCH...]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr><tr><td>Cam kết hợp đồng với khách hàng (nếu có): [DÁN ĐIỀU KHOẢN]</td><td>[ĐIỀN: nội dung hoặc đường dẫn nguồn]</td><td>[CẦN XÁC NHẬN]</td></tr></table>
 <h2>2. Nội dung tài liệu</h2>
 <h3>1. Phân biệt SLI / SLO / SLA (giải thích 3 câu cho stakeholder không kỹ thuật)</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Phân biệt SLI / SLO / SLA (giải thích 3 câu cho stakeholder không kỹ thuật)</p>
+<p>Phân biệt SLI / SLO / SLA (giải thích 3 câu cho stakeholder không kỹ thuật)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>2. SLI cho từng dịch vụ</h3>
-<p><strong>Yêu cầu từ prompt: </strong>SLI cho từng dịch vụ: chọn từ availability, latency (p50/p95/p99), error rate, throughput, freshness — kèm công thức đo chính xác và nguồn dữ liệu (metric nào, tool nào)</p>
+<p>SLI cho từng dịch vụ: chọn từ availability, latency (p50/p95/p99), error rate, throughput, freshness — kèm công thức đo chính xác và nguồn dữ liệu (metric nào, tool nào)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>3. SLO đề xuất</h3>
-<p><strong>Yêu cầu từ prompt: </strong>SLO đề xuất: mục tiêu + cửa sổ đo (rolling 28/30 ngày) + căn cứ chọn mức đó</p>
+<p>SLO đề xuất: mục tiêu + cửa sổ đo (rolling 28/30 ngày) + căn cứ chọn mức đó</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>4. Error budget</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Error budget: cách tính, ví dụ cụ thể (VD: SLO 99.9%/30 ngày → budget 43.2 phút)</p>
+<p>Error budget: cách tính, ví dụ cụ thể (VD: SLO 99.9%/30 ngày → budget 43.2 phút)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>5. Error budget policy</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Error budget policy: burn rate bao nhiêu thì cảnh báo, hết budget thì hành động gì (đóng băng release tính năng, ưu tiên reliability)</p>
+<p>Error budget policy: burn rate bao nhiêu thì cảnh báo, hết budget thì hành động gì (đóng băng release tính năng, ưu tiên reliability)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>6. SLA đối ngoại (nếu có)</h3>
-<p><strong>Yêu cầu từ prompt: </strong>SLA đối ngoại (nếu có): mức cam kết thấp hơn SLO nội bộ, điều khoản bồi hoàn</p>
+<p>SLA đối ngoại (nếu có): mức cam kết thấp hơn SLO nội bộ, điều khoản bồi hoàn</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h3>7. Bảng alert threshold gắn với burn rate (fast burn / slow burn)</h3>
-<p><strong>Yêu cầu từ prompt: </strong>Bảng alert threshold gắn với burn rate (fast burn / slow burn)</p>
+<p>Bảng alert threshold gắn với burn rate (fast burn / slow burn)</p>
 <p>[ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]</p>
-<p>Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]</p>
 <h2>3. Biểu mẫu làm việc</h2>
 <p><strong>Service objectives</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>Service / Journey</strong></td><td><strong>SLI</strong></td><td><strong>SLO</strong></td><td><strong>Window</strong></td><td><strong>Owner</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 <p><strong>Error budget policy</strong></p>
 <table><tr class="doc-preview-thead"><td><strong>Condition</strong></td><td><strong>Budget state</strong></td><td><strong>Required action</strong></td><td><strong>Decision owner</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
-<h2>4. Nguyên tắc chất lượng</h2>
+<h2>4. Hướng dẫn chất lượng</h2>
 <ul><li>SLI đo từ góc nhìn người dùng, không đo cho có (CPU cao không phải SLI)</li><li>SLO 100% là sai — mọi mục tiêu phải chừa error budget</li><li>SLA cam kết ra ngoài luôn thấp hơn SLO nội bộ để có biên an toàn</li><li>Chưa có dữ liệu lịch sử → đề xuất SLO tạm + kế hoạch đo 4-6 tuần rồi hiệu chỉnh, đánh dấu [CẦN XÁC NHẬN]</li><li>PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.</li><li>Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.</li></ul>
-<h2>5. Review &amp; phê duyệt</h2>
-<p><strong>Sign-off</strong></p>
-<table><tr class="doc-preview-thead"><td><strong>Vai trò</strong></td><td><strong>Họ tên</strong></td><td><strong>Kết luận</strong></td><td><strong>Ngày</strong></td><td><strong>Điều kiện / Ghi chú</strong></td></tr><tr><td>[ĐIỀN 1]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 2]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr><tr><td>[ĐIỀN 3]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td><td>[ĐIỀN]</td></tr></table>
 </article>
 </body>
 </html>

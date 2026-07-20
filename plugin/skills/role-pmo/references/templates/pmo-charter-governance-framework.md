@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | PMO Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng Decision Rights Matrix.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Loại PMO đề xuất
 
-**Yêu cầu từ prompt: **Loại PMO đề xuất: Supportive / Controlling / Directive — phân tích chọn loại nào dựa trên bối cảnh + lộ trình tiến hóa
+Loại PMO đề xuất: Supportive / Controlling / Directive — phân tích chọn loại nào dựa trên bối cảnh + lộ trình tiến hóa
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Sứ mệnh & phạm vi quyền hạn của PMO
 
-**Yêu cầu từ prompt: **Sứ mệnh & phạm vi quyền hạn của PMO: PMO làm gì và KHÔNG làm gì
+Sứ mệnh & phạm vi quyền hạn của PMO: PMO làm gì và KHÔNG làm gì
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Dịch vụ PMO cung cấp
 
-**Yêu cầu từ prompt: **Dịch vụ PMO cung cấp: chuẩn hóa quy trình & template, báo cáo portfolio, hỗ trợ PM, quản lý resource pool, gate review, đào tạo
+Dịch vụ PMO cung cấp: chuẩn hóa quy trình & template, báo cáo portfolio, hỗ trợ PM, quản lý resource pool, gate review, đào tạo
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Decision Rights Matrix
 
-**Yêu cầu từ prompt: **Decision Rights Matrix: quyết định nào PM tự quyết — PMO quyết — Steering Committee quyết (bảng theo ngưỡng ngân sách/rủi ro/thay đổi scope)
+Decision Rights Matrix: quyết định nào PM tự quyết — PMO quyết — Steering Committee quyết (bảng theo ngưỡng ngân sách/rủi ro/thay đổi scope)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Cấu trúc governance
 
-**Yêu cầu từ prompt: **Cấu trúc governance: Steering Committee (thành phần, tần suất họp, quorum), PMO board, cơ chế escalation từ dự án lên
+Cấu trúc governance: Steering Committee (thành phần, tần suất họp, quorum), PMO board, cơ chế escalation từ dự án lên
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Chuẩn tài liệu tối thiểu mỗi dự án phải có
 
-**Yêu cầu từ prompt: **Chuẩn tài liệu tối thiểu mỗi dự án phải có theo từng giai đoạn (tham chiếu các template trong bộ tài liệu này)
+Chuẩn tài liệu tối thiểu mỗi dự án phải có theo từng giai đoạn (tham chiếu các template trong bộ tài liệu này)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Tailoring theo quy mô
 
-**Yêu cầu từ prompt: **Tailoring theo quy mô: dự án nhỏ dùng bộ rút gọn nào, dự án lớn dùng bộ đầy đủ nào — tiêu chí phân loại
+Tailoring theo quy mô: dự án nhỏ dùng bộ rút gọn nào, dự án lớn dùng bộ đầy đủ nào — tiêu chí phân loại
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. KPI của chính PMO
 
-**Yêu cầu từ prompt: **KPI của chính PMO: tỷ lệ dự án đúng hạn/ngân sách, thời gian ra quyết định gate, mức hài lòng của PM
+KPI của chính PMO: tỷ lệ dự án đúng hạn/ngân sách, thời gian ra quyết định gate, mức hài lòng của PM
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - PMO phục vụ việc ra quyết định, không phải bộ máy đòi báo cáo — mọi template phải trả lời "ai dùng thông tin này để quyết định gì"
 
@@ -139,7 +108,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -147,4 +116,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

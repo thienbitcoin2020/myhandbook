@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | SRE Lead | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx), kèm bảng RTO/RPO và quy trình failover.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Phân tầng hệ thống theo mức quan trọng, mỗi tầng
 
-**Yêu cầu từ prompt: **Phân tầng hệ thống theo mức quan trọng, mỗi tầng có RTO (thời gian khôi phục tối đa) và RPO (mất dữ liệu tối đa) — bảng rõ ràng
+Phân tầng hệ thống theo mức quan trọng, mỗi tầng có RTO (thời gian khôi phục tối đa) và RPO (mất dữ liệu tối đa) — bảng rõ ràng
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Kịch bản thảm họa trong phạm vi
 
-**Yêu cầu từ prompt: **Kịch bản thảm họa trong phạm vi: mất 1 AZ, mất cả region, ransomware, xóa nhầm dữ liệu, mất nhà cung cấp thứ 3
+Kịch bản thảm họa trong phạm vi: mất 1 AZ, mất cả region, ransomware, xóa nhầm dữ liệu, mất nhà cung cấp thứ 3
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Chiến lược DR từng tầng
 
-**Yêu cầu từ prompt: **Chiến lược DR từng tầng: backup-restore / pilot light / warm standby / multi-site active-active + trade-off chi phí
+Chiến lược DR từng tầng: backup-restore / pilot light / warm standby / multi-site active-active + trade-off chi phí
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Quy trình failover từng bước
 
-**Yêu cầu từ prompt: **Quy trình failover từng bước: điều kiện kích hoạt, ai có quyền quyết định, lệnh/hành động cụ thể, tiêu chí xác nhận thành công
+Quy trình failover từng bước: điều kiện kích hoạt, ai có quyền quyết định, lệnh/hành động cụ thể, tiêu chí xác nhận thành công
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Quy trình failback về trạng thái bình thường
 
-**Yêu cầu từ prompt: **Quy trình failback về trạng thái bình thường
+Quy trình failback về trạng thái bình thường
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Chiến lược backup
 
-**Yêu cầu từ prompt: **Chiến lược backup: tần suất, retention, immutable backup (chống ransomware), nơi lưu tách biệt
+Chiến lược backup: tần suất, retention, immutable backup (chống ransomware), nơi lưu tách biệt
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Kế hoạch DR test
 
-**Yêu cầu từ prompt: **Kế hoạch DR test: lịch diễn tập [QUÝ/NĂM], loại test (tabletop / restore test / full failover), tiêu chí pass
+Kế hoạch DR test: lịch diễn tập [QUÝ/NĂM], loại test (tabletop / restore test / full failover), tiêu chí pass
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Cây liên lạc khẩn cấp & vai trò trong thảm họa
 
-**Yêu cầu từ prompt: **Cây liên lạc khẩn cấp & vai trò trong thảm họa
+Cây liên lạc khẩn cấp & vai trò trong thảm họa
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - RTO/RPO do nghiệp vụ quyết định dựa trên thiệt hại, không phải kỹ thuật tự đặt
 
@@ -141,7 +110,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
 
-### 5. Review & phê duyệt
+### 5. Phê duyệt quyết định
 
 **Sign-off**
 
@@ -149,4 +118,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 |---|---|---|---|---|
 | [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

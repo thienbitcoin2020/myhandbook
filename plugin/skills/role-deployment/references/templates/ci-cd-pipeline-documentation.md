@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | DevOps Engineer | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx); sơ đồ pipeline chèn dạng hình ảnh, mã Mermaid đặt ở phụ lục tài liệu.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -48,67 +33,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Sơ đồ pipeline tổng thể bằng Mermaid
 
-**Yêu cầu từ prompt: **Sơ đồ pipeline tổng thể bằng Mermaid: từ commit → build → test → scan → deploy từng môi trường
+Sơ đồ pipeline tổng thể bằng Mermaid: từ commit → build → test → scan → deploy từng môi trường
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Từng stage
 
-**Yêu cầu từ prompt: **Từng stage: mục đích, tool sử dụng, thời gian chạy điển hình, điều kiện pass/fail
+Từng stage: mục đích, tool sử dụng, thời gian chạy điển hình, điều kiện pass/fail
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Quality gates
 
-**Yêu cầu từ prompt: **Quality gates: coverage tối thiểu [X%], security scan không có High+, lint pass — gate nào chặn cứng, gate nào chỉ cảnh báo
+Quality gates: coverage tối thiểu [X%], security scan không có High+, lint pass — gate nào chặn cứng, gate nào chỉ cảnh báo
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Quy tắc trigger
 
-**Yêu cầu từ prompt: **Quy tắc trigger: branch nào chạy gì, khi nào auto-deploy, khi nào cần approve thủ công (và ai approve)
+Quy tắc trigger: branch nào chạy gì, khi nào auto-deploy, khi nào cần approve thủ công (và ai approve)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Quản lý secret trong pipeline
 
-**Yêu cầu từ prompt: **Quản lý secret trong pipeline: lưu ở đâu, rotate thế nào, quy tắc cấm hardcode
+Quản lý secret trong pipeline: lưu ở đâu, rotate thế nào, quy tắc cấm hardcode
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Xử lý khi pipeline fail
 
-**Yêu cầu từ prompt: **Xử lý khi pipeline fail: các lỗi thường gặp + cách xử lý, khi nào được phép re-run, khi nào cấm bypass
+Xử lý khi pipeline fail: các lỗi thường gặp + cách xử lý, khi nào được phép re-run, khi nào cấm bypass
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. DORA metrics theo dõi
 
-**Yêu cầu từ prompt: **DORA metrics theo dõi: deployment frequency, lead time for changes, change failure rate, MTTR — đo ở đâu, mục tiêu bao nhiêu
+DORA metrics theo dõi: deployment frequency, lead time for changes, change failure rate, MTTR — đo ở đâu, mục tiêu bao nhiêu
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Quy trình thay đổi pipeline
 
-**Yêu cầu từ prompt: **Quy trình thay đổi pipeline: ai được sửa, review thế nào
+Quy trình thay đổi pipeline: ai được sửa, review thế nào
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -136,7 +105,7 @@ Hình minh hoạ là khung placeholder. PIC phải thay nhãn bằng nội dung 
 
 flowchart LR COMMIT --> BUILD --> TEST_SCAN[Test and Scan] TEST_SCAN --> DEPLOY --> VERIFY
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Pipeline là code: mọi thay đổi qua PR + review, không sửa tay trên UI
 
@@ -147,13 +116,3 @@ flowchart LR COMMIT --> BUILD --> TEST_SCAN[Test and Scan] TEST_SCAN --> DEPLOY 
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |

@@ -20,21 +20,6 @@
 
 - Mọi số liệu chưa xác nhận phải ghi [CẦN XÁC NHẬN].
 
-### Kiểm soát tài liệu
-
-**Revision History**
-
-| Version | Ngày | Người sửa (PIC) | Nội dung thay đổi | Người duyệt |
-|---|---|---|---|---|
-| 1.0 | [ĐIỀN] | Incident Commander của sự cố (SRE) | Bản template đầu tiên | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-
-### Mục lục
-
-Mở tài liệu trong Word và chọn Update Field để cập nhật mục lục.
-
-**Output yêu cầu: **File Word (.docx) theo cấu trúc trên.
-
 ### 1. Thông tin đầu vào
 
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
@@ -47,67 +32,51 @@ Mở tài liệu trong Word và chọn Update Field để cập nhật mục l�
 
 #### 1. Tóm tắt
 
-**Yêu cầu từ prompt: **Tóm tắt: 3-5 câu — chuyện gì, tác động, đã xử lý thế nào
+Tóm tắt: 3-5 câu — chuyện gì, tác động, đã xử lý thế nào
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 2. Impact định lượng
 
-**Yêu cầu từ prompt: **Impact định lượng: thời gian downtime, số user ảnh hưởng, error budget tiêu hao
+Impact định lượng: thời gian downtime, số user ảnh hưởng, error budget tiêu hao
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 3. Timeline chi tiết
 
-**Yêu cầu từ prompt: **Timeline chi tiết: mốc thời gian — sự kiện — hành động (khách quan, không phán xét)
+Timeline chi tiết: mốc thời gian — sự kiện — hành động (khách quan, không phán xét)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 4. Phân tích nguyên nhân gốc
 
-**Yêu cầu từ prompt: **Phân tích nguyên nhân gốc: dùng 5 Whys hoặc fishbone, phân biệt trigger (mồi lửa) và root cause (điều kiện nền)
+Phân tích nguyên nhân gốc: dùng 5 Whys hoặc fishbone, phân biệt trigger (mồi lửa) và root cause (điều kiện nền)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 5. Điều gì đã hoạt động tốt (what went well)
 
-**Yêu cầu từ prompt: **Điều gì đã hoạt động tốt (what went well) — để giữ lại
+Điều gì đã hoạt động tốt (what went well) — để giữ lại
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 6. Điều gì chưa tốt & ở đâu gặp may (where we got lucky)
 
-**Yêu cầu từ prompt: **Điều gì chưa tốt & ở đâu gặp may (where we got lucky)
+Điều gì chưa tốt & ở đâu gặp may (where we got lucky)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 7. Action items
 
-**Yêu cầu từ prompt: **Action items: mỗi action có owner cụ thể + deadline + ticket ID, phân loại (prevent / detect faster / mitigate faster)
+Action items: mỗi action có owner cụ thể + deadline + ticket ID, phân loại (prevent / detect faster / mitigate faster)
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 #### 8. Bài học có thể áp dụng cho hệ thống khác
 
-**Yêu cầu từ prompt: **Bài học có thể áp dụng cho hệ thống khác
+Bài học có thể áp dụng cho hệ thống khác
 
 [ĐIỀN: nội dung đã được PIC xác nhận, kèm nguồn hoặc minh chứng khi áp dụng]
-
-Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 
 ### 3. Biểu mẫu làm việc
 
@@ -127,7 +96,7 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 | [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 | [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
 
-### 4. Nguyên tắc chất lượng
+### 4. Hướng dẫn chất lượng
 
 - Blameless tuyệt đối: viết "hệ thống cho phép deploy không qua canary" thay vì "anh A deploy ẩu"
 
@@ -140,13 +109,3 @@ Quyết định / open point: [ĐIỀN hoặc ghi Không áp dụng kèm lý do]
 - PIC phải review, chịu trách nhiệm nội dung và chuyển trạng thái theo vòng đời tài liệu.
 
 - Không để lại secret thật; chỉ ghi tên biến và tham chiếu secret manager khi cần.
-
-### 5. Review & phê duyệt
-
-**Sign-off**
-
-| Vai trò | Họ tên | Kết luận | Ngày | Điều kiện / Ghi chú |
-|---|---|---|---|---|
-| [ĐIỀN 1] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 2] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
-| [ĐIỀN 3] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] | [ĐIỀN] |
