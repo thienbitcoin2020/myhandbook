@@ -41,3 +41,10 @@ jobs:
       - name: Verify security invariants
         working-directory: candidate
         run: node ../trusted/scripts/security-check.mjs
+
+      # The structural regression gate (routes × EN/VI, shell contract,
+      # template-reader rules, cross-walk) previously ran only on developer
+      # machines; run it from the same trusted checkout as the scanner.
+      - name: Verify structural consistency
+        working-directory: candidate
+        run: node ../trusted/scripts/consistency-check.mjs

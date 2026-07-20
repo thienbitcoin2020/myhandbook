@@ -492,8 +492,9 @@ for (const [published, route] of legacyRedirects) {
     continue;
   }
   const content = read(source);
-  if (!content.includes(`content="0;url=./#${route}"`)) {
-    fail(`${source}: legacy redirect must target the clean ./#${route} route`);
+  const expectedTarget = route === 'home' ? './' : `./#${route}`;
+  if (!content.includes(`content="0;url=${expectedTarget}"`)) {
+    fail(`${source}: legacy redirect must target the clean ${expectedTarget} route`);
   }
   if (/index\.html/i.test(content)) {
     fail(`${source}: legacy redirect must not expose index.html`);
@@ -548,7 +549,10 @@ if (fs.existsSync(path.join(root, 'pages', 'home.html')) || fs.existsSync(path.j
 }
 
 if (!router.includes("'home':       'pages/handbook.html'")) {
-  fail('router.js: #home must resolve to the canonical Implementation Handbook');
+  fail('router.js: Home must resolve to the canonical Implementation Handbook');
+}
+if (!router.includes("/^#(?:home|handbook)$/i.test(url.hash) ? '' : url.hash")) {
+  fail('router.js: legacy Home hashes must canonicalize to the bare root URL');
 }
 
 for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {

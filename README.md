@@ -9,7 +9,7 @@ Vietnamese commercial bank:
 
 | Route | Page | Focus |
 |-------|------|-------|
-| `#home` | Implementation Handbook (default) | Canonical lifecycle, governance and handbook entry point |
+| `/` | Implementation Handbook (default) | Canonical lifecycle, governance and handbook entry point |
 | `#deployment` | Deployment Runbook | Release pipeline, CAB, rollback, DoD checklist |
 | `#ba` | BA Project Handbook | BA process, BRD/FRD, ceremonies |
 | `#pm` | PM Project Handbook | PMBOK-aligned PM role & workflow |
@@ -76,8 +76,9 @@ matching fragment from `pages/*.html`, and injects its `#sidebar-inner` and
 Shared behaviour (theme toggle, scroll-spy, delegated interactions, DoD checklist, global search) is re-bound
 after each navigation.
 
-The former `#handbook` hash remains a compatibility alias and is normalized to
-the canonical `#home` route, so existing bookmarks continue to work.
+The former `#home` and `#handbook` hashes remain compatibility aliases and are
+normalized to the canonical root URL `/`, so existing bookmarks continue to
+work without leaving a redundant home suffix in the address bar.
 
 The Implementation Handbook overview is intentionally consolidated into two
 working views: **Overview & Roles** (pipeline, handbook map, role entry points)
@@ -210,9 +211,9 @@ monospace stack for diagrams and code.
 
 ## 🚢 Deployment
 
-On Vercel, `vercel.json` permanently canonicalizes `/index.html` to `/`. URL
-fragments remain browser-side, so a link such as `/index.html#home` lands on
-`/#home` without changing the hash router. The configuration is included in the
+On Vercel, `vercel.json` permanently canonicalizes `/index.html` to `/`. The
+client router then removes the legacy `#home`/`#handbook` aliases, while keeping
+all role and section deep links unchanged. The configuration is included in the
 reviewed artifact allowlist and the security gate rejects any additional Vercel
 routing or runtime behavior. This redirect is URL normalization only: it does
 not make the handbook public or replace the required Vercel Deployment

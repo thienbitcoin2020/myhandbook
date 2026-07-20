@@ -4,6 +4,9 @@ import path from 'node:path';
 export const PUBLISHED_ROOT_FILES = Object.freeze([
   'vercel.json',
   'index.html',
+  // Confidential content must never be crawled or indexed. robots.txt is a
+  // crawler hint, not an access control — see SECURITY.md for the real gate.
+  'robots.txt',
 ]);
 
 /**

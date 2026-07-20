@@ -4,6 +4,30 @@ This handbook is classified for internal/confidential use. The HTML, page
 fragments, source repository, build artifacts, and backups must be protected by
 the same access-control boundary.
 
+## Current hosting gap (recorded 2026-07-20 — owner action required)
+
+The production deployment currently runs on Vercel
+(`project-handbook.vercel.app`) and does **not** yet satisfy the deployment
+gate below:
+
+- The site URL is reachable without corporate SSO/MFA — no server-side access
+  control is enforced by the host (requirement 2 below).
+- Pushes to `main` auto-deploy through Vercel. The manual, fail-closed
+  workflow in `deploy-pages.yml` governs only the unused GitHub Pages path
+  (requirement 7 below).
+- On the current GitHub plan (private repository, Free tier), branch
+  protection and Code Owner enforcement are unavailable, so `CODEOWNERS` is
+  advisory only (requirement 5 below).
+
+Compensating controls in effect: the Vercel build command is pinned to run
+`security-check.mjs` before every artifact build; publishing uses an explicit
+per-file allowlist; the repository is private; `robots.txt` and a `noindex`
+meta tag ask crawlers not to index the site. None of these substitutes for
+server-side access control. Remediation options (Security / document owner
+decision): enable Vercel Deployment Protection (password or SSO), host behind
+the corporate identity provider, or move the repository to a plan or
+visibility where branch protection and Code Owner review are enforceable.
+
 ## Deployment gate
 
 Publishing is blocked by default. Before enabling deployment, Security and the

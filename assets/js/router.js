@@ -93,12 +93,13 @@ function _fragmentUrl(path) {
 }
 
 // Keep the public address clean without relying on a redirect (which would
-// reload the SPA). Preserve query parameters and every existing hash so route
-// links, in-page anchors, and search-result deep links continue to work.
+// reload the SPA). Home is represented by the bare root URL; the former
+// #home/#handbook addresses remain accepted as compatibility aliases but are
+// removed immediately. Query parameters and every other deep link survive.
 function _canonicalizeShellUrl() {
   const url = new URL(window.location.href);
   const canonicalPath = url.pathname.replace(/\/index\.html$/i, '/');
-  const canonicalHash = url.hash || '#home';
+  const canonicalHash = /^#(?:home|handbook)$/i.test(url.hash) ? '' : url.hash;
 
   if (canonicalPath !== url.pathname || canonicalHash !== url.hash) {
     history.replaceState(
@@ -152,8 +153,16 @@ async function navigate(hash) {
     || (ROUTES[requestedRoute] ? requestedRoute : 'home');
   const url = ROUTES[page];
 
-  if (requestedPage !== page && ROUTE_ALIASES[requestedPage]) {
-    history.replaceState(null, '', '#home');
+  // Home has no route suffix in its canonical public URL. This also cleans up
+  // old bookmarks and links after they have resolved successfully.
+  if (page === 'home' && /^(?:home|handbook)$/i.test(requestedPage) && location.hash) {
+    const homeUrl = new URL(window.location.href);
+    homeUrl.hash = '';
+    history.replaceState(
+      history.state,
+      '',
+      homeUrl.pathname + homeUrl.search
+    );
   }
 
   if (page === _currentPage) {
