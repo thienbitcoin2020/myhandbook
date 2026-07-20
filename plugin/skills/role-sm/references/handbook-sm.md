@@ -279,6 +279,6 @@ Section 13
 
 **Sources.** Scrum Guide 2020 (Schwaber & Sutherland). Extended: Robert Greenleaf (Servant Leadership); John Whitmore (GROW); Bruce Tuckman (team stages); Amy Edmondson & Google Project Aristotle (psychological safety); Derby & Larsen (Agile Retrospectives); Scrum.org (Nexus), LeSS, SAFe (scaling). PMBOK 7 for the PM boundary.
 
-🏦 Handbook · Scrum Master Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Scrum Master Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with Scrum Guide 2020 · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

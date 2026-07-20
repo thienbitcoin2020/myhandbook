@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugin"
 PACKAGE_PATH = ROOT / "assets" / "downloads" / "project-handbook.plugin"
-PLUGIN_VERSION = "0.1.0"
+PLUGIN_VERSION = "0.2.0"
 
 
 # ── HTML -> Markdown ────────────────────────────────────────────────────
@@ -244,7 +244,13 @@ SKILLS = [
         "title": "QC / Tester",
         "page": "qc.html",
         "reference": "handbook-qc.md",
-        "templates": ["test-plan"],
+        "templates": [
+            "test-strategy-test-plan",
+            "test-case-specification",
+            "defect-report",
+            "test-summary-report",
+            "uat-plan",
+        ],
         "description": (
             "QC / Testing skill from the Power Home Handbook (ISTQB CTFL v4.0). Use when the user asks "
             "about the seven-step test process, test levels (unit/integration/system/UAT) and the "
@@ -260,7 +266,12 @@ SKILLS = [
         "title": "Solution Architect",
         "page": "sa.html",
         "reference": "handbook-sa.md",
-        "templates": ["architecture-decision-record", "solution-architecture-document"],
+        "templates": [
+            "architecture-decision-record",
+            "solution-architecture-document",
+            "api-specification",
+            "non-functional-requirements-specification",
+        ],
         "description": (
             "Solution Architect skill from the Power Home Handbook (C4, arc42, Well-Architected, TOGAF "
             "interface). Use when the user asks about SA responsibilities, NFR analysis and quality "
@@ -276,7 +287,13 @@ SKILLS = [
         "title": "UX/UI Designer",
         "page": "ux.html",
         "reference": "handbook-ux.md",
-        "templates": [],
+        "templates": [
+            "user-persona-customer-journey-map",
+            "information-architecture-wireframe-brief",
+            "design-system-ui-style-guide",
+            "usability-test-plan-report",
+            "design-handoff-specification",
+        ],
         "description": (
             "UX/UI Designer skill from the Power Home Handbook (Double Diamond, NN/g, WCAG 2.2, Atomic "
             "Design). Use when the user asks about the design process, user research methods, personas "
@@ -291,7 +308,13 @@ SKILLS = [
         "title": "Security & Compliance",
         "page": "sec.html",
         "reference": "handbook-security.md",
-        "templates": [],
+        "templates": [
+            "threat-model-stride",
+            "security-requirements-checklist",
+            "security-risk-assessment",
+            "incident-response-plan",
+            "compliance-gap-checklist",
+        ],
         "description": (
             "Security & Compliance skill from the Power Home Handbook (ISO 27001, NIST CSF, OWASP, "
             "SBV Circular 09/2020). Use when the user asks about the governance framework, risk "
@@ -306,7 +329,12 @@ SKILLS = [
         "title": "Operations & SRE",
         "page": "ops.html",
         "reference": "handbook-ops.md",
-        "templates": ["blameless-postmortem"],
+        "templates": [
+            "sli-slo-sla-document",
+            "operational-runbook",
+            "blameless-postmortem",
+            "disaster-recovery-plan",
+        ],
         "description": (
             "Operations & SRE skill from the Power Home Handbook (Google SRE, ITIL 4, DORA). Use when "
             "the user asks about SLI/SLO/SLA and error budgets, observability and golden signals, "
@@ -322,7 +350,12 @@ SKILLS = [
         "title": "Release Manager / Deployment",
         "page": "deployment.html",
         "reference": "handbook-deployment.md",
-        "templates": [],
+        "templates": [
+            "deployment-runbook-rollback-plan",
+            "release-go-no-go-checklist",
+            "ci-cd-pipeline-documentation",
+            "environment-configuration-document",
+        ],
         "description": (
             "Release Manager / Deployment skill from the Power Home Handbook (Hybrid Water-Scrum-Fall "
             "release governance, SBV compliant). Use when the user asks about the 12-step release "
@@ -337,7 +370,12 @@ SKILLS = [
         "title": "PMO Governance & Portfolio",
         "page": "pmo.html",
         "reference": "handbook-pmo.md",
-        "templates": [],
+        "templates": [
+            "pmo-charter-governance-framework",
+            "stage-gate-review-template",
+            "portfolio-status-report",
+            "benefits-realization-plan",
+        ],
         "description": (
             "PMO Governance & Portfolio skill from the Power Home Handbook (PMI, P3O, EVM). Use when "
             "the user asks about portfolio intake and stage gates, governance bodies and decision "
@@ -364,6 +402,34 @@ TEMPLATE_TITLES = {
     "functional-specification-document": "Functional Specification Document (FSD)",
     "architecture-decision-record": "Architecture Decision Record (ADR)",
     "solution-architecture-document": "Solution Architecture Document",
+    "api-specification": "API Specification",
+    "non-functional-requirements-specification": "Non-Functional Requirements Specification",
+    "user-persona-customer-journey-map": "User Persona & Customer Journey Map",
+    "information-architecture-wireframe-brief": "Information Architecture & Wireframe Brief",
+    "design-system-ui-style-guide": "Design System / UI Style Guide",
+    "usability-test-plan-report": "Usability Test Plan & Report",
+    "design-handoff-specification": "Design Handoff Specification",
+    "test-strategy-test-plan": "Test Strategy & Test Plan",
+    "test-case-specification": "Test Case Specification",
+    "defect-report": "Defect Report",
+    "test-summary-report": "Test Summary Report",
+    "uat-plan": "UAT Plan",
+    "threat-model-stride": "Threat Model (STRIDE)",
+    "security-requirements-checklist": "Security Requirements Checklist",
+    "security-risk-assessment": "Security Risk Assessment",
+    "incident-response-plan": "Incident Response Plan",
+    "compliance-gap-checklist": "Compliance Gap Checklist",
+    "sli-slo-sla-document": "SLI / SLO / SLA Document",
+    "operational-runbook": "Operational Runbook",
+    "disaster-recovery-plan": "Disaster Recovery Plan",
+    "deployment-runbook-rollback-plan": "Deployment Runbook & Rollback Plan",
+    "release-go-no-go-checklist": "Release Go / No-Go Checklist",
+    "ci-cd-pipeline-documentation": "CI/CD Pipeline Documentation",
+    "environment-configuration-document": "Environment Configuration Document",
+    "pmo-charter-governance-framework": "PMO Charter & Governance Framework",
+    "stage-gate-review-template": "Stage Gate Review Template",
+    "portfolio-status-report": "Portfolio Status Report",
+    "benefits-realization-plan": "Benefits Realization Plan",
     "test-plan": "Test Plan (AUTO-GENERATED)",
     "blameless-postmortem": "Blameless Postmortem (AUTO-GENERATED)",
 }
@@ -495,7 +561,7 @@ PLUGIN_JSON = {
     "version": PLUGIN_VERSION,
     "description": (
         "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, "
-        "Security, Ops, Deployment, PMO) with 16 document templates"
+        "Security, Ops, Deployment, PMO) with 43 document templates"
     ),
     "author": {"name": "Thiện Phạm (Power Home PO)"},
     "keywords": ["sdlc", "handbook", "templates", "banking", "water-scrum-fall"],
@@ -530,7 +596,8 @@ def build() -> None:
             tdir = refs / "templates"
             tdir.mkdir()
             for stem in meta["templates"]:
-                if stem in AUTO_GENERATED:
+                preview_exists = (ROOT / "assets" / "templates" / "previews" / f"{stem}.html").is_file()
+                if stem in AUTO_GENERATED and not preview_exists:
                     content = AUTO_GENERATED[stem]
                 else:
                     content = (
@@ -560,8 +627,8 @@ documents without the original handbook.
 |---|---|---|
 {chr(10).join(catalog_rows)}
 
-**{total_templates} templates** total (14 from the handbook library, 2 auto-generated
-from in-page outlines and marked as such).
+**{total_templates} reviewed templates** total, converted from the same handbook
+previews used by the in-page reader and DOCX downloads.
 
 ## Install
 
@@ -605,13 +672,9 @@ Plugin v{PLUGIN_VERSION}, generated {__import__('datetime').date.today().isoform
    `assets/templates/previews/*.html` — the same derived renders the site's
    reader and DOCX downloads are built from — so plugin, reader and download
    cannot drift. `[ĐIỀN: ...]` placeholders preserved.
-4. **Gaps auto-resolved** (marked `<!-- AUTO-GENERATED -->`):
-   - `role-qc/references/templates/test-plan.md` — QC page lists Test Plan as a
-     deliverable (IEEE-829-lite outline) but ships no body. Generated from the
-     page's own deliverables/criteria sections + ISTQB CTFL v4.0.
-   - `role-ops/references/templates/blameless-postmortem.md` — Ops page
-     prescribes the exact postmortem fields but ships no body. Generated from
-     that field list + Google SRE practice.
+4. **Template coverage**: all 43 plugin templates come from reviewed handbook
+   preview/DOCX pairs. The former outline-only QC Test Plan and Ops Postmortem
+   gaps are superseded by the role prompt-pack templates in library v0.2.0.
 5. **Ambiguous ownership**: FSD lives under the PO role (the handbook stores it
    in the PO template folder), even though BAs co-author it — noted in the PO
    skill. UAT plan/script remains BA-owned per the handbook's ownership matrix.

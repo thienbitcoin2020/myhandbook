@@ -34,3 +34,5 @@ Instructions for Claude:
 |---|---|
 | Architecture Decision Record (ADR) | `references/templates/architecture-decision-record.md` |
 | Solution Architecture Document | `references/templates/solution-architecture-document.md` |
+| API Specification | `references/templates/api-specification.md` |
+| Non-Functional Requirements Specification | `references/templates/non-functional-requirements-specification.md` |

@@ -302,6 +302,54 @@ Section 13
 
 **Sources.** PMI — PMBOK Guide 7th Ed., The Standard for Portfolio Management, Managing Change in Organizations; **P3O** (Portfolio, Programme & Project Offices — Axelos); **MSP** / **MoP** (programme & portfolio, Axelos); Earned Value Management (PMI/ANSI EIA-748); Cooper (Stage-Gate). Aligned to SBV governance expectations.
 
-🏦 Handbook · PMO Governance & Portfolio v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### PMO Governance Templates
+
+Decision rights, stage gates, portfolio insight and benefits
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### PMO Charter & Governance Framework
+
+Define PMO mandate, services, decision rights, tailoring and KPIs.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Stage Gate Review Template
+
+Score gate evidence and record GO, conditional GO, HOLD or KILL.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Portfolio Status Report
+
+Give leaders a decision-focused portfolio dashboard and systemic risks.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+DOCXOwner · PMO Lead / PMO Analyst
+
+#### Benefits Realization Plan
+
+Trace outputs to owned, measurable benefits beyond go-live.
+
+SupportsSponsor · PM · PO · Finance
+
+Read document→
+
+🏦 Handbook · PMO Governance & Portfolio v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with PMI · P3O · EVM · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

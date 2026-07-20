@@ -780,6 +780,54 @@ Time-stamped, immutable log of every action during deployment. Retained in GRC s
 | 22:35 | Smoke test executed | Release Manager | Done |
 | 22:40 | Business Owner PROD verification | Business Owner | Pending |
 
-🏦 Handbook · Deployment Runbook v2.4 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### Deployment & DevOps Templates
+
+Controlled release, rollback, pipeline and environment baselines
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Deployment Runbook & Rollback Plan
+
+Execute releases through verified steps and explicit rollback triggers.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Release Go / No-Go Checklist
+
+Collect role evidence and record one accountable release decision.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### CI/CD Pipeline Documentation
+
+Document stages, gates, artifacts, permissions and failure behavior.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+DOCXOwner · DevOps / Release Engineer
+
+#### Environment Configuration Document
+
+Compare environments without exposing secrets and control configuration drift.
+
+SupportsQC · Security · SRE · SA
+
+Read document→
+
+🏦 Handbook · Deployment Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Compliant with SBV Circular 09/2020/TT-NHNN & ISO 27001 · Approved by Technology Risk Committee · © 2025

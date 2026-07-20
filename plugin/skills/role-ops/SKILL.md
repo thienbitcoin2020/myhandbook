@@ -31,4 +31,7 @@ Instructions for Claude:
 
 | Template | File |
 |---|---|
+| SLI / SLO / SLA Document | `references/templates/sli-slo-sla-document.md` |
+| Operational Runbook | `references/templates/operational-runbook.md` |
 | Blameless Postmortem (AUTO-GENERATED) | `references/templates/blameless-postmortem.md` |
+| Disaster Recovery Plan | `references/templates/disaster-recovery-plan.md` |

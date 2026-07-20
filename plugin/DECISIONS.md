@@ -1,6 +1,6 @@
 # DECISIONS.md — auto-decision log (one-shot build)
 
-Plugin v0.1.0, generated 2026-07-20 by `scripts/build-plugin.py`.
+Plugin v0.2.0, generated 2026-07-20 by `scripts/build-plugin.py`.
 
 1. **Roles**: exactly the 11 role pages + the parent Implementation Handbook
    (overview skill). No roles invented. `home`/`handbook` routes are one page →
@@ -15,13 +15,9 @@ Plugin v0.1.0, generated 2026-07-20 by `scripts/build-plugin.py`.
    `assets/templates/previews/*.html` — the same derived renders the site's
    reader and DOCX downloads are built from — so plugin, reader and download
    cannot drift. `[ĐIỀN: ...]` placeholders preserved.
-4. **Gaps auto-resolved** (marked `<!-- AUTO-GENERATED -->`):
-   - `role-qc/references/templates/test-plan.md` — QC page lists Test Plan as a
-     deliverable (IEEE-829-lite outline) but ships no body. Generated from the
-     page's own deliverables/criteria sections + ISTQB CTFL v4.0.
-   - `role-ops/references/templates/blameless-postmortem.md` — Ops page
-     prescribes the exact postmortem fields but ships no body. Generated from
-     that field list + Google SRE practice.
+4. **Template coverage**: all 43 plugin templates come from reviewed handbook
+   preview/DOCX pairs. The former outline-only QC Test Plan and Ops Postmortem
+   gaps are superseded by the role prompt-pack templates in library v0.2.0.
 5. **Ambiguous ownership**: FSD lives under the PO role (the handbook stores it
    in the PO template folder), even though BAs co-author it — noted in the PO
    skill. UAT plan/script remains BA-owned per the handbook's ownership matrix.

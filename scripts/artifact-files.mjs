@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { GENERATED_ROLE_DOCUMENTS } from './role-template-manifest.mjs';
 
 export const PUBLISHED_ROOT_FILES = Object.freeze([
   'vercel.json',
@@ -45,6 +46,7 @@ export const PUBLISHED_DOCUMENTS = Object.freeze([
   'assets/templates/po/product-vision-roadmap.docx',
   'assets/templates/sa/architecture-decision-record.docx',
   'assets/templates/sa/solution-architecture-document.docx',
+  ...GENERATED_ROLE_DOCUMENTS,
 ]);
 
 /**

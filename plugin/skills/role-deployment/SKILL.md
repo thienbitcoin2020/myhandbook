@@ -22,3 +22,16 @@ Instructions for Claude:
    user's language (Vietnamese or English).
 4. Never invent policy that contradicts the chapter. If the handbook is
    silent, say so and answer from the referenced framework instead (clearly labelled).
+5. When the user asks to draft a document this role owns, load the matching
+   template below, keep its structure and numbering, fill what the user
+   provided, and leave every `[ĐIỀN: ...]` placeholder you cannot fill.
+   Templates are Vietnamese-first by design — keep them so unless asked.
+
+## Templates
+
+| Template | File |
+|---|---|
+| Deployment Runbook & Rollback Plan | `references/templates/deployment-runbook-rollback-plan.md` |
+| Release Go / No-Go Checklist | `references/templates/release-go-no-go-checklist.md` |
+| CI/CD Pipeline Documentation | `references/templates/ci-cd-pipeline-documentation.md` |
+| Environment Configuration Document | `references/templates/environment-configuration-document.md` |

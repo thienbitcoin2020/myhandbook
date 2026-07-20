@@ -31,4 +31,8 @@ Instructions for Claude:
 
 | Template | File |
 |---|---|
-| Test Plan (AUTO-GENERATED) | `references/templates/test-plan.md` |
+| Test Strategy & Test Plan | `references/templates/test-strategy-test-plan.md` |
+| Test Case Specification | `references/templates/test-case-specification.md` |
+| Defect Report | `references/templates/defect-report.md` |
+| Test Summary Report | `references/templates/test-summary-report.md` |
+| UAT Plan | `references/templates/uat-plan.md` |

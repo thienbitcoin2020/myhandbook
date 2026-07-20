@@ -61,7 +61,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-compliance">
     <span class="comp-pill">🧩 12 skills</span>
-    <span class="comp-pill">📄 16 templates</span>
+    <span class="comp-pill">📄 43 templates</span>
     <span class="comp-pill">🔒 Bảo mật</span>
   </div>
 
@@ -88,13 +88,13 @@
     <p>Cài toàn bộ Cẩm nang Dự án vào Claude dưới dạng các skill theo vai trò. Ai cài plugin đều có thể hỏi kiến thức theo role và soạn tài liệu đúng chuẩn cẩm nang — PRD, BRD, Charter, ADR, Test Plan... — mà không cần mở cẩm nang. Cùng nguồn nội dung, cùng template, cùng ranh giới bảo mật.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> 12 skills</div>
-      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 16 templates</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> 43 templates</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Chương EN · Template VI</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> BẢO MẬT</div>
     </div>
     <div class="plugin-cta">
       <a class="dl-btn" href="assets/downloads/project-handbook.plugin" download>⬇️ Tải project-handbook.plugin</a>
-      <span class="dl-meta">Plugin 0.1.0 · ~170 KB · chỉ Markdown + JSON</span>
+      <span class="dl-meta">Plugin 0.2.0 · chỉ Markdown + JSON</span>
     </div>
   </header>
 
@@ -107,7 +107,7 @@
         <table class="table-plg">
           <tr><th>Thành phần</th><th>Chi tiết</th></tr>
           <tr><td><strong>11 skill theo role + 1 skill tổng quan</strong></td><td>Mỗi role trong cẩm nang là một skill (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) cộng thêm Cẩm nang Triển khai xuyên suốt (các phase SDLC, quản trị, quality gates, RACI, thuật ngữ).</td></tr>
-          <tr><td><strong>16 template tài liệu</strong></td><td>14 template đã kiểm duyệt từ <a href="#home">Thư viện Template</a>, chuyển đổi 1:1 từ đúng bản render mà trình đọc trên web dùng, cùng 2 template sinh tự động (Test Plan, Blameless Postmortem) từ outline trong trang và được đánh dấu rõ.</td></tr>
+          <tr><td><strong>43 template tài liệu đã review</strong></td><td>Mọi template đều đến từ <a href="#home">Thư viện Template</a> và được chuyển đổi 1:1 từ đúng preview ghép với DOCX tải về. Thư viện v0.2.0 bổ sung phạm vi SA, UX, QC, Security, Ops/SRE, Deployment và PMO mà không thay đổi bộ PO, PM, BA hoặc Scrum Master hiện có.</td></tr>
           <tr><td><strong>Chương đầy đủ làm tài liệu tham chiếu</strong></td><td>Mỗi skill mang theo trọn chương cẩm nang của nó — Claude chỉ nạp khi cần (progressive disclosure) nên plugin luôn nhẹ và nhanh.</td></tr>
           <tr><td><strong>DECISIONS.md</strong></td><td>Mọi quyết định tự động khi sinh plugin đều được ghi lại để rà soát — điền gap, phân quyền sở hữu template, chính sách ngôn ngữ.</td></tr>
         </table>
@@ -269,6 +269,7 @@
       <div class="card"><div class="card-body">
         <table class="table-plg">
           <tr><th style="width:90px">Plugin</th><th style="width:110px">Ngày</th><th>Ghi chú</th></tr>
+          <tr><td><strong>0.2.0</strong></td><td>2026-07-20</td><td>Mở rộng lên 43 template đã review: 29 file mới có owner theo role cho SA, UX, QC, Security, Ops/SRE, Deployment và PMO; bỏ hai fallback outline-only trong plugin.</td></tr>
           <tr><td><strong>0.1.0</strong></td><td>2026-07-19</td><td>Bản đầu tiên — 12 skill, 16 template (14 từ Thư viện Template, 2 sinh tự động từ outline trong trang), chương đầy đủ làm tài liệu tham chiếu, nhật ký DECISIONS.md.</td></tr>
         </table>
         <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">🔄</span><div><strong>Quy tắc đồng bộ.</strong> Cẩm nang này là nguồn chân lý duy nhất. Mỗi khi nội dung cẩm nang thay đổi, plugin được sinh lại từ nguồn (<code>scripts/build-plugin.py</code>), tăng semver và thay file tải về phía trên — plugin không bao giờ tự sửa nội dung.</div></div>
@@ -279,7 +280,7 @@
 
   <footer class="site-footer">
     🏦 Handbook · Claude Plugin v2.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
-    Sinh từ nguồn cẩm nang · 12 skills · 16 templates · © 2026
+    Sinh từ nguồn cẩm nang · 12 skills · 43 templates · © 2026
   </footer>
 </div>
 </div>

@@ -484,6 +484,64 @@ found before release ÷ (before + after release) × 100%
 
 **Source:** Aligned with the **ISTQB® Certified Tester Foundation Level (CTFL) Syllabus v4.0 (2023)**. Terminology intentionally excludes superseded v3.1 terms (e.g. "pesticide paradox", "decision coverage", Use Case Testing as a black-box technique). Testing Quadrants credited to Brian Marick, popularised by Lisa Crispin & Janet Gregory.
 
-🏦 Handbook · QC Testing Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### QC Testing Templates
+
+Planning, execution, defect control, reporting and UAT
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Strategy & Test Plan
+
+Set scope, risk, levels, environments, entry and exit criteria.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Case Specification
+
+Turn requirements and acceptance criteria into traceable tests.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Defect Report
+
+Record reproducible evidence, severity, priority and lifecycle ownership.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### Test Summary Report
+
+Summarize execution, residual risk and release recommendation.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+DOCXOwner · QC Lead / QC Engineer
+
+#### UAT Plan
+
+Coordinate business scenarios, participants, evidence and sign-off.
+
+SupportsBA · PO · Dev · PM
+
+Read document→
+
+🏦 Handbook · QC Testing Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

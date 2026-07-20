@@ -895,6 +895,6 @@ BABOK v3 KA1 requires measuring BA performance. Track these to catch requirement
 
 Defect-leakage & RTM coverage are shared with the QC Testing Handbook (defect metrics) — BA owns the requirements-quality view.
 
-🏦 Handbook · BA Project Implementation Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · BA Project Implementation Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

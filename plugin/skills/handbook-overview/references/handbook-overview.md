@@ -1292,7 +1292,17 @@ Changelog
 
 ### Version History
 
-v1.0 — 2025-Q2 (Initial Release)
+v2.0 — 2026-07-20 (Major Update)
+
+| Type | Description |
+|---|---|
+| Added | Eleven role handbooks alongside the parent — Deployment, BA, PM, QC, PO, SA, Security, Ops, SM, UX, PMO — every route in English and Vietnamese. |
+| Added | Templates Library: 14 curated CONFIDENTIAL DOCX templates behind the in-page read-first reader. |
+| Added | Global bilingual full-text search and the Claude Plugin page with a downloadable skill package. |
+| Changed | Consolidated Home navigation with deep-linkable sections, atomic dark/light theme switching, hardened publish gates. |
+| Fixed | Mobile sidebar overlay, router race conditions, fragment caching and sub-tab URL state (PMO review P0/P1). |
+
+v1.0 — 2026-Q2 (Initial Release)
 
 | Type | Description |
 |---|---|
@@ -1302,6 +1312,6 @@ v1.0 — 2025-Q2 (Initial Release)
 | Added | Quality gates section with DoR, Sprint DoD, and Release DoD checklists. |
 | Note | Sections 3.2 and 3.9 intentionally link to other handbook pages. Content is NOT duplicated. |
 
-🏦 Handbook · Project Implementation Handbook v1.0 · Last updated 2025-Q2 · Owner: Thiện Phạm (Power Home PO)
+🏦 Handbook · Project Implementation Handbook v2.0 · Last updated 2026-07-20 · Owner: Thiện Phạm (Power Home PO)
 
 Classification: CONFIDENTIAL · SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned · © 2025

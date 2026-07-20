@@ -284,6 +284,54 @@ Section 13
 
 **Sources.** Google SRE (Site Reliability Engineering, The SRE Workbook — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / Accelerate (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to SBV Circular 09/2020/TT-NHNN.
 
-🏦 Handbook · Operations & SRE Runbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### Operations & SRE Templates
+
+Reliability targets, operating procedures, learning and recovery
+
+DOCXOwner · SRE / Operations
+
+#### SLI / SLO / SLA Document
+
+Define indicators, objectives, windows and error-budget policy.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Operational Runbook
+
+Guide diagnosis, safe action, verification and escalation.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Blameless Postmortem
+
+Capture timeline, contributing conditions and verified corrective actions.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+DOCXOwner · SRE / Operations
+
+#### Disaster Recovery Plan
+
+Baseline recovery objectives, procedures, ownership and exercises.
+
+SupportsDev · SA · Security · PM
+
+Read document→
+
+🏦 Handbook · Operations & SRE Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · SBV Circular 09/2020/TT-NHNN · © 2025

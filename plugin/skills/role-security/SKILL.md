@@ -22,3 +22,17 @@ Instructions for Claude:
    user's language (Vietnamese or English).
 4. Never invent policy that contradicts the chapter. If the handbook is
    silent, say so and answer from the referenced framework instead (clearly labelled).
+5. When the user asks to draft a document this role owns, load the matching
+   template below, keep its structure and numbering, fill what the user
+   provided, and leave every `[ĐIỀN: ...]` placeholder you cannot fill.
+   Templates are Vietnamese-first by design — keep them so unless asked.
+
+## Templates
+
+| Template | File |
+|---|---|
+| Threat Model (STRIDE) | `references/templates/threat-model-stride.md` |
+| Security Requirements Checklist | `references/templates/security-requirements-checklist.md` |
+| Security Risk Assessment | `references/templates/security-risk-assessment.md` |
+| Incident Response Plan | `references/templates/incident-response-plan.md` |
+| Compliance Gap Checklist | `references/templates/compliance-gap-checklist.md` |

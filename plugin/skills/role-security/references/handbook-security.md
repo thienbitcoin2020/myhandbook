@@ -327,6 +327,64 @@ Section 13
 
 **Sources.** ISO/IEC 27001 & 27002 (ISMS, Annex A controls); NIST Cybersecurity Framework & SP 800-61 (Incident Handling); OWASP Top 10 (2021), ASVS, SAMM; PCI-DSS; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Mapped to SBV Circular 09/2020/TT-NHNN.
 
-🏦 Handbook · Security & Compliance Runbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### Security & Compliance Templates
+
+Threats, controls, risk, response and compliance evidence
+
+DOCXOwner · Security / Compliance
+
+#### Threat Model (STRIDE)
+
+Model data flows, trust boundaries, threats and mitigations.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Security Requirements Checklist
+
+Create verifiable security requirements for delivery and assurance.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Security Risk Assessment
+
+Assess scenarios, likelihood, impact, treatment and residual risk.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Incident Response Plan
+
+Define roles, triggers, communications, evidence and response playbooks.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+DOCXOwner · Security / Compliance
+
+#### Compliance Gap Checklist
+
+Map clauses to evidence, gaps, remediation and accountable owners.
+
+SupportsSA · Dev · SRE · PM
+
+Read document→
+
+🏦 Handbook · Security & Compliance Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with ISO 27001 · NIST CSF · OWASP · PCI-DSS · SBV Circular 09/2020/TT-NHNN · © 2025

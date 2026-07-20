@@ -409,6 +409,34 @@ Deployment & Handover deliverables
 
 **Sources.C4 Model** (Simon Brown); **arc42** (Dr. Gernot Starke & Dr. Peter Hruschka); **ADR** (Michael Nygard); **AWS / Azure Well-Architected Framework** (6 pillars); **TOGAF 10** (The Open Group — EA interface, Phase G); **STRIDE** (Microsoft threat modeling); **ATAM & Quality Attribute Scenarios** (SEI / Carnegie Mellon); integration patterns per Hohpe & Woolf (Enterprise Integration Patterns). Aligned to SBV Circular 09/2020/TT-NHNN & ISO 27001.
 
-🏦 Handbook · Solution Architect Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### Additional Architecture Templates
+
+Structured master files for APIs and measurable quality attributes
+
+DOCXOwner · Solution Architect
+
+#### API Specification
+
+Define contracts, authentication, errors, versioning and service expectations.
+
+SupportsDev · QC · Security · Ops
+
+Read document→
+
+DOCXOwner · Solution Architect
+
+#### Non-Functional Requirements Specification
+
+Capture measurable quality attributes and their verification method.
+
+SupportsDev · QC · Security · Ops
+
+Read document→
+
+🏦 Handbook · Solution Architect Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · SBV Circular 09/2020/TT-NHNN · © 2025

@@ -291,6 +291,64 @@ Section 13
 
 **Sources.** Design Council (Double Diamond); Nielsen Norman Group (10 usability heuristics, ~5-user testing); WCAG 2.2 / W3C (POUR, AA); Brad Frost (Atomic Design); Google Material Design 3 & Apple HIG (platform guidelines); SUS (John Brooke); JTBD (Clayton Christensen / Tony Ulwick).
 
-🏦 Handbook · UX/UI Designer Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+📥
+
+Library
+
+### UX/UI Working Templates
+
+Research, structure, design governance, validation and handoff
+
+DOCXOwner · UX/UI Designer
+
+#### User Persona & Customer Journey Map
+
+Connect evidence-backed personas to stages, touchpoints and opportunities.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Information Architecture & Wireframe Brief
+
+Baseline sitemap, user flow, content inventory and wireframe scope.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Design System / UI Style Guide
+
+Govern tokens, components, states, accessibility and versioning.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Usability Test Plan & Report
+
+Plan tasks and participants, then record evidence and prioritized findings.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+DOCXOwner · UX/UI Designer
+
+#### Design Handoff Specification
+
+Give delivery teams one traceable source for screens, states and design QA.
+
+SupportsPO · BA · Dev · QC
+
+Read document→
+
+🏦 Handbook · UX/UI Designer Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025

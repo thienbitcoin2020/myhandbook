@@ -455,6 +455,6 @@ SupportsSponsor · PO · BA · SA
 
 Read document→
 
-🏦 Handbook · PM Project Handbook v1.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · PM Project Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
 
 Aligned with PMBOK® 7th Ed. · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
