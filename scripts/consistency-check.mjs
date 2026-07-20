@@ -60,6 +60,18 @@ if (routesBlock) {
 
 if (routes.size === 0) fail('routes', 'ROUTES table parsed but is empty');
 
+// ── 1b. Search derives its page list from the router registry ──────────
+// search.js once carried its own copy of the route table and silently
+// drifted (a route was missing from the index). The router table is the
+// single source of truth; search must consume it, never redeclare it.
+const searchSource = read('assets/js/search.js');
+if (/const\s+ROUTES\s*=\s*\[/.test(searchSource) || /\{\s*id:\s*'home'/.test(searchSource)) {
+  fail('routes', 'search.js maintains its own route table — derive it from the router ROUTES instead');
+}
+if (!searchSource.includes('Object.entries(ROUTES)')) {
+  fail('routes', 'search.js no longer derives its page list from the router ROUTES table');
+}
+
 for (const [route, enPath] of routes) {
   const viPath = enPath.replace('pages/', 'pages/vi/');
   if (!exists(enPath)) fail('routes', `#${route} -> missing EN fragment ${enPath}`);
@@ -150,6 +162,17 @@ for (const relative of [...new Set(fragments)]) {
   // 2. shell contract
   if (!html.includes('id="sidebar-inner"')) fail('contract', `${relative} has no #sidebar-inner`);
   if (!html.includes('id="page-content"')) fail('contract', `${relative} has no #page-content`);
+
+  // 2b. governance metadata: every fragment states a precise source-update
+  // date next to its stampable version line (regression guard for the stale
+  // "Effective 2025-Q2" metadata found in QA cycle 2026-07-20).
+  const isVi = relative.startsWith('pages/vi/');
+  const updatedPattern = isVi
+    ? /Cập nhật: \d{4}-\d{2}-\d{2}<br\/>/
+    : /Updated: \d{4}-\d{2}-\d{2}<br\/>/;
+  if (!updatedPattern.test(html)) {
+    fail('doc-control', `${relative} is missing the "${isVi ? 'Cập nhật' : 'Updated'}: YYYY-MM-DD" line in Document Control`);
+  }
 
   // 3. CSP: no inline handlers
   const inlineHandler = html.match(/\son[a-z]+\s*=\s*"/i);

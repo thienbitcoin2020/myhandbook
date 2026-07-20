@@ -8,20 +8,17 @@
 (function initGlobalSearchModule() {
   'use strict';
 
-  const ROUTES = [
-    { id: 'home', file: 'handbook.html' },
-    { id: 'deployment', file: 'deployment.html' },
-    { id: 'ba', file: 'ba.html' },
-    { id: 'pm', file: 'pm.html' },
-    { id: 'qc', file: 'qc.html' },
-    { id: 'po', file: 'po.html' },
-    { id: 'sa', file: 'sa.html' },
-    { id: 'sec', file: 'sec.html' },
-    { id: 'ops', file: 'ops.html' },
-    { id: 'sm', file: 'sm.html' },
-    { id: 'ux', file: 'ux.html' },
-    { id: 'pmo', file: 'pmo.html' },
-  ];
+  // The page list is derived from the router's ROUTES table (router.js loads
+  // before this script — see index.html). Search must never own a second
+  // hand-maintained copy: one already drifted and silently dropped a route
+  // from the index. If the router table is unavailable the index stays empty
+  // and the UI reports search as unavailable instead of guessing.
+  const SEARCH_ROUTES = (typeof ROUTES === 'object' && ROUTES)
+    ? Object.entries(ROUTES).map(([id, path]) => ({
+        id,
+        file: path.replace(/^pages\//, ''),
+      }))
+    : [];
 
   // A text node is assigned to its nearest meaningful block. This captures
   // headings, prose, cards, lists and table rows without indexing sidebar
@@ -303,7 +300,7 @@
   function buildIndex(lang) {
     if (indexCache.has(lang)) return indexCache.get(lang);
 
-    const indexPromise = Promise.allSettled(ROUTES.map(route => indexRoute(route, lang)))
+    const indexPromise = Promise.allSettled(SEARCH_ROUTES.map(route => indexRoute(route, lang)))
       .then(outcomes => {
         const entries = [];
         outcomes.forEach(outcome => {
