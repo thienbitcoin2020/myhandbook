@@ -318,13 +318,20 @@ for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
 for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
   if (!exists(relative)) continue;
   const html = read(relative);
+  const marketplaceAdd = 'claude plugin marketplace add thienpv99/project-handbook';
+  const fullInstall = `${marketplaceAdd}; claude plugin install project-handbook@power-home-handbook`;
   const anchors = [...html.matchAll(/<a\b([^>]*)>/g)].map(match => match[1]);
+  const copyCommands = [...html.matchAll(/<button\b([^>]*\bdata-copy="([^"]+)"[^>]*)>/g)]
+    .map(match => match[2]);
   const full = anchors.filter(attributes => (
     /href="assets\/downloads\/project-handbook\.plugin"/.test(attributes)
     && /(?:^|\s)download(?:\s|=|$)/.test(attributes)
   ));
   if (full.length !== 1) {
     fail('plugin-distribution', `${relative} must expose the full plugin exactly once`);
+  }
+  if (!copyCommands.includes(fullInstall)) {
+    fail('plugin-distribution', `${relative} must expose a one-paste full-plugin install command`);
   }
 
   const discovered = new Set();
@@ -349,6 +356,10 @@ for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
   for (const spec of ROLE_PLUGIN_PACKAGES) {
     if (!discovered.has(spec.role)) {
       fail('plugin-distribution', `${relative} does not expose ${spec.path}`);
+    }
+    const roleInstall = `${marketplaceAdd}; claude plugin install project-handbook-${spec.role}@power-home-handbook`;
+    if (copyCommands.filter(command => command === roleInstall).length !== 1) {
+      fail('plugin-distribution', `${relative} must expose one one-paste install command for ${spec.role}`);
     }
   }
 }

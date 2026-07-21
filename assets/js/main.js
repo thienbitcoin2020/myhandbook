@@ -647,18 +647,46 @@ async function _openDocReader(trigger) {
 }
 
 // Copy-to-clipboard for the plugin page's install commands and example
-// prompts. Feedback swaps the button label only — no DOM insertion.
+// prompts. The textarea fallback keeps the one-click install usable in older
+// enterprise browsers and non-secure local previews where Clipboard API access
+// can be unavailable.
+function _writeClipboardText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+
+  return new Promise((resolve, reject) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.inset = '-9999px auto auto -9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      if (!document.execCommand('copy')) throw new Error('copy command was rejected');
+      resolve();
+    } catch (error) {
+      reject(error);
+    } finally {
+      textarea.remove();
+    }
+  });
+}
+
 function _copyToClipboard(button) {
   const text = button.dataset.copy || '';
-  if (!text || !navigator.clipboard || !navigator.clipboard.writeText) return;
+  if (!text) return;
   if (!button.dataset.copyRestoreLabel) {
     button.dataset.copyRestoreLabel = button.textContent;
   }
-  navigator.clipboard.writeText(text).then(() => {
+  _writeClipboardText(text).then(() => {
     button.textContent = button.dataset.copiedLabel || '✓';
+    button.setAttribute('aria-label', button.dataset.copiedLabel || 'Copied');
     window.clearTimeout(Number(button.dataset.copyTimer || 0));
     button.dataset.copyTimer = String(window.setTimeout(() => {
       button.textContent = button.dataset.copyRestoreLabel;
+      button.setAttribute('aria-label', button.dataset.copyRestoreLabel);
     }, 1600));
   }).catch(() => {});
 }
@@ -680,6 +708,24 @@ document.addEventListener('click', event => {
   if (copyTrigger) {
     event.preventDefault();
     _copyToClipboard(copyTrigger);
+    return;
+  }
+
+  const templateFilterChip = target.closest('[data-template-filter-role]');
+  if (templateFilterChip) {
+    const pressed = templateFilterChip.getAttribute('aria-pressed') === 'true';
+    templateFilterChip.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+    applyTemplateFilter();
+    return;
+  }
+
+  const templateFilterReset = target.closest('[data-template-filter-reset]');
+  if (templateFilterReset) {
+    document.querySelectorAll('[data-template-filter-role][aria-pressed="true"]')
+      .forEach(chip => chip.setAttribute('aria-pressed', 'false'));
+    const filterSearch = document.querySelector('[data-template-filter-search]');
+    if (filterSearch) filterSearch.value = '';
+    applyTemplateFilter();
     return;
   }
 
@@ -746,6 +792,61 @@ document.addEventListener('click', event => {
 
 document.addEventListener('input', event => {
   if (event.target.id === 'hb-search') handleSearch(event.target.value);
+  if (event.target.matches && event.target.matches('[data-template-filter-search]')) {
+    applyTemplateFilter();
+  }
+});
+
+// ============================================================
+// TEMPLATES LIBRARY — multi-filter (owner-role chips + quick search)
+// The owner role is derived from each card's data-template-preview path
+// (assets/templates/<role>/...), so the filter can never drift from the
+// publish allowlist the way a second hand-maintained list would.
+// ============================================================
+function _normalizeFilterText(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLocaleLowerCase('en');
+}
+
+function applyTemplateFilter() {
+  const library = document.querySelector('.template-library');
+  if (!library) return;
+
+  const searchBox = document.querySelector('[data-template-filter-search]');
+  const query = _normalizeFilterText(searchBox ? searchBox.value : '').trim();
+  const activeRoles = new Set(
+    Array.from(document.querySelectorAll('[data-template-filter-role][aria-pressed="true"]'))
+      .map(chip => chip.dataset.templateFilterRole)
+  );
+
+  const cards = Array.from(library.querySelectorAll('.template-card'));
+  let shown = 0;
+  cards.forEach(card => {
+    const preview = card.querySelector('[data-template-preview]');
+    const role = preview ? (preview.dataset.templatePreview.split('/')[2] || '') : '';
+    const matchesRole = !activeRoles.size || activeRoles.has(role);
+    const matchesQuery = !query || _normalizeFilterText(card.textContent).includes(query);
+    const visible = matchesRole && matchesQuery;
+    card.hidden = !visible;
+    if (visible) shown += 1;
+  });
+
+  const count = document.querySelector('[data-template-filter-count]');
+  if (count) {
+    count.textContent = (count.dataset.template || '{shown}/{total}')
+      .replace('{shown}', String(shown))
+      .replace('{total}', String(cards.length));
+  }
+  const empty = document.querySelector('[data-template-filter-empty]');
+  if (empty) empty.hidden = shown !== 0;
+}
+
+document.addEventListener('handbook:page-ready', () => {
+  if (document.querySelector('.template-library')) applyTemplateFilter();
 });
 
 document.addEventListener('change', event => {

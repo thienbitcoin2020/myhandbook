@@ -26,7 +26,7 @@ PLUGIN_ROOT = ROOT / "plugin"
 PACKAGE_PATH = ROOT / "assets" / "downloads" / "project-handbook.plugin"
 ROLE_PACKAGE_DIR = ROOT / "assets" / "downloads" / "roles"
 MARKETPLACE_PATH = ROOT / ".claude-plugin" / "marketplace.json"
-PLUGIN_VERSION = "0.4.0"
+PLUGIN_VERSION = "0.5.0"
 PLUGIN_AUTHOR = {
     "name": "Thiện Phạm (Power Home PO)",
     "email": "thienpv99@gmail.com",
@@ -770,8 +770,8 @@ previews used by the in-page reader and DOCX downloads.
 ## Install
 
 - **Cowork / Claude desktop:** drag & drop `project-handbook.plugin` into the chat.
-- **Claude Code (persistent):** add the GitHub marketplace, then install
-  `project-handbook@{MARKETPLACE_NAME}`.
+- **Claude Code (persistent, one paste):** run
+  `claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@{MARKETPLACE_NAME}`.
 - **Claude Code (local test):** extract the archive, then run
   `claude --plugin-dir ./project-handbook`.
 

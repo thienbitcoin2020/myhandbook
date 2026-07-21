@@ -36,6 +36,24 @@
 .role-download:hover{background:color-mix(in srgb,var(--accent) 16%,var(--surface-raised));border-color:var(--accent);transform:translateY(-1px)}
 .role-download:focus-visible{outline:3px solid var(--focus-color,var(--accent));outline-offset:2px}
 .role-download small{color:var(--text-secondary);font-size:9px;font-weight:500}
+.install-card{width:min(760px,100%);margin-top:24px;padding:22px;border:1px solid color-mix(in srgb,var(--accent) 28%,var(--border));border-radius:28px;background:linear-gradient(145deg,color-mix(in srgb,var(--surface-raised) 92%,#dbeafe 8%),color-mix(in srgb,var(--surface-raised) 91%,#f5d0fe 9%));box-shadow:0 18px 48px color-mix(in srgb,var(--black) 14%,transparent)}
+.install-card-head{display:flex;align-items:center;gap:12px}
+.install-card-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid color-mix(in srgb,var(--accent) 26%,var(--border));border-radius:12px;background:color-mix(in srgb,var(--surface-raised) 88%,#fff 12%);font-size:20px}
+.install-card-title{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:17px;font-weight:800;color:var(--text-display)}
+.install-card-meta{margin-top:3px;font-size:12px;color:var(--text-secondary)}
+.install-badge{font-family:var(--font-mono);font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border:1px solid color-mix(in srgb,var(--accent) 28%,var(--border));border-radius:999px;color:var(--accent-bright);background:color-mix(in srgb,var(--accent) 7%,var(--surface-raised))}
+.install-card-desc{margin:16px 0 14px;font-size:13px;line-height:1.65;color:var(--text-secondary)}
+.install-command{display:flex;align-items:center;gap:10px;min-width:0;padding:7px 8px 7px 13px;border:1px solid color-mix(in srgb,var(--accent) 22%,var(--border));border-radius:12px;background:color-mix(in srgb,var(--surface-raised) 88%,transparent)}
+.install-command code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font-family:var(--font-mono);font-size:11px;color:var(--text-display);scrollbar-width:thin}
+.install-command .copy-btn{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:7px 12px;background:var(--text-display);border-color:var(--text-display);color:var(--surface-raised)}
+.install-command .copy-btn:hover{filter:brightness(1.15);color:var(--surface-raised)}
+.install-card-actions{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.install-card-actions a{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--text-display)}
+.install-card-note{font-size:10px;color:var(--text-secondary)}
+.role-install{display:flex;align-items:center;gap:8px;min-width:0;margin-top:auto;padding:7px 7px 7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:color-mix(in srgb,var(--black) 4%,var(--surface-raised))}
+.role-install code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-mono);font-size:9px;color:var(--text-secondary)}
+.role-install .copy-btn{padding:5px 9px}
+@media(max-width:620px){.install-card{padding:17px;border-radius:21px}.install-command{align-items:stretch;flex-direction:column;padding:11px}.install-command .copy-btn{justify-content:center}.install-card-actions{align-items:flex-start;flex-direction:column}.role-install{align-items:stretch;flex-direction:column}.role-install .copy-btn{width:100%}}
 </style>
 
 <div id="sidebar-inner">
@@ -73,7 +91,7 @@
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
     Chủ quản: Thiện Phạm (Power Home PO)<br/>
-    Phiên bản: v0.4.0 · Hiệu lực 2026-Q2<br/>
+    Phiên bản: v0.5.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-20<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
     Nguồn: sinh tự động từ cẩm nang này<br/>
@@ -96,10 +114,25 @@
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Chương EN · Template VI</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> BẢO MẬT</div>
     </div>
-    <div class="plugin-cta">
-      <a class="dl-btn" href="assets/downloads/project-handbook.plugin" download>⬇️ Tải plugin đầy đủ</a>
-      <span class="dl-meta">Plugin 0.4.0 · 12 skills · 42 templates</span>
-    </div>
+    <article class="install-card" aria-labelledby="full-plugin-title">
+      <div class="install-card-head">
+        <div class="install-card-icon" aria-hidden="true">🧰</div>
+        <div>
+          <div class="install-card-title" id="full-plugin-title">Power Home Handbook <span class="install-badge">Nội bộ</span><span class="install-badge">v0.5.0</span></div>
+          <div class="install-card-meta">Power Home Team · 12 skills · 42 template đã review</div>
+        </div>
+      </div>
+      <p class="install-card-desc">Cài toàn bộ handbook SDLC cho PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment và PMO. Một lần dán sẽ thêm marketplace nội bộ rồi cài tất cả skill cùng template đã review.</p>
+      <div class="install-command">
+        <code>claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@power-home-handbook</code>
+        <button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@power-home-handbook" data-copied-label="✓ Đã chép">▣ Sao chép</button>
+      </div>
+      <div class="install-card-actions">
+        <a href="#section-skills">Xem gói theo role ↓</a>
+        <a href="assets/downloads/project-handbook.plugin" download>Tải file .plugin</a>
+        <span class="install-card-note">Mặc định cài ở user scope của Claude Code · Cần quyền truy cập GitHub</span>
+      </div>
+    </article>
   </header>
 
   <main class="content-sections">
@@ -132,12 +165,10 @@
         </ul>
       </div></div>
       <div class="card"><div class="card-body">
-        <div class="card-title">Cách B — Claude Code (cài đặt lâu dài)</div>
-        <p style="font-size:12px;">Thêm repository GitHub này làm marketplace một lần, sau đó cài toàn bộ hoặc chọn một role:</p>
-        <div class="cmd-row"><code>claude plugin marketplace add thienpv99/project-handbook</code><button type="button" class="copy-btn" data-copy="claude plugin marketplace add thienpv99/project-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <div class="cmd-row"><code>claude plugin install project-handbook@power-home-handbook</code><button type="button" class="copy-btn" data-copy="claude plugin install project-handbook@power-home-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <p style="font-size:12px;margin-top:12px;">Ví dụ chỉ cài role BA:</p>
-        <div class="cmd-row"><code>claude plugin install project-handbook-ba@power-home-handbook</code><button type="button" class="copy-btn" data-copy="claude plugin install project-handbook-ba@power-home-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="card-title">Cách B — Claude Code (một lần sao chép / dán) <span class="pill-tag">Khuyến nghị</span></div>
+        <p style="font-size:12px;">Sao chép lệnh ở card phía trên để cài toàn bộ handbook, hoặc sao chép lệnh trong từng card role bên dưới. Mỗi lệnh sẽ tự thêm marketplace nếu cần rồi cài plugin lâu dài.</p>
+        <div class="cmd-row"><code>claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@power-home-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <p style="font-size:12px;margin-top:12px;">Lệnh ngắn <code>claude plugin install project-handbook@power-home-handbook</code> dùng được sau khi marketplace này đã được thêm.</p>
         <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>Chỉ nên chọn một phạm vi cài đặt. Gói đầy đủ đã bao gồm mọi role; gói role dành cho người dùng cần context nhỏ và tập trung hơn.</div></div>
       </div></div>
     </section>
@@ -164,6 +195,7 @@
             <li>Product Vision &amp; Roadmap</li>
             <li>Product Requirements Document (PRD)</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-po</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Product Owner" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-po@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-po.plugin" download data-role-plugin="po" data-template-count="3"><span>Tải skill PO</span><small>1 skill · 3 templates</small></a>
         </article>
 
@@ -177,6 +209,7 @@
             <li>Software Requirements Specification (SRS)</li>
             <li>Use Case Specification</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-ba</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Business Analyst" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-ba@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ba.plugin" download data-role-plugin="ba" data-template-count="4"><span>Tải skill BA</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -190,6 +223,7 @@
             <li>RAID Log</li>
             <li>One-page Status Report</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-pm</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Project Manager" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-pm@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-pm.plugin" download data-role-plugin="pm" data-template-count="4"><span>Tải skill PM</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -197,6 +231,7 @@
           <div class="skill-head"><span class="skill-icon">🌀</span><div><h3 class="skill-name">Scrum Master</h3><code class="skill-id">role-sm</code></div><span class="skill-count">Chương</span></div>
           <p class="skill-desc">Scrum Guide 2020: điều phối sự kiện, xử lý impediment, coaching, sức khoẻ đội nhóm, agile metrics trung thực, retro và scaling.</p>
           <div class="skill-triggers"><span class="trigger-chip">điều phối</span><span class="trigger-chip">impediments</span><span class="trigger-chip">retrospective</span><span class="trigger-chip">metrics</span><span class="trigger-chip">coaching</span></div>
+          <div class="role-install"><code>claude plugin install project-handbook-sm</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Scrum Master" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-sm@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-sm.plugin" download data-role-plugin="sm" data-template-count="0"><span>Tải skill SM</span><small>1 skill · chương handbook</small></a>
         </article>
 
@@ -211,6 +246,7 @@
             <li>Test Summary Report</li>
             <li>UAT Plan</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-qc</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài QC" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-qc@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-qc.plugin" download data-role-plugin="qc" data-template-count="5"><span>Tải skill QC</span><small>1 skill · 5 templates</small></a>
         </article>
 
@@ -224,6 +260,7 @@
             <li>API Specification</li>
             <li>Non-Functional Requirements Specification</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-sa</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Solution Architect" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-sa@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-sa.plugin" download data-role-plugin="sa" data-template-count="4"><span>Tải skill SA</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -238,6 +275,7 @@
             <li>Usability Test Plan &amp; Report</li>
             <li>Design Handoff Specification</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-ux</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài UX/UI" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-ux@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ux.plugin" download data-role-plugin="ux" data-template-count="5"><span>Tải skill UX</span><small>1 skill · 5 templates</small></a>
         </article>
 
@@ -252,6 +290,7 @@
             <li>Incident Response Plan</li>
             <li>Compliance Gap Checklist</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-security</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Security" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-security@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-security.plugin" download data-role-plugin="security" data-template-count="5"><span>Tải skill Security</span><small>1 skill · 5 templates</small></a>
         </article>
 
@@ -265,6 +304,7 @@
             <li>Blameless Postmortem</li>
             <li>Disaster Recovery Plan</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-ops</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Operations và SRE" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-ops@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ops.plugin" download data-role-plugin="ops" data-template-count="4"><span>Tải skill Ops</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -278,6 +318,7 @@
             <li>Environment Configuration Document</li>
             <li>Release Go / No-Go Checklist</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-deployment</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Release và Deployment" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-deployment@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-deployment.plugin" download data-role-plugin="deployment" data-template-count="4"><span>Tải skill Deployment</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -291,6 +332,7 @@
             <li>Portfolio Status Report</li>
             <li>Benefits Realization Plan</li>
           </ul></details>
+          <div class="role-install"><code>claude plugin install project-handbook-pmo</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài PMO" data-copy="claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook-pmo@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-pmo.plugin" download data-role-plugin="pmo" data-template-count="4"><span>Tải skill PMO</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -319,6 +361,7 @@
       <div class="card"><div class="card-body">
         <table class="table-plg">
           <tr><th style="width:90px">Plugin</th><th style="width:110px">Ngày</th><th>Ghi chú</th></tr>
+          <tr><td><strong>0.5.0</strong></td><td>2026-07-20</td><td>Bổ sung card cài đặt theo UX Camthoi, lệnh marketplace một lần sao chép/dán và lệnh cài riêng cho mọi gói role.</td></tr>
           <tr><td><strong>0.4.0</strong></td><td>2026-07-20</td><td>Bổ sung 11 gói độc lập theo role và Claude marketplace, sửa toàn bộ số lượng template trong catalog, đồng thời cập nhật hướng dẫn cài đặt theo workflow Claude Code hiện hành.</td></tr>
           <tr><td><strong>0.3.0</strong></td><td>2026-07-20</td><td>Review ownership SDLC: loại FSD trùng lặp ở PO, ánh xạ sang SRS của BA và tinh gọn boilerplate trong tài liệu sinh tự động.</td></tr>
           <tr><td><strong>0.2.0</strong></td><td>2026-07-20</td><td>Mở rộng lên 43 template đã review: 29 file mới có owner theo role cho SA, UX, QC, Security, Ops/SRE, Deployment và PMO; bỏ hai fallback outline-only trong plugin.</td></tr>
@@ -331,7 +374,7 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Claude Plugin v0.4.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
+    🏦 Handbook · Claude Plugin v0.5.0 · Lưu hành nội bộ · Phân loại: MẬT (CONFIDENTIAL)<br/>
     Gói đầy đủ + 11 gói theo role · 12 skills · 42 templates · © 2026
   </footer>
 </div>

@@ -1100,8 +1100,31 @@
   <div class="breadcrumb">Handbook <span>›</span> 9. Templates Library</div>
   <div class="hb-content">
     <div class="sec-head"><div class="sec-icon">📋</div><div><div class="sec-num">Section 9</div><h2>Templates Library</h2><div class="sec-sub">Curated, ready-to-use files grouped by primary owner</div></div></div>
+    <div class="template-filter" role="group" aria-label="Filter the templates library">
+      <div class="template-filter__search">
+        <span class="template-filter__icon" aria-hidden="true">⌕</span>
+        <input type="search" class="template-filter__input" data-template-filter-search
+          placeholder="Quick find: title, purpose, supporting role..."
+          aria-label="Quick find templates" autocomplete="off" spellcheck="false" />
+      </div>
+      <div class="template-filter__roles" role="group" aria-label="Filter by owner role — multiple roles can be selected">
+        <button type="button" class="template-filter__chip" data-template-filter-role="ba" aria-pressed="false">BA</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="pm" aria-pressed="false">PM</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="po" aria-pressed="false">PO</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="sa" aria-pressed="false">SA</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="qc" aria-pressed="false">QC</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="ux" aria-pressed="false">UX</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="sec" aria-pressed="false">Security</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="ops" aria-pressed="false">Ops</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="deployment" aria-pressed="false">Deploy</button>
+        <button type="button" class="template-filter__chip" data-template-filter-role="pmo" aria-pressed="false">PMO</button>
+        <button type="button" class="template-filter__chip template-filter__chip--reset" data-template-filter-reset>✕ Clear</button>
+      </div>
+      <p class="template-filter__count" role="status" aria-live="polite" data-template-filter-count data-template="Showing {shown} of {total} templates"></p>
+    </div>
     <div class="template-library" role="list">
       <p class="template-library__intro">42 reviewed DOCX templates, ready to use.</p>
+      <p class="template-filter__empty" data-template-filter-empty hidden>No templates match the current filter — deselect some roles or change the search phrase.</p>
       <article class="template-card" role="listitem" aria-labelledby="library-template-ba-brd-title">
         <div class="template-card__top"><span class="template-card__format">DOCX</span><span class="template-card__owner">Owner · BA</span></div>
         <h3 class="template-card__title" id="library-template-ba-brd-title">Business Requirements Document</h3>
