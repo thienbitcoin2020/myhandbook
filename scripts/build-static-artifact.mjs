@@ -117,8 +117,8 @@ function stampDeploymentVersion(version) {
   if (metaCount !== 1) {
     throw new Error(`Version stamping failed for index metadata: expected 1, found ${metaCount}`);
   }
-  if (assetCount !== 5) {
-    throw new Error(`Version stamping failed for index assets: expected 5, found ${assetCount}`);
+  if (assetCount !== 6) {
+    throw new Error(`Version stamping failed for index assets: expected 6, found ${assetCount}`);
   }
   fs.writeFileSync(indexPath, indexContent, 'utf8');
 }

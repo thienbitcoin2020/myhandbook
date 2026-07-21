@@ -205,6 +205,14 @@ Cài toàn bộ cẩm nang vào **Claude AI** để hỏi đáp theo role và so
    (Claude Plugin nội bộ ở mục 7 là kênh được duyệt).
 4. Phát hiện sai sót nội dung hoặc nghi ngờ lộ lọt: liên hệ chủ quản
    (Thiện Phạm — Power Home PO), không tự đăng lên kênh công khai.
+5. Trang có lớp **nhắc nhở khi phát hiện Developer Tools**: nếu bạn mở
+   devtools (F12), một lớp phủ sẽ che nội dung và mời bạn đóng lại. Đây là
+   biện pháp nhắc nhở người dùng thông thường — **không phải cơ chế bảo mật
+   tuyệt đối**; trách nhiệm giữ bí mật vẫn thuộc về người đọc.
+
+> 🛠️ **Dành cho người bảo trì:** lớp nhắc nhở này **tự tắt khi chạy trên
+> localhost**. Nếu cần debug trên bản production, đặt một lần trong Console:
+> `localStorage.setItem('nt_devtools_guard','off')` rồi tải lại trang.
 
 ---
 
@@ -219,6 +227,7 @@ Cài toàn bộ cẩm nang vào **Claude AI** để hỏi đáp theo role và so
 | Word cảnh báo khi mở file DOCX tải về | File đã được kiểm duyệt và làm sạch (không macro); chọn Enable nếu Word hỏi chế độ Protected View |
 | Bookmark cũ dạng `…-handbook.html` | Vẫn dùng được — tự chuyển về trang mới tương ứng |
 | Muốn gửi đúng một mục cho đồng nghiệp | Mở mục đó rồi copy URL trên thanh địa chỉ (đã kèm `#…`) — người nhận mở là vào thẳng mục |
+| Hiện lớp phủ "Đã phát hiện Developer Tools" | Đóng cửa sổ developer tools (F12) — lớp phủ sẽ tự biến mất; nội dung MẬT nên đọc trực tiếp, không dò xét mã nguồn |
 
 ---
 
