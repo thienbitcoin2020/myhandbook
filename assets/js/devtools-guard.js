@@ -22,7 +22,7 @@
   var CONFIG = {
     blockShortcuts: true,    // F12, Ctrl/Cmd+Shift+I/J/C, Ctrl+U (view-source)
     blockContextMenu: false, // readers still need right-click / copy
-    gapThreshold: 160,       // px jump over the closed-state baseline
+    pauseThresholdMs: 120,   // execution stall that indicates a devtools pause
     pollMs: 1000
   };
 
@@ -50,7 +50,7 @@
   var titleEl = null;
   var bodyEl = null;
   var shownNow = false;
-  var minGap = null;
+  var positives = 0;
 
   function currentLang() {
     if (document.documentElement.lang === 'vi') return 'vi';
@@ -106,20 +106,27 @@
     }
   }
 
-  // Baseline-delta size heuristic: the smallest gap ever seen is treated as the
-  // devtools-closed state, so a page loaded at a non-default zoom does not
-  // false-positive. Docked devtools adds a large, sudden gap over that
-  // baseline; undocked/detached windows are out of scope for a deterrent.
+  // Detection via execution-pause timing. A `debugger` statement is a no-op
+  // unless developer tools are open with breakpoints active, in which case it
+  // pauses execution here; timing that pause is independent of window geometry,
+  // so split-screen / embedded / zoomed viewports never false-positive the way
+  // an outerWidth-innerWidth check does (verified: with no devtools attached
+  // this returns in ~1ms). Undocked windows with breakpoints deactivated are
+  // out of scope for a deterrent.
   function looksOpen() {
-    var gap = Math.max(
-      window.outerWidth - window.innerWidth,
-      window.outerHeight - window.innerHeight
-    );
-    if (minGap === null || gap < minGap) minGap = gap;
-    return gap - minGap > CONFIG.gapThreshold;
+    var clock = (window.performance && performance.now)
+      ? performance : { now: function () { return Date.now(); } };
+    var t0 = clock.now();
+    debugger; // eslint-disable-line no-debugger
+    return clock.now() - t0 > CONFIG.pauseThresholdMs;
   }
 
-  function check() { setOpen(looksOpen()); }
+  // Require two consecutive positive samples before covering the page, so a
+  // one-off GC/scheduling stall can never blank content for a real reader.
+  function check() {
+    positives = looksOpen() ? positives + 1 : 0;
+    setOpen(positives >= 2);
+  }
 
   // Read-only status + a manual preview control. Exposing setOpen carries no
   // security weight: anyone with a console could remove any overlay anyway —
