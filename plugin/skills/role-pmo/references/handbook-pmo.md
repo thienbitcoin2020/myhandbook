@@ -16,7 +16,7 @@ RAID & Assurance
 
 Benefits-driven
 
-CONFIDENTIAL
+PUBLIC
 
 📖 Key terms & abbreviations on this page
 
@@ -350,6 +350,6 @@ SupportsSponsor · PM · PO · Finance
 
 Read document→
 
-🏦 Handbook · PMO Governance & Portfolio v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · PMO Governance & Portfolio v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with PMI · P3O · EVM · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

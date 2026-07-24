@@ -1,9 +1,9 @@
 # 🏦 Project Handbook — Interactive Governance Runbook
 
-> **Classification:** INTERNAL USE ONLY — CONFIDENTIAL
+> **Classification:** PUBLIC EDITION
 > **Compliance:** SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned
 
-A governed, interactive **single-page application (SPA)** that bundles twelve internal
+A governed, interactive **single-page application (SPA)** that bundles twelve public
 handbooks for software delivery under the **Hybrid Water-Scrum-Fall** model at a
 Vietnamese commercial bank:
 
@@ -172,12 +172,12 @@ onto the requested sub-view, and `/pm-handbook.html` still resolving to `#pm`.
 
 ---
 
-## 🔐 Access control
+## 🔐 Publication boundary
 
-The former browser-only login has been removed because credentials in JavaScript
-do not protect static files. Confidential deployments must sit behind real
-server-side corporate SSO/MFA and group authorization, or an approved privately
-published GitHub Enterprise Cloud Pages site. See [SECURITY.md](SECURITY.md).
+The website and its curated templates are the public edition. Confidential
+engineering, architecture, QA, and generation notes live only in
+`docs/internal/`; that directory is excluded from Git, Vercel source uploads,
+and the static artifact allowlist. See [SECURITY.md](SECURITY.md).
 
 ---
 
@@ -215,9 +215,9 @@ On Vercel, `vercel.json` permanently canonicalizes `/index.html` to `/`. The
 client router then removes the legacy `#home`/`#handbook` aliases, while keeping
 all role and section deep links unchanged. The configuration is included in the
 reviewed artifact allowlist and the security gate rejects any additional Vercel
-routing or runtime behavior. This redirect is URL normalization only: it does
-not make the handbook public or replace the required Vercel Deployment
-Protection / corporate SSO access policy.
+routing or runtime behavior. This redirect is URL normalization only; the
+public/private boundary is enforced by the publish allowlist and
+`.vercelignore`.
 
 `.github/workflows/deploy-pages.yml` is intentionally **manual and fail-closed**.
 It will not deploy unless the hosting model has Security approval, the required
@@ -236,8 +236,8 @@ uses the workflow run ID and retry attempt; Vercel uses its deployment ID when
 available and otherwise falls back to the UTC build timestamp. Historical
 entries in the Version History remain unchanged.
 
-Public GitHub Pages is not an approved target for content classified as
-confidential. Follow the release gate in [SECURITY.md](SECURITY.md).
+Only the public edition may be deployed to Vercel or GitHub Pages.
+`docs/internal/` must remain outside every deployment.
 
 ---
 

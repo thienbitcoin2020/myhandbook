@@ -16,7 +16,7 @@ Well-Architected
 
 NFR-driven
 
-INTERNAL USE ONLY
+PUBLIC EDITION
 
 📖 Key terms & abbreviations on this page
 
@@ -437,6 +437,6 @@ SupportsDev · QC · Security · Ops
 
 Read document→
 
-🏦 Handbook · Solution Architect Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Solution Architect Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · SBV Circular 09/2020/TT-NHNN · © 2025

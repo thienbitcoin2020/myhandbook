@@ -349,6 +349,6 @@ SupportsPO · BA · Dev · QC
 
 Read document→
 
-🏦 Handbook · UX/UI Designer Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · UX/UI Designer Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025

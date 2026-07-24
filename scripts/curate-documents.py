@@ -945,7 +945,7 @@ def render_preview_page(document: DocumentObject, destination_name: str) -> str:
 <body>
 <article id="doc-preview-content" class="doc-preview">
 <header class="doc-preview-head">
-<p class="doc-preview-classification">MẬT (CONFIDENTIAL) — Lưu hành nội bộ</p>
+<p class="doc-preview-classification">CÔNG KHAI (PUBLIC) — Bản công khai</p>
 <p class="doc-preview-note">Bản xem trước của template DOCX — nội dung sinh trực tiếp từ đúng file sẽ tải về. Đọc tại đây trước; chỉ tải khi thực sự cần dùng.</p>
 <p class="doc-preview-standalone-download"><a href="{download_href}" download>Tải bản DOCX</a></p>
 </header>

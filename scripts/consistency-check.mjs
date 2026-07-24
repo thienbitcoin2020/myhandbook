@@ -103,7 +103,7 @@ function _unsafePath(value) {
     || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(value);
 }
 
-// The documents are confidential: cards must open the in-page reader (the
+// The public templates use an in-page reader (the
 // derived HTML preview), never trigger a direct download. The download anchor
 // exists only inside the reader chrome, which main.js builds from the same
 // data-template-preview attribute validated here.

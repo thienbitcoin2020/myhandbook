@@ -828,6 +828,6 @@ SupportsQC · Security · SRE · SA
 
 Read document→
 
-🏦 Handbook · Deployment Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Deployment Runbook v2.0 · Public Edition · Classification: PUBLIC
 
 Compliant with SBV Circular 09/2020/TT-NHNN & ISO 27001 · Approved by Technology Risk Committee · © 2025

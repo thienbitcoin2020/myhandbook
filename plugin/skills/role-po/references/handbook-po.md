@@ -16,7 +16,7 @@ Outcome-driven
 
 Dual-track Discovery
 
-INTERNAL USE ONLY
+PUBLIC EDITION
 
 📖 Key terms & abbreviations on this page
 
@@ -597,6 +597,6 @@ Section 13
 
 **Sources.Scrum Guide 2020** (Schwaber & Sutherland) — accountabilities, Product Goal, commitments, events, DoD. **PMBOK Guide 7th Ed.** (PMI) — hybrid/PRD context. Extended practices, cited in-line: Teresa Torres (Opportunity Solution Tree, continuous discovery), Jeff Patton (Story Mapping, dual-track), Marty Cagan (product discovery), Bill Wake (INVEST), Roman Pichler / Mike Cohn (DEEP, Vision Board), Geoffrey Moore (elevator pitch), A. Osterwalder / Strategyzer (Business Model & Value Proposition Canvas), DSDM (MoSCoW), Intercom (RICE), SAFe (WSJF), Don Reinertsen (Cost of Delay), Noriaki Kano (Kano model), Woody Zuill / Vasco Duarte (#NoEstimates), James Grenning / Mike Cohn (Planning Poker), Dave McClure (AARRR), Google / Kerry Rodden (HEART), Amplitude / Sean Ellis (North Star Metric), Mendelow (Power/Interest grid).
 
-🏦 Handbook · Product Owner Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Product Owner Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · SBV Circular 09/2020/TT-NHNN · © 2025

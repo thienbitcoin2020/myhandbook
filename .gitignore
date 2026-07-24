@@ -28,6 +28,10 @@ build/
 public/
 node_modules/
 
+# Confidential architecture, QA, and generation notes stay local. They are
+# intentionally absent from Git and from every deployment artifact.
+docs/internal/
+
 # Environment files
 .env
 .env.local

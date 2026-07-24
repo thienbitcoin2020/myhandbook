@@ -1596,4 +1596,4 @@ v1.0 — 2026-Q2 (Initial Release)
 
 🏦 Handbook · Project Implementation Handbook v2.0 · Last updated 2026-07-20 · Owner: Thiện Phạm (Power Home PO)
 
-Classification: CONFIDENTIAL · SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned · © 2025
+Classification: PUBLIC · SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned · © 2025

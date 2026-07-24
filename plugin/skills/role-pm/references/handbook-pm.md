@@ -16,7 +16,7 @@ Hybrid SDLC
 
 5 Process Groups
 
-INTERNAL USE ONLY
+PUBLIC EDITION
 
 📖 Key terms & abbreviations on this page
 
@@ -455,6 +455,6 @@ SupportsSponsor · PO · BA · SA
 
 Read document→
 
-🏦 Handbook · PM Project Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · PM Project Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with PMBOK® 7th Ed. · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

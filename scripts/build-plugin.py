@@ -804,7 +804,7 @@ run `python scripts/build-plugin.py` again, bump `version` (semver) in
 the full plugin plus all role packages under `assets/downloads/roles/`. The
 site's `#plugin` page serves those reviewed files.
 
-Classification: CONFIDENTIAL — internal use only, same boundary as the handbook.
+Classification: PUBLIC — public edition, same boundary as the handbook.
 """
     (PLUGIN_ROOT / "README.md").write_text(readme, encoding="utf-8")
 

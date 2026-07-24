@@ -16,7 +16,7 @@ ISTQB CTFL 4.0
 
 Risk-Based
 
-INTERNAL USE ONLY
+PUBLIC EDITION
 
 📖 Key terms & abbreviations on this page
 
@@ -542,6 +542,6 @@ SupportsBA · PO · Dev · PM
 
 Read document→
 
-🏦 Handbook · QC Testing Handbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · QC Testing Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025

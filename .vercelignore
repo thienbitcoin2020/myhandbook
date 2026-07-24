@@ -1,0 +1,6 @@
+docs/internal/
+.env
+.env.*
+.vercel/
+.git/
+

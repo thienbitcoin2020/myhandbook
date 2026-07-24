@@ -16,7 +16,7 @@ NIST CSF
 
 DevSecOps
 
-CONFIDENTIAL
+PUBLIC
 
 📖 Key terms & abbreviations on this page
 
@@ -385,6 +385,6 @@ SupportsSA · Dev · SRE · PM
 
 Read document→
 
-🏦 Handbook · Security & Compliance Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Security & Compliance Runbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with ISO 27001 · NIST CSF · OWASP · PCI-DSS · SBV Circular 09/2020/TT-NHNN · © 2025

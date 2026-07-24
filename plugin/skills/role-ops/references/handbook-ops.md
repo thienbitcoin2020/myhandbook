@@ -332,6 +332,6 @@ SupportsDev · SA · Security · PM
 
 Read document→
 
-🏦 Handbook · Operations & SRE Runbook v2.0 · Internal Use Only · Classification: CONFIDENTIAL
+🏦 Handbook · Operations & SRE Runbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · SBV Circular 09/2020/TT-NHNN · © 2025

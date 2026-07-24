@@ -594,7 +594,7 @@ def configure_page(doc, role_label: str, title: str) -> None:
     footer.is_linked_to_previous = False
     p = footer.paragraphs[0]
     p.paragraph_format.tab_stops.add_tab_stop(Inches(6.27), WD_TAB_ALIGNMENT.RIGHT)
-    set_run(p.add_run("MẬT (CONFIDENTIAL) · LƯU HÀNH NỘI BỘ"), size=8, color=MUTED)
+    set_run(p.add_run("CÔNG KHAI (PUBLIC) · BẢN CÔNG KHAI"), size=8, color=MUTED)
     set_run(p.add_run("\tTrang "), size=8, color=MUTED)
     add_field(p, "PAGE", "1")
 
@@ -636,7 +636,7 @@ def add_cover(doc, record: PromptRecord, role_label: str) -> None:
         ("PIC duy nhất", record.pic),
         ("Trạng thái", "Draft → In Review → Approved → Superseded"),
         ("Ngày hiệu lực", "[ĐIỀN: dd/mm/yyyy]"),
-        ("Phân loại", "MẬT (CONFIDENTIAL) · Lưu hành nội bộ"),
+        ("Phân loại", "CÔNG KHAI (PUBLIC) · Bản công khai"),
     )
     for row, (label, value) in zip(meta.rows[1:], rows):
         set_cell_shading(row.cells[0], LIGHT_RED)

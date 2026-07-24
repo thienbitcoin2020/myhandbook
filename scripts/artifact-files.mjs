@@ -5,8 +5,8 @@ import { GENERATED_ROLE_DOCUMENTS } from './role-template-manifest.mjs';
 export const PUBLISHED_ROOT_FILES = Object.freeze([
   'vercel.json',
   'index.html',
-  // Confidential content must never be crawled or indexed. robots.txt is a
-  // crawler hint, not an access control — see SECURITY.md for the real gate.
+  // Public crawler policy. Confidential docs/internal content is excluded from
+  // Git, Vercel uploads, and this artifact allowlist.
   'robots.txt',
 ]);
 
@@ -74,8 +74,8 @@ export const PUBLISHED_DOWNLOADS = Object.freeze([
 ]);
 
 /**
- * The documents are confidential, so the site opens an in-browser reader first
- * and offers the DOCX from inside it. Each published document therefore ships
+ * The public templates open in an in-browser reader first and offer the DOCX
+ * from inside it. Each published document therefore ships
  * with exactly one derived HTML preview; the path mapping is fixed so neither
  * the pages nor the checks ever hold a second hand-maintained list.
  */

@@ -10,7 +10,7 @@
 | PIC duy nhất | QC Engineer (người phát hiện) |
 | Trạng thái | Draft → In Review → Approved → Superseded |
 | Ngày hiệu lực | [ĐIỀN: dd/mm/yyyy] |
-| Phân loại | MẬT (CONFIDENTIAL) · Lưu hành nội bộ |
+| Phân loại | CÔNG KHAI (PUBLIC) · Bản công khai |
 
 **Nguyên tắc sử dụng: **Đây là template dùng chung, không gắn với dự án cụ thể. Giữ nguyên mọi ô [ĐIỀN...] cho đến khi PIC có dữ liệu được xác nhận; không tự suy diễn bối cảnh hay số liệu.
 

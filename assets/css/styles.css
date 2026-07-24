@@ -4665,7 +4665,7 @@ html[data-theme="dark"] #hb-footer {
 }
 
 /* ============================================================
-   DOCUMENT READER — in-page confidential template viewer.
+   DOCUMENT READER — in-page public template viewer.
    The card opens this reader; the DOCX download lives in its footer.
    ============================================================ */
 .doc-reader-overlay {
