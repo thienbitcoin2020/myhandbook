@@ -1,6 +1,6 @@
 docs/internal/
+public/
 .env
 .env.*
 .vercel/
 .git/
-

@@ -597,8 +597,25 @@ try {
 
 if (vercelConfig) {
   const configKeys = Object.keys(vercelConfig).sort();
-  if (configKeys.join(',') !== 'buildCommand,outputDirectory,redirects') {
-    fail('vercel.json: only the reviewed static build, output directory, and canonical redirect are allowed');
+  const allowedConfigKeys = new Set([
+    'buildCommand',
+    'name',
+    'outputDirectory',
+    'redirects',
+    'version',
+  ]);
+  const unexpectedConfigKeys = configKeys.filter(key => !allowedConfigKeys.has(key));
+  if (unexpectedConfigKeys.length) {
+    fail(`vercel.json: unsupported configuration keys detected (${unexpectedConfigKeys.join(',')})`);
+  }
+  // Vercel's build runtime materializes these two legacy metadata fields even
+  // when they are absent from the checked-in file. They do not change routing
+  // or execute code, but their values remain pinned here.
+  if ('name' in vercelConfig && vercelConfig.name !== 'myhandbook') {
+    fail('vercel.json: Vercel-injected project name must remain myhandbook');
+  }
+  if ('version' in vercelConfig && vercelConfig.version !== 2) {
+    fail('vercel.json: Vercel-injected configuration version must remain 2');
   }
   if (vercelConfig.buildCommand !== 'node scripts/security-check.mjs && node scripts/build-static-artifact.mjs') {
     fail('vercel.json: build command must run the security gate before assembling the artifact');
