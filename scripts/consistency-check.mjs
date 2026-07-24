@@ -318,7 +318,7 @@ for (const relative of ['pages/handbook.html', 'pages/vi/handbook.html']) {
 for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
   if (!exists(relative)) continue;
   const html = read(relative);
-  const marketplaceAdd = 'claude plugin marketplace add thienpv99/project-handbook';
+  const marketplaceAdd = 'claude plugin marketplace add thienbitcoin2020/myhandbook';
   const fullInstall = `${marketplaceAdd}; claude plugin install project-handbook@power-home-handbook`;
   const anchors = [...html.matchAll(/<a\b([^>]*)>/g)].map(match => match[1]);
   const copyCommands = [...html.matchAll(/<button\b([^>]*\bdata-copy="([^"]+)"[^>]*)>/g)]

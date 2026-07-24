@@ -1,8 +1,8 @@
 {
   "name": "power-home-handbook",
   "owner": {
-    "name": "Thiện Phạm (Power Home PO)",
-    "email": "thienpv99@gmail.com"
+    "name": "thienbitcoin2020",
+    "email": "thienbitcoin2020@gmail.com"
   },
   "description": "Power Home SDLC handbook skills: install the full handbook or one role only.",
   "plugins": [
@@ -24,7 +24,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Product Owner",
       "description": "Standalone Product Owner skill from the Power Home SDLC Handbook, including the full role chapter and 3 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -41,7 +41,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Business Analyst",
       "description": "Standalone Business Analyst skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -58,7 +58,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Project Manager",
       "description": "Standalone Project Manager skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -75,7 +75,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Scrum Master",
       "description": "Standalone Scrum Master skill from the Power Home SDLC Handbook, including the full role chapter; no reviewed role-owned document template is published yet.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -92,7 +92,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — QC / Tester",
       "description": "Standalone QC / Tester skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -109,7 +109,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Solution Architect",
       "description": "Standalone Solution Architect skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -126,7 +126,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — UX/UI Designer",
       "description": "Standalone UX/UI Designer skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -143,7 +143,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Security & Compliance",
       "description": "Standalone Security & Compliance skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -160,7 +160,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Operations & SRE",
       "description": "Standalone Operations & SRE skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -177,7 +177,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — Release Manager / Deployment",
       "description": "Standalone Release Manager / Deployment skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",
@@ -194,7 +194,7 @@
       "source": "./",
       "displayName": "Power Home Handbook — PMO Governance & Portfolio",
       "description": "Standalone PMO Governance & Portfolio skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "Productivity",
       "tags": [
         "sdlc",

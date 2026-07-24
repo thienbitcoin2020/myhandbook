@@ -159,7 +159,7 @@ Cài toàn bộ cẩm nang vào **Claude AI** để hỏi đáp theo role và so
   khung chat với Claude → xong; Claude tự nhận diện role khi bạn hỏi.
 - **Claude Code (dòng lệnh):** dùng thẻ lệnh trong mục Install — bấm
   **Copy** để sao chép nguyên lệnh (cài qua marketplace
-  `thienpv99/project-handbook`).
+  `thienbitcoin2020/myhandbook`).
 - **Gói theo role:** mỗi skill card có nút tải/lệnh cài **riêng cho role
   đó** — nhẹ hơn nếu bạn chỉ cần một vai trò.
 - **Danh mục skill:** bấm "Included templates" trên card để xem template

@@ -1705,13 +1705,7 @@ html[data-theme="light"] body {
   height: auto;
   display: block;
 }
-/* No plate on either canvas. The only reason one existed is that the "HOME"
-   wordmark is #5F5F62 and vanishes on the dark canvas (#181818) — dark gets a
-   variant with a white wordmark instead. Red "POWER" and the yellow house carry
-   on both canvases unaided. */
-html[data-theme="dark"] .app-brand img {
-  content: url('../images/power-home-logo-dark.png');
-}
+/* The transparent BP monogram uses the same asset on light and dark canvases. */
 .app-context {
   min-width: 0;
   padding: 0 24px;
@@ -4574,12 +4568,7 @@ html[data-theme="dark"] figure.diagram-canvas {
   width: 66px;
   height: 52px;
   transform: translateY(-50%);
-  background: url('../images/power-home-logo.png') center / 54px auto no-repeat;
-}
-/* Same story as the header mark: no plate, just the canvas-appropriate variant. */
-html[data-theme="dark"] .site-footer::before,
-html[data-theme="dark"] #hb-footer::before {
-  background-image: url('../images/power-home-logo-dark.png');
+  background: url('../images/bp-logo.png') center / 54px auto no-repeat;
 }
 
 .site-footer::after,

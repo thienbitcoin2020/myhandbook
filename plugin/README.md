@@ -1,6 +1,6 @@
 # Power Home Project Handbook — Claude Plugin
 
-v0.4.0 · generated from the handbook source by `scripts/build-plugin.py`
+v0.5.0 · generated from the handbook source by `scripts/build-plugin.py`
 
 Installs the entire Power Home SDLC handbook as role-based Claude skills, so
 anyone with the plugin can ask role questions and draft handbook-standard
@@ -29,8 +29,8 @@ previews used by the in-page reader and DOCX downloads.
 ## Install
 
 - **Cowork / Claude desktop:** drag & drop `project-handbook.plugin` into the chat.
-- **Claude Code (persistent):** add the GitHub marketplace, then install
-  `project-handbook@power-home-handbook`.
+- **Claude Code (persistent, one paste):** run
+  `claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook`.
 - **Claude Code (local test):** extract the archive, then run
   `claude --plugin-dir ./project-handbook`.
 

@@ -1,6 +1,6 @@
 # DECISIONS.md — auto-decision log (one-shot build)
 
-Plugin v0.4.0, generated 2026-07-20 by `scripts/build-plugin.py`.
+Plugin v0.5.0, generated 2026-07-24 by `scripts/build-plugin.py`.
 
 1. **Roles**: exactly the 11 role pages + the parent Implementation Handbook
    (overview skill). No roles invented. `home`/`handbook` routes are one page →

@@ -1087,7 +1087,11 @@ Section 9
 
 Curated, ready-to-use files grouped by primary owner
 
+⌕
+
 42 reviewed DOCX templates, ready to use.
+
+No templates match the current filter — deselect some roles or change the search phrase.
 
 DOCXOwner · BA
 

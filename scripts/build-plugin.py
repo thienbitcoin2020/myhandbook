@@ -28,12 +28,12 @@ ROLE_PACKAGE_DIR = ROOT / "assets" / "downloads" / "roles"
 MARKETPLACE_PATH = ROOT / ".claude-plugin" / "marketplace.json"
 PLUGIN_VERSION = "0.5.0"
 PLUGIN_AUTHOR = {
-    "name": "Thiện Phạm (Power Home PO)",
-    "email": "thienpv99@gmail.com",
-    "url": "https://github.com/thienpv99",
+    "name": "thienbitcoin2020",
+    "email": "thienbitcoin2020@gmail.com",
+    "url": "https://github.com/thienbitcoin2020",
 }
 PLUGIN_HOMEPAGE = "https://project-handbook.vercel.app/#plugin"
-PLUGIN_REPOSITORY = "https://github.com/thienpv99/project-handbook"
+PLUGIN_REPOSITORY = "https://github.com/thienbitcoin2020/myhandbook"
 MARKETPLACE_NAME = "power-home-handbook"
 
 
@@ -771,7 +771,7 @@ previews used by the in-page reader and DOCX downloads.
 
 - **Cowork / Claude desktop:** drag & drop `project-handbook.plugin` into the chat.
 - **Claude Code (persistent, one paste):** run
-  `claude plugin marketplace add thienpv99/project-handbook; claude plugin install project-handbook@{MARKETPLACE_NAME}`.
+  `claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@{MARKETPLACE_NAME}`.
 - **Claude Code (local test):** extract the archive, then run
   `claude --plugin-dir ./project-handbook`.
 
