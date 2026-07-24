@@ -1,14 +1,14 @@
 # Business Analyst — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/ba.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/ba.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-📋 Internal Handbook · BABOK® v3 Aligned
+📋 Public Handbook · BABOK® v3 Aligned
 
 ## Business Analyst
 
 ## Project Implementation Handbook
 
-A comprehensive guide to the Business Analyst workflow within the bank's **Hybrid Water-Scrum-Fall** SDLC model.
+A comprehensive guide to the Business Analyst workflow within the organization's **Hybrid Water-Scrum-Fall** SDLC model.
 
 BABOK® Guide v3
 
@@ -16,7 +16,7 @@ Hybrid Water-Scrum-Fall
 
 9 BA Phases
 
-SBV Compliant
+Regulation aligned
 
 PUBLIC EDITION
 
@@ -50,7 +50,7 @@ Who should read this · What it covers · How to use it
 
 What This Handbook Is
 
-This handbook defines the **Business Analyst (BA) workflow** for all software implementation projects at the bank. It documents BA responsibilities, deliverables, interaction points, and quality gates across every phase of project execution.
+This handbook defines the **Business Analyst (BA) workflow** for all software implementation projects at the organization. It documents BA responsibilities, deliverables, interaction points, and quality gates across every phase of project execution.
 
 It is designed to be **read by the entire project team** so that every stakeholder understands what to expect from the BA function.
 
@@ -70,7 +70,7 @@ Development Teams · Business Stakeholders · Compliance Officers · UX/UI Desig
 
 Governing Framework
 
-BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · SBV Circular 09/2020/TT-NHNN
+BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · applicable regulations
 
 ℹ️
 
@@ -315,7 +315,7 @@ Stakeholder Register · BA Plan · Business Need Statement · Compliance Scope
 
 - 6
 
-- **Identify compliance/regulatory scope** early — SBV Circular 09/2020, Decree 13/2023, PCI-DSS if card data in scope.
+- **Identify compliance/regulatory scope** early — applicable regulations, Decree 13/2023, applicable industry standards when regulated data is in scope.
 
 - 📋
 
@@ -692,13 +692,13 @@ e.g., P95 API response < 500ms, 99.5% uptime SLA
 
 Authentication · Authorization · Encryption at rest/transit · Audit logging
 
-Must comply with SBV 09/2020, Decree 13/2023
+Must comply with applicable regulations, Decree 13/2023
 
 🛡️ Reliability
 
 Availability (SLA%) · Fault tolerance · RTO / RPO
 
-e.g., RTO < 4h, RPO < 1h for core banking systems
+e.g., RTO and RPO approved for the service tier
 
 ♿ Usability
 
@@ -895,6 +895,6 @@ BABOK v3 KA1 requires measuring BA performance. Track these to catch requirement
 
 Defect-leakage & RTM coverage are shared with the QC Testing Handbook (defect metrics) — BA owns the requirements-quality view.
 
-🏦 Handbook · BA Project Implementation Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · BA Project Implementation Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · applicable regulations · © 2025

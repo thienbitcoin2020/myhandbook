@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/environment-configuration-document.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · DEPLOYMENT / DEVOPSENVIRONMENT CONFIGURATION DOCUMENTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · DEPLOYMENT / DEVOPSENVIRONMENT CONFIGURATION DOCUMENTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

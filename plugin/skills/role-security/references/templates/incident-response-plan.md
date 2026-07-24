@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/incident-response-plan.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · SECURITY & COMPLIANCEINCIDENT RESPONSE PLANMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · SECURITY & COMPLIANCEINCIDENT RESPONSE PLANMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|
@@ -26,7 +26,7 @@
 |---|---|---|
 | Hệ thống trong phạm vi & mức độ quan trọng: [MÔ TẢ] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 | Công cụ monitoring/SIEM hiện có: [LIỆT KÊ] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
-| Nghĩa vụ báo cáo pháp lý: [GDPR 72H / QUY ĐỊNH NGÀNH / KHÔNG RÕ] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
+| Nghĩa vụ báo cáo pháp lý: [GDPR / QUY ĐỊNH NGÀNH / KHÔNG RÕ — XÁC NHẬN THỜI HẠN ÁP DỤNG] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 
 ### 2. Nội dung tài liệu
 

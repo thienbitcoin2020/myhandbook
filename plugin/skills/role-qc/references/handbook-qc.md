@@ -1,8 +1,8 @@
 # QC / Tester — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/qc.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/qc.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🧪 Internal Handbook · ISTQB CTFL v4.0 Aligned
+🧪 Public Handbook · ISTQB CTFL v4.0 Aligned
 
 ## Quality Control (QC)
 
@@ -238,8 +238,8 @@ Black-box Techniques (v4.0 §4.2)
 |---|---|
 | Equivalence Partitioning (EP) | Divide input into partitions treated the same; one value per partition. Age: 0–17 invalid, 18–65 valid, 66+ senior → test one value from each. |
 | Boundary Value Analysis (BVA) | Test at partition boundaries (2-value or 3-value BVA). Amount range 1–100 → test 0, 1, 100, 101. |
-| Decision Table Testing | Model combinations of conditions → actions. Loan: credit score × income → approve / refer / reject. |
-| State Transition Testing | Model states & valid/invalid transitions/events. ATM card: Idle → Card Inserted → PIN OK → Menu; wrong PIN ×3 → Blocked. |
+| Decision Table Testing | Model combinations of conditions → actions. Service request: priority × impact → approve / refer / reject. |
+| State Transition Testing | Model states & valid/invalid transitions/events. User account: Idle → Verification Pending → Verified → Active; failed verification ×3 → Locked. |
 
 White-box Techniques (v4.0 §4.3)
 
@@ -312,11 +312,11 @@ Risk prioritisation matrix
 
 Higher-risk areas get **earlier, deeper and more frequent** testing; lower-risk areas get lighter coverage. Risk also drives regression scope.
 
-Banking / Financial Context
+Regulated Enterprise Context
 
-🏦
+📘
 
-In a regulated bank, product risk is dominated by **security**, **transaction & data integrity**, and **regulatory compliance** (SBV Circular 09/2020/TT-NHNN, ISO 27001, PCI-DSS). These areas are **security-critical & high-impact** → prioritised for the deepest test coverage, mandatory security testing, and performance testing under peak load.
+In a regulated organization, product risk is dominated by **security**, **process & data integrity**, and **regulatory compliance** (applicable regulations, ISO 27001, applicable industry standards). These areas are **security-critical & high-impact** → prioritised for the deepest test coverage, mandatory security testing, and performance testing under peak load.
 
 📑
 
@@ -412,8 +412,8 @@ Severity vs Priority Matrix
 
 | Severity ↓ / Priority → | High priority | Low priority |
 |---|---|---|
-| High severity | Fix immediately — core payment flow crashes. | Crash only on a rare legacy config — fix, but scheduled. |
-| Low severity | Fix soon — wrong bank name / legal text on landing page. | Backlog — minor cosmetic misalignment on an internal screen. |
+| High severity | Fix immediately — a core user journey crashes. | Crash only on a rare legacy config — fix, but scheduled. |
+| Low severity | Fix soon — wrong organization name / legal text on landing page. | Backlog — minor cosmetic misalignment on an internal screen. |
 
 ℹ️
 
@@ -542,6 +542,6 @@ SupportsBA · PO · Dev · PM
 
 Read document→
 
-🏦 Handbook · QC Testing Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · QC Testing Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with ISTQB® CTFL v4.0 (2023) · Hybrid SDLC · applicable regulations · © 2025

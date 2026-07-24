@@ -55,11 +55,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">📋</div>
+    <div class="role-badge">
+      <div class="role-icon">📋</div>
       <div>
-        <div class="bank-title">BA Project Handbook</div>
-        <div class="bank-sub">BABOK® v3 · Hybrid SDLC</div>
+        <div class="role-title">BA Project Handbook</div>
+        <div class="role-sub">BABOK® v3 · Hybrid SDLC</div>
       </div>
     </div>
   </div>
@@ -100,12 +100,12 @@
   <div class="sidebar-compliance">
     <span class="comp-pill">📘 BABOK® v3</span>
     <span class="comp-pill">🔀 Hybrid SDLC</span>
-    <span class="comp-pill">🏦 SBV 09/2020</span>
+    <span class="comp-pill">📘 các quy định áp dụng</span>
   </div>
 
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v2.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-17<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -125,14 +125,14 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">📋 Handbook nội bộ · Bám chuẩn BABOK® v3</div>
+    <div class="header-eyebrow">📋 Cẩm nang triển khai · Bám chuẩn BABOK® v3</div>
     <h1>Business Analyst<br/><span>Project Implementation Handbook</span></h1>
-    <p>Cẩm nang toàn diện cho luồng làm việc của Business Analyst trong mô hình SDLC <strong>Hybrid Water-Scrum-Fall</strong> của ngân hàng.</p>
+    <p>Cẩm nang toàn diện cho luồng làm việc của Business Analyst trong mô hình SDLC <strong>Hybrid Water-Scrum-Fall</strong> của tổ chức.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> BABOK® Guide v3</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Hybrid Water-Scrum-Fall</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-green)"></div> 9 giai đoạn BA</div>
-      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Tuân thủ SBV</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Tuân thủ quy định áp dụng</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> BẢN CÔNG KHAI</div>
     </div>
   </header>
@@ -172,14 +172,14 @@
       <div class="card" style="margin-bottom:16px;">
         <div class="card-body">
           <div class="card-title">Handbook này là gì</div>
-          <p style="margin-bottom:12px;">Handbook định nghĩa <strong>luồng làm việc của Business Analyst (BA)</strong> cho mọi dự án triển khai phần mềm tại ngân hàng. Nó ghi lại trách nhiệm, sản phẩm bàn giao, điểm tương tác và quality gate của BA xuyên suốt mọi giai đoạn thực thi dự án.</p>
+          <p style="margin-bottom:12px;">Handbook định nghĩa <strong>luồng làm việc của Business Analyst (BA)</strong> cho mọi dự án triển khai phần mềm tại tổ chức. Nó ghi lại trách nhiệm, sản phẩm bàn giao, điểm tương tác và quality gate của BA xuyên suốt mọi giai đoạn thực thi dự án.</p>
           <p>Tài liệu được thiết kế để <strong>cả đội dự án cùng đọc</strong>, giúp mọi bên hiểu cần kỳ vọng gì từ chức năng BA.</p>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
         <div class="info-tile"><div class="info-tile-icon">👩‍💼</div><div class="info-tile-title">Độc giả chính</div><div class="info-tile-desc">Business Analyst · Project Manager · Solution Architect · QA Lead · Product Owner</div></div>
         <div class="info-tile"><div class="info-tile-icon">📖</div><div class="info-tile-title">Độc giả thứ cấp</div><div class="info-tile-desc">Đội phát triển · Stakeholder nghiệp vụ · Cán bộ tuân thủ · UX/UI Designer</div></div>
-        <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Khung quản chiếu</div><div class="info-tile-desc">BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · Thông tư 09/2020/TT-NHNN</div></div>
+        <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Khung quản chiếu</div><div class="info-tile-desc">BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · quy định pháp luật áp dụng</div></div>
       </div>
       <div class="alert alert-info" style="margin-top:16px;">
         <span class="alert-icon">ℹ️</span>
@@ -285,7 +285,7 @@
               <li><span class="step-num">3</span><div><strong>Phỏng vấn khởi động</strong> — ghi nhận mục tiêu, KPI/OKR, điểm đau. Chưa đề xuất giải pháp ở bước này.</div></li>
               <li><span class="step-num">4</span><div><strong>Viết Business Need Statement</strong>: <span class="mono">"[Stakeholder] cần [năng lực] để đạt [outcome] bởi vì [lý do]."</span></div></li>
               <li><span class="step-num">5</span><div><strong>Lập BA Plan</strong> — phương pháp elicitation, công cụ, nhịp review, sản phẩm bàn giao theo giai đoạn, RACI cho các đầu ra của BA.</div></li>
-              <li><span class="step-num">6</span><div><strong>Nhận diện phạm vi tuân thủ/pháp lý</strong> từ sớm — Thông tư 09/2020, Nghị định 13/2023, PCI-DSS nếu có dữ liệu thẻ.</div></li>
+              <li><span class="step-num">6</span><div><strong>Nhận diện phạm vi tuân thủ/pháp lý</strong> từ sớm — quy định pháp luật áp dụng, Nghị định 13/2023 và tiêu chuẩn ngành phù hợp khi dữ liệu chịu quản lý thuộc phạm vi.</div></li>
             </ol>
           </div></div>
         </div>
@@ -562,8 +562,8 @@
       <div class="alert alert-warning"><span class="alert-icon">📐</span><div><strong>Quy tắc:</strong> Mọi NFR phải <strong>đo được</strong>. ❌ <em>"Hệ thống phải nhanh"</em> — ✅ <em>"Thời gian phản hồi P95 phải &lt; 500ms tại 1.000 người dùng đồng thời"</em></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;" class="grid-2col">
         <div class="callout-box" style="background:var(--status-blue-bg);border-color:rgba(96,165,250,0.3);"><div class="callout-title" style="color:var(--status-blue);">⚡ Hiệu năng</div><div class="callout-body" style="color:var(--text-secondary);">Thời gian phản hồi · Throughput · Mức dùng tài nguyên<br/><em style="font-size:11px;">vd: P95 API &lt; 500ms, SLA uptime 99.5%</em></div></div>
-        <div class="callout-box" style="background:var(--status-red-bg);border-color:rgba(248,113,113,0.3);"><div class="callout-title" style="color:var(--status-red);">🔒 Bảo mật</div><div class="callout-body" style="color:var(--text-secondary);">AuthN · AuthZ · Mã hoá at-rest/in-transit · Audit log<br/><em style="font-size:11px;">Phải tuân thủ Thông tư 09/2020, Nghị định 13/2023</em></div></div>
-        <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.3);"><div class="callout-title" style="color:var(--status-green);">🛡️ Độ tin cậy</div><div class="callout-body" style="color:var(--text-secondary);">Khả dụng (SLA%) · Chịu lỗi · RTO / RPO<br/><em style="font-size:11px;">vd: RTO &lt; 4h, RPO &lt; 1h cho hệ thống core banking</em></div></div>
+        <div class="callout-box" style="background:var(--status-red-bg);border-color:rgba(248,113,113,0.3);"><div class="callout-title" style="color:var(--status-red);">🔒 Bảo mật</div><div class="callout-body" style="color:var(--text-secondary);">AuthN · AuthZ · Mã hoá at-rest/in-transit · Audit log<br/><em style="font-size:11px;">Phải tuân thủ quy định pháp luật áp dụng, Nghị định 13/2023</em></div></div>
+        <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.3);"><div class="callout-title" style="color:var(--status-green);">🛡️ Độ tin cậy</div><div class="callout-body" style="color:var(--text-secondary);">Khả dụng (SLA%) · Chịu lỗi · RTO / RPO<br/><em style="font-size:11px;">vd: RTO và RPO được phê duyệt cho service tier</em></div></div>
         <div class="callout-box" style="background:var(--status-yellow-bg);border-color:rgba(251,191,36,0.3);"><div class="callout-title" style="color:var(--status-yellow);">♿ Usability</div><div class="callout-body" style="color:var(--text-secondary);">Dễ học · Accessibility (tối thiểu WCAG 2.1 AA) · UX<br/><em style="font-size:11px;">vd: người dùng mới hoàn thành tác vụ lõi trong 3 phút không cần trợ giúp</em></div></div>
       </div>
     </section>
@@ -681,8 +681,8 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · BA Project Implementation Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
-    Bám chuẩn BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · Thông tư 09/2020/TT-NHNN · © 2025
+    📘 Handbook · BA Project Implementation Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    Bám chuẩn BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · quy định pháp luật áp dụng · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

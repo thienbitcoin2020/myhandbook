@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/benefits-realization-plan.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · PMO GOVERNANCE & PORTFOLIOBENEFITS REALIZATION PLANMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · PMO GOVERNANCE & PORTFOLIOBENEFITS REALIZATION PLANMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

@@ -1,20 +1,20 @@
 ---
 name: role-sa
 description: >-
-  Solution Architect skill from the Power Home Handbook (C4, arc42, Well-Architected, TOGAF
-  interface). Use when the user asks about SA responsibilities, NFR analysis and quality
-  attribute scenarios, solution options and trade-off scoring, technology selection, architecture
-  decision records, HLD/LLD and the C4 model, integration and API patterns (event-driven, Saga,
-  CQRS, BFF), data and security design (STRIDE), sizing and resilience, or asks to draft an ADR
-  or a solution architecture document.
+  Solution Architect skill from the BP Handbook (C4, arc42, Well-Architected, TOGAF interface).
+  Use when the user asks about SA responsibilities, NFR analysis and quality attribute scenarios,
+  solution options and trade-off scoring, technology selection, architecture decision records,
+  HLD/LLD and the C4 model, integration and API patterns (event-driven, Saga, CQRS, BFF), data
+  and security design (STRIDE), sizing and resilience, or asks to draft an ADR or a solution
+  architecture document.
 ---
 
-# Solution Architect — Power Home Handbook
+# Solution Architect — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Solution Architect** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Solution Architect** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: NFR-driven design, options & ADRs, C4/arc42, integration, security, sizing, governance.
 2. For anything beyond the summary here, load `references/handbook-sa.md`
    — it is the full chapter, extracted verbatim from the handbook page.

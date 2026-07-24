@@ -21,11 +21,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🎯</div>
+    <div class="role-badge">
+      <div class="role-icon">🎯</div>
       <div>
-        <div class="bank-title">Product Owner Handbook</div>
-        <div class="bank-sub">Scrum Guide 2020 · Outcome-driven</div>
+        <div class="role-title">Product Owner Handbook</div>
+        <div class="role-sub">Scrum Guide 2020 · Outcome-driven</div>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-17<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
@@ -94,7 +94,7 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🎯 Internal Handbook · Scrum Guide 2020 Aligned</div>
+    <div class="header-eyebrow">🎯 Public Handbook · Scrum Guide 2020 Aligned</div>
     <h1>Product Owner (PO)<br/><span>Role, Discovery &amp; Value Delivery</span></h1>
     <p>Reference for the end-to-end Product Owner role across the SDLC — grounded in the Scrum Guide 2020, extended with modern product management (discovery, outcome-driven) and hybrid PMBOK 7 practice. Scrum-standard terms are tagged <span class="src src-scrum">Scrum 2020</span>; everything else is flagged with its source <span class="src src-ext">Extended</span>.</p>
     <div class="header-pills">
@@ -436,13 +436,13 @@ our product [key differentiation].</pre>
         <div class="card-title">Acceptance Criteria — two styles</div>
         <table class="table-po">
           <tr><th>Given-When-Then (Gherkin)</th><th>Rule-based (checklist)</th></tr>
-          <tr><td><code>Given</code> a logged-in customer with a verified account,<br/><code>When</code> they transfer ≤ their balance,<br/><code>Then</code> the transfer succeeds and both balances update.</td><td>• Transfer amount must be &gt; 0 and ≤ balance.<br/>• Blocked/frozen accounts cannot transfer.<br/>• Both balances update atomically.<br/>• Audit log entry is written.</td></tr>
+          <tr><td><code>Given</code> a signed-in customer with a verified profile,<br/><code>When</code> they update their preferred delivery address,<br/><code>Then</code> the address is saved and a confirmation is shown.</td><td>• Required address fields must be valid.<br/>• Unsupported regions cannot be selected.<br/>• The profile update is atomic.<br/>• An audit log entry is written.</td></tr>
         </table>
         <p style="margin-top:6px;">Use <strong>Given-When-Then</strong> for behaviour/scenarios (pairs well with BDD); <strong>rule-based</strong> for lists of business rules/constraints.</p>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">NFRs, Constraints &amp; PRD</div>
-        <p><strong>Non-functional requirements &amp; constraints</strong> must be <strong>measurable</strong>: performance (P95 latency), security, availability (SLA%), usability, compliance (SBV / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.</p>
+        <p><strong>Non-functional requirements &amp; constraints</strong> must be <strong>measurable</strong>: performance (P95 latency), security, availability (SLA%), usability, compliance (applicable regulations / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.</p>
         <p style="margin-top:6px;"><strong>PRD / product spec <span class="src src-ext">hybrid / PMBOK 7</span>:</strong> for larger or regulated initiatives, a lightweight PRD (problem, goals, non-goals, success metrics, scope, risks) complements — but does not replace — an emergent backlog.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -514,7 +514,7 @@ our product [key differentiation].</pre>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Worked example — RICE</div>
-        <pre class="art-block">Feature: One-tap bill payment
+        <pre class="art-block">Feature: One-tap appointment rescheduling
   Reach      = 8,000 users/quarter
   Impact     = 2   (massive=3, high=2, medium=1, low=.5)
   Confidence = 80% = 0.8
@@ -702,8 +702,8 @@ our product [key differentiation].</pre>
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Product Owner Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
-    Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · SBV Circular 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Product Owner Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · applicable regulations · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

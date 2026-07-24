@@ -1,14 +1,14 @@
 # UX/UI Designer — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/ux.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/ux.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🎨 Internal Handbook · Double Diamond · NN/g · WCAG 2.2
+🎨 Public Handbook · Double Diamond · NN/g · WCAG 2.2
 
 ## UX/UI Designer
 
 ## Research to Pixel-Perfect Handoff
 
-Reference for the end-to-end product design role — from user research to accessible, buildable UI. Grounded in the Double Diamond, Nielsen Norman heuristics, WCAG 2.2, Atomic Design, and platform guidelines (Material Design / Apple HIG). For internal banking tools, efficiency & accessibility come first.
+Reference for the end-to-end product design role — from user research to accessible, buildable UI. Grounded in the Double Diamond, Nielsen Norman heuristics, WCAG 2.2, Atomic Design, and platform guidelines (Material Design / Apple HIG). For internal enterprise tools, efficiency & accessibility come first.
 
 Double Diamond
 
@@ -61,9 +61,9 @@ Double Diamond — the process spine Design Council
 
 - Converge**DELIVER**prototype, test & handoff
 
-🏦
+📘
 
-Internal bank tools: optimize for **efficiency** (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.
+Internal organization tools: optimize for **efficiency** (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.
 
 🔎
 
@@ -118,7 +118,7 @@ yes
 
 Dashboard
 
-Transfer
+Submit request
 
 Valid?
 
@@ -349,6 +349,6 @@ SupportsPO · BA · Dev · QC
 
 Read document→
 
-🏦 Handbook · UX/UI Designer Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · UX/UI Designer Handbook v2.0 · Public Edition · Classification: PUBLIC
 
 Aligned with Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025

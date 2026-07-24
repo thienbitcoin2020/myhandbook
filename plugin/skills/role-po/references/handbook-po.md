@@ -1,8 +1,8 @@
 # Product Owner — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/po.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/po.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🎯 Internal Handbook · Scrum Guide 2020 Aligned
+🎯 Public Handbook · Scrum Guide 2020 Aligned
 
 ## Product Owner (PO)
 
@@ -318,13 +318,13 @@ Acceptance Criteria — two styles
 
 | Given-When-Then (Gherkin) | Rule-based (checklist) |
 |---|---|
-| Given a logged-in customer with a verified account,When they transfer ≤ their balance,Then the transfer succeeds and both balances update. | • Transfer amount must be > 0 and ≤ balance.• Blocked/frozen accounts cannot transfer.• Both balances update atomically.• Audit log entry is written. |
+| Given a signed-in customer with a verified profile,When they update their preferred delivery address,Then the address is saved and a confirmation is shown. | • Required address fields must be valid.• Unsupported regions cannot be selected.• The profile update is atomic.• An audit log entry is written. |
 
 Use **Given-When-Then** for behaviour/scenarios (pairs well with BDD); **rule-based** for lists of business rules/constraints.
 
 NFRs, Constraints & PRD
 
-**Non-functional requirements & constraints** must be **measurable**: performance (P95 latency), security, availability (SLA%), usability, compliance (SBV / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.
+**Non-functional requirements & constraints** must be **measurable**: performance (P95 latency), security, availability (SLA%), usability, compliance (applicable regulations / ISO 27001). Capture as backlog items, story AC, or global Definition of Done.
 
 **PRD / product spec hybrid / PMBOK 7:** for larger or regulated initiatives, a lightweight PRD (problem, goals, non-goals, success metrics, scope, risks) complements — but does not replace — an emergent backlog.
 
@@ -404,7 +404,7 @@ Section 07
 
 Worked example — RICE
 
-Feature: One-tap bill payment Reach = 8,000 users/quarter Impact = 2 (massive=3, high=2, medium=1, low=.5) Confidence = 80% = 0.8 Effort = 4 person-months RICE = (8000 × 2 × 0.8) ÷ 4 = 3,200 → compare against other features
+Feature: One-tap appointment rescheduling Reach = 8,000 users/quarter Impact = 2 (massive=3, high=2, medium=1, low=.5) Confidence = 80% = 0.8 Effort = 4 person-months RICE = (8000 × 2 × 0.8) ÷ 4 = 3,200 → compare against other features
 
 Cost of Delay & context
 
@@ -597,6 +597,6 @@ Section 13
 
 **Sources.Scrum Guide 2020** (Schwaber & Sutherland) — accountabilities, Product Goal, commitments, events, DoD. **PMBOK Guide 7th Ed.** (PMI) — hybrid/PRD context. Extended practices, cited in-line: Teresa Torres (Opportunity Solution Tree, continuous discovery), Jeff Patton (Story Mapping, dual-track), Marty Cagan (product discovery), Bill Wake (INVEST), Roman Pichler / Mike Cohn (DEEP, Vision Board), Geoffrey Moore (elevator pitch), A. Osterwalder / Strategyzer (Business Model & Value Proposition Canvas), DSDM (MoSCoW), Intercom (RICE), SAFe (WSJF), Don Reinertsen (Cost of Delay), Noriaki Kano (Kano model), Woody Zuill / Vasco Duarte (#NoEstimates), James Grenning / Mike Cohn (Planning Poker), Dave McClure (AARRR), Google / Kerry Rodden (HEART), Amplitude / Sean Ellis (North Star Metric), Mendelow (Power/Interest grid).
 
-🏦 Handbook · Product Owner Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Product Owner Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with Scrum Guide 2020 · Hybrid PMBOK 7 · applicable regulations · © 2025

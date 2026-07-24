@@ -1,14 +1,14 @@
 # Release Manager / Deployment — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/deployment.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/deployment.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🏦 Commercial Bank · Vietnam · Production Runbook
+📘 Enterprise Delivery · Production Runbook
 
 ## Interactive
 
 ## Deployment Runbook
 
-Governed, step-by-step operational guide for software releases under the **Hybrid Water-Scrum-Fall** model — compliant with **SBV Circular 09/2020/TT-NHNN** and internal risk management policies.
+Governed, step-by-step operational guide for software releases under the **Hybrid Water-Scrum-Fall** model — compliant with **applicable regulations** and internal risk management policies.
 
 Agile/Scrum · Development
 
@@ -16,7 +16,7 @@ Waterfall · Governance
 
 CAB · Change Advisory
 
-SBV · Regulatory
+Regulatory · Controlled
 
 📖 Key terms & abbreviations on this page
 
@@ -27,17 +27,17 @@ New to release management? Skim these first — they appear throughout this runb
 | CAB / ECAB | Change Advisory Board — the governance body that approves production changes; Emergency CAB for urgent fixes. |
 | CR | Change Request — the approval package (reports, sign-offs, rollback plan) submitted to CAB. |
 | RM | Release Manager — single point of accountability for the release lifecycle. |
-| SoD | Segregation of Duties — dev, test and production release must be different people (SBV mandate). |
+| SoD | Segregation of Duties — dev, test and production release must be different people (governance requirement). |
 | DEV → SIT → UAT → PERF → SEC → PROD | The environment ladder a release climbs: Development, System Integration Test, User Acceptance, Performance, Security, Production. |
 | PT / ST | Performance Testing (load/stress/soak) / Security Testing (DAST + pentest) — the two pre-CAB gates. |
 | SAST / DAST | Static (on code) / Dynamic (on the running app) security scanning. |
-| CVSS | Vulnerability severity score 0–10 — ≥ 7.0 is a hard release blocker here. |
+| CVSS | Vulnerability severity score 0–10 — the approved security policy defines the release-blocking threshold. |
 | TPS · P95/P99 | Transactions Per Second; 95th/99th-percentile latency — performance KPIs. |
 | Blue-green / Canary | Deploy strategies: switch between two identical environments / release to a small % first. |
 | Rollback | Reverting to the previous working version when triggers fire (see the executable runbook below). |
 | DoD | Definition of Done — the 8-item release checklist that must be complete before CAB. |
 | GRC | Governance, Risk & Compliance system — where approvals and the deployment audit trail live. |
-| Hypercare / 72h watch | Heightened monitoring right after go-live; dev on standby, reviews every 4 hours. |
+| Hypercare / release watch | Heightened monitoring right after go-live; duration and review cadence follow the approved release plan. |
 
 📋
 
@@ -45,9 +45,9 @@ Section 1
 
 ### Governance & Hybrid SDLC Overview
 
-Water-Scrum-Fall model · SBV Compliance Pillars
+Water-Scrum-Fall model · Enterprise compliance pillars
 
-This bank operates a **Hybrid SDLC model** — colloquially referred to as Water-Scrum-Fall — which strategically combines the iterative velocity of Agile/Scrum for software execution with the structured oversight of Waterfall for governance and production releases.
+This organization operates a **Hybrid SDLC model** — colloquially referred to as Water-Scrum-Fall — which strategically combines the iterative velocity of Agile/Scrum for software execution with the structured oversight of Waterfall for governance and production releases.
 
 🔭 Waterfall — Initiation
 
@@ -59,11 +59,11 @@ Iterative Sprints, continuous integration, feature team backlogs, and Scrum cere
 
 🔐 Waterfall — Release
 
-Sequential Security & Performance testing gates, CAB review, mandatory SBV audit checkpoints, and controlled production deployment.
+Sequential Security & Performance testing gates, CAB review, mandatory regulatory audit checkpoints, and controlled production deployment.
 
-🛡️ Vietnamese Banking Compliance Pillars
+🛡️ Regulated Delivery Compliance Pillars
 
-As mandated by SBV Circular 09/2020/TT-NHNN & internal policy
+As mandated by applicable regulations & internal policy
 
 No single individual may hold conflicting roles across development, testing, and production deployment. Enforced via RBAC in GitHub, JIRA, and the production pipeline.
 
@@ -78,7 +78,7 @@ Developers **cannot** merge their own code to main. Testers must be independent.
 | Release Manager | ❌ | ❌ | ✅ | Read-only |
 | DevOps Engineer | ❌ | ❌ | Support | ✅ |
 
-All systems handling financial transactions or customer PII must pass a full security assessment cycle before every production release:
+All systems handling sensitive business data or customer PII must pass the security assessment cycle required by release policy:
 
 - 1 SAST — automated scan on every commit via SonarQube + GitHub Advanced Security (CodeQL).
 
@@ -90,7 +90,7 @@ All systems handling financial transactions or customer PII must pass a full sec
 
 ⚠️
 
-Any CVSS score ≥ 7.0 (High) is a **hard blocker**. The release cannot proceed until remediated and re-tested.
+Any finding that meets the policy-defined security threshold is a **hard blocker**. The release cannot proceed until remediated, re-tested, or handled through the approved exception process.
 
 The CAB is the final governance authority before any change reaches production. Membership includes Technology Leadership, Risk Management, Compliance, and Business Owners.
 
@@ -98,7 +98,7 @@ The CAB is the final governance authority before any change reaches production. 
 
 CAB Frequency
 
-Weekly, every Tuesday at 14:00 ICT. Emergency CABs within 4 hours for P1.
+Set by the organization’s release policy. Define a separate emergency-CAB response target for P1 incidents.
 
 📄
 
@@ -110,13 +110,13 @@ Must include PT Report, Security Report, UAT sign-off, rollback plan, deployment
 
 Voting Quorum
 
-Minimum 5 of 7 CAB members present. Unanimous approval required for Tier 1 systems.
+Set the quorum and approval threshold in the CAB charter, with stricter authority for Tier 1 systems.
 
 ⏳
 
 Freeze Windows
 
-No releases during year-end freeze (Dec 20–Jan 5) or SBV reporting periods.
+No releases during approved freeze windows or regulatory reporting periods.
 
 🔭
 
@@ -204,7 +204,7 @@ Solution design; technology standards compliance; ARB review.
 
 - Gate 3 · Architecture Review Board (ARB)
 
-- Enterprise Architect presents solution design. ARB validates compliance with bank technology standards and SBV IT regulations.
+- Enterprise Architect presents solution design. ARB validates compliance with organization technology standards and applicable IT regulations.
 
 - Gate 4 · Development Kick-off
 
@@ -406,7 +406,7 @@ Pending
 
 Sec Tester
 
-Security Report with CVSS scores generated. Any High/Critical blocks release. CISO sign-off required.
+Security Report with CVSS scores generated. Findings at the approved threshold block release. Security-authority sign-off required.
 
 Step 8
 
@@ -466,7 +466,7 @@ Pending
 
 Release Mgr
 
-Smoke test in PROD passed. Release note published. CS briefed. 72h post-release watch active.
+Smoke test in PROD passed. Release note published. CS briefed. Policy-defined post-release watch active.
 
 👤 View by Role — Duties & Responsibilities
 
@@ -494,7 +494,7 @@ Pre-Deployment Duties
 
 - Publish release notes and notify all stakeholders upon successful deployment.
 
-- Manage the 72-hour post-release watch period and coordinate the Lessons Learned session.
+- Manage the policy-defined post-release watch period and coordinate the Lessons Learned session.
 
 📌
 
@@ -504,7 +504,7 @@ The Release Manager is the **only role** authorized to transition the pipeline a
 
 Performance Tester
 
-Responsible for validating system throughput, latency, and stability under peak banking load.
+Responsible for validating system throughput, latency, and stability under peak enterprise load.
 
 Performance Testing Duties
 
@@ -520,13 +520,13 @@ Performance Testing Duties
 
 - Validate all KPIs against SLA thresholds defined in the Performance Test Plan.
 
-- Generate the **Performance Test Report** using the approved bank template, including Grafana/JMeter screenshots.
+- Generate the **Performance Test Report** using the approved organization template, including Grafana/JMeter screenshots.
 
 - Obtain sign-off from Performance Test Lead and submit report to Release Manager.
 
 ⚠️
 
-If any KPI fails SLA thresholds (e.g., P95 latency > 2000ms for core banking APIs), the release is immediately blocked. Dev team notified for remediation before re-testing.
+If any KPI fails its approved SLA threshold, the release is immediately blocked. Dev team notified for remediation before re-testing.
 
 🔐
 
@@ -540,7 +540,7 @@ Security Testing Duties
 
 - Execute **DAST scan** using OWASP ZAP against the SEC environment.
 
-- Conduct **manual penetration testing** covering OWASP Top 10 and banking-specific vectors.
+- Conduct **manual penetration testing** covering OWASP Top 10 and enterprise-specific vectors.
 
 - Assess **authentication & authorization** controls: MFA, RBAC enforcement, token expiry.
 
@@ -554,7 +554,7 @@ Security Testing Duties
 
 🚨
 
-**Hard Blocker:** Any finding with CVSS ≥ 7.0 (High) or OWASP Top 10 Category A01–A05 is an automatic deploy blocker. The CISO has veto power over the CAB regarding security findings.
+**Hard Blocker:** Findings that meet the approved severity or control threshold automatically block deployment. The designated security authority has the blocking and exception authority defined by release policy.
 
 ☑️ Release Definition of Done — Interactive Checklist
 
@@ -658,15 +658,15 @@ Production handover · Ops transition · Monitoring & support
 
 - Smoke Test & Verification
 
-- Release Manager executes smoke test checklist. Business Owner validates core transaction flows in PROD.
+- Release Manager executes the smoke-test checklist. Business Owner validates core business flows in PROD.
 
 - Handover Meeting
 
 - Formal handover with Ops Lead. All artifacts transferred. On-call duties activated.
 
-- 72-Hour Watch Period
+- Organization-Defined Watch Period
 
-- Dev team on standby. Monitoring reviewed every 4 hours. P1/P2 triggers immediate war-room.
+- Set the standby duration and monitoring cadence in the release plan. P1/P2 triggers an immediate war-room.
 
 - Project Closure
 
@@ -686,13 +686,13 @@ Step-by-step, reproducible procedure the on-call engineer follows during the mai
 
 - 4**DB migration:** run backward-compatible migration first (expand); defer destructive changes (contract) to a later release. Verify: migration exit code 0.
 
-- 5**Smoke test:** run the PROD smoke checklist (login, one core transaction, one integration). Verify: all pass; error rate & P95 within SLO.
+- 5**Smoke test:** run the PROD smoke checklist (login, one core business flow, one integration). Verify: all pass; error rate & P95 within SLO.
 
 - 6**Cutover & confirm:** route 100% traffic; Business Owner validates core flow. Verify: Go/No-Go call → "released"; publish release note.
 
 ↩️
 
-**Rollback triggers (any → roll back immediately):** P1 incident; error rate > 2× baseline for 5 min; P95 latency > SLA on core APIs; failed smoke test; data-integrity anomaly. **Rollback owner:** Release Manager decides, DevOps executes.
+**Rollback triggers (any → roll back immediately):** P1 incident; error rate breaches the approved threshold; P95 latency exceeds SLA on core APIs; failed smoke test; data-integrity anomaly. **Rollback owner:** Release Manager decides, DevOps executes.
 
 ◀ Rollback sequence
 
@@ -714,25 +714,25 @@ Runtime auto-rollback on SLO breach & incident lifecycle are owned by the Operat
 
 P4 — Low
 
-Cosmetic issue. No business impact. Response: Next business day.
+Cosmetic issue. No business impact. Respond per incident policy.
 
 🔵
 
 P3 — Medium
 
-Minor disruption. Workaround available. Response: 4 hours. L2 assigned.
+Minor disruption. Workaround available. Respond per incident policy; assign L2.
 
 🟡
 
 P2 — High
 
-Significant impact. No workaround. Response: 1 hour. L3 + Dev engaged.
+Significant impact. No workaround. Respond per incident policy; engage L3 + Dev.
 
 🔴
 
 P1 — Critical
 
-Core banking down. Response: 15 min. War-room. CPTO & CRO notified. Rollback considered.
+Core service unavailable. Meet the incident-policy response target, open a war-room, notify the CTO & business owner, and consider rollback.
 
 📁 Commercialization Artifacts Reference
 
@@ -756,7 +756,7 @@ Observability stack: **Grafana** for metrics, **Loki** for log aggregation, **Ja
 
 Business KPIs
 
-Transaction success rate, daily active users, revenue impact metrics.
+Critical-flow success rate, daily active users, revenue impact metrics.
 
 ⚙️
 
@@ -770,7 +770,7 @@ API Metrics
 
 P95/P99 latency, error rate, throughput, API gateway quotas.
 
-Time-stamped, immutable log of every action during deployment. Retained in GRC system for minimum 5 years per SBV compliance.
+Time-stamped, immutable log of every action during deployment. Retained in GRC system for the period required by the approved retention policy and applicable regulations.
 
 | Timestamp (ICT) | Action | Executed By | Status |
 |---|---|---|---|
@@ -828,6 +828,6 @@ SupportsQC · Security · SRE · SA
 
 Read document→
 
-🏦 Handbook · Deployment Runbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Deployment Runbook v2.0 · Public Edition · Classification: PUBLIC
 
-Compliant with SBV Circular 09/2020/TT-NHNN & ISO 27001 · Approved by Technology Risk Committee · © 2025
+Aligned with applicable regulations & ISO 27001 · Approved by the designated release-governance authority · © 2025

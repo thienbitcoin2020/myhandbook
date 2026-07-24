@@ -58,11 +58,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🧩</div>
+    <div class="role-badge">
+      <div class="role-icon">🧩</div>
       <div>
-        <div class="bank-title">Claude Plugin</div>
-        <div class="bank-sub">Cẩm nang dạng skill cài đặt được</div>
+        <div class="role-title">Claude Plugin</div>
+        <div class="role-sub">Cẩm nang dạng skill cài đặt được</div>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v0.5.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-20<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -105,7 +105,7 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🧩 Claude Plugin · Sinh từ Cẩm nang Power Home</div>
+    <div class="header-eyebrow">🧩 Claude Plugin · Sinh từ Cẩm nang BP</div>
     <h1>Claude Plugin<br/><span>Toàn bộ cẩm nang — hoặc chỉ một role</span></h1>
     <p>Cài toàn bộ Cẩm nang Dự án hoặc chỉ chọn một skill theo vai trò. Mỗi gói riêng chỉ chứa chương của role đó và các template đã review thuộc đúng role — không kéo theo nội dung role khác, không nhân bản nguồn.</p>
     <div class="header-pills">
@@ -118,14 +118,14 @@
       <div class="install-card-head">
         <div class="install-card-icon" aria-hidden="true">🧰</div>
         <div>
-          <div class="install-card-title" id="full-plugin-title">Power Home Handbook <span class="install-badge">Nội bộ</span><span class="install-badge">v0.5.0</span></div>
-          <div class="install-card-meta">Power Home Team · 12 skills · 42 template đã review</div>
+          <div class="install-card-title" id="full-plugin-title">BP Handbook <span class="install-badge">Công khai</span><span class="install-badge">v0.5.0</span></div>
+          <div class="install-card-meta">BP Team · 12 skills · 42 template đã review</div>
         </div>
       </div>
-      <p class="install-card-desc">Cài toàn bộ handbook SDLC cho PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment và PMO. Một lần dán sẽ thêm marketplace nội bộ rồi cài tất cả skill cùng template đã review.</p>
+      <p class="install-card-desc">Cài toàn bộ handbook SDLC cho PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment và PMO. Một lần dán sẽ thêm marketplace BP rồi cài tất cả skill cùng template đã review.</p>
       <div class="install-command">
-        <code>claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook</code>
-        <button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook" data-copied-label="✓ Đã chép">▣ Sao chép</button>
+        <code>claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@bp-project-handbook</code>
+        <button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@bp-project-handbook" data-copied-label="✓ Đã chép">▣ Sao chép</button>
       </div>
       <div class="install-card-actions">
         <a href="#section-skills">Xem gói theo role ↓</a>
@@ -148,7 +148,7 @@
           <tr><td><strong>Chương đầy đủ làm tài liệu tham chiếu</strong></td><td>Mỗi skill mang theo trọn chương cẩm nang của nó — Claude chỉ nạp khi cần (progressive disclosure) nên plugin luôn nhẹ và nhanh.</td></tr>
           <tr><td><strong>DECISIONS.md</strong></td><td>Mọi quyết định tự động khi sinh plugin đều được ghi lại để rà soát — điền gap, phân quyền sở hữu template, chính sách ngôn ngữ.</td></tr>
         </table>
-        <div class="alert alert-warning" style="margin-top:10px;"><span class="alert-icon">🔒</span><div><strong>Phân loại: CÔNG KHAI (PUBLIC).</strong> Plugin chứa đúng nội dung nội bộ của cẩm nang. Chỉ chia sẻ cho người được phép truy cập cẩm nang.</div></div>
+        <div class="alert alert-warning" style="margin-top:10px;"><span class="alert-icon">🔒</span><div><strong>Phân loại: CÔNG KHAI (PUBLIC).</strong> Plugin chỉ chứa nội dung thuộc bản công khai của cẩm nang và có thể chia sẻ theo giấy phép của dự án.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -167,8 +167,8 @@
       <div class="card"><div class="card-body">
         <div class="card-title">Cách B — Claude Code (một lần sao chép / dán) <span class="pill-tag">Khuyến nghị</span></div>
         <p style="font-size:12px;">Chạy các lệnh này <strong>trong một phiên Claude Code</strong> — bản CLI ở terminal, app desktop, hoặc agent lập trình, nơi Claude có shell trên máy bạn và tự cài plugin. Các lệnh <strong>không</strong> cài được từ chat claude.ai thường, vì chat đó chạy trong sandbox, không đụng tới Claude Code trên máy bạn. Sao chép lệnh toàn bộ handbook ở card phía trên, hoặc lệnh trong từng card role bên dưới. Mỗi lệnh sẽ tự thêm marketplace nếu cần rồi cài plugin lâu dài.</p>
-        <div class="cmd-row"><code>claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <p style="font-size:12px;margin-top:12px;">Lệnh ngắn <code>claude plugin install project-handbook@power-home-handbook</code> dùng được sau khi marketplace này đã được thêm.</p>
+        <div class="cmd-row"><code>claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài plugin đầy đủ" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@bp-project-handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <p style="font-size:12px;margin-top:12px;">Lệnh ngắn <code>claude plugin install project-handbook@bp-project-handbook</code> dùng được sau khi marketplace này đã được thêm.</p>
         <div class="alert alert-info" style="margin-top:10px;"><span class="alert-icon">💡</span><div>Chỉ nên chọn một phạm vi cài đặt. Gói đầy đủ đã bao gồm mọi role; gói role dành cho người dùng cần context nhỏ và tập trung hơn.</div></div>
       </div></div>
     </section>
@@ -195,7 +195,7 @@
             <li>Product Vision &amp; Roadmap</li>
             <li>Product Requirements Document (PRD)</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-po@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Product Owner" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-po@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-po@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Product Owner" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-po@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-po.plugin" download data-role-plugin="po" data-template-count="3"><span>Tải skill PO</span><small>1 skill · 3 templates</small></a>
         </article>
 
@@ -209,7 +209,7 @@
             <li>Software Requirements Specification (SRS)</li>
             <li>Use Case Specification</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-ba@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Business Analyst" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ba@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-ba@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Business Analyst" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ba@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ba.plugin" download data-role-plugin="ba" data-template-count="4"><span>Tải skill BA</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -223,7 +223,7 @@
             <li>RAID Log</li>
             <li>One-page Status Report</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-pm@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Project Manager" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-pm@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-pm@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Project Manager" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-pm@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-pm.plugin" download data-role-plugin="pm" data-template-count="4"><span>Tải skill PM</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -231,7 +231,7 @@
           <div class="skill-head"><span class="skill-icon">🌀</span><div><h3 class="skill-name">Scrum Master</h3><code class="skill-id">role-sm</code></div><span class="skill-count">Chương</span></div>
           <p class="skill-desc">Scrum Guide 2020: điều phối sự kiện, xử lý impediment, coaching, sức khoẻ đội nhóm, agile metrics trung thực, retro và scaling.</p>
           <div class="skill-triggers"><span class="trigger-chip">điều phối</span><span class="trigger-chip">impediments</span><span class="trigger-chip">retrospective</span><span class="trigger-chip">metrics</span><span class="trigger-chip">coaching</span></div>
-          <div class="role-install"><code>claude plugin install project-handbook-sm@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Scrum Master" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-sm@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-sm@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Scrum Master" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-sm@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-sm.plugin" download data-role-plugin="sm" data-template-count="0"><span>Tải skill SM</span><small>1 skill · chương handbook</small></a>
         </article>
 
@@ -246,7 +246,7 @@
             <li>Test Summary Report</li>
             <li>UAT Plan</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-qc@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài QC" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-qc@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-qc@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài QC" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-qc@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-qc.plugin" download data-role-plugin="qc" data-template-count="5"><span>Tải skill QC</span><small>1 skill · 5 templates</small></a>
         </article>
 
@@ -260,7 +260,7 @@
             <li>API Specification</li>
             <li>Non-Functional Requirements Specification</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-sa@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Solution Architect" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-sa@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-sa@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Solution Architect" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-sa@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-sa.plugin" download data-role-plugin="sa" data-template-count="4"><span>Tải skill SA</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -275,13 +275,13 @@
             <li>Usability Test Plan &amp; Report</li>
             <li>Design Handoff Specification</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-ux@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài UX/UI" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ux@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-ux@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài UX/UI" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ux@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ux.plugin" download data-role-plugin="ux" data-template-count="5"><span>Tải skill UX</span><small>1 skill · 5 templates</small></a>
         </article>
 
         <article class="skill-card">
           <div class="skill-head"><span class="skill-icon">🛡️</span><div><h3 class="skill-name">Security &amp; Compliance</h3><code class="skill-id">role-security</code></div><span class="skill-count">5 templates</span></div>
-          <p class="skill-desc">ISO 27001 / NIST CSF / OWASP cho ngân hàng: cổng secure SDLC, threat modeling, IAM, bảo vệ dữ liệu, SLA lỗ hổng, ứng phó sự cố, audit.</p>
+          <p class="skill-desc">ISO 27001 / NIST CSF / OWASP cho tổ chức: cổng secure SDLC, threat modeling, IAM, bảo vệ dữ liệu, SLA lỗ hổng, ứng phó sự cố, audit.</p>
           <div class="skill-triggers"><span class="trigger-chip">DevSecOps</span><span class="trigger-chip">STRIDE</span><span class="trigger-chip">IAM</span><span class="trigger-chip">OWASP</span><span class="trigger-chip">ứng phó sự cố</span></div>
           <details class="skill-templates"><summary>Template kèm theo</summary><ul>
             <li>Threat Model (STRIDE)</li>
@@ -290,7 +290,7 @@
             <li>Incident Response Plan</li>
             <li>Compliance Gap Checklist</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-security@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Security" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-security@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-security@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Security" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-security@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-security.plugin" download data-role-plugin="security" data-template-count="5"><span>Tải skill Security</span><small>1 skill · 5 templates</small></a>
         </article>
 
@@ -304,7 +304,7 @@
             <li>Blameless Postmortem</li>
             <li>Disaster Recovery Plan</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-ops@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Operations và SRE" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ops@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-ops@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Operations và SRE" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-ops@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-ops.plugin" download data-role-plugin="ops" data-template-count="4"><span>Tải skill Ops</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -318,7 +318,7 @@
             <li>Environment Configuration Document</li>
             <li>Release Go / No-Go Checklist</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-deployment@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Release và Deployment" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-deployment@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-deployment@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài Release và Deployment" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-deployment@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-deployment.plugin" download data-role-plugin="deployment" data-template-count="4"><span>Tải skill Deployment</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -332,7 +332,7 @@
             <li>Portfolio Status Report</li>
             <li>Benefits Realization Plan</li>
           </ul></details>
-          <div class="role-install"><code>claude plugin install project-handbook-pmo@power-home-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài PMO" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-pmo@power-home-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
+          <div class="role-install"><code>claude plugin install project-handbook-pmo@bp-project-handbook</code><button type="button" class="copy-btn" aria-label="Sao chép lệnh cài PMO" data-copy="claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook-pmo@bp-project-handbook" data-copied-label="✓ Đã chép">Cài role</button></div>
           <a class="role-download" href="assets/downloads/roles/project-handbook-pmo.plugin" download data-role-plugin="pmo" data-template-count="4"><span>Tải skill PMO</span><small>1 skill · 4 templates</small></a>
         </article>
 
@@ -346,11 +346,11 @@
       <div class="card"><div class="card-body">
         <p style="font-size:12px;">Cài xong thì thử ngay — sao chép một prompt và dán vào Claude:</p>
         <div class="prompt-row"><code>Draft a BRD for feature X using the handbook template</code><button type="button" class="copy-btn" data-copy="Draft a BRD for feature X using the handbook template" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <div class="prompt-row"><code>Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook</code><button type="button" class="copy-btn" data-copy="Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <div class="prompt-row"><code>Viết Project Charter cho dự án onboarding số theo template Power Home</code><button type="button" class="copy-btn" data-copy="Viết Project Charter cho dự án onboarding số theo template Power Home" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Phân rã epic quản lý đơn hàng thành user stories theo chuẩn INVEST của handbook</code><button type="button" class="copy-btn" data-copy="Phân rã epic quản lý đơn hàng thành user stories theo chuẩn INVEST của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Viết Project Charter cho dự án onboarding số theo template BP</code><button type="button" class="copy-btn" data-copy="Viết Project Charter cho dự án onboarding số theo template BP" data-copied-label="✓ Đã chép">Sao chép</button></div>
         <div class="prompt-row"><code>What does the handbook say about the release DoD before CAB?</code><button type="button" class="copy-btn" data-copy="What does the handbook say about the release DoD before CAB?" data-copied-label="✓ Đã chép">Sao chép</button></div>
         <div class="prompt-row"><code>Draft a blameless postmortem for yesterday&#39;s SEV2 incident</code><button type="button" class="copy-btn" data-copy="Draft a blameless postmortem for yesterday's SEV2 incident" data-copied-label="✓ Đã chép">Sao chép</button></div>
-        <div class="prompt-row"><code>Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook</code><button type="button" class="copy-btn" data-copy="Lập test plan theo rủi ro cho tính năng chuyển khoản theo chuẩn ISTQB của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
+        <div class="prompt-row"><code>Lập test plan theo rủi ro cho tính năng đặt lịch theo chuẩn ISTQB của handbook</code><button type="button" class="copy-btn" data-copy="Lập test plan theo rủi ro cho tính năng đặt lịch theo chuẩn ISTQB của handbook" data-copied-label="✓ Đã chép">Sao chép</button></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -374,7 +374,7 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Claude Plugin v0.5.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    📘 Handbook · Claude Plugin v0.5.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
     Gói đầy đủ + 11 gói theo role · 12 skills · 42 templates · © 2026
   </footer>
 </div>

@@ -1,11 +1,11 @@
-# 🏦 Project Handbook — Interactive Governance Runbook
+# 📘 Project Handbook — Interactive Governance Runbook
 
 > **Classification:** PUBLIC EDITION
-> **Compliance:** SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned
+> **Compliance:** applicable regulations · ISO 27001 Aligned
 
 A governed, interactive **single-page application (SPA)** that bundles twelve public
-handbooks for software delivery under the **Hybrid Water-Scrum-Fall** model at a
-Vietnamese commercial bank:
+handbooks for software delivery under the **Hybrid Water-Scrum-Fall** model in an
+enterprise delivery organization:
 
 | Route | Page | Focus |
 |-------|------|-------|
@@ -16,7 +16,7 @@ Vietnamese commercial bank:
 | `#qc` | QC Testing Handbook | ISTQB CTFL v4.0 test process, levels, techniques, metrics |
 | `#po` | Product Owner Handbook | Scrum Guide 2020 role, discovery, backlog, prioritization, product metrics |
 | `#sa` | Solution Architect Handbook | C4 · arc42 · Well-Architected — HLD/LLD, ADR, integration, NFR, security, sizing |
-| `#sec` | Security & Compliance | ISO 27001 · NIST CSF · OWASP · SBV 09/2020 — risk, DevSecOps, IAM, data, audit |
+| `#sec` | Security & Compliance | ISO 27001 · NIST CSF · OWASP · applicable regulations — risk, DevSecOps, IAM, data, audit |
 | `#ops` | Operations & SRE | Google SRE · ITIL 4 · DORA — SLO/error budget, observability, incident, DR/BCP |
 | `#sm` | Scrum Master Handbook | Scrum Guide 2020 — servant leadership, facilitation, coaching, team health |
 | `#ux` | UX/UI Designer Handbook | Double Diamond · NN/g · WCAG 2.2 — research, IA, design system, usability |
@@ -36,7 +36,7 @@ project-handbook/
 │   └── …                   #   because that root path *is* the historical URL
 ├── assets/
 │   ├── css/
-│   │   └── styles.css      # Power Home / HDBank design system
+│   │   └── styles.css      # BP design system
 │   ├── js/
 │   │   ├── theme-init.js   # Early local theme initialization (no inline script)
 │   │   ├── main.js         # Theme, sidebar, accordion, role tabs, DoD checklist
@@ -183,7 +183,7 @@ and the static artifact allowlist. See [SECURITY.md](SECURITY.md).
 
 ## 🎨 Design System
 
-Uses the **Power Home / HDBank** visual system with a dark/light theme toggle.
+Uses the **BP** visual system with a dark/light theme toggle.
 The selected theme is persisted in `localStorage`
 (`nt_theme`) and applied before first paint to avoid a flash of unstyled content.
 
@@ -244,6 +244,6 @@ Only the public edition may be deployed to Vercel or GitHub Pages.
 ## ⚖️ Compliance
 
 Documents processes aligned with:
-- **SBV Circular 09/2020/TT-NHNN** — IT Safety Regulations for credit institutions
+- **applicable regulations** — IT safety requirements for regulated organizations
 - **Internal Change Advisory Board (CAB)** governance policy
 - **ISO 27001** information security management alignment

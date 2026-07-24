@@ -16,11 +16,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🛡️</div>
+    <div class="role-badge">
+      <div class="role-icon">🛡️</div>
       <div>
-        <div class="bank-title">Security &amp; Compliance</div>
-        <div class="bank-sub">ISO 27001 · NIST CSF · SBV 09/2020</div>
+        <div class="role-title">Security &amp; Compliance</div>
+        <div class="role-sub">ISO 27001 · NIST CSF · applicable regulations</div>
       </div>
     </div>
   </div>
@@ -57,18 +57,18 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-compliance">
     <span class="comp-pill">🛡️ ISO 27001</span>
-    <span class="comp-pill">🏦 SBV 09/2020</span>
-    <span class="comp-pill">💳 PCI-DSS</span>
+    <span class="comp-pill">📘 applicable regulations</span>
+    <span class="comp-pill">🛡️ Industry standards</span>
   </div>
 
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-16<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
-    Standards: ISO 27001 · NIST CSF · SBV 09/2020<br/>
+    Standards: ISO 27001 · NIST CSF · applicable regulations<br/>
     Classification: PUBLIC
     <strong>Quick Links</strong>
     <a href="#home">← Implementation Handbook</a><br/>
@@ -82,9 +82,9 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🛡️ Internal Runbook · ISO 27001 · NIST CSF · SBV 09/2020</div>
+    <div class="header-eyebrow">🛡️ Security Playbook · ISO 27001 · NIST CSF · applicable regulations</div>
     <h1>Security &amp; Compliance<br/><span>Governance &amp; Controls Runbook</span></h1>
-    <p>Reference for information security &amp; regulatory compliance across the SDLC — grounded in ISO/IEC 27001, the NIST Cybersecurity Framework, OWASP, and mapped to SBV Circular 09/2020/TT-NHNN and PCI-DSS for a Vietnamese commercial bank. Security is built in, not bolted on.</p>
+    <p>Reference for information security &amp; regulatory compliance across the SDLC — grounded in ISO/IEC 27001, the NIST Cybersecurity Framework, OWASP, and mapped to applicable regulations and applicable industry standards for an enterprise delivery organization. Security is built in, not bolted on.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> ISO 27001 ISMS</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> NIST CSF</div>
@@ -105,7 +105,7 @@
         <tr><td><strong>ISMS / SoA</strong></td><td>Information Security Management System (ISO 27001) / Statement of Applicability — which Annex A controls apply and why.</td></tr>
         <tr><td><strong>IAM · RBAC · PAM · JML</strong></td><td>Identity &amp; Access Management; Role-Based Access Control; Privileged Access Management; Joiner-Mover-Leaver provisioning.</td></tr>
         <tr><td><strong>MFA · SSO · OIDC</strong></td><td>Multi-Factor Authentication; Single Sign-On; OpenID Connect — authentication building blocks.</td></tr>
-        <tr><td><strong>SoD</strong></td><td>Segregation of Duties — no one person controls dev + test + production release (SBV mandate).</td></tr>
+        <tr><td><strong>SoD</strong></td><td>Segregation of Duties — no one person controls dev + test + production release (governance requirement).</td></tr>
         <tr><td><strong>SAST / DAST / SCA</strong></td><td>Static / Dynamic security scanning of code; Software Composition Analysis (dependency CVEs).</td></tr>
         <tr><td><strong>SBOM</strong></td><td>Software Bill of Materials — inventory of every component in a build.</td></tr>
         <tr><td><strong>CVSS</strong></td><td>Common Vulnerability Scoring System (0–10) — drives remediation SLAs.</td></tr>
@@ -125,10 +125,10 @@
         <table class="table-sec">
           <tr><th>Aspect</th><th>Security</th><th>Compliance</th></tr>
           <tr><td>Question</td><td>Are we actually protected?</td><td>Can we prove we meet the rules?</td></tr>
-          <tr><td>Driven by</td><td>Threats &amp; risk</td><td>Regulation &amp; standards (SBV, ISO, PCI)</td></tr>
+          <tr><td>Driven by</td><td>Threats &amp; risk</td><td>Regulation &amp; standards (applicable regulations, ISO, industry standards)</td></tr>
           <tr><td>Output</td><td>Controls that reduce risk</td><td>Evidence, audit trail, attestation</td></tr>
         </table>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Compliant ≠ secure. Aim for security first; compliance is a byproduct done right. Both are needed in a regulated bank.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Compliant ≠ secure. Aim for security first; compliance is a byproduct done right. Both are needed in a regulated organization.</div></div>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">CIA Triad &amp; Defense in Depth</div>
@@ -154,13 +154,13 @@
       <div class="card"><div class="card-body">
         <div class="card-title">Standards mapping</div>
         <table class="table-sec">
-          <tr><th>Framework</th><th>Role in this bank</th></tr>
+          <tr><th>Framework</th><th>Role in this organization</th></tr>
           <tr><td><strong>ISO/IEC 27001</strong> (ISMS)</td><td>Management system: risk-based, Statement of Applicability (Annex A controls), continual improvement (PDCA).</td></tr>
           <tr><td><strong>NIST CSF</strong></td><td>Operational framework for cyber functions &amp; maturity.</td></tr>
-          <tr><td><strong>SBV Circular 09/2020/TT-NHNN</strong></td><td>Mandatory IT-safety regulation for credit institutions — segregation of duties, access control, logging, BCP.</td></tr>
-          <tr><td><strong>PCI-DSS</strong></td><td>Cardholder data protection (if in scope).</td></tr>
+          <tr><td><strong>Applicable regulations</strong></td><td>IT-safety requirements that apply to the organization — segregation of duties, access control, logging, BCP.</td></tr>
+          <tr><td><strong>applicable industry standards</strong></td><td>Sensitive data protection requirements (when in scope).</td></tr>
           <tr><td><strong>OWASP</strong> (Top 10, ASVS, SAMM)</td><td>Application security verification &amp; maturity.</td></tr>
-          <tr><td><strong>Third-Party Risk (TPRM)</strong></td><td>Supplier/vendor &amp; outsourcing security due diligence, contract controls &amp; ongoing monitoring — <strong>ISO 27001 A.15</strong> (SBV outsourcing rules).</td></tr>
+          <tr><td><strong>Third-Party Risk (TPRM)</strong></td><td>Supplier/vendor &amp; outsourcing security due diligence, contract controls &amp; ongoing monitoring — <strong>ISO 27001 A.15</strong> (applicable outsourcing requirements).</td></tr>
         </table>
         <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">⬅️</span><div><strong>Shift-left:</strong> security requirements &amp; abuse cases are captured from <strong>Discovery</strong> (with the <a href="#ba">BA</a>), before design threat modeling — per OWASP SAMM / NIST SSDF.</div></div>
       </div></div>
@@ -179,7 +179,7 @@
           <tr><td><strong>Avoid</strong></td><td>Stop the risky activity.</td></tr>
           <tr><td><strong>Accept</strong></td><td>Residual risk within appetite — formally signed off.</td></tr>
         </table>
-        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Banking = high impact: prioritize fraud, transaction integrity, customer data, and availability. Risk acceptance for these needs CISO + business owner sign-off.</div></div>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">📘</span><div>Enterprise systems can have high impact: prioritize abuse prevention, data integrity, customer data, and availability. Risk acceptance for these needs CISO + business owner sign-off.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -236,7 +236,7 @@
           <tr><th style="width:190px">Control</th><th>What it means here</th></tr>
           <tr><td><strong>AuthN</strong></td><td>Centralized SSO (OAuth2/OIDC/SAML) + <strong>MFA</strong> for all privileged &amp; remote access.</td></tr>
           <tr><td><strong>AuthZ</strong></td><td><strong>RBAC</strong> / <strong>ABAC</strong>, enforce <strong>least privilege</strong> &amp; <strong>need-to-know</strong>.</td></tr>
-          <tr><td><strong>Segregation of Duties (SoD)</strong></td><td>No one person controls dev + release + prod (SBV requirement) — see <a href="#deployment">Deployment Runbook</a>.</td></tr>
+          <tr><td><strong>Segregation of Duties (SoD)</strong></td><td>No one person controls dev + release + prod (applicable regulatory requirement) — see <a href="#deployment">Deployment Runbook</a>.</td></tr>
           <tr><td><strong>PAM</strong></td><td>Privileged access via vault, just-in-time, session recording.</td></tr>
           <tr><td><strong>Joiner-Mover-Leaver (JML)</strong></td><td>Provisioning &amp; timely de-provisioning; periodic access recertification.</td></tr>
         </table>
@@ -252,10 +252,10 @@
           <tr><th>Control</th><th>Detail</th></tr>
           <tr><td><strong>Classification</strong></td><td>Public · Internal · Confidential · Restricted — controls scale with class.</td></tr>
           <tr><td><strong>Encryption</strong></td><td>At-rest (AES-256), in-transit (TLS 1.2+); centralized <strong>key management</strong> &amp; rotation (HSM/KMS).</td></tr>
-          <tr><td><strong>Masking / tokenization</strong></td><td>Non-prod data masked; PAN tokenized (PCI).</td></tr>
+          <tr><td><strong>Masking / tokenization</strong></td><td>Non-prod data masked; Sensitive identifiers tokenized where required.</td></tr>
           <tr><td><strong>DLP</strong></td><td>Detect/prevent exfiltration of sensitive data.</td></tr>
           <tr><td><strong>Retention &amp; disposal</strong></td><td>Retention schedule per regulation; secure deletion.</td></tr>
-          <tr><td><strong>Data residency</strong></td><td>In-country storage per SBV.</td></tr>
+          <tr><td><strong>Data residency</strong></td><td>Residency follows applicable legal and contractual requirements.</td></tr>
           <tr><td><strong>Personal data (PDPD)</strong></td><td>Consent, data-subject rights, cross-border transfer &amp; impact assessment per <strong>Decree 13/2023/NĐ-CP (PDPD)</strong>.</td></tr>
         </table>
         <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔗</span><div>Data-classification &amp; privacy obligations are elicited by the <a href="#ba">BA</a> (regulatory scope) and verified by the <a href="#qc">QC</a> team.</div></div>
@@ -288,15 +288,15 @@
     <section class="section-block" id="section-vuln">
       <div class="section-header"><div class="section-icon">🔍</div><div><div class="section-number">Section 09</div><h2>Vulnerability &amp; Patch Management</h2></div></div>
       <div class="card"><div class="card-body">
-        <p>Continuous scanning + risk-based remediation SLAs by <strong>CVSS</strong> severity.</p>
+        <p>Continuous scanning + risk-based remediation SLAs by <strong>CVSS</strong> severity. Each target must be approved in the organization’s vulnerability-management policy.</p>
         <table class="table-sec">
           <tr><th>Severity (CVSS)</th><th>Remediation SLA</th></tr>
-          <tr><td><span style="color:var(--status-red)">Critical (9.0–10)</span></td><td>≤ 24–48h (emergency patch)</td></tr>
-          <tr><td><span style="color:var(--status-yellow)">High (7.0–8.9)</span></td><td>≤ 7 days</td></tr>
-          <tr><td>Medium (4.0–6.9)</td><td>≤ 30 days</td></tr>
-          <tr><td>Low (0.1–3.9)</td><td>≤ 90 days / next cycle</td></tr>
+          <tr><td><span style="color:var(--status-red)">Critical (9.0–10)</span></td><td>Policy-defined emergency target</td></tr>
+          <tr><td><span style="color:var(--status-yellow)">High (7.0–8.9)</span></td><td>Policy-defined accelerated target</td></tr>
+          <tr><td>Medium (4.0–6.9)</td><td>Policy-defined standard target</td></tr>
+          <tr><td>Low (0.1–3.9)</td><td>Policy-defined planned target</td></tr>
         </table>
-        <p style="margin-top:6px;">Annual (or on major change) <strong>penetration testing</strong> + red-team for critical banking systems; track findings to closure.</p>
+        <p style="margin-top:6px;"><strong>Penetration testing</strong> and red-team frequency follows policy, risk, and material-change triggers for critical enterprise systems; track findings to closure.</p>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -314,7 +314,7 @@
           <li class="process-step"><strong class="process-step-title">RECOVER</strong><span class="process-step-detail">restore</span></li>
           <li class="process-step"><strong class="process-step-title">LESSONS LEARNED</strong><span class="process-step-detail">post-incident</span></li>
         </ol>
-        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Regulatory breach notification timelines apply (SBV / data-protection). Coordinate operational restoration with the <a href="#ops">Operations &amp; SRE Runbook</a> (major incident &amp; DR).</div></div>
+        <div class="alert alert-warning" style="margin-top:6px;"><span class="alert-icon">📘</span><div>Regulatory breach notification timelines apply (applicable regulations and data-protection requirements). Coordinate operational restoration with the <a href="#ops">Operations &amp; SRE Runbook</a> (major incident &amp; DR).</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -325,7 +325,7 @@
       <div class="card"><div class="card-body">
         <p>Maintain a <strong>control mapping</strong>: regulation clause → control → owner → evidence. Keep audit-ready at all times.</p>
         <table class="table-sec">
-          <tr><th>SBV 09/2020 theme</th><th>Control</th><th>Evidence</th></tr>
+          <tr><th>Regulatory theme</th><th>Control</th><th>Evidence</th></tr>
           <tr><td>Access control &amp; SoD</td><td>RBAC, PAM, JML, recertification</td><td>Access reviews, PAM logs</td></tr>
           <tr><td>Logging &amp; monitoring</td><td>SIEM, audit trails (immutable)</td><td>Log retention, SOC reports</td></tr>
           <tr><td>Change management</td><td>CAB approval, segregation</td><td>Change records (see Deployment)</td></tr>
@@ -370,7 +370,7 @@
     <div class="section-divider"></div>
 
     <div class="card"><div class="card-body">
-      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> ISO/IEC 27001 &amp; 27002 (ISMS, Annex A controls); NIST Cybersecurity Framework &amp; SP 800-61 (Incident Handling); OWASP Top 10 (2021), ASVS, SAMM; PCI-DSS; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Mapped to SBV Circular 09/2020/TT-NHNN.</div></div>
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> ISO/IEC 27001 &amp; 27002 (ISMS, Annex A controls); NIST Cybersecurity Framework &amp; SP 800-61 (Incident Handling); OWASP Top 10 (2021), ASVS, SAMM; applicable industry standards; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Mapped to applicable regulations.</div></div>
     </div></div>
 
   <!-- GENERATED ROLE TEMPLATE LIBRARY: START -->
@@ -420,8 +420,8 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Security &amp; Compliance Runbook v2.0 · Public Edition · Classification: PUBLIC<br/>
-    Aligned with ISO 27001 · NIST CSF · OWASP · PCI-DSS · SBV Circular 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Security &amp; Compliance Runbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    Aligned with ISO 27001 · NIST CSF · OWASP · applicable industry standards · applicable regulations · © 2025
   </footer>
 </div>
 </div>

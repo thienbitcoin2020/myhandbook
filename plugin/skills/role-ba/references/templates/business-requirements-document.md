@@ -140,7 +140,7 @@ Phần này đảm bảo chất lượng và độ ổn định của hệ thố
 | NFR-01 | Hiệu năng (Performance) | Thời gian phản hồi API < 200ms cho 95% request. Chịu tải 10,000 CCU (Concurrent Users) không bị crash. |
 | NFR-02 | Bảo mật (Security) | Tuân thủ OWASP Top 10. Mật khẩu mã hóa Bcrypt/Argon2. Phân quyền RBAC chặt chẽ (theo Epic Users & Permissions). |
 | NFR-03 | SLA (Service Level Agreement) | Uptime: 99.9% (cho phép downtime bảo trì có thông báo trước). RPO (Recovery Point Objective): < 1 giờ. RTO (Recovery Time Objective): < 4 giờ. |
-| NFR-04 | UX/UI Standard | Tuân thủ Design System của HDBank. Tương thích Mobile Web (Responsive). |
+| NFR-04 | UX/UI Standard | Tuân thủ Design System của BP. Tương thích Mobile Web (Responsive). |
 
 ##### **2. Định nghĩa Hoàn thành (Definition of Done - DoD)**
 

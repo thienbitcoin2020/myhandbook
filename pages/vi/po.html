@@ -21,11 +21,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🎯</div>
+    <div class="role-badge">
+      <div class="role-icon">🎯</div>
       <div>
-        <div class="bank-title">Product Owner Handbook</div>
-        <div class="bank-sub">Scrum Guide 2020 · Hướng outcome</div>
+        <div class="role-title">Product Owner Handbook</div>
+        <div class="role-sub">Scrum Guide 2020 · Hướng outcome</div>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v2.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-17<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -94,7 +94,7 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🎯 Handbook nội bộ · Bám chuẩn Scrum Guide 2020</div>
+    <div class="header-eyebrow">🎯 Cẩm nang triển khai · Bám chuẩn Scrum Guide 2020</div>
     <h1>Product Owner (PO)<br/><span>Vai trò, Discovery &amp; Giao giá trị</span></h1>
     <p>Tài liệu tham chiếu cho vai trò Product Owner xuyên suốt SDLC — bám nền Scrum Guide 2020, mở rộng với quản trị sản phẩm hiện đại (discovery, hướng outcome) và thực hành hybrid PMBOK 7. Thuật ngữ chuẩn Scrum được gắn nhãn <span class="src src-scrum">Scrum 2020</span>; phần còn lại ghi rõ nguồn <span class="src src-ext">Mở rộng</span>.</p>
     <div class="header-pills">
@@ -436,13 +436,13 @@ sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
         <div class="card-title">Acceptance Criteria — hai kiểu viết</div>
         <table class="table-po">
           <tr><th>Given-When-Then (Gherkin)</th><th>Theo quy tắc (checklist)</th></tr>
-          <tr><td><code>Given</code> khách hàng đã đăng nhập với tài khoản đã xác minh,<br/><code>When</code> họ chuyển khoản ≤ số dư,<br/><code>Then</code> giao dịch thành công và cả hai số dư cập nhật.</td><td>• Số tiền chuyển phải &gt; 0 và ≤ số dư.<br/>• Tài khoản bị khoá/đóng băng không được chuyển.<br/>• Hai số dư cập nhật nguyên tử (atomic).<br/>• Ghi một dòng audit log.</td></tr>
+          <tr><td><code>Given</code> khách hàng đã đăng nhập với hồ sơ đã xác minh,<br/><code>When</code> họ cập nhật địa chỉ giao hàng ưu tiên,<br/><code>Then</code> địa chỉ được lưu và hiển thị xác nhận.</td><td>• Các trường địa chỉ bắt buộc phải hợp lệ.<br/>• Không cho chọn khu vực chưa được hỗ trợ.<br/>• Cập nhật hồ sơ phải nguyên tử (atomic).<br/>• Ghi một dòng audit log.</td></tr>
         </table>
         <p style="margin-top:6px;">Dùng <strong>Given-When-Then</strong> cho hành vi/kịch bản (hợp với BDD); <strong>theo quy tắc</strong> cho danh sách business rule/ràng buộc.</p>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">NFR, ràng buộc &amp; PRD</div>
-        <p><strong>Yêu cầu phi chức năng &amp; ràng buộc</strong> phải <strong>đo được</strong>: hiệu năng (P95 latency), bảo mật, khả dụng (SLA%), usability, tuân thủ (SBV / ISO 27001). Ghi nhận dưới dạng backlog item, AC của story, hoặc Definition of Done toàn cục.</p>
+        <p><strong>Yêu cầu phi chức năng &amp; ràng buộc</strong> phải <strong>đo được</strong>: hiệu năng (P95 latency), bảo mật, khả dụng (SLA%), usability, tuân thủ (yêu cầu pháp lý / ISO 27001). Ghi nhận dưới dạng backlog item, AC của story, hoặc Definition of Done toàn cục.</p>
         <p style="margin-top:6px;"><strong>PRD / product spec <span class="src src-ext">hybrid / PMBOK 7</span>:</strong> với sáng kiến lớn hoặc chịu quản lý, một PRD gọn (vấn đề, mục tiêu, non-goals, chỉ số thành công, phạm vi, rủi ro) bổ trợ — nhưng không thay thế — một backlog tiến hoá.</p>
       </div></div>
       <div class="card"><div class="card-body">
@@ -514,7 +514,7 @@ sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
       </div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <div class="card-title">Ví dụ áp dụng — RICE</div>
-        <pre class="art-block">Tính năng: Thanh toán hoá đơn một chạm
+        <pre class="art-block">Tính năng: Đổi lịch hẹn một chạm
   Reach      = 8.000 người dùng/quý
   Impact     = 2   (rất lớn=3, cao=2, vừa=1, thấp=.5)
   Confidence = 80% = 0.8
@@ -554,7 +554,7 @@ sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
         <table class="table-po">
           <tr><th style="color:var(--status-green)">✔ Dùng để</th><th style="color:var(--status-red)">✘ KHÔNG dùng để</th></tr>
           <tr><td>Dự báo năng lực của <em>một</em> đội cho Sprint / release kế tiếp.</td><td>So sánh hay xếp hạng các đội khác nhau.</td></tr>
-          <tr><td>Nhìn xu hướng của chính đội đó theo thời gian.</td><td>Làm chỉ tiêu hay KPI hiệu suất (định luật Goodhart → gian lận số).</td></tr>
+          <tr><td>Nhìn xu hướng của chính đội đó theo thời gian.</td><td>Làm chỉ tiêu hay KPI hiệu suất (định luật Goodhart → lách số liệu).</td></tr>
           <tr><td>Ước dải dự báo cho một bản phát hành.</td><td>Đo hiệu suất cá nhân.</td></tr>
         </table>
         <p style="margin-top:6px;"><code>Velocity = trung bình story point hoàn thành (đạt DoD) mỗi Sprint</code> — công cụ lập kế hoạch, không bao giờ là mục tiêu.</p>
@@ -702,8 +702,8 @@ sản phẩm của chúng ta [điểm khác biệt then chốt].</pre>
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Product Owner Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
-    Bám chuẩn Scrum Guide 2020 · Hybrid PMBOK 7 · Thông tư 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Product Owner Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    Bám chuẩn Scrum Guide 2020 · Hybrid PMBOK 7 · quy định pháp luật áp dụng · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

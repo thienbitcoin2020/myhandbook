@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/security-requirements-checklist.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · SECURITY & COMPLIANCESECURITY REQUIREMENTS CHECKLISTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · SECURITY & COMPLIANCESECURITY REQUIREMENTS CHECKLISTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|
@@ -26,7 +26,7 @@
 |---|---|---|
 | Loại ứng dụng & mức nhạy cảm dữ liệu: [MÔ TẢ] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 | ASVS Level mục tiêu: [L1 / L2 / L3 — nếu chưa rõ, đề xuất dựa trên rủi ro] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
-| Ràng buộc compliance: [GDPR / PCI DSS / ISO 27001 / KHÔNG] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
+| Ràng buộc compliance: [GDPR / tiêu chuẩn an toàn ngành áp dụng / ISO 27001 / KHÔNG] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 
 ### 2. Nội dung tài liệu
 

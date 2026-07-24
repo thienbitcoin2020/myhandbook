@@ -1,19 +1,19 @@
 ---
 name: role-ba
 description: >-
-  IT Business Analyst skill from the Power Home Handbook (BABOK v3, 9 BA phases). Use when the
-  user asks about BA responsibilities, requirements elicitation, strategy analysis, BRD/SRS
-  documentation, use case specifications, requirements traceability (RTM), NFR frameworks, UAT
-  planning and sign-off, change requests after baseline, BA quality gates (SMART/INVEST), or asks
-  to draft any BA document from the handbook templates.
+  IT Business Analyst skill from the BP Handbook (BABOK v3, 9 BA phases). Use when the user asks
+  about BA responsibilities, requirements elicitation, strategy analysis, BRD/SRS documentation,
+  use case specifications, requirements traceability (RTM), NFR frameworks, UAT planning and
+  sign-off, change requests after baseline, BA quality gates (SMART/INVEST), or asks to draft any
+  BA document from the handbook templates.
 ---
 
-# Business Analyst — Power Home Handbook
+# Business Analyst — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Business Analyst** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Business Analyst** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: elicitation, analysis & documentation, validation, design support, UAT, PIR.
 2. For anything beyond the summary here, load `references/handbook-ba.md`
    — it is the full chapter, extracted verbatim from the handbook page.

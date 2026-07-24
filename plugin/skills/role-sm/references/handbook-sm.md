@@ -1,8 +1,8 @@
 # Scrum Master — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/sm.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/sm.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🌀 Internal Handbook · Scrum Guide 2020 Aligned
+🌀 Public Handbook · Scrum Guide 2020 Aligned
 
 ## Scrum Master (SM)
 
@@ -279,6 +279,6 @@ Section 13
 
 **Sources.** Scrum Guide 2020 (Schwaber & Sutherland). Extended: Robert Greenleaf (Servant Leadership); John Whitmore (GROW); Bruce Tuckman (team stages); Amy Edmondson & Google Project Aristotle (psychological safety); Derby & Larsen (Agile Retrospectives); Scrum.org (Nexus), LeSS, SAFe (scaling). PMBOK 7 for the PM boundary.
 
-🏦 Handbook · Scrum Master Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Scrum Master Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with Scrum Guide 2020 · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with Scrum Guide 2020 · Hybrid SDLC · applicable regulations · © 2025

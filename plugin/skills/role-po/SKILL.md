@@ -1,19 +1,19 @@
 ---
 name: role-po
 description: >-
-  Product Owner skill from the Power Home Handbook (Scrum Guide 2020, outcome-driven). Use when
-  the user asks about PO responsibilities, product vision or roadmap, product discovery, backlog
+  Product Owner skill from the BP Handbook (Scrum Guide 2020, outcome-driven). Use when the user
+  asks about PO responsibilities, product vision or roadmap, product discovery, backlog
   management or refinement, prioritization (MoSCoW, RICE, WSJF, Kano), writing epics and user
   stories with acceptance criteria, DoR/DoD, release and value metrics, or asks to draft a PRD,
   product vision board, or split an epic into stories.
 ---
 
-# Product Owner — Power Home Handbook
+# Product Owner — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Product Owner** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Product Owner** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: vision & strategy, discovery, backlog, prioritization, Scrum events, release & value.
 2. For anything beyond the summary here, load `references/handbook-po.md`
    — it is the full chapter, extracted verbatim from the handbook page.

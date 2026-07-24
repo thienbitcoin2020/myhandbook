@@ -1,19 +1,19 @@
 ---
 name: role-deployment
 description: >-
-  Release Manager / Deployment skill from the Power Home Handbook (Hybrid Water-Scrum-Fall
-  release governance, SBV compliant). Use when the user asks about the 12-step release pipeline,
-  CAB and ECAB procedure, segregation of duties, performance and security test gates, the release
-  Definition of Done checklist, the executable deploy and rollback runbook (blue-green, canary),
-  the 72-hour hypercare watch, or operations handover.
+  Release Manager / Deployment skill from the BP Handbook (Hybrid Water-Scrum-Fall release
+  governance and regulatory compliance). Use when the user asks about the 12-step release
+  pipeline, CAB and ECAB procedure, segregation of duties, performance and security test gates,
+  the release Definition of Done checklist, the executable deploy and rollback runbook
+  (blue-green, canary), the policy-defined hypercare watch, or operations handover.
 ---
 
-# Release Manager / Deployment — Power Home Handbook
+# Release Manager / Deployment — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Release Manager / Deployment** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Release Manager / Deployment** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: governance & SoD, release pipeline, CAB, release DoD, deploy & rollback, hypercare.
 2. For anything beyond the summary here, load `references/handbook-deployment.md`
    — it is the full chapter, extracted verbatim from the handbook page.

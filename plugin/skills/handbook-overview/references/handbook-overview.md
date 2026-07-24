@@ -1,14 +1,14 @@
-# Power Home Handbook — Overview, SDLC & Governance — full handbook chapter
+# BP Handbook — Overview, SDLC & Governance — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/handbook.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/handbook.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-📘 Internal Handbook · Hybrid Water-Scrum-Fall
+📘 Public Handbook · Hybrid Water-Scrum-Fall
 
 ## Project Implementation
 
 ## Handbook
 
-The single entry point for the bank's project delivery knowledge base, governing the journey from **idea to closure**. Use the pipeline below, browse the handbook map, see how every role aligns to one lifecycle, or jump straight in by role.
+The single entry point for the organization's project delivery knowledge base, governing the journey from **idea to closure**. Use the pipeline below, browse the handbook map, see how every role aligns to one lifecycle, or jump straight in by role.
 
 01Implementation Pipeline 02Handbook Map & Roles 03Delivery Lifecycle
 
@@ -120,7 +120,7 @@ Security & Compliance
 
 Owner · CISO / Security
 
-ISO 27001 · NIST CSF · OWASP · SBV 09/2020: risk, DevSecOps, IAM, data protection, audit.
+ISO 27001 · NIST CSF · OWASP · applicable regulations: risk, DevSecOps, IAM, data protection, audit.
 
 Open →
 
@@ -192,7 +192,7 @@ Structured governance around iterative delivery
 
 Hybrid Water-Scrum-Fall
 
-The bank runs a **hybrid model**: structured Waterfall governance & phase gates (planning, approvals, UAT, CAB, release) wrapped around Agile/Scrum sprint delivery. Governance discipline gives auditability for a regulated environment; Agile execution keeps delivery iterative.
+The organization runs a **hybrid model**: structured Waterfall governance & phase gates (planning, approvals, UAT, CAB, release) wrapped around Agile/Scrum sprint delivery. Governance discipline gives auditability for a regulated environment; Agile execution keeps delivery iterative.
 
 - **Waterfall gates:** Strategy & Planning, Requirements sign-off, UAT, CAB & release approval.
 
@@ -246,7 +246,7 @@ Your starting point for navigating the project implementation lifecycle
 
 Purpose Statement
 
-This handbook is the **single canonical entry point** for the bank's project pipeline from **idea to closure**. It acts as the parent umbrella over eleven specialist role handbooks — the PMO Governance & Portfolio, PM Project Handbook, Product Owner Handbook, Scrum Master Handbook, BA Project Handbook, UX/UI Designer Handbook, Solution Architect Handbook, Security & Compliance, QC Testing Handbook, Operations & SRE, and Deployment Runbook — consolidating the lifecycle map and linking to each source of truth without duplicating specialist content.
+This handbook is the **single canonical entry point** for the organization's project pipeline from **idea to closure**. It acts as the parent umbrella over eleven specialist role handbooks — the PMO Governance & Portfolio, PM Project Handbook, Product Owner Handbook, Scrum Master Handbook, BA Project Handbook, UX/UI Designer Handbook, Solution Architect Handbook, Security & Compliance, QC Testing Handbook, Operations & SRE, and Deployment Runbook — consolidating the lifecycle map and linking to each source of truth without duplicating specialist content.
 
 Who Should Read This
 
@@ -308,7 +308,7 @@ Content Ownership Rules
 | Portfolio & PMO governance — intake, RAID, EVM/benefits, assurance, reporting | PMO Governance & Portfolio | Summary + deep link (no duplication) |
 | Scrum facilitation — servant leadership, events, impediments, team health | Scrum Master Handbook | Summary + deep link (no duplication) |
 | Product design — research, IA, UI, design system, accessibility | UX/UI Designer Handbook | Summary + deep link (no duplication) |
-| Information security & compliance — ISMS, DevSecOps, IAM, audit, SBV/ISO | Security & Compliance | Summary + deep link (no duplication) |
+| Information security & compliance — ISMS, DevSecOps, IAM, audit, regulatory requirements / ISO | Security & Compliance | Summary + deep link (no duplication) |
 | Run & reliability — SLO, observability, incident, DR/BCP | Operations & SRE | Summary + deep link (no duplication) |
 | Test strategy & process, test levels/types, defect lifecycle, QC metrics | QC Testing Handbook | Summary + deep link (no duplication) |
 | Deployment steps, release checklist, CAB, rollback | Deployment Runbook | Summary + deep link (no duplication) |
@@ -554,7 +554,7 @@ Key Activities
 
 - **Kickoff** — all-hands kickoff meeting. Present Charter, introduce team, review timeline, set communication cadence.
 
-- **Regulatory screening** — identify applicable regulations (SBV, Decree 13/2023, PCI-DSS). Engage Compliance and Op Risk early.
+- **Regulatory screening** — identify the applicable laws, Decree 13/2023, and relevant industry standards. Engage Compliance and Op Risk early.
 
 - **Tailoring decision** — confirm whether the project runs Waterfall, Agile, Kanban, SAFe, or Hybrid, and document what governance practices are mandatory.
 
@@ -582,7 +582,7 @@ Phase 3
 
 Hybrid Water-Scrum-Fall — from requirements to release-ready
 
-**Purpose:** Execute the approved project using the bank's Hybrid SDLC — Waterfall governance gates wrapping Agile sprint execution.
+**Purpose:** Execute the approved project using the organization's Hybrid SDLC — Waterfall governance gates wrapping Agile sprint execution.
 
 ℹ️
 
@@ -681,7 +681,7 @@ Section 3.2 · ↗ External Page
 
 Full process documented in the BA Project Handbook page
 
-At this bank, requirements analysis follows the **BABOK® v3** framework across 9 phases. The BA team engages at project kickoff and maintains requirements traceability throughout the SDLC.
+At this organization, requirements analysis follows the **BABOK® v3** framework across 9 phases. The BA team engages at project kickoff and maintains requirements traceability throughout the SDLC.
 
 **Key artifacts produced:**
 
@@ -862,9 +862,9 @@ Entry Criteria (GTM Readiness Gate)
 
 | Phase | Audience | Duration | Success Criteria | Kill Criteria |
 |---|---|---|---|---|
-| Internal Launch | Internal staff only | 1–2 weeks | Staff feedback collected, critical UX issues fixed | P1 defects found, security gaps |
-| Beta (Closed) | Selected customers (opt-in, NDA) | 2–4 weeks | NPS ≥ 30, retention ≥ 70%, no P1 issues | NPS < 10, > 3 P1 defects |
-| Soft Launch | Limited market segment (geo/cohort) | 2–4 weeks | Conversion target hit, support volume manageable | Conversion < 50% of target |
+| Internal Launch | Internal staff only | Per approved GTM plan | Staff feedback collected, critical UX issues fixed | P1 defects found, security gaps |
+| Beta (Closed) | Selected customers (opt-in, NDA) | Per approved GTM plan | Approved NPS/retention targets met; no P1 issues | Approved KPI floor breached or P1 threshold exceeded |
+| Soft Launch | Limited market segment (geo/cohort) | Per approved GTM plan | Conversion target hit, support volume manageable | Approved conversion floor breached |
 | General Availability (GA) | All target customers | Ongoing | Revenue/adoption targets per business case | — |
 
 - **Positioning & messaging** — define value proposition, target persona, competitive differentiation.
@@ -881,14 +881,14 @@ Entry Criteria (GTM Readiness Gate)
 |---|---|---|
 | Adoption | DAU/MAU, activation rate, feature adoption % | Defined in business case |
 | Revenue | ARR contribution, ARPU, conversion rate | Finance BP model |
-| Satisfaction | NPS, CSAT, app store rating | NPS ≥ 30, CSAT ≥ 4.0 |
+| Satisfaction | NPS, CSAT, app store rating | Approved in the business case |
 | Operational | Support ticket volume, P1 incidents, uptime | Per SLA targets |
 
 Exit Criteria & Handoff
 
 - GA launch completed
 
-- 30-day KPIs reviewed and documented
+- First post-launch KPI review completed on the approved cadence
 
 - Support runbook handed off to BAU team
 
@@ -944,11 +944,11 @@ Post-launch BAU operations, monitoring, and continuous improvement
 
 i
 
-**Typical timeline:** intensive first **72 hours** (release watch) → elevated support for **2–4 weeks** (stabilization) → formal exit to BAU + PIR.
+**Tailored timeline:** intensive release watch → elevated stabilization support → formal exit to BAU + PIR. Define duration and review cadence in the approved release and support policy.
 
 | Who | Does in hypercare | Source of truth |
 |---|---|---|
-| Release Manager | 72-hour release watch; rollback decision; Go/No-Go to close watch | Deployment Runbook (Phase 4) |
+| Release Manager | Policy-defined release watch; rollback decision; Go/No-Go to close watch | Deployment Runbook (Phase 4) |
 | Ops / SRE | On-call, monitoring, incident & problem mgmt, SLO watch | Operations & SRE Runbook |
 | Business Analyst | Business-user Q&A, fast-path clarifications, defect triage (req vs impl) | BA Handbook (Phase 7) |
 | Dev team | On standby for hotfixes; root-cause of escaped defects | Sprint / this handbook §3 |
@@ -962,23 +962,25 @@ Key Activities
 
 - **Monitoring & alerting** — 24/7 monitoring of production systems. Alert thresholds configured per SLA.
 
-- **Incident management** — P1 response within 15 min. Post-incident review (PIR) within 48 hours.
+- **Incident management** — P1 response and post-incident review (PIR) targets are defined by the approved incident policy.
 
-- **Patch management** — security patches within SLA (Critical: 24h, High: 7d, Medium: 30d).
+- **Patch management** — security patches follow risk-based SLAs approved by the organization.
 
 - **Change management** — all production changes go through CAB. Standard, Normal, Emergency change types per ITIL.
 
 - **Continuous improvement** — monthly review of system health metrics. Quarterly capacity planning.
 
-- **Compliance maintenance** — periodic regulatory audits. Evidence collection for SBV, ISO 27001 recertification.
+- **Compliance maintenance** — periodic regulatory audits. Collect evidence for regulatory reviews and ISO 27001 recertification.
 
-SLA Targets (Standard)
+Example SLA Tailoring Matrix
+
+Reference values only. Each organization must approve targets by service criticality, contract, risk appetite, and operating model.
 
 | Tier | Availability | RTO | RPO | Support Hours |
 |---|---|---|---|---|
-| Tier 1 (Core Banking) | 99.95% | 1 hour | 15 min | 24/7 |
-| Tier 2 (Digital Channels) | 99.9% | 4 hours | 1 hour | 24/7 |
-| Tier 3 (Internal Tools) | 99.5% | 8 hours | 4 hours | Business hours |
+| Tier 1 (Core Platform) | Approved high-availability target | Approved critical-service RTO | Approved critical-service RPO | Policy-defined coverage |
+| Tier 2 (Digital Channels) | Approved service target | Approved service RTO | Approved service RPO | Policy-defined coverage |
+| Tier 3 (Internal Tools) | Approved internal-service target | Approved internal-service RTO | Approved internal-service RPO | Policy-defined coverage |
 
 Handbook › 7. Stakeholders & RACI
 
@@ -1072,7 +1074,7 @@ Additional governance acronyms
 | PBR | Product Backlog Refinement — ceremony to groom upcoming stories. |
 | PIR | Post-Implementation Review — evaluation after project/incident closure. |
 | RAG | Red / Amber / Green status indicator used in project reporting. |
-| SBV | State Bank of Vietnam — central banking regulator. |
+| Regulator | Applicable supervisory authority. |
 | UAT | User Acceptance Testing — business validation of the solution. |
 | WBS | Work Breakdown Structure — decomposition of deliverables into manageable work packages. |
 | WSJF | Weighted Shortest Job First — prioritization formula (Cost of Delay ÷ Job Size). |
@@ -1594,6 +1596,6 @@ v1.0 — 2026-Q2 (Initial Release)
 | Added | Quality gates section with DoR, Sprint DoD, and Release DoD checklists. |
 | Note | Sections 3.2 and 3.9 intentionally link to other handbook pages. Content is NOT duplicated. |
 
-🏦 Handbook · Project Implementation Handbook v2.0 · Last updated 2026-07-20 · Owner: Thiện Phạm (Power Home PO)
+📘 Handbook · Project Implementation Handbook v2.0 · Last updated 2026-07-20 · Owner: Thiện Phạm (BP Handbook Owner)
 
-Classification: PUBLIC · SBV Circular 09/2020/TT-NHNN · ISO 27001 Aligned · © 2025
+Classification: PUBLIC · applicable regulations · ISO 27001 Aligned · © 2025

@@ -1,20 +1,20 @@
 {
   "name": "project-handbook",
-  "displayName": "Power Home Project Handbook",
+  "displayName": "BP Project Handbook",
   "version": "0.5.0",
-  "description": "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) with 42 document templates",
+  "description": "BP SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, Security, Ops, Deployment, PMO) with 42 document templates",
   "author": {
     "name": "thienbitcoin2020",
     "email": "thienbitcoin2020@gmail.com",
     "url": "https://github.com/thienbitcoin2020"
   },
-  "homepage": "https://project-handbook.vercel.app/#plugin",
+  "homepage": "https://myhandbook.vercel.app/#plugin",
   "repository": "https://github.com/thienbitcoin2020/myhandbook",
   "keywords": [
     "sdlc",
     "handbook",
     "templates",
-    "banking",
+    "enterprise",
     "water-scrum-fall"
   ]
 }

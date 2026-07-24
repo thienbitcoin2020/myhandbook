@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/pmo-charter-governance-framework.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · PMO GOVERNANCE & PORTFOLIOPMO CHARTER & GOVERNANCE FRAMEWORKMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · PMO GOVERNANCE & PORTFOLIOPMO CHARTER & GOVERNANCE FRAMEWORKMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

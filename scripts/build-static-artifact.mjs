@@ -22,7 +22,7 @@ const VERSION_REPLACEMENTS = Object.freeze([
   },
   {
     label: 'deployment sidebar versions',
-    pattern: /(<div class="bank-sub">)v\d+(?:\.\d+)*/g,
+    pattern: /(<div class="role-sub">)v\d+(?:\.\d+)*/g,
     expected: 2,
   },
   {

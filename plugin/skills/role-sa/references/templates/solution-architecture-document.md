@@ -42,7 +42,7 @@ Best practice: quality goals quyết định kiến trúc nhiều hơn FR. Mỗi
 |---|---|---|
 | 1 | [VD: Performance] | [VD: 95% request API < 500ms tại peak [ĐIỀN] concurrent users] |
 | 2 | [VD: Availability] | [VD: SLA ≥ 99.9%/tháng; RTO ≤ [ĐIỀN], RPO ≤ [ĐIỀN]] |
-| 3 | [VD: Security] | [VD: Tuân thủ [ĐIỀN chuẩn — ISO 27001 / PCI-DSS / NĐ 13]] |
+| 3 | [VD: Security] | [VD: Tuân thủ [ĐIỀN chuẩn — ISO 27001 / tiêu chuẩn ngành phù hợp / NĐ 13]] |
 | 4 | [ĐIỀN] | [ĐIỀN] |
 | 5 | [ĐIỀN] | [ĐIỀN] |
 
@@ -78,7 +78,7 @@ Best practice: quality goals quyết định kiến trúc nhiều hơn FR. Mỗi
 | ID | Ràng buộc | Nguồn / Lý do |
 |---|---|---|
 | RC-01 | [VD: Bảo vệ dữ liệu cá nhân theo [ĐIỀN — VD: Nghị định 13/2023/NĐ-CP]] | [Pháp lý] |
-| RC-02 | [VD: Quy định ngành [ĐIỀN — VD: SBV, PCI-DSS, ISO 27001]] | [ĐIỀN] |
+| RC-02 | [VD: Quy định ngành [ĐIỀN — VD: cơ quan quản lý, tiêu chuẩn ngành phù hợp, ISO 27001]] | [ĐIỀN] |
 | RC-03 | [VD: Dữ liệu phải lưu trữ tại [ĐIỀN — data residency]] | [ĐIỀN] |
 
 ### **3. Context & Scope (Bối cảnh & Phạm vi)**

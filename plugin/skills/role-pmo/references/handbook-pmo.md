@@ -1,8 +1,8 @@
 # PMO Governance & Portfolio — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/pmo.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/pmo.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🏢 Internal Handbook · PMI · P3O · Portfolio Governance
+🏢 Public Handbook · PMI · P3O · Portfolio Governance
 
 ## PMO Governance
 
@@ -110,7 +110,7 @@ Section 03
 |---|---|---|
 | Investment / Portfolio Board | Funding, prioritization, kill decisions | Quarterly / monthly |
 | Steering Committee | Phase-gate approval, major change, escalation | Monthly |
-| CAB | Change/release risk (see Deployment) | Weekly |
+| CAB | Change/release risk (see Deployment) | Organization-defined cadence |
 | PMO Operations | Standards, reporting, assurance | Continuous |
 
 📏
@@ -300,7 +300,7 @@ Section 13
 
 📚
 
-**Sources.** PMI — PMBOK Guide 7th Ed., The Standard for Portfolio Management, Managing Change in Organizations; **P3O** (Portfolio, Programme & Project Offices — Axelos); **MSP** / **MoP** (programme & portfolio, Axelos); Earned Value Management (PMI/ANSI EIA-748); Cooper (Stage-Gate). Aligned to SBV governance expectations.
+**Sources.** PMI — PMBOK Guide 7th Ed., The Standard for Portfolio Management, Managing Change in Organizations; **P3O** (Portfolio, Programme & Project Offices — Axelos); **MSP** / **MoP** (programme & portfolio, Axelos); Earned Value Management (PMI/ANSI EIA-748); Cooper (Stage-Gate). Aligned to enterprise governance expectations.
 
 📥
 
@@ -350,6 +350,6 @@ SupportsSponsor · PM · PO · Finance
 
 Read document→
 
-🏦 Handbook · PMO Governance & Portfolio v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · PMO Governance & Portfolio v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with PMI · P3O · EVM · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with PMI · P3O · EVM · Hybrid SDLC · applicable regulations · © 2025

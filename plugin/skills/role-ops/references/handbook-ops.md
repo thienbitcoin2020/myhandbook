@@ -1,14 +1,14 @@
 # Operations & SRE — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/ops.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/ops.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🛰️ Internal Runbook · Google SRE · ITIL 4 · DORA
+🛰️ Operations Runbook · Google SRE · ITIL 4 · DORA
 
 ## Operations & SRE
 
 ## Run, Reliability & Continuity
 
-Reference for running the product in production — service reliability (SRE), observability, incident & problem management, disaster recovery and business continuity. Grounded in Google SRE, ITIL 4, and the DORA metrics, for a regulated banking environment.
+Reference for running the product in production — service reliability (SRE), observability, incident & problem management, disaster recovery and business continuity. Grounded in Google SRE, ITIL 4, and the DORA metrics, for a regulated enterprise environment.
 
 SLO-driven
 
@@ -54,7 +54,7 @@ DevOps vs SRE vs Ops (ITIL)
 
 ℹ️
 
-This runbook blends all three: SRE reliability engineering + ITIL service management discipline needed for banking governance/audit.
+This runbook blends all three: SRE reliability engineering + ITIL service management discipline needed for enterprise governance/audit.
 
 🎯
 
@@ -101,8 +101,8 @@ Severity matrix
 
 | Sev | Impact | Response | Target |
 |---|---|---|---|
-| SEV1 | Critical outage / data loss / payments down | All-hands, war room, exec comms | ack < 15 min |
-| SEV2 | Major degradation, partial outage | On-call + SME, incident channel | ack < 30 min |
+| SEV1 | Critical outage / data loss / critical service unavailable | All-hands, war room, exec comms | Per incident policy |
+| SEV2 | Major degradation, partial outage | On-call + SME, incident channel | Per incident policy |
 | SEV3 | Minor / workaround exists | Normal on-call | next business day |
 
 Incident lifecycle & roles
@@ -117,7 +117,7 @@ Incident lifecycle & roles
 
 - **POSTMORTEM**blameless RCA
 
-Key roles: **Incident Commander (IC)** (coordinates, decides), **Comms Lead** (stakeholder updates), **Ops/SME** (fix). Security incidents → coordinate with Security & Compliance (SBV breach notification).
+Key roles: **Incident Commander (IC)** (coordinates, decides), **Comms Lead** (stakeholder updates), **Ops/SME** (fix). Security incidents → coordinate with Security & Compliance (regulatory breach-notification requirements).
 
 🔬
 
@@ -188,9 +188,9 @@ Section 08
 | Warm standby | minutes / seconds | $$$ |
 | Multi-site active-active | ~0 / ~0 | $$$$ |
 
-🏦
+📘
 
-Banking-critical systems need tested failover with defined RTO/RPO. **Test DR regularly** (SBV expects evidence) — an untested DR plan is a liability, not an asset.
+Enterprise-critical systems need tested failover with defined RTO/RPO. **Test DR regularly** (governance requires evidence) — an untested DR plan is a liability, not an asset.
 
 🏛️
 
@@ -282,7 +282,7 @@ Section 13
 
 📚
 
-**Sources.** Google SRE (Site Reliability Engineering, The SRE Workbook — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / Accelerate (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to SBV Circular 09/2020/TT-NHNN.
+**Sources.** Google SRE (Site Reliability Engineering, The SRE Workbook — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / Accelerate (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to applicable regulations.
 
 📥
 
@@ -332,6 +332,6 @@ SupportsDev · SA · Security · PM
 
 Read document→
 
-🏦 Handbook · Operations & SRE Runbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Operations & SRE Runbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · applicable regulations · © 2025

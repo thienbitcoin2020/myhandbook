@@ -1,19 +1,19 @@
 ---
 name: role-qc
 description: >-
-  QC / Testing skill from the Power Home Handbook (ISTQB CTFL v4.0). Use when the user asks about
-  the seven-step test process, test levels (unit/integration/system/UAT) and the V-model, test
-  types, test design techniques (equivalence partitioning, boundary values, decision tables,
-  state transitions), risk-based testing, entry/exit criteria, the defect lifecycle and severity
-  vs priority, QC deliverables and metrics, or asks to draft a test plan for a feature or release.
+  QC / Testing skill from the BP Handbook (ISTQB CTFL v4.0). Use when the user asks about the
+  seven-step test process, test levels (unit/integration/system/UAT) and the V-model, test types,
+  test design techniques (equivalence partitioning, boundary values, decision tables, state
+  transitions), risk-based testing, entry/exit criteria, the defect lifecycle and severity vs
+  priority, QC deliverables and metrics, or asks to draft a test plan for a feature or release.
 ---
 
-# QC / Tester — Power Home Handbook
+# QC / Tester — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **QC / Tester** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **QC / Tester** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: test process, levels & types, design techniques, risk-based testing, defect lifecycle.
 2. For anything beyond the summary here, load `references/handbook-qc.md`
    — it is the full chapter, extracted verbatim from the handbook page.

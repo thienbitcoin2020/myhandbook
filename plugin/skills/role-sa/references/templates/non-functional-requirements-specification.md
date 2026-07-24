@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/non-functional-requirements-specification.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · SOLUTION ARCHITECTNFR SPECIFICATIONMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · SOLUTION ARCHITECTNFR SPECIFICATIONMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|
@@ -26,7 +26,7 @@
 |---|---|---|
 | Lượng user / traffic dự kiến (hiện tại & 2 năm tới): [...] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 | Mức độ quan trọng của hệ thống: [mission-critical / business-critical / internal] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
-| Yêu cầu tuân thủ: [GDPR / PCI DSS / nghị định địa phương...] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
+| Yêu cầu tuân thủ: [GDPR / tiêu chuẩn an toàn ngành áp dụng / nghị định địa phương...] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 
 ### 2. Nội dung tài liệu
 

@@ -2,7 +2,7 @@
 """Generate role-owned DOCX templates from the reviewed Vietnamese prompt pack.
 
 The prompt pack remains the content source. This builder deliberately keeps all
-unknown project facts as [ĐIỀN...] fields, applies one Power Home document
+unknown project facts as [ĐIỀN...] fields, applies one BP document
 system, scrubs OOXML metadata, and emits the matching in-browser HTML preview.
 
 Run one role at a time so the generation log and review scope remain explicit:
@@ -587,7 +587,7 @@ def configure_page(doc, role_label: str, title: str) -> None:
     hp = header.paragraphs[0]
     hp.alignment = WD_ALIGN_PARAGRAPH.LEFT
     hp.paragraph_format.space_after = Pt(2)
-    set_run(hp.add_run("POWER HOME  "), size=8.5, color=POWER_RED, bold=True)
+    set_run(hp.add_run("BP  "), size=8.5, color=POWER_RED, bold=True)
     set_run(hp.add_run(f"|  {role_label}"), size=8.5, color=MUTED, bold=True)
 
     footer = section.footer
@@ -610,7 +610,7 @@ def add_cover(doc, record: PromptRecord, role_label: str) -> None:
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(52)
     p.paragraph_format.space_after = Pt(10)
-    set_run(p.add_run(f"POWER HOME · {role_label}"), size=10, color=POWER_RED, bold=True)
+    set_run(p.add_run(f"BP · {role_label}"), size=10, color=POWER_RED, bold=True)
 
     title = record.heading
     title = re.sub(r"^Prompt sinh\s+", "", title, flags=re.IGNORECASE)
@@ -761,7 +761,7 @@ def build_document(record: PromptRecord, role: str, role_label: str, destination
     title = re.sub(r"^Prompt sinh\s+", "", record.heading, flags=re.IGNORECASE)
     configure_page(doc, role_label, title)
     doc.core_properties.title = title
-    doc.core_properties.subject = f"Power Home {role_label} master template"
+    doc.core_properties.subject = f"BP {role_label} master template"
     doc.core_properties.author = ""
     doc.core_properties.last_modified_by = ""
     doc.core_properties.comments = "Generated from the reviewed role prompt pack; PIC review required."

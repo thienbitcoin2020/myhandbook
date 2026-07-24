@@ -1,19 +1,19 @@
 ---
 name: role-ops
 description: >-
-  Operations & SRE skill from the Power Home Handbook (Google SRE, ITIL 4, DORA). Use when the
-  user asks about SLI/SLO/SLA and error budgets, observability and golden signals, incident
-  management and severity levels, blameless postmortems and RCA, change and release operations,
-  capacity and toil, disaster recovery (RTO/RPO) and business continuity, runbooks and
-  automation, DORA metrics, on-call and escalation, or asks to draft a postmortem.
+  Operations & SRE skill from the BP Handbook (Google SRE, ITIL 4, DORA). Use when the user asks
+  about SLI/SLO/SLA and error budgets, observability and golden signals, incident management and
+  severity levels, blameless postmortems and RCA, change and release operations, capacity and
+  toil, disaster recovery (RTO/RPO) and business continuity, runbooks and automation, DORA
+  metrics, on-call and escalation, or asks to draft a postmortem.
 ---
 
-# Operations & SRE — Power Home Handbook
+# Operations & SRE — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Operations & SRE** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Operations & SRE** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: SLO & error budget, observability, incident & problem, DR/BCP, DORA, on-call.
 2. For anything beyond the summary here, load `references/handbook-ops.md`
    — it is the full chapter, extracted verbatim from the handbook page.

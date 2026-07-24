@@ -1,14 +1,14 @@
 # Security & Compliance — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/sec.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/sec.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🛡️ Internal Runbook · ISO 27001 · NIST CSF · SBV 09/2020
+🛡️ Security Playbook · ISO 27001 · NIST CSF · applicable regulations
 
 ## Security & Compliance
 
 ## Governance & Controls Runbook
 
-Reference for information security & regulatory compliance across the SDLC — grounded in ISO/IEC 27001, the NIST Cybersecurity Framework, OWASP, and mapped to SBV Circular 09/2020/TT-NHNN and PCI-DSS for a Vietnamese commercial bank. Security is built in, not bolted on.
+Reference for information security & regulatory compliance across the SDLC — grounded in ISO/IEC 27001, the NIST Cybersecurity Framework, OWASP, and mapped to applicable regulations and applicable industry standards for an enterprise delivery organization. Security is built in, not bolted on.
 
 ISO 27001 ISMS
 
@@ -28,7 +28,7 @@ New to security & compliance? Skim these first — they appear throughout this r
 | ISMS / SoA | Information Security Management System (ISO 27001) / Statement of Applicability — which Annex A controls apply and why. |
 | IAM · RBAC · PAM · JML | Identity & Access Management; Role-Based Access Control; Privileged Access Management; Joiner-Mover-Leaver provisioning. |
 | MFA · SSO · OIDC | Multi-Factor Authentication; Single Sign-On; OpenID Connect — authentication building blocks. |
-| SoD | Segregation of Duties — no one person controls dev + test + production release (SBV mandate). |
+| SoD | Segregation of Duties — no one person controls dev + test + production release (governance requirement). |
 | SAST / DAST / SCA | Static / Dynamic security scanning of code; Software Composition Analysis (dependency CVEs). |
 | SBOM | Software Bill of Materials — inventory of every component in a build. |
 | CVSS | Common Vulnerability Scoring System (0–10) — drives remediation SLAs. |
@@ -49,12 +49,12 @@ Security vs Compliance
 | Aspect | Security | Compliance |
 |---|---|---|
 | Question | Are we actually protected? | Can we prove we meet the rules? |
-| Driven by | Threats & risk | Regulation & standards (SBV, ISO, PCI) |
+| Driven by | Threats & risk | Regulation & standards (applicable regulations, ISO, industry standards) |
 | Output | Controls that reduce risk | Evidence, audit trail, attestation |
 
 ℹ️
 
-Compliant ≠ secure. Aim for security first; compliance is a byproduct done right. Both are needed in a regulated bank.
+Compliant ≠ secure. Aim for security first; compliance is a byproduct done right. Both are needed in a regulated organization.
 
 CIA Triad & Defense in Depth
 
@@ -82,14 +82,14 @@ NIST CSF — 5 core functions NIST
 
 Standards mapping
 
-| Framework | Role in this bank |
+| Framework | Role in this organization |
 |---|---|
 | ISO/IEC 27001 (ISMS) | Management system: risk-based, Statement of Applicability (Annex A controls), continual improvement (PDCA). |
 | NIST CSF | Operational framework for cyber functions & maturity. |
-| SBV Circular 09/2020/TT-NHNN | Mandatory IT-safety regulation for credit institutions — segregation of duties, access control, logging, BCP. |
-| PCI-DSS | Cardholder data protection (if in scope). |
+| Applicable regulations | IT-safety requirements that apply to the organization — segregation of duties, access control, logging, BCP. |
+| applicable industry standards | Sensitive data protection requirements (when in scope). |
 | OWASP (Top 10, ASVS, SAMM) | Application security verification & maturity. |
-| Third-Party Risk (TPRM) | Supplier/vendor & outsourcing security due diligence, contract controls & ongoing monitoring — ISO 27001 A.15 (SBV outsourcing rules). |
+| Third-Party Risk (TPRM) | Supplier/vendor & outsourcing security due diligence, contract controls & ongoing monitoring — ISO 27001 A.15 (applicable outsourcing requirements). |
 
 ⬅️
 
@@ -110,9 +110,9 @@ Section 03
 | Avoid | Stop the risky activity. |
 | Accept | Residual risk within appetite — formally signed off. |
 
-🏦
+📘
 
-Banking = high impact: prioritize fraud, transaction integrity, customer data, and availability. Risk acceptance for these needs CISO + business owner sign-off.
+Enterprise systems can have high impact: prioritize abuse prevention, data integrity, customer data, and availability. Risk acceptance for these needs CISO + business owner sign-off.
 
 🔄
 
@@ -173,7 +173,7 @@ Section 06
 |---|---|
 | AuthN | Centralized SSO (OAuth2/OIDC/SAML) + MFA for all privileged & remote access. |
 | AuthZ | RBAC / ABAC, enforce least privilege & need-to-know. |
-| Segregation of Duties (SoD) | No one person controls dev + release + prod (SBV requirement) — see Deployment Runbook. |
+| Segregation of Duties (SoD) | No one person controls dev + release + prod (applicable regulatory requirement) — see Deployment Runbook. |
 | PAM | Privileged access via vault, just-in-time, session recording. |
 | Joiner-Mover-Leaver (JML) | Provisioning & timely de-provisioning; periodic access recertification. |
 
@@ -187,10 +187,10 @@ Section 07
 |---|---|
 | Classification | Public · Internal · Confidential · Restricted — controls scale with class. |
 | Encryption | At-rest (AES-256), in-transit (TLS 1.2+); centralized key management & rotation (HSM/KMS). |
-| Masking / tokenization | Non-prod data masked; PAN tokenized (PCI). |
+| Masking / tokenization | Non-prod data masked; Sensitive identifiers tokenized where required. |
 | DLP | Detect/prevent exfiltration of sensitive data. |
 | Retention & disposal | Retention schedule per regulation; secure deletion. |
-| Data residency | In-country storage per SBV. |
+| Data residency | Residency follows applicable legal and contractual requirements. |
 | Personal data (PDPD) | Consent, data-subject rights, cross-border transfer & impact assessment per Decree 13/2023/NĐ-CP (PDPD). |
 
 🔗
@@ -223,16 +223,16 @@ Section 09
 
 ### Vulnerability & Patch Management
 
-Continuous scanning + risk-based remediation SLAs by **CVSS** severity.
+Continuous scanning + risk-based remediation SLAs by **CVSS** severity. Each target must be approved in the organization’s vulnerability-management policy.
 
 | Severity (CVSS) | Remediation SLA |
 |---|---|
-| Critical (9.0–10) | ≤ 24–48h (emergency patch) |
-| High (7.0–8.9) | ≤ 7 days |
-| Medium (4.0–6.9) | ≤ 30 days |
-| Low (0.1–3.9) | ≤ 90 days / next cycle |
+| Critical (9.0–10) | Policy-defined emergency target |
+| High (7.0–8.9) | Policy-defined accelerated target |
+| Medium (4.0–6.9) | Policy-defined standard target |
+| Low (0.1–3.9) | Policy-defined planned target |
 
-Annual (or on major change) **penetration testing** + red-team for critical banking systems; track findings to closure.
+**Penetration testing** and red-team frequency follows policy, risk, and material-change triggers for critical enterprise systems; track findings to closure.
 
 🚨
 
@@ -254,9 +254,9 @@ Section 10
 
 - **LESSONS LEARNED**post-incident
 
-🏦
+📘
 
-Regulatory breach notification timelines apply (SBV / data-protection). Coordinate operational restoration with the Operations & SRE Runbook (major incident & DR).
+Regulatory breach notification timelines apply (applicable regulations and data-protection requirements). Coordinate operational restoration with the Operations & SRE Runbook (major incident & DR).
 
 📋
 
@@ -266,7 +266,7 @@ Section 11
 
 Maintain a **control mapping**: regulation clause → control → owner → evidence. Keep audit-ready at all times.
 
-| SBV 09/2020 theme | Control | Evidence |
+| Regulatory theme | Control | Evidence |
 |---|---|---|
 | Access control & SoD | RBAC, PAM, JML, recertification | Access reviews, PAM logs |
 | Logging & monitoring | SIEM, audit trails (immutable) | Log retention, SOC reports |
@@ -325,7 +325,7 @@ Section 13
 
 📚
 
-**Sources.** ISO/IEC 27001 & 27002 (ISMS, Annex A controls); NIST Cybersecurity Framework & SP 800-61 (Incident Handling); OWASP Top 10 (2021), ASVS, SAMM; PCI-DSS; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Mapped to SBV Circular 09/2020/TT-NHNN.
+**Sources.** ISO/IEC 27001 & 27002 (ISMS, Annex A controls); NIST Cybersecurity Framework & SP 800-61 (Incident Handling); OWASP Top 10 (2021), ASVS, SAMM; applicable industry standards; CIS Benchmarks; CVSS (FIRST); STRIDE (Microsoft). Mapped to applicable regulations.
 
 📥
 
@@ -385,6 +385,6 @@ SupportsSA · Dev · SRE · PM
 
 Read document→
 
-🏦 Handbook · Security & Compliance Runbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Security & Compliance Runbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with ISO 27001 · NIST CSF · OWASP · PCI-DSS · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with ISO 27001 · NIST CSF · OWASP · applicable industry standards · applicable regulations · © 2025

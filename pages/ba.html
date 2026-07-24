@@ -55,11 +55,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">📋</div>
+    <div class="role-badge">
+      <div class="role-icon">📋</div>
       <div>
-        <div class="bank-title">BA Project Handbook</div>
-        <div class="bank-sub">BABOK® v3 · Hybrid SDLC</div>
+        <div class="role-title">BA Project Handbook</div>
+        <div class="role-sub">BABOK® v3 · Hybrid SDLC</div>
       </div>
     </div>
   </div>
@@ -100,12 +100,12 @@
   <div class="sidebar-compliance">
     <span class="comp-pill">📘 BABOK® v3</span>
     <span class="comp-pill">🔀 Hybrid SDLC</span>
-    <span class="comp-pill">🏦 SBV 09/2020</span>
+    <span class="comp-pill">📘 applicable regulations</span>
   </div>
 
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-17<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
@@ -125,14 +125,14 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">📋 Internal Handbook · BABOK® v3 Aligned</div>
+    <div class="header-eyebrow">📋 Public Handbook · BABOK® v3 Aligned</div>
     <h1>Business Analyst<br/><span>Project Implementation Handbook</span></h1>
-    <p>A comprehensive guide to the Business Analyst workflow within the bank's <strong>Hybrid Water-Scrum-Fall</strong> SDLC model.</p>
+    <p>A comprehensive guide to the Business Analyst workflow within the organization's <strong>Hybrid Water-Scrum-Fall</strong> SDLC model.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> BABOK® Guide v3</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-yellow)"></div> Hybrid Water-Scrum-Fall</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-green)"></div> 9 BA Phases</div>
-      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> SBV Compliant</div>
+      <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Regulation aligned</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-red)"></div> PUBLIC EDITION</div>
     </div>
   </header>
@@ -172,14 +172,14 @@
       <div class="card" style="margin-bottom:16px;">
         <div class="card-body">
           <div class="card-title">What This Handbook Is</div>
-          <p style="margin-bottom:12px;">This handbook defines the <strong>Business Analyst (BA) workflow</strong> for all software implementation projects at the bank. It documents BA responsibilities, deliverables, interaction points, and quality gates across every phase of project execution.</p>
+          <p style="margin-bottom:12px;">This handbook defines the <strong>Business Analyst (BA) workflow</strong> for all software implementation projects at the organization. It documents BA responsibilities, deliverables, interaction points, and quality gates across every phase of project execution.</p>
           <p>It is designed to be <strong>read by the entire project team</strong> so that every stakeholder understands what to expect from the BA function.</p>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
         <div class="info-tile"><div class="info-tile-icon">👩‍💼</div><div class="info-tile-title">Primary Audience</div><div class="info-tile-desc">Business Analysts · Project Managers · Solution Architects · QA Leads · Product Owners</div></div>
         <div class="info-tile"><div class="info-tile-icon">📖</div><div class="info-tile-title">Secondary Audience</div><div class="info-tile-desc">Development Teams · Business Stakeholders · Compliance Officers · UX/UI Designers</div></div>
-        <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Governing Framework</div><div class="info-tile-desc">BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · SBV Circular 09/2020/TT-NHNN</div></div>
+        <div class="info-tile"><div class="info-tile-icon">⚙️</div><div class="info-tile-title">Governing Framework</div><div class="info-tile-desc">BABOK® Guide v3 · IEEE 830 · ISO/IEC 25010 · applicable regulations</div></div>
       </div>
       <div class="alert alert-info" style="margin-top:16px;">
         <span class="alert-icon">ℹ️</span>
@@ -285,7 +285,7 @@
               <li><span class="step-num">3</span><div><strong>Conduct initial interviews</strong> — capture objectives, KPIs/OKRs, pain points. Do not propose solutions yet.</div></li>
               <li><span class="step-num">4</span><div><strong>Define Business Need Statement</strong>: <span class="mono">"The [stakeholder] needs [capability] in order to achieve [outcome] because [rationale]."</span></div></li>
               <li><span class="step-num">5</span><div><strong>Establish BA Plan</strong> — elicitation methods, tools, review cadence, deliverables per phase, RACI for BA outputs.</div></li>
-              <li><span class="step-num">6</span><div><strong>Identify compliance/regulatory scope</strong> early — SBV Circular 09/2020, Decree 13/2023, PCI-DSS if card data in scope.</div></li>
+              <li><span class="step-num">6</span><div><strong>Identify compliance/regulatory scope</strong> early — applicable regulations, Decree 13/2023, applicable industry standards when regulated data is in scope.</div></li>
             </ol>
           </div></div>
         </div>
@@ -562,8 +562,8 @@
       <div class="alert alert-warning"><span class="alert-icon">📐</span><div><strong>Rule:</strong> Every NFR must be <strong>measurable</strong>. ❌ <em>"The system shall be fast"</em> — ✅ <em>"P95 response time shall be &lt; 500ms at 1,000 concurrent users"</em></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;" class="grid-2col">
         <div class="callout-box" style="background:var(--status-blue-bg);border-color:rgba(96,165,250,0.3);"><div class="callout-title" style="color:var(--status-blue);">⚡ Performance Efficiency</div><div class="callout-body" style="color:var(--text-secondary);">Response time · Throughput · Resource utilization<br/><em style="font-size:11px;">e.g., P95 API response &lt; 500ms, 99.5% uptime SLA</em></div></div>
-        <div class="callout-box" style="background:var(--status-red-bg);border-color:rgba(248,113,113,0.3);"><div class="callout-title" style="color:var(--status-red);">🔒 Security</div><div class="callout-body" style="color:var(--text-secondary);">Authentication · Authorization · Encryption at rest/transit · Audit logging<br/><em style="font-size:11px;">Must comply with SBV 09/2020, Decree 13/2023</em></div></div>
-        <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.3);"><div class="callout-title" style="color:var(--status-green);">🛡️ Reliability</div><div class="callout-body" style="color:var(--text-secondary);">Availability (SLA%) · Fault tolerance · RTO / RPO<br/><em style="font-size:11px;">e.g., RTO &lt; 4h, RPO &lt; 1h for core banking systems</em></div></div>
+        <div class="callout-box" style="background:var(--status-red-bg);border-color:rgba(248,113,113,0.3);"><div class="callout-title" style="color:var(--status-red);">🔒 Security</div><div class="callout-body" style="color:var(--text-secondary);">Authentication · Authorization · Encryption at rest/transit · Audit logging<br/><em style="font-size:11px;">Must comply with applicable regulations, Decree 13/2023</em></div></div>
+        <div class="callout-box" style="background:var(--status-green-bg);border-color:rgba(52,211,153,0.3);"><div class="callout-title" style="color:var(--status-green);">🛡️ Reliability</div><div class="callout-body" style="color:var(--text-secondary);">Availability (SLA%) · Fault tolerance · RTO / RPO<br/><em style="font-size:11px;">e.g., RTO and RPO approved for the service tier</em></div></div>
         <div class="callout-box" style="background:var(--status-yellow-bg);border-color:rgba(251,191,36,0.3);"><div class="callout-title" style="color:var(--status-yellow);">♿ Usability</div><div class="callout-body" style="color:var(--text-secondary);">Learnability · Accessibility (WCAG 2.1 AA minimum) · UX<br/><em style="font-size:11px;">e.g., new user completes core task within 3 minutes unassisted</em></div></div>
       </div>
     </section>
@@ -681,8 +681,8 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · BA Project Implementation Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
-    Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+    📘 Handbook · BA Project Implementation Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    Aligned with BABOK® Guide v3 · Hybrid Water-Scrum-Fall SDLC · applicable regulations · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

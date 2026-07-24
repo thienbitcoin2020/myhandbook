@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/compliance-gap-checklist.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · SECURITY & COMPLIANCECOMPLIANCE GAP CHECKLISTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · SECURITY & COMPLIANCECOMPLIANCE GAP CHECKLISTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

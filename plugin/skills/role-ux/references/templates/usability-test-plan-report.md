@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/usability-test-plan-report.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · UX/UI DESIGNERUSABILITY TEST PLAN & REPORTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · UX/UI DESIGNERUSABILITY TEST PLAN & REPORTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

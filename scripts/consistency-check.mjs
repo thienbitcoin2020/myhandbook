@@ -319,7 +319,7 @@ for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
   if (!exists(relative)) continue;
   const html = read(relative);
   const marketplaceAdd = 'claude plugin marketplace add thienbitcoin2020/myhandbook';
-  const fullInstall = `${marketplaceAdd}; claude plugin install project-handbook@power-home-handbook`;
+  const fullInstall = `${marketplaceAdd}; claude plugin install project-handbook@bp-project-handbook`;
   const anchors = [...html.matchAll(/<a\b([^>]*)>/g)].map(match => match[1]);
   const copyCommands = [...html.matchAll(/<button\b([^>]*\bdata-copy="([^"]+)"[^>]*)>/g)]
     .map(match => match[2]);
@@ -357,7 +357,7 @@ for (const relative of ['pages/plugin.html', 'pages/vi/plugin.html']) {
     if (!discovered.has(spec.role)) {
       fail('plugin-distribution', `${relative} does not expose ${spec.path}`);
     }
-    const roleInstall = `${marketplaceAdd}; claude plugin install project-handbook-${spec.role}@power-home-handbook`;
+    const roleInstall = `${marketplaceAdd}; claude plugin install project-handbook-${spec.role}@bp-project-handbook`;
     if (copyCommands.filter(command => command === roleInstall).length !== 1) {
       fail('plugin-distribution', `${relative} must expose one one-paste install command for ${spec.role}`);
     }

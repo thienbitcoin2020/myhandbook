@@ -16,11 +16,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🛰️</div>
+    <div class="role-badge">
+      <div class="role-icon">🛰️</div>
       <div>
-        <div class="bank-title">Operations &amp; SRE</div>
-        <div class="bank-sub">Google SRE · ITIL 4 · DORA</div>
+        <div class="role-title">Operations &amp; SRE</div>
+        <div class="role-sub">Google SRE · ITIL 4 · DORA</div>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-16<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
@@ -82,9 +82,9 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🛰️ Internal Runbook · Google SRE · ITIL 4 · DORA</div>
+    <div class="header-eyebrow">🛰️ Operations Runbook · Google SRE · ITIL 4 · DORA</div>
     <h1>Operations &amp; SRE<br/><span>Run, Reliability &amp; Continuity</span></h1>
-    <p>Reference for running the product in production — service reliability (SRE), observability, incident &amp; problem management, disaster recovery and business continuity. Grounded in Google SRE, ITIL 4, and the DORA metrics, for a regulated banking environment.</p>
+    <p>Reference for running the product in production — service reliability (SRE), observability, incident &amp; problem management, disaster recovery and business continuity. Grounded in Google SRE, ITIL 4, and the DORA metrics, for a regulated enterprise environment.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> SLO-driven</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Observability</div>
@@ -128,7 +128,7 @@
           <tr><td><strong>SRE</strong></td><td>Reliability as engineering — SLOs, error budgets, reduce toil</td><td>SLI/SLO, error budget, automation</td></tr>
           <tr><td><strong>Ops (ITIL 4)</strong></td><td>Service management — incident/problem/change, service value</td><td>Runbooks, CMDB, service desk</td></tr>
         </table>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>This runbook blends all three: SRE reliability engineering + ITIL service management discipline needed for banking governance/audit.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>This runbook blends all three: SRE reliability engineering + ITIL service management discipline needed for enterprise governance/audit.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -174,8 +174,8 @@
         <div class="card-title">Severity matrix</div>
         <table class="table-ops">
           <tr><th>Sev</th><th>Impact</th><th>Response</th><th>Target</th></tr>
-          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Critical outage / data loss / payments down</td><td>All-hands, war room, exec comms</td><td>ack &lt; 15 min</td></tr>
-          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Major degradation, partial outage</td><td>On-call + SME, incident channel</td><td>ack &lt; 30 min</td></tr>
+          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Critical outage / data loss / critical service unavailable</td><td>All-hands, war room, exec comms</td><td>Per incident policy</td></tr>
+          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Major degradation, partial outage</td><td>On-call + SME, incident channel</td><td>Per incident policy</td></tr>
           <tr><td><strong>SEV3</strong></td><td>Minor / workaround exists</td><td>Normal on-call</td><td>next business day</td></tr>
         </table>
       </div></div>
@@ -188,7 +188,7 @@
           <li class="process-step"><strong class="process-step-title">RESOLVE</strong><span class="process-step-detail">confirm SLO met</span></li>
           <li class="process-step"><strong class="process-step-title">POSTMORTEM</strong><span class="process-step-detail">blameless RCA</span></li>
         </ol>
-        <p style="margin-top:6px;">Key roles: <strong>Incident Commander (IC)</strong> (coordinates, decides), <strong>Comms Lead</strong> (stakeholder updates), <strong>Ops/SME</strong> (fix). Security incidents → coordinate with <a href="#sec">Security &amp; Compliance</a> (SBV breach notification).</p>
+        <p style="margin-top:6px;">Key roles: <strong>Incident Commander (IC)</strong> (coordinates, decides), <strong>Comms Lead</strong> (stakeholder updates), <strong>Ops/SME</strong> (fix). Security incidents → coordinate with <a href="#sec">Security &amp; Compliance</a> (regulatory breach-notification requirements).</p>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -255,7 +255,7 @@
           <tr><td>Warm standby</td><td>minutes / seconds</td><td>$$$</td></tr>
           <tr><td>Multi-site active-active</td><td>~0 / ~0</td><td>$$$$</td></tr>
         </table>
-        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Banking-critical systems need tested failover with defined RTO/RPO. <strong>Test DR regularly</strong> (SBV expects evidence) — an untested DR plan is a liability, not an asset.</div></div>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">📘</span><div>Enterprise-critical systems need tested failover with defined RTO/RPO. <strong>Test DR regularly</strong> (governance requires evidence) — an untested DR plan is a liability, not an asset.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -336,7 +336,7 @@
     <div class="section-divider"></div>
 
     <div class="card"><div class="card-body">
-      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to SBV Circular 09/2020/TT-NHNN.</div></div>
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budgets, toil, golden signals); ITIL 4 (incident/problem/change/service management); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — four key metrics); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Aligned to applicable regulations.</div></div>
     </div></div>
 
   <!-- GENERATED ROLE TEMPLATE LIBRARY: START -->
@@ -379,8 +379,8 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Operations &amp; SRE Runbook v2.0 · Public Edition · Classification: PUBLIC<br/>
-    Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · SBV Circular 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Operations &amp; SRE Runbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    Aligned with Google SRE · ITIL 4 · DORA · ISO 22301 · applicable regulations · © 2025
   </footer>
 </div>
 </div>

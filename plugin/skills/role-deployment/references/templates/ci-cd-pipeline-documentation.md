@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/ci-cd-pipeline-documentation.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · DEPLOYMENT / DEVOPSCI/CD PIPELINE DOCUMENTATIONMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · DEPLOYMENT / DEVOPSCI/CD PIPELINE DOCUMENTATIONMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

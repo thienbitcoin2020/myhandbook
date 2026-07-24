@@ -1,17 +1,17 @@
-# 📘 Hướng dẫn sử dụng — Power Home Project Handbook
+# 📘 Hướng dẫn sử dụng — BP Project Handbook
 
 > **Phân loại: CÔNG KHAI (PUBLIC) — chỉ bản công khai.**
 > Tài liệu này hướng dẫn sử dụng toàn bộ trang web Handbook tại
 > `project-handbook.vercel.app`. Thuật ngữ chuẩn (route, template, DoD, RACI…)
 > giữ nguyên tiếng Anh theo chính sách thuật ngữ của cẩm nang.
 >
-> Chủ quản: Thiện Phạm (Power Home PO) · Phiên bản HDSD: 1.0 · Cập nhật: 2026-07-21
+> Chủ quản: Thiện Phạm (BP Handbook Owner) · Phiên bản HDSD: 1.0 · Cập nhật: 2026-07-21
 
 ---
 
 ## 1. Handbook là gì?
 
-Một trang web nội bộ gom **toàn bộ tri thức triển khai dự án** của ngân hàng
+Một trang web công khai gom **toàn bộ tri thức triển khai dự án** của tổ chức
 theo mô hình Hybrid Water-Scrum-Fall, gồm:
 
 - **1 cẩm nang tổng** (Trang chủ) — vòng đời dự án từ ý tưởng đến vận hành;
@@ -45,7 +45,7 @@ trang (F5) vẫn giữ nguyên chỗ cũ.
 
 Mọi trang có 3 vùng cố định:
 
-1. **Thanh đầu trang (topbar):** logo Power Home (bấm để về Trang chủ), nhãn
+1. **Thanh đầu trang (topbar):** logo BP (bấm để về Trang chủ), nhãn
    phân loại, và ô **tìm kiếm toàn cẩm nang**.
 2. **Sidebar trái:** mục lục của trang đang mở + nút chuyển theme/ngôn ngữ +
    khối **Document Control** (phiên bản, ngày cập nhật, phân loại) + liên kết

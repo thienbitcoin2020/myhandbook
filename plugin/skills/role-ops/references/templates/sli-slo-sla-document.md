@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/sli-slo-sla-document.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · OPERATIONS & SRESLI/SLO/SLA DOCUMENTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · OPERATIONS & SRESLI/SLO/SLA DOCUMENTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|
@@ -25,7 +25,7 @@
 | Đầu vào bắt buộc | Giá trị / Tham chiếu | Trạng thái |
 |---|---|---|
 | Dịch vụ/tính năng trong phạm vi: [LIỆT KÊ] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
-| Kỳ vọng nghiệp vụ: [VD: THANH TOÁN KHÔNG ĐƯỢC GIÁN ĐOẠN QUÁ X PHÚT] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
+| Kỳ vọng nghiệp vụ: [VD: DỊCH VỤ TRỌNG YẾU KHÔNG ĐƯỢC GIÁN ĐOẠN QUÁ X PHÚT] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 | Công cụ monitoring hiện có: [PROMETHEUS / DATADOG / CLOUDWATCH...] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 | Cam kết hợp đồng với khách hàng (nếu có): [DÁN ĐIỀU KHOẢN] | [ĐIỀN: nội dung hoặc đường dẫn nguồn] | [CẦN XÁC NHẬN] |
 

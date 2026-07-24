@@ -1,8 +1,8 @@
-# Power Home Project Handbook — Claude Plugin
+# BP Project Handbook — Claude Plugin
 
 v0.5.0 · generated from the handbook source by `scripts/build-plugin.py`
 
-Installs the entire Power Home SDLC handbook as role-based Claude skills, so
+Installs the entire BP SDLC handbook as role-based Claude skills, so
 anyone with the plugin can ask role questions and draft handbook-standard
 documents without the original handbook.
 
@@ -10,7 +10,7 @@ documents without the original handbook.
 
 | Skill | Role | Templates |
 |---|---|---|
-| `handbook-overview` | Power Home Handbook — Overview, SDLC & Governance | 0 |
+| `handbook-overview` | BP Handbook — Overview, SDLC & Governance | 0 |
 | `role-po` | Product Owner | 3 |
 | `role-ba` | Business Analyst | 4 |
 | `role-pm` | Project Manager | 4 |
@@ -30,7 +30,7 @@ previews used by the in-page reader and DOCX downloads.
 
 - **Cowork / Claude desktop:** drag & drop `project-handbook.plugin` into the chat.
 - **Claude Code (persistent, one paste):** run
-  `claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@power-home-handbook`.
+  `claude plugin marketplace add thienbitcoin2020/myhandbook; claude plugin install project-handbook@bp-project-handbook`.
 - **Claude Code (local test):** extract the archive, then run
   `claude --plugin-dir ./project-handbook`.
 
@@ -60,8 +60,8 @@ chapter remains useful for facilitation, coaching, impediments and team health.
 ## Example prompts
 
 - "Draft a BRD for feature X using the handbook template"
-- "Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook"
-- "Viết Project Charter cho dự án onboarding số theo template Power Home"
+- "Phân rã epic quản lý đơn hàng thành user stories theo chuẩn INVEST của handbook"
+- "Viết Project Charter cho dự án onboarding số theo template BP"
 - "What does the handbook say about the release DoD before CAB?"
 - "Draft a blameless postmortem for yesterday's SEV2"
 

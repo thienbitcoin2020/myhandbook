@@ -18,11 +18,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🏛️</div>
+    <div class="role-badge">
+      <div class="role-icon">🏛️</div>
       <div>
-        <div class="bank-title">Solution Architect Handbook</div>
-        <div class="bank-sub">TOGAF · C4 · arc42 · Well-Architected</div>
+        <div class="role-title">Solution Architect Handbook</div>
+        <div class="role-sub">TOGAF · C4 · arc42 · Well-Architected</div>
       </div>
     </div>
   </div>
@@ -65,13 +65,13 @@
   <div class="sidebar-compliance">
     <span class="comp-pill">🏛️ arc42 · C4</span>
     <span class="comp-pill">☁️ Well-Architected</span>
-    <span class="comp-pill">🏦 SBV · ISO 27001</span>
+    <span class="comp-pill">📘 applicable regulations · ISO 27001</span>
   </div>
 
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-17<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
@@ -90,7 +90,7 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🏛️ Internal Handbook · TOGAF · C4 · arc42 · Well-Architected</div>
+    <div class="header-eyebrow">🏛️ Public Handbook · TOGAF · C4 · arc42 · Well-Architected</div>
     <h1>Solution Architect (SA)<br/><span>Solution Design &amp; Governance</span></h1>
     <p>Reference for the end-to-end Solution Architect role — translating business requirements and enterprise constraints into a buildable, operable technical solution. Grounded in the C4 model, arc42, ADRs, and the AWS/Azure Well-Architected Framework, interfacing with Enterprise Architecture (TOGAF Phase G).</p>
     <div class="header-pills">
@@ -162,7 +162,7 @@
       <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Section 02</div><h2>Requirements Intake &amp; Scope</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>Take the BRD/SRS &amp; user stories from the <a href="#ba">BA</a>/<a href="#po">PO</a>, clarify technical scope, and set explicit <strong>in/out of scope</strong>. Anchor with a <strong>System Context diagram (C4 Level 1)</strong>.</p>
-        <figure class="diagram diagram--context" role="group" aria-label="C4 Level 1 system context: Customer uses New Solution, which connects to Core Banking and Identity / SSO. Notification Svc is also shown in the context without an explicit relationship.">
+        <figure class="diagram diagram--context" role="group" aria-label="C4 Level 1 system context: Customer uses New Solution, which connects to Core Platform and Identity / SSO. Notification Svc is also shown in the context without an explicit relationship.">
           <div class="diagram-title">C4 L1 — SYSTEM CONTEXT</div>
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--primary" role="list" aria-label="Primary system context path">
@@ -170,7 +170,7 @@
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">New Solution</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Banking</span></div>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Platform</span></div>
             </div>
             <div class="diagram-branch diagram-branch--context" role="list" aria-label="New Solution dependencies">
               <div class="diagram-branch-item diagram-branch-item--identity" role="listitem">
@@ -202,18 +202,18 @@
           <tr><td><strong>Security</strong></td><td>AuthN/Z, encryption, compliance</td><td>OAuth2/OIDC · TLS1.2+ · AES-256</td></tr>
           <tr><td><strong>Maintainability</strong></td><td>Modularity, coupling, test coverage</td><td>Clear module boundaries</td></tr>
           <tr><td><strong>Observability</strong></td><td>Logs, metrics, traces</td><td>3 pillars wired from day one</td></tr>
-          <tr><td><strong>Compliance</strong></td><td>Regulatory controls</td><td>SBV 09/2020 · ISO 27001 · PCI-DSS</td></tr>
+          <tr><td><strong>Compliance</strong></td><td>Regulatory controls</td><td>applicable regulations · ISO 27001 · applicable industry standards</td></tr>
           <tr><td><strong>Cost</strong></td><td>TCO, unit economics</td><td>Within cloud budget envelope</td></tr>
         </table>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Quality Attribute Scenario <span class="pill-tag">SEI</span></div>
         <pre class="art-block">SOURCE   : 10,000 concurrent users
-STIMULUS : submit fund-transfer requests
-ARTIFACT : payment API
+STIMULUS : submit service requests
+ARTIFACT : order API
 ENVIRON. : normal peak-hour operation
 RESPONSE : requests processed &amp; confirmed
-MEASURE  : P95 latency &lt; 300 ms, 0 lost transactions</pre>
+MEASURE  : P95 latency &lt; 300 ms, 0 lost requests</pre>
         <p>A testable NFR statement the QC team can later verify — see the <a href="#qc">QC Testing Handbook</a> (non-functional testing).</p>
       </div></div>
     </section>
@@ -225,8 +225,8 @@ MEASURE  : P95 latency &lt; 300 ms, 0 lost transactions</pre>
       <div class="card"><div class="card-body">
         <table class="table-sa">
           <tr><th>Type</th><th>Examples</th></tr>
-          <tr><td><strong>Technical</strong></td><td>Must integrate with existing core banking; approved tech stack only; on-prem + cloud hybrid.</td></tr>
-          <tr><td><strong>Regulatory</strong></td><td>Data residency in-country (SBV); audit logging; segregation of duties.</td></tr>
+          <tr><td><strong>Technical</strong></td><td>Must integrate with existing core platform; approved tech stack only; on-prem + cloud hybrid.</td></tr>
+          <tr><td><strong>Regulatory</strong></td><td>Data residency per applicable legal and contractual requirements; audit logging; segregation of duties.</td></tr>
           <tr><td><strong>Budget / Time</strong></td><td>Cloud cost envelope; go-live deadline; team size.</td></tr>
           <tr><td><strong>Organizational</strong></td><td>Enterprise standards, reuse mandates, vendor agreements.</td></tr>
         </table>
@@ -277,12 +277,12 @@ MEASURE  : P95 latency &lt; 300 ms, 0 lost transactions</pre>
       <div class="section-header"><div class="section-icon">📜</div><div><div class="section-number">Section 07</div><h2>Architecture Decision Records (ADR) <span class="pill-tag">Michael Nygard</span></h2></div></div>
       <div class="card"><div class="card-body">
         <p>Capture each significant architecture decision as an immutable, contextual record — stored <strong>in the repo</strong> next to the code.</p>
-        <pre class="art-block"># ADR-012: Use event-driven integration for payment events
+        <pre class="art-block"># ADR-012: Use event-driven integration for order events
 
 Status:   Accepted            (Proposed | Accepted | Superseded by ADR-XXX | Deprecated)
-Context:  Payment events must reach 4 downstream systems; peak 5k TPS;
+Context:  Order events must reach 4 downstream systems; peak 5k TPS;
           tight coupling with sync calls caused cascading failures.
-Decision: Publish payment events to Kafka; consumers subscribe independently.
+Decision: Publish order events to Kafka; consumers subscribe independently.
 Consequences:
   + Decoupling, independent scaling, replay capability
   - Eventual consistency; requires idempotent consumers &amp; a DLQ
@@ -305,7 +305,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <tr><td><strong>L3</strong></td><td>Component</td><td>What components sit inside each container?</td></tr>
           <tr><td><strong>L4</strong></td><td>Code</td><td>Class/code detail (rarely drawn).</td></tr>
         </table>
-        <figure class="diagram diagram--containers" role="group" aria-label="C4 Level 2 containers: Web App connects through API Gateway to Payment Service and Postgres. API Gateway connects to Auth Service. Payment Service publishes to Kafka topic, which connects to Ledger Consumer.">
+        <figure class="diagram diagram--containers" role="group" aria-label="C4 Level 2 containers: Web App connects through API Gateway to Order Service and Postgres. API Gateway connects to Auth Service. Order Service publishes to a Kafka topic, which connects to a Fulfillment Consumer.">
           <div class="diagram-title">C4 L2 — CONTAINERS</div>
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--primary" role="list" aria-label="Primary container path">
@@ -313,7 +313,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">API Gateway</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Payment Service</span></div>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Order Service</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Postgres</span></div>
             </div>
@@ -322,12 +322,12 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
                 <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
                 <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Auth Service</span></div>
               </div>
-              <div class="diagram-branch-item diagram-branch-item--payment" role="listitem">
+              <div class="diagram-branch-item diagram-branch-item--event" role="listitem">
                 <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
-                <div class="diagram-path diagram-path--nested" role="list" aria-label="Payment event path">
+                <div class="diagram-path diagram-path--nested" role="list" aria-label="Order event path">
                   <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Kafka topic</span></div>
                   <span class="diagram-edge" aria-hidden="true"></span>
-                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Ledger Consumer</span></div>
+                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Fulfillment Consumer</span></div>
                 </div>
               </div>
             </div>
@@ -368,11 +368,11 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
         <div class="card-title">API &amp; contract discipline</div>
         <ul class="step-cl">
           <li><strong>Contract-first:</strong> define <code>OpenAPI</code> (REST) / <code>AsyncAPI</code> (events) before coding; version from day one (<code>/v1</code>).</li>
-          <li><strong>Idempotency</strong> for retriable operations (idempotency keys) — essential for payments &amp; at-least-once messaging.</li>
+          <li><strong>Idempotency</strong> for retriable operations (idempotency keys) — essential for critical workflows &amp; at-least-once messaging.</li>
           <li><strong>Backward compatibility:</strong> additive changes; deprecate, don't break; document interface in an <strong>Interface Catalog</strong>.</li>
           <li>Model interactions with a <strong>sequence diagram</strong> for critical flows (C4 runtime / arc42 §6).</li>
         </ul>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Banking context: integration with <strong>core banking</strong> and <strong>identity/SSO</strong> needs an explicit interface contract, clear <strong>data ownership</strong>, and a defined <strong>authentication boundary</strong> between centralized SSO and module-level services.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📘</span><div>Enterprise context: integration with <strong>core platform</strong> and <strong>identity/SSO</strong> needs an explicit interface contract, clear <strong>data ownership</strong>, and a defined <strong>authentication boundary</strong> between centralized SSO and module-level services.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -400,7 +400,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
           <tr><td><strong>D</strong>enial of service</td><td>Rate limiting, autoscaling, WAF.</td></tr>
           <tr><td><strong>E</strong>levation of privilege</td><td>AuthZ (RBAC/ABAC), secrets management, Zero-Trust.</td></tr>
         </table>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; align controls to <strong>SBV Circular 09/2020, ISO 27001, PCI-DSS</strong>. Security testing evidence lives in the <a href="#qc">QC Testing Handbook</a>; deployment-time controls in the <a href="#deployment">Deployment Runbook</a>.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; align controls to <strong>applicable regulations, ISO 27001, applicable industry standards</strong>. Security testing evidence lives in the <a href="#qc">QC Testing Handbook</a>; deployment-time controls in the <a href="#deployment">Deployment Runbook</a>.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -450,7 +450,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
         <table class="table-sa">
           <tr><th>Risk</th><th>Likelihood × Impact</th><th>Mitigation</th></tr>
           <tr><td>New event-broker unproven at 5k TPS</td><td>Med × High</td><td>PoC load test; fallback to managed service.</td></tr>
-          <tr><td>Core-banking API latency spikes</td><td>Med × High</td><td>Async buffer + circuit breaker + cache.</td></tr>
+          <tr><td>Core-platform API latency spikes</td><td>Med × High</td><td>Async buffer + circuit breaker + cache.</td></tr>
         </table>
       </div></div>
     </section>
@@ -512,7 +512,7 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
     <div class="section-divider"></div>
 
     <div class="card"><div class="card-body">
-      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 pillars); <strong>TOGAF 10</strong> (The Open Group — EA interface, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); integration patterns per Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Aligned to SBV Circular 09/2020/TT-NHNN &amp; ISO 27001.</div></div>
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Sources.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 pillars); <strong>TOGAF 10</strong> (The Open Group — EA interface, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); integration patterns per Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Aligned to applicable regulations &amp; ISO 27001.</div></div>
     </div></div>
 
   <!-- GENERATED ROLE TEMPLATE LIBRARY: START -->
@@ -541,8 +541,8 @@ Alternatives considered: synchronous REST fan-out (rejected: coupling),
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Solution Architect Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
-    Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · SBV Circular 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Solution Architect Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · applicable regulations · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

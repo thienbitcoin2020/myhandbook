@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/blameless-postmortem.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · OPERATIONS & SREBLAMELESS POSTMORTEMMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · OPERATIONS & SREBLAMELESS POSTMORTEMMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

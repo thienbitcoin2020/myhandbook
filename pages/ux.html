@@ -16,11 +16,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🎨</div>
+    <div class="role-badge">
+      <div class="role-icon">🎨</div>
       <div>
-        <div class="bank-title">UX/UI Designer Handbook</div>
-        <div class="bank-sub">Double Diamond · NN/g · WCAG 2.2</div>
+        <div class="role-title">UX/UI Designer Handbook</div>
+        <div class="role-sub">Double Diamond · NN/g · WCAG 2.2</div>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Document Control</strong>
-    Owner: Thiện Phạm (Power Home PO)<br/>
+    Owner: Thiện Phạm (BP Handbook Owner)<br/>
     Version: v2.0 · Effective 2026-Q2<br/>
     Updated: 2026-07-16<br/>
     Status: <span style="color:var(--status-green)">Active</span><br/>
@@ -82,9 +82,9 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🎨 Internal Handbook · Double Diamond · NN/g · WCAG 2.2</div>
+    <div class="header-eyebrow">🎨 Public Handbook · Double Diamond · NN/g · WCAG 2.2</div>
     <h1>UX/UI Designer<br/><span>Research to Pixel-Perfect Handoff</span></h1>
-    <p>Reference for the end-to-end product design role — from user research to accessible, buildable UI. Grounded in the Double Diamond, Nielsen Norman heuristics, WCAG 2.2, Atomic Design, and platform guidelines (Material Design / Apple HIG). For internal banking tools, efficiency &amp; accessibility come first.</p>
+    <p>Reference for the end-to-end product design role — from user research to accessible, buildable UI. Grounded in the Double Diamond, Nielsen Norman heuristics, WCAG 2.2, Atomic Design, and platform guidelines (Material Design / Apple HIG). For internal enterprise tools, efficiency &amp; accessibility come first.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Double Diamond</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Design System</div>
@@ -136,7 +136,7 @@
           <li class="process-step process-step--diverge"><span class="process-step-phase">Diverge</span><strong class="process-step-title">DEVELOP</strong><span class="process-step-detail">ideate &amp; wireframe</span></li>
           <li class="process-step process-step--converge"><span class="process-step-phase">Converge</span><strong class="process-step-title">DELIVER</strong><span class="process-step-detail">prototype, test &amp; handoff</span></li>
         </ol>
-        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Internal bank tools: optimize for <strong>efficiency</strong> (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.</div></div>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📘</span><div>Internal organization tools: optimize for <strong>efficiency</strong> (task speed, fewer clicks, low cognitive load) over delight. Accessibility (WCAG AA) is not optional.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -181,7 +181,7 @@
           <li><strong>User flows:</strong> step-by-step path to complete a task — rectangles (screens), diamonds (decisions), arrows.</li>
           <li>Always design <strong>happy path + error paths + edge cases</strong>.</li>
         </ul>
-        <figure class="diagram diagram--decision" role="group" aria-label="User decision flow: Login leads to Auth ok. No leads to Error plus retry. Yes leads through Dashboard and Transfer to Valid. No leads to Inline error. Yes leads through Confirm to Success.">
+        <figure class="diagram diagram--decision" role="group" aria-label="User decision flow: Login leads to Auth ok. No leads to Error plus retry. Yes leads through Dashboard and Submit request to Valid. No leads to Inline error. Yes leads through Confirm to Success.">
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--decision-main" role="list" aria-label="Successful user path">
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Login</span></div>
@@ -190,7 +190,7 @@
               <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">yes</span></span>
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Dashboard</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Transfer</span></div>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Submit request</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Valid?</span></div>
               <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">yes</span></span>
@@ -412,7 +412,7 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · UX/UI Designer Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
+    📘 Handbook · UX/UI Designer Handbook v2.0 · Public Edition · Classification: PUBLIC<br/>
     Aligned with Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025
   </footer>
 </div>

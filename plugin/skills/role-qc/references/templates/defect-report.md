@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/defect-report.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · QC TESTINGDEFECT REPORT CHUẨNMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · QC TESTINGDEFECT REPORT CHUẨNMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

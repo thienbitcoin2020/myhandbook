@@ -395,7 +395,7 @@ try {
     if (pattern.test(marketplaceText)) throw new Error(`${label} detected`);
   }
   const marketplace = JSON.parse(marketplaceText);
-  if (marketplace.name !== 'power-home-handbook' || !marketplace.owner?.name) {
+  if (marketplace.name !== 'bp-project-handbook' || !marketplace.owner?.name) {
     throw new Error('marketplace name or owner is missing');
   }
   if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length !== 12) {
@@ -456,8 +456,8 @@ for (const relative of handbookFragments) {
   const isVietnamese = relative.split(path.sep).includes('vi');
   const heading = isVietnamese ? 'Kiểm soát tài liệu' : 'Document Control';
   const owner = isVietnamese
-    ? 'Chủ quản: Thiện Phạm (Power Home PO)<br/>'
-    : 'Owner: Thiện Phạm (Power Home PO)<br/>';
+    ? 'Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>'
+    : 'Owner: Thiện Phạm (BP Handbook Owner)<br/>';
   const versionPattern = isVietnamese
     ? /Phiên bản: v\d+(?:\.\d+)* · Hiệu lực /
     : /Version: v\d+(?:\.\d+)* · Effective /;
@@ -465,13 +465,13 @@ for (const relative of handbookFragments) {
   const controlBlock = headingIndex >= 0 ? content.slice(headingIndex, headingIndex + 600) : '';
 
   if (headingIndex < 0) fail(`${relative}: ${heading} block is missing`);
-  if (!controlBlock.includes(owner)) fail(`${relative}: document-control owner must be Thiện Phạm (Power Home PO)`);
+  if (!controlBlock.includes(owner)) fail(`${relative}: document-control owner must be Thiện Phạm (BP Handbook Owner)`);
   if (!versionPattern.test(controlBlock)) fail(`${relative}: deploy-stampable document version is missing`);
 }
 
 for (const [relative, owner] of [
-  ['pages/handbook.html', 'Owner: Thiện Phạm (Power Home PO)'],
-  ['pages/vi/handbook.html', 'Chủ quản: Thiện Phạm (Power Home PO)'],
+  ['pages/handbook.html', 'Owner: Thiện Phạm (BP Handbook Owner)'],
+  ['pages/vi/handbook.html', 'Chủ quản: Thiện Phạm (BP Handbook Owner)'],
 ]) {
   if (!read(relative).includes(owner)) fail(`${relative}: handbook footer owner is not synchronized`);
 }

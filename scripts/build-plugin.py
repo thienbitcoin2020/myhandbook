@@ -32,9 +32,9 @@ PLUGIN_AUTHOR = {
     "email": "thienbitcoin2020@gmail.com",
     "url": "https://github.com/thienbitcoin2020",
 }
-PLUGIN_HOMEPAGE = "https://project-handbook.vercel.app/#plugin"
+PLUGIN_HOMEPAGE = "https://myhandbook.vercel.app/#plugin"
 PLUGIN_REPOSITORY = "https://github.com/thienbitcoin2020/myhandbook"
-MARKETPLACE_NAME = "power-home-handbook"
+MARKETPLACE_NAME = "bp-project-handbook"
 
 
 # ── HTML -> Markdown ────────────────────────────────────────────────────
@@ -160,13 +160,13 @@ def preview_markdown(stem: str) -> str:
 SKILLS = [
     {
         "name": "handbook-overview",
-        "title": "Power Home Handbook — Overview, SDLC & Governance",
+        "title": "BP Handbook — Overview, SDLC & Governance",
         "page": "handbook.html",
         "reference": "handbook-overview.md",
         "templates": [],
         "description": (
-            "Cross-cutting knowledge from the Power Home Project Handbook (Hybrid Water-Scrum-Fall, "
-            "Vietnamese commercial bank). Use when the user asks about the overall SDLC phases, "
+            "Cross-cutting knowledge from the BP Project Handbook (Hybrid Water-Scrum-Fall, "
+            "enterprise delivery organization). Use when the user asks about the overall SDLC phases, "
             "lifecycle cross-walk between roles, governance layers and change authority, quality gates "
             "(DoR / Sprint DoD / Release DoD), stakeholder RACI, the glossary of standard terms, "
             "go-to-market phases, hypercare, or which role owns which artifact."
@@ -184,7 +184,7 @@ SKILLS = [
             "product-requirements-document",
         ],
         "description": (
-            "Product Owner skill from the Power Home Handbook (Scrum Guide 2020, outcome-driven). "
+            "Product Owner skill from the BP Handbook (Scrum Guide 2020, outcome-driven). "
             "Use when the user asks about PO responsibilities, product vision or roadmap, product "
             "discovery, backlog management or refinement, prioritization (MoSCoW, RICE, WSJF, Kano), "
             "writing epics and user stories with acceptance criteria, DoR/DoD, release and value "
@@ -204,7 +204,7 @@ SKILLS = [
             "use-case-specification",
         ],
         "description": (
-            "IT Business Analyst skill from the Power Home Handbook (BABOK v3, 9 BA phases). Use when "
+            "IT Business Analyst skill from the BP Handbook (BABOK v3, 9 BA phases). Use when "
             "the user asks about BA responsibilities, requirements elicitation, strategy analysis, "
             "BRD/SRS documentation, use case specifications, requirements traceability (RTM), NFR "
             "frameworks, UAT planning and sign-off, change requests after baseline, BA quality gates "
@@ -224,7 +224,7 @@ SKILLS = [
             "status-report-one-page",
         ],
         "description": (
-            "Project Manager skill from the Power Home Handbook (PMBOK 7, hybrid SDLC). Use when the "
+            "Project Manager skill from the BP Handbook (PMBOK 7, hybrid SDLC). Use when the "
             "user asks about PM responsibilities, the five process groups, the eight performance "
             "domains, project charters, management plans and baselines, RAID or risk management, "
             "stakeholder and communication cadence, RAG status reporting, EVM (CPI/SPI/EAC), change "
@@ -240,7 +240,7 @@ SKILLS = [
         "reference": "handbook-sm.md",
         "templates": [],
         "description": (
-            "Scrum Master skill from the Power Home Handbook (Scrum Guide 2020, servant leadership). "
+            "Scrum Master skill from the BP Handbook (Scrum Guide 2020, servant leadership). "
             "Use when the user asks about SM accountabilities, facilitating Scrum events, impediment "
             "management, coaching stances and the GROW model, team health and psychological safety, "
             "agile metrics and their abuse (velocity, CFD, EBM), retrospective techniques, scaling "
@@ -261,7 +261,7 @@ SKILLS = [
             "uat-plan",
         ],
         "description": (
-            "QC / Testing skill from the Power Home Handbook (ISTQB CTFL v4.0). Use when the user asks "
+            "QC / Testing skill from the BP Handbook (ISTQB CTFL v4.0). Use when the user asks "
             "about the seven-step test process, test levels (unit/integration/system/UAT) and the "
             "V-model, test types, test design techniques (equivalence partitioning, boundary values, "
             "decision tables, state transitions), risk-based testing, entry/exit criteria, the defect "
@@ -282,7 +282,7 @@ SKILLS = [
             "non-functional-requirements-specification",
         ],
         "description": (
-            "Solution Architect skill from the Power Home Handbook (C4, arc42, Well-Architected, TOGAF "
+            "Solution Architect skill from the BP Handbook (C4, arc42, Well-Architected, TOGAF "
             "interface). Use when the user asks about SA responsibilities, NFR analysis and quality "
             "attribute scenarios, solution options and trade-off scoring, technology selection, "
             "architecture decision records, HLD/LLD and the C4 model, integration and API patterns "
@@ -304,7 +304,7 @@ SKILLS = [
             "design-handoff-specification",
         ],
         "description": (
-            "UX/UI Designer skill from the Power Home Handbook (Double Diamond, NN/g, WCAG 2.2, Atomic "
+            "UX/UI Designer skill from the BP Handbook (Double Diamond, NN/g, WCAG 2.2, Atomic "
             "Design). Use when the user asks about the design process, user research methods, personas "
             "and journey maps, information architecture and user flows, wireframing fidelity, UI "
             "principles, design systems and tokens, interaction states, usability testing and SUS, "
@@ -325,8 +325,8 @@ SKILLS = [
             "compliance-gap-checklist",
         ],
         "description": (
-            "Security & Compliance skill from the Power Home Handbook (ISO 27001, NIST CSF, OWASP, "
-            "SBV Circular 09/2020). Use when the user asks about the governance framework, risk "
+            "Security & Compliance skill from the BP Handbook (ISO 27001, NIST CSF, OWASP, "
+            "applicable regulations). Use when the user asks about the governance framework, risk "
             "treatment, secure SDLC / DevSecOps gates (SAST, DAST, SCA, secrets), threat modeling with "
             "STRIDE, IAM (SSO, MFA, RBAC, SoD, PAM, JML), data protection and PDPD, OWASP Top 10, "
             "vulnerability SLAs by CVSS, incident response, compliance evidence, or security metrics."
@@ -345,7 +345,7 @@ SKILLS = [
             "disaster-recovery-plan",
         ],
         "description": (
-            "Operations & SRE skill from the Power Home Handbook (Google SRE, ITIL 4, DORA). Use when "
+            "Operations & SRE skill from the BP Handbook (Google SRE, ITIL 4, DORA). Use when "
             "the user asks about SLI/SLO/SLA and error budgets, observability and golden signals, "
             "incident management and severity levels, blameless postmortems and RCA, change and "
             "release operations, capacity and toil, disaster recovery (RTO/RPO) and business "
@@ -366,11 +366,11 @@ SKILLS = [
             "environment-configuration-document",
         ],
         "description": (
-            "Release Manager / Deployment skill from the Power Home Handbook (Hybrid Water-Scrum-Fall "
-            "release governance, SBV compliant). Use when the user asks about the 12-step release "
+            "Release Manager / Deployment skill from the BP Handbook (Hybrid Water-Scrum-Fall "
+            "release governance and regulatory compliance). Use when the user asks about the 12-step release "
             "pipeline, CAB and ECAB procedure, segregation of duties, performance and security test "
             "gates, the release Definition of Done checklist, the executable deploy and rollback "
-            "runbook (blue-green, canary), the 72-hour hypercare watch, or operations handover."
+            "runbook (blue-green, canary), the policy-defined hypercare watch, or operations handover."
         ),
         "focus": "governance & SoD, release pipeline, CAB, release DoD, deploy & rollback, hypercare",
     },
@@ -386,7 +386,7 @@ SKILLS = [
             "benefits-realization-plan",
         ],
         "description": (
-            "PMO Governance & Portfolio skill from the Power Home Handbook (PMI, P3O, EVM). Use when "
+            "PMO Governance & Portfolio skill from the BP Handbook (PMI, P3O, EVM). Use when "
             "the user asks about portfolio intake and stage gates, governance bodies and decision "
             "rights, consolidated RAID, cross-project dependencies, financial governance and EVM "
             "formulas, benefits realization, delivery standards and tailoring, OCM/ADKAR, resource "
@@ -493,7 +493,7 @@ AUTO_GENERATED = {
 [ĐIỀN: 3–5 câu — chuyện gì xảy ra, kéo dài bao lâu, đã khôi phục thế nào]
 
 ## 2. Ảnh hưởng (Impact)
-- Người dùng ảnh hưởng: [ĐIỀN] · Thiệt hại ($ / giao dịch): [ĐIỀN]
+- Người dùng ảnh hưởng: [ĐIỀN] · Thiệt hại ước tính ($ / giờ): [ĐIỀN]
 - SLO bị vi phạm: [ĐIỀN] · Error budget tiêu hao: [ĐIỀN]
 
 ## 3. Dòng thời gian (Timeline — giờ ICT)
@@ -532,12 +532,12 @@ def skill_md(meta: dict) -> str:
         desc = desc[cut:].lstrip()
     lines += ["---", ""]
     lines += [
-        f"# {meta['title']} — Power Home Handbook",
+        f"# {meta['title']} — BP Handbook",
         "",
         "Instructions for Claude:",
         "",
-        f"1. This skill carries the **{meta['title']}** chapter of the Power Home Project",
-        "   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).",
+        f"1. This skill carries the **{meta['title']}** chapter of the BP Project",
+        "   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).",
         f"   Scope: {meta['focus']}.",
         f"2. For anything beyond the summary here, load `references/{meta['reference']}`",
         "   — it is the full chapter, extracted verbatim from the handbook page.",
@@ -586,12 +586,12 @@ def plugin_manifest(name: str, display_name: str, description: str, keywords: li
 
 PLUGIN_JSON = plugin_manifest(
     "project-handbook",
-    "Power Home Project Handbook",
+    "BP Project Handbook",
     (
-        "Power Home SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, "
+        "BP SDLC Project Handbook: role-based skills (PO, BA, PM, SM, QC, SA, UX, "
         f"Security, Ops, Deployment, PMO) with {sum(len(skill['templates']) for skill in SKILLS)} document templates"
     ),
-    ["sdlc", "handbook", "templates", "banking", "water-scrum-fall"],
+    ["sdlc", "handbook", "templates", "enterprise", "water-scrum-fall"],
 )
 
 
@@ -605,12 +605,12 @@ def role_plugin_manifest(meta: dict) -> dict:
         coverage = "the full role chapter; no reviewed role-owned document template is published yet"
     return plugin_manifest(
         f"project-handbook-{slug}",
-        f"Power Home Handbook — {meta['title']}",
+        f"BP Handbook — {meta['title']}",
         (
-            f"Standalone {meta['title']} skill from the Power Home SDLC Handbook, including "
+            f"Standalone {meta['title']} skill from the BP SDLC Handbook, including "
             f"{coverage}."
         ),
-        ["sdlc", "handbook", "role-skill", slug, "templates", "banking"],
+        ["sdlc", "handbook", "role-skill", slug, "templates", "enterprise"],
     )
 
 
@@ -619,10 +619,10 @@ def marketplace_manifest() -> dict:
         {
             "name": "project-handbook",
             "source": "./plugin",
-            "displayName": "Power Home Project Handbook — Full",
+            "displayName": "BP Project Handbook — Full",
             "description": "All 11 role skills, the overview skill, and 42 reviewed templates.",
             "category": "Productivity",
-            "tags": ["sdlc", "handbook", "templates", "banking"],
+            "tags": ["sdlc", "handbook", "templates", "enterprise"],
         }
     ]
     for meta in SKILLS:
@@ -633,7 +633,7 @@ def marketplace_manifest() -> dict:
             {
                 "name": f"project-handbook-{slug}",
                 "source": "./",
-                "displayName": f"Power Home Handbook — {meta['title']}",
+                "displayName": f"BP Handbook — {meta['title']}",
                 "description": role_plugin_manifest(meta)["description"],
                 "version": PLUGIN_VERSION,
                 "category": "Productivity",
@@ -645,7 +645,7 @@ def marketplace_manifest() -> dict:
     return {
         "name": MARKETPLACE_NAME,
         "owner": {"name": PLUGIN_AUTHOR["name"], "email": PLUGIN_AUTHOR["email"]},
-        "description": "Power Home SDLC handbook skills: install the full handbook or one role only.",
+        "description": "BP SDLC handbook skills: install the full handbook or one role only.",
         "plugins": plugins,
     }
 
@@ -714,7 +714,7 @@ def build() -> None:
         chapter = page_markdown(meta["page"])
         header = (
             f"# {meta['title']} — full handbook chapter\n\n"
-            f"> Extracted from the Power Home Handbook page `pages/{meta['page']}` "
+            f"> Extracted from the BP Handbook page `pages/{meta['page']}` "
             f"(EN edition; a Vietnamese edition exists in the handbook app).\n\n"
         )
         (refs / meta["reference"]).write_text(header + chapter + "\n", encoding="utf-8")
@@ -750,11 +750,11 @@ def build() -> None:
             f"| `{meta['name']}` | `project-handbook-{slug}.plugin` | {len(meta['templates'])} |"
         )
 
-    readme = f"""# Power Home Project Handbook — Claude Plugin
+    readme = f"""# BP Project Handbook — Claude Plugin
 
 v{PLUGIN_VERSION} · generated from the handbook source by `scripts/build-plugin.py`
 
-Installs the entire Power Home SDLC handbook as role-based Claude skills, so
+Installs the entire BP SDLC handbook as role-based Claude skills, so
 anyone with the plugin can ask role questions and draft handbook-standard
 documents without the original handbook.
 
@@ -791,8 +791,8 @@ chapter remains useful for facilitation, coaching, impediments and team health.
 ## Example prompts
 
 - "Draft a BRD for feature X using the handbook template"
-- "Phân rã epic thanh toán QR thành user stories theo chuẩn INVEST của handbook"
-- "Viết Project Charter cho dự án onboarding số theo template Power Home"
+- "Phân rã epic quản lý đơn hàng thành user stories theo chuẩn INVEST của handbook"
+- "Viết Project Charter cho dự án onboarding số theo template BP"
 - "What does the handbook say about the release DoD before CAB?"
 - "Draft a blameless postmortem for yesterday's SEV2"
 

@@ -1,29 +1,29 @@
 {
-  "name": "power-home-handbook",
+  "name": "bp-project-handbook",
   "owner": {
     "name": "thienbitcoin2020",
     "email": "thienbitcoin2020@gmail.com"
   },
-  "description": "Power Home SDLC handbook skills: install the full handbook or one role only.",
+  "description": "BP SDLC handbook skills: install the full handbook or one role only.",
   "plugins": [
     {
       "name": "project-handbook",
       "source": "./plugin",
-      "displayName": "Power Home Project Handbook — Full",
+      "displayName": "BP Project Handbook — Full",
       "description": "All 11 role skills, the overview skill, and 42 reviewed templates.",
       "category": "Productivity",
       "tags": [
         "sdlc",
         "handbook",
         "templates",
-        "banking"
+        "enterprise"
       ]
     },
     {
       "name": "project-handbook-po",
       "source": "./",
-      "displayName": "Power Home Handbook — Product Owner",
-      "description": "Standalone Product Owner skill from the Power Home SDLC Handbook, including the full role chapter and 3 reviewed templates.",
+      "displayName": "BP Handbook — Product Owner",
+      "description": "Standalone Product Owner skill from the BP SDLC Handbook, including the full role chapter and 3 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -39,8 +39,8 @@
     {
       "name": "project-handbook-ba",
       "source": "./",
-      "displayName": "Power Home Handbook — Business Analyst",
-      "description": "Standalone Business Analyst skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — Business Analyst",
+      "description": "Standalone Business Analyst skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -56,8 +56,8 @@
     {
       "name": "project-handbook-pm",
       "source": "./",
-      "displayName": "Power Home Handbook — Project Manager",
-      "description": "Standalone Project Manager skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — Project Manager",
+      "description": "Standalone Project Manager skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -73,8 +73,8 @@
     {
       "name": "project-handbook-sm",
       "source": "./",
-      "displayName": "Power Home Handbook — Scrum Master",
-      "description": "Standalone Scrum Master skill from the Power Home SDLC Handbook, including the full role chapter; no reviewed role-owned document template is published yet.",
+      "displayName": "BP Handbook — Scrum Master",
+      "description": "Standalone Scrum Master skill from the BP SDLC Handbook, including the full role chapter; no reviewed role-owned document template is published yet.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -90,8 +90,8 @@
     {
       "name": "project-handbook-qc",
       "source": "./",
-      "displayName": "Power Home Handbook — QC / Tester",
-      "description": "Standalone QC / Tester skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
+      "displayName": "BP Handbook — QC / Tester",
+      "description": "Standalone QC / Tester skill from the BP SDLC Handbook, including the full role chapter and 5 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -107,8 +107,8 @@
     {
       "name": "project-handbook-sa",
       "source": "./",
-      "displayName": "Power Home Handbook — Solution Architect",
-      "description": "Standalone Solution Architect skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — Solution Architect",
+      "description": "Standalone Solution Architect skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -124,8 +124,8 @@
     {
       "name": "project-handbook-ux",
       "source": "./",
-      "displayName": "Power Home Handbook — UX/UI Designer",
-      "description": "Standalone UX/UI Designer skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
+      "displayName": "BP Handbook — UX/UI Designer",
+      "description": "Standalone UX/UI Designer skill from the BP SDLC Handbook, including the full role chapter and 5 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -141,8 +141,8 @@
     {
       "name": "project-handbook-security",
       "source": "./",
-      "displayName": "Power Home Handbook — Security & Compliance",
-      "description": "Standalone Security & Compliance skill from the Power Home SDLC Handbook, including the full role chapter and 5 reviewed templates.",
+      "displayName": "BP Handbook — Security & Compliance",
+      "description": "Standalone Security & Compliance skill from the BP SDLC Handbook, including the full role chapter and 5 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -158,8 +158,8 @@
     {
       "name": "project-handbook-ops",
       "source": "./",
-      "displayName": "Power Home Handbook — Operations & SRE",
-      "description": "Standalone Operations & SRE skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — Operations & SRE",
+      "description": "Standalone Operations & SRE skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -175,8 +175,8 @@
     {
       "name": "project-handbook-deployment",
       "source": "./",
-      "displayName": "Power Home Handbook — Release Manager / Deployment",
-      "description": "Standalone Release Manager / Deployment skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — Release Manager / Deployment",
+      "description": "Standalone Release Manager / Deployment skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [
@@ -192,8 +192,8 @@
     {
       "name": "project-handbook-pmo",
       "source": "./",
-      "displayName": "Power Home Handbook — PMO Governance & Portfolio",
-      "description": "Standalone PMO Governance & Portfolio skill from the Power Home SDLC Handbook, including the full role chapter and 4 reviewed templates.",
+      "displayName": "BP Handbook — PMO Governance & Portfolio",
+      "description": "Standalone PMO Governance & Portfolio skill from the BP SDLC Handbook, including the full role chapter and 4 reviewed templates.",
       "version": "0.5.0",
       "category": "Productivity",
       "tags": [

@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/portfolio-status-report.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · PMO GOVERNANCE & PORTFOLIOPORTFOLIO STATUS REPORTMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · PMO GOVERNANCE & PORTFOLIOPORTFOLIO STATUS REPORTMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

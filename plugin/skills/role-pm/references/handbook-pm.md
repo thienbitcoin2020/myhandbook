@@ -1,8 +1,8 @@
 # Project Manager — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/pm.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/pm.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-👔 Internal Handbook · PMBOK® v7 Aligned
+👔 Public Handbook · PMBOK® v7 Aligned
 
 ## Project Manager (PM)
 
@@ -455,6 +455,6 @@ SupportsSponsor · PO · BA · SA
 
 Read document→
 
-🏦 Handbook · PM Project Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · PM Project Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with PMBOK® 7th Ed. · Hybrid SDLC · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with PMBOK® 7th Ed. · Hybrid SDLC · applicable regulations · © 2025

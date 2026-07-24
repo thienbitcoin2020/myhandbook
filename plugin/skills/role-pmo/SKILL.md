@@ -1,19 +1,19 @@
 ---
 name: role-pmo
 description: >-
-  PMO Governance & Portfolio skill from the Power Home Handbook (PMI, P3O, EVM). Use when the
-  user asks about portfolio intake and stage gates, governance bodies and decision rights,
-  consolidated RAID, cross-project dependencies, financial governance and EVM formulas, benefits
-  realization, delivery standards and tailoring, OCM/ADKAR, resource and capacity management,
-  assurance and audit, or portfolio KPIs and RAG reporting.
+  PMO Governance & Portfolio skill from the BP Handbook (PMI, P3O, EVM). Use when the user asks
+  about portfolio intake and stage gates, governance bodies and decision rights, consolidated
+  RAID, cross-project dependencies, financial governance and EVM formulas, benefits realization,
+  delivery standards and tailoring, OCM/ADKAR, resource and capacity management, assurance and
+  audit, or portfolio KPIs and RAG reporting.
 ---
 
-# PMO Governance & Portfolio — Power Home Handbook
+# PMO Governance & Portfolio — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **PMO Governance & Portfolio** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **PMO Governance & Portfolio** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: portfolio & intake, governance, RAID, EVM & benefits, standards, assurance, reporting.
 2. For anything beyond the summary here, load `references/handbook-pmo.md`
    — it is the full chapter, extracted verbatim from the handbook page.

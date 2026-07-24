@@ -1,8 +1,8 @@
 # Solution Architect — full handbook chapter
 
-> Extracted from the Power Home Handbook page `pages/sa.html` (EN edition; a Vietnamese edition exists in the handbook app).
+> Extracted from the BP Handbook page `pages/sa.html` (EN edition; a Vietnamese edition exists in the handbook app).
 
-🏛️ Internal Handbook · TOGAF · C4 · arc42 · Well-Architected
+🏛️ Public Handbook · TOGAF · C4 · arc42 · Well-Architected
 
 ## Solution Architect (SA)
 
@@ -87,7 +87,7 @@ Customer
 
 New Solution
 
-Core Banking
+Core Platform
 
 Identity / SSO
 
@@ -115,12 +115,12 @@ Quantify the non-functional requirements — they decide architecture more than 
 | Security | AuthN/Z, encryption, compliance | OAuth2/OIDC · TLS1.2+ · AES-256 |
 | Maintainability | Modularity, coupling, test coverage | Clear module boundaries |
 | Observability | Logs, metrics, traces | 3 pillars wired from day one |
-| Compliance | Regulatory controls | SBV 09/2020 · ISO 27001 · PCI-DSS |
+| Compliance | Regulatory controls | applicable regulations · ISO 27001 · applicable industry standards |
 | Cost | TCO, unit economics | Within cloud budget envelope |
 
 Quality Attribute Scenario SEI
 
-SOURCE : 10,000 concurrent users STIMULUS : submit fund-transfer requests ARTIFACT : payment API ENVIRON. : normal peak-hour operation RESPONSE : requests processed & confirmed MEASURE : P95 latency < 300 ms, 0 lost transactions
+SOURCE : 10,000 concurrent users STIMULUS : submit service requests ARTIFACT : order API ENVIRON. : normal peak-hour operation RESPONSE : requests processed & confirmed MEASURE : P95 latency < 300 ms, 0 lost requests
 
 A testable NFR statement the QC team can later verify — see the QC Testing Handbook (non-functional testing).
 
@@ -132,8 +132,8 @@ Section 04
 
 | Type | Examples |
 |---|---|
-| Technical | Must integrate with existing core banking; approved tech stack only; on-prem + cloud hybrid. |
-| Regulatory | Data residency in-country (SBV); audit logging; segregation of duties. |
+| Technical | Must integrate with existing core platform; approved tech stack only; on-prem + cloud hybrid. |
+| Regulatory | Data residency per applicable legal and contractual requirements; audit logging; segregation of duties. |
 | Budget / Time | Cloud cost envelope; go-live deadline; team size. |
 | Organizational | Enterprise standards, reuse mandates, vendor agreements. |
 
@@ -187,7 +187,7 @@ Section 07
 
 Capture each significant architecture decision as an immutable, contextual record — stored **in the repo** next to the code.
 
-# ADR-012: Use event-driven integration for payment events Status: Accepted (Proposed | Accepted | Superseded by ADR-XXX | Deprecated) Context: Payment events must reach 4 downstream systems; peak 5k TPS; tight coupling with sync calls caused cascading failures. Decision: Publish payment events to Kafka; consumers subscribe independently. Consequences: + Decoupling, independent scaling, replay capability - Eventual consistency; requires idempotent consumers & a DLQ Alternatives considered: synchronous REST fan-out (rejected: coupling), shared database (rejected: violates service ownership)
+# ADR-012: Use event-driven integration for order events Status: Accepted (Proposed | Accepted | Superseded by ADR-XXX | Deprecated) Context: Order events must reach 4 downstream systems; peak 5k TPS; tight coupling with sync calls caused cascading failures. Decision: Publish order events to Kafka; consumers subscribe independently. Consequences: + Decoupling, independent scaling, replay capability - Eventual consistency; requires idempotent consumers & a DLQ Alternatives considered: synchronous REST fan-out (rejected: coupling), shared database (rejected: violates service ownership)
 
 ADRs map to **arc42 §9 (Architecture Decisions)**. Never edit an accepted ADR — supersede it with a new one so the history of why is preserved.
 
@@ -212,7 +212,7 @@ Web App
 
 API Gateway
 
-Payment Service
+Order Service
 
 Postgres
 
@@ -220,7 +220,7 @@ Auth Service
 
 Kafka topic
 
-Ledger Consumer
+Fulfillment Consumer
 
 arc42 — the 12-section solution architecture document
 
@@ -254,15 +254,15 @@ API & contract discipline
 
 - **Contract-first:** define OpenAPI (REST) / AsyncAPI (events) before coding; version from day one (/v1).
 
-- **Idempotency** for retriable operations (idempotency keys) — essential for payments & at-least-once messaging.
+- **Idempotency** for retriable operations (idempotency keys) — essential for critical workflows & at-least-once messaging.
 
 - **Backward compatibility:** additive changes; deprecate, don't break; document interface in an **Interface Catalog**.
 
 - Model interactions with a **sequence diagram** for critical flows (C4 runtime / arc42 §6).
 
-🏦
+📘
 
-Banking context: integration with **core banking** and **identity/SSO** needs an explicit interface contract, clear **data ownership**, and a defined **authentication boundary** between centralized SSO and module-level services.
+Enterprise context: integration with **core platform** and **identity/SSO** needs an explicit interface contract, clear **data ownership**, and a defined **authentication boundary** between centralized SSO and module-level services.
 
 🔐
 
@@ -293,7 +293,7 @@ Security Design STRIDE · Microsoft
 
 🔒
 
-Security-by-design; align controls to **SBV Circular 09/2020, ISO 27001, PCI-DSS**. Security testing evidence lives in the QC Testing Handbook; deployment-time controls in the Deployment Runbook.
+Security-by-design; align controls to **applicable regulations, ISO 27001, applicable industry standards**. Security testing evidence lives in the QC Testing Handbook; deployment-time controls in the Deployment Runbook.
 
 📈
 
@@ -342,7 +342,7 @@ Technical Risk Register
 | Risk | Likelihood × Impact | Mitigation |
 |---|---|---|
 | New event-broker unproven at 5k TPS | Med × High | PoC load test; fallback to managed service. |
-| Core-banking API latency spikes | Med × High | Async buffer + circuit breaker + cache. |
+| Core-platform API latency spikes | Med × High | Async buffer + circuit breaker + cache. |
 
 📥
 
@@ -407,7 +407,7 @@ Deployment & Handover deliverables
 
 📚
 
-**Sources.C4 Model** (Simon Brown); **arc42** (Dr. Gernot Starke & Dr. Peter Hruschka); **ADR** (Michael Nygard); **AWS / Azure Well-Architected Framework** (6 pillars); **TOGAF 10** (The Open Group — EA interface, Phase G); **STRIDE** (Microsoft threat modeling); **ATAM & Quality Attribute Scenarios** (SEI / Carnegie Mellon); integration patterns per Hohpe & Woolf (Enterprise Integration Patterns). Aligned to SBV Circular 09/2020/TT-NHNN & ISO 27001.
+**Sources.C4 Model** (Simon Brown); **arc42** (Dr. Gernot Starke & Dr. Peter Hruschka); **ADR** (Michael Nygard); **AWS / Azure Well-Architected Framework** (6 pillars); **TOGAF 10** (The Open Group — EA interface, Phase G); **STRIDE** (Microsoft threat modeling); **ATAM & Quality Attribute Scenarios** (SEI / Carnegie Mellon); integration patterns per Hohpe & Woolf (Enterprise Integration Patterns). Aligned to applicable regulations & ISO 27001.
 
 📥
 
@@ -437,6 +437,6 @@ SupportsDev · QC · Security · Ops
 
 Read document→
 
-🏦 Handbook · Solution Architect Handbook v2.0 · Public Edition · Classification: PUBLIC
+📘 Handbook · Solution Architect Handbook v2.0 · Public Edition · Classification: PUBLIC
 
-Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · SBV Circular 09/2020/TT-NHNN · © 2025
+Aligned with C4 · arc42 · Well-Architected · TOGAF 10 · applicable regulations · © 2025

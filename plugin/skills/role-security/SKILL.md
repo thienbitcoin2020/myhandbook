@@ -1,19 +1,19 @@
 ---
 name: role-security
 description: >-
-  Security & Compliance skill from the Power Home Handbook (ISO 27001, NIST CSF, OWASP, SBV
-  Circular 09/2020). Use when the user asks about the governance framework, risk treatment,
-  secure SDLC / DevSecOps gates (SAST, DAST, SCA, secrets), threat modeling with STRIDE, IAM
-  (SSO, MFA, RBAC, SoD, PAM, JML), data protection and PDPD, OWASP Top 10, vulnerability SLAs by
-  CVSS, incident response, compliance evidence, or security metrics.
+  Security & Compliance skill from the BP Handbook (ISO 27001, NIST CSF, OWASP, applicable
+  regulations). Use when the user asks about the governance framework, risk treatment, secure
+  SDLC / DevSecOps gates (SAST, DAST, SCA, secrets), threat modeling with STRIDE, IAM (SSO, MFA,
+  RBAC, SoD, PAM, JML), data protection and PDPD, OWASP Top 10, vulnerability SLAs by CVSS,
+  incident response, compliance evidence, or security metrics.
 ---
 
-# Security & Compliance — Power Home Handbook
+# Security & Compliance — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Security & Compliance** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Security & Compliance** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: ISMS & governance, DevSecOps, threat modeling, IAM, data protection, IR, audit.
 2. For anything beyond the summary here, load `references/handbook-security.md`
    — it is the full chapter, extracted verbatim from the handbook page.

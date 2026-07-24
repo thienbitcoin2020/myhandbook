@@ -16,11 +16,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🛰️</div>
+    <div class="role-badge">
+      <div class="role-icon">🛰️</div>
       <div>
-        <div class="bank-title">Operations &amp; SRE</div>
-        <div class="bank-sub">Google SRE · ITIL 4 · DORA</div>
+        <div class="role-title">Operations &amp; SRE</div>
+        <div class="role-sub">Google SRE · ITIL 4 · DORA</div>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v2.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-16<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -82,9 +82,9 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🛰️ Runbook nội bộ · Google SRE · ITIL 4 · DORA</div>
+    <div class="header-eyebrow">🛰️ Runbook vận hành · Google SRE · ITIL 4 · DORA</div>
     <h1>Operations &amp; SRE<br/><span>Vận hành, Độ tin cậy &amp; Liên tục</span></h1>
-    <p>Tài liệu tham chiếu cho việc chạy sản phẩm trên production — độ tin cậy dịch vụ (SRE), observability, quản lý sự cố &amp; vấn đề, disaster recovery và business continuity. Bám nền Google SRE, ITIL 4, và bộ chỉ số DORA, cho môi trường ngân hàng chịu quản lý.</p>
+    <p>Tài liệu tham chiếu cho việc chạy sản phẩm trên production — độ tin cậy dịch vụ (SRE), observability, quản lý sự cố &amp; vấn đề, disaster recovery và business continuity. Bám nền Google SRE, ITIL 4, và bộ chỉ số DORA, cho môi trường tổ chức chịu quản lý.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> SLO dẫn dắt</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Observability</div>
@@ -128,7 +128,7 @@
           <tr><td><strong>SRE</strong></td><td>Độ tin cậy như kỹ thuật — SLO, error budget, giảm toil</td><td>SLI/SLO, error budget, tự động hoá</td></tr>
           <tr><td><strong>Ops (ITIL 4)</strong></td><td>Quản lý dịch vụ — sự cố/vấn đề/thay đổi, giá trị dịch vụ</td><td>Runbook, CMDB, service desk</td></tr>
         </table>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Runbook này pha trộn cả ba: kỹ thuật độ tin cậy của SRE + kỷ luật quản lý dịch vụ của ITIL, cần cho quản trị/audit ngân hàng.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div>Runbook này pha trộn cả ba: kỹ thuật độ tin cậy của SRE + kỷ luật quản lý dịch vụ của ITIL, cần cho quản trị/audit tổ chức.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -174,8 +174,8 @@
         <div class="card-title">Ma trận mức nghiêm trọng</div>
         <table class="table-ops">
           <tr><th>Sev</th><th>Ảnh hưởng</th><th>Phản ứng</th><th>Mục tiêu</th></tr>
-          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Sập trọng yếu / mất dữ liệu / thanh toán ngừng</td><td>Toàn đội, war room, báo lãnh đạo</td><td>ack &lt; 15 phút</td></tr>
-          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Suy giảm nặng, sập một phần</td><td>On-call + SME, kênh sự cố</td><td>ack &lt; 30 phút</td></tr>
+          <tr><td><span style="color:var(--status-red)"><strong>SEV1</strong></td><td>Sập trọng yếu / mất dữ liệu / dịch vụ trọng yếu gián đoạn</td><td>Toàn đội, war room, báo lãnh đạo</td><td>Theo chính sách sự cố</td></tr>
+          <tr><td><span style="color:var(--status-yellow)"><strong>SEV2</strong></td><td>Suy giảm nặng, sập một phần</td><td>On-call + SME, kênh sự cố</td><td>Theo chính sách sự cố</td></tr>
           <tr><td><strong>SEV3</strong></td><td>Nhẹ / có workaround</td><td>On-call thường</td><td>ngày làm việc kế tiếp</td></tr>
         </table>
       </div></div>
@@ -188,7 +188,7 @@
           <li class="process-step"><strong class="process-step-title">GIẢI QUYẾT</strong><span class="process-step-detail">xác nhận đạt SLO</span></li>
           <li class="process-step"><strong class="process-step-title">POSTMORTEM</strong><span class="process-step-detail">RCA blameless</span></li>
         </ol>
-        <p style="margin-top:6px;">Vai trò chính: <strong>Incident Commander (IC)</strong> (điều phối, quyết định), <strong>Comms Lead</strong> (cập nhật stakeholder), <strong>Ops/SME</strong> (khắc phục). Sự cố bảo mật → phối hợp <a href="#sec">Security &amp; Compliance</a> (thời hạn báo cáo vi phạm của SBV).</p>
+        <p style="margin-top:6px;">Vai trò chính: <strong>Incident Commander (IC)</strong> (điều phối, quyết định), <strong>Comms Lead</strong> (cập nhật stakeholder), <strong>Ops/SME</strong> (khắc phục). Sự cố bảo mật → phối hợp <a href="#sec">Security &amp; Compliance</a> để đáp ứng thời hạn báo cáo vi phạm áp dụng.</p>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -255,7 +255,7 @@
           <tr><td>Warm standby</td><td>phút / giây</td><td>$$$</td></tr>
           <tr><td>Multi-site active-active</td><td>~0 / ~0</td><td>$$$$</td></tr>
         </table>
-        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Hệ thống ngân hàng trọng yếu cần failover có kiểm chứng với RTO/RPO xác định. <strong>Diễn tập DR định kỳ</strong> (SBV yêu cầu bằng chứng) — một kế hoạch DR chưa test là gánh nặng, không phải tài sản.</div></div>
+        <div class="alert alert-warning" style="margin-top:8px;"><span class="alert-icon">📘</span><div>Hệ thống trọng yếu cần failover có kiểm chứng với RTO/RPO xác định. <strong>Diễn tập DR định kỳ</strong> và lưu bằng chứng theo chính sách hoặc quy định áp dụng — một kế hoạch DR chưa test là gánh nặng, không phải tài sản.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -336,7 +336,7 @@
     <div class="section-divider"></div>
 
     <div class="card"><div class="card-body">
-      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budget, toil, golden signals); ITIL 4 (quản lý sự cố/vấn đề/thay đổi/dịch vụ); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — bốn chỉ số chính); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Bám Thông tư 09/2020/TT-NHNN.</div></div>
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> Google SRE (<em>Site Reliability Engineering</em>, <em>The SRE Workbook</em> — SLI/SLO, error budget, toil, golden signals); ITIL 4 (quản lý sự cố/vấn đề/thay đổi/dịch vụ); DORA / <em>Accelerate</em> (Forsgren, Humble, Kim — bốn chỉ số chính); ISO 22301 (Business Continuity); NIST SP 800-34 (Contingency Planning). Bám quy định pháp luật áp dụng.</div></div>
     </div></div>
 
   <!-- GENERATED ROLE TEMPLATE LIBRARY: START -->
@@ -379,8 +379,8 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Operations &amp; SRE Runbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
-    Bám chuẩn Google SRE · ITIL 4 · DORA · ISO 22301 · Thông tư 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Operations &amp; SRE Runbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    Bám chuẩn Google SRE · ITIL 4 · DORA · ISO 22301 · quy định pháp luật áp dụng · © 2025
   </footer>
 </div>
 </div>

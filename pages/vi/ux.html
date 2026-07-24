@@ -16,11 +16,11 @@
 
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🎨</div>
+    <div class="role-badge">
+      <div class="role-icon">🎨</div>
       <div>
-        <div class="bank-title">UX/UI Designer Handbook</div>
-        <div class="bank-sub">Double Diamond · NN/g · WCAG 2.2</div>
+        <div class="role-title">UX/UI Designer Handbook</div>
+        <div class="role-sub">Double Diamond · NN/g · WCAG 2.2</div>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v2.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-16<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -82,9 +82,9 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🎨 Handbook nội bộ · Double Diamond · NN/g · WCAG 2.2</div>
+    <div class="header-eyebrow">🎨 Cẩm nang triển khai · Double Diamond · NN/g · WCAG 2.2</div>
     <h1>UX/UI Designer<br/><span>Từ nghiên cứu đến bàn giao pixel-perfect</span></h1>
-    <p>Tài liệu tham chiếu cho vai trò thiết kế sản phẩm đầu-cuối — từ nghiên cứu người dùng đến UI dựng được và accessible. Bám nền Double Diamond, heuristic Nielsen Norman, WCAG 2.2, Atomic Design, và guideline nền tảng (Material Design / Apple HIG). Với công cụ nội bộ ngân hàng, hiệu quả &amp; accessibility đặt lên hàng đầu.</p>
+    <p>Tài liệu tham chiếu cho vai trò thiết kế sản phẩm đầu-cuối — từ nghiên cứu người dùng đến UI dựng được và accessible. Bám nền Double Diamond, heuristic Nielsen Norman, WCAG 2.2, Atomic Design, và guideline nền tảng (Material Design / Apple HIG). Với công cụ nội bộ tổ chức, hiệu quả &amp; accessibility đặt lên hàng đầu.</p>
     <div class="header-pills">
       <div class="header-pill"><div class="pill-dot" style="background:var(--accent)"></div> Double Diamond</div>
       <div class="header-pill"><div class="pill-dot" style="background:var(--status-blue)"></div> Design System</div>
@@ -136,7 +136,7 @@
           <li class="process-step process-step--diverge"><span class="process-step-phase">Phân kỳ</span><strong class="process-step-title">DEVELOP</strong><span class="process-step-detail">ý tưởng &amp; wireframe</span></li>
           <li class="process-step process-step--converge"><span class="process-step-phase">Hội tụ</span><strong class="process-step-title">DELIVER</strong><span class="process-step-detail">prototype, test &amp; bàn giao</span></li>
         </ol>
-        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">🏦</span><div>Công cụ nội bộ ngân hàng: tối ưu cho <strong>hiệu quả</strong> (tốc độ tác vụ, ít cú bấm, tải nhận thức thấp) hơn là sự "thích thú". Accessibility (WCAG AA) không phải tuỳ chọn.</div></div>
+        <div class="alert alert-info" style="margin-top:6px;"><span class="alert-icon">📘</span><div>Công cụ nội bộ tổ chức: tối ưu cho <strong>hiệu quả</strong> (tốc độ tác vụ, ít cú bấm, tải nhận thức thấp) hơn là sự "thích thú". Accessibility (WCAG AA) không phải tuỳ chọn.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -181,7 +181,7 @@
           <li><strong>User flow:</strong> lộ trình từng bước để hoàn thành tác vụ — hình chữ nhật (màn hình), hình thoi (quyết định), mũi tên.</li>
           <li>Luôn thiết kế cả <strong>happy path + đường lỗi + edge case</strong>.</li>
         </ul>
-        <figure class="diagram diagram--decision" role="group" aria-label="Luồng quyết định người dùng: Login dẫn tới Auth ok. Không dẫn tới Lỗi và thử lại. Có dẫn qua Dashboard và Chuyển tiền tới Hợp lệ. Không dẫn tới Lỗi inline. Có dẫn qua Xác nhận tới Thành công.">
+        <figure class="diagram diagram--decision" role="group" aria-label="Luồng quyết định người dùng: Login dẫn tới Auth ok. Không dẫn tới Lỗi và thử lại. Có dẫn qua Dashboard và Gửi yêu cầu tới Hợp lệ. Không dẫn tới Lỗi inline. Có dẫn qua Xác nhận tới Thành công.">
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--decision-main" role="list" aria-label="Luồng người dùng thành công">
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Login</span></div>
@@ -190,7 +190,7 @@
               <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">có</span></span>
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Dashboard</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Chuyển tiền</span></div>
+              <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Gửi yêu cầu</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--decision" role="listitem"><span class="diagram-node-label">Hợp lệ?</span></div>
               <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"><span class="diagram-edge-label">có</span></span>
@@ -412,7 +412,7 @@
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · UX/UI Designer Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    📘 Handbook · UX/UI Designer Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
     Bám chuẩn Double Diamond · NN/g · WCAG 2.2 AA · Atomic Design · © 2025
   </footer>
 </div>

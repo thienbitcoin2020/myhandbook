@@ -854,7 +854,7 @@ document.addEventListener('change', event => {
 });
 
 // ============================================================
-// SIDEBAR DETAILS — PowerHome cards for compliance & metadata
+// SIDEBAR DETAILS — BP cards for compliance & metadata
 // Page fragments intentionally keep their original content. This enhancer
 // turns the repeated raw sidebar text into consistent, scannable UI cards
 // after every route/language render.

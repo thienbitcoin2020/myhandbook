@@ -18,11 +18,11 @@
 <!-- ===== SIDEBAR CONTENT ===== -->
 <div id="sidebar-inner">
   <div class="sidebar-top">
-    <div class="bank-badge">
-      <div class="bank-icon">🏛️</div>
+    <div class="role-badge">
+      <div class="role-icon">🏛️</div>
       <div>
-        <div class="bank-title">Solution Architect Handbook</div>
-        <div class="bank-sub">TOGAF · C4 · arc42 · Well-Architected</div>
+        <div class="role-title">Solution Architect Handbook</div>
+        <div class="role-sub">TOGAF · C4 · arc42 · Well-Architected</div>
       </div>
     </div>
   </div>
@@ -65,13 +65,13 @@
   <div class="sidebar-compliance">
     <span class="comp-pill">🏛️ arc42 · C4</span>
     <span class="comp-pill">☁️ Well-Architected</span>
-    <span class="comp-pill">🏦 SBV · ISO 27001</span>
+    <span class="comp-pill">📘 Pháp lý · ISO 27001</span>
   </div>
 
   <div class="sidebar-divider"></div>
   <div class="sidebar-meta">
     <strong>Kiểm soát tài liệu</strong>
-    Chủ quản: Thiện Phạm (Power Home PO)<br/>
+    Chủ quản: Thiện Phạm (BP Handbook Owner)<br/>
     Phiên bản: v2.0 · Hiệu lực 2026-Q2<br/>
     Cập nhật: 2026-07-17<br/>
     Trạng thái: <span style="color:var(--status-green)">Đang hiệu lực</span><br/>
@@ -90,7 +90,7 @@
 <div id="main-content">
 
   <header class="top-header">
-    <div class="header-eyebrow">🏛️ Handbook nội bộ · TOGAF · C4 · arc42 · Well-Architected</div>
+    <div class="header-eyebrow">🏛️ Cẩm nang triển khai · TOGAF · C4 · arc42 · Well-Architected</div>
     <h1>Solution Architect (SA)<br/><span>Thiết kế giải pháp &amp; Quản trị</span></h1>
     <p>Tài liệu tham chiếu cho vai trò Solution Architect đầu-cuối — chuyển hoá yêu cầu nghiệp vụ và ràng buộc doanh nghiệp thành một giải pháp kỹ thuật xây được, vận hành được. Bám nền C4 model, arc42, ADR, và AWS/Azure Well-Architected Framework, giao thoa với Enterprise Architecture (TOGAF Phase G).</p>
     <div class="header-pills">
@@ -162,7 +162,7 @@
       <div class="section-header"><div class="section-icon">📥</div><div><div class="section-number">Mục 02</div><h2>Tiếp nhận yêu cầu &amp; Phạm vi</h2></div></div>
       <div class="card" style="margin-bottom:16px;"><div class="card-body">
         <p>Nhận BRD/SRS &amp; user story từ <a href="#ba">BA</a>/<a href="#po">PO</a>, làm rõ phạm vi kỹ thuật, và chốt tường minh <strong>trong/ngoài phạm vi</strong>. Neo bằng <strong>sơ đồ System Context (C4 Level 1)</strong>.</p>
-        <figure class="diagram diagram--context" role="group" aria-label="Sơ đồ ngữ cảnh hệ thống C4 Level 1: Khách hàng sử dụng Giải pháp mới; giải pháp kết nối với Core Banking và Identity / SSO. Notification Svc cũng được hiển thị trong ngữ cảnh nhưng không có quan hệ tường minh.">
+        <figure class="diagram diagram--context" role="group" aria-label="Sơ đồ ngữ cảnh hệ thống C4 Level 1: Khách hàng sử dụng Giải pháp mới; giải pháp kết nối với Core Platform và Identity / SSO. Notification Svc cũng được hiển thị trong ngữ cảnh nhưng không có quan hệ tường minh.">
           <div class="diagram-title">C4 L1 — SYSTEM CONTEXT</div>
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--primary" role="list" aria-label="Luồng ngữ cảnh hệ thống chính">
@@ -170,7 +170,7 @@
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--system" role="listitem"><span class="diagram-node-label">Giải pháp mới</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Banking</span></div>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Core Platform</span></div>
             </div>
             <div class="diagram-branch diagram-branch--context" role="list" aria-label="Các phụ thuộc của Giải pháp mới">
               <div class="diagram-branch-item diagram-branch-item--identity" role="listitem">
@@ -202,18 +202,18 @@
           <tr><td><strong>Bảo mật</strong></td><td>AuthN/Z, mã hoá, tuân thủ</td><td>OAuth2/OIDC · TLS1.2+ · AES-256</td></tr>
           <tr><td><strong>Bảo trì được</strong></td><td>Tính module, độ ghép nối, coverage test</td><td>Ranh giới module rõ ràng</td></tr>
           <tr><td><strong>Observability</strong></td><td>Log, metric, trace</td><td>Đủ 3 trụ cột ngay từ ngày đầu</td></tr>
-          <tr><td><strong>Tuân thủ</strong></td><td>Các control pháp lý</td><td>SBV 09/2020 · ISO 27001 · PCI-DSS</td></tr>
+          <tr><td><strong>Tuân thủ</strong></td><td>Các control pháp lý</td><td>các quy định áp dụng · ISO 27001 · tiêu chuẩn an toàn ngành áp dụng</td></tr>
           <tr><td><strong>Chi phí</strong></td><td>TCO, kinh tế đơn vị</td><td>Trong khung ngân sách cloud</td></tr>
         </table>
       </div></div>
       <div class="card"><div class="card-body">
         <div class="card-title">Quality Attribute Scenario <span class="pill-tag">SEI</span></div>
         <pre class="art-block">SOURCE   : 10.000 người dùng đồng thời
-STIMULUS : gửi yêu cầu chuyển tiền
-ARTIFACT : API thanh toán
+STIMULUS : gửi yêu cầu dịch vụ
+ARTIFACT : API đơn hàng
 ENVIRON. : vận hành bình thường giờ cao điểm
 RESPONSE : yêu cầu được xử lý &amp; xác nhận
-MEASURE  : P95 latency &lt; 300 ms, 0 giao dịch thất lạc</pre>
+MEASURE  : P95 latency &lt; 300 ms, không mất yêu cầu</pre>
         <p>Một phát biểu NFR test được để đội QC kiểm chứng sau này — xem <a href="#qc">QC Testing Handbook</a> (kiểm thử phi chức năng).</p>
       </div></div>
     </section>
@@ -225,8 +225,8 @@ MEASURE  : P95 latency &lt; 300 ms, 0 giao dịch thất lạc</pre>
       <div class="card"><div class="card-body">
         <table class="table-sa">
           <tr><th>Loại</th><th>Ví dụ</th></tr>
-          <tr><td><strong>Kỹ thuật</strong></td><td>Phải tích hợp core banking hiện hữu; chỉ dùng tech stack đã duyệt; hybrid on-prem + cloud.</td></tr>
-          <tr><td><strong>Pháp lý</strong></td><td>Dữ liệu lưu trong nước (SBV); audit log; phân tách nhiệm vụ (SoD).</td></tr>
+          <tr><td><strong>Kỹ thuật</strong></td><td>Phải tích hợp core platform hiện hữu; chỉ dùng tech stack đã duyệt; hybrid on-prem + cloud.</td></tr>
+          <tr><td><strong>Pháp lý</strong></td><td>Lưu trú dữ liệu theo yêu cầu pháp lý và hợp đồng áp dụng; audit log; phân tách nhiệm vụ (SoD).</td></tr>
           <tr><td><strong>Ngân sách / Thời gian</strong></td><td>Khung chi phí cloud; hạn go-live; quy mô đội.</td></tr>
           <tr><td><strong>Tổ chức</strong></td><td>Chuẩn doanh nghiệp, yêu cầu tái sử dụng, thoả thuận vendor.</td></tr>
         </table>
@@ -277,12 +277,12 @@ MEASURE  : P95 latency &lt; 300 ms, 0 giao dịch thất lạc</pre>
       <div class="section-header"><div class="section-icon">📜</div><div><div class="section-number">Mục 07</div><h2>Architecture Decision Records (ADR) <span class="pill-tag">Michael Nygard</span></h2></div></div>
       <div class="card"><div class="card-body">
         <p>Ghi lại mỗi quyết định kiến trúc quan trọng thành một bản ghi bất biến, có bối cảnh — lưu <strong>ngay trong repo</strong> cạnh code.</p>
-        <pre class="art-block"># ADR-012: Dùng tích hợp event-driven cho sự kiện thanh toán
+        <pre class="art-block"># ADR-012: Dùng tích hợp event-driven cho sự kiện đơn hàng
 
 Status:   Accepted            (Proposed | Accepted | Superseded by ADR-XXX | Deprecated)
-Context:  Sự kiện thanh toán phải tới 4 hệ thống hạ nguồn; đỉnh 5k TPS;
+Context:  Sự kiện đơn hàng phải tới 4 hệ thống hạ nguồn; đỉnh 5k TPS;
           ghép chặt bằng lời gọi sync từng gây sập dây chuyền.
-Decision: Publish sự kiện thanh toán lên Kafka; các consumer tự subscribe.
+Decision: Publish sự kiện đơn hàng lên Kafka; các consumer tự subscribe.
 Consequences:
   + Tách rời, scale độc lập, replay được
   - Nhất quán trễ (eventual); cần consumer idempotent &amp; DLQ
@@ -305,7 +305,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
           <tr><td><strong>L3</strong></td><td>Component</td><td>Mỗi container chứa những component nào?</td></tr>
           <tr><td><strong>L4</strong></td><td>Code</td><td>Chi tiết class/code (hiếm khi cần vẽ).</td></tr>
         </table>
-        <figure class="diagram diagram--containers" role="group" aria-label="Sơ đồ container C4 Level 2: Web App kết nối qua API Gateway tới Payment Service và Postgres. API Gateway kết nối Auth Service. Payment Service phát sự kiện vào Kafka topic, rồi kết nối Ledger Consumer.">
+        <figure class="diagram diagram--containers" role="group" aria-label="Sơ đồ container C4 Level 2: Web App kết nối qua API Gateway tới Order Service và Postgres. API Gateway kết nối Auth Service. Order Service phát sự kiện vào Kafka topic, rồi kết nối Fulfillment Consumer.">
           <div class="diagram-title">C4 L2 — CONTAINERS</div>
           <div class="diagram-canvas">
             <div class="diagram-path diagram-path--primary" role="list" aria-label="Luồng container chính">
@@ -313,7 +313,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">API Gateway</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
-              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Payment Service</span></div>
+              <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Order Service</span></div>
               <span class="diagram-edge" aria-hidden="true"></span>
               <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Postgres</span></div>
             </div>
@@ -322,12 +322,12 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
                 <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
                 <div class="diagram-node diagram-node--service"><span class="diagram-node-label">Auth Service</span></div>
               </div>
-              <div class="diagram-branch-item diagram-branch-item--payment" role="listitem">
+              <div class="diagram-branch-item diagram-branch-item--event" role="listitem">
                 <span class="diagram-edge diagram-edge--vertical" aria-hidden="true"></span>
-                <div class="diagram-path diagram-path--nested" role="list" aria-label="Luồng sự kiện thanh toán">
+                <div class="diagram-path diagram-path--nested" role="list" aria-label="Luồng sự kiện đơn hàng">
                   <div class="diagram-node diagram-node--store" role="listitem"><span class="diagram-node-label">Kafka topic</span></div>
                   <span class="diagram-edge" aria-hidden="true"></span>
-                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Ledger Consumer</span></div>
+                  <div class="diagram-node diagram-node--service" role="listitem"><span class="diagram-node-label">Fulfillment Consumer</span></div>
                 </div>
               </div>
             </div>
@@ -368,11 +368,11 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
         <div class="card-title">Kỷ luật API &amp; contract</div>
         <ul class="step-cl">
           <li><strong>Contract-first:</strong> định nghĩa <code>OpenAPI</code> (REST) / <code>AsyncAPI</code> (event) trước khi code; đánh version từ ngày đầu (<code>/v1</code>).</li>
-          <li><strong>Idempotency</strong> cho các thao tác có retry (idempotency key) — sống còn với thanh toán &amp; messaging at-least-once.</li>
+          <li><strong>Idempotency</strong> cho các thao tác có retry (idempotency key) — thiết yếu với luồng trọng yếu &amp; messaging at-least-once.</li>
           <li><strong>Tương thích ngược:</strong> thay đổi kiểu bổ sung; deprecate, đừng phá; ghi interface vào <strong>Interface Catalog</strong>.</li>
           <li>Mô hình hoá tương tác bằng <strong>sequence diagram</strong> cho các luồng trọng yếu (C4 runtime / arc42 §6).</li>
         </ul>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🏦</span><div>Bối cảnh ngân hàng: tích hợp với <strong>core banking</strong> và <strong>identity/SSO</strong> cần hợp đồng giao diện tường minh, <strong>quyền sở hữu dữ liệu</strong> rõ ràng, và <strong>ranh giới xác thực</strong> được định nghĩa giữa SSO tập trung và các service cấp module.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">📘</span><div>Bối cảnh tổ chức: tích hợp với <strong>core platform</strong> và <strong>identity/SSO</strong> cần hợp đồng giao diện tường minh, <strong>quyền sở hữu dữ liệu</strong> rõ ràng, và <strong>ranh giới xác thực</strong> được định nghĩa giữa SSO tập trung và các service cấp module.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -400,7 +400,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
           <tr><td><strong>D</strong>enial of service</td><td>Rate limiting, autoscaling, WAF.</td></tr>
           <tr><td><strong>E</strong>levation of privilege (leo quyền)</td><td>AuthZ (RBAC/ABAC), quản lý secret, Zero-Trust.</td></tr>
         </table>
-        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; canh control theo <strong>Thông tư 09/2020, ISO 27001, PCI-DSS</strong>. Bằng chứng kiểm thử bảo mật nằm ở <a href="#qc">QC Testing Handbook</a>; control lúc triển khai ở <a href="#deployment">Deployment Runbook</a>.</div></div>
+        <div class="alert alert-info" style="margin-top:8px;"><span class="alert-icon">🔒</span><div>Security-by-design; thiết kế control bám theo <strong>quy định pháp luật áp dụng, ISO 27001 và tiêu chuẩn an toàn ngành phù hợp</strong>. Bằng chứng kiểm thử bảo mật nằm ở <a href="#qc">QC Testing Handbook</a>; control lúc triển khai ở <a href="#deployment">Deployment Runbook</a>.</div></div>
       </div></div>
     </section>
     <div class="section-divider"></div>
@@ -450,7 +450,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
         <table class="table-sa">
           <tr><th>Rủi ro</th><th>Khả năng × Ảnh hưởng</th><th>Giảm thiểu</th></tr>
           <tr><td>Event-broker mới chưa chứng minh ở 5k TPS</td><td>TB × Cao</td><td>PoC load test; phương án lùi về managed service.</td></tr>
-          <tr><td>Latency API core-banking tăng đột biến</td><td>TB × Cao</td><td>Buffer bất đồng bộ + circuit breaker + cache.</td></tr>
+          <tr><td>Latency API core-platform tăng đột biến</td><td>TB × Cao</td><td>Buffer bất đồng bộ + circuit breaker + cache.</td></tr>
         </table>
       </div></div>
     </section>
@@ -512,7 +512,7 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
     <div class="section-divider"></div>
 
     <div class="card"><div class="card-body">
-      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 trụ cột); <strong>TOGAF 10</strong> (The Open Group — giao thoa EA, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); các pattern tích hợp theo Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Bám Thông tư 09/2020/TT-NHNN &amp; ISO 27001.</div></div>
+      <div class="alert alert-success"><span class="alert-icon">📚</span><div><strong>Nguồn.</strong> <strong>C4 Model</strong> (Simon Brown); <strong>arc42</strong> (Dr. Gernot Starke &amp; Dr. Peter Hruschka); <strong>ADR</strong> (Michael Nygard); <strong>AWS / Azure Well-Architected Framework</strong> (6 trụ cột); <strong>TOGAF 10</strong> (The Open Group — giao thoa EA, Phase G); <strong>STRIDE</strong> (Microsoft threat modeling); <strong>ATAM &amp; Quality Attribute Scenarios</strong> (SEI / Carnegie Mellon); các pattern tích hợp theo Hohpe &amp; Woolf (<em>Enterprise Integration Patterns</em>). Bám quy định pháp luật áp dụng &amp; ISO 27001.</div></div>
     </div></div>
 
   <!-- GENERATED ROLE TEMPLATE LIBRARY: START -->
@@ -541,8 +541,8 @@ Alternatives considered: REST fan-out đồng bộ (loại: ghép chặt),
   </main>
 
   <footer class="site-footer">
-    🏦 Handbook · Solution Architect Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
-    Bám chuẩn C4 · arc42 · Well-Architected · TOGAF 10 · Thông tư 09/2020/TT-NHNN · © 2025
+    📘 Handbook · Solution Architect Handbook v2.0 · Bản công khai · Phân loại: CÔNG KHAI (PUBLIC)<br/>
+    Bám chuẩn C4 · arc42 · Well-Architected · TOGAF 10 · quy định pháp luật áp dụng · © 2025
   </footer>
 </div><!-- /#main-content -->
 </div><!-- /#page-content -->

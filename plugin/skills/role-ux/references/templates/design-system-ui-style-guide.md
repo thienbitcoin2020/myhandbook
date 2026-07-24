@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/design-system-ui-style-guide.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · UX/UI DESIGNERDESIGN SYSTEM / UI STYLE GUIDEMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · UX/UI DESIGNERDESIGN SYSTEM / UI STYLE GUIDEMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|

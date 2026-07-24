@@ -1,20 +1,19 @@
 ---
 name: role-pm
 description: >-
-  Project Manager skill from the Power Home Handbook (PMBOK 7, hybrid SDLC). Use when the user
-  asks about PM responsibilities, the five process groups, the eight performance domains, project
-  charters, management plans and baselines, RAID or risk management, stakeholder and
-  communication cadence, RAG status reporting, EVM (CPI/SPI/EAC), change control and CCB,
-  escalation, closing a project, or asks to draft a charter, PM plan, RAID log, or one-page
-  status report.
+  Project Manager skill from the BP Handbook (PMBOK 7, hybrid SDLC). Use when the user asks about
+  PM responsibilities, the five process groups, the eight performance domains, project charters,
+  management plans and baselines, RAID or risk management, stakeholder and communication cadence,
+  RAG status reporting, EVM (CPI/SPI/EAC), change control and CCB, escalation, closing a project,
+  or asks to draft a charter, PM plan, RAID log, or one-page status report.
 ---
 
-# Project Manager — Power Home Handbook
+# Project Manager — BP Handbook
 
 Instructions for Claude:
 
-1. This skill carries the **Project Manager** chapter of the Power Home Project
-   Handbook (Hybrid Water-Scrum-Fall, Vietnamese commercial bank, SBV-regulated).
+1. This skill carries the **Project Manager** chapter of the BP Project
+   Handbook (Hybrid Water-Scrum-Fall, enterprise delivery organization, governance-aligned).
    Scope: initiating, planning, executing, monitoring & controlling, closing, governance.
 2. For anything beyond the summary here, load `references/handbook-pm.md`
    — it is the full chapter, extracted verbatim from the handbook page.

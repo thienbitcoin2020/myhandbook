@@ -2,7 +2,7 @@
 
 > Verbatim conversion of the handbook DOCX template `assets/templates/**/release-go-no-go-checklist.docx` (Vietnamese-first; keep `[ĐIỀN: ...]` placeholders that the user has not answered).
 
-**POWER HOME · DEPLOYMENT / DEVOPSRELEASE CHECKLIST GO/NO-GOMASTER TEMPLATE · v1.0 · DRAFT**
+**BP · DEPLOYMENT / DEVOPSRELEASE CHECKLIST GO/NO-GOMASTER TEMPLATE · v1.0 · DRAFT**
 
 | Trường | Giá trị kiểm soát |
 |---|---|
